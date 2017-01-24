@@ -42,4 +42,11 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 		client.delete("deleteFreeBoard",frb_Article_Num);
 	}
 
+	@Override
+	public FreeBoardVo selectFreeBoardDetail(int frb_Article_Num)
+			throws SQLException {
+		FreeBoardVo freeBoardVo = (FreeBoardVo) client.queryForObject("selectFreeBoardDetail",frb_Article_Num);
+		return freeBoardVo;
+	}
+
 }
