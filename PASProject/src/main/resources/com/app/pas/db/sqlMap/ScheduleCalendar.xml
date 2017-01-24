@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ScheduleCalendar">
+
+   <typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   <typeAlias alias="ScheduleCalendar" type="com.app.pas.dto.ScheduleCalendarVo" />
+   
+   
+   <select id="selectScheduleCalendarList" parameterClass="str" resultClass="ScheduleCalendar" >
+      select * from Schedule_Calendar where GT_NUM LIKE '%'||#gt_Num#||'%'
+   </select>
+   
+   <update id="insertScheduleCalendar" parameterClass="ScheduleCalendar">
+      insert into Schedule_Calendar(GT_NUM,SC_START_DATE,SC_END_DATE,SC_COLOR,SC_CHARGE_MEM) 
+	  VALUES(#gt_Num#,#sc_Start_Date#,#sc_End_Date#,#sc_Color#,#sc_Charge_Mem#)
+   </update>
+   
+   <update id="updateScheduleCalendar" parameterClass="ScheduleCalendar">
+      UPDATE Schedule_Calendar SET SC_START_DATE=#sc_Start_Date#, SC_END_DATE=#sc_End_Date#,SC_COLOR=#sc_Color#,
+      SC_CHARGE_MEM=#sc_Charge_Mem# WHERE GT_NUM=#gt_Num#	  
+   </update>
+   
+   <update id="deleteScheduleCalendar" parameterClass="int">
+      delete from Schedule_Calendar where GT_NUM=#gt_Num#
+   </update>
+   
+</sqlMap>

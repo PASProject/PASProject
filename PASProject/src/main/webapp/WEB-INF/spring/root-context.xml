@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+<!-- ////////////////////////////////////////// Dao  //////////////////////////////////////////////////////////// -->
+	
+	<bean id="AdminDao" class="com.app.pas.dao.impl.AdminDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="ApplyDao" class="com.app.pas.dao.impl.ApplyDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="DeadLineDao" class="com.app.pas.dao.impl.DeadLineDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="InviteDao" class="com.app.pas.dao.impl.InviteDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="MemberDao" class="com.app.pas.dao.impl.MemberDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="PositionDao" class="com.app.pas.dao.impl.PositionDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="ProjectDao" class="com.app.pas.dao.impl.ProjectDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="ProjectJoinDao" class="com.app.pas.dao.impl.ProjectJoinDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="ScheduleCalendarDao" class="com.app.pas.dao.impl.ScheduleCalendarDaoImpl" p:client-ref="SqlMapClient"/>
+	
+	
+	<bean id="AccountBoardDao" class="com.app.pas.dao.board.impl.AccountBoardDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="FreeBoardDao" class="com.app.pas.dao.board.impl.FreeBoardDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="NoticeDao" class="com.app.pas.dao.board.impl.NoticeDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="ProjectBoardDao" class="com.app.pas.dao.board.impl.ProjectBoardDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="QnaBoardDao" class="com.app.pas.dao.board.impl.QnaBoardDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="SkillSharingBoardDao" class="com.app.pas.dao.board.impl.SkillSharingBoardDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="TotalNoticeDao" class="com.app.pas.dao.board.impl.TotalNoticeDaoImpl" p:client-ref="SqlMapClient"/>
+	
+	
+	
+	<!-- ////////////////////////////////////////// service  //////////////////////////////////////////////////////////// -->
+	
+	<bean id="AdminService" class="com.app.pas.service.AdminService" p:adminDao-ref="AdminDao"/>
+	<bean id="ApplyService" class="com.app.pas.service.ApplyService" p:applyDao-ref="ApplyDao"/>
+	<bean id="DeadLineService" class="com.app.pas.service.DeadLineService" p:deadlineDao-ref="DeadLineDao"/>
+	<bean id="InviteService" class="com.app.pas.service.InviteService" p:inviteDao-ref="InviteDao"/>
+	<bean id="MemberService" class="com.app.pas.service.MemberService" p:memberDao-ref="MemberDao"/>
+	<bean id="PositionService" class="com.app.pas.service.PositionService" p:positionDao-ref="PositionDao"/>
+	<bean id="ProjectJoinService" class="com.app.pas.service.ProjectJoinService" p:projectjoinDao-ref="ProjectJoinDao"/>
+	<bean id="ProjectService" class="com.app.pas.service.ProjectService" p:projectDao-ref="ProjectDao"/>
+	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:schedulecalendarDao-ref="ScheduleCalendarDao"/>
+	
+	
+	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>
+	<bean id="FreeBoardService" class="com.app.pas.service.board.FreeBoardService" p:freeboardDao-ref="FreeBoardDao"/>
+	<bean id="NoticeService" class="com.app.pas.service.board.NoticeService" p:noticeDao-ref="NoticeDao"/>
+	<bean id="ProjectBoardService" class="com.app.pas.service.board.ProjectBoardService" p:projectboardDao-ref="ProjectBoardDao"/>
+	<bean id="QnaBoardService" class="com.app.pas.service.board.QnaBoardService" p:qnaBoardDao-ref="QnaBoardDao"/>
+	<bean id="SkillSharingBoardService" class="com.app.pas.service.board.SkillSharingBoardService" p:skillsharingboardDao-ref="SkillSharingBoardDao"/>
+	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
+	
+</beans>

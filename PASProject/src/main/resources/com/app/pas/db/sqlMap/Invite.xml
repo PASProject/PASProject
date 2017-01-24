@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Invite">
+
+   <typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   <typeAlias alias="Invite" type="com.app.pas.dto.InviteVo" />
+   
+   <select id="selectInvite" parameterClass="str" resultClass="int" >
+      select * from Invite where INVITE_NUM=#invite_Num#
+   </select>
+   
+   <update id="insertInvite" parameterClass="Invite">
+      insert into INVITE(INVITE_NUM,INVITE_CONTENT,PROJ_NUM) 
+	  VALUES(INVITE_SEQ.NEXTVAL,#invite_Content#,#proj_Num#)
+	  
+   </update>
+   
+   <update id="updateInvite" parameterClass="Invite">
+      update INVITE set INVITE_CONTENT=#invite_Content#
+      WHERE INVITE_NUM = #invite_Num#
+   </update>
+   
+   <update id="deleteInvite" parameterClass="int">
+      delete from INVITE where INVITE_NUM=#invite_Num#
+   </update>
+   
+</sqlMap>

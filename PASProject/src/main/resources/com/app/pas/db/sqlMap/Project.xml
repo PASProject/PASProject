@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Project">
+
+   <typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   <typeAlias alias="Project" type="com.app.pas.dto.ProjectVo" />
+   
+   
+   <select id="selectProjectList" parameterClass="int" resultClass="Project" >
+      select * from PROJECT where PROJ_NUM LIKE '%'||#proj_Num#||'%'
+   </select>
+   <select id="selectProject" parameterClass="int" resultClass="Project">
+   	 select * from project where proj_num = #proj_Num#
+   </select>
+   
+   <update id="insertProject" parameterClass="Project">
+      insert into PROJECT(PROJ_NUM,MEM_EMAIL,PROJ_CONTENT,PROJ_NAME) 
+	  VALUES(PROJECT_SEQ.NEXTVAL,#mem_Email#,#proj_Content#,#proj_Name#)
+   </update>
+   
+   <update id="updateProject" parameterClass="Project">
+      UPDATE PROJECT SET MEM_EMAIL=#mem_Email#, PROJ_CONTENT=#proj_Content#,PROJ_CHECK=#proj_Check#,
+	  PROJ_NAME=#proj_Name# WHERE PROJ_NUM =#proj_Num#
+   </update>
+   
+   <update id="deleteProject" parameterClass="int">
+      delete from PROJECT where PROJ_NUM=#proj_Num#
+   </update>
+   
+</sqlMap>

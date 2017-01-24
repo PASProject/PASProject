@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="QnaBoard">
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="QnaBoard" type="com.app.pas.dto.board.QnaBoardVo" />
+
+	<select id="selectQnaBoardList" resultClass="QnaBoard">
+		SELECT *
+		FROM QNA_BOARD
+		ORDER BY QB_ARTICLE_NUM DESC
+
+	</select>
+
+	<select id="selectQnaBoard" parameterClass="int"
+		resultClass="QnaBoard">
+		SELECT *
+		FROM QNA_BOARD
+		WHERE QB_ARTICLE_NUM LIKE '%'||#qb_Article_Num#||'%'
+
+
+	</select>
+
+	<insert id="insertQnaBoard" parameterClass="QnaBoard">
+		INSERT INTO
+		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL) 
+		VALUES(QNA_BOARD_SEQ.NEXTVAL,#qb_Title#,#qb_Content#,#qb_Password#,#mem_Email#)
+	</insert>
+
+
+	<update id="updateQnaBoard" parameterClass="QnaBoard">
+		UPDATE QNA_BOARD SET QB_TITLE=#qb_Title#, QB_CONTENT=#qb_Content#,
+		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
+	</update>
+
+	<delete id="deleteQnaBoard" parameterClass="int">
+		DELETE FROM QNA_BOARD WHERE QB_ARTICLE_NUM=#qb_Article_Num#
+
+
+	</delete>
+
+</sqlMap>

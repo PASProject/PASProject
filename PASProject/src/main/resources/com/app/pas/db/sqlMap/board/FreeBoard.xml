@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="FreeBoard">
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="FreeBoard" type="com.app.pas.dto.board.FreeBoardVo" />
+
+	<select id="selectFreeBoardList" resultClass="FreeBoard">
+		SELECT *
+		FROM FREE_BOARD
+		ORDER BY frbArticleNum DESC
+
+	</select>
+
+	<select id="selectFreeBoard" parameterClass="int"
+		resultClass="FreeBoard">
+		SELECT *
+		FROM FREE_BOARD
+		WHERE FRB_ARTICLE_NUM LIKE '%'||#frb_Article_Num#||'%'
+
+
+	</select>
+
+	<insert id="insertFreeBoard" parameterClass="FreeBoard">
+		INSERT INTO
+		FREE_BOARD(FRB_ARTICLE_NUM,FRB_CONTENT,FRB_KIND,FRB_TITLE,MEM_EMAIL) 
+		VALUES(FREE_BOARD_SEQ.NEXTVAL,#frb_Content#,#frb_Kind#,#frb_Title#,#mem_Email#)
+	</insert>
+
+
+	<update id="updateFreeBoard" parameterClass="FreeBoard">
+		UPDATE FREE_BOARD SET FRB_CONTENT=#frb_Content#, FRB_KIND=#frb_Kind#,
+		FRB_TITLE=#frb_Title# WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
+	</update>
+
+	<delete id="deleteFreeBoard" parameterClass="int">
+		DELETE FROM FREE_BOARD WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
+
+
+	</delete>
+
+</sqlMap>
