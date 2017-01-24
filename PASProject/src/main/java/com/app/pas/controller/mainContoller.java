@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/index")
 public class mainContoller {
 	
-	@RequestMapping(value="/loginForm",method=RequestMethod.GET)
+	@RequestMapping("/loginForm")
 	public String loginForm(HttpSession session, Model model){
-		String url="";
+		String url="main/loginForm";
 		return url;
 	}
 	

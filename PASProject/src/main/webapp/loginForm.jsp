@@ -4,17 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
 <!DOCTYPE html>
 <html>
 
 <head>
 
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery -->
-<script src="resources/js/jquery.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -85,6 +86,7 @@ body {
 			<img style="width: 80px" src="resources/img/logo.png">
 		</h3>
 		<h2 style="text-align: center">로그인</h2>
+		이것은!!!!!!!!!경로!!인데 왜 안되니<%=request.getContextPath() %>
 		<div class="container">
 			<form>
 				<div class="form-group">
