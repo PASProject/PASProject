@@ -17,6 +17,13 @@
    	  select * from member where mem_email = #mem_Email#
    </select>
    
+   <!-- 비번찾기 xml -->
+   <select id="selectMemberById" parameterClass="str" resultClass="int">
+   	  select mem_pass from member where mem_Email = #mem_Email#
+   </select>
+ 
+   
+   
    <update id="insertMember" parameterClass="Member">
       insert into MEMBER(MEM_EMAIL,MEM_NAME,MEM_PHONE,MEM_PASS,MEM_IMG) 
 	  VALUES(#mem_Email#,#mem_Name#,#mem_Phone#,#mem_Pass#,#mem_Img#)
