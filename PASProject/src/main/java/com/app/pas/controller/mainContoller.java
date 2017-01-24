@@ -14,7 +14,7 @@ public class mainContoller {
 	
 	@RequestMapping(value="/loginForm",method=RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model){
-		String url="";
+		String url="main/loginForm2";
 		return url;
 	}
 	

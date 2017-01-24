@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+    pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
 
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
 <!-- jQuery -->
-<script src="resources/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="resources/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 
 <style>
 
