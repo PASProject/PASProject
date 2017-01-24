@@ -1,18 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="euc-kr" ?>
 
-<decorators defaultdir="/">
-<!-- 	<decorator name="main" page="WEB-INF/page_decorator.jsp" >
+<decorators defaultdir="/">	
+	<decorator name="main" page="page_decorator.jsp">
 		<pattern>/</pattern>
 	</decorator>
-	<decorator name="admin" page="WEB-INF/admin_decorator.jsp" >
+	<decorator name="admin" page="admin_decorator.jsp">
 		<pattern>/admin/*.do</pattern>
-	</decorator> -->
+	</decorator>
+	
 
-	<!-- <excludes>
+
+
+	<excludes>
+		<pattern>/loginForm.jsp*</pattern>
+     	<pattern>/pwdsearch.do*</pattern>
 		<pattern>/findZipNum.do*</pattern>
-		<pattern>/idCheckForm.do*</pattern>
-		<pattern>/**/*Xml.do</pattern>
-		<pattern>/**/*Json.do</pattern>
-	</excludes> -->
+		<pattern>/idCheckForm.do*</pattern>	
+		<pattern>/admin/adminLoginForm.do</pattern>	
+	</excludes>
 
 </decorators>
