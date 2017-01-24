@@ -1,5 +1,7 @@
 package com.app.pas.dto.board;
 
+import java.sql.Timestamp;
+
 public class FreeBoardVo {
 
 	
@@ -10,6 +12,24 @@ public class FreeBoardVo {
 	private int frb_Like;
 	private String mem_Email;
 	private String frb_Kind;
+	private Timestamp frb_Wt_Date;
+	
+	
+	
+	@Override
+	public String toString() {
+		return "FreeBoardVo [frb_Article_Num=" + frb_Article_Num
+				+ ", frb_Content=" + frb_Content + ", frb_Title=" + frb_Title
+				+ ", frb_Inq_Count=" + frb_Inq_Count + ", frb_Like=" + frb_Like
+				+ ", mem_Email=" + mem_Email + ", frb_Kind=" + frb_Kind
+				+ ", frb_Wt_Date=" + frb_Wt_Date + "]";
+	}
+	public Timestamp getFrb_Wt_Date() {
+		return frb_Wt_Date;
+	}
+	public void setFrb_Wt_Date(Timestamp frb_Wt_Date) {
+		this.frb_Wt_Date = frb_Wt_Date;
+	}
 	public int getFrb_Article_Num() {
 		return frb_Article_Num;
 	}

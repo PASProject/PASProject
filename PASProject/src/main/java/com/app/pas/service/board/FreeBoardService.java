@@ -23,9 +23,45 @@ public class FreeBoardService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return list;
 	}
  
+	public FreeBoardVo selectFreeBoardDetail(int frb_Article_Num){
+		FreeBoardVo freeBoardVo = null;
+		try {
+			freeBoardVo = freeboardDao.selectFreeBoardDetail(frb_Article_Num);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return freeBoardVo;
+	}
 	
+	public void insertFreeBoard(FreeBoardVo freeBoardVo){
+		try {
+			freeboardDao.insertFreeBoard(freeBoardVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void deleteFreeBoard(int frb_Article_Num){
+		try {
+			freeboardDao.deleteFreeBoard(frb_Article_Num);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateFreeBoard(FreeBoardVo freeBoardVo){
+		try {
+			freeboardDao.updateFreeBoard(freeBoardVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

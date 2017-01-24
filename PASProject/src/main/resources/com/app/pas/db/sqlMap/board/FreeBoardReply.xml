@@ -14,28 +14,26 @@
 		resultClass="FreeBoardReply">
 		SELECT *
 		FROM FREE_BOARD_REPLY
-		WHERE PRB_ARTICLE_NUM LIKE '%'||#prb_Article_Num#||'%'
+		WHERE FRB_ARTICLE_NUM LIKE '%'||#frb_Article_Num#||'%'
 
 
 	</select>
 
 	<insert id="insertFreeBoardReply" parameterClass="FreeBoardReply">
 		INSERT INTO
-		FREE_BOARD_REPLY(PRB_REPLY_NUM,PRB_ARTICLE_NUM,PRB_REPLY_MEM,
-		PRB_REPLY_CONTENT) 
-		VALUES(FREE_BOARD_REPLY_SEQ.NEXTVAL,#prb_Article_Num#,#prb_Reply_Mem#,#prb_Reply_Content#)
+		FREE_BOARD_REPLY(FRB_REPLY_NUM,FRB_ARTICLE_NUM,FRB_REPLY_MEM,
+		FRB_REPLY_CONTENT) 
+		VALUES(FREE_BOARD_REPLY_SEQ.NEXTVAL,#frb_Article_Num#,#frb_Reply_Mem#,#frb_Reply_Content#)
 	</insert>
 
 
 	<update id="updateFreeBoardReply" parameterClass="FreeBoardReply">
-		UPDATE FREE_BOARD_REPLY SET PRB_REPLY_CONTENT=#prb_Reply_Content# 
-		WHERE PRB_REPLY_NUM = #prb_Reply_Num#
+		UPDATE FREE_BOARD_REPLY SET FRB_REPLY_CONTENT=#frb_Reply_Content# 
+		WHERE FRB_REPLY_NUM = #frb_Reply_Num#
 	</update>
 
 	<delete id="deleteFreeBoradReply" parameterClass="int">
-		DELETE FROM FREE_BOARD_REPLY WHERE PRB_REPLY_NUM=#prb_Reply_Num#
-
-
+		DELETE FROM FREE_BOARD_REPLY WHERE FRB_REPLY_NUM=#frb_Reply_Num#
 	</delete>
 
 </sqlMap>
