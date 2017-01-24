@@ -11,7 +11,7 @@
 	<select id="selectFreeBoardList" resultClass="FreeBoard">
 		SELECT *
 		FROM FREE_BOARD
-		ORDER BY frbArticleNum DESC
+		ORDER BY frb_Article_Num DESC
 
 	</select>
 
