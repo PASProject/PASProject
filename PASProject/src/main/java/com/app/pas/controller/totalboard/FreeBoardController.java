@@ -2,6 +2,7 @@ package com.app.pas.controller.totalboard;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.service.MemberService;
 import com.app.pas.service.board.FreeBoardService;
 
 @Controller
@@ -21,6 +23,7 @@ public class FreeBoardController {
 
 	@Autowired
 	FreeBoardService freeBoardService;
+	
 	
 	@RequestMapping("/freeBoardList")
 	public String CommunityList(Model model) {

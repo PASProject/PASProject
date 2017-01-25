@@ -10,5 +10,6 @@
 </head>
 <body>
 <a href="<%=request.getContextPath() %>/freeBoard/freeBoardList">FreeBoard 리스트</a>
+<br><a href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList">SkillSharingBoard 리스트</a>
 </body>
 </html>

@@ -29,6 +29,13 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 	}
 
 	@Override
+	public SkillSharingBoardVo selectSkillSharingBoardTitle(String ssb_Title)
+			throws SQLException {
+		SkillSharingBoardVo skillSharingBoardVo = (SkillSharingBoardVo)client.queryForObject("selectSkillSharingBoardTitle",ssb_Title);
+		return skillSharingBoardVo;
+	}
+	
+	@Override
 	public void insertSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo)
 			throws SQLException {
 		client.insert("insertSkillSharingBoard",skillSharingBoardVo);
@@ -47,5 +54,8 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 		client.delete("deleteSkillSharingBoard",ssb_Article_Num);
 
 	}
+
+	
+
 
 }
