@@ -25,12 +25,7 @@
 <meta name="author" content="">
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.css">
+
 	
 <!-- Bootstrap Core CSS -->
 <link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">

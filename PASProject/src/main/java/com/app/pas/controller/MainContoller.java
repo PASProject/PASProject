@@ -13,7 +13,7 @@ import com.app.pas.service.MemberService;
 
 @Controller
 @RequestMapping("/main")
-public class mainContoller {
+public class MainContoller {
 
 	@Autowired
 	MemberService memberService;
@@ -48,7 +48,7 @@ public class mainContoller {
 
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
-		String url = "";
+		String url = "main/joinForm";
 		return url;
 	}
 
