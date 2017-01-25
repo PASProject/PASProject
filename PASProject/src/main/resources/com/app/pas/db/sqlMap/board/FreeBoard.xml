@@ -25,6 +25,7 @@
 	<select id="selectFreeBoardDetail" parameterClass="int" resultClass="FreeBoard">
 		select * from free_Board where frb_article_num = #frb_article_num#
 	</select>
+	
 	<insert id="insertFreeBoard" parameterClass="FreeBoard">
 		INSERT INTO
 		FREE_BOARD(FRB_ARTICLE_NUM,FRB_CONTENT,FRB_KIND,FRB_TITLE,MEM_EMAIL) 
