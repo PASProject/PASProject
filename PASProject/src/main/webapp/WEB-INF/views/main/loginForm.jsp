@@ -8,13 +8,27 @@
 <html>
 
 <head>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
+<!-- Bootstrap Core CSS -->
 <link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery -->
-<script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
+
+<!-- Custom CSS -->
+<link href="<%=request.getContextPath() %>/resources/css/stylish-portfolio.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="<%=request.getContextPath() %>/resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+
+
+
 
 <style>
 
@@ -89,11 +103,11 @@ body {
 			<form>
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="email" name="id" placeholder="Enter email">
+						class="form-control" id="email" placeholder="Enter email">
 				</div>
 				<div class="form-group">
 					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+						class="form-control" id="pwd" placeholder="Enter password">
 				</div>
 				<div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>
