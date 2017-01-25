@@ -41,9 +41,5 @@ public class MemberDaoImpl implements MemberDao {
 		client.update("deleteMember",mem_Email);
 	}
 
-	@Override
-	public int selectMemberById(String mem_Email) throws SQLException {
-		int result =(Integer) client.queryForObject("selectMemberById",mem_Email);
-		return result;
-	}
+	
 }

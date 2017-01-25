@@ -1,19 +1,55 @@
 package com.app.pas.controller.totalboard;
 
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.board.NoticeVo;
+import com.app.pas.service.board.NoticeService;
 
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
 	
 	
+	@Autowired
+	NoticeService noticeService;
+	
+	
 	@RequestMapping("/noticeList")
-	public String NoticeList(HttpSession session, Model model) {
-		String url = "";
+	public String NoticeList(HttpServletRequest request,HttpSession session){
+		int proj_Num=1;
+		MemberVo memberVo= (MemberVo)session.getAttribute("loginUser");
+		
+		String url = "project/pmNoticeList";
+		
+		List<NoticeVo> list=null;
+		
+		
+		try {
+			list=noticeService.getNoticeList(proj_Num);
+			request.setAttribute("NoticeList", list);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		
+		
+		
+		
+		
 		return url;
 
 	}
@@ -25,9 +61,9 @@ public class NoticeController {
 
 	}
 	
-	@RequestMapping("/noticeWrite")
-	public String writeNotice(HttpSession session,Model model){
-		String url="";
+	@RequestMapping(value="/noticeWriteForm",method=RequestMethod.GET)
+	public String writeNoticeForm(HttpSession session,Model model){
+		String url="project/pmNoticeList";
 		return url;
 				
 	}

@@ -1,13 +1,24 @@
 package com.app.pas.dto.board;
 
+import java.sql.Timestamp;
+
 public class NoticeVo {
 
 	
 	private int notice_Num;
 	private String notice_Title;
 	private String notice_Content;
+	private Timestamp notice_Date;
 	private int notice_Inq_Count;
 	private int proj_Num;
+	
+	
+	public Timestamp getNotice_Date() {
+		return notice_Date;
+	}
+	public void setNotice_Date(Timestamp notice_Date) {
+		this.notice_Date = notice_Date;
+	}
 	public int getNotice_Num() {
 		return notice_Num;
 	}
