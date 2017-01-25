@@ -8,22 +8,29 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="Notice" type="com.app.pas.dto.board.NoticeVo" />
 
-	<select id="selectNoticeList" resultClass="Notice">
+	<!-- <select id="selectNoticeList" resultClass="Notice">
 		SELECT *
 		FROM NOTICE
 		ORDER BY NOTICE_NUM DESC
 
-	</select>
+	</select> -->
+	
 
 	<select id="selectNotice" parameterClass="int"
 		resultClass="Notice">
 		SELECT *
 		FROM NOTICE
-		WHERE NOTICE LIKE '%'||#notice_Num#||'%'
+		WHERE PROJ_NUM LIKE '%'||#proj_Num#||'%'
 
 
 	</select>
-
+	
+	<select id="selectNoticeCount" resultClass="int">
+	    SELECT COUNT(*) FROM NOTICE
+	 </select>
+   
+   
+   
 	<insert id="insertNotice" parameterClass="Notice">
 		INSERT INTO
 		NOTICE(NOTICE_NUM,NOTICE_TITLE,NOTICE_CONTENT,,PROJ_NUM) 

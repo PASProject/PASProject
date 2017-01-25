@@ -21,9 +21,9 @@ public class NoticeDaoImpl implements NoticeDao{
 	}
 
 	@Override
-	public NoticeVo selectNotice(int Notice_Num) throws SQLException {
-		NoticeVo noticeVo = (NoticeVo) client.queryForObject("selectNotice",Notice_Num); 
-		return noticeVo;
+	public List<NoticeVo> selectNotice(int proj_Num) throws SQLException {
+		List<NoticeVo> list = client.queryForList("selectNotice",proj_Num); 
+		return list;
 	}
 
 	@Override
@@ -39,6 +39,12 @@ public class NoticeDaoImpl implements NoticeDao{
 	@Override
 	public void deleteNotice(int Notice_Num) throws SQLException {
 		client.delete("deleteNotice",Notice_Num);
+	}
+	@Override
+	public int selectNoticeCount() throws SQLException {
+		int result =(Integer) client.queryForObject("selectNoticeCount", null);
+		return result;
+		
 	}
 
 }

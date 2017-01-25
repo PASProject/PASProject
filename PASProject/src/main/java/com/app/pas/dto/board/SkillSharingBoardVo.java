@@ -1,26 +1,29 @@
 package com.app.pas.dto.board;
 
+import java.sql.Timestamp;
+
 public class SkillSharingBoardVo {
 
 	
 	private int ssb_Article_Num;
-	private String ssb_Kind;
+	private Timestamp ssb_wt_date;
 	private String ssb_Content;
 	private String ssb_Title;
 	private int ssb_Like;
 	private int ssb_Inq_Count;
 	private String mem_Email;
+	
+	public Timestamp getSsb_wt_date() {
+		return ssb_wt_date;
+	}
+	public void setSsb_wt_date(Timestamp ssb_wt_date) {
+		this.ssb_wt_date = ssb_wt_date;
+	}
 	public int getSsb_Article_Num() {
 		return ssb_Article_Num;
 	}
 	public void setSsb_Article_Num(int ssb_Article_Num) {
 		this.ssb_Article_Num = ssb_Article_Num;
-	}
-	public String getSsb_Kind() {
-		return ssb_Kind;
-	}
-	public void setSsb_Kind(String ssb_Kind) {
-		this.ssb_Kind = ssb_Kind;
 	}
 	public String getSsb_Content() {
 		return ssb_Content;

@@ -6,15 +6,17 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 
-<link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- jQuery -->
-<script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -32,10 +34,12 @@ body {
 	margin-top: 30px;
 	padding: 30px;
 }
-.dividercontainer{
-	max-width:350px;
-	margin:auto;
+
+.dividercontainer {
+	max-width: 350px;
+	margin: auto;
 }
+
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
@@ -76,29 +80,65 @@ body {
 
 <meta charset="UTF-8">
 <title></title>
+
+<script type="text/javascript">
+	$(function() {
+		$("#login").click(function() {
+			var email = $('#email').val();
+			var pwd = $('#pwd').val();
+			
+			
+			$.ajax({
+				type : 'POST',
+				url : '/pas/main/login',
+				dataType : 'json',
+				data : {
+					'email' : email,
+					'pwd' : pwd
+				},
+				success : function(result) {
+					if (result == 1) {
+
+					} else if (result == 0) {
+						alert("아이디가 틀렸습니다");
+					} else {
+						alert("비밀번호 오류입니다");
+					}
+
+				}
+
+			});
+		})
+
+	})
+</script>
 </head>
 <body>
 
 	<div class="container2">
 
 		<h3 style="text-align: center;">
-			<img style="width: 80px" src="<%=request.getContextPath() %>/resources/img/logo.png">
+			<img style="width: 80px"
+				src="<%=request.getContextPath()%>/resources/img/logo.png">
 		</h3>
 		<h2 style="text-align: center">로그인</h2>
 		<div class="container">
 			<form>
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="email" name="id" placeholder="Enter email">
+						class="form-control" id="email" name="email"
+						placeholder="Enter email">
 				</div>
 				<div class="form-group">
 					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+						class="form-control" id="pwd" name="pwd"
+						placeholder="Enter password">
 				</div>
 				<div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>
 				</div>
-				<button type="submit" class="btn btn-default btn-block">들어가기</button>
+				<input type="button" id="login" class="btn btn-default btn-block"
+					value="들어가기">
 			</form>
 		</div>
 		<div class="dividercontainer">

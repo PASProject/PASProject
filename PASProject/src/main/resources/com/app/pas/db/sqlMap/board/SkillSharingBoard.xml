@@ -23,11 +23,20 @@
 
 
 	</select>
+	
+	<select id="selectSkillSharingBoardTitle" parameterClass="str"
+		resultClass="SkillSharingBoard">
+		SELECT *
+		FROM SKILL_SHARING_BOARD
+		WHERE SSB_TITLE LIKE '%'||#ssb_title#||'%'
+
+
+	</select>
 
 	<insert id="insertSkillSharingBoard" parameterClass="SkillSharingBoard">
 		INSERT INTO
-		SKILL_SHARING_BOARD(SSB_ARTICLE_NUM,SSB_KIND,SSB_CONTENT,SSB_TITLE,MEM_EMAIL) 
-		VALUES(SKILL_SHARING_BOARD_SEQ.NEXTVAL,#ssb_Kind#,#ssb_Content#,#ssb_Title#,#mem_Email#)
+		SKILL_SHARING_BOARD(SSB_ARTICLE_NUM,SSB_CONTENT,SSB_TITLE,MEM_EMAIL) 
+		VALUES(SKILL_SHARING_BOARD_SEQ.NEXTVAL,#ssb_Content#,#ssb_Title#,#mem_Email#)
 	</insert>
 
 

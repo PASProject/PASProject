@@ -23,15 +23,5 @@ public class MemberService {
 		}
 		return member;
 	}
-	//비번찾는 메서드
-	public int getPwd(String mem_Email){
-		int result = 0;
-		try {
-			result=memberDao.selectMemberById(mem_Email);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-	}
+	
 }
