@@ -13,6 +13,32 @@
 <head>
 
 
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.css">
+	
+<!-- Bootstrap Core CSS -->
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="resources/css/stylish-portfolio.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="resources/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="resources/js/bootstrap.min.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -33,6 +59,10 @@ body.modal-open .background-container {
 	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 }
 
+.bg-primary{
+color:black;
+}
+
 </style>
 <body>
 	
@@ -47,7 +77,7 @@ body.modal-open .background-container {
 			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
 			</li>
 			<li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
-			<li><a href="#login" onclick=$("#menu-close").click();>로그인</a></li>
+			<li><a href="#join" onclick=$("#menu-close").click();>회원가입</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>Services</a>
 			</li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
@@ -70,15 +100,11 @@ body.modal-open .background-container {
 
 
 	<!-- joinForm -->
-	<section class="join">
+	<section class="join" id="join">
 
-		<div class="include" style="margin-top:50px;">
+		<div class="include" style="margin-top:35px; margin-bottom:35px;">
 			<jsp:include page="joinForm.jsp"/>
 		</div>
-	
-
-
-
 	</section>
 
 	<!-- Services -->

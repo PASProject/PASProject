@@ -24,6 +24,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>

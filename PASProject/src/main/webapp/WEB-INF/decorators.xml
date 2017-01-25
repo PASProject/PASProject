@@ -12,9 +12,10 @@
 
 
 	<excludes>
-		<pattern>/loginForm.jsp*</pattern>
-     	<pattern>/pwdsearch.do*</pattern>
-		<pattern>/findZipNum.do*</pattern>
+		<pattern>/loginForm.jsp</pattern>
+     	<pattern>/joinForm.jsp</pattern>
+		<pattern>/index.jsp</pattern>
+		<parrern>/myProject.jsp</parrern>
 		<pattern>/idCheckForm.do*</pattern>	
 		<pattern>/admin/adminLoginForm.do</pattern>	
 	</excludes>
