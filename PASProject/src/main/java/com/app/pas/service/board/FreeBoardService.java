@@ -19,26 +19,16 @@ public class FreeBoardService {
 		this.freeboardDao = freeboardDao;
 	}
 	
-	public List<FreeBoardVo> selectFreeBoardList()throws SQLException{
+	public List<FreeBoardVo> selectFreeBoardList() throws SQLException{
 		List<FreeBoardVo> list= new ArrayList<FreeBoardVo>();
-		try {
-			list = freeboardDao.selectFreeBoardList();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		list = freeboardDao.selectFreeBoardList();
 		return list;
 	}
  
 	
 	public FreeBoardVo selectFreeBoardDetail(int frb_Article_Num)throws SQLException{
 		FreeBoardVo freeBoardVo = null;
-		try {
 			freeBoardVo = freeboardDao.selectFreeBoardDetail(frb_Article_Num);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return freeBoardVo;
 	}
 	
@@ -49,20 +39,19 @@ public class FreeBoardService {
 	
 
 	public void deleteFreeBoard(int frb_Article_Num)throws SQLException{
-		try {
+		
 			freeboardDao.deleteFreeBoard(frb_Article_Num);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 	public void updateFreeBoard(FreeBoardVo freeBoardVo)throws SQLException{
-		try {
+		
 			freeboardDao.updateFreeBoard(freeBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	}
+	
+	public int selectTotalCount() throws SQLException{
+		int totalCount = freeboardDao.selectTotalCount();
+		return totalCount;
 	}
 }
