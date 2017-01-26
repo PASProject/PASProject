@@ -12,6 +12,11 @@
 
 <head>
 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
 
 <!-- CSS -->
@@ -26,28 +31,21 @@
 <link
 	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-
-<!-- JS -->
-<!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-<!-- bootstrap Validator -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
-
-<!-- FONT -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+<!-- JS -->
+<!-- jQuery -->
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<!-- bootstrap Validator -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+
 
 </head>
 <style>
@@ -75,7 +73,7 @@ body.modal-open .background-container {
 			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
 			</li>
 			<li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
-			<li><a href="#join" onclick=$("#menu-close").click();>회원가입</a></li>
+			<li><a href="#about" onclick=$("#menu-close").click();>로그인</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>Services</a>
 			</li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
@@ -98,128 +96,10 @@ body.modal-open .background-container {
 
 
 	<!-- joinForm -->
-	<section class="join" id="join">
-
-		<div class="include" style="margin-top: 50px; margin-bottom: 50px;">
+	<section id="about" class="about" style="padding-top:20px;">
+		<div class="include">
 			<jsp:include page="WEB-INF/views/main/joinForm.jsp" />
-		
-		<div class="container2">
-	<!-- 로고는 일단 지저분하니까 빼자
-	<h3 style="text-align: center;">
-		<img style="width: 80px" src="resources/img/logo.png">
-	</h3> -->
-	<!-- <h2 style="text-align: center">회원가입</h2> -->
-
-	<div class="container container-fluid">
-
-
-		<form class="form-horizontal" action=" " method="post" id="reg_form">
-			<fieldset>
-
-				<!-- Form Name -->
-				<legend> 회원가입 </legend>
-
-				<!-- Email -->
-				<div class="form-group">
-					<label class="col-md-4 control-label">이메일 주소</label>
-					<div class="col-md-6  inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-								placeholder="E-Mail Address" class="form-control" type="text">
-						</div>
-					</div>
-				</div>
-
-				<!-- Password -->
-				<div class="form-group has-feedback">
-					<label for="password" class="col-md-4 control-label"> 비밀번호
-					</label>
-					<div class="col-md-6  inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input
-								class="form-control" id="userPw" type="password"
-								placeholder="password" name="password" data-minLength="5"
-								data-error="some error" required /> <span
-								class="glyphicon form-control-feedback"></span> <span
-								class="help-block with-errors"></span>
-						</div>
-					</div>
-				</div>
-
-				<!-- password confirm -->
-				<div class="form-group has-feedback">
-					<label for="confirmPassword" class="col-md-4 control-label">
-						비밀번호 확인 </label>
-					<div class="col-md-6  inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-repeat"></i></span> <input
-								class="form-control {$borderColor}" id="userPw2" type="password"
-								placeholder="Confirm password" name="confirmPassword"
-								data-match="#confirmPassword" data-minLength="5"
-								data-match-error="some error 2" required /> <span
-								class="glyphicon form-control-feedback"></span> <span
-								class="help-block with-errors"></span>
-						</div>
-					</div>
-				</div>
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label class="col-md-4 control-label">이름</label>
-					<div class="col-md-6  inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="name"
-								placeholder="이름" class="form-control" type="text">
-						</div>
-					</div>
-				</div>
-
-
-				<!-- Text input-->
-
-				<div class="form-group">
-					<label class="col-md-4 control-label">전화번호</label>
-					<div class="col-md-6  inputGroupContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-earphone"></i></span> <input name="phone"
-								placeholder="010-0000-0000" class="form-control" type="text">
-						</div>
-					</div>
-				</div>
-
-				<!-- Button -->
-				<div class="form-group">
-					<label class="col-md-4 control-label"></label>
-					<div class="col-md-4">
-						<button type="submit" class="btn btn-warning">
-							확인 <span class="glyphicon glyphicon-send"></span>
-						</button>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-
-	</div>
-
-
-
-</div>
-		
-		
 		</div>
-
-
-
-
-
-
-
 	</section>
 
 	<!-- Services -->
@@ -403,15 +283,10 @@ body.modal-open .background-container {
 		<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i
 			class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 	</footer>
+</body>
 
-	<!-- jQuery -->
-	<script src="resources/js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="resources/js/bootstrap.min.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script>
+<!-- Custom Theme JavaScript -->
+<script>
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -485,18 +360,7 @@ body.modal-open .background-container {
         
    
     </script>
-
-	<script>
-    function login_go() {
-		/* $('.ui modal').modal({
-			blurring : true
-		}).modal('show'); */
-		$('#loginModal').modal({
-			blurring : true
-		}).modal('show');
-	};
-    </script>
-	<script>
+<script>
 $(document)
 .ready(
 		function() {
@@ -642,6 +506,5 @@ $(document)
 							});
 		});
 </script>
-</body>
 
 </html>

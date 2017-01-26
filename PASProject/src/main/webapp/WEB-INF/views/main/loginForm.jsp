@@ -120,7 +120,7 @@ body {
 		</div>
 		<div class="container" style="padding: 20px;">
 			<span style="text-align: center">PAS에 처음 방문하셨다면 <a
-				href="joinForm.jsp">새 계정을 만드세요.</a></span> <br> <br> <a
+				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br> <br> <a
 				href="javscript:void(0);"><span style="text-align: center"
 				id="forget">그게 아니라 비빌번호를 잊으신거?</span></a>
 		</div>

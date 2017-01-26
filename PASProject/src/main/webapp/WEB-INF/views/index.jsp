@@ -11,34 +11,41 @@
 <html>
 
 <head>
-<!-- CSS -->	
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+<!-- CSS -->
 <!-- Bootstrap Core CSS -->
-<link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Custom CSS -->
-<link href="<%=request.getContextPath() %>/resources/css/stylish-portfolio.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/resources/font-awesome/css/font-awesome.min.css"
+<link
+	href="<%=request.getContextPath()%>/resources/css/stylish-portfolio.css"
+	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
-
-<!-- JS -->
-<!-- jQuery -->
-<script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-<!-- bootstrap Validator -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-
-<!-- FONT -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+<!-- JS -->
+<!-- jQuery -->
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<!-- bootstrap Validator -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+
 
 </head>
 <style>
@@ -52,10 +59,9 @@ body.modal-open .background-container {
 		.svg #blur);
 	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 }
-
 </style>
 <body>
-	
+
 	<!-- Navigation -->
 	<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i
 		class="fa fa-bars"></i></a>
@@ -67,7 +73,7 @@ body.modal-open .background-container {
 			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
 			</li>
 			<li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
-			<li><a href="#join" onclick=$("#menu-close").click();>로그인</a></li>
+			<li><a href="#about" onclick=$("#menu-close").click();>로그인</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>Services</a>
 			</li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
@@ -90,15 +96,10 @@ body.modal-open .background-container {
 
 
 	<!-- joinForm -->
-	<section class="join" id="join">
-
-		<div class="include" style="margin-top:50px; margin-bottom:50px;">
-			<%@include file="main/joinForm.jsp" %>
+	<section id="about" class="about" style="padding-top:20px;">
+		<div class="include">
+			<jsp:include page="main/joinForm.jsp" />
 		</div>
-	
-
-
-
 	</section>
 
 	<!-- Services -->
@@ -282,15 +283,10 @@ body.modal-open .background-container {
 		<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i
 			class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 	</footer>
+</body>
 
-	<!-- jQuery -->
-	<script src="resources/js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="resources/js/bootstrap.min.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script>
+<!-- Custom Theme JavaScript -->
+<script>
     // Closes the sidebar menu
     $("#menu-close").click(function(e) {
         e.preventDefault();
@@ -364,18 +360,151 @@ body.modal-open .background-container {
         
    
     </script>
+<script>
+$(document)
+.ready(
+		function() {
+			$('#reg_form')
+					.bootstrapValidator(
+							{
+								// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+								feedbackIcons : {
+									valid : 'glyphicon glyphicon-ok',
+									invalid : 'glyphicon glyphicon-remove',
+									validating : 'glyphicon glyphicon-refresh'
+								},
+								fields : {
+									name : {
+										validators : {
+											stringLength : {
+												min : 2,
+											},
+											notEmpty : {
+												message : '이름을 기입해 주세요'
+											}
+										}
+									},
 
-	<script>
-    function login_go() {
-		/* $('.ui modal').modal({
-			blurring : true
-		}).modal('show'); */
-		$('#loginModal').modal({
-			blurring : true
-		}).modal('show');
-	};
-    </script>
+									phone : {
+										validators : {
+											notEmpty : {
+												message : 'Please supply your phone number'
+											},
+											phone : {
+												country : 'US',
+												message : 'Please supply a vaild phone number with area code'
+											}
+										}
+									},
+									address : {
+										validators : {
+											stringLength : {
+												min : 8,
+											},
+											notEmpty : {
+												message : 'Please supply your street address'
+											}
+										}
+									},
+									city : {
+										validators : {
+											stringLength : {
+												min : 4,
+											},
+											notEmpty : {
+												message : 'Please supply your city'
+											}
+										}
+									},
+									state : {
+										validators : {
+											notEmpty : {
+												message : 'Please select your state'
+											}
+										}
+									},
+									zip : {
+										validators : {
+											notEmpty : {
+												message : 'Please supply your zip code'
+											},
+											zipCode : {
+												country : 'US',
+												message : 'Please supply a vaild zip code'
+											}
+										}
+									},
+									comment : {
+										validators : {
+											stringLength : {
+												min : 10,
+												max : 200,
+												message : 'Please enter at least 10 characters and no more than 200'
+											},
+											notEmpty : {
+												message : 'Please supply a description about yourself'
+											}
+										}
+									},
+									email : {
+										validators : {
+											notEmpty : {
+												message : 'Please supply your email address'
+											},
+											emailAddress : {
+												message : 'Please supply a valid email address'
+											}
+										}
+									},
 
-</body>
+									password : {
+										validators : {
+											identical : {
+												field : 'confirmPassword',
+												message : 'Confirm your password below - type same password please'
+											}
+										}
+									},
+									confirmPassword : {
+										validators : {
+											identical : {
+												field : 'password',
+												message : 'The password and its confirm are not the same'
+											}
+										}
+									},
+
+								}
+							})
+
+					.on(
+							'success.form.bv',
+							function(e) {
+								$('#success_message').slideDown({
+									opacity : "show"
+								}, "slow") // Do something ...
+								$('#reg_form').data(
+										'bootstrapValidator')
+										.resetForm();
+
+								// Prevent form submission
+								e.preventDefault();
+
+								// Get the form instance
+								var $form = $(e.target);
+
+								// Get the BootstrapValidator instance
+								var bv = $form
+										.data('bootstrapValidator');
+
+								// Use Ajax to submit form data
+								$.post($form.attr('action'), $form
+										.serialize(), function(
+										result) {
+									console.log(result);
+								}, 'json');
+							});
+		});
+</script>
 
 </html>

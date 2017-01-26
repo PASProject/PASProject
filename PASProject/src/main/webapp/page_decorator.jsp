@@ -26,7 +26,6 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
-	
 <!-- Bootstrap Core CSS -->
 <link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -63,9 +62,10 @@
 
 	<decorator:body />
 
+<footer>
 
+</footer>
 
-	<footer> </footer>
 </body>
 
 

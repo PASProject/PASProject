@@ -58,12 +58,16 @@ public class MainContoller {
 		return url;
 	}
 
-	@RequestMapping("/projectList")
-	public String ProjectList(HttpSession session, Model model) {
-		String url = "";
+	@RequestMapping("/myProject")
+	public String MyProject(HttpSession session, Model model) {
+		String url = "main/myProject";
 		return url;
 	}
-
+	@RequestMapping("/otherProject")
+	public String OtherProject(HttpSession session, Model model){
+		String url="/main/otherProject";
+		return url;
+	}
 	@RequestMapping("/mypageList")
 	public String Mypage(HttpSession session, Model model) {
 		String url = "";
