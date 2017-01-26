@@ -38,7 +38,8 @@
 		<tr>
 			<td colspan="5" align="right"><c:if test="${paging.finalPageNo>0}">
 					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo"/>
+					<c:set value="${paging.nextPageNo}" var="nextPageNo" />
 
 					<c:if test="${paging.pageNo>prevPageNo}">
 						<a href="freeBoardList?page=${prevPageNo}">[이전]</a>
