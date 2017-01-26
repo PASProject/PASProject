@@ -4,6 +4,9 @@
 	<decorator name="main" page="page_decorator.jsp">
 		<pattern>/</pattern>
 	</decorator>
+	<decorator name="my" page="my_decorator.jsp">
+		<pattern>/main/*</pattern>
+	</decorator>
 	<decorator name="admin" page="admin_decorator.jsp">
 		<pattern>/admin/*.do</pattern>
 	</decorator>
@@ -12,6 +15,8 @@
 
 
 	<excludes>
+		<pattern>*/index*</pattern>
+     	<pattern>*/joinForm*</pattern>
 		<pattern>*/loginForm*</pattern>
      	<pattern>/pwdsearch.do*</pattern>
 		<pattern>/findZipNum.do*</pattern>
