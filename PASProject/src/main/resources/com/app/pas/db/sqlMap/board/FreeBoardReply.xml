@@ -9,14 +9,11 @@
 	<typeAlias alias="FreeBoardReply" type="com.app.pas.dto.board.FreeBoardReplyVo" />
 
 
-
 	<select id="selectFreeBoardReply" parameterClass="int"
 		resultClass="FreeBoardReply">
 		SELECT *
 		FROM FREE_BOARD_REPLY
-		WHERE FRB_ARTICLE_NUM LIKE '%'||#frb_Article_Num#||'%'
-
-
+		WHERE FRB_ARTICLE_NUM =#frb_Article_Num#
 	</select>
 
 	<insert id="insertFreeBoardReply" parameterClass="FreeBoardReply">
