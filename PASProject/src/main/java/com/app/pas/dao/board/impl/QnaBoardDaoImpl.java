@@ -20,7 +20,7 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		List<QnaBoardVo> list = client.queryForList("selectQnaBoardList");
 		return list;
 	}
-
+	
 	@Override
 	public QnaBoardVo selectQnaBoard(int qb_Article_Num) throws SQLException {
 		QnaBoardVo qnaBoardVo = (QnaBoardVo) client.queryForObject("selectQnaBoard",qb_Article_Num);
@@ -39,7 +39,9 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 
 	@Override
 	public void deleteQnaBoard(int qb_Article_Num) throws SQLException {
+		System.out.println("^^^^^^^^^^^^^"+qb_Article_Num);
 		client.delete("deleteQnaBoard",qb_Article_Num);
+		System.out.println("^^^^^^^^^^^^^"+qb_Article_Num);
 	}
 	
 }
