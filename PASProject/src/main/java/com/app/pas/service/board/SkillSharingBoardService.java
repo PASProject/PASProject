@@ -15,64 +15,46 @@ public class SkillSharingBoardService {
 		this.skillsharingboardDao = skillsharingboardDao;
 	}
 	
-	public List<SkillSharingBoardVo> selectSkillSharingBoardList(){
+	public List<SkillSharingBoardVo> selectSkillSharingBoardList() throws SQLException{
 		List<SkillSharingBoardVo> list= new ArrayList<SkillSharingBoardVo>();
-		try {
+		
 			list = skillsharingboardDao.selectSkillSharingBoardList();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 		return list;
 	}
  
-	public SkillSharingBoardVo selectSkillSharingBoardDetail(int ssb_Article_Num){
+	public SkillSharingBoardVo selectSkillSharingBoardDetail(int ssb_Article_Num) throws SQLException{
 		SkillSharingBoardVo skillSharingBoardVo = null;
-		try {
+		
 			skillSharingBoardVo = skillsharingboardDao.selectSkillSharingBoard(ssb_Article_Num);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return skillSharingBoardVo;
 	}
 	
-	public SkillSharingBoardVo selectSkillSharingBoardTitle(String ssb_Title){
+	public SkillSharingBoardVo selectSkillSharingBoardTitle(String ssb_Title) throws SQLException{
 		SkillSharingBoardVo skillSharingBoardVo = null;
-		try {
+	
 			skillSharingBoardVo = skillsharingboardDao.selectSkillSharingBoardTitle(ssb_Title);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return skillSharingBoardVo;
 	}
 	
-	public void insertSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo){
-		try {
+	public void insertSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo) throws SQLException{
+		
 			skillsharingboardDao.insertSkillSharingBoard(skillSharingBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 	
 	
-	public void deleteSkillSharingBoard(int ssb_Article_Num){
-		try {
+	public void deleteSkillSharingBoard(int ssb_Article_Num) throws SQLException{
+		
 			skillsharingboardDao.deleteSkillSharingBoard(ssb_Article_Num);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 	
-	public void updateSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo){
-		try {
+	public void updateSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo) throws SQLException{
+		
 			skillsharingboardDao.updateSkillSharingBoard(skillSharingBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 }

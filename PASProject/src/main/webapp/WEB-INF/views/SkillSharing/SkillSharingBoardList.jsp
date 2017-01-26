@@ -8,17 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<style>
 
+</style>
 </head>
 <body>
 <h1> skillSharingBoard</h1>
-<table>
+<table style="width:100%">
 	<tr>
 		<th>번호</th>
 		<th>제목</th>
 		<th>이메일</th>
 		<th>작성일</th>
-		<td>내용</td>
+		<th>내용</th>
 		<th>추천수</th>
 		<th>조회수</th>
 	</tr>
@@ -28,7 +30,7 @@
 			<td><a href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${SkillSharingBoardVo.ssb_Article_Num }">${SkillSharingBoardVo.ssb_Title}</a></td>
 			<td>${SkillSharingBoardVo.mem_Email }</td>
 			<td>${SkillSharingBoardVo.ssb_wt_date }</td>
-			<td>${SkillSharingBoardVo.ssb_Content }</td>
+			<td>${SkillSharingBoardVo.ssb_Content }</td>	
 			<td>${SkillSharingBoardVo.ssb_Like }</td>
 			<td>${SkillSharingBoardVo.ssb_Inq_Count }</td>
 			
