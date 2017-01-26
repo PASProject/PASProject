@@ -49,4 +49,10 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 		return freeBoardVo;
 	}
 
+	@Override
+	public int selectTotalCount() throws SQLException {
+		int totalCount = (Integer) client.queryForObject("selectTotalCount");
+		return totalCount;
+	}
+
 }
