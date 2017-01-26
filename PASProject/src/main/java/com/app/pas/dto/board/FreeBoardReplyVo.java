@@ -1,5 +1,7 @@
 package com.app.pas.dto.board;
 
+import java.sql.Timestamp;
+
 public class FreeBoardReplyVo {
 
 	
@@ -8,7 +10,21 @@ public class FreeBoardReplyVo {
 	private int frb_Article_Num;
 	private String frb_Reply_Mem;
 	private String frb_Reply_Content;
+	private Timestamp frb_Reply_Time;
 	
+	@Override
+	public String toString() {
+		return "FreeBoardReplyVo [frb_Reply_Num=" + frb_Reply_Num
+				+ ", frb_Article_Num=" + frb_Article_Num + ", frb_Reply_Mem="
+				+ frb_Reply_Mem + ", frb_Reply_Content=" + frb_Reply_Content
+				+ ", frb_Reply_Time=" + frb_Reply_Time + "]";
+	}
+	public Timestamp getFrb_Reply_Time() {
+		return frb_Reply_Time;
+	}
+	public void setFrb_Reply_Time(Timestamp frb_Reply_Time) {
+		this.frb_Reply_Time = frb_Reply_Time;
+	}
 	public int getFrb_Reply_Num() {
 		return frb_Reply_Num;
 	}

@@ -88,7 +88,7 @@ body.modal-open .background-container {
 		<div class="text-vertical-center">
 			<h1>Project Automation System</h1>
 			<h3>Begin with us</h3>
-			<br> <a href="main/loginForm" class="btn btn-dark btn-lg">들어가기</a>
+			<br> <a href="<%=request.getContextPath() %>/main/loginForm" class="btn btn-dark btn-lg">들어가기</a>
 		</div>
 
 	</header>

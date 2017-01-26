@@ -2,7 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
@@ -21,6 +25,7 @@
 	
 	<bean id="AccountBoardDao" class="com.app.pas.dao.board.impl.AccountBoardDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="FreeBoardDao" class="com.app.pas.dao.board.impl.FreeBoardDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="FreeBoardReplyDao" class="com.app.pas.dao.board.impl.FreeBoardReplyDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="NoticeDao" class="com.app.pas.dao.board.impl.NoticeDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="ProjectBoardDao" class="com.app.pas.dao.board.impl.ProjectBoardDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="QnaBoardDao" class="com.app.pas.dao.board.impl.QnaBoardDaoImpl" p:client-ref="SqlMapClient"/>
@@ -44,10 +49,11 @@
 	
 	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>
 	<bean id="FreeBoardService" class="com.app.pas.service.board.FreeBoardService" p:freeboardDao-ref="FreeBoardDao"/>
+	<bean id="FreeBoardReplyService" class="com.app.pas.service.board.FreeBoardReplyService" p:freeboardReplyDao-ref="FreeBoardReplyDao"/>
 	<bean id="NoticeService" class="com.app.pas.service.board.NoticeService" p:noticeDao-ref="NoticeDao"/>
 	<bean id="ProjectBoardService" class="com.app.pas.service.board.ProjectBoardService" p:projectboardDao-ref="ProjectBoardDao"/>
 	<bean id="QnaBoardService" class="com.app.pas.service.board.QnaBoardService" p:qnaBoardDao-ref="QnaBoardDao"/>
 	<bean id="SkillSharingBoardService" class="com.app.pas.service.board.SkillSharingBoardService" p:skillsharingboardDao-ref="SkillSharingBoardDao"/>
 	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
-	
+
 </beans>
