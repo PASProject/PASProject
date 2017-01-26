@@ -55,6 +55,29 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 
 	}
 
+	@Override
+	public int selectSsbTotalCount() throws SQLException {
+		int totalCount = (Integer) client.queryForObject("selectTotalCountSharingBoard");
+		return totalCount;
+	}
+
+	@Override
+	public List<SkillSharingBoardVo> selectSearchSsbTitle(String ssb_title) throws SQLException {
+		List<SkillSharingBoardVo> SsbList 
+		= (List<SkillSharingBoardVo>)client.queryForList("selectSkillSharingBoardTitle",ssb_title);
+		
+		return SsbList;
+		
+	}
+
+	@Override
+	public List<SkillSharingBoardVo> selectSearchSsbTitle() throws SQLException {
+		List<SkillSharingBoardVo> SsbList 
+		= (List<SkillSharingBoardVo>)client.queryForList("selectSkillSharingBoardTitle",null);
+		
+		return SsbList;
+	}
+
 	
 
 

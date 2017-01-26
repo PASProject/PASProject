@@ -20,9 +20,14 @@
 		<div class="clear"></div>
 		 <div id="buttons" style="float:right">
 			<input type="submit"  value="수정"     class="submit"> 
-			<input type="reset"   value="취소"     class="cancel">
+			<input type="button"  value="취소" onClick="go_list()">
 		  </div>
 		  <input type="hidden" value="${skillSharingBoardVo.ssb_Article_Num}" name="ssb_Article_Num">
 </form>
+<script>
+		function go_list(){
+			location.href="SkillSharingList"
+		}
+</script>
 </body>
 </html>
