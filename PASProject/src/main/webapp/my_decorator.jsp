@@ -30,8 +30,15 @@
 
 <title>3 Col Portfolio - Start Bootstrap Template</title>
 
+
+
+
+
+
 <!-- CSS -->
 <!-- Bootstrap Core CSS -->
+
+
 <link
 	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -55,7 +62,7 @@
 <link
 	href="<%=request.getContextPath()%>/resources/css/3-col-portfolio.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,6 +70,58 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  For modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
 <style>
 @font-face {
 	font-family: 'NanumGothic';
@@ -110,9 +169,8 @@
 	background-color: #4D76A3;
 }
 
-.col-md-3 {width: 100%;
-
-	
+.col-md-3 {
+	width: 100%;
 }
 </style>
 </head>
@@ -167,7 +225,7 @@
 							<div class="col-md-12 col-md-3">
 								<form class="navbar-form" role="search">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Search"
+										<input type="text" class="form-control" placeholder="프로젝트 검색"
 											name="q">
 										<div class="input-group-btn">
 											<button class="btn btn-default" type="submit">
@@ -188,8 +246,8 @@
 						</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#"><img
-										src="<%=request.getContextPath()%>/resources/img/default-user.png" style="width:100%;"/></a>
-								</li>
+										src="<%=request.getContextPath()%>/resources/img/default-user.png"
+										style="width: 100%;" /></a></li>
 								<li class="divider"></li>
 								<li><a href="#">내 정보 수정</a></li>
 								<li><a href="#">내 업무</a></li>
@@ -232,13 +290,16 @@
 						});
 
 			});
+	</script>
+	
+	
+	<script>
+	/* for modal */
 
-	/* $(document).ready(function() {
-		$(".dropdown").mouseover(function() {
-			$(this).css("background-color", "#4D76A3");
-		});
-
-	}); */
 </script>
+
+
+
+
 </html>
 

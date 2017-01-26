@@ -8,6 +8,12 @@
 
 <head>
 
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.css">
 
 </head>
 
@@ -19,7 +25,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">
-				다른 프로젝트
+				다른 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
 				</h2>
 			</div>
