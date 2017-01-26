@@ -98,11 +98,13 @@ body {
 				},
 				success : function(result) {
 					if (result == 1) {
-
+                        location.href="<%=request.getContextPath()%>/notice/noticeList"
 					} else if (result == 0) {
 						alert("아이디가 틀렸습니다");
-					} else {
+						alert(result);
+					} else if(result==2){
 						alert("비밀번호 오류입니다");
+						alert(result);
 					}
 
 				}
