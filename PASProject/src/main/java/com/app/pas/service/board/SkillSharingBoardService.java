@@ -31,12 +31,14 @@ public class SkillSharingBoardService {
 		return skillSharingBoardVo;
 	}
 	
-	public SkillSharingBoardVo selectSkillSharingBoardTitle(String ssb_Title) throws SQLException{
-		SkillSharingBoardVo skillSharingBoardVo = null;
+	public List<SkillSharingBoardVo> selectSearchSsbTitle(String ssb_title) throws SQLException {
+		List<SkillSharingBoardVo> SsbList= skillsharingboardDao.selectSearchSsbTitle(ssb_title);
+		return SsbList;
+	}
 	
-			skillSharingBoardVo = skillsharingboardDao.selectSkillSharingBoardTitle(ssb_Title);
-		
-		return skillSharingBoardVo;
+	public List<SkillSharingBoardVo> selectSearchSsbTitle() throws SQLException {
+		List<SkillSharingBoardVo> SsbList= skillsharingboardDao.selectSearchSsbTitle();
+		return SsbList;
 	}
 	
 	public void insertSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo) throws SQLException{
@@ -56,5 +58,9 @@ public class SkillSharingBoardService {
 		
 			skillsharingboardDao.updateSkillSharingBoard(skillSharingBoardVo);
 		
+	}
+	public int selectTotalCount() throws SQLException{
+		int totalCount = skillsharingboardDao.selectSsbTotalCount();
+		return totalCount;
 	}
 }

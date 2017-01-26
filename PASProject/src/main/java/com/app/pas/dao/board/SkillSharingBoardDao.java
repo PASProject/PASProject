@@ -13,5 +13,7 @@ public interface SkillSharingBoardDao {
 	public void insertSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
 	public void updateSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
 	public void deleteSkillSharingBoard(int ssb_Article_Num)throws SQLException;
-
+	public int selectSsbTotalCount() throws SQLException;
+	public List<SkillSharingBoardVo> selectSearchSsbTitle(String ssb_title)throws SQLException;
+	public List<SkillSharingBoardVo> selectSearchSsbTitle()throws SQLException;
 }
