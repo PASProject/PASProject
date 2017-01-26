@@ -45,6 +45,11 @@ public class QnaBoardService {
 	public void deleteQnaBoard(int qb_Article_Num) throws SQLException{
 		qnaBoardDao.deleteQnaBoard(qb_Article_Num);
 	}
+
+	public int QnaSelectTotalCount() throws SQLException {
+		int totalCount = qnaBoardDao.QnaSelectTotalCount();	
+		return totalCount;
+	}
 	
 	
 	

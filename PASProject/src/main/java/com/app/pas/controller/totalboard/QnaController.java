@@ -1,6 +1,7 @@
 package com.app.pas.controller.totalboard;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dao.board.QnaBoardDao;
 import com.app.pas.dto.board.QnaBoardVo;
 import com.app.pas.service.board.QnaBoardService;
@@ -22,21 +24,35 @@ public class QnaController {
 
 	@Autowired
 	QnaBoardService qnaBoardService;
-
+//qnaList
 	@RequestMapping("/qnaList")
-	public String QnaList(Model model) {
+	public String QnaList(Model model,@RequestParam(value="page",defaultValue="1")String page) {
 		String url = "qna/QnAList";
-		List<QnaBoardVo> qnaboardList;
+		int totalCount = 0;
+		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
 		try {
-			qnaboardList = qnaBoardService.selectQnaBoardList();
-			model.addAttribute("qnaboardList", qnaboardList);
+			qnaList = qnaBoardService.selectQnaBoardList();
+			System.out.println("qnaboardList >> > > : " + qnaList);
+			totalCount = qnaBoardService.QnaSelectTotalCount();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
+	//페이징처리
+		if(page.equals(null)||page ==""){
+			page = "" +1;
+		}
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging",paging);
+		model.addAttribute("qnaList", qnaList);
+		
 		return url;
 	}
-
+//qna글쓰기
 	@RequestMapping("/qnaWrite")
 	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
 		String url = "qna/QnAWrite";
@@ -95,14 +111,14 @@ public class QnaController {
 	}
 	
 	
-//////////////////////////////////////////////////////////
+
 	@RequestMapping("/qnaDelete")
 	public String deleteQna(HttpSession session, Model model) {
 		String url = "";
 		return url;
 	}
 
-//////////////////////////////////////////////////////////
+
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
@@ -119,7 +135,7 @@ public class QnaController {
 
 		return url;
 	}
-	//////////////////////////////////////////////////////////////////////////
+
 	@RequestMapping(value="/qnaDelete", method=RequestMethod.POST)
 	public String deleteQnaBoard (String qb_Article_Num){
 		String url="redirect:qnaList";
@@ -135,6 +151,14 @@ public class QnaController {
 		return url;
 
 	}
+	
+	
+	/*      1. 현재시간
+    2. yy.mm.dd hh:mm:ss 형식으로
+    3. 출력
+    */
+    
+	
 	
 
 }

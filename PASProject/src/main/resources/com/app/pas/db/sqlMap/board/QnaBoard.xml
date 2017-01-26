@@ -39,5 +39,9 @@
 	<delete id="deleteQnaBoard" parameterClass="int">
 		DELETE FROM QNA_BOARD WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</delete>
+	
+	<select id="QnaSelectTotalCount" resultClass="int">
+		SELECT COUNT(*) FROM QNA_BOARD
+	</select>
 
 </sqlMap>
