@@ -32,14 +32,16 @@
 
 
 	<update id="updateQnaBoard" parameterClass="QnaBoard">
-		UPDATE QNA_BOARD SET QB_TITLE=#qb_Title#, QB_CONTENT=#qb_Content#,
+		UPDATE QNA_BOARD SET QB_TITLE=#qb_Title#, QB_CONTENT=#qb_Content#
 		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</update>
 
 	<delete id="deleteQnaBoard" parameterClass="int">
 		DELETE FROM QNA_BOARD WHERE QB_ARTICLE_NUM=#qb_Article_Num#
-
-
 	</delete>
+	
+	<select id="QnaSelectTotalCount" resultClass="int">
+		SELECT COUNT(*) FROM QNA_BOARD
+	</select>
 
 </sqlMap>

@@ -1,5 +1,7 @@
 package com.app.pas.dto.board;
 
+import java.sql.Timestamp;
+
 public class QnaBoardVo {
 	private int qb_Article_Num;
 	private String qb_Title;
@@ -7,6 +9,15 @@ public class QnaBoardVo {
 	private int qb_Inq_Count;
 	private String qb_Password;
 	private String mem_Email;
+	private Timestamp qb_Wt_Date;
+	
+	
+	public Timestamp getQb_Wt_Date() {
+		return qb_Wt_Date;
+	}
+	public void setQb_Wt_Date(Timestamp qb_Wt_Date) {
+		this.qb_Wt_Date = qb_Wt_Date;
+	}
 	public int getQb_Article_Num() {
 		return qb_Article_Num;
 	}
@@ -42,6 +53,13 @@ public class QnaBoardVo {
 	}
 	public void setMem_Email(String mem_Email) {
 		this.mem_Email = mem_Email;
+	}
+	@Override
+	public String toString() {
+		return "QnaBoardVo [qb_Article_Num=" + qb_Article_Num + ", qb_Title="
+				+ qb_Title + ", qb_Content=" + qb_Content + ", qb_Inq_Count="
+				+ qb_Inq_Count + ", qb_Password=" + qb_Password
+				+ ", mem_Email=" + mem_Email + "]";
 	}
 	
 	
