@@ -41,7 +41,7 @@
 			location.href="SkillSharingList"
 		}
 		function go_update(){
-			location.href="SkillSharingUpdate?ssb_Article_Num=${SkillSharingBoardVo.ssb_Article_Num}";
+			location.href="SkillSharingUpdate?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}";
 		}
 		function go_delete(){
 			frm.method = "post";
