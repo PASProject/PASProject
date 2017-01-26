@@ -17,6 +17,7 @@ public class AlaramController {
 	@Autowired
 	MemberService memberService;
 	
+	
 	@RequestMapping("/viewAlarm")
 	public String viewAlarm(HttpSession session, Model model) {
 		String url = "";
