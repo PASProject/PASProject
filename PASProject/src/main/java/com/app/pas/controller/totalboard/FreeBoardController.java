@@ -3,19 +3,23 @@ package com.app.pas.controller.totalboard;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.service.board.FreeBoardReplyService;
 import com.app.pas.service.board.FreeBoardService;
 
 @Controller
@@ -24,7 +28,8 @@ public class FreeBoardController {
 
 	@Autowired
 	FreeBoardService freeBoardService;
-	
+	@Autowired
+	FreeBoardReplyService freeBoardReplyService;
 	
 	@RequestMapping("/freeBoardList")
 	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page) {
@@ -131,14 +136,14 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value ="/freeBoardWrite",method=RequestMethod.GET )
-	public String writeCommunity(HttpSession session,Model model){
+	public String writeFreeBoard(HttpSession session,Model model){
 		String url = "freeBoard/freeBoardWrite";
 		return url;
 				
 	}
 	
 	@RequestMapping(value="/freeBoardDelete",method = RequestMethod.POST)
-	public String deleteCommunity(String frb_Article_Num){
+	public String deleteFreeBoard(String frb_Article_Num){
 		String url="redirect:freeBoardList";
 		try {
 			freeBoardService.deleteFreeBoard(Integer.parseInt(frb_Article_Num));
@@ -150,5 +155,42 @@ public class FreeBoardController {
 			e.printStackTrace();
 		}
 		return url;
+	}
+	
+	
+	@RequestMapping(value="/freeBoardReplyList")
+	public @ResponseBody List<FreeBoardReplyVo> selectFreeBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
+		
+		List<FreeBoardReplyVo> freeBoardReplyList = new ArrayList<FreeBoardReplyVo>();
+		String frb_Article_Num = (String) jsonMap.get("frb_Article_Num");
+		System.out.println(frb_Article_Num);
+		try {
+			freeBoardReplyList = freeBoardReplyService.selectFreeBoardReply(Integer.parseInt(frb_Article_Num));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(freeBoardReplyList.toString());
+		model.addAttribute("freeBoardReplyList",freeBoardReplyList);
+		return freeBoardReplyList;
+		
+	}
+	@RequestMapping(value="freeBoardReplyWrite", method=RequestMethod.POST)
+	public  @ResponseBody List<FreeBoardReplyVo> writeFreeBoardReply(@RequestBody FreeBoardReplyVo freeBoardReplyVo, HttpSession session){
+		/*MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		freeBoardVo.setMem_Email(mem_Email);*/
+		
+		List<FreeBoardReplyVo> freeBoardReplyList = new ArrayList<FreeBoardReplyVo>();
+		freeBoardReplyVo.setFrb_Reply_Mem("def@naver.com");
+		try {
+			freeBoardReplyService.insertFreeBoardReply(freeBoardReplyVo);
+			freeBoardReplyList = freeBoardReplyService.selectFreeBoardReply(freeBoardReplyVo.getFrb_Article_Num());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return freeBoardReplyList;
 	}
 }

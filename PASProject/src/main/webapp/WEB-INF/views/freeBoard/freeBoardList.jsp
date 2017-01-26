@@ -19,6 +19,8 @@
 			<th>내용</th>
 			<th>작성자</th>
 			<th>작성일</th>
+			<th>조회수</th>
+			<td>추천수</td>
 		</tr>
 		<c:forEach items="${freeBoardList }" var="freeBoardVo"
 			begin="${paging.beginNo}" end="${paging.endNo}">
@@ -29,6 +31,8 @@
 				<td>${freeBoardVo.frb_Content }</td>
 				<td>${freeBoardVo.mem_Email }</td>
 				<td>${freeBoardVo.frb_Wt_Date}</td>
+				<td style="text-align: center">${freeBoardVo.frb_Inq_Count }</td>
+				<td>${freeBoardVo.frb_Like }</td>
 			</tr>
 		</c:forEach>
 		<tr>
@@ -44,7 +48,7 @@
 						<a href="freeBoardList?page=${i}">[${i}]</a>
 					</c:forEach>
 					<c:if test="${paging.pageNo<finalPageNo}">
-						<a href="freeBoardList?page=${finalPageNo}">[다음]</a>
+						<a href="freeBoardList?page=${nextPageNo}">[다음]</a>
 					</c:if>
 				</c:if></td>
 		</tr>
