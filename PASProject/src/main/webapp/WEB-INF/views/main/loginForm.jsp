@@ -39,7 +39,11 @@ border: 1px solid black;
 body {
 	background-color: rgb(249, 249, 249);
 }
+.title{
+max-width:350px;
+margin:auto;
 
+}
 .container {
 	max-width: 350px;
 	outline: 1px solid rgb(216, 222, 226);
@@ -59,7 +63,7 @@ body {
 }
 
 body {
-	font-family: NanumGothic
+	font-family: NanumGothic;
 }
 
 .divider {
@@ -132,11 +136,17 @@ body {
 
 	<div class="container2">
 
-		<h3 style="text-align: center;">
+		<h3 style="text-align: right; margin-right:46px;">
 			<img style="width: 80px"
 				src="<%=request.getContextPath()%>/resources/img/logo.png">
 		</h3>
-		<h2 style="text-align: center">로그인</h2>
+		<div class="title">
+		
+		
+		<h2>로그인</h2>
+		<hr style="color:rgb(216, 222, 226); margin-top:5px;">
+		</div>	
+		
 		<div class="container">
 			<form>
 				<div class="form-group">

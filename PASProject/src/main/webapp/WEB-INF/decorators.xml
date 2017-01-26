@@ -15,6 +15,7 @@
 
 
 	<excludes>
+	<pattern>*/index.jsp</pattern>
 		<pattern>*/index*</pattern>
      	<pattern>*/joinForm*</pattern>
 		<pattern>*/loginForm*</pattern>

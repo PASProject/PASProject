@@ -88,7 +88,9 @@ body.modal-open .background-container {
 		<div class="text-vertical-center">
 			<h1>Project Automation System</h1>
 			<h3>Begin with us</h3>
-			<br> <a href="<%=request.getContextPath() %>/main/loginForm" class="btn btn-dark btn-lg">들어가기</a>
+			<br> <a href="<%=request.getContextPath()%>/main/loginForm"
+				class="btn btn-dark btn-lg">들어가기</a>&nbsp;&nbsp;<a href="#about"
+				class="btn btn-dark btn-lg">가입하기</a>
 		</div>
 
 	</header>
@@ -96,10 +98,12 @@ body.modal-open .background-container {
 
 
 	<!-- joinForm -->
-	<section id="about" class="about" style="padding-top:20px;">
-		<div class="include">
-			<jsp:include page="WEB-INF/views/main/joinForm.jsp" />
-		</div>
+	<section id="about" class="about" style="padding-top: 20px;">
+	<!-- 	<div class="container" style="height: 500px;"> -->
+			<div class="include">
+				<jsp:include page="WEB-INF/views/main/joinForm.jsp" />
+			</div>
+		<!-- </div> -->
 	</section>
 
 	<!-- Services -->
@@ -242,13 +246,55 @@ body.modal-open .background-container {
 
 	<!-- Map -->
 	<section id="contact" class="map">
-		<iframe width="100%" height="100%" frameborder="0" scrolling="no"
-			marginheight="0" marginwidth="0"
-			src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-		<br /> <small> <a
+		<iframe 
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3214.6942064252853!2d127.41313421567885!3d36.319721680050385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35654ed2a5624215%3A0xd5804494a6b5b505!2z64yA642V7J247J6s6rCc67Cc7JuQ!5e0!3m2!1sko!2sus!4v1485430658172"
+			width="100%" height="100%" frameborder="0" style="border: 0"
+			allowfullscreen></iframe>
+		<br /> <!-- <small> <a
 			href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-		</small>
+		</small> -->
+
+
+
+
+
+
+		<!--
+    <div id="map"></div>
+    
+    <script>
+      function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          scrollwheel: false,
+          zoom: 8
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqJfiDdF82GMj5tgcIEbO8qgFJAVw0wLE&callback=initMap"
+    async defer></script> -->
+
 	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<!-- Footer -->
 	<footer>
@@ -259,7 +305,8 @@ body.modal-open .background-container {
 						<strong>Start Bootstrap</strong>
 					</h4>
 					<p>
-						3481 Melrose Place <br>Beverly Hills, CA 90210
+						AIzaSyCqJfiDdF82GMj5tgcIEbO8qgFJAVw0wLE 3481 Melrose Place <br>Beverly
+						Hills, CA 90210
 					</p>
 					<ul class="list-unstyled">
 						<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
