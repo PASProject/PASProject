@@ -1,6 +1,7 @@
 package com.app.pas.controller.totalboard;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.board.SkillSharingBoardService;
 
@@ -24,17 +27,29 @@ public class SkillSharingController {
 	SkillSharingBoardService skillSharingBoardService;
 
 	@RequestMapping("/SkillSharingList")
-	public String skillSharingBoardList(HttpSession session, Model model) {
+	public String skillSharingBoardList(Model model,@RequestParam(value="page",defaultValue="1")String page) {
 		String url = "SkillSharing/SkillSharingBoardList";
-		List<SkillSharingBoardVo> skillSharingBoardList = null;
+		int totalCount = 0;
+		List<SkillSharingBoardVo> skillSharingBoardList = new ArrayList<SkillSharingBoardVo>();
 		try {
 			skillSharingBoardList = skillSharingBoardService
 					.selectSkillSharingBoardList();
+		totalCount = skillSharingBoardService.selectTotalCount();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(page.equals(null)||page ==""){
+			page = ""+1;
+		}
+		
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(10);
+		paging.setTotalCount(totalCount);
 
+		model.addAttribute("paging",paging);
 		model.addAttribute("skillSharingBoardList", skillSharingBoardList);
 		return url;
 
@@ -143,5 +158,33 @@ public class SkillSharingController {
 		}
 		return url;
 	}
-
+	
+	@RequestMapping("/searchTitle")
+	public String searchTitle(@RequestParam(defaultValue="") String ssb_Title, Model model){
+		String url = "SkillSharing/SkillSharingBoardList";
+		List<SkillSharingBoardVo> skillSharingBoardList = null;
+		try {
+			skillSharingBoardList = skillSharingBoardService.selectSearchSsbTitle(ssb_Title);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("skillSharingBoardList", skillSharingBoardList);
+		return url;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
