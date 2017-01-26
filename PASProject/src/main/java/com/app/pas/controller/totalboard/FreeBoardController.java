@@ -4,18 +4,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dto.board.FreeBoardVo;
-import com.app.pas.service.MemberService;
 import com.app.pas.service.board.FreeBoardService;
 
 @Controller
@@ -27,20 +27,31 @@ public class FreeBoardController {
 	
 	
 	@RequestMapping("/freeBoardList")
-	public String CommunityList(Model model) {
+	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page) {
 		String url = "freeBoard/freeBoardList";
+		int totalCount = 0 ;
+		/*Page<FreeBoardVo> postPage =freeBoardService.*/
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
 		try {
 			freeBoardList = freeBoardService.selectFreeBoardList();
+			totalCount = freeBoardService.selectTotalCount();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		if(page.equals(null)||page ==""){
+			page = ""+1;
+		}
+		
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(10);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging",paging);
 		model.addAttribute("freeBoardList", freeBoardList);
-		System.out.println(freeBoardList);
 		return url;
-
 	}
 
 	@RequestMapping("/freeBoardDetail")

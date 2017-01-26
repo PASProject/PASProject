@@ -41,5 +41,9 @@
 	<delete id="deleteFreeBoard" parameterClass="int">
 		DELETE FROM FREE_BOARD WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
 	</delete>
+	
+	<select id="selectTotalCount" resultClass="int">
+		select count(*) from free_Board
+	</select>
 
 </sqlMap>
