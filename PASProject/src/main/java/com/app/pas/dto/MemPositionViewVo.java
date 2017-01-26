@@ -1,6 +1,6 @@
 package com.app.pas.dto;
 
-public class MemPostionViewVo {
+public class MemPositionViewVo {
 
 	private String mem_Email;
 	private String mem_name;

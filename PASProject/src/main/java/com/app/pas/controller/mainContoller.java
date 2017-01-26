@@ -37,15 +37,22 @@ public class mainContoller {
 		int result = 0;
 
 		MemberVo memberVo = null;
+		
 
 		memberVo = memberService.getMember(email);
+		
+		
+		
+		//아이디 오류
 		if (memberVo == null) {
 			result = 0;
 
 		} else {
-			if (memberVo.getMem_Pass() == pwd) {
+			//로그인 성공
+			if (memberVo.getMem_Pass().equals(pwd)) {
 				result = 1;
 				session.setAttribute("loginUser", memberVo);
+				//비밀번호실패
 			} else {
 				result = 2;
 			}
