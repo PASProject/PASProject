@@ -38,6 +38,13 @@ public class TotalNoticeVo {
 	public void setAdmin_Email(String admin_Email) {
 		this.admin_Email = admin_Email;
 	}
+	@Override
+	public String toString() {
+		return "TotalNoticeVo [ttnotice_Num=" + ttnotice_Num
+				+ ", ttnotice_Title=" + ttnotice_Title + ", ttnotice_Content="
+				+ ttnotice_Content + ", ttnotice_Inq_Count="
+				+ ttnotice_Inq_Count + ", admin_Email=" + admin_Email + "]";
+	}
 	
 	
 	
