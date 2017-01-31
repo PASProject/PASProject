@@ -44,8 +44,7 @@
 					<c:if test="${paging.pageNo>prevPageNo}">
 						<a href="freeBoardList?page=${prevPageNo}">[이전]</a>
 					</c:if>
-					<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-						varStatus="status">
+					<c:forEach begin="1" end="${paging.finalPageNo}" var="i" varStatus="status">
 						<a href="freeBoardList?page=${i}">[${i}]</a>
 					</c:forEach>
 					<c:if test="${paging.pageNo<finalPageNo}">

@@ -51,7 +51,7 @@
 							var day = date.getDate();
 							day = day>=10?day:'0'+day;
 							var fullD = year+'년'+month+'월'+day+'일';
-							var tt = '<div >아이디 : '+data[i].frb_Reply_Mem +'  /  '+'작성 날짜 : '+fullD+'<div>  ->'+data[i].frb_Reply_Content+'</div></div><br><br>';
+							var tt = '<div >아이디 : '+data[i].frb_Reply_Mem +'  /  '+'작성 날짜 : '+fullD+'<div>  ->   '+data[i].frb_Reply_Content+'</div></div><br><br>';
 							$('div #reply').append(tt); 
 						})
 					},
