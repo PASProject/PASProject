@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,26 +10,32 @@
 <title></title>
 </head>
 <body>
-<form>
-제목:
-<input type="text" name="notice_Title"/><br>
-내용:
-<input type="text" name="notice_Content"/><br>
-<input type="button" value="글쓰기" onClick="noticeBtn(this.form)"/>
-</form>
-<script>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="submenu" style="margin-top: 40px;">
+				<jsp:include page="../sub.jsp" />
+			</div>
+			<div class="col-md-10">
+			<h2 class="page-header"
+					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+					FreeBoard <small>글 쓰기</small>
+				</h2>
+		
+			<form>
+				제목: <input type="text" name="notice_Title" /><br> 내용: <input
+					type="text" name="notice_Content" /><br> <input type="button"
+					value="글쓰기" onClick="noticeBtn(this.form)" />
+			</form>
+
+			<script>
  function noticeBtn(form){
 	 form.action="<%=request.getContextPath()%>/notice/noticeWrite";
-	 form.method="post";
-	 form.submit();
-	 
-	 
- }
-
-
-
-</script>
-
-
+					form.method = "post";
+					form.submit();
+				}
+			</script>
+				</div>
+		</div>
+	</div>
 </body>
 </html>
