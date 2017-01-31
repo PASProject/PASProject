@@ -24,7 +24,7 @@ public class mainContoller {
 
 	@Autowired
 	MemberService memberService;
-	
+
 	@Autowired
 	ProjectService projectService;
 
@@ -79,22 +79,32 @@ public class mainContoller {
 	public String MyProject(HttpSession session, HttpServletRequest request) {
 		String url = "main/myProject";
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		System.out.println(memberVo.getMem_Email()+"@@@@@@@@@@@@@@@@로그인이메일");
+		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
 		try {
-			List<ProjectVo> list =projectService.getMyProjectById(memberVo.getMem_Email());
+			List<ProjectVo> list = projectService.getMyProjectById(memberVo
+					.getMem_Email());
 			request.setAttribute("myProjectList", list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		return url;
 	}
 
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, Model model) {
+	public String OtherProject(HttpSession session, HttpServletRequest request) {
 		String url = "/main/otherProject";
+
+		List<ProjectVo> list;
+		try {
+			list = projectService.getOtherProjectList();
+			request.setAttribute("otherProjectList", list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 	}
 

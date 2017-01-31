@@ -20,4 +20,11 @@ public class ProjectService {
 		return list;
 	}
 
+	public List<ProjectVo> getOtherProjectList() throws SQLException {
+
+		List<ProjectVo> list = projectDao.selectProjectList();
+		return list;
+
+	}
+
 }
