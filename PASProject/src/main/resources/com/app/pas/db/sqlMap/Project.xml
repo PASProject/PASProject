@@ -16,7 +16,7 @@
    	 select * from project where proj_num = #proj_Num#
    </select>
    
-   <select id="selectProejctById" parameterClass="str" resultClass="project">
+   <select id="selectProjectById" parameterClass="str" resultClass="project">
      select * from project where mem_Email=#mem_Email#
   
    </select>

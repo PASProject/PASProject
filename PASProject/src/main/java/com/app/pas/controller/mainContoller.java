@@ -79,6 +79,7 @@ public class mainContoller {
 	public String MyProject(HttpSession session, HttpServletRequest request) {
 		String url = "main/myProject";
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		System.out.println(memberVo.getMem_Email()+"@@@@@@@@@@@@@@@@로그인이메일");
 		try {
 			List<ProjectVo> list =projectService.getMyProjectById(memberVo.getMem_Email());
 			request.setAttribute("myProjectList", list);
