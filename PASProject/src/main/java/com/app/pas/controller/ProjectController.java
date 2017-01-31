@@ -188,7 +188,7 @@ public class ProjectController {
 	}
 	
 	
-	@RequestMapping("/projectBoardReplyList")
+/*	@RequestMapping("/projectBoardReplyList")
 	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
 		List<ProjectBoardVo> projectBoardReplyList = new ArrayList<ProjectBoardVo>();
@@ -225,7 +225,7 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		return projectBoardList;
-	}
+	}*/
 }
 
 
