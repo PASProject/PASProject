@@ -9,13 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <style>
+
 .container {
 	padding: auto;
 }
 
-td td>a {
-	font-size: 10px;
-}
 </style>
 
 </head>
@@ -23,7 +21,7 @@ td td>a {
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-2" id="submenu" style="margin-top:40px;">
 				<jsp:include page="../sub.jsp" />
 			</div>
 
@@ -53,6 +51,7 @@ td td>a {
 								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
 
 							<td>${freeBoardVo.mem_Email }</td>
+							
 
 							<td style="text-align: center"><fmt:formatDate
 									value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
@@ -64,13 +63,13 @@ td td>a {
 
 				<c:if test="${paging.finalPageNo>0}">
 					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo"/>
+					<c:set value="${paging.nextPageNo}" var="nextPageNo" />
 
 					<c:if test="${paging.pageNo>prevPageNo}">
 						<a href="freeBoardList?page=${prevPageNo}">[이전]</a>
 					</c:if>
-					<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-						varStatus="status">
+					<c:forEach begin="1" end="${paging.finalPageNo}" var="i" varStatus="status">
 						<a href="freeBoardList?page=${i}">[${i}]</a>
 					</c:forEach>
 					<c:if test="${paging.pageNo<finalPageNo}">
