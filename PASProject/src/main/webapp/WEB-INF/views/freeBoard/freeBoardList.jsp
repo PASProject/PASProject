@@ -2,41 +2,67 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<style>
+.container {
+	padding: auto;
+}
+
+td td>a {
+	font-size: 10px;
+}
+</style>
 
 </head>
 <body>
-	<h1>FreeBoard</h1>
-	<table>
-		<tr>
-			<td>번호</td>
-			<th>제목</th>
-			<th>내용</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
-			<td>추천수</td>
-		</tr>
-		<c:forEach items="${freeBoardList }" var="freeBoardVo"
-			begin="${paging.beginNo}" end="${paging.endNo}">
-			<tr>
-				<td>${freeBoardVo.frb_Article_Num }</td>
-				<td><a
-					href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
-				<td>${freeBoardVo.frb_Content }</td>
-				<td>${freeBoardVo.mem_Email }</td>
-				<td>${freeBoardVo.frb_Wt_Date}</td>
-				<td style="text-align: center">${freeBoardVo.frb_Inq_Count }</td>
-				<td>${freeBoardVo.frb_Like }</td>
-			</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="5" align="right"><c:if test="${paging.finalPageNo>0}">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<jsp:include page="../sub.jsp" />
+			</div>
+
+
+			<!-- Page Header -->
+
+			<div class="col-md-10">
+				<h2 class="page-header"
+					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+					FreeBoard <small>마음껏 지껄이시길 바랍니다.</small>
+				</h2>
+
+				<table class="table table-hover">
+					<tr class="text-center">
+						<th class="col-md-1" style="text-align: center">번호</th>
+						<th class="col-md-4" style="text-align: center">제목</th>
+						<th class="col-md-2" style="text-align: center">작성자</th>
+						<th class="col-md-1" style="text-align: center">작성일</th>
+						<th class="col-md-1" style="text-align: center">조회수</th>
+						<th class="col-md-1" style="text-align: center">추천수</th>
+					</tr>
+					<c:forEach items="${freeBoardList }" var="freeBoardVo"
+						begin="${paging.beginNo}" end="${paging.endNo}">
+						<tr id="boardContents">
+							<td style="text-align: center">${freeBoardVo.frb_Article_Num }</td>
+							<td><a
+								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
+
+							<td>${freeBoardVo.mem_Email }</td>
+
+							<td style="text-align: center"><fmt:formatDate
+									value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
+							<td style="text-align: center">${freeBoardVo.frb_Inq_Count }</td>
+							<td style="text-align: center">${freeBoardVo.frb_Like }</td>
+						</tr>
+					</c:forEach>
+				</TABLE>
+
+				<c:if test="${paging.finalPageNo>0}">
 					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
 					<c:set value="${paging.finalPageNo}" var="finalPageNo"/>
 					<c:set value="${paging.nextPageNo}" var="nextPageNo" />
@@ -50,16 +76,24 @@
 					<c:if test="${paging.pageNo<finalPageNo}">
 						<a href="freeBoardList?page=${nextPageNo}">[다음]</a>
 					</c:if>
-				</c:if></td>
-		</tr>
-	</table>
+				</c:if>
 
-	<input type="button" value="글쓰기" onclick="wrtie_form()">
-	<script>
-		function wrtie_form() {
-			location.href = "freeBoardWrite";
-		}
-	</script>
+				<div class="col-md-10">
+					<input type="button" value="글쓰기" onclick="wrtie_form()">
+
+					<script>
+						function wrtie_form() {
+							location.href = "freeBoardWrite";
+						}
+					</script>
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
 </body>
 
 </html>

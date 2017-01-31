@@ -6,6 +6,7 @@
 	</decorator>
 	<decorator name="my" page="my_decorator.jsp">
 		<pattern>/main/*</pattern>
+		<pattern>/freeBoard/*</pattern>
 	</decorator>
 	<decorator name="admin" page="admin_decorator.jsp">
 		<pattern>/admin/*.do</pattern>
@@ -15,6 +16,7 @@
 
 
 	<excludes>
+	<pattern>*/index.jsp</pattern>
 		<pattern>*/index*</pattern>
      	<pattern>*/joinForm*</pattern>
 		<pattern>*/loginForm*</pattern>

@@ -5,7 +5,7 @@
 /* table tr td { 
 border: 1px solid black;
 } */
-body {
+#body {
 	background-color: rgb(249, 249, 249);
 }
 
@@ -17,14 +17,15 @@ body {
 	padding: 30px;
 }
 
+
+
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
 }
 
 body {
-	font-family: NanumGothic
-}
+	font-family: NanumGothic;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -45,6 +46,7 @@ body {
 <script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+<body id="body">
 <div class="container2">
 	<!-- 로고는 일단 지저분하니까 빼자
 	<h3 style="text-align: center;">
@@ -56,7 +58,7 @@ body {
 
 
 		<form class="form-horizontal" action=" " method="post" id="reg_form">
-			<fieldset>
+
 
 				<!-- Form Name -->
 				<legend> 회원가입 </legend>
@@ -136,15 +138,15 @@ body {
 				</div>
 
 				<!-- Button -->
-				<div class="form-group">
-					<label class="col-md-4 control-label"></label>
+				<div class="form-group" style="text-align:right;">
+					<label class="col-md-6 control-label"></label>
 					<div class="col-md-4">
-						<button type="submit" class="btn btn-warning">
+						<button type="submit" class="btn btn-warning" >
 							확인 <span class="glyphicon glyphicon-send"></span>
 						</button>
 					</div>
 				</div>
-			</fieldset>
+			
 		</form>
 
 	</div>
@@ -152,5 +154,5 @@ body {
 
 
 </div>
-
+</body>
 
