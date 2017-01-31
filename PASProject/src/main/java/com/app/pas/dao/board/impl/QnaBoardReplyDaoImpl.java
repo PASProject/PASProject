@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.board.QnaBoardReplyDao;
 import com.app.pas.dto.board.QnaBoardReplyVo;
+import com.app.pas.dto.board.QnaBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
@@ -20,6 +21,13 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 		QnaBoardReplyVo qnaBoardReplyVo = (QnaBoardReplyVo)client.queryForObject("selectQnaReply", qb_Article_Num);
 		
 		return qnaBoardReplyVo;
+	}
+
+	@Override
+	public void insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo)
+			throws SQLException {
+		client.insert("insertQnaBoardReply", qnaBoardReplyVo);
+		
 	}
 
 }

@@ -45,11 +45,12 @@
 <br><br>
 ${qnaBoardReplyVo.qb_Reply_Content}
 <br>
-<textarea rows="2" cols="50" name="qnaReply">
-</textarea> <input type="submit" value= "댓글등록" onClick="qnaReply()">
-
-<br>
 </form>
+<form name="form" method="post" action="">
+<textarea rows="2" cols="50" name="InsertqnaReply" >
+</textarea> <input type="submit" value= "댓글등록" onClick="InsertqnaReply()">
+</form>
+<br>
 
 
 
@@ -70,10 +71,10 @@ ${qnaBoardReplyVo.qb_Reply_Content}
 		frm.submit();
 		
 	}
-	function qnaReply(){
-		frm.method="post"
-		frm.action="qnaReply";
-		frm.submit();
+	function InsertqnaReply(){
+		form.method="post"
+		form.action="InsertqnaReply";
+		form.submit();
 	}
 
 </script>

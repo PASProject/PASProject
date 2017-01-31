@@ -128,7 +128,7 @@ public class QnaController {
 		return url;
 	}
 
-	// 디테일
+	// 디테일 , 리플
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
@@ -149,27 +149,21 @@ public class QnaController {
 
 		return url;
 	}
-
-// 리플
-/*	@RequestMapping("/QnADetail")
-	public String selectQnaReply(@RequestBody String qb_Article_Num, Model model){
-		System.out.println("여기 오긴오니?;;;;");
-		String url= "qna/QnADetail";
-		QnaBoardReplyVo qnaBoardReplyVo;
+	
+//댓글작성
+	@RequestMapping("/InsertqnaReply")
+	public String insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){
+		String url="qna/QnADetail";
 		try {
-			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
-			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
-			System.out.println("-----qnaBoardReplyVo값이 찍히는감?ㅠㅠ" + qnaBoardReplyVo);
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return url;
 		
-	}*/
+		return url;
+	}
+
 	// 글 삭제
 	@RequestMapping(value = "/qnaDelete", method = RequestMethod.POST)
 	public String deleteQnaBoard(String qb_Article_Num) {
