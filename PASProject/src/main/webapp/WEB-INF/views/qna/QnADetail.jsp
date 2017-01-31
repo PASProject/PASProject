@@ -34,12 +34,24 @@
 			<th>내용</th>
 			<td>${qnaBoardVo.qb_Content}</td>
 		</tr>
+
 	</table>
+
+		
+<br><br>
 	 <input type="button" value="수정" onClick="go_qnaupdate()">
 	 <input type="button" value="삭제" onClick="go_delete()">
 	 <input type="button" value="목록" onClick="go_qnalist()">
-	 
+<br><br>
+${qnaBoardReplyVo.qb_Reply_Content}
+<br>
+<textarea rows="2" cols="50" name="qnaReply">
+</textarea> <input type="submit" value= "댓글등록" onClick="qnaReply()">
+
+<br>
 </form>
+
+
 
 <script>
 	function go_qnalist(){
@@ -52,10 +64,16 @@
 	
 	
 	function go_delete(){
+		
 		frm.method="post"
 		frm.action="qnaDelete";
 		frm.submit();
 		
+	}
+	function qnaReply(){
+		frm.method="post"
+		frm.action="qnaReply";
+		frm.submit();
 	}
 
 </script>

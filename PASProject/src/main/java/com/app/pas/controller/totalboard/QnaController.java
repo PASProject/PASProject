@@ -1,19 +1,26 @@
 package com.app.pas.controller.totalboard;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dao.board.QnaBoardDao;
+import com.app.pas.dto.board.QnaBoardReplyVo;
 import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
 
 @Controller
@@ -22,21 +29,41 @@ public class QnaController {
 
 	@Autowired
 	QnaBoardService qnaBoardService;
+	
+	@Autowired
+	QnaBoardReplyService qnaBoardReplyService;
 
+	// qnaList
 	@RequestMapping("/qnaList")
-	public String QnaList(Model model) {
+	public String QnaList(Model model,
+			@RequestParam(value = "page", defaultValue = "1") String page) {
 		String url = "qna/QnAList";
-		List<QnaBoardVo> qnaboardList;
+		int totalCount = 0;
+		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
 		try {
-			qnaboardList = qnaBoardService.selectQnaBoardList();
-			model.addAttribute("qnaboardList", qnaboardList);
+			qnaList = qnaBoardService.selectQnaBoardList();
+			System.out.println("qnaboardList >> > > : " + qnaList);
+			totalCount = qnaBoardService.QnaSelectTotalCount();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		// 페이징처리
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("qnaList", qnaList);
 
 		return url;
 	}
 
+	// qna글쓰기
 	@RequestMapping("/qnaWrite")
 	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
 		String url = "qna/QnAWrite";
@@ -56,11 +83,12 @@ public class QnaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		return url;
 
 	}
-	@RequestMapping(value="/qnaUpdate",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/qnaUpdate", method = RequestMethod.GET)
 	public String updateQnaForm(@RequestParam String qb_Article_Num,
 			HttpSession session, Model model) {
 		String url = "qna/QnAUpdate";
@@ -70,7 +98,7 @@ public class QnaController {
 			qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
-		
+
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -79,38 +107,40 @@ public class QnaController {
 		return url;
 
 	}
-	
-	@RequestMapping(value="/qnaUpdate", method=RequestMethod.POST)
-	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
-		String url="redirect:qnaList";
-		
+
+	@RequestMapping(value = "/qnaUpdate", method = RequestMethod.POST)
+	public String updateQnaBoard(QnaBoardVo qnaBoardVo) {
+		String url = "redirect:qnaList";
+
 		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
-			
+
 		} catch (SQLException e) {
-	
+
 			e.printStackTrace();
 		}
 		return url;
 	}
-	
-	
-//////////////////////////////////////////////////////////
+
 	@RequestMapping("/qnaDelete")
 	public String deleteQna(HttpSession session, Model model) {
 		String url = "";
 		return url;
 	}
 
-//////////////////////////////////////////////////////////
+	// 디테일
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
+		
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
+			QnaBoardReplyVo qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+			
+			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
-		
+			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -119,10 +149,31 @@ public class QnaController {
 
 		return url;
 	}
-	//////////////////////////////////////////////////////////////////////////
-	@RequestMapping(value="/qnaDelete", method=RequestMethod.POST)
-	public String deleteQnaBoard (String qb_Article_Num){
-		String url="redirect:qnaList";
+
+// 리플
+/*	@RequestMapping("/QnADetail")
+	public String selectQnaReply(@RequestBody String qb_Article_Num, Model model){
+		System.out.println("여기 오긴오니?;;;;");
+		String url= "qna/QnADetail";
+		QnaBoardReplyVo qnaBoardReplyVo;
+		try {
+			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
+			System.out.println("-----qnaBoardReplyVo값이 찍히는감?ㅠㅠ" + qnaBoardReplyVo);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+		
+	}*/
+	// 글 삭제
+	@RequestMapping(value = "/qnaDelete", method = RequestMethod.POST)
+	public String deleteQnaBoard(String qb_Article_Num) {
+		String url = "redirect:qnaList";
 		System.out.println("삭제하는중 : 아티클넘버" + qb_Article_Num);
 		try {
 			qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
@@ -130,11 +181,10 @@ public class QnaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return url;
 
 	}
-	
+
 
 }

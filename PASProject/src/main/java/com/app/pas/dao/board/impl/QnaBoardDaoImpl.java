@@ -43,5 +43,12 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		client.delete("deleteQnaBoard",qb_Article_Num);
 		System.out.println("^^^^^^^^^^^^^"+qb_Article_Num);
 	}
+
+	@Override
+	public int QnaSelectTotalCount() throws SQLException {
+		int totalCount = (Integer) client.queryForObject("QnaSelectTotalCount");
+		return totalCount;
+		
+	}
 	
 }
