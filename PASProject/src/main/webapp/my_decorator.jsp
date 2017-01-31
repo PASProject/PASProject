@@ -129,6 +129,9 @@
 }
 </style>
 <style>
+body{
+background-color: rgb(249, 249, 249);
+}
 .navbar-default {
 	font-size: 13px;
 	margin-top: -10px;
