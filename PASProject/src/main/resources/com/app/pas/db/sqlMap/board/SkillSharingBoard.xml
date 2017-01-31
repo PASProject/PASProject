@@ -19,7 +19,7 @@
 		resultClass="SkillSharingBoard">
 		SELECT *
 		FROM SKILL_SHARING_BOARD
-		WHERE SSB_ARTICLE_NUM LIKE '%'||#ssb_Article_Num#||'%'
+		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
 
 
 	</select>
