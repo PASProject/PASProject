@@ -64,6 +64,7 @@ public class SkillSharingController {
 			skillSharingBoardVo = skillSharingBoardService
 					.selectSkillSharingBoardDetail(Integer
 							.parseInt(ssb_Article_Num));
+			System.out.println(ssb_Article_Num);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,8 +12,6 @@ public class Paging {
     private int finalPageNo; // 마지막 페이지 번호
     private int totalCount; // 게시 글 전체 수
     
-    
-    
     private int beginNo; // 보여줄 리스트 처음
     private int endNo; // 보여줄 리스트 마지막 
 

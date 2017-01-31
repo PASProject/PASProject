@@ -52,6 +52,11 @@
 
 
 <!-- JS -->
+
+
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/socket.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -269,17 +274,18 @@ background-color: rgb(249, 249, 249);
 			</div>
 			<!-- /.container -->
 		</nav>
-
 	</header>
 
 
 	<decorator:body />
 
-
+<c:set var ="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
 </body>
 <script>
 	$(document).ready(
 			function() {
+				connect('init,'+'${loginUser.mem_Email}');
+				
 				$(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')

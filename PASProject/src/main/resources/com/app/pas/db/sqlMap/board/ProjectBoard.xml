@@ -20,10 +20,13 @@
 		resultClass="ProjectBoard">
 		SELECT *
 		FROM PROJECT_BOARD
-		WHERE PB_ARTICLE_NUM LIKE
-		'%'||#pb_Article_Num#||'%'
+		WHERE PB_ARTICLE_NUM = #pb_Article_Num#
 
 
+	</select>
+	
+	<select id="selectProjectBoardDetail" parameterClass="int" resultClass="ProjectBoard">
+		select * from PROJECT_BOARD where pb_Article_Num = #pb_Article_Num#
 	</select>
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
@@ -49,4 +52,8 @@
 
 
 	</delete>
+	
+	<select id="selectPBTotalCount" resultClass="int">
+		select count(*) from project_Board
+	</select>
 </sqlMap>
