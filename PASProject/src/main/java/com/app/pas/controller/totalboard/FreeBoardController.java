@@ -51,9 +51,9 @@ public class FreeBoardController {
 		
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
-		paging.setPageSize(10);
+		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
-		
+		System.out.println(paging.toString());
 		model.addAttribute("paging",paging);
 		model.addAttribute("freeBoardList", freeBoardList);
 		return url;

@@ -23,7 +23,7 @@
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					FreeBoard <small>글 쓰기</small>
 				</h2>
-				
+
 				<div style="border: solid 1px black;">
 					<form name="frm" method="post">
 						<input type="hidden" name="frb_Article_Num" id="frb_Article_Num"
@@ -54,6 +54,40 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var frb_Article_Num = $('#frb_Article_Num').val();
+				var dataList = {'frb_Article_Num':frb_Article_Num};
+				$.ajax({
+					url:'freeBoardReplyList',
+					dataType:'json',
+					data:JSON.stringify(dataList),
+					contentType : "application/json",
+					type:'post',
+					success:function(data){
+						$.each(data,function(i){
+							var date = new Date(data[i].frb_Reply_Time)
+							var year = date.getFullYear();
+							var month = (1+date.getMonth());
+							month = month>=10? month:'0'+month;
+							var day = date.getDate();
+							day = day>=10?day:'0'+day;
+							var fullD = year+'년'+month+'월'+day+'일';
+							var tt = '<div >아이디 : '+data[i].frb_Reply_Mem +'  /  '+'작성 날짜 : '+fullD+'<div>  ->   '+data[i].frb_Reply_Content+'</div></div><br><br>';
+							$('div #reply').append(tt); 
+						})
+					},
+					error:function(){
+						alert("에러");
+					}
+				
+				})
+				
+				
+				$('#replyBtn').on('click',function(){
+
 					var frb_Article_Num = $('#frb_Article_Num').val();
 					var dataList = {
 						'frb_Article_Num' : frb_Article_Num

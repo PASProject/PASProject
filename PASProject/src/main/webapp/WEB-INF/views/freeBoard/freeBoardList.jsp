@@ -63,13 +63,13 @@
 
 				<c:if test="${paging.finalPageNo>0}">
 					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo"/>
+					<c:set value="${paging.nextPageNo}" var="nextPageNo" />
 
 					<c:if test="${paging.pageNo>prevPageNo}">
 						<a href="freeBoardList?page=${prevPageNo}">[이전]</a>
 					</c:if>
-					<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-						varStatus="status">
+					<c:forEach begin="1" end="${paging.finalPageNo}" var="i" varStatus="status">
 						<a href="freeBoardList?page=${i}">[${i}]</a>
 					</c:forEach>
 					<c:if test="${paging.pageNo<finalPageNo}">
