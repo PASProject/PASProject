@@ -115,7 +115,7 @@ body {
 				},
 				success : function(result) {
 					if (result == 1) {
-                        location.href="<%=request.getContextPath()%>/notice/noticeList"
+                        location.href="<%=request.getContextPath()%>/main/myProject"
 					} else if (result == 0) {
 						alert("아이디가 틀렸습니다");
 						alert(result);
