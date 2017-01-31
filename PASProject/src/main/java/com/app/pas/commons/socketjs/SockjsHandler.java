@@ -1,6 +1,8 @@
 package com.app.pas.commons.socketjs;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.web.socket.CloseStatus;
@@ -17,15 +19,18 @@ public class SockjsHandler extends TextWebSocketHandler{
 	public void handleMessage(WebSocketSession session,
 			WebSocketMessage<?> message) throws Exception {
 		System.out.println("handleMessage 호출");
-		String userid="";
+		String userid;
 		System.out.println(message.getPayload().toString()+"@@@@@@@@@@@@@@@@@@@@@@");
-		
 		if(message.equals(null)) return;
 		System.out.println(message.getPayload().toString().length());
 			if(message.getPayload().toString().contains("init")&& message.getPayload().toString().length()>6){
 				userid = message.getPayload().toString().substring(5);
 				System.out.println(userid);
 				users.put(userid,session);
+			}else if(message.getPayload().toString().contains("push")){
+				String pushMessage = message.getPayload().toString().substring(5);
+				session = users.get(pushMessage);
+				session.sendMessage(message);
 			}
 	}
 	   
@@ -70,7 +75,8 @@ public class SockjsHandler extends TextWebSocketHandler{
 		}
 		System.out.println("메시지호출");
 	}*/
-
+	private void pushMessage(WebSocketSession session) throws IOException{
+	}
 	@Override
 	public void handleTransportError(WebSocketSession session,
 			Throwable exception) throws Exception {

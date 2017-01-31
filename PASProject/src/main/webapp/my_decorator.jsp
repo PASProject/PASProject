@@ -287,7 +287,7 @@ body {
 <script>
 	$(document).ready(
 			function() {
-				connect('init,'+'${loginUser.mem_Email}');
+				connect('init:'+'${sessionScope.loginUser.mem_Email}');
 				
 				$(".dropdown").hover(
 						function() {
