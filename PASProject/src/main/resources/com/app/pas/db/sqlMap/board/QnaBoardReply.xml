@@ -9,7 +9,7 @@
 	<typeAlias alias="QnaBoardReply" type="com.app.pas.dto.board.QnaBoardReplyVo" />
 
 
-	<select id="selectQnaBoardReply" parameterClass="int"
+	<select id="selectQnaReply" parameterClass="int"
 		resultClass="QnaBoardReply">
 		SELECT *
 		FROM QNA_BOARD_REPLY
