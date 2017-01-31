@@ -57,7 +57,8 @@
 			var data ={'frb_Article_Num' : frb_Article_Num};
 			$.ajax({
 				url:'freeBoardReplyList',
-				contentType:'applycation/json',
+				contentType:'application/json',
+				dataType:'json',
 				data:JSON.stringify(data),
 				type:'post',
 				success : function(data){
