@@ -25,34 +25,31 @@ public class mainContoller {
 
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
-		String url = "main/loginForm";
+		String url = "/main/loginForm";
 		return url;
 	}
 
 	// 로그인처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody int loginMember(HttpSession session,String email, String pwd) {
+	public @ResponseBody int loginMember(HttpSession session, String email,
+			String pwd) {
 
-		
 		int result = 0;
 
 		MemberVo memberVo = null;
-		
 
 		memberVo = memberService.getMember(email);
-		
-		
-		
-		//아이디 오류
+
+		// 아이디 오류
 		if (memberVo == null) {
 			result = 0;
 
 		} else {
-			//로그인 성공
+			// 로그인 성공
 			if (memberVo.getMem_Pass().equals(pwd)) {
 				result = 1;
 				session.setAttribute("loginUser", memberVo);
-				//비밀번호실패
+				// 비밀번호실패
 			} else {
 				result = 2;
 			}
@@ -63,7 +60,7 @@ public class mainContoller {
 
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
-		String url = "";
+		String url = "main/joinForm";
 		return url;
 	}
 
@@ -73,9 +70,15 @@ public class mainContoller {
 		return url;
 	}
 
-	@RequestMapping("/projectList")
-	public String ProjectList(HttpSession session, Model model) {
-		String url = "";
+	@RequestMapping("/myProject")
+	public String MyProject(HttpSession session, Model model) {
+		String url = "main/myProject";
+		return url;
+	}
+
+	@RequestMapping("/otherProject")
+	public String OtherProject(HttpSession session, Model model) {
+		String url = "/main/otherProject";
 		return url;
 	}
 

@@ -8,15 +8,28 @@
 <html>
 <head>
 
+<!-- Bootstrap Core CSS -->
+<link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="<%=request.getContextPath() %>/resources/css/stylish-portfolio.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="<%=request.getContextPath() %>/resources/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css">
+
+
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+
+
 
 <style>
 
@@ -135,7 +148,7 @@ body {
 					<label for="pwd">Password:</label> <input type="password"
 						class="form-control" id="pwd" name="pwd"
 						placeholder="Enter password">
-				</div>
+			</div>
 				<div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>
 				</div>
@@ -148,7 +161,7 @@ body {
 		</div>
 		<div class="container" style="padding: 20px;">
 			<span style="text-align: center">PAS에 처음 방문하셨다면 <a
-				href="joinForm.jsp">새 계정을 만드세요.</a></span> <br> <br> <a
+				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br> <br> <a
 				href="javscript:void(0);"><span style="text-align: center"
 				id="forget">그게 아니라 비빌번호를 잊으신거?</span></a>
 		</div>
