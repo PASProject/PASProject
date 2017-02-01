@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,11 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemPositionViewVo;
@@ -31,7 +28,6 @@ import com.app.pas.service.board.ProjectBoardService;
 
 @Controller
 @RequestMapping("/project/${id}")
-
 public class ProjectController {
 
 	@Autowired
@@ -297,7 +293,7 @@ public class ProjectController {
 				
 	}
 	
-/*	@RequestMapping(value="/fprojectBoardDelete",method = RequestMethod.POST)
+	@RequestMapping(value="/fprojectBoardDelete",method = RequestMethod.POST)
 	public String deleteFreeBoard(String pb_Article_Num){
 		String url="redirect:projectBoardList";
 		try {
@@ -312,13 +308,9 @@ public class ProjectController {
 		return url;
 	}
 	
-<<<<<<< HEAD
-	/*
-	@RequestMapping("/projectBoardReplyList")
-=======
 	
+
 /*	@RequestMapping("/projectBoardReplyList")
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
 		List<ProjectBoardVo> projectBoardReplyList = new ArrayList<ProjectBoardVo>();
