@@ -59,8 +59,12 @@
 						<td style="padding-top: 20px;">댓글'{개수}'</td>
 					</tr>
 					<tr>
-						<td></td>
+						<td>댓글들어가는 곳</td>
 					</tr>
+					
+					<
+					
+					
 				</table>
 
 				<input type="button" value="수정" onClick="go_qnaupdate()"> <input
