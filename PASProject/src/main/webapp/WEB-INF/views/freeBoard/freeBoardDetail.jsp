@@ -78,10 +78,10 @@
 								+ '  /  ' + '작성 날짜 : '
 								+ fullD + '<div>  ->'
 								+ data[i].frb_Reply_Content
-								+'<c:if test="${sessionScope.loginUser.mem_Email eq}}">'
+								
 								+'<input type=\'button\' class=\'btn btn-default\' value=\'수정\'>'
 								+'<input type=\'button\' class=\'btn btn-default\' value=\'삭제\'>'
-								+'</c:if>'
+								
 								+'</div></div><br><br>';
 						$('div #reply').append(tt);
 					})
@@ -123,10 +123,7 @@
 													+ '  /  ' + '작성 날짜 : '
 													+ fullD + '<div>  ->'
 													+ data[i].frb_Reply_Content
-													+'<c:if test="${sessionScope.loginUser.mem_Email}==${data[i].frb_Rerply_Mem.frb_Reply_Mem }">'
-													+ '<input type=\'button\' class=\'btn btn-default\' value=\'수정\'>'
-													+'<input type=\'button\' class=\'btn btn-default\' value=\'삭제\'>'
-													+'</c:if>'
+													
 													+'</div></div><br><br>';
 											$('div #reply').append(tt);
 										})
