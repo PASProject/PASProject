@@ -312,8 +312,13 @@ public class ProjectController {
 		return url;
 	}
 	
-	
+<<<<<<< HEAD
+	/*
 	@RequestMapping("/projectBoardReplyList")
+=======
+	
+/*	@RequestMapping("/projectBoardReplyList")
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
 		List<ProjectBoardVo> projectBoardReplyList = new ArrayList<ProjectBoardVo>();
@@ -332,8 +337,8 @@ public class ProjectController {
 		
 		return projectBoardList;
 	}
-	
-	@RequestMapping(value="/projectBoardReplyWrite", method=RequestMethod.POST)
+	*/
+/*	@RequestMapping(value="/projectBoardReplyWrite", method=RequestMethod.POST)
 	public @ResponseBody List<ProjectBoardVo> writeProjectBoardReply(@RequestBody ProjectBoardVo projectBoardVo, HttpSession session){
 		 MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		 String mem_Email = memberVo.getMem_Email();

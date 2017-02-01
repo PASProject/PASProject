@@ -16,6 +16,7 @@ function connect(loginUserId) {
 	
 	function onOpen(evt) {
 		send(loginUserId);
+		onMessage(evt);
 	}
 	
 	function onMessage(evt) {
@@ -28,6 +29,7 @@ function connect(loginUserId) {
 	
 	function send(msg) {
 		wsocket.send(msg);
+		onMessage(evt);
 	}
 
 	function appendMessage(msg) {
