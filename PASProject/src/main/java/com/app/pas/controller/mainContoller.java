@@ -87,14 +87,14 @@ public class mainContoller {
 	}
 
 	@RequestMapping("/myProject")
-	public String MyProject(HttpSession session, HttpServletRequest request) {
+	public String MyProject(HttpSession session, Model model) {
 		String url = "main/myProject";
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
 		try {
 			List<ProjectVo> list = projectService.getMyProjectById(memberVo
 					.getMem_Email());
-			request.setAttribute("myProjectList", list);
+			model.addAttribute("myProjectList", list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,15 +104,14 @@ public class mainContoller {
 	}
 
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, HttpServletRequest request) {
+	public String OtherProject(HttpSession session, Model model) {
 		String url = "/main/otherProject";
 
 		List<ProjectVo> list;
 		try {
 			list = projectService.getOtherProjectList();
-			request.setAttribute("otherProjectList", list);
+			model.addAttribute("otherProjectList", list);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

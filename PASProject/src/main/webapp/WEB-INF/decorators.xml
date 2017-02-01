@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 
-<decorators defaultdir="/">	
+<decorators defaultdir="/">
 	<decorator name="main" page="page_decorator.jsp">
 		<pattern>/</pattern>
 	</decorator>
 	<decorator name="my" page="my_decorator.jsp">
 		<pattern>/main/*</pattern>
+	</decorator>
+
+	<decorator name="proj" page="proj_decorator.jsp">
+		<pattern>/qna/*</pattern>
 		<pattern>/freeBoard/*</pattern>
+		<pattern>/schedule/*</pattern>
+		<pattern>/SkillSharing/*</pattern>
+		<pattern>/product/*</pattern>
+		<pattern>/notice/*</pattern>
+		<pattern>/project/*</pattern>
+
 	</decorator>
 	<decorator name="admin" page="admin_decorator.jsp">
 		<pattern>/admin/*.do</pattern>
 	</decorator>
-	
+
 
 
 
 	<excludes>
-	<pattern>*/index.jsp</pattern>
+		<pattern>*/index.jsp</pattern>
 		<pattern>*/index*</pattern>
-     	<pattern>*/joinForm*</pattern>
+		<pattern>*/joinForm*</pattern>
 		<pattern>*/loginForm*</pattern>
-     	<pattern>/pwdsearch.do*</pattern>
+		<pattern>/pwdsearch.do*</pattern>
 		<pattern>/findZipNum.do*</pattern>
-		<pattern>/idCheckForm.do*</pattern>	
-		<pattern>/admin/adminLoginForm.do</pattern>	
+		<pattern>/idCheckForm.do*</pattern>
+		<pattern>/admin/adminLoginForm.do</pattern>
 	</excludes>
 
 </decorators>

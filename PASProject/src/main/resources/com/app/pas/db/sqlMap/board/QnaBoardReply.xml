@@ -20,8 +20,8 @@
 
 	<insert id="insertQnaBoardReply" parameterClass="QnaBoardReply">
 		INSERT INTO
-		QNA_BOARD_REPLY(QB_REPLY_NUM,QB_REPLY_CONTENT,ADMIN_EMAIL) 
-		VALUES(QNA_BOARD_REPLY_SEQ.NEXTVAL, #qb_Reply_Content#, #admin_Email#)
+		QNA_BOARD_REPLY(QB_REPLY_NUM,QB_REPLY_CONTENT,ADMIN_EMAIL,QB_ARTICLE_NUM) 
+		VALUES(QNA_BOARD_REPLY_SEQ.NEXTVAL, #qb_Reply_Content#, #admin_Email#,#qb_Article_Num#)
 	</insert>
 
 
