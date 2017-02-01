@@ -1,12 +1,16 @@
 package com.app.pas.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +25,13 @@ import com.app.pas.service.ProjectService;
 @Controller
 @RequestMapping("/main")
 public class mainContoller {
+
+	@Resource(name = "mailSender")
+	private MailSender mailSender;
+
+	public void setMailSender(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 
 	@Autowired
 	MemberService memberService;
@@ -112,6 +123,36 @@ public class mainContoller {
 	public String Mypage(HttpSession session, Model model) {
 		String url = "";
 		return url;
+	}
+
+	@RequestMapping(value = "/simpleMessage", method = RequestMethod.POST)
+	public @ResponseBody int SimpleMessage(HttpSession session,
+			HttpServletRequest request, String sendEmail) throws SQLException,
+			UnsupportedEncodingException {
+
+		request.setCharacterEncoding("utf-8");
+		int result = -1;
+		String pwd = (Math.random() * 100000) + 100000 + "";
+		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd + "입니다";
+		SimpleMailMessage message = new SimpleMailMessage();
+        
+		MemberVo memberVo = (MemberVo) memberService.getMember(sendEmail);
+		memberVo.setMem_Pass(pwd);
+        if(memberVo!=null){
+		memberService.extraPwd(memberVo);
+
+		message.setText(content);
+		message.setTo(sendEmail);
+		message.setSubject("임시비밀번호 전송입니다.");
+		message.setFrom("youliksna@naver.com");
+
+		mailSender.send(message);
+	     	result=1;
+        }else{
+            result=-1;	
+        }
+        
+		return result;
 	}
 
 }

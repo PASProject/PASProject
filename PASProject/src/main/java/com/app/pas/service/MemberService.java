@@ -24,4 +24,7 @@ public class MemberService {
 		return member;
 	}
 	
+	public void extraPwd(MemberVo memberVo) throws SQLException{
+		memberDao.extraMemberPwd(memberVo);
+	}
 }
