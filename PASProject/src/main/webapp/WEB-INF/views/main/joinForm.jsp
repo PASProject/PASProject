@@ -68,9 +68,9 @@ body {
 					<label class="col-md-4 control-label">이메일 주소</label>
 					<div class="col-md-6  inputGroupContainer">
 						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-								placeholder="E-Mail Address" class="form-control" type="text">
+							<span class="input-group-addon">
+							<i class="glyphicon glyphicon-envelope"></i></span> 
+							<input name="mem_Email" placeholder="E-Mail Address" class="form-control" type="text">
 						</div>
 					</div>
 				</div>
@@ -84,7 +84,7 @@ body {
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input
 								class="form-control" id="userPw" type="password"
-								placeholder="password" name="password" data-minLength="5"
+								placeholder="password" name="mem_Pass" data-minLength="5"
 								data-error="some error" required /> <span
 								class="glyphicon form-control-feedback"></span> <span
 								class="help-block with-errors"></span>
@@ -101,7 +101,7 @@ body {
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-repeat"></i></span> <input
 								class="form-control {$borderColor}" id="userPw2" type="password"
-								placeholder="Confirm password" name="confirmPassword"
+								placeholder="Confirm password" name="mem_Pass_CK"
 								data-match="#confirmPassword" data-minLength="5"
 								data-match-error="some error 2" required /> <span
 								class="glyphicon form-control-feedback"></span> <span
@@ -117,7 +117,7 @@ body {
 					<div class="col-md-6  inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="name"
+								class="glyphicon glyphicon-user"></i></span> <input name="mem_Name"
 								placeholder="이름" class="form-control" type="text">
 						</div>
 					</div>
@@ -131,7 +131,7 @@ body {
 					<div class="col-md-6  inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-earphone"></i></span> <input name="phone"
+								class="glyphicon glyphicon-earphone"></i></span> <input name="mem_Phone"
 								placeholder="010-0000-0000" class="form-control" type="text">
 						</div>
 					</div>
@@ -141,12 +141,18 @@ body {
 				<div class="form-group" style="text-align:right;">
 					<label class="col-md-6 control-label"></label>
 					<div class="col-md-4">
-						<button type="submit" class="btn btn-warning" >
+						<button type="button" class="btn btn-warning" onclick="aa(this.form)" >
 							확인 <span class="glyphicon glyphicon-send"></span>
 						</button>
 					</div>
 				</div>
-			
+			<script type="text/javascript">
+			function aa(form){
+				form.action = "main/join"
+				form.method = "POST"
+				form.submit();
+			}
+			</script>
 		</form>
 
 	</div>
