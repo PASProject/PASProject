@@ -67,17 +67,13 @@
 						day = day >= 10 ? day : '0' + day;
 						var fullD = year + '년' + month
 								+ '월' + day + '일';
-						var tt = '<div id=\'mem_Email\'>아이디 : '
+						var tt = '<div>아이디 : '
 								+ data[i].frb_Reply_Mem
 								+ '  /  ' + '작성 날짜 : '
 								+ fullD + '<div>  ->'
 								+ data[i].frb_Reply_Content
-								+'<c:if test="${sessionScope.loginUser.mem_Email eq}}">'
-								+'<input type=\'button\' class=\'btn btn-default\' value=\'수정\'>'
-								+'<input type=\'button\' class=\'btn btn-default\' value=\'삭제\'>'
-								+'</c:if>'
 								+'</div></div><br><br>';
-						$('div #reply').append(tt);a
+						$('div #reply').append(tt);
 					})
 				}
 			});
@@ -117,10 +113,6 @@
 													+ '  /  ' + '작성 날짜 : '
 													+ fullD + '<div>  ->'
 													+ data[i].frb_Reply_Content
-													+'<c:if test="${sessionScope.loginUser.mem_Email}==${data[i].frb_Rerply_Mem.frb_Reply_Mem }">'
-													+ '<input type=\'button\' class=\'btn btn-default\' value=\'수정\'>'
-													+'<input type=\'button\' class=\'btn btn-default\' value=\'삭제\'>'
-													+'</c:if>'
 													+'</div></div><br><br>';
 											$('div #reply').append(tt);
 										})
