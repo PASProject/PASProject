@@ -32,4 +32,7 @@ public class MemberService {
 		return list;
 	}
 	
+	public void extraPwd(MemberVo memberVo) throws SQLException{
+		memberDao.extraMemberPwd(memberVo);
+	}
 }

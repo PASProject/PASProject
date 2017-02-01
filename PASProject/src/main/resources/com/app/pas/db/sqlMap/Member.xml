@@ -17,6 +17,11 @@
    	  select * from member where mem_email = #mem_Email#
    </select>
    
+   <update id="extraMemberPwd" parameterClass="Member">
+      update Member set mem_pass=#mem_Pass# where mem_email=#mem_Email#
+    
+   </update>
+   
    
    <update id="insertMember" parameterClass="Member">
       insert into MEMBER(MEM_EMAIL,MEM_NAME,MEM_PHONE,MEM_PASS,MEM_IMG) 
