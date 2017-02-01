@@ -114,7 +114,6 @@ public class QnaController {
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
 		String url = "redirect:qnaList";
 
-
 		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
 
@@ -153,8 +152,9 @@ public class QnaController {
 		return url;
 	}
 	
+	
 //댓글작성
-	@RequestMapping("/InsertqnaReply")
+	@RequestMapping("/InsertQnAReply")
 	public String insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){
 		String url="qna/QnADetail";
 		try {
@@ -177,7 +177,6 @@ public class QnaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return url;
 
 	}
