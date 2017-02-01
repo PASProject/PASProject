@@ -30,7 +30,7 @@ import com.app.pas.service.board.ProjectBoardService;
 
 
 @Controller
-@RequestMapping("/project")
+@RequestMapping("/project/${id}")
 
 public class ProjectController {
 
