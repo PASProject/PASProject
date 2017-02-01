@@ -134,9 +134,10 @@
 }
 </style>
 <style>
-body{
-background-color: rgb(249, 249, 249);
+body {
+	background-color: rgb(249, 249, 249);
 }
+
 .navbar-default {
 	font-size: 13px;
 	margin-top: -10px;
@@ -190,6 +191,8 @@ background-color: rgb(249, 249, 249);
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 			id="navbar">
 			<div class="container">
+				
+			<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
@@ -284,8 +287,7 @@ background-color: rgb(249, 249, 249);
 <script>
 	$(document).ready(
 			function() {
-				connect('init,'+'${loginUser.mem_Email}');
-				
+				connect('init:'+'${sessionScope.loginUser.mem_Email}');
 				$(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')
@@ -299,12 +301,11 @@ background-color: rgb(249, 249, 249);
 						});
 
 			});
-	</script>
-	
-	
-	<script>
-	/* for modal */
+</script>
 
+
+<script>
+	/* for modal */
 </script>
 
 

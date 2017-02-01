@@ -9,23 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <style>
+
 .container {
 	padding: auto;
 }
 
-td td>a {
-	font-size: 10px;
-}
 </style>
 
 </head>
 <body>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2">
-				<jsp:include page="../sub.jsp" />
-			</div>
 
 
 			<!-- Page Header -->
@@ -40,8 +32,8 @@ td td>a {
 					<tr class="text-center">
 						<th class="col-md-1" style="text-align: center">번호</th>
 						<th class="col-md-4" style="text-align: center">제목</th>
-						<th class="col-md-2" style="text-align: center">작성자</th>
-						<th class="col-md-1" style="text-align: center">작성일</th>
+						<th class="col-md-1" style="text-align: center">작성자</th>
+						<th class="col-md-2" style="text-align: center">작성일</th>
 						<th class="col-md-1" style="text-align: center">조회수</th>
 						<th class="col-md-1" style="text-align: center">추천수</th>
 					</tr>
@@ -53,6 +45,7 @@ td td>a {
 								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
 
 							<td>${freeBoardVo.mem_Email }</td>
+							
 
 							<td style="text-align: center"><fmt:formatDate
 									value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
@@ -92,8 +85,7 @@ td td>a {
 			</div>
 
 
-		</div>
-	</div>
+		
 </body>
 
 </html>

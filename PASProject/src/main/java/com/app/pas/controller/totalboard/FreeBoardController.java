@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.service.board.FreeBoardReplyService;
@@ -74,9 +75,9 @@ public class FreeBoardController {
 			e.printStackTrace();
 		}
 		model.addAttribute("freeBoardVo",freeBoardVo);
-		System.out.println("asdfsdf");
 		return url;
 	}
+	
 	@RequestMapping(value ="/freeBoardInsert")
 	public String insertFreeBoardForm(HttpSession session, Model model) {
 		String url = "freeBoard/freeBoardWrite";
@@ -171,26 +172,22 @@ public class FreeBoardController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(freeBoardReplyList.toString());
 		model.addAttribute("freeBoardReplyList",freeBoardReplyList);
 		return freeBoardReplyList;
 		
 	}
 	@RequestMapping(value="freeBoardReplyWrite", method=RequestMethod.POST)
 	public  @ResponseBody List<FreeBoardReplyVo> writeFreeBoardReply(@RequestBody FreeBoardReplyVo freeBoardReplyVo, HttpSession session){
-		/*MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
-		freeBoardVo.setMem_Email(mem_Email);*/
-		
+		freeBoardReplyVo.setFrb_Reply_Mem(mem_Email);
 		List<FreeBoardReplyVo> freeBoardReplyList = new ArrayList<FreeBoardReplyVo>();
-		freeBoardReplyVo.setFrb_Reply_Mem("def@naver.com");
 		try {
 			freeBoardReplyService.insertFreeBoardReply(freeBoardReplyVo);
 			freeBoardReplyList = freeBoardReplyService.selectFreeBoardReply(freeBoardReplyVo.getFrb_Article_Num());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return freeBoardReplyList;
 	}
 }

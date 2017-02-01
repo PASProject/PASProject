@@ -22,10 +22,18 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
+				<button>생성하기</button>
 				</h2>
+				
 			</div>
 		</div>
 		<!-- /.row -->
+		<c:choose>
+		<c:when test="${empty myProjectList}">
+		<h1> 프로젝트를 생성해주세요</h1>
+		</c:when>
+		<c:otherwise>
+	
 
 		<!-- Projects Row -->
 		<div class="row">
@@ -61,79 +69,9 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
-		<!-- Projects Row -->
-		<div class="row">
-			<%-- 			<c:forEach items="${projectVo }">
-				<div class="col-md-4 portfolio-item">
-					<a href="#"> <img class="img-responsive"
-						src="http://placehold.it/700x400" alt="">
-					</a>
-					<h3>
-						<a href="#">Project Name</a>
-					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-						viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-				</div>
-			</c:forEach>
- --%>
-			<div class="col-md-4 portfolio-item">
-				<a href="#"> <img class="img-responsive"
-					src="http://placehold.it/700x400" alt="">
-				</a>
-				<h3>
-					<a href="#">Project Name</a>
-				</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-					viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			</div>
-			<div class="col-md-4 portfolio-item">
-				<a href="#"> <img class="img-responsive"
-					src="http://placehold.it/700x400" alt="">
-				</a>
-				<h3>
-					<a href="#">Project Name</a>
-				</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-					viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			</div>
-		</div>
-
-		<!-- Projects Row -->
-		<div class="row">
-			<div class="col-md-4 portfolio-item">
-				<a href="#"> <img class="img-responsive"
-					src="http://placehold.it/700x400" alt="">
-				</a>
-				<h3>
-					<a href="#">Project Name</a>
-				</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-					viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			</div>
-			<div class="col-md-4 portfolio-item">
-				<a href="#"> <img class="img-responsive"
-					src="http://placehold.it/700x400" alt="">
-				</a>
-				<h3>
-					<a href="#">Project Name</a>
-				</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-					viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			</div>
-			<div class="col-md-4 portfolio-item">
-				<a href="#"> <img class="img-responsive"
-					src="http://placehold.it/700x400" alt="">
-				</a>
-				<h3>
-					<a href="#">Project Name</a>
-				</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-					viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-			</div>
-		</div>
-		<!-- /.row -->
-
+      
+		</c:otherwise>
+        </c:choose>
 	
 		<hr>
 
