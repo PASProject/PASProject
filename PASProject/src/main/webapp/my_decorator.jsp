@@ -288,7 +288,6 @@ body {
 	$(document).ready(
 			function() {
 				connect('init:'+'${sessionScope.loginUser.mem_Email}');
-				
 				$(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')

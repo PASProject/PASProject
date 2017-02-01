@@ -29,8 +29,8 @@ public class SockjsHandler extends TextWebSocketHandler{
 				users.put(userid,session);
 			}else if(message.getPayload().toString().contains("push")){
 				String pushMessage = message.getPayload().toString().substring(5);
-				session = users.get(pushMessage);
-				session.sendMessage(message);
+					session = users.get(pushMessage);
+					session.sendMessage(message);
 			}
 	}
 	   
