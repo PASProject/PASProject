@@ -17,26 +17,8 @@
 			QnA <small>글 읽기</small>
 		</h2>
 
-		<br> ${qnaBoardReplyVo.qb_Reply_Content} <br> <br>
-
-<<<<<<< HEAD
-		
-<br><br>
-	 <input type="button" value="수정" onClick="go_qnaupdate()">
-	 <input type="button" value="삭제" onClick="go_delete()">
-	 <input type="button" value="목록" onClick="go_qnalist()">
-<br><br>
-${qnaBoardReplyVo.qb_Reply_Content}
-<br>
-</form>
-<form name="form" method="post" action="">
-<textarea rows="2" cols="50" name="InsertqnaReply" >
-</textarea> <input type="submit" value= "댓글등록" onClick="InsertqnaReply()">
-</form>
-<br>
-=======
 		<fieldset>
-			<form name="frm" method="post">
+			<form name="frm" method="post" action="">
 				<input type="hidden" name="qb_Article_Num"
 					value="${param.qb_Article_Num }">
 
@@ -62,34 +44,8 @@ ${qnaBoardReplyVo.qb_Reply_Content}
 					<tr>
 						<td colspan="3">${qnaBoardVo.qb_Content}<br>
 						</td>
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 
 
-
-<<<<<<< HEAD
-<script>
-	function go_qnalist(){
-		location.href="qnaList"
-		
-	}
-	function go_qnaupdate(){
-		location.href="qnaUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-	}
-	
-	
-	function go_delete(){
-		
-		frm.method="post"
-		frm.action="qnaDelete";
-		frm.submit();
-		
-	}
-	function InsertqnaReply(){
-		form.method="post"
-		form.action="InsertqnaReply";
-		form.submit();
-	}
-=======
 					</tr>
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
@@ -104,18 +60,17 @@ ${qnaBoardReplyVo.qb_Reply_Content}
 					<tr>
 						<td>댓글들어가는 곳</td>
 					</tr>
-					
-				
-					
-					
+
+
 				</table>
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
 
 				<input type="button" value="수정" onClick="go_qnaupdate()"> <input
 					type="button" value="삭제" onClick="go_delete()"> <input
 					type="button" value="목록" onClick="go_qnalist()">
-					<textarea rows="2" cols="50" name="qnaReply">
-					</textarea> <input type="submit" value= "댓글등록" onClick="qnaReply()">
+				<textarea rows="2" cols="50" name="qnaReply">
+					</textarea>
+				<input type="submit" value="댓글등록" onClick="InsertqnaReply()">
 
 
 
@@ -137,10 +92,10 @@ ${qnaBoardReplyVo.qb_Reply_Content}
 					frm.action = "QnADelete";
 					frm.submit();
 				}
-				function qnaReply(){
-					frm.method="post"
-					frm.action="QnAReply";
-					frm.submit();
+				function InsertqnaReply() {
+					form.method = "post"
+					form.action = "InsertqnaReply";
+					form.submit();
 				}
 			</script>
 		</fieldset>
