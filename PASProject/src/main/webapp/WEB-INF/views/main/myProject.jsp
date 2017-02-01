@@ -39,7 +39,7 @@
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="modalOpen();"> <img
 							class="img-responsive" src="http://placehold.it/700x400"
-							data-toggle="modal" data-target="#myModal">
+							data-toggle="modal" data-target="#${projectVo.proj_Name }">
 						</a>
 						<h3>
 							<a href="#">${projectVo.proj_Name }</a>
@@ -48,16 +48,17 @@
 					</div>
 
 					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">
 						<div class="modal-dialog">
-
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"></h4>
+									${projectVo.proj_Name }
 								</div>
 								<div class="modal-body">
+								팀원
 								<input type="button" class="btn btn-default" value="입장하기"/>
 								</div>
 								<div class="modal-footer">
@@ -89,30 +90,6 @@
 				</ul>
 			</div>
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<hr>
 		<footer>
 			<!-- Footer -->

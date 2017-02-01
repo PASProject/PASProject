@@ -3,6 +3,7 @@ package com.app.pas.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.ProjectVo;
 
 public interface ProjectDao {
@@ -12,5 +13,5 @@ public interface ProjectDao {
 	public void updateProject(ProjectVo projectVo)throws SQLException;
 	public void deleteProject(int proj_Num)throws SQLException;
 	public List<ProjectVo> selectProjectById(String mem_Email)throws SQLException;
-	
+	public List<MemPositionViewVo> selectMemPositionViewListByProjNum(int proj_Num) throws SQLException;
 }
