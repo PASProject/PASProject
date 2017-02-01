@@ -62,7 +62,7 @@ public class mainContoller {
 		}
 		return result;
 	}
-
+	//가입처리
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
 		String url = "main/joinForm";
@@ -70,8 +70,17 @@ public class mainContoller {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinMember(HttpSession session, Model model) {
-		String url = "";
+	public String joinMember(HttpSession session, MemberVo memberVo) {
+		String url = "redirect:loginForm";
+		System.out.println(memberVo);
+		
+		try {
+			memberService.insertMember(memberVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return url;
 	}
 
