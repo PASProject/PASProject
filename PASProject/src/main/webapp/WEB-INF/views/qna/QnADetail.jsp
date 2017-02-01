@@ -84,12 +84,3 @@ ${qnaBoardReplyVo.qb_Reply_Content}
 
 
 
-
-
-
-
-
-
-
-
-
