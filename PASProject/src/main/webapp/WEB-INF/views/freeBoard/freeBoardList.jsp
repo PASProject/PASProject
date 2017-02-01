@@ -19,12 +19,6 @@
 </head>
 <body>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2" id="submenu" style="margin-top:40px;">
-				<jsp:include page="../sub.jsp" />
-			</div>
-
 
 			<!-- Page Header -->
 
@@ -38,8 +32,8 @@
 					<tr class="text-center">
 						<th class="col-md-1" style="text-align: center">번호</th>
 						<th class="col-md-4" style="text-align: center">제목</th>
-						<th class="col-md-2" style="text-align: center">작성자</th>
-						<th class="col-md-1" style="text-align: center">작성일</th>
+						<th class="col-md-1" style="text-align: center">작성자</th>
+						<th class="col-md-2" style="text-align: center">작성일</th>
 						<th class="col-md-1" style="text-align: center">조회수</th>
 						<th class="col-md-1" style="text-align: center">추천수</th>
 					</tr>
@@ -91,8 +85,7 @@
 			</div>
 
 
-		</div>
-	</div>
+		
 </body>
 
 </html>

@@ -11,12 +11,7 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<!-- sub menu입니당 -->
-			<div class="col-md-2" id="submenu" style="margin-top: 40px;">
-				<jsp:include page="../sub.jsp" />
-			</div>
+
 			<!-- 본문! -->
 			<div class="col-md-10">
 				<h2 class="page-header"
@@ -49,8 +44,7 @@
 						type="button" value="목록" onClick="go_list()">
 				</div>
 			</div>
-		</div>
-	</div>
+		
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var frb_Article_Num = $('#frb_Article_Num').val();
@@ -83,7 +77,7 @@
 								+'<input type=\'button\' class=\'btn btn-default\' value=\'삭제\'>'
 								
 								+'</div></div><br><br>';
-						$('div #reply').append(tt);
+						$('div #reply').append(tt);a
 					})
 				}
 			});
@@ -148,6 +142,7 @@
 			frm.action = "freeBoardDelete";
 			frm.submit();
 		}
+
 	</script>
 
 </body>

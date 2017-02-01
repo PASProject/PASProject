@@ -41,4 +41,10 @@ public class ProjectDaoImpl implements ProjectDao {
 	public void deleteProject(int proj_Num) throws SQLException {
 		client.update("deleteProject",proj_Num);
 	}
+
+	@Override
+	public List<ProjectVo> selectProjectById(String mem_Email) throws SQLException {
+		List<ProjectVo> list =client.queryForList("selectProjectById", mem_Email);
+		return list;
+	}
 }
