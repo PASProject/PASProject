@@ -31,7 +31,6 @@ import com.app.pas.service.board.ProjectBoardService;
 
 @Controller
 @RequestMapping("/project")
-
 public class ProjectController {
 
 	@Autowired
@@ -297,7 +296,7 @@ public class ProjectController {
 				
 	}
 	
-/*	@RequestMapping(value="/fprojectBoardDelete",method = RequestMethod.POST)
+	@RequestMapping(value="/fprojectBoardDelete",method = RequestMethod.POST)
 	public String deleteFreeBoard(String pb_Article_Num){
 		String url="redirect:projectBoardList";
 		try {
@@ -312,13 +311,9 @@ public class ProjectController {
 		return url;
 	}
 	
-<<<<<<< HEAD
-	/*
-	@RequestMapping("/projectBoardReplyList")
-=======
 	
+
 /*	@RequestMapping("/projectBoardReplyList")
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
 		List<ProjectBoardVo> projectBoardReplyList = new ArrayList<ProjectBoardVo>();
