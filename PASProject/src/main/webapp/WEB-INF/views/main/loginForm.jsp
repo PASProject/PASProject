@@ -132,7 +132,7 @@ body {
 	})
 </script>
 </head>
-<body>
+<body style="height:90%">
 
 	<div class="container2">
 
@@ -186,7 +186,6 @@ body {
 			</form>
 		</div>
 	</div>
-
 </body>
 <script>
 	$(document).ready(function() {

@@ -21,6 +21,7 @@
 
 <head>
 
+</script>
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -277,10 +278,10 @@ body {
 		</nav>
 	</header>
 
-	<div class="container" >
+	<div class="container">
 		<div class="row">
 			<div class="col-md-2" id="submenu" style="margin-top: 40px;">
-					<jsp:include page="sub.jsp" />
+				<jsp:include page="sub.jsp" />
 			</div>
 			<decorator:body />
 		</div>

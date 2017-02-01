@@ -22,35 +22,57 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
-				<button>생성하기</button>
-				</h2>  
-				
+					<button>생성하기</button>
+				</h2>
+
 			</div>
 		</div>
 		<!-- /.row -->
 		<c:choose>
-		<c:when test="${empty myProjectList}">
-		<h1> 프로젝트를 생성해주세요</h1>
-		</c:when>
-		<c:otherwise>
-		
-		<!-- Projects Row -->
-		<c:forEach items="${myProjectList}" var="projectVo">
-			<div class="col-md-4 portfolio-item">
-				<a href="#" onclick="modalOpen();"> <img class="img-responsive"
-					src="http://placehold.it/700x400" alt="">
-				</a>
-				<h3>
-					<a href="#">${projectVo.proj_Name }</a>
-				</h3>
-				<p>${projectVo.proj_Content}</p>
-			</div>
-		</c:forEach>
-		<!-- /.row -->
-      
-		</c:otherwise>
-        </c:choose>
-	
+			<c:when test="${empty myProjectList}">
+				<h1>프로젝트를 생성해주세요</h1>
+			</c:when>
+			<c:otherwise>
+
+				<!-- Projects Row -->
+				<c:forEach items="${myProjectList}" var="projectVo">
+					<div class="col-md-4 portfolio-item">
+						<a href="#" onclick="modalOpen();"> <img
+							class="img-responsive" src="http://placehold.it/700x400"
+							data-toggle="modal" data-target="#myModal">
+						</a>
+						<h3>
+							<a href="#">${projectVo.proj_Name }</a>
+						</h3>
+						<p>${projectVo.proj_Content}</p>
+					</div>
+
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title"></h4>
+								</div>
+								<div class="modal-body">
+								<input type="button" class="btn btn-default" value="입장하기"/>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</c:forEach>
+				<!-- /.row -->
+
+			</c:otherwise>
+		</c:choose>
 		<hr>
 
 		<!-- Pagination -->
