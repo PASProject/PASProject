@@ -25,7 +25,7 @@ public class QnaController {
 	@Autowired
 	QnaBoardService qnaBoardService;
 //qnaList
-	@RequestMapping("/qnaList")
+	@RequestMapping("/QnAList")
 	public String QnaList(Model model,@RequestParam(value="page",defaultValue="1")String page) {
 		String url = "qna/QnAList";
 		int totalCount = 0;
@@ -53,17 +53,17 @@ public class QnaController {
 		return url;
 	}
 //qna글쓰기
-	@RequestMapping("/qnaWrite")
+	@RequestMapping("/QnAWrite")
 	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
 		String url = "qna/QnAWrite";
 		return url;
 
 	}
 
-	@RequestMapping(value = "/insertQnaBoard", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertQnABoard", method = RequestMethod.POST)
 	public String insertQna(HttpSession session, Model model,
 			QnaBoardVo qnaBoardVo) {
-		String url = "redirect:qnaList";
+		String url = "redirect:QnAList";
 		qnaBoardVo.setMem_Email("abc@naver.com");
 		qnaBoardVo.setQb_Password("임시Password");
 		try {
@@ -76,7 +76,7 @@ public class QnaController {
 		return url;
 
 	}
-	@RequestMapping(value="/qnaUpdate",method=RequestMethod.GET)
+	@RequestMapping(value="/QnAUpdate",method=RequestMethod.GET)
 	public String updateQnaForm(@RequestParam String qb_Article_Num,
 			HttpSession session, Model model) {
 		String url = "qna/QnAUpdate";
@@ -96,9 +96,9 @@ public class QnaController {
 
 	}
 	
-	@RequestMapping(value="/qnaUpdate", method=RequestMethod.POST)
+	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
-		String url="redirect:qnaList";
+		String url="redirect:QnAList";
 		
 		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
@@ -112,7 +112,7 @@ public class QnaController {
 	
 	
 
-	@RequestMapping("/qnaDelete")
+	@RequestMapping("/QnADelete")
 	public String deleteQna(HttpSession session, Model model) {
 		String url = "";
 		return url;
@@ -136,9 +136,9 @@ public class QnaController {
 		return url;
 	}
 
-	@RequestMapping(value="/qnaDelete", method=RequestMethod.POST)
+	@RequestMapping(value="/QnADelete", method=RequestMethod.POST)
 	public String deleteQnaBoard (String qb_Article_Num){
-		String url="redirect:qnaList";
+		String url="redirect:QnAList";
 		System.out.println("삭제하는중 : 아티클넘버" + qb_Article_Num);
 		try {
 			qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
