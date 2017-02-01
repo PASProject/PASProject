@@ -19,6 +19,22 @@
 
 		<br> ${qnaBoardReplyVo.qb_Reply_Content} <br> <br>
 
+<<<<<<< HEAD
+		
+<br><br>
+	 <input type="button" value="수정" onClick="go_qnaupdate()">
+	 <input type="button" value="삭제" onClick="go_delete()">
+	 <input type="button" value="목록" onClick="go_qnalist()">
+<br><br>
+${qnaBoardReplyVo.qb_Reply_Content}
+<br>
+</form>
+<form name="form" method="post" action="">
+<textarea rows="2" cols="50" name="InsertqnaReply" >
+</textarea> <input type="submit" value= "댓글등록" onClick="InsertqnaReply()">
+</form>
+<br>
+=======
 		<fieldset>
 			<form name="frm" method="post">
 				<input type="hidden" name="qb_Article_Num"
@@ -46,9 +62,34 @@
 					<tr>
 						<td colspan="3">${qnaBoardVo.qb_Content}<br>
 						</td>
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 
 
 
+<<<<<<< HEAD
+<script>
+	function go_qnalist(){
+		location.href="qnaList"
+		
+	}
+	function go_qnaupdate(){
+		location.href="qnaUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
+	}
+	
+	
+	function go_delete(){
+		
+		frm.method="post"
+		frm.action="qnaDelete";
+		frm.submit();
+		
+	}
+	function InsertqnaReply(){
+		form.method="post"
+		form.action="InsertqnaReply";
+		form.submit();
+	}
+=======
 					</tr>
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
@@ -68,6 +109,7 @@
 					
 					
 				</table>
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 
 				<input type="button" value="수정" onClick="go_qnaupdate()"> <input
 					type="button" value="삭제" onClick="go_delete()"> <input

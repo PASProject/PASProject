@@ -114,7 +114,6 @@ public class QnaController {
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
 		String url = "redirect:qnaList";
 
-
 		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
 
@@ -131,7 +130,7 @@ public class QnaController {
 		return url;
 	}
 
-	// 디테일
+	// 디테일 , 리플
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
@@ -152,34 +151,25 @@ public class QnaController {
 
 		return url;
 	}
-
-
-	@RequestMapping(value="/QnADelete", method=RequestMethod.POST)
-	public String deleteQnaBoard (String qb_Article_Num){
-		String url="redirect:QnAList";
-
-// 리플
-/*	@RequestMapping("/QnADetail")
-	public String selectQnaReply(@RequestBody String qb_Article_Num, Model model){
-		System.out.println("여기 오긴오니?;;;;");
-		String url= "qna/QnADetail";
-		QnaBoardReplyVo qnaBoardReplyVo;
+	
+	
+//댓글작성
+	@RequestMapping("/InsertQnAReply")
+	public String insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){
+		String url="qna/QnADetail";
 		try {
-			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
-			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
-			System.out.println("-----qnaBoardReplyVo값이 찍히는감?ㅠㅠ" + qnaBoardReplyVo);
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return url;
-		
-	}*/
-	// 글 삭제
+	}
 
+	// 글 삭제
+@RequestMapping(value="/QnADelete", method=RequestMethod.POST)
+	public String deleteQnaBoard (String qb_Article_Num){
+		String url="redirect:QnAList";
 		System.out.println("삭제하는중 : 아티클넘버" + qb_Article_Num);
 		try {
 			qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
@@ -187,7 +177,6 @@ public class QnaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return url;
 
 	}
