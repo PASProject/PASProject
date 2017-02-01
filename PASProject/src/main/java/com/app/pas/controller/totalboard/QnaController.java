@@ -112,7 +112,7 @@ public class QnaController {
 
 	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
-		String url = "redirect:qnaList";
+		String url = "redirect:QnAList";
 
 		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
@@ -154,13 +154,13 @@ public class QnaController {
 	
 	
 //댓글작성
-	@RequestMapping("/InsertQnAReply")
+	@RequestMapping(value="/InsertQnAReply",method=RequestMethod.POST)
 	public String insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){
-		String url="qna/QnADetail";
+		String url = "redirect:QnAList";
 		try {
 			qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return url;
