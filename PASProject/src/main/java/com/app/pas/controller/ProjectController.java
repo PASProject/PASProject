@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
-import com.app.pas.dto.MemberVo;
-import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
+import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
 
 @Controller
@@ -29,7 +29,8 @@ public class ProjectController {
 	
 	@Autowired
 	ProjectBoardService projectBoardService;
-	
+	@Autowired
+	ProjectBoardReplyService projectBoardReplyService;
 	
 	
 	@RequestMapping("/pmBoard")
@@ -81,11 +82,17 @@ public class ProjectController {
 		return url;
 	}
 	
-	@RequestMapping("/projectBoardList")
-	public String ProjectBoardList(Model model,@RequestParam(value="page",defaultValue="1")String page){
+	@RequestMapping(value="/projectBoardList", method=RequestMethod.GET)
+	public String ProjectBoardListView(HttpSession session, Model model) {
 		String url = "projectBoard/projectBoardList";
+		return url;
+	}
+	
+	@RequestMapping(value="/projectBoardList",method=RequestMethod.POST)
+	public @ResponseBody List<ProjectBoardVo> selectProjectBoardList(Model model, @RequestParam(value="page",defaultValue="1")String page){
+		
 		int totalCount= 0;
-		/*Page<FreeBoardVo> postPage =projectBoardService.*/
+		/*Page<ProjectBoardVo> postPage =projectBoardService.*/
 		List<ProjectBoardVo> projectBoardList = new ArrayList<ProjectBoardVo>();
 		try {
 			projectBoardList = projectBoardService.selectProjectboardList();
@@ -106,7 +113,7 @@ public class ProjectController {
 		
 		model.addAttribute("paging",paging);
 		model.addAttribute("projectBoardList", projectBoardList);
-		return url;
+		return projectBoardList;
 	
 	}
 	
@@ -165,14 +172,26 @@ public class ProjectController {
 		return url;
 	}
 	
-	@RequestMapping(value ="/projectBoardWrite",method=RequestMethod.GET )
-	public String writeFreeBoard(HttpSession session,Model model){
-		String url = "projectBoard/projectBoardWrite";
-		return url;
-				
+	@RequestMapping(value ="/projectBoardWrite",method=RequestMethod.POST)
+	public @ResponseBody List<ProjectBoardVo> writeProjectBoard(@RequestBody ProjectBoardVo projectBoardVo, HttpSession session){
+		/* MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		 String mem_Email = memberVo.getMem_Email();
+		 projectBoardVo.setMem_Email(mem_Email);*/
+		
+		List<ProjectBoardVo> projectBoardList = new ArrayList<ProjectBoardVo>();
+		projectBoardVo.setMem_Email("asd@naver.com");
+		
+		try {
+			projectBoardService.insertProjectBoard(projectBoardVo);
+			projectBoardList = projectBoardService.selectProjectboardList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return projectBoardList;
 	}
 	
-	@RequestMapping(value="/fprojectBoardDelete",method = RequestMethod.POST)
+	@RequestMapping(value="/projectBoardDelete",method = RequestMethod.POST)
 	public String deleteFreeBoard(String pb_Article_Num){
 		String url="redirect:projectBoardList";
 		try {
@@ -189,13 +208,13 @@ public class ProjectController {
 	
 	
 	@RequestMapping("/projectBoardReplyList")
-	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
+	public @ResponseBody List<ProjectBoardReplyVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
-		List<ProjectBoardVo> projectBoardReplyList = new ArrayList<ProjectBoardVo>();
-		String pb_Article_Num = (String)jsonMap.get("pb_Article_Num");
+		List<ProjectBoardReplyVo> projectBoardReplyList = new ArrayList<ProjectBoardReplyVo>();
+		String pb_Article_num = (String)jsonMap.get("pb_Article_Num");
 		
 		try {
-			projectBoardReplyList = projectBoardService.selectProjectboard(Integer.parseInt(pb_Article_Num));
+			projectBoardReplyList = projectBoardReplyService.selectProjectBoardReply(Integer.parseInt(pb_Article_num));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -203,23 +222,23 @@ public class ProjectController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("projectBoardList",projectBoardList);
+		model.addAttribute("projectBoardList",projectBoardReplyList);
 		
-		return projectBoardList;
+		return projectBoardReplyList;
 	}
 	
 	@RequestMapping(value="/projectBoardReplyWrite", method=RequestMethod.POST)
-	public @ResponseBody List<ProjectBoardVo> writeProjectBoardReply(@RequestBody ProjectBoardVo projectBoardVo, HttpSession session){
-		 MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+	public @ResponseBody List<ProjectBoardReplyVo> writeProjectBoardReply(@RequestBody ProjectBoardReplyVo projectBoardReplyVo, HttpSession session){
+		/* MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		 String mem_Email = memberVo.getMem_Email();
-		 projectBoardVo.setMem_Email(mem_Email);
+		 projectBoardVo.setMem_Email(mem_Email);*/
 		
-		List<ProjectBoardVo> projectBoardList = new ArrayList<ProjectBoardVo>();
-		projectBoardVo.setPb_Wt_Mem("def@naver.com");
+		List<ProjectBoardReplyVo> projectBoardList = new ArrayList<ProjectBoardReplyVo>();
+		projectBoardReplyVo.setPb_Reply_Mem("asd@naver.com");
 		
 		try {
-			projectBoardService.insertProjectboardDao(projectBoardVo);
-			projectBoardList = projectBoardService.selectProjectboard(projectBoardVo.getPb_Article_Num());
+			projectBoardReplyService.insertProjectBoardReply(projectBoardReplyVo);
+			projectBoardList = projectBoardReplyService.selectProjectBoardReply(projectBoardReplyVo.getPb_Article_num());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

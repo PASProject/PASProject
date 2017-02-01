@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.board.ProjectBoardDao;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -58,6 +59,14 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 	public int selectPBTotalCount() throws SQLException {
 		int PBTotalCount = (Integer) client.queryForObject("selectPBTotalCount");
 		return PBTotalCount;
+	}
+
+	@Override
+	public List<ProjectBoardVo> selectProjectBoardListV(int pb_Article_Num)
+			throws SQLException {
+		List<ProjectBoardVo> list = client.queryForList("selectProjectBoard",pb_Article_Num);
+		return list;
+		
 	}
 
 
