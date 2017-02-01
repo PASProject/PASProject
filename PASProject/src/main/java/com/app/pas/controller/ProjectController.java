@@ -187,7 +187,7 @@ public class ProjectController {
 		return url;
 	}
 	
-	
+	/*
 	@RequestMapping("/projectBoardReplyList")
 	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
@@ -207,8 +207,8 @@ public class ProjectController {
 		
 		return projectBoardList;
 	}
-	
-	@RequestMapping(value="/projectBoardReplyWrite", method=RequestMethod.POST)
+	*/
+/*	@RequestMapping(value="/projectBoardReplyWrite", method=RequestMethod.POST)
 	public @ResponseBody List<ProjectBoardVo> writeProjectBoardReply(@RequestBody ProjectBoardVo projectBoardVo, HttpSession session){
 		 MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		 String mem_Email = memberVo.getMem_Email();
@@ -225,7 +225,7 @@ public class ProjectController {
 			e.printStackTrace();
 		}
 		return projectBoardList;
-	}
+	}*/
 }
 
 

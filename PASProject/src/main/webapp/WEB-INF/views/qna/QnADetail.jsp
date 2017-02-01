@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,56 +11,97 @@
 <title></title>
 </head>
 <body>
-<div style="margin:auto; width:1300px" ><h1>QnaDetail</h1><br>
-<form name="frm" method="post">
-	<input type ="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
-	<script>
-	
-	</script>
-	
-	<table>
-		<tr>
-			<th width="20%"> 글번호 </th>
-			<td>${qnaBoardVo.qb_Article_Num}</td>
-		</tr>
-		<tr>
-			<th width="20%">제목</th>
-			<td> ${qnaBoardVo.qb_Title}</td>
-		</tr>
-		<tr>
-		    <th width="20%">등록일</th>
-		    <td> ${qnaBoardVo.qb_Wt_Date}</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${qnaBoardVo.qb_Content}</td>
-		</tr>
-	</table>
-	 <input type="button" value="수정" onClick="go_qnaupdate()">
-	 <input type="button" value="삭제" onClick="go_delete()">
-	 <input type="button" value="목록" onClick="go_qnalist()">
-	 
-</form>
+	<div class="col-md-10">
+		<h2 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			QnA <small>글 읽기</small>
+		</h2>
 
-<script>
-	function go_qnalist(){
-		location.href="qnaList"
-		
-	}
-	function go_qnaupdate(){
-		location.href="qnaUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-	}
-	
-	
-	function go_delete(){
-		frm.method="post"
-		frm.action="qnaDelete";
-		frm.submit();
-		
-	}
+		<fieldset>
+			<form name="frm" method="post">
+				<input type="hidden" name="qb_Article_Num"
+					value="${param.qb_Article_Num }">
 
-</script>
-</div>
+
+				<table class="table" style="border-top: 2px;">
+					<tr style="border-top: 2px solid #ddd">
+						<td class="col-md-9"><h3
+								style="margin-top: 10px; margin-bottom: 10px">
+								<b>${qnaBoardVo.qb_Title}</b>
+							</h3></td>
+						<td class="col-md-1"
+							style="vertical-align: middle; text-align: right"><span
+							style="font-size: 13px">조회수</span>&nbsp; <span
+							style="font-size: 11px;"> ${qnaBoardVo.qb_Inq_Count }</span></td>
+						<td class="col-md-2"
+							style="vertical-align: middle; text-align: right"><span
+							style="font-size: 11px"><fmt:formatDate
+									value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
+					</tr>
+					<tr>
+						<td colspan="3">${qnaBoardVo.mem_Email }</td>
+					</tr>
+					<tr>
+						<td colspan="3">${qnaBoardVo.qb_Content}<br>
+						</td>
+
+
+
+					</tr>
+					<tr style="border-bottom: 2px solid #ddd">
+						<td class="text-right" colspan="3"
+							style="border-top: 0px solid blue;">
+							<button class="btn btn-default text-right" type="button"
+								onclick="go_qnalist()">목록</button>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top: 20px;">댓글'{개수}'</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+				</table>
+
+				<input type="button" value="수정" onClick="go_qnaupdate()"> <input
+					type="button" value="삭제" onClick="go_delete()"> <input
+					type="button" value="목록" onClick="go_qnalist()">
+
+
+
+
+
+			</form>
+
+			<script>
+				function go_qnalist() {
+					location.href = "QnAList"
+
+				}
+				function go_qnaupdate() {
+					location.href = "QnAUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
+				}
+
+				function go_delete() {
+					frm.method = "post"
+					frm.action = "QnADelete";
+					frm.submit();
+
+				}
+			</script>
+
+
+
+
+
+		</fieldset>
+
+
+
+
+
+	</div>
+
 </body>
 </html>
 
