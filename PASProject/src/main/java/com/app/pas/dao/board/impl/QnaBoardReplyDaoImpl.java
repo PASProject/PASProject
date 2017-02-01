@@ -26,7 +26,7 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 	@Override
 	public void insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo)
 			throws SQLException {
-		client.insert("insertQnaBoardReply", qnaBoardReplyVo);
+		client.queryForObject("insertQnaBoardReply", qnaBoardReplyVo);
 		
 	}
 

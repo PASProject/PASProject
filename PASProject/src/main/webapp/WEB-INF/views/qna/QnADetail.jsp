@@ -46,8 +46,11 @@
 ${qnaBoardReplyVo.qb_Reply_Content}
 <br>
 </form>
-<form name="form" method="post" action="">
-<textarea rows="2" cols="50" name="InsertqnaReply" >
+<form name="form" action="InsertqnaReply">
+<!-- 이거 한 줄몰라서 시밤 -->
+<input type="hidden" name="qb_Article_Num" value="${qnaBoardVo.qb_Article_Num}">
+<!-- 공부하자 -->
+<textarea rows="2" cols="50" name="qb_Reply_Content" >
 </textarea> <input type="submit" value= "댓글등록" onClick="InsertqnaReply()">
 </form>
 <br>

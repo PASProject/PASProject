@@ -39,6 +39,13 @@ public class QnaBoardReplyVo {
 	public void setQb_Reply_Content(String qb_Reply_Content) {
 		this.qb_Reply_Content = qb_Reply_Content;
 	}
+	@Override
+	public String toString() {
+		return "QnaBoardReplyVo [qb_Reply_Num=" + qb_Reply_Num
+				+ ", qb_Reply_Time=" + qb_Reply_Time + ", qb_Article_Num="
+				+ qb_Article_Num + ", admin_Email=" + admin_Email
+				+ ", qb_Reply_Content=" + qb_Reply_Content + "]";
+	}
 	
 
 	
