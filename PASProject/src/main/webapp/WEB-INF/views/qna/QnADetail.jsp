@@ -17,6 +17,8 @@
 			QnA <small>글 읽기</small>
 		</h2>
 
+		<br> ${qnaBoardReplyVo.qb_Reply_Content} <br> <br>
+
 		<fieldset>
 			<form name="frm" method="post">
 				<input type="hidden" name="qb_Article_Num"
@@ -62,7 +64,7 @@
 						<td>댓글들어가는 곳</td>
 					</tr>
 					
-					<
+				
 					
 					
 				</table>
@@ -70,6 +72,8 @@
 				<input type="button" value="수정" onClick="go_qnaupdate()"> <input
 					type="button" value="삭제" onClick="go_delete()"> <input
 					type="button" value="목록" onClick="go_qnalist()">
+					<textarea rows="2" cols="50" name="qnaReply">
+					</textarea> <input type="submit" value= "댓글등록" onClick="qnaReply()">
 
 
 
@@ -90,14 +94,13 @@
 					frm.method = "post"
 					frm.action = "QnADelete";
 					frm.submit();
-
+				}
+				function qnaReply(){
+					frm.method="post"
+					frm.action="QnAReply";
+					frm.submit();
 				}
 			</script>
-
-
-
-
-
 		</fieldset>
 
 

@@ -1,11 +1,11 @@
 package com.app.pas.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.bouncycastle.asn1.ocsp.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.MemberService;
+import com.app.pas.service.ProjectService;
 
 @Controller
 @RequestMapping("/main")
@@ -22,6 +24,9 @@ public class mainContoller {
 
 	@Autowired
 	MemberService memberService;
+
+	@Autowired
+	ProjectService projectService;
 
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
@@ -71,14 +76,35 @@ public class mainContoller {
 	}
 
 	@RequestMapping("/myProject")
-	public String MyProject(HttpSession session, Model model) {
+	public String MyProject(HttpSession session, HttpServletRequest request) {
 		String url = "main/myProject";
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
+		try {
+			List<ProjectVo> list = projectService.getMyProjectById(memberVo
+					.getMem_Email());
+			request.setAttribute("myProjectList", list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 	}
 
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, Model model) {
+	public String OtherProject(HttpSession session, HttpServletRequest request) {
 		String url = "/main/otherProject";
+
+		List<ProjectVo> list;
+		try {
+			list = projectService.getOtherProjectList();
+			request.setAttribute("otherProjectList", list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 	}
 

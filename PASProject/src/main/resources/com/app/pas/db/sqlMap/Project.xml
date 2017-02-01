@@ -16,6 +16,11 @@
    	 select * from project where proj_num = #proj_Num#
    </select>
    
+   <select id="selectProjectById" parameterClass="str" resultClass="project">
+     select * from project where mem_Email=#mem_Email#
+  
+   </select>
+   
    <update id="insertProject" parameterClass="Project">
       insert into PROJECT(PROJ_NUM,MEM_EMAIL,PROJ_CONTENT,PROJ_NAME) 
 	  VALUES(PROJECT_SEQ.NEXTVAL,#mem_Email#,#proj_Content#,#proj_Name#)
