@@ -23,7 +23,7 @@
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
 				<button>생성하기</button>
-				</h2>
+				</h2>  
 				
 			</div>
 		</div>
@@ -33,8 +33,7 @@
 		<h1> 프로젝트를 생성해주세요</h1>
 		</c:when>
 		<c:otherwise>
-	
-
+		
 		<!-- Projects Row -->
 		<c:forEach items="${myProjectList}" var="projectVo">
 			<div class="col-md-4 portfolio-item">
