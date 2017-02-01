@@ -73,6 +73,7 @@ public class mainContoller {
 	public String joinMember(HttpSession session, MemberVo memberVo) {
 		String url = "redirect:loginForm";
 		System.out.println(memberVo);
+		System.out.println(memberVo.getMem_Email());
 		
 		try {
 			memberService.insertMember(memberVo);
