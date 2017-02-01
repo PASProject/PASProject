@@ -15,7 +15,7 @@
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>뭣이 궁금한거여?</small>
+			QnA <small>뭣이 궁금한ㄷㅣ</small>
 		</h2>
 		<fieldset>
 			<table class="table table-hover">

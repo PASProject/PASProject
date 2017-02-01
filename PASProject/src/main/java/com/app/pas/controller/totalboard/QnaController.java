@@ -112,7 +112,7 @@ public class QnaController {
 
 	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
-		String url = "redirect:qnaList";
+		String url = "redirect:QnAList";
 
 		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
@@ -134,13 +134,13 @@ public class QnaController {
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
-		
+			List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();		
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
-			QnaBoardReplyVo qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+			QnaReplyList = qnaBoardReplyService.selectQnaReply();
 			
-			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
+			model.addAttribute("QnaReplyList", QnaReplyList);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
 			
 		} catch (NumberFormatException e) {
@@ -153,10 +153,13 @@ public class QnaController {
 	}
 	
 	
-//댓글작성
-	@RequestMapping("/InsertQnAReply")
+//댓글작성------------------------------------------------------------
+	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
 	public String insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){
-		String url="qna/QnADetail";
+		System.out.println("댓글작성중..");
+		String url = "qna/QnADetail";
+		qnaBoardReplyVo.setAdmin_Email("admin");
+		System.out.println(qnaBoardReplyVo.toString());
 		try {
 			qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo);
 		} catch (SQLException e) {
@@ -170,7 +173,6 @@ public class QnaController {
 @RequestMapping(value="/QnADelete", method=RequestMethod.POST)
 	public String deleteQnaBoard (String qb_Article_Num){
 		String url="redirect:QnAList";
-		System.out.println("삭제하는중 : 아티클넘버" + qb_Article_Num);
 		try {
 			qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
 		} catch (SQLException e) {

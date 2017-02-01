@@ -8,6 +8,13 @@ public class QnaBoardReplyVo {
 	private String admin_Email;
 	private String qb_Reply_Content;
 	
+	@Override
+	public String toString() {
+		return "QnaBoardReplyVo [qb_Reply_Num=" + qb_Reply_Num
+				+ ", qb_Reply_Time=" + qb_Reply_Time + ", qb_Article_Num="
+				+ qb_Article_Num + ", admin_Email=" + admin_Email
+				+ ", qb_Reply_Content=" + qb_Reply_Content + "]";
+	}
 	public int getQb_Reply_Num() {
 		return qb_Reply_Num;
 	}
