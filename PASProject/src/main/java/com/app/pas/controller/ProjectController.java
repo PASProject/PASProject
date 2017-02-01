@@ -312,8 +312,13 @@ public class ProjectController {
 		return url;
 	}
 	
+<<<<<<< HEAD
 	/*
 	@RequestMapping("/projectBoardReplyList")
+=======
+	
+/*	@RequestMapping("/projectBoardReplyList")
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 	public @ResponseBody List<ProjectBoardVo> selectProjectBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
 		
 		List<ProjectBoardVo> projectBoardReplyList = new ArrayList<ProjectBoardVo>();
