@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.MemberService;
