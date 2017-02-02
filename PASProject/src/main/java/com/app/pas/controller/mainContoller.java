@@ -69,10 +69,11 @@ public class mainContoller {
 			// 로그인 성공
 			if (memberVo.getMem_Pass().equals(pwd)) {
 				/*result = 1;*/
-				/*session.setAttribute("loginUser", memberVo);*/
+				
 				// 비밀번호실패
-				if(memberVo.getMem_Approve()=="y"){
+				if(memberVo.getMem_Approve().equals("y")){
 					result=1;
+					session.setAttribute("loginUser", memberVo);
 				}else{
 					result=3;
 				}
@@ -81,6 +82,7 @@ public class mainContoller {
 			}
 
 		}
+		System.out.println("result값"+result);
 		return result;
 	}
 	//가입처리
@@ -101,7 +103,7 @@ public class mainContoller {
 		try {
 			memberService.insertMember(memberVo);
 			String content = memberVo.getMem_Email()+"(님)의 계정 승인 확인 메일입니다. "
-					+ "<a href='http://localhost:8181/pas/main/loginAuthForm?mem_Email="+memberVo.getMem_Email()+"'>승인확인</a>"  ;
+					+ "<a href='http://localhost:8181/pas/main/memberAuth?mem_Email="+memberVo.getMem_Email()+"'>승인확인</a>"  ;
 			 
 			
 			MimeMessage message = mailSender.createMimeMessage();
@@ -122,7 +124,7 @@ public class mainContoller {
 		return url;
 	}
 	
-	@RequestMapping("/loginAuthForm")
+	/*@RequestMapping("/loginAuthForm")
 	public String LoginAuthForm(HttpServletRequest request,String mem_Email){
 		String url="/main/loginAuthForm";
 		MemberVo memberVo =memberService.getMember(mem_Email);
@@ -131,13 +133,13 @@ public class mainContoller {
 		return url;
 		
 		
-	}
+	}*/
 	
-	@RequestMapping(value="/memberAuth",method=RequestMethod.POST)
-	public @ResponseBody int MemberAuth(@RequestBody MemberVo memberVo) throws SQLException{
-		int result= 1;
-		memberService.AuthMember(memberVo.getMem_Email());
-		return 1;
+	@RequestMapping(value="/memberAuth",method=RequestMethod.GET)
+	public String MemberAuth(String mem_Email) throws SQLException{
+		String url="/main/loginAuthForm";
+		memberService.AuthMember(mem_Email);
+		return url;
 	}
 
 	@RequestMapping("/myProject")

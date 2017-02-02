@@ -35,7 +35,7 @@
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <title></title>
 <script type="text/javascript">
-$(document).ready(function() {
+<%-- $(document).ready(function() {
 	var memberVo=<%=request.getAttribute("memberVo")%>;
 	
      $.ajax({
@@ -49,7 +49,7 @@ $(document).ready(function() {
 			}
 		});
 
-	})
+	}) --%>
 </script>
 </head>
 <body>승인중
