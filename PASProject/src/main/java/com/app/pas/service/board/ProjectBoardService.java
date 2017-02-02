@@ -41,6 +41,10 @@ public class ProjectBoardService {
 	public void updateProjectBoard(ProjectBoardVo projectBoardVo)throws SQLException{
 		projectboardDao.updateProjectBoard(projectBoardVo);
 	}
+	public List<ProjectBoardVo> selectProjectBoardListV(int pb_Article_Num) throws SQLException{
+		List<ProjectBoardVo> list = projectboardDao.selectProjectBoardListV(pb_Article_Num);
+		return list;
+	}
 	public int selectPBTotalCount() throws SQLException{
 		int pbTotalCount = projectboardDao.selectPBTotalCount();
 		return pbTotalCount;

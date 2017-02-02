@@ -11,5 +11,7 @@ public interface MemberDao {
 	public void insertMember(MemberVo memberVo)throws SQLException;
 	public void updateMember(MemberVo memberVo)throws SQLException;
 	public void deleteMember(String mem_Email)throws SQLException;
+	public void extraMemberPwd(MemberVo memberVo)throws SQLException;
+	public void AuthMember(String mem_Email)throws SQLException;
 	
 }
