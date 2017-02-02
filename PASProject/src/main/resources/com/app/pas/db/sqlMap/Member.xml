@@ -4,32 +4,41 @@
 
 <sqlMap namespace="Member">
 
-   <typeAlias alias="str" type="java.lang.String" />
-   <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="Member" type="com.app.pas.dto.MemberVo" />
-   
-   
-   <select id="selectMemberList" parameterClass="str" resultClass="Member" >
-      select * from MEMBER where MEM_EMAIL LIKE '%'||#mem_Email#||'%'
-   </select>
-   
-   <select id="selectMember" parameterClass="str" resultClass="Member">
-   	  select * from member where mem_email = #mem_Email#
-   </select>
-   
-   
-   <update id="insertMember" parameterClass="Member">
-      insert into MEMBER(MEM_EMAIL,MEM_NAME,MEM_PHONE,MEM_PASS,MEM_IMG) 
-	  VALUES(#mem_Email#,#mem_Name#,#mem_Phone#,#mem_Pass#,#mem_Img#)
-   </update>
-   
-   <update id="updateMember" parameterClass="Member">
-      UPDATE MEMBER SET MEM_NAME=#mem_Name# ,MEM_PHONE=#mem_Phone#, MEM_PASS=#mem_Pass#,MEM_IMG=#mem_Img# 
-      WHERE MEM_EMAIL = #mem_Email#	  
-   </update>
-   
-   <update id="deleteMember" parameterClass="str">
-      delete from MEMBER where MEM_EMAIL=#mem_Email#
-   </update>
-   
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="Member" type="com.app.pas.dto.MemberVo" />
+
+
+	<select id="selectMemberList" parameterClass="str" resultClass="Member">
+		select * from MEMBER where MEM_EMAIL LIKE '%'||#mem_Email#||'%'
+	</select>
+
+	<select id="selectMember" parameterClass="str" resultClass="Member">
+		select * from member where mem_email = #mem_Email#
+	</select>
+
+	<update id="extraMemberPwd" parameterClass="Member">
+		update Member set mem_pass=#mem_Pass# where mem_email=#mem_Email#
+
+	</update>
+
+	<update id="AuthMember" parameterClass="str">
+
+		update Member set mem_approve='y' where mem_email = # mem_Email#
+	</update>
+	<update id="insertMember" parameterClass="Member">
+		insert into MEMBER(MEM_EMAIL,MEM_NAME,MEM_PHONE,MEM_PASS)
+		VALUES(#mem_Email#,#mem_Name#,#mem_Phone#,#mem_Pass#)
+	</update>
+
+	<update id="updateMember" parameterClass="Member">
+		UPDATE MEMBER SET MEM_NAME=#mem_Name# ,MEM_PHONE=#mem_Phone#,
+		MEM_PASS=#mem_Pass#,MEM_IMG=#mem_Img#
+		WHERE MEM_EMAIL = #mem_Email#
+	</update>
+
+	<update id="deleteMember" parameterClass="str">
+		delete from MEMBER where MEM_EMAIL=#mem_Email#
+	</update>
+
 </sqlMap>

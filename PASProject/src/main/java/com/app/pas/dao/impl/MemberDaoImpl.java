@@ -41,5 +41,17 @@ public class MemberDaoImpl implements MemberDao {
 		client.update("deleteMember",mem_Email);
 	}
 
+	@Override
+	public void extraMemberPwd(MemberVo memberVo) throws SQLException {
+		client.update("extraMemberPwd",memberVo);
+		
+	}
+
+	@Override
+	public void AuthMember(String mem_Email) throws SQLException {
+		client.update("AuthMember",mem_Email);
+		
+	}
+
 	
 }
