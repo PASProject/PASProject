@@ -3,6 +3,7 @@ package com.app.pas.controller;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -174,6 +175,14 @@ public class mainContoller {
 		String url = "";
 		return url;
 	}
+	
+	@RequestMapping(value="/mdlValue",method = RequestMethod.POST)
+	public @ResponseBody List<MemPositionViewVo> aa(@RequestBody Map<String,Object> map) throws SQLException{
+		int proj_Num =(Integer) map.get("proj_Num");
+		List<MemPositionViewVo> list = projectService.selectMemPositionViewListByProjNum(proj_Num);
+		return list;
+	}
+
 
 	@RequestMapping(value = "/simpleMessage", method = RequestMethod.POST)
 	public @ResponseBody int SimpleMessage(HttpSession session,
@@ -201,7 +210,6 @@ public class mainContoller {
         }else{
             result=-1;	
         }
-        
 		return result;
 	}
 	

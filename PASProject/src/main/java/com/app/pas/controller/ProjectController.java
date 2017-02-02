@@ -17,16 +17,17 @@ import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.ProjectBoardVo;
+import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardService;
 
 @Controller
-@RequestMapping("/project/${id}")
+@RequestMapping("/project")
 public class ProjectController {
-	
+
+	@Autowired
+	NoticeService noticeService;
 	@Autowired
 	ProjectBoardService projectBoardService;
-	
-	
 	
 	@RequestMapping("/pmBoard")
 	public String PmBoard(HttpSession session, Model model) {
@@ -66,8 +67,9 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/pmOverView")
-	public String PmOverView(HttpSession session, Model model) {
-		String url = "";
+	public String PmOverView(HttpSession session, Model model,@RequestParam String proj_Num) {
+		String url = "project/pmOverView";
+		model.addAttribute("proj_Num",proj_Num);
 		return url;
 	}
 

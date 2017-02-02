@@ -35,7 +35,7 @@
       delete from PROJECT where PROJ_NUM=#proj_Num#
    </update>
    
-   <select id="selectMemPositionViewListByProjNum" parameterClass="int">
+   <select id="selectMemPositionViewListByProjNum" parameterClass="int" resultClass="MemPositionViewVo">
    		select * from mem_position_view where pjj_per_num = 1 and proj_num = #proj_Num#
    </select>
    
