@@ -58,11 +58,15 @@ public class AdminQnaController {
 	//디테일
 	@RequestMapping("/AdminQnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
-		String url = "admin/adminQnADetail";	
+		String url = "admin/adminQnADetail";
+			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
+		QnaBoardReplyVo qnaBoardReplyVo = null;
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
+			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
 			
+			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
 			
 		} catch (NumberFormatException e) {
@@ -73,6 +77,7 @@ public class AdminQnaController {
 
 		return url;
 	}
+	
 	
 //댓글작성----------------------------------------------------------------------
 	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)

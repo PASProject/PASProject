@@ -23,19 +23,20 @@ public class QnaBoardReplyService {
 	}
 
 
-	/*
-	 * public QnaBoardReplyVo selectQnaReply(int qb_Article_Num) throws
-	 * SQLException{ QnaBoardReplyVo qnaBoardReplyVo= null; qnaBoardReplyVo =
-	 * qnaBoardReplyDao.selectQnaReply(qb_Article_Num);
-	 * 
-	 * return qnaBoardReplyVo; }
-	 */
-	public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
+	
+	 public QnaBoardReplyVo selectQnaReply(int qb_Article_Num) throws
+	  SQLException{ 
+		 QnaBoardReplyVo qnaBoardReplyVo= null; qnaBoardReplyVo =
+	  qnaBoardReplyDao.selectQnaReply(qb_Article_Num);
+	  
+	  return qnaBoardReplyVo; }
+	 
+	/*public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
 		List<QnaBoardReplyVo> list = qnaBoardReplyDao.selectQnaReply(qb_Article_Num);
 
 		return list;
 
-	}
+	}*/
 
 	public void insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,int qb_Article_Num)
 			throws SQLException {

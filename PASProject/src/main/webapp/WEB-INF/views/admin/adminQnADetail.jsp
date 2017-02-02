@@ -44,75 +44,61 @@
 					<tr>
 						<td colspan="3">${qnaBoardVo.qb_Content}<br>
 						</td>
-
-
+					</tr>
+						
+					<tr>
+						<td>
+						
+							<c:if test='${qnaBoardVo.qb_yn eq "1"}'>
+									${qnaBoardReplyVo.qb_Reply_Content}
+							</c:if>
+							
+						</td>
 					</tr>
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">
 							<button class="btn btn-default text-right" type="button"
-								onclick="go_qnalist()">목록</button>
-								
-				 <c:choose>
-						<c:when test='${qnaBoardVo.qb_yn=="0"}'>
-							<button class="btn btn-default text-right" type="button"onclick="go_ReplyForm()">답변달기</button>
-						</c:when>
-							<c:otherwise>답변수정</c:otherwise>
-				</c:choose>
-								
-								
-								
-						
+								onclick="go_qnalist()">목록</button> <c:choose>
+								<c:when test='${qnaBoardVo.qb_yn=="0"}'>
+									<button class="btn btn-default text-right" type="button"
+										onclick="go_ReplyForm()">답변달기</button>
+								</c:when>
+								<c:otherwise>답변수정</c:otherwise>
+							</c:choose>
+
+
+
+
 						</td>
 					</tr>
-				<%-- 	<tr>
-						<td style="padding-top: 20px;">댓글'{개수}'</td>
-					</tr>
-					<tr>
-						<td>댓글들어가는 곳</td>
-					</tr>
-						<c:forEach items="${QnaReplyList}" var="qnaBoardReplyVo">
-					<tr>
-						<td>
-							${qnaBoardReplyVo.qb_Reply_Content}	
-						</td>
-					</tr>
-					</c:forEach> --%>
+
 				</table>
 
 
 			</form>
 		</fieldset>
-		
-	<%-- 	<form name="form" method="post" action="InsertQnAReply">
-		<input type="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
-		
-				<textarea rows="2" cols="50" name="qb_Reply_Content">
-					</textarea>
-				<input type="submit" value="댓글등록" onClick="InsertQnAReply()">
-
-		</form>
- --%>
 
 
 
-			<script>
-				function go_ReplyForm(){
-					location.href = "AdminQnAReplyForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-					
-				}
-				function go_qnalist() {
-					location.href = "AdminQnAList"
 
-				}
-			
-				function InsertQnAReply() {
-					form.method = "post"
-					form.action = "InsertQnAReply";
-					form.submit();
-					
-				}
-			</script>
+		<script>
+			function go_ReplyForm() {
+				location.href = "AdminQnAReplyForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
+
+			}
+			function go_qnalist() {
+				location.href = "AdminQnAList"
+
+			}
+
+			function InsertQnAReply() {
+				form.method = "post"
+				form.action = "InsertQnAReply";
+				form.submit();
+
+			}
+		</script>
 
 
 

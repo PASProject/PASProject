@@ -15,13 +15,13 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 		this.client = client;
 	}
 
-/*	@Override
+	@Override
 	public QnaBoardReplyVo selectQnaReply(int qb_Article_Num)
 			throws SQLException {
 		QnaBoardReplyVo qnaBoardReplyVo = (QnaBoardReplyVo)client.queryForObject("selectQnaReply", qb_Article_Num);
 		
 		return qnaBoardReplyVo;
-	}*/
+	}
 
 	@Override
 	public void insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo)
@@ -31,10 +31,10 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 		
 	}
 
-	@Override
+/*	@Override
 	public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
 		List<QnaBoardReplyVo> list = client.queryForList("selectQnaReply", qb_Article_Num);
 		return list;
 	}
-
+*/
 }

@@ -127,17 +127,17 @@ public class QnaController {
 	}
 
 	// 디테일 , 리플
-	@RequestMapping("/QnADetail")
+	@RequestMapping("/AdminQnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
-		String url = "qna/QnADetail";
-			List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
-			
+		String url = "admin/adminQnADetail";
+			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
+		QnaBoardReplyVo qnaBoardReplyVo = null;
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
-			QnaReplyList = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
 			
-			model.addAttribute("QnaReplyList", QnaReplyList);
+			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
 			
 		} catch (NumberFormatException e) {
@@ -148,6 +148,7 @@ public class QnaController {
 
 		return url;
 	}
+	
 	
 	
 
