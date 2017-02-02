@@ -50,6 +50,7 @@ public class mainContoller {
 		return url;
 	}
 
+	
 	// 로그인처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody int loginMember(HttpSession session, String email,
