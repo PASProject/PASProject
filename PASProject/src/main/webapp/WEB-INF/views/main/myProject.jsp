@@ -56,7 +56,7 @@
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"></h4>
 									${projectVo.proj_Name }
-								</div>
+								</div>21
 								<div class="modal-body">
 								팀원
 								<input type="button" class="btn btn-default" value="입장하기"/>
