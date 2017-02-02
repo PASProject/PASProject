@@ -93,6 +93,7 @@ public class AdminQnaController {
 		
 			e.printStackTrace();
 		}
+		
 		System.out.println("답글하는즁");
 		return url;
 	

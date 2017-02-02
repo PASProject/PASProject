@@ -52,8 +52,17 @@
 							style="border-top: 0px solid blue;">
 							<button class="btn btn-default text-right" type="button"
 								onclick="go_qnalist()">목록</button>
-							<button class="btn btn-default text-right" type="button"
-								onclick="go_ReplyForm()">답변달기</button>
+								
+				 <c:choose>
+						<c:when test='${qnaBoardVo.qb_yn=="0"}'>
+							<button class="btn btn-default text-right" type="button"onclick="go_ReplyForm()">답변달기</button>
+						</c:when>
+							<c:otherwise>답변수정</c:otherwise>
+				</c:choose>
+								
+								
+								
+						
 						</td>
 					</tr>
 				<%-- 	<tr>

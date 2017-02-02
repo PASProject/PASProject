@@ -51,11 +51,6 @@
 				<table>
 					<tr>
 						<td>
-						<textarea rows="2" cols="70" >제목 입력</textarea>
-						</td>	
-					</tr>
-					<tr>
-						<td>
 						<textarea rows="25" cols="70" name="qb_Reply_Content">답변할 내용입력</textarea>
 						</td>	
 					</tr>

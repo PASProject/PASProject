@@ -52,7 +52,7 @@
 			</table>
 
 			<div class="col-md-12 text-right">
-				<button class="btn btn-default" type="button" onclick="QnaWrite();">글쓰기</button>
+				
 				<script>
 					function QnaWrite() {
 						location.href = "QnAWrite";
