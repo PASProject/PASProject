@@ -1,6 +1,7 @@
 package com.app.pas.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.app.pas.dao.MemberDao;
 import com.app.pas.dto.MemberVo;
@@ -23,5 +24,15 @@ public class MemberService {
 		}
 		return member;
 	}
+	public void insertMember(MemberVo memberVo) throws SQLException{
+		memberDao.insertMember(memberVo);
+	}
+	public List<MemberVo> selectMemberList() throws SQLException {
+		List<MemberVo> list =  memberDao.selectMemberList();
+		return list;
+	}
 	
+	public void extraPwd(MemberVo memberVo) throws SQLException{
+		memberDao.extraMemberPwd(memberVo);
+	}
 }
