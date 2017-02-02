@@ -26,6 +26,8 @@
 
 
 	<excludes>
+	     
+	    <pattern>*/loginAuthForm*</pattern>
 		<pattern>*/index.jsp</pattern>
 		<pattern>*/index*</pattern>
 		<pattern>*/joinForm*</pattern>
