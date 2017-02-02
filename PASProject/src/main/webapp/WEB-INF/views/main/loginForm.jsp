@@ -129,6 +129,8 @@ body {
 											} else if (result == 2) {
 												alert("비밀번호 오류입니다");
 												alert(result);
+											} else if( result == 3){
+												alert("인증되지않은계정입니다");
 											}
 
 										}

@@ -47,5 +47,11 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
+	@Override
+	public void AuthMember(String mem_Email) throws SQLException {
+		client.update("AuthMember",mem_Email);
+		
+	}
+
 	
 }
