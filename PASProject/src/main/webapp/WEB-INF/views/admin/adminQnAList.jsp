@@ -27,10 +27,17 @@
 					<th class="col-md-1" style="text-align: center">작성일</th>
 					<th class="col-md-1" style="text-align: center">조회수</th>
 				</tr>
-
+				
+				
 				<c:forEach items="${qnaList}" var="qnaBoardVo"
 					begin="${paging.beginNo}" end="${paging.endNo}">
 					<tr id="boardContents">
+					<td> 
+						<c:choose>
+							<c:when test='${qnaBoardVo.qb_yn=="0"}'>답변미처리</c:when>
+							<c:otherwise>답변처리완료</c:otherwise>
+						</c:choose>
+					</td>
 						<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>
 						<td><a 
 							href="<%=request.getContextPath()%>/admin/AdminQnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
@@ -52,10 +59,6 @@
 					}
 				</script>
 			</div>
-
-
-
-
 
 			<div class="col-md-12 text-center">
 				<c:if test="${paging.finalPageNo>0 }">

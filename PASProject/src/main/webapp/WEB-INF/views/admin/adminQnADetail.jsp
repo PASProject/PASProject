@@ -52,9 +52,11 @@
 							style="border-top: 0px solid blue;">
 							<button class="btn btn-default text-right" type="button"
 								onclick="go_qnalist()">목록</button>
+							<button class="btn btn-default text-right" type="button"
+								onclick="go_Reply()">답변달기</button>
 						</td>
 					</tr>
-					<tr>
+				<%-- 	<tr>
 						<td style="padding-top: 20px;">댓글'{개수}'</td>
 					</tr>
 					<tr>
@@ -66,13 +68,14 @@
 							${qnaBoardReplyVo.qb_Reply_Content}	
 						</td>
 					</tr>
-					</c:forEach>
+					</c:forEach> --%>
 				</table>
 
 
 			</form>
 		</fieldset>
-		<form name="form" method="post" action="InsertQnAReply">
+		
+	<%-- 	<form name="form" method="post" action="InsertQnAReply">
 		<input type="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
 		
 				<textarea rows="2" cols="50" name="qb_Reply_Content">
@@ -80,11 +83,14 @@
 				<input type="submit" value="댓글등록" onClick="InsertQnAReply()">
 
 		</form>
-
+ --%>
 
 
 
 			<script>
+				function go_Reply(){
+					
+				}
 				function go_qnalist() {
 					location.href = "AdminQnAList"
 

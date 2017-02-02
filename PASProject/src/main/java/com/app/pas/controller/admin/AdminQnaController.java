@@ -98,6 +98,16 @@ public class AdminQnaController {
 	
 	}
 //---------------------------------------------------------------------------------	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/qnaWrite")
 	public String QnaWrite(HttpSession session, Model model) {
 		String url = "";
