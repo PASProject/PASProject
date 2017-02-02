@@ -134,11 +134,12 @@ public class QnaController {
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
-			List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();		
+			List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
+			
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
-			QnaReplyList = qnaBoardReplyService.selectQnaReply();
+			QnaReplyList = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
 			
 			model.addAttribute("QnaReplyList", QnaReplyList);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
@@ -154,10 +155,11 @@ public class QnaController {
 	
 	
 //댓글작성------------------------------------------------------------
-	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
+/*	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
 	public String insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){
 		System.out.println("댓글작성중..");
-		String url = "qna/QnADetail";
+		String qb_Article_Num = qnaBoardReplyVo.getQb_Article_Num()+"";
+		String url = "redirect:QnADetail?qb_Article_Num="+qb_Article_Num;
 		qnaBoardReplyVo.setAdmin_Email("admin");
 		System.out.println(qnaBoardReplyVo.toString());
 		try {
@@ -167,7 +169,9 @@ public class QnaController {
 			e.printStackTrace();
 		}
 		return url;
-	}
+	}*/
+	
+
 
 	// 글 삭제
 @RequestMapping(value="/QnADelete", method=RequestMethod.POST)

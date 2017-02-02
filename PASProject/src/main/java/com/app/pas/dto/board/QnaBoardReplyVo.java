@@ -7,6 +7,7 @@ public class QnaBoardReplyVo {
 	private int qb_Article_Num;
 	private String admin_Email;
 	private String qb_Reply_Content;
+
 	
 	@Override
 	public String toString() {
@@ -46,6 +47,7 @@ public class QnaBoardReplyVo {
 	public void setQb_Reply_Content(String qb_Reply_Content) {
 		this.qb_Reply_Content = qb_Reply_Content;
 	}
+
 	
 
 	

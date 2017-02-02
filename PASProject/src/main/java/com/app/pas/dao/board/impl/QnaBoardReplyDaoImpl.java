@@ -32,8 +32,8 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 	}
 
 	@Override
-	public List<QnaBoardReplyVo> selectQnaReply() throws SQLException {
-		List<QnaBoardReplyVo> list = client.queryForList("selectQnaReply");
+	public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
+		List<QnaBoardReplyVo> list = client.queryForList("selectQnaReply", qb_Article_Num);
 		return list;
 	}
 

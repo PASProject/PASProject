@@ -60,12 +60,13 @@
 					<tr>
 						<td>댓글들어가는 곳</td>
 					</tr>
+						<c:forEach items="${QnaReplyList}" var="qnaBoardReplyVo">
 					<tr>
 						<td>
 							${qnaBoardReplyVo.qb_Reply_Content}	
 						</td>
 					</tr>
-
+					</c:forEach>
 				</table>
 
 
@@ -73,6 +74,8 @@
 				<input type="button" value="삭제" onClick="go_delete()"> 
 			</form>
 		</fieldset>
+		
+		<%-- 댓글작성
 		<form name="form" method="post" action="InsertQnAReply">
 		<input type="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
 		
@@ -80,7 +83,7 @@
 					</textarea>
 				<input type="submit" value="댓글등록" onClick="InsertQnAReply()">
 
-		</form>
+		</form> --%>
 
 
 
@@ -103,6 +106,7 @@
 					form.method = "post"
 					form.action = "InsertQnAReply";
 					form.submit();
+					
 				}
 			</script>
 
