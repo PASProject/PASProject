@@ -10,6 +10,7 @@ public class QnaBoardVo {
 	private String qb_Password;
 	private String mem_Email;
 	private Timestamp qb_Wt_Date;
+	private String qb_yn;
 	
 	
 	public Timestamp getQb_Wt_Date() {
@@ -53,6 +54,13 @@ public class QnaBoardVo {
 	}
 	public void setMem_Email(String mem_Email) {
 		this.mem_Email = mem_Email;
+	}
+	
+	public String getQb_yn() {
+		return qb_yn;
+	}
+	public void setQb_yn(String qb_yn) {
+		this.qb_yn = qb_yn;
 	}
 	@Override
 	public String toString() {
