@@ -44,14 +44,19 @@
 					<tr>
 						<td colspan="3">${qnaBoardVo.qb_Content}<br></td>
 					</tr>
+			</table>
+			</form>
+			
+			<form name="form" method="post" action="InsertQnAReply">
+				<table>
 					<tr>
 						<td>
-						<textarea rows="2" cols="70">제목 입력</textarea>
+						<textarea rows="2" cols="70" >제목 입력</textarea>
 						</td>	
 					</tr>
 					<tr>
 						<td>
-						<textarea rows="25" cols="70">답변할 내용입력</textarea>
+						<textarea rows="25" cols="70" name="qb_Reply_Content">답변할 내용입력</textarea>
 						</td>	
 					</tr>
 					<tr style="border-bottom: 2px solid #ddd">
@@ -60,18 +65,16 @@
 							<button class="btn btn-default text-right" type="button"
 								onclick="go_qnalist()">목록</button>
 							<button class="btn btn-default text-right" type="button"
-								onclick="go_Reply()">답변달기</button>
+								onclick="InsertQnAReply()">답변달기</button>
 						</td>
 					</tr>
-		
 				</table>
-
 			</form>
+			
 		</fieldset>
+		
 			<script>
-				function go_Reply(){
-					
-				}
+			
 				function go_qnalist() {
 					location.href = "AdminQnAList"
 				}

@@ -53,7 +53,7 @@
 							<button class="btn btn-default text-right" type="button"
 								onclick="go_qnalist()">목록</button>
 							<button class="btn btn-default text-right" type="button"
-								onclick="go_Reply()">답변달기</button>
+								onclick="go_ReplyForm()">답변달기</button>
 						</td>
 					</tr>
 				<%-- 	<tr>
@@ -88,7 +88,8 @@
 
 
 			<script>
-				function go_Reply(){
+				function go_ReplyForm(){
+					location.href = "AdminQnAReplyForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
 					
 				}
 				function go_qnalist() {

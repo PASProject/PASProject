@@ -90,30 +90,24 @@ public class AdminQnaController {
 			qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo, Integer.parseInt(qb_Article_Num));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
-		System.out.println("가기전");
+		System.out.println("답글하는즁");
 		return url;
 	
 	}
-//---------------------------------------------------------------------------------	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("/qnaWrite")
-	public String QnaWrite(HttpSession session, Model model) {
-		String url = "";
+//-------  댓글폼  ------------------------------------------------------------	
+	@RequestMapping("/AdminQnAReplyForm")
+	public String QnaWrite(@RequestParam String qb_Article_Num, Model model) throws NumberFormatException, SQLException {
+		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
+				.parseInt(qb_Article_Num));
+		
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
+		String url = "admin/adminQnAReplyForm";
 		return url;
 	}
-
+//--------------------------------------------------------------------------
 	@RequestMapping("/qnaDelete")
 	public String deleteQna(HttpSession session, Model model) {
 		String url = "";
