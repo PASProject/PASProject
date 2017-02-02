@@ -9,13 +9,18 @@
 <head>
 
 <!-- Bootstrap Core CSS -->
-<link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<%=request.getContextPath() %>/resources/css/stylish-portfolio.css" rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/css/stylish-portfolio.css"
+	rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="<%=request.getContextPath() %>/resources/font-awesome/css/font-awesome.min.css"
+<link
+	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
@@ -27,7 +32,8 @@
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 
 
 
@@ -39,11 +45,12 @@ border: 1px solid black;
 body {
 	background-color: rgb(249, 249, 249);
 }
-.title{
-max-width:350px;
-margin:auto;
 
+.title {
+	max-width: 350px;
+	margin: auto;
 }
+
 .container {
 	max-width: 350px;
 	outline: 1px solid rgb(216, 222, 226);
@@ -116,37 +123,61 @@ body {
 				success : function(result) {
 					if (result == 1) {
                         location.href="<%=request.getContextPath()%>/main/myProject"
-					} else if (result == 0) {
-						alert("아이디가 틀렸습니다");
-						alert(result);
-					} else if(result==2){
-						alert("비밀번호 오류입니다");
-						alert(result);
+											} else if (result == 0) {
+												alert("아이디가 틀렸습니다");
+												alert(result);
+											} else if (result == 2) {
+												alert("비밀번호 오류입니다");
+												alert(result);
+											}
+
+										}
+
+									});
+						})
+
+	})
+
+	$(function() {
+		$("#searchEmail").click(function() {
+			var sendEmail = $('#sendEmail').val();
+
+			$.ajax({
+				type : 'POST',
+				url : 'simpleMessage',
+				dataType : 'json',
+				data : {
+					'sendEmail' : sendEmail
+				},
+				success : function(result) {
+					if(result=="1"){
+						alert("해당 이메일로 임시 비밀번호를 발송하였습니다.");
+					
+					}else{
+						alert("존재하지않는 이메일입니다.");
 					}
-
 				}
-
+				
 			});
 		})
-
 	})
 </script>
 </head>
-<body>
+<body style="height:90%">
 
 	<div class="container2">
 
-		<h3 style="text-align: right; margin-right:46px;">
+		<h3 style="text-align: right; margin-right: 46px;">
 			<img style="width: 80px"
 				src="<%=request.getContextPath()%>/resources/img/logo.png">
 		</h3>
 		<div class="title">
-		
-		
-		<h2>로그인</h2>
-		<hr style="color:rgb(216, 222, 226); margin-top:5px;">
-		</div>	
-		
+
+
+			<h2>로그인</h2>
+			<hr style="color: rgb(216, 222, 226); margin-top: 5px;">
+		</div>
+
 		<div class="container">
 			<form>
 				<div class="form-group">
@@ -158,7 +189,7 @@ body {
 					<label for="pwd">Password:</label> <input type="password"
 						class="form-control" id="pwd" name="pwd"
 						placeholder="Enter password">
-			</div>
+				</div>
 				<div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>
 				</div>
@@ -171,22 +202,22 @@ body {
 		</div>
 		<div class="container" style="padding: 20px;">
 			<span style="text-align: center">PAS에 처음 방문하셨다면 <a
-				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br> <br> <a
-				href="javscript:void(0);"><span style="text-align: center"
-				id="forget">그게 아니라 비빌번호를 잊으신거?</span></a>
+				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br>
+			<br> <a href="javscript:void(0);"><span
+				style="text-align: center" id="forget">그게 아니라 비빌번호를 잊으신거?</span></a>
 		</div>
 		<div class="container" id="hiddenDiv" style="display: none">
 			<form>
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="email" placeholder="Enter email">
+						class="form-control" id="sendEmail" name="sendEmail"
+						placeholder="Enter email">
 				</div>
-				<button type="submit" class="btn btn-default btn-block">임시
-					비밀번호 발급</button>
+				<input type="button" id="searchEmail"
+					class="btn btn-default btn-block" value="임시비밀번호발급">
 			</form>
 		</div>
 	</div>
-
 </body>
 <script>
 	$(document).ready(function() {

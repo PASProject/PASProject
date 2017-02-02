@@ -1,18 +1,25 @@
 package com.app.pas.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.MemberService;
@@ -21,6 +28,13 @@ import com.app.pas.service.ProjectService;
 @Controller
 @RequestMapping("/main")
 public class mainContoller {
+
+	@Resource(name = "mailSender")
+	private MailSender mailSender;
+
+	public void setMailSender(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
 
 	@Autowired
 	MemberService memberService;
@@ -62,7 +76,7 @@ public class mainContoller {
 		}
 		return result;
 	}
-
+	//가입처리
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
 		String url = "main/joinForm";
@@ -70,20 +84,29 @@ public class mainContoller {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinMember(HttpSession session, Model model) {
-		String url = "";
+	public String joinMember(HttpSession session, MemberVo memberVo) {
+		String url = "redirect:loginForm";
+		System.out.println(memberVo);
+		System.out.println(memberVo.getMem_Email());
+		
+		try {
+			memberService.insertMember(memberVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return url;
 	}
 
 	@RequestMapping("/myProject")
-	public String MyProject(HttpSession session, HttpServletRequest request) {
+	public String MyProject(HttpSession session, Model model) {
 		String url = "main/myProject";
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
 		try {
-			List<ProjectVo> list = projectService.getMyProjectById(memberVo
-					.getMem_Email());
-			request.setAttribute("myProjectList", list);
+			List<ProjectVo> list = projectService.selectMyProjectById(memberVo.getMem_Email());
+			model.addAttribute("myProjectList", list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,15 +116,14 @@ public class mainContoller {
 	}
 
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, HttpServletRequest request) {
+	public String OtherProject(HttpSession session, Model model) {
 		String url = "/main/otherProject";
 
 		List<ProjectVo> list;
 		try {
-			list = projectService.getOtherProjectList();
-			request.setAttribute("otherProjectList", list);
+			list = projectService.selectOtherProjectList();
+			model.addAttribute("otherProjectList", list);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -112,6 +134,43 @@ public class mainContoller {
 	public String Mypage(HttpSession session, Model model) {
 		String url = "";
 		return url;
+	}
+	
+	@RequestMapping(value="/mdlValue",method = RequestMethod.POST)
+	public @ResponseBody List<MemPositionViewVo> aa(@RequestBody Map<String,Object> map) throws SQLException{
+		int proj_Num =(Integer) map.get("proj_Num");
+		List<MemPositionViewVo> list = projectService.selectMemPositionViewListByProjNum(proj_Num);
+		return list;
+	}
+
+
+	@RequestMapping(value = "/simpleMessage", method = RequestMethod.POST)
+	public @ResponseBody int SimpleMessage(HttpSession session,
+			HttpServletRequest request, String sendEmail) throws SQLException,
+			UnsupportedEncodingException {
+
+		request.setCharacterEncoding("utf-8");
+		int result = -1;
+		String pwd = (Math.random() * 100000) + 100000 + "";
+		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd + "입니다";
+		SimpleMailMessage message = new SimpleMailMessage();
+        
+		MemberVo memberVo = (MemberVo) memberService.getMember(sendEmail);
+		memberVo.setMem_Pass(pwd);
+        if(memberVo!=null){
+		memberService.extraPwd(memberVo);
+
+		message.setText(content);
+		message.setTo(sendEmail);
+		message.setSubject("임시비밀번호 전송입니다.");
+		message.setFrom("youliksna@naver.com");
+
+		mailSender.send(message);
+	     	result=1;
+        }else{
+            result=-1;	
+        }
+		return result;
 	}
 
 }

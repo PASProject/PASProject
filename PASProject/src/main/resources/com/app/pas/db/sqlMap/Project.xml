@@ -7,7 +7,7 @@
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
    <typeAlias alias="Project" type="com.app.pas.dto.ProjectVo" />
-   
+   <typeAlias alias="MemPositionViewVo" type="com.app.pas.dto.MemPositionViewVo"/>
    
    <select id="selectProjectList" parameterClass="int" resultClass="Project" >
       select * from PROJECT where PROJ_NUM LIKE '%'||#proj_Num#||'%'
@@ -34,5 +34,9 @@
    <update id="deleteProject" parameterClass="int">
       delete from PROJECT where PROJ_NUM=#proj_Num#
    </update>
+   
+   <select id="selectMemPositionViewListByProjNum" parameterClass="int" resultClass="MemPositionViewVo">
+   		select * from mem_position_view where pjj_per_num = 1 and proj_num = #proj_Num#
+   </select>
    
 </sqlMap>

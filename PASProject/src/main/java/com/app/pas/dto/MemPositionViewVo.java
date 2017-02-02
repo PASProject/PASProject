@@ -3,7 +3,7 @@ package com.app.pas.dto;
 public class MemPositionViewVo {
 
 	private String mem_Email;
-	private String mem_name;
+	private String mem_Name;
 	private String mem_Phone;
 	private String mem_Img;
 	private int pjj_Per_Num;
@@ -11,6 +11,16 @@ public class MemPositionViewVo {
 	private String position_Name;
 	private int proj_Num;
 	private String proj_Name;
+
+
+	@Override
+	public String toString() {
+		return "MemPositionViewVo [mem_Email=" + mem_Email + ", mem_Name="
+				+ mem_Name + ", mem_Phone=" + mem_Phone + ", mem_Img="
+				+ mem_Img + ", pjj_Per_Num=" + pjj_Per_Num + ", position_Num="
+				+ position_Num + ", position_Name=" + position_Name
+				+ ", proj_Num=" + proj_Num + ", proj_Name=" + proj_Name + "]";
+	}
 
 	public String getMem_Email() {
 		return mem_Email;
@@ -20,12 +30,14 @@ public class MemPositionViewVo {
 		this.mem_Email = mem_Email;
 	}
 
-	public String getMem_name() {
-		return mem_name;
+
+
+	public String getMem_Name() {
+		return mem_Name;
 	}
 
-	public void setMem_name(String mem_name) {
-		this.mem_name = mem_name;
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
 	}
 
 	public String getMem_Phone() {
