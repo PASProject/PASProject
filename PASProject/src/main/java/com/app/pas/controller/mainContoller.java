@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.MemberService;
@@ -102,8 +103,7 @@ public class mainContoller {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
 		try {
-			List<ProjectVo> list = projectService.getMyProjectById(memberVo
-					.getMem_Email());
+			List<ProjectVo> list = projectService.selectMyProjectById(memberVo.getMem_Email());
 			model.addAttribute("myProjectList", list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -119,7 +119,7 @@ public class mainContoller {
 
 		List<ProjectVo> list;
 		try {
-			list = projectService.getOtherProjectList();
+			list = projectService.selectOtherProjectList();
 			model.addAttribute("otherProjectList", list);
 		} catch (SQLException e) {
 			e.printStackTrace();
