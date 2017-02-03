@@ -69,6 +69,7 @@ public class ProjectController {
 	@RequestMapping("/pmOverView")
 	public String PmOverView(HttpSession session, Model model,@RequestParam String proj_Num) {
 		String url = "project/pmOverView";
+		session.setAttribute("projNum", proj_Num);
 		model.addAttribute("proj_Num",proj_Num);
 		return url;
 	}
