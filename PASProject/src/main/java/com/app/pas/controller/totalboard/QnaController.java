@@ -85,7 +85,7 @@ public class QnaController {
 		return url;
 
 	}
-
+//수정 폼
 	@RequestMapping(value="/QnAUpdate",method=RequestMethod.GET)
 	public String updateQnaForm(@RequestParam String qb_Article_Num,
 			HttpSession session, Model model) {
@@ -105,7 +105,7 @@ public class QnaController {
 		return url;
 
 	}
-
+//글 수정
 	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
 		String url = "redirect:QnAList";
@@ -127,9 +127,9 @@ public class QnaController {
 	}
 
 	// 디테일 , 리플
-	@RequestMapping("/AdminQnADetail")
+	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
-		String url = "admin/adminQnADetail";
+		String url = "qna/QnADetail";
 			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
 		QnaBoardReplyVo qnaBoardReplyVo = null;
 		try {

@@ -51,30 +51,22 @@
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">
-							<button class="btn btn-default text-right" type="button"
-								onclick="go_qnalist()">목록</button>
+						
+						<button class="btn btn-default text-right" type="button"onclick="go_qnalist()">목록</button>
+						<button class="btn btn-default text-right" type="button" onClick="go_qnaupdate()">수정</button> 
+						<button class="btn btn-default text-right" type="button" onClick="go_delete()">삭제</button>
+					
 						</td>
+						
 					</tr>
-					<tr>
-						<td style="padding-top: 20px;">댓글'{개수}'</td>
-					</tr>
-					<tr>
-						<td>댓글들어가는 곳</td>
-					</tr>
-
-						<c:forEach items="${QnaReplyList}" var="qnaBoardReplyVo">
-					<tr>
-						<td>
-							${qnaBoardReplyVo.qb_Reply_Content}	
-						</td>
-					</tr>
-					</c:forEach>
+					
+						
 				</table>
 
 
 
-				<input type="button" value="수정" onClick="go_qnaupdate()"> 
-				<input type="button" value="삭제" onClick="go_delete()"> 
+				
+				
 
 			</form>
 		</fieldset>

@@ -64,23 +64,19 @@
 									<button class="btn btn-default text-right" type="button"
 										onclick="go_ReplyForm()">답변달기</button>
 								</c:when>
-								<c:otherwise>답변수정</c:otherwise>
+								<c:otherwise>
+									<button class="btn btn-default text-right" type="button"
+										onclick="QnAReplyUpdateForm()">답변수정</button>
+								</c:otherwise>
 							</c:choose>
-
-
 
 
 						</td>
 					</tr>
-
 				</table>
-
 
 			</form>
 		</fieldset>
-
-
-
 
 		<script>
 			function go_ReplyForm() {
@@ -97,6 +93,11 @@
 				form.action = "InsertQnAReply";
 				form.submit();
 
+			}
+			function QnAReplyUpdateForm(){
+				location.href = "QnAReplyUpdateForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
+				
+				
 			}
 		</script>
 

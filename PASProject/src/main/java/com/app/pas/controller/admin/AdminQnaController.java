@@ -105,7 +105,7 @@ public class AdminQnaController {
 	}
 //-------  댓글폼  ------------------------------------------------------------	
 	@RequestMapping("/AdminQnAReplyForm")
-	public String QnaWrite(@RequestParam String qb_Article_Num, Model model) throws NumberFormatException, SQLException {
+	public String QnAReplyForm(@RequestParam String qb_Article_Num, Model model) throws NumberFormatException, SQLException {
 		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 				.parseInt(qb_Article_Num));
 		
@@ -113,6 +113,25 @@ public class AdminQnaController {
 		String url = "admin/adminQnAReplyForm";
 		return url;
 	}
+	
+//-------  댓글수정폼  ------------------------------------------------------------
+	@RequestMapping("/QnAReplyUpdateForm")
+	public String QnAReplyUpdateForm(@RequestParam String qb_Article_Num, Model model) {
+	String url = "admin/adminQnAReplyUpdate";
+		
+		return url;
+	}
+	
+//-------  댓글수정  ------------------------------------------------------------
+//	@RequestMapping(value="/QnAReplyUpdate",method=RequestMethod.POST)
+//	public String QnAReplyUpdate(@RequestParam String qb_Article_Num, Model model) {
+//		//QnaBoardReplyVo qnaBoardReplyVo = null;
+//	
+//		
+//		String url = "admin/adminQnAReplyUpdate";
+//		
+//		return url;
+//	}
 //--------------------------------------------------------------------------
 	@RequestMapping("/qnaDelete")
 	public String deleteQna(HttpSession session, Model model) {

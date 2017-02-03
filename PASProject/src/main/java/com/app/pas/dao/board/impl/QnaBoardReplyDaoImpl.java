@@ -31,6 +31,13 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 		
 	}
 
+	@Override
+	public void updateQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo)
+			throws SQLException {
+		client.update("updateQnaBoardReply", qnaBoardReplyVo);
+		
+	}
+
 /*	@Override
 	public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
 		List<QnaBoardReplyVo> list = client.queryForList("selectQnaReply", qb_Article_Num);

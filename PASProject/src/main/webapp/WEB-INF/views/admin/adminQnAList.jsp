@@ -35,7 +35,7 @@
 					<td> 
 						<c:choose>
 							<c:when test='${qnaBoardVo.qb_yn=="0"}'>답변미처리</c:when>
-							<c:otherwise>답변처리완료</c:otherwise>
+							<c:otherwise>답변완료</c:otherwise>
 						</c:choose>
 					</td>
 						<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>

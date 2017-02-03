@@ -44,5 +44,15 @@ public class QnaBoardReplyService {
 		qnaBoardReplyDao.insertQnaBoardReply(qnaBoardReplyVo);
 		qnaBoardDao.updateQnaYN(qb_Article_Num);
 	}
-
+	
+//답변수정
+	public void updateQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo) throws SQLException{
+		qnaBoardReplyDao.updateQnaBoardReply(qnaBoardReplyVo);
+	}
+	
+	
+	
+	
+	
+	
 }
