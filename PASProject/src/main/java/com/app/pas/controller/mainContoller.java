@@ -79,7 +79,7 @@ public class mainContoller {
 				/*result = 1;*/
 				/*session.setAttribute("loginUser", memberVo);*/
 				// 비밀번호실패
-				if(memberVo.getMem_Approve()=="y"){
+				if(memberVo.getMem_Approve()=="Y"){
 					result=1;
 				}else{
 					result=3;
@@ -224,7 +224,7 @@ public class mainContoller {
 	
 
 	// 파일업로드 연습
-	private String uploadPath = "resources/upload";
+	private String savePath = "resources/upload";
 
 	@RequestMapping(value = "/uploadForm", method = RequestMethod.GET)
 	public String uploadForm() {
@@ -241,14 +241,11 @@ public class mainContoller {
 		request.setCharacterEncoding("utf-8");
 		if (!multipartFile.isEmpty()) {
 
-			String upload = request.getSession().getServletContext()
-					.getRealPath(uploadPath);
-			/*
-			 * uploadPath =
-			 * request.getSession().getServletContext().getRealPath(uploadPath);
-			 */
-
-			File file = new File(upload, System.currentTimeMillis() + "$$"
+			String uploadPath = request.getSession().getServletContext()
+					.getRealPath(savePath);
+			
+			 
+			File file = new File(uploadPath, System.currentTimeMillis() + "$$"
 					+ multipartFile.getOriginalFilename());// 파일명 저장
 
 			long fileSizeLimit = 1024 * 1024 * 5;
