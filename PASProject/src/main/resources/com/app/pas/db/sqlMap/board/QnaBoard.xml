@@ -35,6 +35,11 @@
 		UPDATE QNA_BOARD SET QB_YN=1
 		WHERE QB_ARTICLE_NUM = #qb_Article_Num#
 	</update>
+	
+	<update id = "deleteQnaYN" parameterClass="int">
+		UPDATE QNA_BOARD SET QB_YN=0
+		WHERE QB_ARTICLE_NUM = #qb_Article_Num#
+	</update>
 
 
 	<update id="updateQnaBoard" parameterClass="QnaBoard">

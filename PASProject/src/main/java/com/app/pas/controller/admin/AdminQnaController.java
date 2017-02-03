@@ -151,7 +151,16 @@ public class AdminQnaController {
 	
 	return url;
 	}
-	
+//------- 답변삭제 --------------------------------------------------------------	
+	@RequestMapping(value="/QnAReplyDelete", method=RequestMethod.POST)
+	public String deleteQna(QnaBoardReplyVo qnaBoardReplyVo, Model model) throws NumberFormatException, SQLException {
+		System.out.println("답변삭제로 오는가?");
+	//	String url = "admin/adminQnADetail";
+		String qb_Article_Num = qnaBoardReplyVo.getQb_Article_Num()+"";
+		String url = "redirect:AdminQnADetail?qb_Article_Num="+qb_Article_Num;
+		qnaBoardReplyService.deleteQnaBoardReply(Integer.parseInt(qb_Article_Num));
+		return url;
+	}
 	
 	
 //-------  댓글수정  ------------------------------------------------------------
@@ -165,11 +174,6 @@ public class AdminQnaController {
 //		return url;
 //	}
 //--------------------------------------------------------------------------
-	@RequestMapping("/qnaDelete")
-	public String deleteQna(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
 
 	
 	

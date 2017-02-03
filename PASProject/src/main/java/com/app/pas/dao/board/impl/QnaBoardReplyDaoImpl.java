@@ -39,6 +39,12 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 		
 	}
 
+	@Override
+	public void deleteQnaBoardReply(int qb_Article_Num) throws SQLException {
+		client.delete("deleteQnaBoardReply",qb_Article_Num);
+		
+	}
+
 /*	@Override
 	public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
 		List<QnaBoardReplyVo> list = client.queryForList("selectQnaReply", qb_Article_Num);

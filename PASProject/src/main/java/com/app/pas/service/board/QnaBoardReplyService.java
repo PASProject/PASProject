@@ -51,7 +51,12 @@ public class QnaBoardReplyService {
 		qnaBoardReplyDao.updateQnaBoardReply(qnaBoardReplyVo);
 	}
 	
-	
+//답변 삭제
+	public void deleteQnaBoardReply(int qb_Article_Num) throws SQLException {
+		qnaBoardDao.deleteQnaYN(qb_Article_Num);
+		qnaBoardReplyDao.deleteQnaBoardReply(qb_Article_Num);
+		
+	}
 	
 	
 	

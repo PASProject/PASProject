@@ -103,7 +103,10 @@
 				
 			}
 			function QnAReplyDelete(){
-				
+				//location.href = "QnAReplyDelete?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
+				frm.method = "post"
+				frm.action = "QnAReplyDelete";
+				frm.submit();
 			}
 		</script>
 
