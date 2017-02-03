@@ -3,6 +3,7 @@ package com.app.pas.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemberVo;
 
 public interface MemberDao {
@@ -13,5 +14,5 @@ public interface MemberDao {
 	public void deleteMember(String mem_Email)throws SQLException;
 	public void extraMemberPwd(MemberVo memberVo)throws SQLException;
 	public void AuthMember(String mem_Email)throws SQLException;
-	
+	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo) throws SQLException;
 }

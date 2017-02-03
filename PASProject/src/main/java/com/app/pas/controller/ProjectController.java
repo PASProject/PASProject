@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.commons.Paging;
-import com.app.pas.dto.MemberVo;
-import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardService;
@@ -69,9 +67,8 @@ public class ProjectController {
 	@RequestMapping("/pmOverView")
 	public String PmOverView(HttpSession session, Model model,@RequestParam String proj_Num) {
 		String url = "project/pmOverView";
-		session.setAttribute("projNum", proj_Num);
-		model.addAttribute("proj_Num",proj_Num);
-		session.setAttribute("proj_Num", proj_Num);
+		// joinProj 현재 접속한 프로젝트 번호 
+		session.setAttribute("joinProj", proj_Num);
 		return url;
 	}
 

@@ -8,6 +8,12 @@ public class ProjectVo {
 	private String proj_Name;
 	private String proj_Check;
 	
+	@Override
+	public String toString() {
+		return "ProjectVo [proj_Num=" + proj_Num + ", mem_Email=" + mem_Email
+				+ ", proj_Content=" + proj_Content + ", proj_Name=" + proj_Name
+				+ ", proj_Check=" + proj_Check + "]";
+	}
 	public int getProj_Num() {
 		return proj_Num;
 	}
