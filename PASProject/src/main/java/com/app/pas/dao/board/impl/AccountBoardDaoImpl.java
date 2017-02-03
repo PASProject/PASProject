@@ -17,14 +17,14 @@ public class AccountBoardDaoImpl implements AccountBoardDao {
 	}
 
 	@Override
-	public List<AccountBoardVo> selectAccountBoardList() throws SQLException {
-		List<AccountBoardVo> list = client.queryForList("selectAccountBoardList");
+	public List<AccountBoardVo> selectAccountBoardByProj(int proj_Num) throws SQLException {
+		List<AccountBoardVo> list = client.queryForList("selectAccountBoardByProj",proj_Num);
 		return list;
 	}
 
 	@Override
-	public AccountBoardVo selectAccountBoard(int acc_Num) throws SQLException {
-		AccountBoardVo accountBoardVo = (AccountBoardVo) client.queryForObject("selectAccountBoard",acc_Num);
+	public AccountBoardVo selectAccountBoardByAcc(int acc_Num) throws SQLException {
+		AccountBoardVo accountBoardVo = (AccountBoardVo) client.queryForObject("selectAccountBoardByAcc",acc_Num);
 		return accountBoardVo;
 	}
 

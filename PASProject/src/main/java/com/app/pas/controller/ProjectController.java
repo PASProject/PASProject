@@ -2,8 +2,10 @@ package com.app.pas.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
-import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.dto.board.AccountBoardVo;
+import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardVo;
+import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardService;
 
@@ -28,6 +33,8 @@ public class ProjectController {
 	NoticeService noticeService;
 	@Autowired
 	ProjectBoardService projectBoardService;
+	@Autowired
+	AccountBoardService accountService;
 	
 	@RequestMapping("/pmBoard")
 	public String PmBoard(HttpSession session, Model model) {
@@ -40,29 +47,151 @@ public class ProjectController {
 		String url = "";
 		return url;
 	}
-
+   
+	
+    //프로젝트 Notice 리스트
 	@RequestMapping("/pmNoticeList")
-	public String PmNoticeList(HttpSession session, Model model) {
-		String url = "";
+	public String pmNoticeList(Model model, HttpSession session,
+			@RequestParam(value = "page", defaultValue = "1") String page) {
+		int proj_Num = (Integer) session.getAttribute("joinProj");
+		int totalCount = 0;
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+
+		String url = "project/pmNoticeList";
+
+		List<NoticeVo> list = null;
+		MemPositionViewVo memPositionView = new MemPositionViewVo();
+		HashMap map = new HashMap();
+		map.put("proj_Num", proj_Num);
+		map.put("mem_Email", memberVo.getMem_Email());
+
+		try {
+			list = noticeService.getNoticeList(proj_Num);
+			model.addAttribute("NoticeList", list);
+			memPositionView = noticeService.getNoticePosition(map);
+			session.setAttribute("memPositionView", memPositionView);
+			totalCount = noticeService.selectNoticeCount();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
+
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(10);
+		paging.setTotalCount(totalCount);
+
+		model.addAttribute("paging", paging);
+
+		return url;
+
+	}
+    
+	//프로젝트 Notice게시판 글쓰기 POST
+	@RequestMapping(value="/pmNoticeWrite", method=RequestMethod.POST)
+	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
+		String url = "redirect:/project/pmNoticeList";
+		int proj_Num = (Integer) session.getAttribute("joinProj");
+
+		noticeVo.setProj_Num(proj_Num);
+
+		try {
+			noticeService.insertNotice(noticeVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return url;
+
+	}
+	
+	//프로젝트 Notice게시판 글쓰기 Form
+	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.GET)
+	public String pmNoticeWriteForm(HttpServletRequest request, String proj_Num,
+			String notice_Num) {
+		String url = "project/pmNoticeWrite";
+
+		return url;
+
+	}
+	//프로젝트 Notice게시판 디테일 
+	@RequestMapping(value = "/pmNoticeDetail", method = RequestMethod.GET)
+	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
+			String notice_Num) {
+		String url = "project/pmNoticeDetail";
+		// int iproj_Num = Integer.parseInt(proj_Num);
+		HashMap map = new HashMap();
+		map.put("proj_Num", proj_Num);
+		map.put("notice_Num", notice_Num);
+
+		try {
+			NoticeVo noticeVo = (NoticeVo) noticeService.getNoticeDetail(map);
+			request.setAttribute("NoticeVo", noticeVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 	}
+	
+	
+	//프로젝트 Notice게시판 수정 Form
+	@RequestMapping(value="/pmNoticeUpdate",method=RequestMethod.GET)
+	public String pmNoticeUpdateForm(HttpServletRequest request, String proj_Num,
+			String notice_Num) {
+		String url = "project/pmNoticeUpdate";
+		HashMap map = new HashMap();
+		map.put("proj_Num", proj_Num);
+		map.put("notice_Num", notice_Num);
 
-	@RequestMapping("/pmNoticeWrite")
-	public String WritePmNotice(HttpSession session, Model model) {
-		String url = "";
+		try {
+			NoticeVo noticeVo = (NoticeVo) noticeService.getNoticeDetail(map);
+			request.setAttribute("NoticeVo", noticeVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 
 	}
+	
+	//프로젝트 Notice게시판 수정 POST
+	@RequestMapping(value="/pmNoticeUpdate",method=RequestMethod.POST)
+	public String updateUpdate(NoticeVo noticeVo) {
+		String url = "redirect:/project/pmNoticeList";
 
-	@RequestMapping("/pmNoticeUpdate")
-	public String UpdatePmNotice(HttpSession session, Model model) {
-		String url = "";
+		try {
+			noticeService.updateNotice(noticeVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 	}
+	
+	
+	
    
 	@RequestMapping("/pmNoticeDelete")
-	public String DeletePmNotice(HttpSession session, Model model) {
-		String url = "";
+	public String deleteNotice(HttpSession session, NoticeVo noticeVo) {
+		String url = "redirect:/notice/pmNoticeList";
+		System.out.println(noticeVo.getProj_Num() + "이건프로젝트넘버@@@@");
+		try {
+			noticeService.deleteNotice(noticeVo);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return url;
 	}
 
@@ -185,6 +314,19 @@ public class ProjectController {
 		}
 		return url;
 	}
+	
+	@RequestMapping("/AccountBoadList")
+	public String AccountBoardList(HttpSession session, Model model) throws SQLException{
+		String url="schedule/accountForm";
+		int proj_Num = (Integer) session.getAttribute("joinProj");
+		
+		List<AccountBoardVo> list =accountService.getAccountList(proj_Num);
+		model.addAttribute("AccountBoardList", list);
+
+		return url;
+	}
+	
+	
 }
 /*	@RequestMapping("/projectBoardReplyList")
 
