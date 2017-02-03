@@ -29,6 +29,7 @@ import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardService;
 
+
 @Controller
 @RequestMapping("/project")
 public class ProjectController {
@@ -202,8 +203,8 @@ public class ProjectController {
 	@RequestMapping("/pmOverView")
 	public String PmOverView(HttpSession session, Model model,@RequestParam String proj_Num) {
 		String url = "project/pmOverView";
-		model.addAttribute("proj_Num",proj_Num);
-		session.setAttribute("proj_Num", proj_Num);
+		// joinProj 현재 접속한 프로젝트 번호 
+		session.setAttribute("joinProj", proj_Num);
 		return url;
 	}
 

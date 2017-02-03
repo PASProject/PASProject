@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.MemberDao;
+import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemberVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -51,6 +52,20 @@ public class MemberDaoImpl implements MemberDao {
 	public void AuthMember(String mem_Email) throws SQLException {
 		client.update("AuthMember",mem_Email);
 		
+	}
+
+	@Override
+	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo)
+			throws SQLException {
+		int countMemApply =(Integer) client.queryForObject("selectCountMemApplyView",memApplyViewVo);
+		return countMemApply;
+	}
+
+	@Override
+	public MemApplyViewVo selectMemApplyViewByMemPRoj(
+			MemApplyViewVo memApplyViewVo) throws SQLException {
+		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemPRoj",memApplyViewVo);
+		return memApplyViewVo;
 	}
 
 	

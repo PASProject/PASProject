@@ -11,7 +11,6 @@ public class QnaBoardVo {
 	private String mem_Email;
 	private Timestamp qb_Wt_Date;
 	
-	
 	public Timestamp getQb_Wt_Date() {
 		return qb_Wt_Date;
 	}

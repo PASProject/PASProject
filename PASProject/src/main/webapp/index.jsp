@@ -96,7 +96,7 @@ body.modal-open .background-container {
 	</header>
 
 
-
+	
 	<!-- joinForm -->
 	<section id="about" class="about" style="padding-top: 20px;">
 	<!-- 	<div class="container" style="height: 500px;"> -->
@@ -421,10 +421,11 @@ $(document)
 									validating : 'glyphicon glyphicon-refresh'
 								},
 								fields : {
-									name : {
+									mem_Email : {
 										validators : {
 											stringLength : {
 												min : 2,
+												message :  '메일이 어떻게 두글자가 되냐?'
 											},
 											notEmpty : {
 												message : '이름을 기입해 주세요'
@@ -432,15 +433,17 @@ $(document)
 										}
 									},
 
-									phone : {
+									mem_Phone : {
 										validators : {
-											notEmpty : {
-												message : 'Please supply your phone number'
+											stringLength : {
+												min : 12,
+												max : 13,
+												message :  '하이픈 붙혀서 전화번호 똑바로 좀 '
 											},
-											phone : {
-												country : 'US',
-												message : 'Please supply a vaild phone number with area code'
+											notEmpty : {
+												message : '저기...번호좀...ㅎㅎ'
 											}
+											
 										}
 									},
 									address : {

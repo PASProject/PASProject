@@ -200,7 +200,6 @@ body {
 								프로젝트 보기</a></li>
 						<li><a href="<%=request.getContextPath()%>/main/otherProject">다른
 								프로젝트 보기</a></li>
-
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 

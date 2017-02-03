@@ -12,6 +12,7 @@ public interface ProjectDao {
 	public void insertProject(ProjectVo projectVo)throws SQLException;
 	public void updateProject(ProjectVo projectVo)throws SQLException;
 	public void deleteProject(int proj_Num)throws SQLException;
-	public List<ProjectVo> selectProjectById(String mem_Email)throws SQLException;
 	public List<MemPositionViewVo> selectMemPositionViewListByProjNum(int proj_Num) throws SQLException;
+	public List<ProjectVo> selectMyProjectListById(String mem_Email)throws SQLException;
+	public List<ProjectVo> selectOtherProjectListById(String mem_Email) throws SQLException;
 }
