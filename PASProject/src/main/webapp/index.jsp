@@ -96,7 +96,7 @@ body.modal-open .background-container {
 	</header>
 
 
-
+	
 	<!-- joinForm -->
 	<section id="about" class="about" style="padding-top: 20px;">
 	<!-- 	<div class="container" style="height: 500px;"> -->

@@ -22,31 +22,39 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
-					<button>생성하기</button>
+					<button class="btn btn-default">생성하기</button>
+					<button class="btn btn-default">파일선택</button>
+
 				</h2>
 
 			</div>
 		</div>
 		<!-- /.row -->
+
 		<c:choose>
 			<c:when test="${empty myProjectList}">
 				<h1>프로젝트를 생성해주세요</h1>
 			</c:when>
 			<c:otherwise>
 
+
 				<!-- Projects Row -->
-				<c:forEach items="${myProjectList}" var="projectVo">
+				<c:forEach items="${myProjectList}" var="projectVo"
+					varStatus="status">>
 					<div class="col-md-4 portfolio-item">
-						<a href="#" onclick="modalOpen();"> <img
+						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"
-							data-toggle="modal" data-target="#${projectVo.proj_Name }">
+							data-toggle="modal" data-target="#${projectVo.proj_Name }"
+							data-keyboard="false" data-backdrop="static">
 						</a>
 						<h3>
 							<a href="#">${projectVo.proj_Name }</a>
 						</h3>
 						<p>${projectVo.proj_Content}</p>
+						<c:if test="${status.count%3==0}">
+							<br>
+						</c:if>
 					</div>
-
 					<!-- Modal -->
 					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">
 						<div class="modal-dialog">
@@ -57,23 +65,23 @@
 									<h4 class="modal-title"></h4>
 									${projectVo.proj_Name }
 								</div>
-								<div class="modal-body">
-								팀원
-								<input type="button" class="btn btn-default" value="입장하기"/>
+								<div class="modal-body" id="${projectVo.proj_Num}body">팀원
 								</div>
 								<div class="modal-footer">
+									<input type="button" class="btn btn-default" value="입장하기"
+										onclick="javascript:gogo(${projectVo.proj_Num})" />
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">Close</button>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</c:forEach>
-				<!-- /.row -->
-
 			</c:otherwise>
 		</c:choose>
+
+
+
 		<hr>
 
 		<!-- Pagination -->
@@ -104,6 +112,31 @@
 
 	</div>
 
+	<script>
+	function goModal(proj_Num){
+		var data = {'proj_Num':proj_Num};
+		$.ajax({
+			url:'mdlValue',
+			data:JSON.stringify(data),
+			contentType:'application/json',
+			dataType:'json',
+			type:'post',
+			success:function(data){
+				var tt="";
+				$.each(data,function(i){
+					tt += '<div> 아이디 : '+data[i].mem_Email+'<br> 이름 : '+data[i].mem_Name+'<br> 직책 :'+data[i].position_Name+'<hr color=\'red\'></div>'
+				})
+				$('#'+proj_Num+'body').empty();
+				$('#'+proj_Num+'body').append(tt);
+			}
+		})
+	}
+	
+	
+	function gogo(proj_Num){
+		location.href="../project/pmOverView?proj_Num="+proj_Num;
+	}
+</script>
 
 </body>
 

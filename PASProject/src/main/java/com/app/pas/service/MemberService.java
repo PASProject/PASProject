@@ -35,4 +35,8 @@ public class MemberService {
 	public void extraPwd(MemberVo memberVo) throws SQLException{
 		memberDao.extraMemberPwd(memberVo);
 	}
+	
+	public void AuthMember(String mem_Email) throws SQLException{
+		memberDao.AuthMember(mem_Email);
+	}
 }
