@@ -35,6 +35,7 @@ public class QnaBoardReplyDaoImpl implements QnaBoardReplyDao {
 	public void updateQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo)
 			throws SQLException {
 		client.update("updateQnaBoardReply", qnaBoardReplyVo);
+		System.out.println("다오임플에 있는 qnaBoardReplyVo : " + qnaBoardReplyVo);
 		
 	}
 

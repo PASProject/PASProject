@@ -149,10 +149,6 @@ public class QnaController {
 		return url;
 	}
 	
-	
-	
-
-
 //댓글작성------------------------------------------------------------
 /*	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
 >>>>>>> refs/heads/leekhee7

@@ -55,9 +55,16 @@
 						<button class="btn btn-default text-right" type="button"onclick="go_qnalist()">목록</button>
 						<button class="btn btn-default text-right" type="button" onClick="go_qnaupdate()">수정</button> 
 						<button class="btn btn-default text-right" type="button" onClick="go_delete()">삭제</button>
+						</td>	
+					</tr>
 					
+					<tr>
+						<td>
+							관리자 답변 ><br>
+							<c:if test ='${qnaBoardVo.qb_yn eq "1"}'>
+								${qnaBoardReplyVo.qb_Reply_Content}
+							</c:if>
 						</td>
-						
 					</tr>
 					
 						

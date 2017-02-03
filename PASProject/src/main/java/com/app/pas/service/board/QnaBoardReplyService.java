@@ -47,6 +47,7 @@ public class QnaBoardReplyService {
 	
 //답변수정
 	public void updateQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo) throws SQLException{
+		System.out.println("서비스에 있는 qnaBoardReplyVo" + qnaBoardReplyVo);
 		qnaBoardReplyDao.updateQnaBoardReply(qnaBoardReplyVo);
 	}
 	

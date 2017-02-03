@@ -42,7 +42,7 @@
 						<td colspan="3">${qnaBoardVo.mem_Email }</td>
 					</tr>
 					<tr>
-						<td colspan="3">${qnaBoardVo.qb_Content}<br>
+						<td colspan="3">question > <br><br>${qnaBoardVo.qb_Content}<br>
 						</td>
 					</tr>
 						
@@ -50,7 +50,7 @@
 						<td>
 						
 							<c:if test='${qnaBoardVo.qb_yn eq "1"}'>
-									${qnaBoardReplyVo.qb_Reply_Content}
+									answer > <br> ${qnaBoardReplyVo.qb_Reply_Content}
 							</c:if>
 							
 						</td>
@@ -67,6 +67,8 @@
 								<c:otherwise>
 									<button class="btn btn-default text-right" type="button"
 										onclick="QnAReplyUpdateForm()">답변수정</button>
+									<button class="btn btn-default text-right" type="button"
+										onclick="QnAReplyDelete()">답변삭제</button>
 								</c:otherwise>
 							</c:choose>
 
@@ -97,6 +99,9 @@
 			function QnAReplyUpdateForm(){
 				location.href = "QnAReplyUpdateForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
 				
+				
+			}
+			function QnAReplyDelete(){
 				
 			}
 		</script>

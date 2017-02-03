@@ -114,13 +114,41 @@ public class AdminQnaController {
 		return url;
 	}
 	
-//-------  댓글수정폼  ------------------------------------------------------------
+//-------  답글수정폼  ------------------------------------------------------------
 	@RequestMapping("/QnAReplyUpdateForm")
 	public String QnAReplyUpdateForm(@RequestParam String qb_Article_Num, Model model) {
 	String url = "admin/adminQnAReplyUpdate";
 		
+	QnaBoardReplyVo qnaBoardReplyVo = null;
+	try {
+		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
+				.parseInt(qb_Article_Num));
+		qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+		
+		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
+		System.out.println("댓글 수정 폼 qnaBoardReplyVo" + qnaBoardReplyVo );
+	} catch (NumberFormatException e) {
+		e.printStackTrace();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 		return url;
 	}
+//-------  답글수정  ------------------------------------------------------------	
+	@RequestMapping(value="/QnAReplyUpdate",method=RequestMethod.POST)
+	public String QnAReplyUpdate(QnaBoardReplyVo qnaBoardReplyVo, Model model) throws SQLException {
+		System.out.println("수정오긴오니;");
+		String url =  "admin/adminQnADetail";
+	
+	qnaBoardReplyService.updateQnaBoardReply(qnaBoardReplyVo);
+	System.out.println("댓글수정하는 중  " + qnaBoardReplyVo);
+	
+	
+	return url;
+	}
+	
+	
 	
 //-------  댓글수정  ------------------------------------------------------------
 //	@RequestMapping(value="/QnAReplyUpdate",method=RequestMethod.POST)
