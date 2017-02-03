@@ -34,23 +34,6 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <title></title>
-<script type="text/javascript">
-$(document).ready(function() {
-	var memberVo=<%=request.getAttribute("memberVo")%>;
-	
-     $.ajax({
-    	type:'POST',
-    	url:'/pas/main/memberAuth',
-    	dataType:'json',
-    	data:{"mem_Email":memberVo},
-    	success:function(result){
-    		alert("계정인증이 성공하였습니다.");
-    		location.href="<%=request.getContextPath()%>/main/loginForm"
-			}
-		});
-
-	})
-</script>
 </head>
 <body>승인중
 
