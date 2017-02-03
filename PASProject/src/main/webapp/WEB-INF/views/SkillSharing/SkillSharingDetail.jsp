@@ -33,6 +33,12 @@ function protectKey()
 }
 </script>
 <h1>SkillSharingDetail</h1>
+	<c:if test="${like != null }">
+		<script type="text/javascript">
+			alert("이미추천했다규");
+		</script>
+	</c:if>
+
 	<form name="frm" method="post">
 		<input type="hidden" name="ssb_Article_Num" value="${skillSharingBoardVo.ssb_Article_Num}">
 		<input type="hidden" name="ssb_Inq_Count" value="${skillSharingBoardVo.ssb_Inq_Count}">

@@ -122,11 +122,11 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 	}
 
 	@Override
-	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(int ssb_Article_Num)
-			throws SQLException {
-		SkillSharingBoardLikeVo skillSharingBoardLikeVo = 
-				(SkillSharingBoardLikeVo)client.queryForObject("selectSkillSharingBoardLikeList",ssb_Article_Num);
-		return skillSharingBoardLikeVo;
+	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(SkillSharingBoardLikeVo skillSharingBoardLikeVo)throws SQLException {
+		
+		SkillSharingBoardLikeVo skillSharingBoardLike =
+				(SkillSharingBoardLikeVo)client.queryForObject("selectSkillSharingBoardLikeList",skillSharingBoardLikeVo);
+		return skillSharingBoardLike;
 	}
 
 	

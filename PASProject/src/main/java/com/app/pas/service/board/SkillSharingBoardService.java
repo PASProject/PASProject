@@ -116,14 +116,12 @@ public class SkillSharingBoardService {
 		return likeCount;
 	}
 	
-	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(int ssb_Article_Num)
+	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(SkillSharingBoardLikeVo skillSharingBoardLikeVo)
 			throws SQLException {
-		SkillSharingBoardLikeVo selectSkillSharingBoardLikeList = null;
+		SkillSharingBoardLikeVo skillSharingBoardLike = 
+				skillsharingboardDao.selectSkillSharingBoardLikeList(skillSharingBoardLikeVo);
 
-		selectSkillSharingBoardLikeList = skillsharingboardDao
-				.selectSkillSharingBoardLikeList(ssb_Article_Num);
-
-		return selectSkillSharingBoardLikeList;
+		return skillSharingBoardLike;
 	}
 	
 }

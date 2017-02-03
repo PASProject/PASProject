@@ -23,11 +23,11 @@
 		select count(*) from SKILL_SHARING_BOARD_Like WHERE SSB_ARTICLE_NUM=#ssb_Article_Num#
 	</select>
 	
-	<select id="selectSkillSharingBoardLikeList" parameterClass="int"
+	<select id="selectSkillSharingBoardLikeList" parameterClass="SkillSharingBoardLike"
 			resultClass="SkillSharingBoardLike">
 		SELECT *
 		FROM SKILL_SHARING_BOARD_LIKE
-		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
+		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num# and MEM_EMAIL = #mem_Email#
 
 
 	</select>

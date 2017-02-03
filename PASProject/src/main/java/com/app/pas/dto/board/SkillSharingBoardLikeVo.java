@@ -5,6 +5,13 @@ public class SkillSharingBoardLikeVo {
 	private int ssb_Article_Num;
 	private String mem_Email;
 	
+	
+	@Override
+	public String toString() {
+		return "SkillSharingBoardLikeVo [ssb_Article_Num=" + ssb_Article_Num
+				+ ", mem_Email=" + mem_Email + "]";
+	}
+
 	public int getSsb_Article_Num() {
 		return ssb_Article_Num;
 	}

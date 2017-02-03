@@ -20,7 +20,7 @@ import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.service.board.ProjectBoardService;
 
 @Controller
-@RequestMapping("/project/${id}")
+@RequestMapping("/project")
 public class ProjectController {
 	
 	@Autowired
