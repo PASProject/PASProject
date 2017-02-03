@@ -26,7 +26,7 @@
 
 
 	<excludes>
-	     
+	    
 	    <pattern>*/loginAuthForm*</pattern>
 		<pattern>*/index.jsp</pattern>
 		<pattern>*/index*</pattern>
@@ -37,6 +37,7 @@
 		<pattern>/idCheckForm.do*</pattern>
 		<pattern>/admin/adminLoginForm.do</pattern>
 		<pattern>*/aaa*</pattern>
+		<pattern>*/join*</pattern>
 	</excludes>
 
 </decorators>
