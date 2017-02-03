@@ -7,7 +7,31 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="SkillSharingBoard" type="com.app.pas.dto.board.SkillSharingBoardVo" />
+	<typeAlias alias="SkillSharingBoardLike" type="com.app.pas.dto.board.SkillSharingBoardLikeVo" />
+	
+	<insert id="insertSkillSharingBoardLike" parameterClass="SkillSharingBoardLike">
+		INSERT INTO
+		SKILL_SHARING_BOARD_LIKE(SSB_ARTICLE_NUM,MEM_EMAIL) 
+		VALUES(#ssb_Article_Num#,#mem_Email#)
+	</insert>
+	
+	<delete id="deleteSkillSharingBoardLike" parameterClass="SkillSharingBoardLike">
+		DELETE FROM SKILL_SHARING_BOARD_LIKE WHERE SSB_ARTICLE_NUM=#ssb_Article_Num# and MEM_EMAIL=#mem_Email#
+	</delete>
+	
+	<select id="selectCountSharingBoardLike" resultClass="int">
+		select count(*) from SKILL_SHARING_BOARD_Like WHERE SSB_ARTICLE_NUM=#ssb_Article_Num#
+	</select>
+	
+	<select id="selectSkillSharingBoardLikeList" parameterClass="int"
+			resultClass="SkillSharingBoardLike">
+		SELECT *
+		FROM SKILL_SHARING_BOARD_LIKE
+		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
 
+
+	</select>
+	
 	<select id="selectSkillSharingBoardList" resultClass="SkillSharingBoard">
 		SELECT *
 		FROM SKILL_SHARING_BOARD
@@ -41,13 +65,28 @@
 
 
 	<update id="updateSkillSharingBoard" parameterClass="SkillSharingBoard">
-		UPDATE SKILL_SHARING_BOARD SET SSB_CONTENT=#ssb_Content#, SSB_TITLE=#ssb_Title# 
+		UPDATE SKILL_SHARING_BOARD SET SSB_CONTENT=#ssb_Content#, SSB_TITLE=#ssb_Title#, ssb_Inq_Count=ssb_Inq_Count+1
 		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
 	</update>
+	
+	<update id="updateSkillSharingBoardCount" parameterClass="SkillSharingBoard">
+		UPDATE SKILL_SHARING_BOARD SET ssb_Inq_Count=ssb_Inq_Count+1
+		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
+	</update>
+	
+	<update id="updateSkillSharingBoardCountM" parameterClass="SkillSharingBoard">
+		UPDATE SKILL_SHARING_BOARD SET ssb_Inq_Count=ssb_Inq_Count-1
+		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
+	</update>
+	
 	<delete id="deleteSkillSharingBoard" parameterClass="int">
 		DELETE FROM SKILL_SHARING_BOARD WHERE SSB_ARTICLE_NUM=#ssb_Article_Num#
 	</delete>
 	<select id="selectTotalCountSharingBoard" resultClass="int">
 		select count(*) from SKILL_SHARING_BOARD
+	</select>
+	
+	<select id="selectSkillLikeCountViewList" resultClass="SkillSharingBoard">
+		select * from Skill_Like_Count_View 
 	</select>
 </sqlMap>
