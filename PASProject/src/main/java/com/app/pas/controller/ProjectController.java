@@ -1,9 +1,11 @@
 package com.app.pas.controller;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,9 +13,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemPositionViewVo;
@@ -315,15 +319,32 @@ public class ProjectController {
 		return url;
 	}
 	
-	@RequestMapping("/AccountBoadList")
+	@RequestMapping("/AccountBoardList")
 	public String AccountBoardList(HttpSession session, Model model) throws SQLException{
 		String url="schedule/accountForm";
-		int proj_Num = (Integer) session.getAttribute("joinProj");
-		
+		/*int proj_Num = (Integer) session.getAttribute("joinProj");*/
+		int proj_Num=1;
 		List<AccountBoardVo> list =accountService.getAccountList(proj_Num);
 		model.addAttribute("AccountBoardList", list);
 
 		return url;
+	}
+	
+	@RequestMapping(value="/AccountBoardInsert", method=RequestMethod.POST)
+	public @ResponseBody int AccountBoardInsert(@RequestBody Map<String,Object> map) throws SQLException{
+		int result=1;
+		AccountBoardVo accountBoardVo = null;
+		String date = (String)map.get("acc_Date");
+        Timestamp acc_Date = Timestamp.valueOf(date);
+		
+		accountBoardVo.setAcc_Date(acc_Date);
+		 int acc_Imp =(Integer) map.get("acc_Imp");
+		 accountBoardVo.setAcc_Imp(acc_Imp);
+		 int acc_Exp = (Integer) map.get("acc_Exp");
+		 accountBoardVo.setAcc_Exp(acc_Exp);
+		 accountBoardVo.setAcc_Content((String)map.get("acc_Content"));
+		accountService.InsertAccountBoard(accountBoardVo);
+		return result;
 	}
 	
 	
