@@ -139,7 +139,11 @@ public class AdminQnaController {
 	@RequestMapping(value="/QnAReplyUpdate",method=RequestMethod.POST)
 	public String QnAReplyUpdate(QnaBoardReplyVo qnaBoardReplyVo, Model model) throws SQLException {
 		System.out.println("수정오긴오니;");
-		String url =  "admin/adminQnADetail";
+		//아예 그 페이지로 이동하기 위해선 redirect를 쓴다.
+		//qb_Article_Num을 통해 데이터의 값을 select하기 때문에 qb_Article_Num도 같이 넘겨준다.
+		//jsp로 이동하는건 파라미터를 url로 넘길수 없다.
+		String qb_Article_Num = qnaBoardReplyVo.getQb_Article_Num()+"";
+		String url = "redirect:AdminQnADetail?qb_Article_Num="+qb_Article_Num;
 	
 	qnaBoardReplyService.updateQnaBoardReply(qnaBoardReplyVo);
 	System.out.println("댓글수정하는 중  " + qnaBoardReplyVo);

@@ -57,7 +57,7 @@
 									<button class="btn btn-default text-right" type="button"
 										onclick="QnAReplyUpdate()">답변수정</button>
 									<button class="btn btn-default text-right" type="button"
-										onclick="QnAReplyDelete()">취소</button>
+										onclick="QnAReplyCancel()">취소</button>
 
 						</td>
 					</tr>
@@ -85,7 +85,8 @@
 				frm.submit();
 				
 			}
-			function QnAReplyDelete(){
+			function QnAReplyCancel(){
+				location.href = "AdminQnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num}"
 				
 			}
 		</script>
