@@ -59,7 +59,7 @@ public class ProjectController {
 		String url = "";
 		return url;
 	}
-
+   
 	@RequestMapping("/pmNoticeDelete")
 	public String DeletePmNotice(HttpSession session, Model model) {
 		String url = "";
@@ -71,6 +71,7 @@ public class ProjectController {
 		String url = "project/pmOverView";
 		session.setAttribute("projNum", proj_Num);
 		model.addAttribute("proj_Num",proj_Num);
+		session.setAttribute("proj_Num", proj_Num);
 		return url;
 	}
 
