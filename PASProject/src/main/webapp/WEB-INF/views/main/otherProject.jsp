@@ -58,9 +58,12 @@
 								팀원
 								</div>
 								<div class="modal-footer">
-									<input type="button" class="btn btn-default" value="신청하기" onclick="javascript:goApply(${projectVo.proj_Num})"/>
+								
+								<div id = "${projectVo.proj_Num}btnZone">
+									<input type="button" class="btn btn-default" value="신청하기" id="applyBtn" onclick="javascript:goApply(${projectVo.proj_Num})"/>
+								</div>
 									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
+										data-dismiss="modal" >Close</button>
 								</div>
 							</div>
 
@@ -124,7 +127,12 @@
 					contentType:'application/json',
 					dataType:'json',
 					type:'post',
-					data:JSON.stringify(data)
+					data:JSON.stringify(data),
+					success:function(data){
+						if(data!=0){
+						alert(data+"이미 신청완료");
+						}
+					}
 				});
 			}
 		});
@@ -138,14 +146,16 @@
 			contentType:'application/json',
 			dataType:'json',
 			type:'post',
-			succuess:function(data){
-				alert('성공');
-			},error:function(){
-				alert('실패');
+			success:function(data){
+				alert(data.value());
+				send('push:'+data);
+			},error:function(data){
+				send('push:'+data);
 			}
 		});
 	}
 </script>
+
 </body>
 
 </html>

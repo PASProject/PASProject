@@ -45,4 +45,5 @@ public class MemberService {
 		int countMemApply =memberDao.selectCountMemApplyView(memApplyViewVo);
 		return countMemApply;
 	}
+	
 }

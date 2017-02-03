@@ -3,7 +3,6 @@
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Member">
-
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="Member" type="com.app.pas.dto.MemberVo" />
@@ -42,6 +41,10 @@
 	</update>
 
 	<select id="selectCountMemApplyView" parameterClass="MemApplyView" resultClass="int">
-		select count(*) from mem_apply_view where apply_commit_check =0 and mem_email = #mem_Email# and proj_num = #proj_Num#
+		select count(*) from mem_apply_view where apply_commit_check =0 and mem_Email = #mem_Email# and proj_num = #proj_Num#
+	</select>
+	
+	<select id="selectMemApplyViewByMemPRoj" parameterClass="MemApplyView" resultClass="MemApplyView">
+		select * from mem_apply_view where mem_email = #mem_Email# and proj_num = #proj_Num#
 	</select>
 </sqlMap>

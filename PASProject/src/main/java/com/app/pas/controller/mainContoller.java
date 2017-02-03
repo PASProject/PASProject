@@ -212,32 +212,38 @@ public class mainContoller {
 	
 	
 	@RequestMapping(value="/checkApply", method = RequestMethod.POST)
-	public void mdlCheckApply(@RequestBody Map<String,Object> map,HttpSession session ) throws SQLException{
+	public @ResponseBody int mdlCheckApply(@RequestBody Map<String,Object> map,HttpSession session ) throws SQLException{
 		int proj_Num = (Integer)map.get("proj_Num");
 		MemApplyViewVo memApplyViewVo = new MemApplyViewVo();
 		memApplyViewVo.setProj_Num(proj_Num);
 		memApplyViewVo.setMem_Email(((MemberVo)session.getAttribute("loginUser")).getMem_Email());
-		System.out.println(memApplyViewVo.toString());
 		int countMemApply = memberService.selectCountMemApplyView(memApplyViewVo);
-		System.out.println(countMemApply+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		return countMemApply;
 	}
 	
 	
 	
 	@RequestMapping(value="/apply",method = RequestMethod.POST)
-	public void mdlInvite(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
-		System.out.println("apply");
+	public @ResponseBody String mdlInvite(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
 		int proj_Num =  (Integer) map.get("proj_Num");
 		ApplyVo applyVo = new ApplyVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
-		
+		MemApplyViewVo memApplyViewVo = new MemApplyViewVo();
 		MemberVo member  = (MemberVo) session.getAttribute("loginUser");
+		
 		applyVo.setMem_Email(member.getMem_Email());
 		applyVo.setProj_Num(proj_Num);
 		applyVo.setAlarm_Clsfct("1");
+		
 		projectJoinVo.setMem_Email(member.getMem_Email());
 		projectJoinVo.setProj_Num(proj_Num);
-		projectService.insertApply(applyVo,projectJoinVo);
+		
+		memApplyViewVo.setMem_Email(member.getMem_Email());
+		memApplyViewVo.setProj_Num(proj_Num);
+		memApplyViewVo = projectService.insertApply(applyVo,projectJoinVo,memApplyViewVo);
+		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
+		
+		return p_Mem_Email;
 	}
 	
 	@RequestMapping(value = "/simpleMessage", method = RequestMethod.POST)

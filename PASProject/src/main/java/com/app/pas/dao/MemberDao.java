@@ -15,4 +15,5 @@ public interface MemberDao {
 	public void extraMemberPwd(MemberVo memberVo)throws SQLException;
 	public void AuthMember(String mem_Email)throws SQLException;
 	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo) throws SQLException;
+	public MemApplyViewVo selectMemApplyViewByMemPRoj(MemApplyViewVo memApplyViewVo) throws SQLException;
 }

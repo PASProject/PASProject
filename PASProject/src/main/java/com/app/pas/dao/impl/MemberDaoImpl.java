@@ -57,8 +57,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo)
 			throws SQLException {
-		int countMemApply =(Integer) client.queryForObject("selectCountMemApplyView");
+		int countMemApply =(Integer) client.queryForObject("selectCountMemApplyView",memApplyViewVo);
 		return countMemApply;
+	}
+
+	@Override
+	public MemApplyViewVo selectMemApplyViewByMemPRoj(
+			MemApplyViewVo memApplyViewVo) throws SQLException {
+		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemPRoj",memApplyViewVo);
+		return memApplyViewVo;
 	}
 
 	
