@@ -85,6 +85,7 @@ function protectKey()
 		<input type="button"  value="추천!" onClick="go_like()">
 	</form>
 	
+	
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
