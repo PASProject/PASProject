@@ -6,7 +6,6 @@ public class ProjectBoardVo {
 
 	private int pb_Article_Num;
 	private String pb_Content;
-    private String pb_Title;
     private int pb_Inq_Count;
     private String mem_Email;
     private int proj_Num;
@@ -29,13 +28,6 @@ public class ProjectBoardVo {
 	}
 	public void setPb_Content(String pb_Content) {
 		this.pb_Content = pb_Content;
-	}
-
-	public String getPb_Title() {
-		return pb_Title;
-	}
-	public void setPb_Title(String pb_Title) {
-		this.pb_Title = pb_Title;
 	}
 	public int getPb_Inq_Count() {
 		return pb_Inq_Count;

@@ -10,7 +10,7 @@
 <title></title>
 </head>
 <body>
-<form name="formm" method="post" action="qnaUpdate">
+<form name="formm" method="post" action="QnAUpdate">
 <div style="margin:auto; width:1300px" ><h1>QnaUpdate</h1><br><br>
 <fieldset>
 <label>Title</label>
@@ -27,7 +27,7 @@
 
 <script>
 function go_qnalist(){
-	location.href="qnaList"
+	location.href="QnAList"
 	
 }
 

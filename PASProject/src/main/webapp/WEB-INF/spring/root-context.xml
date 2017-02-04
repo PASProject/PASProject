@@ -53,7 +53,7 @@
 	<bean id="ProjectBoardService" class="com.app.pas.service.board.ProjectBoardService" p:projectboardDao-ref="ProjectBoardDao"/>
 	<bean id="ProjectBoardReplyService" class="com.app.pas.service.board.ProjectBoardReplyService" p:projectBoardReplyDao-ref="ProjectBoardReplyDao"/>
 	<bean id="QnaBoardService" class="com.app.pas.service.board.QnaBoardService" p:qnaBoardDao-ref="QnaBoardDao"/>
-	<bean id="QnaBoardReplyService" class="com.app.pas.service.board.QnaBoardReplyService" p:qnaBoardReply-ref="QnaBoardReplyDao"/>
+	<bean id="QnaBoardReplyService" class="com.app.pas.service.board.QnaBoardReplyService" p:qnaBoardReply-ref="QnaBoardReplyDao" p:qnaBoardDao-ref="QnaBoardDao"/>
 	<bean id="SkillSharingBoardService" class="com.app.pas.service.board.SkillSharingBoardService" p:skillsharingboardDao-ref="SkillSharingBoardDao"/>
 	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
 

@@ -15,11 +15,13 @@
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>뭣이 궁금한거여?</small>
+			QnA <small>뭣이 궁금한ㄷㅣ</small>
 		</h2>
 		<fieldset>
 			<table class="table table-hover">
 				<tr class="text-center">
+				
+					<th class="col-md-1" style="text-align: center">답변여부</th>
 					<th class="col-md-1" style="text-align: center">번호</th>
 					<th class="col-md-4" style="text-align: center">제목</th>
 					<th class="col-md-2" style="text-align: center">작성자</th>
@@ -30,6 +32,12 @@
 				<c:forEach items="${qnaList}" var="qnaBoardVo"
 					begin="${paging.beginNo}" end="${paging.endNo}">
 					<tr id="boardContents">
+					<td>
+						<c:choose>
+							<c:when test='${qnaBoardVo.qb_yn=="0" }'>답변미처리</c:when>
+							<c:otherwise>답변완료</c:otherwise>
+						</c:choose>
+					</td>
 						<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>
 						<td><a 
 							href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
