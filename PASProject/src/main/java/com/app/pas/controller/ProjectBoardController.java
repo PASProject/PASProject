@@ -28,7 +28,7 @@ public class ProjectBoardController {
 	NoticeService noticeService;
 	@Autowired
 	ProjectBoardService projectBoardService;
-
+//리스트----------------------------------------------------
 	@RequestMapping("/projectBoardList")
 	public String ProjectBoardList(Model model,@RequestParam(value = "page", defaultValue = "1") String page) {
 		String url = "projectBoard/projectBoardList";
@@ -37,19 +37,19 @@ public class ProjectBoardController {
 
 	}
 //프로젝트 게시글 올리기-----------------------------------------
-	@RequestMapping(value="/projectBordInsert",method=RequestMethod.POST)
-	public String insertProjectBoard(HttpSession session, Model model,ProjectBoardVo projectBoardVo) throws SQLException {
+	@RequestMapping(value="/projectBoardInsert",method=RequestMethod.POST)
+	public String insertProjectBoard( Model model,ProjectBoardVo projectBoardVo) throws SQLException {
 		/*int proj_Num = (Integer) session.getAttribute("joinProj");*/
-		projectBoardVo.setMem_Email("임시Email");
+		projectBoardVo.setMem_Email("abc@naver.com");
 		projectBoardVo.setProj_Num(1);
 		System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
 		
 		System.out.println("여기오는가?");
 		projectBoardService.insertProjectBoard(projectBoardVo);
-		System.out.println("projectBoardVo");
+		System.out.println("projectBoardVo"+projectBoardVo);
 	
 		
-		String url = "projectBoard/projectBoardList";
+		String url = "redirect:projectBoardList";
 		return url;
 	}
 

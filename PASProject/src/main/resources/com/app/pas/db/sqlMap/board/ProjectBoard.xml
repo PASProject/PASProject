@@ -9,10 +9,7 @@
 	<typeAlias alias="ProjectBoard" type="com.app.pas.dto.board.ProjectBoardVo" />
 
 	<select id="selectProjectBoardList" resultClass="ProjectBoard">
-		SELECT *
-		FROM
-		PROJECT_BOARD
-		ORDER BY PB_ARTICLE_NUM DESC
+		SELECT * FROM PROJECT_BOARD ORDER BY PB_ARTICLE_NUM DESC
 
 	</select>
 
@@ -21,18 +18,13 @@
 		SELECT *
 		FROM PROJECT_BOARD
 		WHERE PB_ARTICLE_NUM = #pb_Article_Num#
-
-
 	</select>
-	
-	<select id="selectProjectBoardDetail" parameterClass="int" resultClass="ProjectBoard">
-		select * from PROJECT_BOARD where pb_Article_Num = #pb_Article_Num#
-	</select>
+
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
 		INSERT INTO
-		PROJECT_BOARD(PB_ARTICLE_NUM,PROJ_NUM,MEM_EMAIL)
-		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#proj_Num#,#mem_Email#)
+		PROJECT_BOARD(PB_ARTICLE_NUM,PROJ_NUM,MEM_EMAIL,PB_CONTENT)
+		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#proj_Num#,#mem_Email#,#pb_Content#)
 	</insert>
 
 
