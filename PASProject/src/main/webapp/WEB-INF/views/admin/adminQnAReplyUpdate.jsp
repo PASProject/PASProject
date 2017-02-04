@@ -11,7 +11,6 @@
 <title></title>
 </head>
 <body>
- 
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
@@ -19,11 +18,10 @@
 		</h2>
 
 		<fieldset>
-			<form name="frm" method="post" action="QnADetail">
-				<input type="hidden" name="qb_Article_Num"
-					value="${param.qb_Article_Num }">
-
-
+			<form name="frm" method="post" action="QnAReplyUpdate">
+				<input type="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
+				<input type="hidden" name="qb_Reply_Num" value="${qnaBoardReplyVo.qb_Reply_Num}">
+				
 				<table class="table" style="border-top: 2px;">
 					<tr style="border-top: 2px solid #ddd">
 						<td class="col-md-9"><h3
@@ -34,10 +32,10 @@
 							style="vertical-align: middle; text-align: right"><span
 							style="font-size: 13px">조회수</span>&nbsp; <span
 							style="font-size: 11px;"> ${qnaBoardVo.qb_Inq_Count }</span></td>
-						<td class="col-md-2"
-							style="vertical-align: middle; text-align: right"><span
-							style="font-size: 11px"><fmt:formatDate
-									value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
+						<td class="col-md-2" style="vertical-align: middle; text-align: right">
+						
+							<span style="font-size: 11px">
+							<fmt:formatDate value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
 					</tr>
 					<tr>
 						<td colspan="3">${qnaBoardVo.mem_Email }</td>
@@ -46,33 +44,20 @@
 						<td colspan="3">question > <br><br>${qnaBoardVo.qb_Content}<br>
 						</td>
 					</tr>
-						
 					<tr>
 						<td>
-						
-							<c:if test='${qnaBoardVo.qb_yn eq "1"}'>
-									answer > <br> ${qnaBoardReplyVo.qb_Reply_Content}
-							</c:if>
-							
-						</td>
+						<textarea rows="25" cols="70" name="qb_Reply_Content">${qnaBoardReplyVo.qb_Reply_Content}</textarea>
+						</td>	
 					</tr>
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">
 							<button class="btn btn-default text-right" type="button"
-								onclick="go_qnalist()">목록</button> <c:choose>
-								<c:when test='${qnaBoardVo.qb_yn=="0"}'>
+								onclick="go_qnalist()">목록</button> 
 									<button class="btn btn-default text-right" type="button"
-										onclick="go_ReplyForm()">답변달기</button>
-								</c:when>
-								<c:otherwise>
+										onclick="QnAReplyUpdate()">답변수정</button>
 									<button class="btn btn-default text-right" type="button"
-										onclick="QnAReplyUpdateForm()">답변수정</button>
-									<button class="btn btn-default text-right" type="button"
-										onclick="QnAReplyDelete()">답변삭제</button>
-								</c:otherwise>
-							</c:choose>
-
+										onclick="QnAReplyCancel()">취소</button>
 
 						</td>
 					</tr>
@@ -82,10 +67,7 @@
 		</fieldset>
 
 		<script>
-			function go_ReplyForm() {
-				location.href = "AdminQnAReplyForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-
-			}
+	
 			function go_qnalist() {
 				location.href = "AdminQnAList"
 
@@ -97,36 +79,20 @@
 				form.submit();
 
 			}
-			function QnAReplyUpdateForm(){
-				location.href = "QnAReplyUpdateForm?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-				
+			function QnAReplyUpdate(){
+				frm.method = "post"
+				frm.action = "QnAReplyUpdate";
+				frm.submit();
 				
 			}
-			function QnAReplyDelete(){
-				//location.href = "QnAReplyDelete?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-				frm.method = "post"
-				frm.action = "QnAReplyDelete";
-				frm.submit();
+			function QnAReplyCancel(){
+				location.href = "AdminQnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num}"
+				
 			}
 		</script>
-
-
-
-
 
 	</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 

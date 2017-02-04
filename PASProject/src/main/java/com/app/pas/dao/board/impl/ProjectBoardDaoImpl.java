@@ -29,7 +29,7 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 		ProjectBoardVo projectBoardVo = (ProjectBoardVo) client.queryForObject("selectProjectBoard",pb_Article_Num);
 		return projectBoardVo;
 	}
-
+//-----------------------------------------------------------------
 	@Override
 	public void insertProjectBoard(ProjectBoardVo projectBoardVo)
 			throws SQLException {

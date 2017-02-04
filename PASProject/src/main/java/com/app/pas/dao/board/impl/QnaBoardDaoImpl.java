@@ -50,5 +50,20 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		return totalCount;
 		
 	}
+
+	@Override
+	public void updateQnaYN(int qb_Article_Num) throws SQLException {
+		System.out.println("dao"+qb_Article_Num);
+		client.update("updateQnaYN", qb_Article_Num);
+		
+	}
+
+	@Override
+	public void deleteQnaYN(int qb_Article_Num) throws SQLException {
+		client.update("deleteQnaYN",qb_Article_Num);
+		
+	}
+
+
 	
 }
