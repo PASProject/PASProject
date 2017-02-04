@@ -46,4 +46,10 @@ public class MemberService {
 		return countMemApply;
 	}
 	
+	// 여준영 부분
+	
+		public void updateMemberImg(MemberVo memberVo) throws SQLException{
+			memberDao.updateMemberImg(memberVo);
+			}
+	
 }
