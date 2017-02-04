@@ -38,6 +38,11 @@ function protectKey()
 			alert("이미추천했다규");
 		</script>
 	</c:if>
+	<c:if test="${modi != null }">
+		<script type="text/javascript">
+			alert("작성자만 수정할 수 있습니다.");
+		</script>
+	</c:if>
 
 	<form name="frm" method="post">
 		<input type="hidden" name="ssb_Article_Num" value="${skillSharingBoardVo.ssb_Article_Num}">

@@ -24,7 +24,7 @@
 					<!-- <small>Secondary Text</small> -->
 					<button class="btn btn-default">생성하기</button>
 					<button class="btn btn-default">파일선택</button>
-
+					<input type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
 				</h2>
 
 			</div>
@@ -135,6 +135,9 @@
 	
 	function gogo(proj_Num){
 		location.href="../project/pmOverView?proj_Num="+proj_Num;
+	}
+	function go_Pb(){
+		location.href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList"
 	}
 </script>
 

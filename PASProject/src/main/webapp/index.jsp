@@ -49,7 +49,7 @@
 
 </head>
 <style>
-body.modal-open .background-container {
+body.modal-open .background-container 
 	-webkit-filter: blur(4px);
 	-moz-filter: blur(4px);
 	-o-filter: blur(4px);
