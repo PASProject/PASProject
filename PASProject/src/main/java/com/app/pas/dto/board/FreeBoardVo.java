@@ -9,21 +9,13 @@ public class FreeBoardVo {
 	private String frb_Content;
 	private String frb_Title;
 	private int frb_Inq_Count;
-	private int frb_Like;
 	private String mem_Email;
 	private String frb_Kind;
 	private Timestamp frb_Wt_Date;
 	
 	
 	
-	@Override
-	public String toString() {
-		return "FreeBoardVo [frb_Article_Num=" + frb_Article_Num
-				+ ", frb_Content=" + frb_Content + ", frb_Title=" + frb_Title
-				+ ", frb_Inq_Count=" + frb_Inq_Count + ", frb_Like=" + frb_Like
-				+ ", mem_Email=" + mem_Email + ", frb_Kind=" + frb_Kind
-				+ ", frb_Wt_Date=" + frb_Wt_Date + "]";
-	}
+	
 	public Timestamp getFrb_Wt_Date() {
 		return frb_Wt_Date;
 	}
@@ -53,12 +45,6 @@ public class FreeBoardVo {
 	}
 	public void setFrb_Inq_Count(int frb_Inq_Count) {
 		this.frb_Inq_Count = frb_Inq_Count;
-	}
-	public int getFrb_Like() {
-		return frb_Like;
-	}
-	public void setFrb_Like(int frb_Like) {
-		this.frb_Like = frb_Like;
 	}
 	public String getMem_Email() {
 		return mem_Email;

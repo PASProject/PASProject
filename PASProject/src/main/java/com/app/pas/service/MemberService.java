@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.MemberDao;
+import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemberVo;
 
 public class MemberService {
@@ -39,4 +40,10 @@ public class MemberService {
 	public void AuthMember(String mem_Email) throws SQLException{
 		memberDao.AuthMember(mem_Email);
 	}
+	
+	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo) throws SQLException{
+		int countMemApply =memberDao.selectCountMemApplyView(memApplyViewVo);
+		return countMemApply;
+	}
+	
 }

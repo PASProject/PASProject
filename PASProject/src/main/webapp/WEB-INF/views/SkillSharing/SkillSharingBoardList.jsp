@@ -12,20 +12,20 @@
 </style>
 </head>
 <body>
-	<h1>skillSharingBoard</h1>
+	<h1>SkillSharingBoard</h1>
 	<form>
 		제목 : <input type="text" name="ssb_Title" />&nbsp; <input type="button"
 			onclick="searchTitle(this.form);" value="검색">
 	</form>
-	<table style="width: 100%">
+	<table style="width: 83%">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
 			<th>이메일</th>
 			<th>작성일</th>
 			<th>내용</th>
-			<th>추천수</th>
 			<th>조회수</th>
+			<th>추천수</th>
 		</tr>
 		<c:forEach items="${skillSharingBoardList }" var="SkillSharingBoardVo"
 			begin="${paging.beginNo}" end="${paging.endNo}">
@@ -36,8 +36,8 @@
 				<td>${SkillSharingBoardVo.mem_Email }</td>
 				<td>${SkillSharingBoardVo.ssb_wt_date }</td>
 				<td>${SkillSharingBoardVo.ssb_Content }</td>
-				<td>${SkillSharingBoardVo.ssb_Like }</td>
 				<td>${SkillSharingBoardVo.ssb_Inq_Count }</td>
+				<td>${SkillSharingBoardVo.ssb_Like_Count }</td>
 
 			</tr>
 		</c:forEach>
