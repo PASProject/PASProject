@@ -69,13 +69,15 @@ public class SkillSharingController {
 		String modi = null;
 		String message = null;
 		String delete = null;
+		String likee = null;
 		message = request.getParameter("message");
 		like = request.getParameter("like");
 		modi = request.getParameter("modi");
 		delete = request.getParameter("delete");
+		likee = request.getParameter("likee");
 		System.out.println(modi);
 		String url = "SkillSharing/SkillSharingDetail";
-		
+	
 		if(like != null) {
 			model.addAttribute("like", like);
 		}
@@ -85,6 +87,10 @@ public class SkillSharingController {
 		if(delete !=null){
 			model.addAttribute("delete",delete);
 		}
+		if(likee != null) {
+			model.addAttribute("likee", likee);
+		}
+	
 		
 		SkillSharingBoardVo skillSharingBoardVo = null;
 		SkillSharingBoardLikeVo skillSharingBoardLikeVo = null;
@@ -128,17 +134,18 @@ public class SkillSharingController {
 		LikeMember = skillSharingBoardService.selectSkillSharingBoardLikeList(skillSharingBoardLikeVo);
 		
 		if(LikeMember==null){
+			
 		int likeCount = skillSharingBoardService
 				.insertSkillSharingBoardLike(skillSharingBoardVo,
 						skillSharingBoardLikeVo, Integer.parseInt(ssb_Article_Num));
-		
+		return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&likee=yes";
 		}else{
 			
 			skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
 			System.out.println("else 값 들어옴");
 			return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"& message=2&like=ok";
 		}
-		return url;
+		/*return url;*/
 		
 	}
 

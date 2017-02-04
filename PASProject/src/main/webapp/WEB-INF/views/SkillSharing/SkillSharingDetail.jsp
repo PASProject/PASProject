@@ -48,6 +48,11 @@ function protectKey()
 			alert("작성자만 삭제할 수 있습니다.");
 		</script>
 	</c:if>
+	<c:if test="${likee != null }">
+		<script type="text/javascript">
+			alert("추천완료!데헷");
+		</script>
+	</c:if>
 
 	<form name="frm" method="post">
 		<input type="hidden" name="ssb_Article_Num" value="${skillSharingBoardVo.ssb_Article_Num}">
