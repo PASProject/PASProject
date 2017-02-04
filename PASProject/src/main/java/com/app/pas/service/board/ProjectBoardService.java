@@ -15,7 +15,7 @@ public class ProjectBoardService {
 		this.projectboardDao = projectboardDao;
 	}
 	
-	public List<ProjectBoardVo> selectProjectboardList() throws SQLException{
+	public List<ProjectBoardVo> selectProjectBoardList() throws SQLException{
 		List<ProjectBoardVo> list = projectboardDao.selectProjectBoardList();
 		return list;
 	}

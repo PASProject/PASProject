@@ -28,11 +28,13 @@ public class ProjectBoardController {
 	NoticeService noticeService;
 	@Autowired
 	ProjectBoardService projectBoardService;
-//리스트----------------------------------------------------
+//프로젝트 게시판 리스트----------------------------------------------------
 	@RequestMapping("/projectBoardList")
-	public String ProjectBoardList(Model model,@RequestParam(value = "page", defaultValue = "1") String page) {
-		String url = "projectBoard/projectBoardList";
-
+	public String selectProjectBoardList(Model model,@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
+		List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
+		String url ="projectBoard/projectBoardList";
+		pbList = projectBoardService.selectProjectBoardList();
+		model.addAttribute("pbList", pbList);
 		return url;
 
 	}
