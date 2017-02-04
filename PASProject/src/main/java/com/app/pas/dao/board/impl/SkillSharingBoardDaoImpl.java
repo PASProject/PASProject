@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.board.SkillSharingBoardDao;
+import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -15,9 +16,9 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 	}
 
 	@Override
-	public List<SkillSharingBoardVo> selectSkillSharingBoardList()
+	public List<SkillSharingBoardVo> selectSkillLikeCountViewList()
 			throws SQLException {
-		List<SkillSharingBoardVo> list = client.queryForList("selectSkillSharingBoardList");
+		List<SkillSharingBoardVo> list = client.queryForList("selectSkillLikeCountViewList");
 		return list;
 	}
 
@@ -76,6 +77,56 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 		= (List<SkillSharingBoardVo>)client.queryForList("selectSkillSharingBoardTitle",null);
 		
 		return SsbList;
+	}
+
+	@Override
+	public void updateSkillSharingBoardCount(
+			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
+		client.update("updateSkillSharingBoardCount",skillSharingBoardVo);
+		
+	}
+
+	@Override
+	public void updateSkillSharingBoardLike(
+			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
+		client.update("updateSkillSharingBoardLike",skillSharingBoardVo);
+		
+	}
+
+	@Override
+	public void updateSkillSharingBoardCountM(
+			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
+		client.update("updateSkillSharingBoardCountM",skillSharingBoardVo);
+		
+	}
+
+	@Override
+	public void insertSkillSharingBoardLike(
+			SkillSharingBoardLikeVo skillSharingBoardLikeVo) throws SQLException {
+		client.update("insertSkillSharingBoardLike",skillSharingBoardLikeVo);
+		
+	}
+
+	@Override
+	public void deleteSkillSharingBoardLike(
+			SkillSharingBoardLikeVo skillSharingBoardLikeVo) throws SQLException {
+		client.update("deleteSkillSharingBoardLike",skillSharingBoardLikeVo);
+		
+	}
+
+	@Override
+	public int selectCountSharingBoardLike(int ssb_Article_Num)
+			throws SQLException {
+		int likeCount =(Integer) client.queryForObject("selectCountSharingBoardLike",ssb_Article_Num);
+		return likeCount;
+	}
+
+	@Override
+	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(SkillSharingBoardLikeVo skillSharingBoardLikeVo)throws SQLException {
+		
+		SkillSharingBoardLikeVo skillSharingBoardLike =
+				(SkillSharingBoardLikeVo)client.queryForObject("selectSkillSharingBoardLikeList",skillSharingBoardLikeVo);
+		return skillSharingBoardLike;
 	}
 
 	

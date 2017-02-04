@@ -34,10 +34,6 @@
 	<bean id="SkillSharingBoardDao" class="com.app.pas.dao.board.impl.SkillSharingBoardDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="TotalNoticeDao" class="com.app.pas.dao.board.impl.TotalNoticeDaoImpl" p:client-ref="SqlMapClient"/>
 	
-	
-	
-	
-	
 	<!-- ////////////////////////////////////////// service  //////////////////////////////////////////////////////////// -->
 	
 	<bean id="AdminService" class="com.app.pas.service.AdminService" p:adminDao-ref="AdminDao"/>
@@ -47,9 +43,8 @@
 	<bean id="MemberService" class="com.app.pas.service.MemberService" p:memberDao-ref="MemberDao"/>
 	<bean id="PositionService" class="com.app.pas.service.PositionService" p:positionDao-ref="PositionDao"/>
 	<bean id="ProjectJoinService" class="com.app.pas.service.ProjectJoinService" p:projectjoinDao-ref="ProjectJoinDao"/>
-	<bean id="ProjectService" class="com.app.pas.service.ProjectService" p:projectDao-ref="ProjectDao"/>
+	<bean id="ProjectService" class="com.app.pas.service.ProjectService" p:projectDao-ref="ProjectDao" p:applyDao-ref="ApplyDao" p:projectJoinDao-ref="ProjectJoinDao" p:memberDao-ref="MemberDao"/>
 	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:schedulecalendarDao-ref="ScheduleCalendarDao"/>
-	
 	
 	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>
 	<bean id="FreeBoardService" class="com.app.pas.service.board.FreeBoardService" p:freeboardDao-ref="FreeBoardDao"/>
@@ -58,7 +53,7 @@
 	<bean id="ProjectBoardService" class="com.app.pas.service.board.ProjectBoardService" p:projectboardDao-ref="ProjectBoardDao"/>
 	<bean id="ProjectBoardReplyService" class="com.app.pas.service.board.ProjectBoardReplyService" p:projectBoardReplyDao-ref="ProjectBoardReplyDao"/>
 	<bean id="QnaBoardService" class="com.app.pas.service.board.QnaBoardService" p:qnaBoardDao-ref="QnaBoardDao"/>
-	<bean id="QnaBoardReplyService" class="com.app.pas.service.board.QnaBoardReplyService" p:qnaBoardReply-ref="QnaBoardReplyDao"/>
+	<bean id="QnaBoardReplyService" class="com.app.pas.service.board.QnaBoardReplyService" p:qnaBoardReply-ref="QnaBoardReplyDao" p:qnaBoardDao-ref="QnaBoardDao"/>
 	<bean id="SkillSharingBoardService" class="com.app.pas.service.board.SkillSharingBoardService" p:skillsharingboardDao-ref="SkillSharingBoardDao"/>
 	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
 

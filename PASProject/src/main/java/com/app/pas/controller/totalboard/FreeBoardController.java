@@ -174,8 +174,8 @@ public class FreeBoardController {
 		}
 		model.addAttribute("freeBoardReplyList",freeBoardReplyList);
 		return freeBoardReplyList;
-		
 	}
+	
 	@RequestMapping(value="freeBoardReplyWrite", method=RequestMethod.POST)
 	public  @ResponseBody List<FreeBoardReplyVo> writeFreeBoardReply(@RequestBody FreeBoardReplyVo freeBoardReplyVo, HttpSession session){
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");

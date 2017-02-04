@@ -4,15 +4,20 @@ import java.sql.Timestamp;
 
 public class SkillSharingBoardVo {
 
-	
 	private int ssb_Article_Num;
 	private Timestamp ssb_wt_date;
 	private String ssb_Content;
 	private String ssb_Title;
-	private int ssb_Like;
 	private int ssb_Inq_Count;
 	private String mem_Email;
+	private int ssb_Like_Count;
 	
+	public int getSsb_Like_Count() {
+		return ssb_Like_Count;
+	}
+	public void setSsb_Like_Count(int ssb_Like_Count) {
+		this.ssb_Like_Count = ssb_Like_Count;
+	}
 	public Timestamp getSsb_wt_date() {
 		return ssb_wt_date;
 	}
@@ -37,12 +42,6 @@ public class SkillSharingBoardVo {
 	public void setSsb_Title(String ssb_Title) {
 		this.ssb_Title = ssb_Title;
 	}
-	public int getSsb_Like() {
-		return ssb_Like;
-	}
-	public void setSsb_Like(int ssb_Like) {
-		this.ssb_Like = ssb_Like;
-	}
 	public int getSsb_Inq_Count() {
 		return ssb_Inq_Count;
 	}
@@ -54,6 +53,14 @@ public class SkillSharingBoardVo {
 	}
 	public void setMem_Email(String mem_Email) {
 		this.mem_Email = mem_Email;
+	}
+	@Override
+	public String toString() {
+		return "SkillSharingBoardVo [ssb_Article_Num=" + ssb_Article_Num
+				+ ", ssb_wt_date=" + ssb_wt_date + ", ssb_Content="
+				+ ssb_Content + ", ssb_Title=" + ssb_Title + ", ssb_Inq_Count="
+				+ ssb_Inq_Count + ", mem_Email=" + mem_Email
+				+ ", ssb_Like_Count=" + ssb_Like_Count + "]";
 	}
 	
 	
