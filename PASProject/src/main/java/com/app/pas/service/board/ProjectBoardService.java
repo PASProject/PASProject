@@ -26,15 +26,13 @@ public class ProjectBoardService {
 		return projectBoardVo;
 	}
 	
-	public void insertProjectboardDao(ProjectBoardVo projectBoardVo) throws SQLException{
-		projectboardDao.insertProjectBoard(projectBoardVo);
-	}
-	
-	
-	
+	//-----------------------
 	public void insertProjectBoard(ProjectBoardVo projectBoardVo)throws SQLException{
 		projectboardDao.insertProjectBoard(projectBoardVo);
+		
 	}
+	//----------------------------
+	
 	public void deleteProjectBoard(int pb_Article_Num)throws SQLException{
 		projectboardDao.deleteProjectBoard(pb_Article_Num);
 	}

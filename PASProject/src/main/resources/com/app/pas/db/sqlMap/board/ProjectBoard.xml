@@ -31,11 +31,8 @@
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
 		INSERT INTO
-		PROJECT_BOARD(PB_ARTICLE_NUM,PB_CONTENT,PB_TITLE,PROJ_NUM,
-		MEM_EMAIL)
-		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#pb_Content#,#pb_Title#,#proj_Num#,
-		#mem_Email#)
-
+		PROJECT_BOARD(PB_ARTICLE_NUM,PB_CONTENT,PROJ_NUM,MEM_EMAIL)
+		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#pb_Content#,#proj_Num#,#mem_Email#)
 	</insert>
 
 
