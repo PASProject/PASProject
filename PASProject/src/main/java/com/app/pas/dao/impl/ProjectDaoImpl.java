@@ -43,16 +43,26 @@ public class ProjectDaoImpl implements ProjectDao {
 		client.update("deleteProject",proj_Num);
 	}
 
-	@Override
-	public List<ProjectVo> selectProjectById(String mem_Email) throws SQLException {
-		List<ProjectVo> list =client.queryForList("selectProjectById", mem_Email);
-		return list;
-	}
-
+	
 	@Override
 	public List<MemPositionViewVo> selectMemPositionViewListByProjNum(
 			int proj_Num) throws SQLException {
 		List<MemPositionViewVo> list = client.queryForList("selectMemPositionViewListByProjNum",proj_Num);
 		return list;
 	}
+
+	@Override
+	public List<ProjectVo> selectMyProjectListById(String mem_Email)
+			throws SQLException {
+		List<ProjectVo> list = client.queryForList("selectMyProjectListById",mem_Email);
+		return list;
+	}
+
+	@Override
+	public List<ProjectVo> selectOtherProjectListById(String mem_Email)
+			throws SQLException {
+		List<ProjectVo> list = client.queryForList("selectOtherProjectListById",mem_Email);
+		return list;
+	}
+
 }

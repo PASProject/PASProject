@@ -8,14 +8,14 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="AccountBoard" type="com.app.pas.dto.board.AccountBoardVo" />
 
-	<select id="selectAccountBoardList" resultClass="AccountBoard">
+	<select id="selectAccountBoardByProj" parameterClass="int" resultClass="AccountBoard">
 		SELECT *
 		FROM ACCOUNT_BOARD
-		ORDER BY ACC_NUM DESC
+		WHERE PROJ_NUM = #proj_Num#
 
 	</select>
 
-	<select id="selectAccountBoard" parameterClass="int"
+	<select id="selectAccountBoardByAcc" parameterClass="int"
 		resultClass="AccountBoard">
 		SELECT *
 		FROM ACCOUNT_BOARD

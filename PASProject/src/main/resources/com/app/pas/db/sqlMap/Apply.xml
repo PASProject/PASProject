@@ -18,7 +18,7 @@
    </select>
    
    <update id="insertApply" parameterClass="apply">
-      insert into member(apply_num,mem_email,proj_num) values(APPLY_SEQ.NEXTVAL,#mem_Email#,#proj_Num#)
+      insert into apply(apply_num,mem_email,proj_num) values(APPLY_SEQ.NEXTVAL,#mem_Email#,#proj_Num#)
    </update>
    
    

@@ -28,13 +28,10 @@
 	<update id="updateQnaBoardReply" parameterClass="QnaBoardReply">
 		UPDATE QNA_BOARD_REPLY SET QB_REPLY_CONTENT=#qb_Reply_Content#
 		WHERE QB_REPLY_NUM = #qb_Reply_Num#
-		
 	</update>
 
 	<delete id="deleteQnaBoardReply" parameterClass="int">
-		DELETE FROM QnaBoardReply WHERE QB_REPLY_NUM=#qb_Reply_Num#
-
-
+		DELETE FROM QNA_BOARD_REPLY WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</delete>
 
 </sqlMap>
