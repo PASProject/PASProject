@@ -60,6 +60,8 @@ padding: 10px;
 						<td class="col-md-1">이경희 BA</td>
 						<td class="col-md-7">
 						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
+						<br><br>
+						<textarea rows="1" cols="90"></textarea><button class="btn btn-default " type="button">등록</button>
 						<br>
 						<br>
 						</td>
@@ -68,7 +70,6 @@ padding: 10px;
 					<br>
 					
 					</c:forEach>
-
 			</fieldset>
 			<script>
 				
