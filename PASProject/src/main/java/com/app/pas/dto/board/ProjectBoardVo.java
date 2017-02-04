@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class ProjectBoardVo {
 
 	private int pb_Article_Num;
-	private String pb_Content;
     private int pb_Inq_Count;
     private String mem_Email;
     private int proj_Num;
@@ -22,12 +21,6 @@ public class ProjectBoardVo {
 	}
 	public void setPb_Article_Num(int pb_Article_Num) {
 		this.pb_Article_Num = pb_Article_Num;
-	}
-	public String getPb_Content() {
-		return pb_Content;
-	}
-	public void setPb_Content(String pb_Content) {
-		this.pb_Content = pb_Content;
 	}
 	public int getPb_Inq_Count() {
 		return pb_Inq_Count;

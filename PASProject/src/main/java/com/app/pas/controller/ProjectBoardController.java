@@ -37,11 +37,12 @@ public class ProjectBoardController {
 
 	}
 //프로젝트 게시글 올리기-----------------------------------------
-	@RequestMapping("/projectBordInsert")
+	@RequestMapping(value="/projectBordInsert",method=RequestMethod.POST)
 	public String insertProjectBoard(HttpSession session, Model model,ProjectBoardVo projectBoardVo) throws SQLException {
 		/*int proj_Num = (Integer) session.getAttribute("joinProj");*/
 		projectBoardVo.setMem_Email("임시Email");
 		projectBoardVo.setProj_Num(1);
+		System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
 		
 		System.out.println("여기오는가?");
 		projectBoardService.insertProjectBoard(projectBoardVo);

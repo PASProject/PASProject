@@ -31,24 +31,24 @@
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
 		INSERT INTO
-		PROJECT_BOARD(PB_ARTICLE_NUM,PB_CONTENT,PROJ_NUM,MEM_EMAIL)
-		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#pb_Content#,#proj_Num#,#mem_Email#)
+		PROJECT_BOARD(PB_ARTICLE_NUM,PROJ_NUM,MEM_EMAIL)
+		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#proj_Num#,#mem_Email#)
 	</insert>
 
 
-	<update id="updateProjectBoard" parameterClass="ProjectBoard">
-		UPDATE
-		PROJECT_BOARD SET PB_CONTENT=#pb_Content#, PB_TITLE=#pb_Title#,
-		WHERE
-		PB_ARTICLE_NUM=#pb_Article_Num#
-	</update>
+<!-- 	<update id="updateProjectBoard" parameterClass="ProjectBoard"> -->
+<!-- 		UPDATE -->
+<!-- 		PROJECT_BOARD SET PB_CONTENT=#pb_Content#, PB_TITLE=#pb_Title#, -->
+<!-- 		WHERE -->
+<!-- 		PB_ARTICLE_NUM=#pb_Article_Num# -->
+<!-- 	</update> -->
 
-	<delete id="deleteProjectBoard" parameterClass="int">
-		DELETE FROM
-		PROJECT_BOARD WHERE PB_ARTICLE_NUM=#pb_Article_Num#
+<!-- 	<delete id="deleteProjectBoard" parameterClass="int"> -->
+<!-- 		DELETE FROM -->
+<!-- 		PROJECT_BOARD WHERE PB_ARTICLE_NUM=#pb_Article_Num# -->
 
 
-	</delete>
+<!-- 	</delete> -->
 	
 	<select id="selectPBTotalCount" resultClass="int">
 		select count(*) from project_Board
