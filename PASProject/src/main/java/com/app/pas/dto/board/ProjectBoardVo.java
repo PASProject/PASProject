@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 public class ProjectBoardVo {
 
 	private int pb_Article_Num;
-	private String pb_Content;
     private int pb_Inq_Count;
     private String mem_Email;
     private int proj_Num;
     private Timestamp pb_wt_date;
+    private String pb_Content;
     
 	public Timestamp getPb_wt_date() {
 		return pb_wt_date;
@@ -22,12 +22,6 @@ public class ProjectBoardVo {
 	}
 	public void setPb_Article_Num(int pb_Article_Num) {
 		this.pb_Article_Num = pb_Article_Num;
-	}
-	public String getPb_Content() {
-		return pb_Content;
-	}
-	public void setPb_Content(String pb_Content) {
-		this.pb_Content = pb_Content;
 	}
 	public int getPb_Inq_Count() {
 		return pb_Inq_Count;
@@ -46,6 +40,19 @@ public class ProjectBoardVo {
 	}
 	public void setProj_Num(int proj_Num) {
 		this.proj_Num = proj_Num;
+	}
+	public String getPb_Content() {
+		return pb_Content;
+	}
+	public void setPb_Content(String pb_Content) {
+		this.pb_Content = pb_Content;
+	}
+	@Override
+	public String toString() {
+		return "ProjectBoardVo [pb_Article_Num=" + pb_Article_Num
+				+ ", pb_Inq_Count=" + pb_Inq_Count + ", mem_Email=" + mem_Email
+				+ ", proj_Num=" + proj_Num + ", pb_wt_date=" + pb_wt_date
+				+ ", pb_Content=" + pb_Content + "]";
 	}
 	
     
