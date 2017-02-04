@@ -1,7 +1,6 @@
 package com.app.pas.controller.totalboard;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.LikeVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
@@ -66,11 +66,14 @@ public class SkillSharingController {
 		  String mem_Email = memberVo.getMem_Email();*/
 		
 		String like = "";
-		String modi = "";
+		String modi = null;
 		String message = null;
+		String delete = null;
 		message = request.getParameter("message");
 		like = request.getParameter("like");
 		modi = request.getParameter("modi");
+		delete = request.getParameter("delete");
+		System.out.println(modi);
 		String url = "SkillSharing/SkillSharingDetail";
 		
 		if(like != null) {
@@ -78,6 +81,9 @@ public class SkillSharingController {
 		}
 		if(modi != null){
 			model.addAttribute("modi", modi);
+		}
+		if(delete !=null){
+			model.addAttribute("delete",delete);
 		}
 		
 		SkillSharingBoardVo skillSharingBoardVo = null;
@@ -88,9 +94,11 @@ public class SkillSharingController {
 			if(message== null){
 				System.out.println("detail message가 null일때 들어옴");
 			skillSharingBoardService.updateSkillSharingBoardCount(skillSharingBoardVo);
+			
 			}
 		
-		model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
+			model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);	
+		
 		return url;
 	}
 	
@@ -124,7 +132,6 @@ public class SkillSharingController {
 				.insertSkillSharingBoardLike(skillSharingBoardVo,
 						skillSharingBoardLikeVo, Integer.parseInt(ssb_Article_Num));
 		
-		model.addAttribute("likeCount", likeCount);
 		}else{
 			
 			skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
@@ -199,7 +206,7 @@ public class SkillSharingController {
 		
 		skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
 		System.out.println("else로들어옴");
-		return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"& modi=no";
+		return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&modi=no";
 	}
 		
 
@@ -230,9 +237,18 @@ public class SkillSharingController {
 	}
 
 	@RequestMapping(value = "/SkillSharingDelete", method = RequestMethod.POST)
-	public String deleteskillSharingBoard(String ssb_Article_Num) {
+	public String deleteskillSharingBoard(String ssb_Article_Num,HttpSession session,SkillSharingBoardVo skillSharingBoardVo) 
+			throws NumberFormatException, SQLException {
 		String url = "redirect:SkillSharingList";
-		try {
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String login_Mem_Email = memberVo.getMem_Email();
+		  SkillSharingBoardVo skillSharingBoardVo1 = 
+				  skillSharingBoardService.selectSkillSharingBoardDetail(Integer
+					.parseInt(ssb_Article_Num));
+		  String article_mem_Email = skillSharingBoardVo1.getMem_Email();
+		  
+		  if(login_Mem_Email.equals(article_mem_Email)){
+		  try {
 			skillSharingBoardService.deleteSkillSharingBoard(Integer
 					.parseInt(ssb_Article_Num));
 		} catch (NumberFormatException e) {
@@ -242,6 +258,10 @@ public class SkillSharingController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		  }else{
+			  skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
+			  return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&delete=no";
+		  }
 		return url;
 	}
 

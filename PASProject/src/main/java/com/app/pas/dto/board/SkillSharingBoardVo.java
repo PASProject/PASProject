@@ -54,6 +54,14 @@ public class SkillSharingBoardVo {
 	public void setMem_Email(String mem_Email) {
 		this.mem_Email = mem_Email;
 	}
+	@Override
+	public String toString() {
+		return "SkillSharingBoardVo [ssb_Article_Num=" + ssb_Article_Num
+				+ ", ssb_wt_date=" + ssb_wt_date + ", ssb_Content="
+				+ ssb_Content + ", ssb_Title=" + ssb_Title + ", ssb_Inq_Count="
+				+ ssb_Inq_Count + ", mem_Email=" + mem_Email
+				+ ", ssb_Like_Count=" + ssb_Like_Count + "]";
+	}
 	
 	
 	
