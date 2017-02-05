@@ -55,21 +55,18 @@ public class ProjectBoardController {
 		return url;
 	}
 
-//----------------------------------------------
-	
-
-	@RequestMapping(value = "/projectBoardUpdate", method = RequestMethod.GET)
-	public String updateProjectBoardForm(String pb_Article_Num, Model model) {
-		String url = "projectBoard/projectBoardUpdate";
+//댓글 올리기 --------------------------------------------------
+	@RequestMapping(value = "/insertProjectBoardReply", method = RequestMethod.GET)
+	public String insertProjectBoardReply(String pb_Article_Num, Model model) {
+		String url = "projectBoard/projectBoardList";
 		ProjectBoardVo projectBoardVo = null;
 		try {
 			projectBoardVo = projectBoardService
 					.selectProjectBoardDetail(Integer.parseInt(pb_Article_Num));
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("freeBoardVo", projectBoardVo);
@@ -111,54 +108,4 @@ public class ProjectBoardController {
 		return url;
 	}
 
-	@RequestMapping("/pmBoard")
-	public String PmBoard(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping("/pmChat")
-	public String PmChat(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping("/pmNoticeList")
-	public String PmNoticeList(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping("/pmNoticeWrite")
-	public String WritePmNotice(HttpSession session, Model model) {
-		String url = "";
-		return url;
-
-	}
-
-	@RequestMapping("/pmNoticeUpdate")
-	public String UpdatePmNotice(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping("/pmNoticeDelete")
-	public String DeletePmNotice(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping("/pmOverView")
-	public String PmOverView(HttpSession session, Model model,
-			@RequestParam String proj_Num) {
-		String url = "project/pmOverView";
-		model.addAttribute("proj_Num", proj_Num);
-		return url;
-	}
-
-	@RequestMapping("/teamMemberList")
-	public String TeamMemberList(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
 }
