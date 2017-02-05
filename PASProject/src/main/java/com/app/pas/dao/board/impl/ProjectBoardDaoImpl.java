@@ -68,6 +68,12 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 		return list;
 		
 	}
-
+//나의 프로젝트 보기 -----------------------------------------------------------------------
+	@Override
+	public ProjectBoardVo myProjectList(String mem_Email) throws SQLException {
+		ProjectBoardVo projectBoardVo =(ProjectBoardVo)client.queryForObject("myProjectList", mem_Email);
+		return projectBoardVo;
+	}
+//------------------------------------------------------------------------------------
 
 }

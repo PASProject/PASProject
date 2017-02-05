@@ -17,4 +17,5 @@ public interface ProjectBoardDao {
 	public void deleteProjectBoard(int pb_Article_Num)throws SQLException;
 	public ProjectBoardVo selectProjectBoardDetail(int pb_Article_Num) throws SQLException;
 	public int selectPBTotalCount() throws SQLException;
+	public ProjectBoardVo myProjectList(String mem_Email)throws SQLException;
 }

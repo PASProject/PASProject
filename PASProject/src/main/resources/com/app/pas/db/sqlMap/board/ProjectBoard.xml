@@ -20,6 +20,11 @@
 		WHERE PB_ARTICLE_NUM = #pb_Article_Num#
 	</select>
 
+	<select id = "myProjectList" parameterClass="ProjectBoard">
+		SELECT * FROM PROJECT_BOARD 
+		WHERE MEM_EMAIL = #mem_Email#
+		ORDER BY PB_ARTICLE_NUM DESC
+	</select>
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
 		INSERT INTO

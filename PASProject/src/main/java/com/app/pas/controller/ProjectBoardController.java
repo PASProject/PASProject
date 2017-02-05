@@ -31,10 +31,12 @@ public class ProjectBoardController {
 //프로젝트 게시판 리스트----------------------------------------------------
 	@RequestMapping("/projectBoardList")
 	public String selectProjectBoardList(Model model,@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
+		
 		List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
-		String url ="projectBoard/projectBoardList";
+		String url ="projectBoard/projectBoardList";	
 		pbList = projectBoardService.selectProjectBoardList();
 		model.addAttribute("pbList", pbList);
+
 		return url;
 
 	}
@@ -43,11 +45,12 @@ public class ProjectBoardController {
 	public String insertProjectBoard( Model model,ProjectBoardVo projectBoardVo,HttpSession session) throws SQLException {
 		//int proj_Num = (Integer) session.getAttribute("joinProj");
 	
-		//memberCo
-		MemberVo memberVo = (MemberVo)session.getAttribute("mem_Email");
+		//세션의 정보를 가져와서 넣음
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
-		 
 		projectBoardVo.setMem_Email(mem_Email); 
+		System.out.println("세션이 잘 왓니 이메일> : " +  mem_Email);
+		
 		projectBoardVo.setProj_Num(1);
 		System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
 		
@@ -60,7 +63,20 @@ public class ProjectBoardController {
 		return url;
 	}
 
-//댓글 올리기 --------------------------------------------------
+	
+//내가 쓴 글 보기 --------------------------------------------------	
+	@RequestMapping("/myProjectList")
+	public String myProjectList(Model model,ProjectBoardVo projectBoardVo,HttpSession session) throws SQLException{
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		projectBoardVo.setMem_Email(mem_Email); 
+		projectBoardVo.setProj_Num(1);
+		String url="projectBoard/myProjectList";
+		
+		return url;
+	}
+		
+//댓글 올리기 -----------------------------------------------------
 	@RequestMapping(value = "/insertProjectBoardReply", method = RequestMethod.GET)
 	public String insertProjectBoardReply(String pb_Article_Num, Model model) {
 		String url = "projectBoard/projectBoardList";
