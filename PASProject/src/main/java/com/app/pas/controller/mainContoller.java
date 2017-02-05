@@ -100,7 +100,13 @@ public class mainContoller {
 		/* System.out.println("result값" + result); */
 		return result;
 	}
-
+	
+	@RequestMapping(value="/logOut")
+	public String logOut(HttpSession session, Model model){
+		String url = "redirect:/index";
+		session.removeAttribute("loginUser");
+		return url;
+	}
 	// 가입처리
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
@@ -186,9 +192,18 @@ public class mainContoller {
 		return url;
 	}
 
-	@RequestMapping("/mypageList")
+	@RequestMapping("/myPage")
 	public String Mypage(HttpSession session, Model model) {
-		String url = "";
+		String url = "main/myPage";
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
+		MemberVo memName = memberService.getMember(memberVo
+				.getMem_Name());
+		model.addAttribute("memName", memName);
+		if (session.getAttribute("memName") != null) {
+			session.removeAttribute("memName");
+		}
+
 		return url;
 	}
 
@@ -291,7 +306,7 @@ public class mainContoller {
 
 	private String savePath = "resources/upload";
 
-	// 한번더 연습 씨벌 왤케 안되냐 이건 아작스 씌벌
+	// 씨벌 왤케 안되냐 이건 아작스 씌벌
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
 	public String uploadByMultipartHttpServletRequest(MemberVo memberVo,
