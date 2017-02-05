@@ -122,21 +122,23 @@ public class ProjectBoardController {
 		return url;
 
 	}
-
-	@RequestMapping(value = "/fprojectBoardDelete", method = RequestMethod.POST)
-	public String deleteFreeBoard(String pb_Article_Num) {
+//글삭제 ------------------------------------------------------------------------
+	@RequestMapping("/deleteProjectBoard")
+	public String deleteProjectBoard(String pb_Article_Num) {
 		String url = "redirect:projectBoardList";
 		try {
 			projectBoardService.deleteProjectBoard(Integer
 					.parseInt(pb_Article_Num));
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 		return url;
 	}
+	
+//------------------------------------------------------------------------------	
 
 }

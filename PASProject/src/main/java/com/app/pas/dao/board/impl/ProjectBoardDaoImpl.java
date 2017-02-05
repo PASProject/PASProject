@@ -43,7 +43,7 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 			throws SQLException {
 		client.update("updateProjectBoard",projectBoardVo);
 	}
-
+//--------------------------------------------------
 	@Override
 	public void deleteProjectBoard(int pb_Article_Num) throws SQLException {
 		client.delete("deleteProjectBoard",pb_Article_Num);

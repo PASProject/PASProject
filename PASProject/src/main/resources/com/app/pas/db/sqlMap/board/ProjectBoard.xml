@@ -40,12 +40,10 @@
 <!-- 		PB_ARTICLE_NUM=#pb_Article_Num# -->
 <!-- 	</update> -->
 
-<!-- 	<delete id="deleteProjectBoard" parameterClass="int"> -->
-<!-- 		DELETE FROM -->
-<!-- 		PROJECT_BOARD WHERE PB_ARTICLE_NUM=#pb_Article_Num# -->
-
-
-<!-- 	</delete> -->
+	<delete id="deleteProjectBoard" parameterClass="int">
+		DELETE FROM
+		PROJECT_BOARD WHERE PB_ARTICLE_NUM=#pb_Article_Num#
+	</delete>
 	
 	<select id="selectPBTotalCount" resultClass="int">
 		select count(*) from project_Board
