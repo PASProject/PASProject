@@ -53,7 +53,7 @@ padding: 10px;
 				<table class="col-md-10" style="border: 2px solid #ddd">
 				<tr>
 				<td colspan=2>
-				&nbsp;
+			
 				</td>
 				</tr>
 					<tr>
@@ -88,9 +88,9 @@ padding: 10px;
 				<!-- 댓글 -->
 				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
 					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
-						<textarea rows="1" cols="90" name="pb_Reply_Content"></textarea>
+						<textarea rows="1" cols="80" name="pb_Reply_Content"></textarea>
 						
-						<input type="submit" class="btn btn-default" value="답변하기"/> 
+						<input type="submit" class="btn btn-default" value="댓글달기"/> 
 <!-- 					<button class="btn btn-default " type="button">등록</button> -->
 				</form>	
 						<br>

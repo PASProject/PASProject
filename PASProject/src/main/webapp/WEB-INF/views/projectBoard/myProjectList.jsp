@@ -21,7 +21,7 @@ padding: 10px;
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>글 읽기</small>
+			My Project List <small> &nbsp; 내가 쓴 글</small>
 		</h2>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,7 +52,7 @@ padding: 10px;
 				<table class="col-md-10" style="border: 2px solid #ddd">
 				<tr>
 				<td colspan=2>
-				&nbsp;
+				
 				</td>
 				</tr>
 					<tr>
@@ -87,41 +87,40 @@ padding: 10px;
 				<!-- 댓글 -->
 				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
 					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
-						<textarea rows="1" cols="90" name="pb_Reply_Content"></textarea>
+						<textarea rows="1" cols="80" name="pb_Reply_Content"></textarea>
 						
-						<input type="submit" class="btn btn-default" value="답변하기"/> 
-<!-- 					<button class="btn btn-default " type="button">등록</button> -->
+						<input type="submit" class="btn btn-default" value="댓글달기"/> 
+
 				</form>	
 						<br>
-						<br>
+					
 						</td>
 					</tr>
+				
+			<tr>
+					<td>
+						<input type="submit" value="글 수정" onClick=""/>
+					</td>
+					<td>
+						<input type="submit" value="삭  제" onClick="deleteProjectBoard(${pbList.pb_Article_Num})"/>
+					</td>
+			</tr>
+		
 					</table>
 					<br>
-					
 					</c:forEach>
 					
 			</fieldset>
 			<script>
-				$(".anser-write input{type=submit}").click(addAnswer);
-				function addAnswer(e){
-					e.preventDefault();
-					console.log("click!");
-					
-					var queryString = $(".anser-write").serialize();
-					console.log("query : " + queryString);
-				}
 				
 				function projectBoardList(){
 					location.href="projectBoardList";
 				}
 				
-// 				 function projectBordInsert(){
-// 					frm.method = "post";
-// 					frm.action ="projectBordInsert";
-// 					frm.submit();
+				 function deleteProjectBoard(pb_Article_Num){
+				location.href = "deleteProjectBoard?pb_Article_Num="+pb_Article_Num;
 					
-// 				}
+				}
 			
 			</script>
 		
