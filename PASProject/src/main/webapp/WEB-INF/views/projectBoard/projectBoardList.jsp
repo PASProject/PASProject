@@ -64,7 +64,8 @@ padding: 10px;
 						<br><br>
 						
 				<!-- 댓글 -->
-				<form method="post" method="post" action = "insertProjectBoardReply">
+				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
+					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
 						<textarea rows="1" cols="90" name="pb_Reply_Content"></textarea>
 						
 						<input type="submit" class="btn btn-default" value="답변하기"/> 
@@ -80,6 +81,14 @@ padding: 10px;
 					</c:forEach>
 			</fieldset>
 			<script>
+				$(".anser-write input{type=submit}").click(addAnswer);
+				function addAnswer(e){
+					e.preventDefault();
+					console.log("click!");
+					
+					var queryString = $(".anser-write").serialize();
+					console.log("query : " + queryString);
+				}
 				
 // 				 function projectBordInsert(){
 // 					frm.method = "post";
