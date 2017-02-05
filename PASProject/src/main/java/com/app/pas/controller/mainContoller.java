@@ -100,7 +100,13 @@ public class mainContoller {
 		/* System.out.println("result값" + result); */
 		return result;
 	}
-
+	
+	@RequestMapping(value="/logOut")
+	public String logOut(HttpSession session, Model model){
+		String url = "redirect:/index";
+		session.removeAttribute("loginUser");
+		return url;
+	}
 	// 가입처리
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
@@ -178,9 +184,6 @@ public class mainContoller {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		list = projectService.selectOtherProjectListById(memberVo
 				.getMem_Email());
-		for(ProjectVo x : list){
-			System.out.println(x.toString()+"@@@@@@@@@@@@@@@@@@@@@@@@@@@아더 리스트");
-		}
 		model.addAttribute("otherProjectList", list);
 		if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
@@ -189,9 +192,18 @@ public class mainContoller {
 		return url;
 	}
 
-	@RequestMapping("/mypageList")
+	@RequestMapping("/myPage")
 	public String Mypage(HttpSession session, Model model) {
-		String url = "";
+		String url = "main/myPage";
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
+		MemberVo memName = memberService.getMember(memberVo
+				.getMem_Name());
+		model.addAttribute("memName", memName);
+		if (session.getAttribute("memName") != null) {
+			session.removeAttribute("memName");
+		}
+
 		return url;
 	}
 
@@ -235,7 +247,7 @@ public class mainContoller {
 	
 	
 	@RequestMapping(value="/apply",method = RequestMethod.POST)
-	public @ResponseBody String mdlInvite(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
+	public @ResponseBody Map<String,Object> mdlInvite(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
 		int proj_Num =  (Integer) map.get("proj_Num");
 		ApplyVo applyVo = new ApplyVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
@@ -253,8 +265,8 @@ public class mainContoller {
 		memApplyViewVo.setProj_Num(proj_Num);
 		memApplyViewVo = projectService.insertApply(applyVo,projectJoinVo,memApplyViewVo);
 		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
-		
-		return p_Mem_Email;
+		map.put("p_Mem_Email", p_Mem_Email);
+		return map;
 	}
 	
 	@RequestMapping(value = "/simpleMessage", method = RequestMethod.POST)
@@ -294,7 +306,7 @@ public class mainContoller {
 
 	private String savePath = "resources/upload";
 
-	// 한번더 연습 씨벌 왤케 안되냐 이건 아작스 씌벌
+	// 씨벌 왤케 안되냐 이건 아작스 씌벌
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
 	public String uploadByMultipartHttpServletRequest(MemberVo memberVo,
@@ -338,6 +350,14 @@ public class mainContoller {
 	public String profileImg(HttpSession session, Model model) {
 		String url = "main/profileImg";
 		return url;
+	}
+	
+	@RequestMapping(value="/alramView",method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> selectAlarmView(HttpSession session) throws SQLException{
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String p_Mem_Email = member.getMem_Email();
+		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_Mem_Email);
+		return memApplyViewList;
 	}
 
 }

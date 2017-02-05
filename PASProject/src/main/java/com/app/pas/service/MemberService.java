@@ -46,10 +46,17 @@ public class MemberService {
 		return countMemApply;
 	}
 	
+
+	public List<MemApplyViewVo> selectMemApplyViewByEmail(String p_Mem_Email) throws SQLException{
+		List<MemApplyViewVo> list = memberDao.selectMemApplyViewByEmail(p_Mem_Email);
+		return list;
+	}
+
 	// 여준영 부분
 	
 		public void updateMemberImg(MemberVo memberVo) throws SQLException{
 			memberDao.updateMemberImg(memberVo);
 			}
 	
+
 }
