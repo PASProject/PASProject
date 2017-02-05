@@ -38,11 +38,27 @@ function protectKey()
 			alert("이미추천했다규");
 		</script>
 	</c:if>
+	<c:if test="${modi != null }">
+		<script type="text/javascript">
+			alert("작성자만 수정할 수 있습니다.");
+		</script>
+	</c:if>
+	<c:if test="${delete != null }">
+		<script type="text/javascript">
+			alert("작성자만 삭제할 수 있습니다.");
+		</script>
+	</c:if>
+	<c:if test="${likee != null }">
+		<script type="text/javascript">
+			alert("추천완료!데헷");
+		</script>
+	</c:if>
 
 	<form name="frm" method="post">
 		<input type="hidden" name="ssb_Article_Num" value="${skillSharingBoardVo.ssb_Article_Num}">
 		<input type="hidden" name="ssb_Inq_Count" value="${skillSharingBoardVo.ssb_Inq_Count}">
 		<table id="orderList">
+		
 			<tr>
 				<th width="20%">글번호</th>
 				<td>${skillSharingBoardVo.ssb_Article_Num}</td>
@@ -65,7 +81,7 @@ function protectKey()
 			</tr>
 			<tr>
 				<th>추천수</th>
-				<td>${likeCount}</td>
+				<td>${skillSharingBoardVo.ssb_Like_Count}</td>
 			</tr>
 		</table>
 		<input type="button" value="수정" onclick="go_update()">
@@ -73,6 +89,7 @@ function protectKey()
 		<input type="button"  value="목록" onClick="go_list()">
 		<input type="button"  value="추천!" onClick="go_like()">
 	</form>
+	
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
