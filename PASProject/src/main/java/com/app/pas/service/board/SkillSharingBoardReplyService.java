@@ -11,11 +11,13 @@ public class SkillSharingBoardReplyService{
 	
 	private SkillSharingBoardReplyDao skillSharingBoardReplyDao;
 	
+	
+	
 	public void setSkillSharingBoardReplyDao(
-			SkillSharingBoardReplyDao skillSharingBoardReplyDao){
+			SkillSharingBoardReplyDao skillSharingBoardReplyDao) {
 		this.skillSharingBoardReplyDao = skillSharingBoardReplyDao;
 	}
-	
+
 	public List<SkillSharingBoardReplyVo> selectSkillSharingBoardReplyList()
 			throws SQLException {
 		List<SkillSharingBoardReplyVo> list = new ArrayList<SkillSharingBoardReplyVo>();
