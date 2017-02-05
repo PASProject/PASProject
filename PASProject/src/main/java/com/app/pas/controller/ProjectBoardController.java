@@ -40,9 +40,14 @@ public class ProjectBoardController {
 	}
 //프로젝트 게시글 올리기-----------------------------------------
 	@RequestMapping(value="/projectBoardInsert",method=RequestMethod.POST)
-	public String insertProjectBoard( Model model,ProjectBoardVo projectBoardVo) throws SQLException {
-		/*int proj_Num = (Integer) session.getAttribute("joinProj");*/
-		projectBoardVo.setMem_Email("abc@naver.com");
+	public String insertProjectBoard( Model model,ProjectBoardVo projectBoardVo,HttpSession session) throws SQLException {
+		//int proj_Num = (Integer) session.getAttribute("joinProj");
+	
+		//memberCo
+		MemberVo memberVo = (MemberVo)session.getAttribute("mem_Email");
+		String mem_Email = memberVo.getMem_Email();
+		 
+		projectBoardVo.setMem_Email(mem_Email); 
 		projectBoardVo.setProj_Num(1);
 		System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
 		
