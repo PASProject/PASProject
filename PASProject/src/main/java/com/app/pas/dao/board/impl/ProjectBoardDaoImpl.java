@@ -1,6 +1,7 @@
 package com.app.pas.dao.board.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.app.pas.dao.board.ProjectBoardDao;
@@ -69,11 +70,18 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 		
 	}
 //나의 프로젝트 보기 -----------------------------------------------------------------------
-	@Override
-	public ProjectBoardVo myProjectList(String mem_Email) throws SQLException {
-		ProjectBoardVo projectBoardVo =(ProjectBoardVo)client.queryForObject("myProjectList", mem_Email);
-		return projectBoardVo;
-	}
+//	@Override
+//	public ProjectBoardVo myProjectList(String mem_Email) throws SQLException {
+//		ProjectBoardVo projectBoardVo =(ProjectBoardVo)client.queryForObject("myProjectList", mem_Email);
+//		return projectBoardVo;
+//	}
 //------------------------------------------------------------------------------------
+
+	@Override
+	public List<ProjectBoardVo> myProjectList(String mem_Email)
+			throws SQLException {
+		List<ProjectBoardVo> pbList  = client.queryForList("myProjectList", mem_Email);
+		return pbList;
+	}
 
 }

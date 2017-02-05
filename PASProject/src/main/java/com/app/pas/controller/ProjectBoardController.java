@@ -49,6 +49,7 @@ public class ProjectBoardController {
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		projectBoardVo.setMem_Email(mem_Email); 
+		
 		System.out.println("세션이 잘 왓니 이메일> : " +  mem_Email);
 		
 		projectBoardVo.setProj_Num(1);
@@ -67,16 +68,20 @@ public class ProjectBoardController {
 //내가 쓴 글 보기 --------------------------------------------------	
 	@RequestMapping("/myProjectList")
 	public String myProjectList(Model model,HttpSession session,ProjectBoardVo projectBoardVo
-			,String mem_Email) throws SQLException{
+			) throws SQLException{
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
-		mem_Email = memberVo.getMem_Email();
-
+		String mem_Email = memberVo.getMem_Email();
+		List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
 		projectBoardVo.setMem_Email(mem_Email); 
 		projectBoardVo.setProj_Num(1);
+		
+		System.out.println("맴버 이메일!" +  mem_Email);
 		String url="projectBoard/myProjectList";
 		
-		projectBoardVo =projectBoardService.myProjectList(mem_Email);
+		System.out.println("컨트롤러에 있느느 리스트 : " + pbList);
+		pbList = projectBoardService.myProjectList(mem_Email);
 		model.addAttribute("projectBoardVo",projectBoardVo);
+		model.addAttribute("pbList",pbList);
 		
 		return url;
 	}

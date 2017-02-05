@@ -42,11 +42,11 @@ padding: 10px;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			
-			 <button type="submit" onclick="go_myProjectList()">목록으로</button>
+			 <button type="submit" onclick="projectBoardList()">목록으로</button>
 			 <br><br>
 			<fieldset>
-			<form name="frm" method="post" action="myProjectList">
-			<input type="hidden" name="pb_Content" value="${ProjectBoardVo.pb_Content}">
+			<form name="frm" method="post" action="projectBoardInsert">
+		<input type="hidden" name="pb_Content" value="${ProjectBoardVo.pb_Content}">
 			
 				
 				<table class="col-md-10" style="border: 2px solid #ddd">
@@ -73,15 +73,15 @@ padding: 10px;
 				<br>
 				</form>
 				<!-- boardList -->
-					<c:forEach var="pbList" items="${projectBoardVo}" >
+					<c:forEach var="pbList" items="${pbList}" varStatus="status">
 					<br>
 					<br>
 					<table class="col-md-10" style="border: 2px solid #ddd">
 					<tr>
 						<td class="col-md-1">이경희 BA</td>
 						<td class="col-md-7">
-						게시물 번호 : ${projectBoardVo.pb_Article_Num}
-						<textarea rows="7" cols="100" name="pb_Content" readonly> ${projectBoardVo.pb_Content}</textarea>
+						게시물 번호 : ${pbList.pb_Article_Num}
+						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
 						<br><br>
 						
 				<!-- 댓글 -->
@@ -100,6 +100,7 @@ padding: 10px;
 					<br>
 					
 					</c:forEach>
+					
 			</fieldset>
 			<script>
 				$(".anser-write input{type=submit}").click(addAnswer);
@@ -111,8 +112,8 @@ padding: 10px;
 					console.log("query : " + queryString);
 				}
 				
-				function go_myProjectList(){
-					location.href="myProjectList";
+				function projectBoardList(){
+					location.href="projectBoardList";
 				}
 				
 // 				 function projectBordInsert(){
