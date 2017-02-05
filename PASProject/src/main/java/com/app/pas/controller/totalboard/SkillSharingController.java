@@ -161,13 +161,13 @@ public class SkillSharingController {
 			SkillSharingBoardVo skillSharingBoardVo) {
 		String url = "redirect:SkillSharingList";
 
-		/*
-		 * MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		 * String mem_Email = memberVo.getMem_Email();
-		 * skillSharingBoardVo.setMem_Email(mem_Email);
-		 */
+		
+		  MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		  String mem_Email = memberVo.getMem_Email();
+		  skillSharingBoardVo.setMem_Email(mem_Email);
+		 
 
-		skillSharingBoardVo.setMem_Email("abc@naver.com");
+		
 
 		try {
 			skillSharingBoardService

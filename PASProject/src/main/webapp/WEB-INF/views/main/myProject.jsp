@@ -22,8 +22,12 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
+
 					<button  style="margin-left:5px;" class="btn btn-default pull-right">생성하기</button>
 					<input class="btn btn-danger pull-right" type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
+					<input type="button"  value="SkillSharingBoard" onClick="go_Pb()">
+					<input type ="button" value="ProjectBoard" onClick="go_ProjectBoard()">
+
 				</h2>
 
 			</div>
@@ -136,6 +140,9 @@
 	}
 	function go_Pb(){
 		location.href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList"
+	}
+	function go_ProjectBoard(){
+		location.href="<%=request.getContextPath() %>/project/projectBoardList"
 	}
 </script>
 
