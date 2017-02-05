@@ -159,6 +159,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">전화번호</label>
+							<div class="col-md-6  inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-earphone"></i></span> <input
+										name="mem_Phone" placeholder="010-0000-0000"
+										class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
 					</div>
 
 

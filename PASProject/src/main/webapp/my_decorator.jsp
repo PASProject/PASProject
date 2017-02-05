@@ -295,7 +295,7 @@ body {
 										data-keyboard="false" data-backdrop="static" id="profileImg" />
 								</a></li>
 								<li class="divider"></li>
-								<li><a href="myPageModal();" data-toggle="modal"
+								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
 								<li><a href="#">내 업무</a></li>
