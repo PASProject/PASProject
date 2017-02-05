@@ -18,27 +18,38 @@
 	</select>
 
 	<update id="extraMemberPwd" parameterClass="Member">
-		update Member set mem_pass=#mem_Pass# where mem_email=#mem_Email#
+		update Member set
+		mem_pass=#mem_Pass# where mem_email=#mem_Email#
 
 	</update>
 
 	<update id="AuthMember" parameterClass="str">
 
-		update Member set mem_approve='y' where mem_email = # mem_Email#
+		update Member set
+		mem_approve='y' where mem_email = # mem_Email#
 	</update>
 	<update id="insertMember" parameterClass="Member">
-		insert into MEMBER(MEM_EMAIL,MEM_NAME,MEM_PHONE,MEM_PASS)
+		insert into
+		MEMBER(MEM_EMAIL,MEM_NAME,MEM_PHONE,MEM_PASS)
 		VALUES(#mem_Email#,#mem_Name#,#mem_Phone#,#mem_Pass#)
 	</update>
 
 	<update id="updateMember" parameterClass="Member">
-		UPDATE MEMBER SET MEM_NAME=#mem_Name# ,MEM_PHONE=#mem_Phone#,
+		UPDATE MEMBER SET
+		MEM_NAME=#mem_Name# ,MEM_PHONE=#mem_Phone#,
 		MEM_PASS=#mem_Pass#,MEM_IMG=#mem_Img#
 		WHERE MEM_EMAIL = #mem_Email#
 	</update>
 
 	<update id="deleteMember" parameterClass="str">
-		delete from MEMBER where MEM_EMAIL=#mem_Email#
+		delete from MEMBER
+		where MEM_EMAIL=#mem_Email#
 	</update>
+
+	<update id="updateMemberImg" parameterClass="Member">
+		UPDATE MEMBER SET
+		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
+	</update>
+
 
 </sqlMap>

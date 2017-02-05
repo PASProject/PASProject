@@ -1,3 +1,4 @@
+<%@page import="com.app.pas.dto.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -54,8 +55,10 @@
 <!-- JS -->
 
 
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/socket.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
@@ -191,8 +194,8 @@ body {
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 			id="navbar">
 			<div class="container">
-				
-			<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
+
+				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
@@ -256,9 +259,24 @@ body {
 							aria-expanded="false">My account <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#"><img
-										src="<%=request.getContextPath()%>/resources/img/default-user.png"
-										style="width: 100%;" /></a></li>
+								<li><a href="#" onclick="imgUploadModal();">
+								
+								
+						<!-- 		String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload"); -->
+								
+								<% 
+								String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
+								MemberVo member = new MemberVo();								
+								member = (MemberVo)session.getAttribute("loginUser");
+								String img = member.getMem_Img();
+								upload = upload+"\\"+img;
+									
+								%>
+									 <%-- <img src="<%=upload%>" --%>
+									 <img src="http://localhost:8181/img/1486091925755$$여준영.jpg"
+										style="width: 100%;" data-toggle="modal"
+										data-target="#imgUploadModal" data-keyboard="false"
+										data-backdrop="static" /></a></li>
 								<li class="divider"></li>
 								<li><a href="#">내 정보 수정</a></li>
 								<li><a href="#">내 업무</a></li>
@@ -279,10 +297,30 @@ body {
 		</nav>
 	</header>
 
+	<!-- Modal -->
+	<div class="modal fade" id="imgUploadModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">
+					사진을 등록하렴
+					</h3>
+				</div>
+				<div class="modal-body" id="">
+					<jsp:include page="WEB-INF/views/main/c8.jsp" />
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<decorator:body />
 
-<c:set var ="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
+	<c:set var="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
 </body>
 <script>
 	$(document).ready(

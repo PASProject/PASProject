@@ -10,6 +10,9 @@
 </head>
 <body>
 <a href="<%=request.getContextPath()%>/alarm/viewAlarm">asdasdfsdfsdf</a>
-
+<img src="http://localhost:8181/img/1486091925755$$여준영.jpg"
+										style="width: 100%;" data-toggle="modal"
+										data-target="#imgUploadModal" data-keyboard="false"
+										data-backdrop="static" />
 </body>
 </html>

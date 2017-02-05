@@ -39,4 +39,11 @@ public class MemberService {
 	public void AuthMember(String mem_Email) throws SQLException{
 		memberDao.AuthMember(mem_Email);
 	}
+	
+	// 여준영 부분
+	
+	public void updateMemberImg(MemberVo memberVo) throws SQLException{
+		memberDao.updateMemberImg(memberVo);
+		}
+	
 }

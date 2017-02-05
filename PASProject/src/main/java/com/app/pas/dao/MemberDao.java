@@ -13,5 +13,5 @@ public interface MemberDao {
 	public void deleteMember(String mem_Email)throws SQLException;
 	public void extraMemberPwd(MemberVo memberVo)throws SQLException;
 	public void AuthMember(String mem_Email)throws SQLException;
-	
+	public void updateMemberImg(MemberVo memberVo) throws SQLException;
 }

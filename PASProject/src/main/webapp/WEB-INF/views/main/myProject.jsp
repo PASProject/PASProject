@@ -40,7 +40,7 @@
 
 				<!-- Projects Row -->
 				<c:forEach items="${myProjectList}" var="projectVo"
-					varStatus="status">>
+					varStatus="status">
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"

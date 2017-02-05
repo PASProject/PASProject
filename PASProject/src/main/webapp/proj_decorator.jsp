@@ -280,9 +280,11 @@ body {
 
 	<div class="container">
 		<div class="row">
+			
 			<div class="col-md-2" id="submenu" style="margin-top: 40px;">
 				<jsp:include page="sub.jsp" />
 			</div>
+			
 			<decorator:body />
 		</div>
 	</div>
@@ -292,7 +294,6 @@ body {
 	$(document).ready(
 			function() {
 				connect('init,' + '${loginUser.mem_Email}');
-
 				$(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')

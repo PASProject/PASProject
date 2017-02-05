@@ -52,6 +52,15 @@ public class MemberDaoImpl implements MemberDao {
 		client.update("AuthMember",mem_Email);
 		
 	}
+	
+	// 여준영 부분
+	public void updateMemberImg(MemberVo memberVo) throws SQLException{
+	    client.update("updateMemberImg",memberVo);
+	}
+
+
+	
+	
 
 	
 }

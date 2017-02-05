@@ -9,15 +9,7 @@
 <title></title>
 </head>
 <body>
-<form id="frmm" enctype="multipart/form-data">
-			<input type="file" name="file" />
-			<input type="button" class="btn btn-primary" value="파일 올리기">
-</form>
 
-	
-
-	
-	
 	<h3>MultipartFile 사용</h3>
 	<form action="yourProject" method="POST"
 		enctype="multipart/form-data">
@@ -26,4 +18,5 @@
 	</form>
 	
 </body>
+
 </html>
