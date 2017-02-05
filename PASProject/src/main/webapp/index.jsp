@@ -421,18 +421,6 @@ $(document)
 									validating : 'glyphicon glyphicon-refresh'
 								},
 								fields : {
-									mem_Email : {
-										validators : {
-											stringLength : {
-												min : 2,
-												message :  '메일이 어떻게 두글자가 되냐?'
-											},
-											notEmpty : {
-												message : '이름을 기입해 주세요'
-											}
-										}
-									},
-
 									mem_Phone : {
 										validators : {
 											stringLength : {
@@ -484,30 +472,18 @@ $(document)
 											}
 										}
 									},
-									comment : {
-										validators : {
-											stringLength : {
-												min : 10,
-												max : 200,
-												message : 'Please enter at least 10 characters and no more than 200'
-											},
-											notEmpty : {
-												message : 'Please supply a description about yourself'
-											}
-										}
-									},
-									email : {
+								mem_Email : {
 										validators : {
 											notEmpty : {
-												message : 'Please supply your email address'
+												message : '이메일란을 입력해 주세요.'
 											},
 											emailAddress : {
-												message : 'Please supply a valid email address'
+												message : '형식에 맞는 이메일 주소를 입력해 주세요.'
 											}
 										}
 									},
 
-									password : {
+									mem_Pass : {
 										validators : {
 											identical : {
 												field : 'confirmPassword',
@@ -515,7 +491,7 @@ $(document)
 											}
 										}
 									},
-									confirmPassword : {
+									mem_Pass_CK : {
 										validators : {
 											identical : {
 												field : 'password',

@@ -22,9 +22,8 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
-					<button class="btn btn-default">생성하기</button>
-					<button class="btn btn-default">파일선택</button>
-					<input type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
+					<button  style="margin-left:5px;" class="btn btn-default pull-right">생성하기</button>
+					<input class="btn btn-danger pull-right" type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
 				</h2>
 
 			</div>
@@ -39,8 +38,7 @@
 
 
 				<!-- Projects Row -->
-				<c:forEach items="${myProjectList}" var="projectVo"
-					varStatus="status">>
+				<c:forEach items="${myProjectList}" var="projectVo" varStatus="status">
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"

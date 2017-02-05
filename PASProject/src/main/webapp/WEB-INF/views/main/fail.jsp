@@ -7,6 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+
+<style>
+#totalbubble {
+	
+}
+
+#bubble {
+	background-color: #F2F2F2;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px #B2B2B2;
+	height: 200px;
+	width: 500px;
+	margin-left: 0px;
+}
+
+#bubble2 {
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px #B2B2B2;
+	height: 200px;
+	margin: 10px;
+	width: 57%;
+	margin-left: 500px;
+}
+
+#bubble::after {
+	background-color: #F2F2F2;
+	box-shadow: -1px -1px 1px 0px rgba(178, 178, 178, .4);
+	content: "\00a0";
+	display: block;
+	height: 20px;
+	left: 30px;
+	position: relative;
+	top: -10px;
+	transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	width: 20px;
+}
+</style>
 </head>
 <body>
 
