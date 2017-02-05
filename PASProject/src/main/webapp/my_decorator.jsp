@@ -303,8 +303,16 @@ body {
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
 							</ul></li>
-						<li><a href="#" class="glyphicon glyphicon-bell"
-							style="font-size: 25px;"></a></li>
+							
+						<li><a href="#" id ="alarmMenu" class="glyphicon glyphicon-bell"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false"
+							style="font-size: 25px;">
+							</a>
+							<ul class="dropdown-menu" role="menu" id="dropMenu">
+							
+							</ul>
+							</li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -473,7 +481,37 @@ body {
 									.stop(true, true).slideUp("400");
 							$(this).toggleClass('open');
 						});
-
+				$('#alarmMenu').on('click',function(){
+					$.ajax({
+						url:'alramView',
+						contentType:'application/json',
+						dataType:'json',
+						type:'post',
+						success:(function(data) {
+							var dataList="";
+							$.each(data,function(i){
+								var date = new Date(data[i].apply_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								
+								dataList += '<li>알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
+								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+'<a href="#">수락</a> / <a href="#">거절</a></li><br>';
+								if(i==2){
+									return false;
+								}
+							});
+							$('#dropMenu').empty();
+							$('#dropMenu').append(dataList);
+						})
+					})
+				})
+				
 			});
 </script>
 

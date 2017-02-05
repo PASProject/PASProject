@@ -66,6 +66,7 @@
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"></h4>
 									${projectVo.proj_Name }
+
 								</div>
 								<div class="modal-body" id="${projectVo.proj_Num}body">팀원
 								</div>
