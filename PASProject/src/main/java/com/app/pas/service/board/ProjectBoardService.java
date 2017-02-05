@@ -26,12 +26,16 @@ public class ProjectBoardService {
 		return projectBoardVo;
 	}
 	
-	//-----------------------
+	
 	public void insertProjectBoard(ProjectBoardVo projectBoardVo)throws SQLException{
 		projectboardDao.insertProjectBoard(projectBoardVo);
 		
 	}
-	//----------------------------
+//내가쓴글 보기 
+	public ProjectBoardVo myProjectList (String mem_Email) throws SQLException{
+		ProjectBoardVo projectBoardVo = projectboardDao.myProjectList(mem_Email);
+		return projectBoardVo;
+	}
 	
 	public void deleteProjectBoard(int pb_Article_Num)throws SQLException{
 		projectboardDao.deleteProjectBoard(pb_Article_Num);

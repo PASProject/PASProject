@@ -66,12 +66,17 @@ public class ProjectBoardController {
 	
 //내가 쓴 글 보기 --------------------------------------------------	
 	@RequestMapping("/myProjectList")
-	public String myProjectList(Model model,ProjectBoardVo projectBoardVo,HttpSession session) throws SQLException{
+	public String myProjectList(Model model,HttpSession session,ProjectBoardVo projectBoardVo
+			,String mem_Email) throws SQLException{
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
-		String mem_Email = memberVo.getMem_Email();
+		mem_Email = memberVo.getMem_Email();
+
 		projectBoardVo.setMem_Email(mem_Email); 
 		projectBoardVo.setProj_Num(1);
 		String url="projectBoard/myProjectList";
+		
+		projectBoardVo =projectBoardService.myProjectList(mem_Email);
+		model.addAttribute("projectBoardVo",projectBoardVo);
 		
 		return url;
 	}

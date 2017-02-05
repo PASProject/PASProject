@@ -42,6 +42,7 @@ padding: 10px;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			
+			
 			 <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button>
 			 <br><br>
 			<fieldset>
