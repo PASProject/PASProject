@@ -62,10 +62,17 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemApplyViewVo selectMemApplyViewByMemPRoj(
+	public MemApplyViewVo selectMemApplyViewByMemProj(
 			MemApplyViewVo memApplyViewVo) throws SQLException {
 		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemPRoj",memApplyViewVo);
 		return memApplyViewVo;
+	}
+
+	@Override
+	public List<MemApplyViewVo> selectMemApplyViewByEmail(String p_Mem_Email)
+			throws SQLException {
+		List<MemApplyViewVo> list = (List<MemApplyViewVo>) client.queryForList("selectMemApplyViewByEmail",p_Mem_Email);
+		return list;
 	}
 
 	

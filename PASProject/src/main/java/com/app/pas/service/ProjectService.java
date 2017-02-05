@@ -62,7 +62,7 @@ public class ProjectService {
 	public MemApplyViewVo insertApply(ApplyVo applyVo,ProjectJoinVo projectJoinVo,MemApplyViewVo memApplyViewVo) throws SQLException{
 		applyDao.insertApply(applyVo);
 		projectJoinDao.insertProjectJoin(projectJoinVo);
-		memApplyViewVo = memberDao.selectMemApplyViewByMemPRoj(memApplyViewVo);
+		memApplyViewVo = memberDao.selectMemApplyViewByMemProj(memApplyViewVo);
 		return memApplyViewVo;
 	}
 }
