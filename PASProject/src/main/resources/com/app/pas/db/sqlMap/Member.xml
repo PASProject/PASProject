@@ -47,4 +47,10 @@
 	<select id="selectMemApplyViewByMemPRoj" parameterClass="MemApplyView" resultClass="MemApplyView">
 		select * from mem_apply_view where mem_email = #mem_Email# and proj_num = #proj_Num#
 	</select>
+	
+	<update id="updateMemberImg" parameterClass="Member">
+		UPDATE MEMBER SET
+		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
+	</update>
+	
 </sqlMap>
