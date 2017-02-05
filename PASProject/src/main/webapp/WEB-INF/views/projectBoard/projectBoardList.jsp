@@ -59,9 +59,18 @@ padding: 10px;
 					<tr>
 						<td class="col-md-1">이경희 BA</td>
 						<td class="col-md-7">
+						게시물 번호 : ${pbList.pb_Article_Num}
 						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
 						<br><br>
-						<textarea rows="1" cols="90"></textarea><button class="btn btn-default " type="button">등록</button>
+						
+				<!-- 댓글 -->
+				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
+					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
+						<textarea rows="1" cols="90" name="pb_Reply_Content"></textarea>
+						
+						<input type="submit" class="btn btn-default" value="답변하기"/> 
+<!-- 					<button class="btn btn-default " type="button">등록</button> -->
+				</form>	
 						<br>
 						<br>
 						</td>
@@ -72,6 +81,14 @@ padding: 10px;
 					</c:forEach>
 			</fieldset>
 			<script>
+				$(".anser-write input{type=submit}").click(addAnswer);
+				function addAnswer(e){
+					e.preventDefault();
+					console.log("click!");
+					
+					var queryString = $(".anser-write").serialize();
+					console.log("query : " + queryString);
+				}
 				
 // 				 function projectBordInsert(){
 // 					frm.method = "post";

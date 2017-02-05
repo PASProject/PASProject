@@ -24,7 +24,8 @@
 					<!-- <small>Secondary Text</small> -->
 					<button class="btn btn-default">생성하기</button>
 					<button class="btn btn-default">파일선택</button>
-					<input type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
+					<input type="button"  value="SkillSharingBoard" onClick="go_Pb()">
+					<input type ="button" value="ProjectBoard" onClick="go_ProjectBoard()">
 				</h2>
 
 			</div>
@@ -139,6 +140,9 @@
 	}
 	function go_Pb(){
 		location.href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList"
+	}
+	function go_ProjectBoard(){
+		location.href="<%=request.getContextPath() %>/project/projectBoardList"
 	}
 </script>
 

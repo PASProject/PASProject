@@ -51,4 +51,9 @@
 	<select id="selectMemApplyViewByEmail" parameterClass="str" resultClass="MemApplyView">
 		select * from mem_Apply_View where p_mem_Email = #p_Mem_Email# and apply_commit_check = '0' order by apply_num desc
 	</select>
+	<update id="updateMemberImg" parameterClass="Member">
+		UPDATE MEMBER SET
+		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
+	</update>
+	
 </sqlMap>

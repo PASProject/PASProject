@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
@@ -281,50 +283,58 @@ public class mainContoller {
 		return result;
 	}
 
-	// 파일업로드 연습
-	private String savePath = "resources/upload";
-
-	@RequestMapping(value = "/uploadForm", method = RequestMethod.GET)
-	public String uploadForm() {
-		return "main/uploadForm";
+	@RequestMapping("/c8")
+	public String c8(HttpSession session, Model model) {
+		String url = "/main/c8";
+		return url;
 	}
 
-	@RequestMapping(value = "/yourProject", method = RequestMethod.POST)
-	public String uploadByMultipartFile(
-			@RequestParam("f") MultipartFile multipartFile,
-			@RequestParam("title") String title, Model model,
-			HttpServletRequest request, HttpServletResponse response)
+	private String savePath = "resources/upload";
+
+	// 한번더 연습 씨벌 왤케 안되냐 이건 아작스 씌벌
+
+	@RequestMapping(value = "/c8", method = RequestMethod.POST)
+	public String uploadByMultipartHttpServletRequest(MemberVo memberVo,
+			MultipartHttpServletRequest request, Model model,HttpSession session)
 			throws IOException {
 
-		request.setCharacterEncoding("utf-8");
+		MultipartFile multipartFile = request.getFile("f");
+
 		if (!multipartFile.isEmpty()) {
+			/*String upload = request.getSession().Http*/
+			String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
+			System.out.println(upload);
+			File file = new File(upload, System.currentTimeMillis() + "$$"
+					+ multipartFile.getOriginalFilename());
 
-			String uploadPath = request.getSession().getServletContext()
-					.getRealPath(savePath);
 			
-			 
-			File file = new File(uploadPath, System.currentTimeMillis() + "$$"
-					+ multipartFile.getOriginalFilename());// 파일명 저장
-
-			long fileSizeLimit = 1024 * 1024 * 5;
-
-			if (multipartFile.getSize() > fileSizeLimit) {
-				System.out.println("파일 용량이 너무 큽니다.");
-
-				response.setCharacterEncoding("utf-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('파일 용량은 5MB 이하 입니다.');history.go(-1);</script>");
-				return null;
-			}
-
-			multipartFile.transferTo(file); // 이곳에서 파일저장
-
-			model.addAttribute("title", title);
-			model.addAttribute("fileName", multipartFile.getOriginalFilename());
+			multipartFile.transferTo(file);
+			
+			model.addAttribute("title", request.getParameter("title"));
 			model.addAttribute("uploadPath", file.getAbsolutePath());
-			return "main/yourProject";
+//			MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+			memberVo.setMem_Img(file.getName());
+			memberVo.setMem_Email(((MemberVo)(session.getAttribute("loginUser"))).getMem_Email());
+			session.removeAttribute("loginUser");
+			session.setAttribute("loginUser",memberVo);
+			request.setAttribute("memberVo", memberVo);
+			try {
+				memberService.updateMemberImg(memberVo);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "main/c8";
 		}
-		return "upload/noUploadFile";
+		System.out.println("null");
+		return "main/c8";
+
+	}
+	
+	@RequestMapping(value = "/profileImg", method = RequestMethod.GET)
+	public String profileImg(HttpSession session, Model model) {
+		String url = "main/profileImg";
+		return url;
 	}
 	
 	@RequestMapping(value="/alramView",method = RequestMethod.POST)

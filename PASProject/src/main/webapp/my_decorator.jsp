@@ -1,3 +1,4 @@
+<%@page import="com.app.pas.dto.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -54,11 +55,13 @@
 <!-- JS -->
 
 
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/socket.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 
 <!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
@@ -181,6 +184,19 @@ body {
 .col-md-3 {
 	width: 100%;
 }
+
+
+
+#profileImg{
+border-radius: 50%;
+width: 100px;
+height: 100px;
+}
+#thumbnail{
+border-radius:50%;
+width:40px;
+height:40px;
+}
 </style>
 </head>
 <title>최종! 2E6099</title>
@@ -191,8 +207,8 @@ body {
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
 			id="navbar">
 			<div class="container">
-				
-			<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
+
+				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
@@ -200,6 +216,7 @@ body {
 								프로젝트 보기</a></li>
 						<li><a href="<%=request.getContextPath()%>/main/otherProject">다른
 								프로젝트 보기</a></li>
+
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
@@ -252,12 +269,34 @@ body {
 						</li>
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
-							aria-expanded="false">My account <span class="caret"></span>
+							aria-expanded="false" style="padding-top:5px; padding-bottom:5px;">
+
+<img 
+				src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
+				id="thumbnail" alt="your image" />
+
+
+
+ <span class="caret"></span>
 						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#"><img
-										src="<%=request.getContextPath()%>/resources/img/default-user.png"
-										style="width: 100%;" /></a></li>
+							<ul class="dropdown-menu" role="menu" style="min-width:144px;">
+								<li><a  href="#" onclick="imgUploadModal();">
+										<!-- 		String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload"); -->
+
+										<%-- <% 
+								String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
+								MemberVo member = new MemberVo();								
+								member = (MemberVo)session.getAttribute("loginUser");
+								String img = member.getMem_Img();
+								upload = upload+"\\"+img;
+									
+								%> --%> <%-- <img src="<%=upload%>" --%> <img 
+								class="img-thumbnail"
+										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
+									 data-toggle="modal"
+										data-target="#imgUploadModal" data-keyboard="false"
+										data-backdrop="static" id="profileImg" />
+								</a></li>
 								<li class="divider"></li>
 								<li><a href="#">내 정보 수정</a></li>
 								<li><a href="#">내 업무</a></li>
@@ -286,15 +325,78 @@ body {
 		</nav>
 	</header>
 
+	<!-- Modal -->
+	<div class="modal fade" id="imgUploadModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">사진을 등록하렴</h3>
+				</div>
+				<div class="modal-body">
+					<%-- <jsp:include page="WEB-INF/views/main/c8.jsp" /> --%>
+					<%@ include file="WEB-INF/views/main/c8.jsp"%>
+				</div>
+				<div class="modal-footer" style="text-align:left">
+				<button id="closeModal" type="button" class="btn btn-default"
+						data-dismiss="modal" >Close</button>
+					<script>
+						$(document).ready(function() {
+							$('#closeModal').click(function() {
+								location.reload();
+							});
+						});
+					</script>
+					<button  class="btn btn-success" id="btn-upload1" style="margin-left:399px">사진 등록하기</button>
+					<script>
+		$('#btn-upload1').on('click', function() {
+			console.log('btn-upload');
+			var form = new FormData(document.getElementById('uploadForm'));
+		
+			$.ajax({
+				url : "<%=request.getContextPath()%>/main/c8",
+				data : form,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				type : 'POST',
+				success : 
+			
+					function(response) {
+					console.log('success');
+					console.log(response);
+					 alert('사진이 등록되었습니다.'); 
+					$("#btn-upload1").attr("data-dismiss","modal");
+					location.reload();
+					$('#profileImg').attr('src','<%=request.getContextPath()%>/resources/upload/${param.memberVo.mem_Img}');
+					
+				
+														},
+					error : function(jqXHR) {
+					
+					console.log('error');
+														}
+													});
+			
+			
+										});
+					</script>
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<decorator:body />
 
-<c:set var ="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
+	<c:set var="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
 </body>
 <script>
 	$(document).ready(
 			function() {
-				connect('init:'+'${sessionScope.loginUser.mem_Email}');
+				connect('init:' + '${sessionScope.loginUser.mem_Email}');
 				$(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')
