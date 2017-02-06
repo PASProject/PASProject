@@ -10,38 +10,51 @@
 
 	<select id="selectQnaBoardList" resultClass="QnaBoard">
 		SELECT *
-		FROM QNA_BOARD
+		FROM
+		QNA_BOARD
 		ORDER BY QB_ARTICLE_NUM DESC
 
 	</select>
 
-	<select id="selectQnaBoard" parameterClass="int"
-		resultClass="QnaBoard">
+	<select id="selectQnaBoard" parameterClass="int" resultClass="QnaBoard">
 		SELECT *
 		FROM QNA_BOARD
-		WHERE QB_ARTICLE_NUM LIKE '%'||#qb_Article_Num#||'%'
-
-
+		WHERE QB_ARTICLE_NUM LIKE
+		'%'||#qb_Article_Num#||'%'
 	</select>
 
 	<insert id="insertQnaBoard" parameterClass="QnaBoard">
 		INSERT INTO
-		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL) 
+		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL)
 		VALUES(QNA_BOARD_SEQ.NEXTVAL,#qb_Title#,#qb_Content#,#qb_Password#,#mem_Email#)
 	</insert>
 
+	<update id="updateQnaYN" parameterClass="int">
+		UPDATE QNA_BOARD SET QB_YN=1
+		WHERE QB_ARTICLE_NUM = #qb_Article_Num#
+	</update>
+	
+	<update id = "deleteQnaYN" parameterClass="int">
+		UPDATE QNA_BOARD SET QB_YN=0
+		WHERE QB_ARTICLE_NUM = #qb_Article_Num#
+	</update>
+
 
 	<update id="updateQnaBoard" parameterClass="QnaBoard">
-		UPDATE QNA_BOARD SET QB_TITLE=#qb_Title#, QB_CONTENT=#qb_Content#
-		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
+		UPDATE QNA_BOARD SET
+		QB_TITLE=#qb_Title#, QB_CONTENT=#qb_Content#
+		WHERE
+		QB_ARTICLE_NUM=#qb_Article_Num#
 	</update>
 
 	<delete id="deleteQnaBoard" parameterClass="int">
-		DELETE FROM QNA_BOARD WHERE QB_ARTICLE_NUM=#qb_Article_Num#
+		DELETE FROM QNA_BOARD
+		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</delete>
-	
+
 	<select id="QnaSelectTotalCount" resultClass="int">
-		SELECT COUNT(*) FROM QNA_BOARD
+		SELECT COUNT(*)
+		FROM QNA_BOARD
 	</select>
 
 </sqlMap>

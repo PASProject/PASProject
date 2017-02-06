@@ -111,7 +111,6 @@ body {
 			var email = $('#email').val();
 			var pwd = $('#pwd').val();
 			
-			
 			$.ajax({
 				type : 'POST',
 				url : '/pas/main/login',
@@ -129,7 +128,7 @@ body {
 											} else if (result == 2) {
 												alert("비밀번호 오류입니다");
 												alert(result);
-											} else if( result == 3){
+											} else if (result == 3) {
 												alert("인증되지않은계정입니다");
 											}
 
@@ -138,34 +137,43 @@ body {
 									});
 						})
 
-	})
+		$('#login').keypress(function(e) {
+			var key = e.which;
+			if (key == 13) // the enter key code
+			{
+				$('input[name = login1]').click();
+				return false;
+			}
+		});
 
-	$(function() {
-		$("#searchEmail").click(function() {
-			var sendEmail = $('#sendEmail').val();
+		$(function() {
+			$("#searchEmail").click(function() {
+				var sendEmail = $('#sendEmail').val();
 
-			$.ajax({
-				type : 'POST',
-				url : 'simpleMessage',
-				dataType : 'json',
-				data : {
-					'sendEmail' : sendEmail
-				},
-				success : function(result) {
-					if(result=="1"){
-						alert("해당 이메일로 임시 비밀번호를 발송하였습니다.");
-					
-					}else{
-						alert("존재하지않는 이메일입니다.");
+				$.ajax({
+					type : 'POST',
+					url : 'simpleMessage',
+					dataType : 'json',
+					data : {
+						'sendEmail' : sendEmail
+					},
+					success : function(result) {
+						if (result == "1") {
+							alert("해당 이메일로 임시 비밀번호를 발송하였습니다.");
+
+						} else {
+							alert("존재하지않는 이메일입니다.");
+						}
 					}
-				}
-				
-			});
+
+				});
+			})
 		})
+
 	})
 </script>
 </head>
-<body style="height:90%">
+<body style="height: 90%">
 
 	<div class="container2">
 
@@ -196,7 +204,8 @@ body {
 					<label><input type="checkbox"> Remember me</label>
 				</div>
 				<input type="button" id="login" class="btn btn-default btn-block"
-					value="들어가기">
+					value="들어가기" name="login1">
+
 			</form>
 		</div>
 		<div class="dividercontainer">

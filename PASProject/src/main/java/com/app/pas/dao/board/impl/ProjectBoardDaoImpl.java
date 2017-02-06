@@ -1,6 +1,7 @@
 package com.app.pas.dao.board.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.app.pas.dao.board.ProjectBoardDao;
@@ -29,7 +30,7 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 		ProjectBoardVo projectBoardVo = (ProjectBoardVo) client.queryForObject("selectProjectBoard",pb_Article_Num);
 		return projectBoardVo;
 	}
-
+//-----------------------------------------------------------------
 	@Override
 	public void insertProjectBoard(ProjectBoardVo projectBoardVo)
 			throws SQLException {
@@ -42,7 +43,7 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 			throws SQLException {
 		client.update("updateProjectBoard",projectBoardVo);
 	}
-
+//--------------------------------------------------
 	@Override
 	public void deleteProjectBoard(int pb_Article_Num) throws SQLException {
 		client.delete("deleteProjectBoard",pb_Article_Num);
@@ -68,6 +69,19 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 		return list;
 		
 	}
+//나의 프로젝트 보기 -----------------------------------------------------------------------
+//	@Override
+//	public ProjectBoardVo myProjectList(String mem_Email) throws SQLException {
+//		ProjectBoardVo projectBoardVo =(ProjectBoardVo)client.queryForObject("myProjectList", mem_Email);
+//		return projectBoardVo;
+//	}
+//------------------------------------------------------------------------------------
 
+	@Override
+	public List<ProjectBoardVo> myProjectList(String mem_Email)
+			throws SQLException {
+		List<ProjectBoardVo> pbList  = client.queryForList("myProjectList", mem_Email);
+		return pbList;
+	}
 
 }

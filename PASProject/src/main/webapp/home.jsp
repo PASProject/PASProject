@@ -11,6 +11,7 @@
 <body>
 <a href="<%=request.getContextPath() %>/freeBoard/freeBoardList">FreeBoard 리스트</a>
 <br><a href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList">SkillSharingBoard 리스트</a>
-<br><a href="<%=request.getContextPath() %>/project/projectBoardList">projectBoardList 리스트</a>
+<br><a href="<%=request.getContextPath() %>/project/projectBoardList">projectBoard 리스트</a>
+<br><a href="<%=request.getContextPath() %>/qna/QnAList">QnABoard 리스트</a>
 </body>
 </html>
