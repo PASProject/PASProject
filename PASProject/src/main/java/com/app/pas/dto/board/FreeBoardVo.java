@@ -6,16 +6,22 @@ public class FreeBoardVo {
 
 	
 	private int frb_Article_Num;
+	private Timestamp frb_Wt_Date;
 	private String frb_Content;
 	private String frb_Title;
 	private int frb_Inq_Count;
 	private String mem_Email;
 	private String frb_Kind;
-	private Timestamp frb_Wt_Date;
+	private int frb_Like_Count;
 	
 	
 	
-	
+	public int getFrb_Like_Count() {
+		return frb_Like_Count;
+	}
+	public void setFrb_Like_Count(int frb_Like_Count) {
+		this.frb_Like_Count = frb_Like_Count;
+	}
 	public Timestamp getFrb_Wt_Date() {
 		return frb_Wt_Date;
 	}
