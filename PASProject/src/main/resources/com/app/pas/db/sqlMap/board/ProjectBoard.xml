@@ -20,6 +20,11 @@
 		WHERE PB_ARTICLE_NUM = #pb_Article_Num#
 	</select>
 
+	<select id = "myProjectList" parameterClass="str" resultClass="ProjectBoard">
+		SELECT * FROM PROJECT_BOARD 
+		WHERE MEM_EMAIL = #mem_Email#
+		ORDER BY PB_ARTICLE_NUM DESC
+	</select>
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
 		INSERT INTO
@@ -28,19 +33,18 @@
 	</insert>
 
 
-<!-- 	<update id="updateProjectBoard" parameterClass="ProjectBoard"> -->
-<!-- 		UPDATE -->
-<!-- 		PROJECT_BOARD SET PB_CONTENT=#pb_Content#, PB_TITLE=#pb_Title#, -->
-<!-- 		WHERE -->
-<!-- 		PB_ARTICLE_NUM=#pb_Article_Num# -->
-<!-- 	</update> -->
-
-<!-- 	<delete id="deleteProjectBoard" parameterClass="int"> -->
-<!-- 		DELETE FROM -->
-<!-- 		PROJECT_BOARD WHERE PB_ARTICLE_NUM=#pb_Article_Num# -->
+	<update id="updateProjectBoard" parameterClass="ProjectBoard">
+		UPDATE
+		PROJECT_BOARD SET PB_CONTENT=#pb_Content#
+		WHERE
+		PB_ARTICLE_NUM=#pb_Article_Num#
+	</update>
 
 
-<!-- 	</delete> -->
+	<delete id="deleteProjectBoard" parameterClass="int">
+		DELETE FROM
+		PROJECT_BOARD WHERE PB_ARTICLE_NUM=#pb_Article_Num#
+	</delete>
 	
 	<select id="selectPBTotalCount" resultClass="int">
 		select count(*) from project_Board

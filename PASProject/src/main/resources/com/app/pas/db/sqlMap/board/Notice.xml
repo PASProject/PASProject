@@ -37,8 +37,8 @@
 		WHERE NOTICE_NUM = #notice_Num# AND PROJ_NUM = #proj_Num#
 	</select>
 
-	<select id="selectNoticeCount" resultClass="int">
-		SELECT COUNT(*) FROM NOTICE
+	<select id="selectNoticeCount" parameterClass="int" resultClass="int">
+		SELECT COUNT(*) FROM NOTICE WHERE PROJ_NUM=#proj_Num#
 	</select>
 
 

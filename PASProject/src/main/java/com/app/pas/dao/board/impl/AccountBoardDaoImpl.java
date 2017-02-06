@@ -23,9 +23,9 @@ public class AccountBoardDaoImpl implements AccountBoardDao {
 	}
 
 	@Override
-	public AccountBoardVo selectAccountBoardByAcc(int acc_Num) throws SQLException {
-		AccountBoardVo accountBoardVo = (AccountBoardVo) client.queryForObject("selectAccountBoardByAcc",acc_Num);
-		return accountBoardVo;
+	public AccountBoardVo selectAccountBoardByAcc(AccountBoardVo accountBoardVo) throws SQLException {
+		AccountBoardVo accountBoardVo1 = (AccountBoardVo) client.queryForObject("selectAccountBoardByAcc",accountBoardVo);
+		return accountBoardVo1;
 	}
 
 	@Override
@@ -41,8 +41,27 @@ public class AccountBoardDaoImpl implements AccountBoardDao {
 	}
 
 	@Override
-	public void deleteAccountBoard(int acc_Num) throws SQLException {
-		client.update("deleteAccountBoard",acc_Num);
+	public void deleteAccountBoard(AccountBoardVo accountBoardVo) throws SQLException {
+		client.update("deleteAccountBoard",accountBoardVo);
+	}
+
+	@Override
+	public int sumAccountImp(int proj_Num) throws SQLException {
+		int result = (Integer) client.queryForObject("sumAccountImp", proj_Num);
+		return result;
+	}
+
+	@Override
+	public int sumAccountExp(int proj_Num) throws SQLException {
+		int result =(Integer) client.queryForObject("sumAccountExp", proj_Num);
+				
+		return result;
+	}
+
+	@Override
+	public int selectAccountCount(int proj_Num) throws SQLException {
+		int result =(Integer)client.queryForObject("selectAccountCount", proj_Num);
+		return result;
 	}
 
 }
