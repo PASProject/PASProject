@@ -47,7 +47,7 @@ public class NoticeController {
 			model.addAttribute("NoticeList", list);
 			memPositionView = noticeService.getNoticePosition(map);
 			session.setAttribute("memPositionView", memPositionView);
-			totalCount = noticeService.selectNoticeCount();
+			totalCount = noticeService.selectNoticeCount(proj_Num);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
