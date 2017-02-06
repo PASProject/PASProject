@@ -27,37 +27,29 @@
 <script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+<style>
+#out{
+    width: 600px;
+    margin: auto;
+    margin-top: 300px;
+}
+</style>
 </head>
 <body>
+<form>
+<div>
+<div id="out" style="background-color:#ddd; padding:20px;"><h3 style="text-align: center; margin-right: 46px;">
+			<img style="width: 80px"
+				src="<%=request.getContextPath()%>/resources/img/logo.png"><br><br>
+		회원가입이 완료되셨습니다.<br>로그인 진행을 위해서 가입하신 이메일 인증을 확인해주세요.</h3>
+		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/index'";>초기화면</button></div>
+  
 
-<div class="container container-fluid">
-
-
-		<form class="form-horizontal" action=" " method="post" id="reg_form">
-
-
-				<!-- Form Name -->
-				<legend> 회원가입이 완료되었습니다. </legend>
-
-				<!-- Email -->
-				<div class="form-group">
-					<label class="col-md-4 control-label">이제 여기로 나갑니다</label>
-				</div>
-				</form>
-				</div>
-				
-				
-
-
-
+</div>
+</form>
 <script>
-function indexBtn(this.form){
-	
-	location.href="/index";
-	
-}
+
 
 </script>
-
 </body>
 </html>

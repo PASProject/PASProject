@@ -15,6 +15,11 @@
 	<select id="selectMember" parameterClass="str" resultClass="Member">
 		select * from member where mem_email = #mem_Email#
 	</select>
+	
+	<select id="searchEmail" parameterClass="Member" resultClass="Member">
+		select * from member where mem_Name =#mem_Name# and mem_Phone = #mem_Phone#
+	</select>
+	
 
 	<update id="extraMemberPwd" parameterClass="Member">
 		update Member set mem_pass=#mem_Pass# where mem_email=#mem_Email#
@@ -51,9 +56,25 @@
 	<select id="selectMemApplyViewByEmail" parameterClass="str" resultClass="MemApplyView">
 		select * from mem_Apply_View where p_mem_Email = #p_Mem_Email# and apply_commit_check = '0' order by apply_num desc
 	</select>
+	
+	
+	<select id="selectMemApplyViewByApplyNum" parameterClass="int" resultClass="MemApplyView">
+		select * from mem_Apply_view where apply_Num = #apply_Num#
+	</select>
+	
+	<update id="updateApplyCommitCheck" parameterClass="int">
+		update mem_apply_view set apply_commit_check='1' where apply_Num = #apply_Num#
+	</update>
+	
+	<update id="deleteApplyViewByApplyNum" parameterClass="int">
+		delete mem_apply_view where apply_Num = #apply_Num#
+	</update>
+	
+	
 	<update id="updateMemberImg" parameterClass="Member">
 		UPDATE MEMBER SET
 		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
 	</update>
+	
 	
 </sqlMap>

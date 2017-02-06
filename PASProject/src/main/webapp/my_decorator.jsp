@@ -439,8 +439,6 @@ body {
 
 										});
 					</script>
-
-
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
 					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
@@ -499,9 +497,9 @@ body {
 								day = day >= 10 ? day : '0' + day;
 								var fullD = year + '년' + month
 										+ '월' + day + '일';
-								
-								dataList += '<li>알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
-								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+'<a href="#">수락</a> / <a href="#">거절</a></li><br>';
+								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
+								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+"<input type='button' id="+data[i].apply_Num+" class='go_agree' value='수락'>"
+								+" / <input type='button' id="+data[i].apply_Num+" class='go_reject' value='거절'></a></li><br>";
 								if(i==2){
 									return false;
 								}
@@ -510,20 +508,94 @@ body {
 							$('#dropMenu').append(dataList);
 						})
 					})
-				})
+				});
+				
+				$(document).on('click','.go_reject',function(){
+					var apply_Num =$(this).attr('id');
+					dataList = {'apply_Num' : apply_Num};
+					$.ajax({
+						url:'reject',
+						dataType:'json',
+						contentType:'application/json',
+						data: JSON.stringify(dataList),
+						type:'post',
+						success:function(data){
+							alert('가입신청 거절');
+							var dataList="";
+							$.each(data,function(i){
+								var date = new Date(data[i].apply_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
+								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+"<input type='button' id="+data[i].apply_Num+" class='go_agree' value='수락'>"
+								+" / <input type='button' id="+data[i].apply_Num+" class='go_reject' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							$('#dropMenu').empty();
+							$('#dropMenu').append(dataList);
+						}
+				});
+			});
+				
+				
+				$(document).on('click','.go_agree',function(){
+					var apply_Num =$(this).attr('id');
+					dataList = {'apply_Num' : apply_Num};
+					alert(apply_Num);
+					$.ajax({
+						url:'agree',
+						dataType:'json',
+						contentType:'application/json',
+						data: JSON.stringify(dataList),
+						type:'post',
+						success:function(data){
+							alert('가입신청 승인');
+							var dataList="";
+							$.each(data,function(i){
+								var date = new Date(data[i].apply_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
+								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+"<input type='button' id="+data[i].apply_Num+" class='go_agree' value='수락'>"
+								+" / <input type='button' id="+data[i].apply_Num+" class='go_reject' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							$('#dropMenu').empty();
+							$('#dropMenu').append(dataList);
+						}
+					});
+				});
+				
 				
 			});
+
+	
 </script>
 
 
 <script>
+function go_agree(apply_Num){
+	alert(apply_Num);
+};
 	function logOut() {
 		location.href = "logOut";
 	}
 </script>
-
-
-
-
 </html>
 

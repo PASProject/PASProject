@@ -18,5 +18,9 @@ public interface MemberDao {
 	public MemApplyViewVo selectMemApplyViewByMemProj(MemApplyViewVo memApplyViewVo) throws SQLException;
 	public List<MemApplyViewVo> selectMemApplyViewByEmail(String p_Mem_Email) throws SQLException;
 	public void updateMemberImg(MemberVo memberVo) throws SQLException;
+    public MemberVo searchEmail(MemberVo memberVo) throws SQLException;
+	public void updateApplyCommitCheck(int apply_Num) throws SQLException;
+	public MemApplyViewVo selectMemApplyViewByApplyNum(int apply_Num) throws SQLException;
+	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException;
 
 }

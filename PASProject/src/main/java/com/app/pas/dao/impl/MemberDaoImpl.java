@@ -64,7 +64,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemApplyViewVo selectMemApplyViewByMemProj(
 			MemApplyViewVo memApplyViewVo) throws SQLException {
-		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemPRoj",memApplyViewVo);
+		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemProj",memApplyViewVo);
 		return memApplyViewVo;
 	}
 	// 여준영 부분
@@ -77,6 +77,28 @@ public class MemberDaoImpl implements MemberDao {
 			throws SQLException {
 		List<MemApplyViewVo> list = (List<MemApplyViewVo>) client.queryForList("selectMemApplyViewByEmail",p_Mem_Email);
 		return list;
+	}
+
+	@Override
+	public MemberVo searchEmail(MemberVo memberVo) throws SQLException {
+		MemberVo MemberVo1 = (MemberVo) client.queryForObject("searchEmail",memberVo);
+		return MemberVo1;
+	}
+	public void updateApplyCommitCheck(int apply_Num) throws SQLException {
+		client.update("updateApplyCommitCheck",apply_Num);
+	}
+
+	@Override
+	public MemApplyViewVo selectMemApplyViewByApplyNum(int apply_Num)
+			throws SQLException {
+		MemApplyViewVo memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByApplyNum",apply_Num);
+		return memApplyViewVo;
+	}
+
+	@Override
+	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException {
+		client.delete("deleteApplyViewByApplyNum",apply_Num);
+
 	}
 
 	

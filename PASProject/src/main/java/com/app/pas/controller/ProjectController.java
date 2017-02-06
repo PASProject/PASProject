@@ -349,11 +349,15 @@ public class ProjectController {
 		int proj_Num=1;
 		int totalCount = 0;
 		List<AccountBoardVo> list =accountService.getAccountList(proj_Num);
+		System.out.println(list+"이건 리스트!!");
+		if(list.isEmpty()!=true){
 		int Imp = accountService.sumAccountImp(proj_Num);
 		int Exp = accountService.sumAccountExp(proj_Num);
-		model.addAttribute("AccountBoardList", list);
 		model.addAttribute("sumImp",Imp);
 		model.addAttribute("sumExp",Exp);
+		}
+		model.addAttribute("AccountBoardList", list);
+		
 		totalCount = accountService.selectAccountCount(proj_Num);
 		
 		
@@ -377,14 +381,13 @@ public class ProjectController {
 		int result=1;
 		AccountBoardVo accountBoardVo = new AccountBoardVo();
 		
-		String str="1998-02-02"; 
+		String str= map.get("acc_Date").toString(); 
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
 		java.util.Date t = sdf.parse(str); 
 		java.sql.Date st = new java.sql.Date(t.getTime());
 		java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
-		System.out.println(sts+"타임스탬프");
+		
 		accountBoardVo.setAcc_Date(sts);
-		System.out.println(accountBoardVo.getAcc_Date()+"이것은 accountboardVo accDate");
 		int acc_Imp =Integer.parseInt(map.get("acc_Imp").toString());
 		 accountBoardVo.setAcc_Imp(acc_Imp);
 		 int acc_Exp = Integer.parseInt(map.get("acc_Exp").toString());
