@@ -19,13 +19,12 @@
 </head>
 <body>
 
-
 			<!-- Page Header -->
 
 			<div class="col-md-10">
 				<h2 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-					FreeBoard <small>마음껏 지껄이시길 바랍니다.</small>
+					FreeBoard <small>아무말이나 하셔도 되요♥</small>
 				</h2>
 
 				<table class="table table-hover">
@@ -43,14 +42,11 @@
 							<td style="text-align: center">${freeBoardVo.frb_Article_Num }</td>
 							<td><a
 								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
-
 							<td>${freeBoardVo.mem_Email }</td>
-							
-
 							<td style="text-align: center"><fmt:formatDate
 									value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
 							<td style="text-align: center">${freeBoardVo.frb_Inq_Count }</td>
-							<td style="text-align: center">${freeBoardVo.frb_Like }</td>
+							<td style="text-align: center">${freeBoardVo.frb_Like_Count }</td>
 						</tr>
 					</c:forEach>
 				</TABLE>

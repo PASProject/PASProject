@@ -44,7 +44,7 @@ public class ProjectBoardController {
 		//int proj_Num = (Integer) session.getAttribute("joinProj");
 	
 		//memberCo
-		MemberVo memberVo = (MemberVo)session.getAttribute("mem_Email");
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		 
 		projectBoardVo.setMem_Email(mem_Email); 
