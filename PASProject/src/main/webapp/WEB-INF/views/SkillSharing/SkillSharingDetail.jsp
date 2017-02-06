@@ -55,6 +55,7 @@ function protectKey()
 	</c:if>
 
 	<form name="frm" method="post">
+		<!--전 controller에서 보내준것 가져온다  -->
 		<input type="hidden" name="ssb_Article_Num" value="${skillSharingBoardVo.ssb_Article_Num}">
 		<input type="hidden" name="ssb_Inq_Count" value="${skillSharingBoardVo.ssb_Inq_Count}">
 		<table id="orderList">
@@ -88,67 +89,122 @@ function protectKey()
 		<input type="button" value="삭제" onclick="go_delete()">
 		<input type="button"  value="목록" onClick="go_list()">
 		<input type="button"  value="추천!" onClick="go_like()">
-	</form>
-			<br><br>
 		
-			<form name="Reply" method="post" action="SkillSharingDetail">
-			<input type="hidden" name="ssb_Article_Num" value="${SkillSharingBoardVo.ssb_Article_Num}">
-			<input type="hidden" name="ssb_Reply_Content" value="${SkillSharingBoardReplyVo.ssb_Reply_Content}">
-				
-				<table class="col-md-10" style="border: 2px solid #ddd">
-				<tr>
-				<td colspan=2>
-				&nbsp;
-				</td>
-				</tr>
-					<tr>
-						<td class="col-md-1">내용</td>
-						<td class="col-md-7">
-						<textarea rows="3" cols="80" name="ssb_Reply_Content"></textarea></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td style="text-align:right">
-							<button class="btn btn-default " type="submit">댓글쓰기</button>
-						</td>
-					</tr>
-					
-				</table>
-				<br>
-				<br>
-				<br>
-				</form>
-				<!-- boardList -->
-					<c:forEach var="ssbList" items="${ssbList}" >
-					<br>
-					<br>
-					<table class="col-md-10" style="border: 2px solid #ddd">
-					<tr>
-						<td class="col-md-1">댓글</td>
-						<td class="col-md-7">
-						게시물 번호 : ${ssbList.ssb_Article_Num}
-						<textarea rows="7" cols="100" name="ssb_Reply_Content" readonly> ${ssbList.ssb_Reply_Content}</textarea>
-						<br><br>
+	</form>
+		<div class="col-md-10">
+				<h2 class="page-header"
+					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+					<small>댓글</small>
+				</h2>
+
+				<div style="border: solid 1px black;">
+					<form name="reply" method="post">
+						<input type="hidden" name="ssb_Article_Num" id="ssb_Article_Num"
+							value="${skillSharingBoardVo.ssb_Article_Num}">
 						
-				<!-- 댓글 -->
-				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
-					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
-						<textarea rows="1" cols="90" name="ssb_Reply_Content"></textarea>
-						
-						<input type="submit" class="btn btn-default" value="답변하기"/> 
-<!-- 					<button class="btn btn-default " type="button">등록</button> -->
-				</form>	
-						<br>
-						<br>
-						</td>
-					</tr>
-					</table>
-					<br>
-					
-					</c:forEach>
+					</form>
+					<div style="background: gray">
+
+						<textarea rows="5" cols="50" id="ssb_Reply_Content"></textarea>
+						<input type="button" value="등록" id="replyBtn">
+					</div>
+					<div id="reply" style="border: solid 1px black;"></div>
+				</div>
+				<div>
+					<input type="button" value="수정" onclick="go_replyUpdate()"> 
+					<input type="button" value="삭제" onclick="go_replyDelete()"> 
+				</div>
+			</div>
 			
-			
-	<script>
+	<script type="text/javascript">
+	$(document).ready(function() {//페이지가 켜졌을때 준비 된다.
+		var ssb_Article_Num = $('#ssb_Article_Num').val();//#ssb_Article_Num jquery 선택자
+		var data ={'ssb_Article_Num' : ssb_Article_Num}; // json 형태로 바꾸어준다.
+		$.ajax({
+			url:'SkillSharingReplyList', //어느 컨트롤러로 보낼거냐
+			contentType:'application/json', 
+			dataType:'json',
+			data:JSON.stringify(data), //json 형태 data 를 String 화 시킨다.
+			type:'post',
+			success : function(data){ //성공했을때 기능
+				$.each(data, function(i) { // $.each = for문
+					var date = new Date(
+							data[i].ssb_Reply_Time)
+					var year = date.getFullYear();
+					var month = (1 + date.getMonth());
+					month = month >= 10 ? month : '0'
+							+ month;
+					var day = date.getDate();
+					day = day >= 10 ? day : '0' + day;
+					var fullD = year + '년' + month
+							+ '월' + day + '일';
+					var tt = '<div>아이디 : '
+							+ data[i].ssb_Reply_Mem
+							+ '  /  ' + '작성 날짜 : '
+							+ fullD + '<div>  ->'
+							+ data[i].ssb_Reply_Content
+							+'</div></div><br><br>';
+					$('div #reply').append(tt);
+				})
+			}
+		});
+		
+				$('#replyBtn').on(
+						'click',
+						function() {
+							var ssb_Article_Num = $('#ssb_Article_Num')
+									.val();
+							var ssb_Reply_Content = $('#ssb_Reply_Content')
+									.val();
+							var dataWrite = {
+								'ssb_Article_Num' : ssb_Article_Num,
+								'ssb_Reply_Content' : ssb_Reply_Content
+							};
+							$.ajax({
+								url : 'SkillSharingReplyWrite',
+								data : JSON.stringify(dataWrite),
+								type : 'post',
+								contentType : 'application/json',
+								success : function(data) {
+									$('#ssb_Reply_Content').val('');
+									$('div #reply').empty();
+									$.each(data, function(i) {
+										var date = new Date(
+												data[i].ssb_Reply_Time)
+										var year = date.getFullYear();
+										var month = (1 + date.getMonth());
+										month = month >= 10 ? month : '0'
+												+ month;
+										var day = date.getDate();
+										day = day >= 10 ? day : '0' + day;
+										var fullD = year + '년' + month
+												+ '월' + day + '일';
+										var tt = '<div >아이디 : '
+												+ data[i].ssb_Reply_Mem
+												+ '  /  ' + '작성 날짜 : '
+												+ fullD + '<div>  ->'
+												+ data[i].ssb_Reply_Content
+												+'</div></div><br><br>';
+										$('div #reply').append(tt);
+									})
+									send('push:def@naver.com');
+								},
+								error : function() {
+									alert('댓글 등록 실패');
+								}
+							});
+						});
+	});
+		
+		function go_replyUpdate() {
+			location.href = "freeBoardUpdate?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
+		}
+	
+		function go_replydelete() {
+			reply.method = "post";
+			reply.action = "freeBoardDelete";
+			reply.submit();
+		}
 		function go_list(){
 			location.href="SkillSharingList"
 		}
