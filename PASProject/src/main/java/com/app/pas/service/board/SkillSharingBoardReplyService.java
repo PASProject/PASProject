@@ -27,11 +27,11 @@ public class SkillSharingBoardReplyService{
 		return list;
 	}
 	
-	public SkillSharingBoardReplyVo selectSkillSharingBoardReply(
+	public List<SkillSharingBoardReplyVo> selectSkillSharingBoardReply(
 			int ssb_Article_Num) throws SQLException {
-		SkillSharingBoardReplyVo skillSharingBoardReplyVo = 
-				skillSharingBoardReplyDao.selectSkillSharingBoardReply(ssb_Article_Num);
-		return skillSharingBoardReplyVo;
+		List<SkillSharingBoardReplyVo> list = new ArrayList<SkillSharingBoardReplyVo>(); 
+		list=skillSharingBoardReplyDao.selectSkillSharingBoardReply(ssb_Article_Num);
+		return list;
 	}
 	
 	
@@ -62,7 +62,3 @@ public class SkillSharingBoardReplyService{
 	
 	
 }
-
-
-
-

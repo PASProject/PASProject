@@ -5,9 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.board.SkillSharingBoardReplyDao;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
-import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
-
 public class SkillSharingBoardReplyDaoImpl implements SkillSharingBoardReplyDao{
 	
 	private SqlMapClient client;
@@ -24,10 +22,10 @@ public class SkillSharingBoardReplyDaoImpl implements SkillSharingBoardReplyDao{
 	}
 
 	@Override
-	public SkillSharingBoardReplyVo selectSkillSharingBoardReply(
+	public List<SkillSharingBoardReplyVo> selectSkillSharingBoardReply(
 			int ssb_Article_Num) throws SQLException {
-		SkillSharingBoardReplyVo skillSharingBoardReplyVo = 
-				(SkillSharingBoardReplyVo)client.queryForObject("selectSkillSharingBoardReply",ssb_Article_Num);
+		List<SkillSharingBoardReplyVo> skillSharingBoardReplyVo = 
+				client.queryForList("selectSkillSharingBoardReply",ssb_Article_Num);
 		return skillSharingBoardReplyVo;
 	}
 
