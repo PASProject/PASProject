@@ -18,7 +18,6 @@
 		</h2>
 
 		<fieldset>
-
 			<form name="frm" method="post" action="QnADetail">
 				<input type="hidden" name="qb_Article_Num"
 					value="${param.qb_Article_Num }">
@@ -43,93 +42,47 @@
 						<td colspan="3">${qnaBoardVo.mem_Email }</td>
 					</tr>
 					<tr>
-						<td colspan="3">${qnaBoardVo.qb_Content}<br>
-						</td>
-
-
+						<td colspan="3">${qnaBoardVo.qb_Content}<br></td>
+					</tr>
+			</table>
+			</form>
+			
+			<form name="form" method="post" action="InsertQnAReply">
+				<table>
+					<tr>
+						<td>
+						<textarea rows="25" cols="70" name="qb_Reply_Content">답변할 내용입력</textarea>
+						</td>	
 					</tr>
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">
-						
-						<button class="btn btn-default text-right" type="button"onclick="go_qnalist()">목록</button>
-						<button class="btn btn-default text-right" type="button" onClick="go_qnaupdate()">수정</button> 
-						<button class="btn btn-default text-right" type="button" onClick="go_delete()">삭제</button>
-						</td>	
-					</tr>
-					
-					<tr>
-						<td>
-							관리자 답변 ><br>
-							<c:if test ='${qnaBoardVo.qb_yn eq "1"}'>
-								${qnaBoardReplyVo.qb_Reply_Content}
-							</c:if>
+							<button class="btn btn-default text-right" type="button"
+								onclick="go_qnalist()">목록</button>
+							<button class="btn btn-default text-right" type="button"
+								onclick="InsertQnAReply()">답변달기</button>
 						</td>
 					</tr>
-					
-						
 				</table>
-
-
-
-				
-				
-
 			</form>
+			
 		</fieldset>
 		
-		<%-- 댓글작성
-		<form name="form" method="post" action="InsertQnAReply">
-		<input type="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
-		
-				<textarea rows="2" cols="50" name="qb_Reply_Content">
-					</textarea>
-				<input type="submit" value="댓글등록" onClick="InsertQnAReply()">
-
-		</form> --%>
-
-
-
-
 			<script>
+			
 				function go_qnalist() {
-					location.href = "QnAList"
-
+					location.href = "AdminQnAList"
 				}
-				function go_qnaupdate() {
-					location.href = "QnAUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-				}
-
-				function go_delete() {
-					frm.method = "post"
-					frm.action = "QnADelete";
-					frm.submit();
-				}
+			
 				function InsertQnAReply() {
 					form.method = "post"
-					form.action = "InsertQnAReply";
+					form.action = "InsertQnAReply?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
 					form.submit();
-
+					
 				}
 			</script>
-
-
-
-
 
 	</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

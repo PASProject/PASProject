@@ -23,19 +23,20 @@ public class QnaBoardReplyService {
 	}
 
 
-	/*
-	 * public QnaBoardReplyVo selectQnaReply(int qb_Article_Num) throws
-	 * SQLException{ QnaBoardReplyVo qnaBoardReplyVo= null; qnaBoardReplyVo =
-	 * qnaBoardReplyDao.selectQnaReply(qb_Article_Num);
-	 * 
-	 * return qnaBoardReplyVo; }
-	 */
-	public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
+	
+	 public QnaBoardReplyVo selectQnaReply(int qb_Article_Num) throws
+	  SQLException{ 
+		 QnaBoardReplyVo qnaBoardReplyVo= null; qnaBoardReplyVo =
+	  qnaBoardReplyDao.selectQnaReply(qb_Article_Num);
+	  
+	  return qnaBoardReplyVo; }
+	 
+	/*public List<QnaBoardReplyVo> selectQnaReply(int qb_Article_Num) throws SQLException {
 		List<QnaBoardReplyVo> list = qnaBoardReplyDao.selectQnaReply(qb_Article_Num);
 
 		return list;
 
-	}
+	}*/
 
 	public void insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,int qb_Article_Num)
 			throws SQLException {
@@ -43,5 +44,21 @@ public class QnaBoardReplyService {
 		qnaBoardReplyDao.insertQnaBoardReply(qnaBoardReplyVo);
 		qnaBoardDao.updateQnaYN(qb_Article_Num);
 	}
-
+	
+//답변수정
+	public void updateQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo) throws SQLException{
+		System.out.println("서비스에 있는 qnaBoardReplyVo" + qnaBoardReplyVo);
+		qnaBoardReplyDao.updateQnaBoardReply(qnaBoardReplyVo);
+	}
+	
+//답변 삭제
+	public void deleteQnaBoardReply(int qb_Article_Num) throws SQLException {
+		qnaBoardDao.deleteQnaYN(qb_Article_Num);
+		qnaBoardReplyDao.deleteQnaBoardReply(qb_Article_Num);
+		
+	}
+	
+	
+	
+	
 }

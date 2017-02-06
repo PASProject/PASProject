@@ -1,7 +1,6 @@
 package com.app.pas.controller.totalboard;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardLikeVo;
+import com.app.pas.dto.board.SkillSharingBoardReplyVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
+import com.app.pas.service.board.SkillSharingBoardReplyService;
 import com.app.pas.service.board.SkillSharingBoardService;
 
 @Controller
@@ -28,6 +31,8 @@ public class SkillSharingController {
 
 	@Autowired
 	SkillSharingBoardService skillSharingBoardService;
+	@Autowired
+	SkillSharingBoardReplyService skillSharingBoardReplyService;
 
 	@RequestMapping("/SkillSharingList")
 	public String skillSharingBoardList(Model model,
@@ -58,32 +63,53 @@ public class SkillSharingController {
 
 	@RequestMapping("/SkillSharingDetail")
 	public String detailskillSharingBoard(@RequestParam String ssb_Article_Num,
-			Model model,HttpServletRequest request,HttpSession session) throws NumberFormatException, SQLException {
+			Model model,HttpServletRequest request,HttpSession session
+			,SkillSharingBoardReplyVo skillSharingBoardReplyVo) throws NumberFormatException, SQLException {
 		
-		 /* System.out.println("SkillSharingLike 로 들어왔당!"); 
+		 
 		  MemberVo memberVo = (MemberVo) session.getAttribute("loginUser"); 
-		  String mem_Email = memberVo.getMem_Email();*/
+		  String mem_Email = memberVo.getMem_Email();
 		
-		String like = "";
-		String message = null;
-		message = request.getParameter("message");
-		like = request.getParameter("like");
 		String url = "SkillSharing/SkillSharingDetail";
 		
+		String like = "";
+		String modi = null;
+		String message = null;
+		String delete = null;
+		String likee = null;
+		message = request.getParameter("message");
+		like = request.getParameter("like");
+		modi = request.getParameter("modi");
+		delete = request.getParameter("delete");
+		likee = request.getParameter("likee");
 		if(like != null) {
 			model.addAttribute("like", like);
 		}
+		if(modi != null){
+			model.addAttribute("modi", modi);
+		}
+		if(delete !=null){
+			model.addAttribute("delete",delete);
+		}
+		if(likee != null) {
+			model.addAttribute("likee", likee);
+		}
+	
+		
 		SkillSharingBoardVo skillSharingBoardVo = null;
-		SkillSharingBoardLikeVo skillSharingBoardLikeVo = null;
-		
-		
-			skillSharingBoardVo = skillSharingBoardService.selectSkillSharingBoardDetail(Integer.parseInt(ssb_Article_Num));
+		List<SkillSharingBoardReplyVo> ssbList = new ArrayList<SkillSharingBoardReplyVo>();
+		skillSharingBoardReplyVo.setSsb_Reply_Mem(mem_Email);
+			skillSharingBoardReplyService.insertSkillSharingBoardReply(skillSharingBoardReplyVo);
+		    skillSharingBoardVo = skillSharingBoardService.selectSkillSharingBoardDetail(Integer.parseInt(ssb_Article_Num));
+			ssbList = skillSharingBoardReplyService.selectSkillSharingBoardReplyList();
 			if(message== null){
 				System.out.println("detail message가 null일때 들어옴");
 			skillSharingBoardService.updateSkillSharingBoardCount(skillSharingBoardVo);
+			
 			}
+			model.addAttribute("ssbList", ssbList);
+			model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);	
 		
-		model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
 		return url;
 	}
 	
@@ -91,38 +117,36 @@ public class SkillSharingController {
 	public String detailskillSharingBoardLike(
 			@RequestParam String ssb_Article_Num, Model model,
 			HttpSession session,HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		/*
-		 * System.out.println("SkillSharingLike 로 들어왔당!"); MemberVo memberVo =
-		 * (MemberVo) session.getAttribute("loginUser"); String mem_Email =
-		 * memberVo.getMem_Email();
-		 */
 		
+		  System.out.println("SkillSharingLike 로 들어왔당!"); 
 		
 		String url = "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"& message=1";
 		SkillSharingBoardVo skillSharingBoardVo = new SkillSharingBoardVo();
 		SkillSharingBoardLikeVo skillSharingBoardLikeVo = new SkillSharingBoardLikeVo();
 		SkillSharingBoardLikeVo LikeMember = new SkillSharingBoardLikeVo();
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		
 		skillSharingBoardLikeVo.setSsb_Article_Num(Integer
 				.parseInt(ssb_Article_Num));
 		skillSharingBoardVo.setSsb_Article_Num(Integer
 				.parseInt(ssb_Article_Num));
-		skillSharingBoardLikeVo.setMem_Email("abc@naver.com");
+		skillSharingBoardLikeVo.setMem_Email(memberVo.getMem_Email());
+		System.out.println(skillSharingBoardLikeVo.getMem_Email());
 		LikeMember = skillSharingBoardService.selectSkillSharingBoardLikeList(skillSharingBoardLikeVo);
 		
 		if(LikeMember==null){
+			
 		int likeCount = skillSharingBoardService
 				.insertSkillSharingBoardLike(skillSharingBoardVo,
 						skillSharingBoardLikeVo, Integer.parseInt(ssb_Article_Num));
-		
-		model.addAttribute("likeCount", likeCount);
+		return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&likee=yes";
 		}else{
 			
 			skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
 			System.out.println("else 값 들어옴");
 			return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"& message=2&like=ok";
 		}
-		return url;
+		/*return url;*/
 		
 	}
 
@@ -138,13 +162,13 @@ public class SkillSharingController {
 			SkillSharingBoardVo skillSharingBoardVo) {
 		String url = "redirect:SkillSharingList";
 
-		/*
-		 * MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		 * String mem_Email = memberVo.getMem_Email();
-		 * skillSharingBoardVo.setMem_Email(mem_Email);
-		 */
+		
+		  MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		  String mem_Email = memberVo.getMem_Email();
+		  skillSharingBoardVo.setMem_Email(mem_Email);
+		 
 
-		skillSharingBoardVo.setMem_Email("abc@naver.com");
+		
 
 		try {
 			skillSharingBoardService
@@ -160,9 +184,19 @@ public class SkillSharingController {
 
 	@RequestMapping(value = "/SkillSharingUpdate", method = RequestMethod.GET)
 	public String updateskillSharingBoardForm(String ssb_Article_Num,
-			Model model) {
-		String url = "SkillSharing/SkillSharingUpdate";
-		SkillSharingBoardVo skillSharingBoardVo = null;
+			Model model,SkillSharingBoardVo skillSharingBoardVo, 
+			HttpServletResponse response, HttpSession session) throws NumberFormatException, SQLException, IOException {
+		/*String url = "SkillSharing/SkillSharingUpdate";*/
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		  String login_Mem_Email = memberVo.getMem_Email();
+		  SkillSharingBoardVo skillSharingBoardVo1 = 
+				  skillSharingBoardService.selectSkillSharingBoardDetail(Integer
+					.parseInt(ssb_Article_Num));
+		  String article_mem_Email = skillSharingBoardVo1.getMem_Email();
+		 
+		if(login_Mem_Email.equals(article_mem_Email)){
+			System.out.println("if로들어옴");
 		try {
 			skillSharingBoardVo = skillSharingBoardService
 					.selectSkillSharingBoardDetail(Integer
@@ -175,14 +209,24 @@ public class SkillSharingController {
 			e.printStackTrace();
 		}
 		model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
-		return url;
+		return "SkillSharing/SkillSharingUpdate";
+	}else{
+		
+		skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
+		System.out.println("else로들어옴");
+		return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&modi=no";
+	}
+		
 
 	}
 
 	@RequestMapping(value = "/SkillSharingUpdate", method = RequestMethod.POST)
 	public String updateskillSharingBoard(
-			SkillSharingBoardVo skillSharingBoardVo) {
+			SkillSharingBoardVo skillSharingBoardVo,HttpSession session) {
+		
+		  
 		String url = "redirect:SkillSharingList";
+		
 		try {
 			skillSharingBoardService
 					.updateSkillSharingBoard(skillSharingBoardVo);
@@ -201,9 +245,18 @@ public class SkillSharingController {
 	}
 
 	@RequestMapping(value = "/SkillSharingDelete", method = RequestMethod.POST)
-	public String deleteskillSharingBoard(String ssb_Article_Num) {
+	public String deleteskillSharingBoard(String ssb_Article_Num,HttpSession session,SkillSharingBoardVo skillSharingBoardVo) 
+			throws NumberFormatException, SQLException {
 		String url = "redirect:SkillSharingList";
-		try {
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String login_Mem_Email = memberVo.getMem_Email();
+		  SkillSharingBoardVo skillSharingBoardVo1 = 
+				  skillSharingBoardService.selectSkillSharingBoardDetail(Integer
+					.parseInt(ssb_Article_Num));
+		  String article_mem_Email = skillSharingBoardVo1.getMem_Email();
+		  
+		  if(login_Mem_Email.equals(article_mem_Email)){
+		  try {
 			skillSharingBoardService.deleteSkillSharingBoard(Integer
 					.parseInt(ssb_Article_Num));
 		} catch (NumberFormatException e) {
@@ -213,6 +266,10 @@ public class SkillSharingController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		  }else{
+			  skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
+			  return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&delete=no";
+		  }
 		return url;
 	}
 
@@ -231,5 +288,7 @@ public class SkillSharingController {
 		model.addAttribute("skillSharingBoardList", skillSharingBoardList);
 		return url;
 	}
+	
+	
 
 }

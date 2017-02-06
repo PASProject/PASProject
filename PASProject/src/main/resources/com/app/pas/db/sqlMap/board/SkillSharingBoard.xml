@@ -42,7 +42,7 @@
 	<select id="selectSkillSharingBoard" parameterClass="int"
 		resultClass="SkillSharingBoard">
 		SELECT *
-		FROM SKILL_SHARING_BOARD
+		FROM SKILL_LIKE_COUNT_VIEW
 		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
 
 

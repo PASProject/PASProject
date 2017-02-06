@@ -130,7 +130,8 @@
 					data:JSON.stringify(data),
 					success:function(data){
 						if(data!=0){
-						alert(data+"이미 신청완료");
+						$('#'+proj_Num+'btnZone #applyBtn').val('대기중');
+						$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 						}
 					}
 				});
@@ -147,10 +148,10 @@
 			dataType:'json',
 			type:'post',
 			success:function(data){
-				alert(data.value());
-				send('push:'+data);
+				 send('push:'+data.p_Mem_Email); 
 			},error:function(data){
-				send('push:'+data);
+				alert("에러");
+				/* send('push:'+data); */
 			}
 		});
 	}

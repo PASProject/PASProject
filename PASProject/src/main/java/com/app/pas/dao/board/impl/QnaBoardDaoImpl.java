@@ -58,6 +58,12 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		
 	}
 
+	@Override
+	public void deleteQnaYN(int qb_Article_Num) throws SQLException {
+		client.update("deleteQnaYN",qb_Article_Num);
+		
+	}
+
 
 	
 }

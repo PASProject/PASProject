@@ -19,6 +19,7 @@ public class ProjectBoardReplyService {
 	public void insertProjectBoardReply(ProjectBoardReplyVo projectBoardReplyVo)throws SQLException{
 		projectBoardReplyDao.insertProjectBoardReply(projectBoardReplyVo);
 	}
+	
 	public List<ProjectBoardReplyVo> selectProjectBoardReply(int pb_Article_num) throws SQLException{
 		List<ProjectBoardReplyVo> list = projectBoardReplyDao.selectProjectBoardReply(pb_Article_num);
 		return list;

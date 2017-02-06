@@ -44,7 +44,16 @@
 		select count(*) from mem_apply_view where apply_commit_check =0 and mem_Email = #mem_Email# and proj_num = #proj_Num#
 	</select>
 	
-	<select id="selectMemApplyViewByMemPRoj" parameterClass="MemApplyView" resultClass="MemApplyView">
+	<select id="selectMemApplyViewByMemProj" parameterClass="MemApplyView" resultClass="MemApplyView">
 		select * from mem_apply_view where mem_email = #mem_Email# and proj_num = #proj_Num#
 	</select>
+	
+	<select id="selectMemApplyViewByEmail" parameterClass="str" resultClass="MemApplyView">
+		select * from mem_Apply_View where p_mem_Email = #p_Mem_Email# and apply_commit_check = '0' order by apply_num desc
+	</select>
+	<update id="updateMemberImg" parameterClass="Member">
+		UPDATE MEMBER SET
+		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
+	</update>
+	
 </sqlMap>

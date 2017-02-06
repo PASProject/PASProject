@@ -85,7 +85,7 @@ public class QnaController {
 		return url;
 
 	}
-
+//수정 폼
 	@RequestMapping(value="/QnAUpdate",method=RequestMethod.GET)
 	public String updateQnaForm(@RequestParam String qb_Article_Num,
 			HttpSession session, Model model) {
@@ -105,7 +105,7 @@ public class QnaController {
 		return url;
 
 	}
-
+//글 수정
 	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
 	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
 		String url = "redirect:QnAList";
@@ -130,14 +130,14 @@ public class QnaController {
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
 		String url = "qna/QnADetail";
-			List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
-			
+			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
+		QnaBoardReplyVo qnaBoardReplyVo = null;
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
-			QnaReplyList = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
 			
-			model.addAttribute("QnaReplyList", QnaReplyList);
+			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
 			
 		} catch (NumberFormatException e) {
@@ -149,9 +149,6 @@ public class QnaController {
 		return url;
 	}
 	
-	
-
-
 //댓글작성------------------------------------------------------------
 /*	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
 >>>>>>> refs/heads/leekhee7

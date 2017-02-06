@@ -58,11 +58,15 @@ public class AdminQnaController {
 	//디테일
 	@RequestMapping("/AdminQnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
-		String url = "admin/adminQnADetail";	
+		String url = "admin/adminQnADetail";
+			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
+		QnaBoardReplyVo qnaBoardReplyVo = null;
 		try {
 			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 					.parseInt(qb_Article_Num));
+			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
 			
+			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 			model.addAttribute("qnaBoardVo", qnaBoardVo);
 			
 		} catch (NumberFormatException e) {
@@ -73,6 +77,7 @@ public class AdminQnaController {
 
 		return url;
 	}
+	
 	
 //댓글작성----------------------------------------------------------------------
 	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
@@ -90,35 +95,85 @@ public class AdminQnaController {
 			qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo, Integer.parseInt(qb_Article_Num));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
-		System.out.println("가기전");
+		
+		System.out.println("답글하는즁");
 		return url;
 	
 	}
-//---------------------------------------------------------------------------------	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("/qnaWrite")
-	public String QnaWrite(HttpSession session, Model model) {
-		String url = "";
+//-------  댓글폼  ------------------------------------------------------------	
+	@RequestMapping("/AdminQnAReplyForm")
+	public String QnAReplyForm(@RequestParam String qb_Article_Num, Model model) throws NumberFormatException, SQLException {
+		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
+				.parseInt(qb_Article_Num));
+		
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
+		String url = "admin/adminQnAReplyForm";
 		return url;
 	}
-
-	@RequestMapping("/qnaDelete")
-	public String deleteQna(HttpSession session, Model model) {
-		String url = "";
+	
+//-------  답글수정폼  ------------------------------------------------------------
+	@RequestMapping("/QnAReplyUpdateForm")
+	public String QnAReplyUpdateForm(@RequestParam String qb_Article_Num, Model model) {
+	String url = "admin/adminQnAReplyUpdate";
+		
+	QnaBoardReplyVo qnaBoardReplyVo = null;
+	try {
+		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
+				.parseInt(qb_Article_Num));
+		qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+		
+		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
+		System.out.println("댓글 수정 폼 qnaBoardReplyVo" + qnaBoardReplyVo );
+	} catch (NumberFormatException e) {
+		e.printStackTrace();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 		return url;
 	}
+//-------  답글수정  ------------------------------------------------------------	
+	@RequestMapping(value="/QnAReplyUpdate",method=RequestMethod.POST)
+	public String QnAReplyUpdate(QnaBoardReplyVo qnaBoardReplyVo, Model model) throws SQLException {
+		System.out.println("수정오긴오니;");
+		//아예 그 페이지로 이동하기 위해선 redirect를 쓴다.
+		//qb_Article_Num을 통해 데이터의 값을 select하기 때문에 qb_Article_Num도 같이 넘겨준다.
+		//jsp로 이동하는건 파라미터를 url로 넘길수 없다.
+		String qb_Article_Num = qnaBoardReplyVo.getQb_Article_Num()+"";
+		String url = "redirect:AdminQnADetail?qb_Article_Num="+qb_Article_Num;
+	
+	qnaBoardReplyService.updateQnaBoardReply(qnaBoardReplyVo);
+	System.out.println("댓글수정하는 중  " + qnaBoardReplyVo);
+	
+	
+	return url;
+	}
+//------- 답변삭제 --------------------------------------------------------------	
+	@RequestMapping(value="/QnAReplyDelete", method=RequestMethod.POST)
+	public String deleteQna(QnaBoardReplyVo qnaBoardReplyVo, Model model) throws NumberFormatException, SQLException {
+		System.out.println("답변삭제로 오는가?");
+	//	String url = "admin/adminQnADetail";
+		String qb_Article_Num = qnaBoardReplyVo.getQb_Article_Num()+"";
+		String url = "redirect:AdminQnADetail?qb_Article_Num="+qb_Article_Num;
+		qnaBoardReplyService.deleteQnaBoardReply(Integer.parseInt(qb_Article_Num));
+		return url;
+	}
+	
+	
+//-------  댓글수정  ------------------------------------------------------------
+//	@RequestMapping(value="/QnAReplyUpdate",method=RequestMethod.POST)
+//	public String QnAReplyUpdate(@RequestParam String qb_Article_Num, Model model) {
+//		//QnaBoardReplyVo qnaBoardReplyVo = null;
+//	
+//		
+//		String url = "admin/adminQnAReplyUpdate";
+//		
+//		return url;
+//	}
+//--------------------------------------------------------------------------
 
 	
 	

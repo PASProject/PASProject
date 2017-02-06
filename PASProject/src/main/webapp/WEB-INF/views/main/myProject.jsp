@@ -22,8 +22,11 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
-					<button class="btn btn-default">생성하기</button>
-					<button class="btn btn-default">파일선택</button>
+
+					<button  style="margin-left:5px;" class="btn btn-default pull-right">생성하기</button>
+					<input class="btn btn-danger pull-right" type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
+					<input type="button"  value="SkillSharingBoard" onClick="go_Pb()">
+					<input type ="button" value="ProjectBoard" onClick="go_ProjectBoard()">
 
 				</h2>
 
@@ -39,8 +42,7 @@
 
 
 				<!-- Projects Row -->
-				<c:forEach items="${myProjectList}" var="projectVo"
-					varStatus="status">>
+				<c:forEach items="${myProjectList}" var="projectVo" varStatus="status">
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"
@@ -64,6 +66,7 @@
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"></h4>
 									${projectVo.proj_Name }
+
 								</div>
 								<div class="modal-body" id="${projectVo.proj_Num}body">팀원
 								</div>
@@ -135,6 +138,12 @@
 	
 	function gogo(proj_Num){
 		location.href="../project/pmOverView?proj_Num="+proj_Num;
+	}
+	function go_Pb(){
+		location.href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList"
+	}
+	function go_ProjectBoard(){
+		location.href="<%=request.getContextPath() %>/project/projectBoardList"
 	}
 </script>
 
