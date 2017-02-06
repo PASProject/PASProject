@@ -151,9 +151,7 @@
 
 				 send('push:'+data.p_Mem_Email); 
 			},error:function(data){
-
 				alert("에러");
-				/* send('push:'+data); */
 			}
 		});
 	}
