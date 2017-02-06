@@ -23,15 +23,35 @@ padding: 10px;
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>글 읽기</small>
 		</h2>
-
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			
+			 <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button>
+			 <br><br>
 			<fieldset>
-			<form name="frm" method="post" action="projectBoardInsert">
-			<input type="hidden" name="pb_Content" value="${ProjectBoardVo.pb_Content}">
+			<form name="frm" method="post" action="pmBoardInsert">
 				
 				<table class="col-md-10" style="border: 2px solid #ddd">
 				<tr>
 				<td colspan=2>
-				&nbsp;
+			
 				</td>
 				</tr>
 					<tr>
@@ -60,15 +80,15 @@ padding: 10px;
 						<td class="col-md-1">이경희 BA</td>
 						<td class="col-md-7">
 						게시물 번호 : ${pbList.pb_Article_Num}
-						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
+						<textarea rows="7" cols="100"  readonly> ${pbList.pb_Content}</textarea>
 						<br><br>
 						
 				<!-- 댓글 -->
 				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
 					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
-						<textarea rows="1" cols="90" name="pb_Reply_Content"></textarea>
+						<textarea rows="1" cols="80" name="pb_Reply_Content"></textarea>
 						
-						<input type="submit" class="btn btn-default" value="답변하기"/> 
+						<input type="submit" class="btn btn-default" value="댓글달기"/> 
 <!-- 					<button class="btn btn-default " type="button">등록</button> -->
 				</form>	
 						<br>
@@ -88,6 +108,10 @@ padding: 10px;
 					
 					var queryString = $(".anser-write").serialize();
 					console.log("query : " + queryString);
+				}
+				
+				function go_myProjectList(){
+					location.href="pmBoardMyProjectList";
 				}
 				
 // 				 function projectBordInsert(){

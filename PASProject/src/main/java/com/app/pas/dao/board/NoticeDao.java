@@ -14,7 +14,7 @@ public interface NoticeDao {
 	public void insertNotice(NoticeVo noticeVo)throws SQLException;
 	public void updateNotice(NoticeVo noticeVo)throws SQLException;
 	public void deleteNotice(NoticeVo noticeVo)throws SQLException;
-	public int selectNoticeCount()throws SQLException;
+	public int selectNoticeCount(int proj_Num)throws SQLException;
 	public NoticeVo selectNoticeDetail(HashMap map)throws SQLException;
 	public MemPositionViewVo selectNoticePosition(HashMap map)throws SQLException;
 }

@@ -43,8 +43,8 @@ public class NoticeDaoImpl implements NoticeDao{
 		client.delete("deleteNotice",noticeVo);
 	}
 	@Override
-	public int selectNoticeCount() throws SQLException {
-		int result =(Integer) client.queryForObject("selectNoticeCount", null);
+	public int selectNoticeCount(int proj_Num) throws SQLException {
+		int result =(Integer) client.queryForObject("selectNoticeCount", proj_Num);
 		return result;
 		
 	}

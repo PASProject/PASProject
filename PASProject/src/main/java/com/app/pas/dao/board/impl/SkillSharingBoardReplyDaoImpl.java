@@ -5,9 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.board.SkillSharingBoardReplyDao;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
-import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
-
 public class SkillSharingBoardReplyDaoImpl implements SkillSharingBoardReplyDao{
 	
 	private SqlMapClient client;

@@ -21,8 +21,6 @@
 		FROM QNA_BOARD
 		WHERE QB_ARTICLE_NUM LIKE
 		'%'||#qb_Article_Num#||'%'
-
-
 	</select>
 
 	<insert id="insertQnaBoard" parameterClass="QnaBoard">
