@@ -79,5 +79,11 @@ public class MemberDaoImpl implements MemberDao {
 		return list;
 	}
 
+	@Override
+	public MemberVo searchEmail(MemberVo memberVo) throws SQLException {
+		MemberVo MemberVo1 = (MemberVo) client.queryForObject("searchEmail",memberVo);
+		return MemberVo1;
+	}
+
 	
 }

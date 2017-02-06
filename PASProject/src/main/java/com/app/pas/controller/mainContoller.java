@@ -3,9 +3,9 @@ package com.app.pas.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +13,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -358,6 +356,25 @@ public class mainContoller {
 		String p_Mem_Email = member.getMem_Email();
 		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_Mem_Email);
 		return memApplyViewList;
+	}
+	
+	@RequestMapping(value="/searchEmail",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> SearchEmail(@RequestBody Map<String,Object> map,Model model) throws SQLException{
+		String Id="";
+		MemberVo memberVo = new MemberVo();
+		memberVo.setMem_Name(map.get("sendName").toString());
+		memberVo.setMem_Phone(map.get("sendPhone").toString());
+		
+		MemberVo memberVo1 =memberService.searchEmail(memberVo);
+		System.out.println(memberVo1+"이건 멤멤!!");
+		if(memberVo1 !=null){
+			
+			Id=memberVo1.getMem_Email();
+			}
+		System.out.println(Id+"이건아이디!!!!!");
+		
+		map.put("id", Id);
+		return map;
 	}
 
 }

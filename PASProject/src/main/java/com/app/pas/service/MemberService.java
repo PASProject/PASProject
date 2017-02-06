@@ -57,6 +57,12 @@ public class MemberService {
 		public void updateMemberImg(MemberVo memberVo) throws SQLException{
 			memberDao.updateMemberImg(memberVo);
 			}
+		
+		
+		public MemberVo searchEmail(MemberVo memberVo) throws SQLException{
+			MemberVo memberVo1 = memberDao.searchEmail(memberVo);
+			return memberVo1;
+		}
 	
 
 }

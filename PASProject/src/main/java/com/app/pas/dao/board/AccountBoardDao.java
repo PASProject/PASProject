@@ -16,4 +16,5 @@ public interface AccountBoardDao {
 	public int sumAccountExp(int proj_Num) throws SQLException;
 	public int selectAccountCount(int proj_Num) throws SQLException;
 	
+	
 }
