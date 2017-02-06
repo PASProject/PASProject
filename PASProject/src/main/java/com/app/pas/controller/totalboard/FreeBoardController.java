@@ -33,18 +33,14 @@ public class FreeBoardController {
 	FreeBoardReplyService freeBoardReplyService;
 	
 	@RequestMapping("/freeBoardList")
-	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page) {
+	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page) throws SQLException {
 		String url = "freeBoard/freeBoardList";
 		int totalCount = 0 ;
 		/*Page<FreeBoardVo> postPage =freeBoardService.*/
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
-		try {
+		
 			freeBoardList = freeBoardService.selectFreeBoardList();
 			totalCount = freeBoardService.selectTotalCount();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		if(page.equals(null)||page ==""){
 			page = ""+1;

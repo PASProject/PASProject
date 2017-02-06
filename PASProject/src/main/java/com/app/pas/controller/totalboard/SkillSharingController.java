@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +13,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
@@ -67,8 +71,8 @@ public class SkillSharingController {
 			,SkillSharingBoardReplyVo skillSharingBoardReplyVo) throws NumberFormatException, SQLException {
 		
 		 
-		  MemberVo memberVo = (MemberVo) session.getAttribute("loginUser"); 
-		  String mem_Email = memberVo.getMem_Email();
+		  /*MemberVo memberVo = (MemberVo) session.getAttribute("loginUser"); 
+		  String mem_Email = memberVo.getMem_Email();*/
 		
 		String url = "SkillSharing/SkillSharingDetail";
 		
@@ -95,23 +99,17 @@ public class SkillSharingController {
 			model.addAttribute("likee", likee);
 		}
 	
-		
 		SkillSharingBoardVo skillSharingBoardVo = null;
-		List<SkillSharingBoardReplyVo> ssbList = new ArrayList<SkillSharingBoardReplyVo>();
-		skillSharingBoardReplyVo.setSsb_Reply_Mem(mem_Email);
-			skillSharingBoardReplyService.insertSkillSharingBoardReply(skillSharingBoardReplyVo);
-		    skillSharingBoardVo = skillSharingBoardService.selectSkillSharingBoardDetail(Integer.parseInt(ssb_Article_Num));
-			ssbList = skillSharingBoardReplyService.selectSkillSharingBoardReplyList();
+		skillSharingBoardVo = skillSharingBoardService.selectSkillSharingBoardDetail(Integer.parseInt(ssb_Article_Num));
 			if(message== null){
 				System.out.println("detail message가 null일때 들어옴");
 			skillSharingBoardService.updateSkillSharingBoardCount(skillSharingBoardVo);
-			
 			}
-			model.addAttribute("ssbList", ssbList);
-			model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);	
-		
+		model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
+			
 		return url;
 	}
+	
 	
 	@RequestMapping("/SkillSharingLike")
 	public String detailskillSharingBoardLike(
@@ -287,6 +285,39 @@ public class SkillSharingController {
 		}
 		model.addAttribute("skillSharingBoardList", skillSharingBoardList);
 		return url;
+	}
+	
+	@RequestMapping(value="/SkillSharingReplyList")
+	public @ResponseBody List<SkillSharingBoardReplyVo> selectSkillSharingReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
+		
+		List<SkillSharingBoardReplyVo> skillSharingBoardReply = new ArrayList<SkillSharingBoardReplyVo>();
+		String ssb_Article_Num = (String) jsonMap.get("ssb_Article_Num");
+		System.out.println(ssb_Article_Num);
+		try {
+			skillSharingBoardReply = skillSharingBoardReplyService.selectSkillSharingBoardReply(Integer.parseInt(ssb_Article_Num));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("skillSharingBoardReply",skillSharingBoardReply);
+		return skillSharingBoardReply;
+	}
+	
+	@RequestMapping(value="SkillSharingReplyWrite", method=RequestMethod.POST)
+	public  @ResponseBody List<SkillSharingBoardReplyVo> writeSkillSharingReply
+	(@RequestBody SkillSharingBoardReplyVo skillSharingBoardReplyVo, HttpSession session){
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		skillSharingBoardReplyVo.setSsb_Reply_Mem(mem_Email);
+		List<SkillSharingBoardReplyVo> skillSharingBoardReplyList = new ArrayList<SkillSharingBoardReplyVo>();
+		try {
+			skillSharingBoardReplyService.insertSkillSharingBoardReply(skillSharingBoardReplyVo);
+			skillSharingBoardReplyList = skillSharingBoardReplyService.selectSkillSharingBoardReply(skillSharingBoardReplyVo.getSsb_Article_Num());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return skillSharingBoardReplyList;
 	}
 	
 	
