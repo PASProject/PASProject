@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dto.MemApplyViewVo;
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 
 public interface MemberDao {
@@ -22,5 +23,6 @@ public interface MemberDao {
 	public void updateApplyCommitCheck(int apply_Num) throws SQLException;
 	public MemApplyViewVo selectMemApplyViewByApplyNum(int apply_Num) throws SQLException;
 	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException;
-
+	public List<MemPositionViewVo> selectMemberListByProj(MemPositionViewVo memPoistionViewVo)throws SQLException;
+    public MemPositionViewVo selectMemberPosition(MemPositionViewVo memPositionViewVo)throws SQLException;
 }
