@@ -79,5 +79,22 @@ public class MemberDaoImpl implements MemberDao {
 		return list;
 	}
 
+	@Override
+	public void updateApplyCommitCheck(int apply_Num) throws SQLException {
+		client.update("updateApplyCommitCheck",apply_Num);
+	}
+
+	@Override
+	public MemApplyViewVo selectMemApplyViewByApplyNum(int apply_Num)
+			throws SQLException {
+		MemApplyViewVo memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByApplyNum",apply_Num);
+		return memApplyViewVo;
+	}
+
+	@Override
+	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException {
+		client.delete("deleteApplyViewByApplyNum",apply_Num);
+	}
+
 	
 }

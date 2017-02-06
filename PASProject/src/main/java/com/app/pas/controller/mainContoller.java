@@ -360,4 +360,17 @@ public class mainContoller {
 		return memApplyViewList;
 	}
 
+	@RequestMapping(value="/agree",method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> agreeAlarm(@RequestBody Map<String,Object> map) throws SQLException{
+		String apply_Num = (String) map.get("apply_Num");
+		List<MemApplyViewVo> memApplyViewList =  memberService.updateApplyAgree(Integer.parseInt(apply_Num));
+		return memApplyViewList;
+	}
+	
+	@RequestMapping(value="/reject",method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> rejectAlarm(@RequestBody Map<String,Object> map) throws SQLException{
+		String apply_Num = (String)map.get("apply_Num");
+		List<MemApplyViewVo> memApplyViewList= memberService.updateApplyReject(Integer.parseInt(apply_Num));
+		return memApplyViewList;
+	}
 }
