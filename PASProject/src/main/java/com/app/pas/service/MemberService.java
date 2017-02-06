@@ -6,6 +6,7 @@ import java.util.List;
 import com.app.pas.dao.MemberDao;
 import com.app.pas.dao.ProjectJoinDao;
 import com.app.pas.dto.MemApplyViewVo;
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectJoinVo;
 
@@ -114,6 +115,16 @@ public class MemberService {
 		public MemberVo searchEmail(MemberVo memberVo) throws SQLException{
 			MemberVo memberVo1 = memberDao.searchEmail(memberVo);
 			return memberVo1;
+		}
+		
+		public List<MemPositionViewVo> selectMemberListByProj(MemPositionViewVo memPositionViewVo) throws SQLException{
+			List<MemPositionViewVo> memPositionViewVo1 =memberDao.selectMemberListByProj(memPositionViewVo);
+		       return memPositionViewVo1;
+		}
+		
+		public MemPositionViewVo selectMemberPosition(MemPositionViewVo memPositionViewVo) throws SQLException{
+			MemPositionViewVo  memPositionViewVo1 = memberDao.selectMemberPosition(memPositionViewVo);
+			return memPositionViewVo1;
 		}
 	
 

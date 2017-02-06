@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.MemberDao;
 import com.app.pas.dto.MemApplyViewVo;
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -99,6 +100,20 @@ public class MemberDaoImpl implements MemberDao {
 	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException {
 		client.delete("deleteApplyViewByApplyNum",apply_Num);
 
+	}
+
+	@Override
+	public List<MemPositionViewVo> selectMemberListByProj(MemPositionViewVo memPoistionViewVo)
+			throws SQLException {
+		List<MemPositionViewVo> list = client.queryForList("selectMemberListByProj",memPoistionViewVo );
+		return list;
+	}
+
+	@Override
+	public MemPositionViewVo selectMemberPosition(
+			MemPositionViewVo memPositionViewVo) throws SQLException {
+		MemPositionViewVo memPositionViewVo1 = (MemPositionViewVo) client.queryForObject("selectMemberPosition", memPositionViewVo);
+		return memPositionViewVo1; 
 	}
 
 	
