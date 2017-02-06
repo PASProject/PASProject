@@ -18,7 +18,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
 <!-- CSS -->
 <!-- Bootstrap Core CSS -->
 <link
