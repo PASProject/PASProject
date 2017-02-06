@@ -148,9 +148,9 @@
 			type:'post',
 			success:function(data){
 				alert(data.value());
-				send('push:'+data);
+				send('push:abc@naver.com');
 			},error:function(data){
-				send('push:'+data);
+				send('push:abc@naver.com');
 			}
 		});
 	}
