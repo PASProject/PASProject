@@ -34,7 +34,7 @@ public class ProjectBoardService {
 //내가쓴글 보기 
 	public List<ProjectBoardVo> myProjectList (String mem_Email) throws SQLException{
 		List <ProjectBoardVo> pbList = projectboardDao.myProjectList(mem_Email);
-		System.out.println("서비스에있는 pbList : " + pbList );
+	
 		return pbList;
 	}
 	

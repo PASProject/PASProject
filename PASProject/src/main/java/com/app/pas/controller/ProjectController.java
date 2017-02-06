@@ -62,13 +62,10 @@ public class ProjectController {
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
 			projectBoardVo.setMem_Email(mem_Email); 
-			
-			System.out.println("세션이 잘 왓니 이메일> : " +  mem_Email);
-			
+	
 			projectBoardVo.setProj_Num(1);
 			System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
 			
-			System.out.println("여기오는가?");
 			projectBoardService.insertProjectBoard(projectBoardVo);
 			System.out.println("projectBoardVo"+projectBoardVo);
 			
@@ -91,9 +88,15 @@ public class ProjectController {
 		
 		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
-		@RequestMapping("/pmBoardUpdate")
-		public String updateProjectBoard(ProjectBoardVo projectBoardVo) {
+		@RequestMapping(value= "/pmBoardUpdate")
+		public String updateProjectBoard(ProjectBoardVo projectBoardVo,Model model,HttpSession session) {
+			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+			String mem_Email = memberVo.getMem_Email();
 			String url = "redirect:pmBoardList";
+			projectBoardVo.setMem_Email(mem_Email); 
+			
+			System.out.println("여기오는가 수정수정?");
+			System.out.println("수정하는 중  vo값 : " +projectBoardVo  );
 			try {
 				projectBoardService.updateProjectBoard(projectBoardVo);
 			} catch (SQLException e) {
@@ -114,7 +117,6 @@ public class ProjectController {
 			projectBoardVo.setMem_Email(mem_Email); 
 			projectBoardVo.setProj_Num(1);
 			
-			System.out.println("맴버 이메일!" +  mem_Email);
 			String url="project/pmBoardMyProjectList";
 
 			pbList = projectBoardService.myProjectList(mem_Email);

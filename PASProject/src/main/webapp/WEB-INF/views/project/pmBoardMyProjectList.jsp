@@ -84,9 +84,12 @@ padding: 10px;
 						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
 						<br><br>
 <!-- //----------	projectBoardVo -->					
-		<form name="frm" method="post" action="updateFormProjectBoard">
+
+		<form name="frm" method="post" action="pmBoardUpdate">
+		<input type="hidden" name="pb_Article_Num" value="${pbList.pb_Article_Num}">
+		
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="${pbList.pb_Article_Num}" role="dialog">
     <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
@@ -109,7 +112,8 @@ padding: 10px;
 		</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
+       		<input type="submit" action ="pmBoardUpdate" value="수정">
+<!--           <button type="button" action = "pmBoardUpdate">수정</button> -->
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -119,7 +123,6 @@ padding: 10px;
 				
 	</form>					
 						
-									
 				<!-- 댓글 -->
 				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
 					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
@@ -134,8 +137,10 @@ padding: 10px;
 					</tr>
 				
 			<tr>
-					<td>
-					 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">글수정</button>
+				<td>
+					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#${pbList.pb_Article_Num}">글수정
+					
+					</button>
 					<%-- 	<input type="submit" value="글 수정" onClick="updateProjectBoard(${projectBoardVo.pb_Article_Num})"/> --%>
 					</td>
 					<td>
