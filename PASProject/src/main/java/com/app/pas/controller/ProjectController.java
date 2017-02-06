@@ -92,7 +92,7 @@ public class ProjectController {
 		public String updateProjectBoard(ProjectBoardVo projectBoardVo,Model model,HttpSession session) {
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
-			String url = "redirect:pmBoardList";
+			String url = "redirect:pmBoardMyProjectList";
 			projectBoardVo.setMem_Email(mem_Email); 
 			
 			System.out.println("여기오는가 수정수정?");
