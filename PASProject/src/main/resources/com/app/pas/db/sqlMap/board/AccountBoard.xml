@@ -11,17 +11,25 @@
 	<select id="selectAccountBoardByProj" parameterClass="int" resultClass="AccountBoard">
 		SELECT *
 		FROM ACCOUNT_BOARD
-		WHERE PROJ_NUM = #proj_Num#
+		WHERE PROJ_NUM = #proj_Num# ORDER BY ACC_NUM DESC
 
 	</select>
 
-	<select id="selectAccountBoardByAcc" parameterClass="int"
+	<select id="selectAccountBoardByAcc" parameterClass="AccountBoard"
 		resultClass="AccountBoard">
 		SELECT *
 		FROM ACCOUNT_BOARD
-		WHERE ACC_NUM LIKE '%'||#acc_Num#||'%'
+		WHERE ACC_NUM = #acc_Num# AND PROJ_NUM = #proj_Num#
 
 
+	</select>
+	
+	<select id="selectAccountCount" parameterClass="int" resultClass="int">
+	SELECT COUNT(*) 
+	FROM ACCOUNT_BOARD 
+	WHERE PROJ_NUM = #proj_Num# 
+	
+	
 	</select>
 
 	<insert id="insertAccountBoard" parameterClass="AccountBoard">
@@ -34,13 +42,27 @@
 	<update id="updateAccountBoard" parameterClass="AccountBoard">
 		UPDATE ACCOUNT_BOARD SET ACC_DATE=#acc_Date#, ACC_IMP=#acc_Imp#,
 		ACC_EXP=#acc_Exp#,
-		ACC_CONTENT=#acc_Content#, ACC_TOTAL=#acc_Total# WHERE ACC_NUM=#acc_Num#
+		ACC_CONTENT=#acc_Content#, ACC_TOTAL=#acc_Total# WHERE ACC_NUM=#acc_Num# AND PROJ_NUM=#proj_Num#
 	</update>
 
-	<delete id="deleteAccountBoard" parameterClass="int">
-		DELETE FROM ACCOUNT_BOARD WHERE ACC_NUM=#acc_Num#
+	<delete id="deleteAccountBoard" parameterClass="AccountBoard">
+		DELETE FROM ACCOUNT_BOARD WHERE ACC_NUM=#acc_Num# and Proj_Num=#proj_Num#
 
 
 	</delete>
+	
+	<select id="sumAccountImp" parameterClass="int" resultClass="int">
+	  SELECT SUM(ACC_IMP) 
+	  FROM ACCOUNT_BOARD 
+	  WHERE PROJ_NUM = #proj_Num#
+	
+	</select>
+	
+	<select id="sumAccountExp" parameterClass="int" resultClass="int">
+	  SELECT SUM(ACC_EXP) 
+	  FROM ACCOUNT_BOARD 
+	  WHERE PROJ_NUM = #proj_Num#
+	
+	</select>
 
 </sqlMap>

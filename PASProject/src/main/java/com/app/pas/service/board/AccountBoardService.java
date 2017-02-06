@@ -26,5 +26,34 @@ public class AccountBoardService {
 			throws SQLException {
 		accountBoardDao.insertAccountBoard(accountBoardVo);
 	}
-
+	
+	public AccountBoardVo selectAccountBoardByAcc(AccountBoardVo accountBoardVo) throws SQLException{
+		AccountBoardVo accountBoardVo1 =accountBoardDao.selectAccountBoardByAcc(accountBoardVo);
+		return accountBoardVo1;
+	}
+	
+	public void updateAccountBoard(AccountBoardVo accountBoardVo) throws SQLException{
+	accountBoardDao.updateAccountBoard(accountBoardVo);
+	
+	}
+	
+	public void deleteAccountBoard(AccountBoardVo accountBoardVo) throws SQLException{
+	accountBoardDao.deleteAccountBoard(accountBoardVo);
+	}
+	
+    public int sumAccountImp(int proj_Num) throws SQLException{
+    	int result=accountBoardDao.sumAccountImp(proj_Num);
+    	return result;
+    }
+    
+    public int sumAccountExp(int proj_Num) throws SQLException{
+    	int result = accountBoardDao.sumAccountExp(proj_Num);
+    	return result;
+    }
+    
+    public int selectAccountCount(int proj_Num) throws SQLException{
+    	int result = accountBoardDao.selectAccountCount(proj_Num);
+    	return result;
+    }
+    
 }

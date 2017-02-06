@@ -48,8 +48,8 @@ public class NoticeService {
 		return MemPositionView;
 
 	}
-	public int selectNoticeCount()throws SQLException{
-		int result = noticeDao.selectNoticeCount();
+	public int selectNoticeCount(int proj_Num)throws SQLException{
+		int result = noticeDao.selectNoticeCount(proj_Num);
 		return result;
 	}
 

@@ -143,7 +143,7 @@
 		location.href="<%=request.getContextPath() %>/SkillSharing/SkillSharingList"
 	}
 	function go_ProjectBoard(){
-		location.href="<%=request.getContextPath() %>/project/projectBoardList"
+		location.href="<%=request.getContextPath() %>/project/pmBoardList"
 	}
 </script>
 
