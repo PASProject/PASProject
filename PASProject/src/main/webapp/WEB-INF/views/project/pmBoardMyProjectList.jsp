@@ -83,7 +83,43 @@ padding: 10px;
 						게시물 번호 : ${pbList.pb_Article_Num}
 						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
 						<br><br>
+<!-- //----------	projectBoardVo -->					
+		<form name="frm" method="post" action="updateFormProjectBoard">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">글 수정하기</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+          	<table>
+					<tr>
+						<td class="col-md-1">이경희 BA</td>
+						<td class="col-md-7">
+						게시물 번호 : ${pbList.pb_Article_Num}
+						<textarea rows="7" cols="100" name="pb_Content"> ${pbList.pb_Content}</textarea>
+					</td>
+					</tr>
+			</table>			
+		</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+				
+	</form>					
 						
+									
 				<!-- 댓글 -->
 				<!-- <form  method="post" method="post" action = "insertProjectBoardReply"> -->
 					 <form class="anser-write" method="post" action="insertProjectBoardReply">	
@@ -99,7 +135,8 @@ padding: 10px;
 				
 			<tr>
 					<td>
-						<input type="submit" value="글 수정" onClick=""/>
+					 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">글수정</button>
+					<%-- 	<input type="submit" value="글 수정" onClick="updateProjectBoard(${projectBoardVo.pb_Article_Num})"/> --%>
 					</td>
 					<td>
 						<input type="submit" value="삭  제" onClick="deleteProjectBoard(${pbList.pb_Article_Num})"/>
@@ -113,7 +150,7 @@ padding: 10px;
 			</fieldset>
 			<script>
 				
-				function projectBoardList(){
+				function pmBoardList(){
 					location.href="pmBoardList";
 				}
 				

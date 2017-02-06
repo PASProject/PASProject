@@ -76,8 +76,22 @@ public class ProjectController {
 			return url;
 		}
 
+//프로젝트 수정 From ------------------------------------------------------------------
+		
+//		@RequestMapping(value = "/updateFormProjectBoard", method = RequestMethod.POST)
+//		public String updateFormProjectBoard(ProjectBoardVo projectBoardVo, String pb_Article_Num, Model model ) throws NumberFormatException, SQLException {
+//			String url = "redirect:pmBoardList";
+//			
+//		 projectBoardVo =(ProjectBoardVo) projectBoardService.updateFormProjectBoard(Integer.parseInt(pb_Article_Num));
+//		 model.addAttribute("projectBoardVo", projectBoardVo);
+//			return url;
+//		}
+//		
+		
+		
+		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
-		@RequestMapping(value = "/pmBoardUpdate", method = RequestMethod.POST)
+		@RequestMapping("/pmBoardUpdate")
 		public String updateProjectBoard(ProjectBoardVo projectBoardVo) {
 			String url = "redirect:pmBoardList";
 			try {
@@ -88,6 +102,7 @@ public class ProjectController {
 			}
 			return url;
 		}
+		
 		
 		//내가 쓴 글 보기 --------------------------------------------------	
 		@RequestMapping("/pmBoardMyProjectList")
@@ -101,8 +116,7 @@ public class ProjectController {
 			
 			System.out.println("맴버 이메일!" +  mem_Email);
 			String url="project/pmBoardMyProjectList";
-			
-			System.out.println("컨트롤러에 있느느 리스트 : " + pbList);
+
 			pbList = projectBoardService.myProjectList(mem_Email);
 			model.addAttribute("projectBoardVo",projectBoardVo);
 			model.addAttribute("pbList",pbList);
@@ -151,15 +165,11 @@ public class ProjectController {
 			}
 			return url;
 		}
-		
-	//------------------------------------------------------------------------------	
 
 		
+//------------------------------------------------------------------------------	
+//------------------------------------------------------------------------------	
 		
-		
-		
-		
-	
 	
 
 	@RequestMapping("/pmChat")
