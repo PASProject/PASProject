@@ -62,13 +62,10 @@ public class ProjectController {
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
 			projectBoardVo.setMem_Email(mem_Email); 
-			
-			System.out.println("세션이 잘 왓니 이메일> : " +  mem_Email);
-			
+	
 			projectBoardVo.setProj_Num(1);
 			System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
 			
-			System.out.println("여기오는가?");
 			projectBoardService.insertProjectBoard(projectBoardVo);
 			System.out.println("projectBoardVo"+projectBoardVo);
 			
@@ -76,10 +73,30 @@ public class ProjectController {
 			return url;
 		}
 
+//프로젝트 수정 From ------------------------------------------------------------------
+		
+//		@RequestMapping(value = "/updateFormProjectBoard", method = RequestMethod.POST)
+//		public String updateFormProjectBoard(ProjectBoardVo projectBoardVo, String pb_Article_Num, Model model ) throws NumberFormatException, SQLException {
+//			String url = "redirect:pmBoardList";
+//			
+//		 projectBoardVo =(ProjectBoardVo) projectBoardService.updateFormProjectBoard(Integer.parseInt(pb_Article_Num));
+//		 model.addAttribute("projectBoardVo", projectBoardVo);
+//			return url;
+//		}
+//		
+		
+		
+		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
-		@RequestMapping(value = "/pmBoardUpdate", method = RequestMethod.POST)
-		public String updateProjectBoard(ProjectBoardVo projectBoardVo) {
-			String url = "redirect:pmBoardList";
+		@RequestMapping(value= "/pmBoardUpdate")
+		public String updateProjectBoard(ProjectBoardVo projectBoardVo,Model model,HttpSession session) {
+			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+			String mem_Email = memberVo.getMem_Email();
+			String url = "redirect:pmBoardMyProjectList";
+			projectBoardVo.setMem_Email(mem_Email); 
+			
+			System.out.println("여기오는가 수정수정?");
+			System.out.println("수정하는 중  vo값 : " +projectBoardVo  );
 			try {
 				projectBoardService.updateProjectBoard(projectBoardVo);
 			} catch (SQLException e) {
@@ -88,6 +105,7 @@ public class ProjectController {
 			}
 			return url;
 		}
+		
 		
 		//내가 쓴 글 보기 --------------------------------------------------	
 		@RequestMapping("/pmBoardMyProjectList")
@@ -99,10 +117,8 @@ public class ProjectController {
 			projectBoardVo.setMem_Email(mem_Email); 
 			projectBoardVo.setProj_Num(1);
 			
-			System.out.println("맴버 이메일!" +  mem_Email);
 			String url="project/pmBoardMyProjectList";
-			
-			System.out.println("컨트롤러에 있느느 리스트 : " + pbList);
+
 			pbList = projectBoardService.myProjectList(mem_Email);
 			model.addAttribute("projectBoardVo",projectBoardVo);
 			model.addAttribute("pbList",pbList);
@@ -151,15 +167,11 @@ public class ProjectController {
 			}
 			return url;
 		}
-		
-	//------------------------------------------------------------------------------	
 
 		
+//------------------------------------------------------------------------------	
+//------------------------------------------------------------------------------	
 		
-		
-		
-		
-	
 	
 
 	@RequestMapping("/pmChat")
@@ -337,11 +349,15 @@ public class ProjectController {
 		int proj_Num=1;
 		int totalCount = 0;
 		List<AccountBoardVo> list =accountService.getAccountList(proj_Num);
+		System.out.println(list+"이건 리스트!!");
+		if(list.isEmpty()!=true){
 		int Imp = accountService.sumAccountImp(proj_Num);
 		int Exp = accountService.sumAccountExp(proj_Num);
-		model.addAttribute("AccountBoardList", list);
 		model.addAttribute("sumImp",Imp);
 		model.addAttribute("sumExp",Exp);
+		}
+		model.addAttribute("AccountBoardList", list);
+		
 		totalCount = accountService.selectAccountCount(proj_Num);
 		
 		
@@ -365,14 +381,13 @@ public class ProjectController {
 		int result=1;
 		AccountBoardVo accountBoardVo = new AccountBoardVo();
 		
-		String str="1998-02-02"; 
+		String str= map.get("acc_Date").toString(); 
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd"); 
 		java.util.Date t = sdf.parse(str); 
 		java.sql.Date st = new java.sql.Date(t.getTime());
 		java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
-		System.out.println(sts+"타임스탬프");
+		
 		accountBoardVo.setAcc_Date(sts);
-		System.out.println(accountBoardVo.getAcc_Date()+"이것은 accountboardVo accDate");
 		int acc_Imp =Integer.parseInt(map.get("acc_Imp").toString());
 		 accountBoardVo.setAcc_Imp(acc_Imp);
 		 int acc_Exp = Integer.parseInt(map.get("acc_Exp").toString());

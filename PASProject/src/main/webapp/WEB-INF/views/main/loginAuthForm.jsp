@@ -35,7 +35,18 @@
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <title></title>
 </head>
-<body>승인중
+<body>
+<form>
+<div>
+<div id="out" style="background-color:#ddd; padding:20px;"><h3 style="text-align: center; margin-right: 46px;">
+			<img style="width: 80px"
+				src="<%=request.getContextPath()%>/resources/img/logo.png"><br><br>
+		이메일 인증이 완료되셨습니다.<br></h3>
+		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/main/loginForm'";>초기화면</button></div>
+  
+
+</div>
+</form>
 
 
 </body>

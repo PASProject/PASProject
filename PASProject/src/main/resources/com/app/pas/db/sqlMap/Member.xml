@@ -15,6 +15,11 @@
 	<select id="selectMember" parameterClass="str" resultClass="Member">
 		select * from member where mem_email = #mem_Email#
 	</select>
+	
+	<select id="searchEmail" parameterClass="Member" resultClass="Member">
+		select * from member where mem_Name =#mem_Name# and mem_Phone = #mem_Phone#
+	</select>
+	
 
 	<update id="extraMemberPwd" parameterClass="Member">
 		update Member set mem_pass=#mem_Pass# where mem_email=#mem_Email#
@@ -70,5 +75,6 @@
 		UPDATE MEMBER SET
 		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
 	</update>
+	
 	
 </sqlMap>

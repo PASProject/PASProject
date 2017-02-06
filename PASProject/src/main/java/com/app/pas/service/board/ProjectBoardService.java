@@ -34,16 +34,26 @@ public class ProjectBoardService {
 //내가쓴글 보기 
 	public List<ProjectBoardVo> myProjectList (String mem_Email) throws SQLException{
 		List <ProjectBoardVo> pbList = projectboardDao.myProjectList(mem_Email);
-		System.out.println("서비스에있는 pbList : " + pbList );
+	
 		return pbList;
 	}
 	
 	public void deleteProjectBoard(int pb_Article_Num)throws SQLException{
 		projectboardDao.deleteProjectBoard(pb_Article_Num);
 	}
+//글 수정 폼
+	public ProjectBoardVo updateFormProjectBoard(int pb_Article_Num)throws SQLException{
+		ProjectBoardVo projectBoardVo = projectboardDao.updateFormProjectBoard(pb_Article_Num);
+		
+		return projectBoardVo;
+		
+	}
+	
+//글수정	
 	public void updateProjectBoard(ProjectBoardVo projectBoardVo)throws SQLException{
 		projectboardDao.updateProjectBoard(projectBoardVo);
 	}
+	
 	public List<ProjectBoardVo> selectProjectBoardListV(int pb_Article_Num) throws SQLException{
 		List<ProjectBoardVo> list = projectboardDao.selectProjectBoardListV(pb_Article_Num);
 		return list;

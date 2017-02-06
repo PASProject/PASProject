@@ -80,6 +80,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public MemberVo searchEmail(MemberVo memberVo) throws SQLException {
+		MemberVo MemberVo1 = (MemberVo) client.queryForObject("searchEmail",memberVo);
+		return MemberVo1;
+	}
 	public void updateApplyCommitCheck(int apply_Num) throws SQLException {
 		client.update("updateApplyCommitCheck",apply_Num);
 	}
@@ -94,6 +98,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException {
 		client.delete("deleteApplyViewByApplyNum",apply_Num);
+
 	}
 
 	
