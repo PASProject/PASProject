@@ -148,7 +148,8 @@
 			dataType:'json',
 			type:'post',
 			success:function(data){
-
+				$('#'+proj_Num+'btnZone #applyBtn').val('대기중');
+				$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 				 send('push:'+data.p_Mem_Email); 
 			},error:function(data){
 				alert("에러");

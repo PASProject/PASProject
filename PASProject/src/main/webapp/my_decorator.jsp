@@ -439,8 +439,6 @@ body {
 
 										});
 					</script>
-
-
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
 					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
@@ -500,8 +498,8 @@ body {
 								var fullD = year + '년' + month
 										+ '월' + day + '일';
 								
-								dataList += '<li>알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
-								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+'<a href="#">수락</a> / <a href="#">거절</a></li><br>';
+								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
+								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+'<input type="button" value="수락" onclick="go_agree('+data[i].proj_Num+","+data[i].mem_Email+","+data[i].alarm_Clsfct+')"> / <input type="button" value="거절" ></a></li><br>';
 								if(i==2){
 									return false;
 								}

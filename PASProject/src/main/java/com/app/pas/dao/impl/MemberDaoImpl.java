@@ -64,7 +64,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemApplyViewVo selectMemApplyViewByMemProj(
 			MemApplyViewVo memApplyViewVo) throws SQLException {
-		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemPRoj",memApplyViewVo);
+		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemProj",memApplyViewVo);
 		return memApplyViewVo;
 	}
 	// 여준영 부분
