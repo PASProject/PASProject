@@ -70,7 +70,7 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon">
 							<i class="glyphicon glyphicon-envelope"></i></span> 
-							<input name="mem_Email" placeholder="E-Mail Address" class="form-control" type="text">
+							<input name="mem_Email" placeholder="이메일 주소" class="form-control" type="text">
 						</div>
 					</div>
 				</div>
@@ -84,7 +84,7 @@ body {
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input
 								class="form-control" id="userPw" type="password"
-								placeholder="password" name="mem_Pass" data-minLength="5"
+								placeholder="비밀번호" name="mem_Pass" data-minLength="5"
 								data-error="some error" required /> <span
 								class="glyphicon form-control-feedback"></span> <span
 								class="help-block with-errors"></span>
@@ -94,7 +94,7 @@ body {
 
 				<!-- password confirm -->
 				<div class="form-group has-feedback">
-					<label for="confirmPassword" class="col-md-4 control-label">
+					<label for="비밀번호 확인" class="col-md-4 control-label">
 						비밀번호 확인 </label>
 					<div class="col-md-6  inputGroupContainer">
 						<div class="input-group">
@@ -132,7 +132,7 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-earphone"></i></span> <input name="mem_Phone"
-								placeholder="010-0000-0000" class="form-control" type="text">
+								placeholder="하이픈(-) 포함한 비밀번호를 입력해 주세요" class="form-control" type="text">
 						</div>
 					</div>
 				</div>

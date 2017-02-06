@@ -43,6 +43,9 @@
 							<a href="#">${projectVo.proj_Name }</a>
 						</h3>
 						<p>${projectVo.proj_Content}</p>
+						<c:if test="${status.count%3==0}">
+							<br>
+						</c:if>
 					</div>
 					<!-- Modal -->
 					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">

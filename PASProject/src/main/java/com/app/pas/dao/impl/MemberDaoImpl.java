@@ -33,8 +33,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void updateMember(MemberVo memberVo) throws SQLException {
-		client.update("updateMember",memberVo);
+	public int updateMember(MemberVo memberVo) throws SQLException {
+		return client.update("updateMember",memberVo);
 	}
 
 	@Override

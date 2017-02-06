@@ -15,8 +15,8 @@ public class MemberService {
 		this.memberDao = memberDao;
 	}
 
-	public MemberVo getMember(String memEmail){
-		MemberVo member= null;
+	public MemberVo getMember(String memEmail) {
+		MemberVo member = null;
 		try {
 			member = memberDao.selectMember(memEmail);
 		} catch (SQLException e) {
@@ -25,38 +25,47 @@ public class MemberService {
 		}
 		return member;
 	}
-	public void insertMember(MemberVo memberVo) throws SQLException{
+
+	public void insertMember(MemberVo memberVo) throws SQLException {
 		memberDao.insertMember(memberVo);
 	}
+
 	public List<MemberVo> selectMemberList() throws SQLException {
-		List<MemberVo> list =  memberDao.selectMemberList();
+		List<MemberVo> list = memberDao.selectMemberList();
 		return list;
 	}
-	
-	public void extraPwd(MemberVo memberVo) throws SQLException{
+
+	public void extraPwd(MemberVo memberVo) throws SQLException {
 		memberDao.extraMemberPwd(memberVo);
 	}
-	
-	public void AuthMember(String mem_Email) throws SQLException{
+
+	public void AuthMember(String mem_Email) throws SQLException {
 		memberDao.AuthMember(mem_Email);
 	}
-	
-	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo) throws SQLException{
-		int countMemApply =memberDao.selectCountMemApplyView(memApplyViewVo);
+
+	public int selectCountMemApplyView(MemApplyViewVo memApplyViewVo)
+			throws SQLException {
+		int countMemApply = memberDao.selectCountMemApplyView(memApplyViewVo);
 		return countMemApply;
 	}
-	
 
-	public List<MemApplyViewVo> selectMemApplyViewByEmail(String p_Mem_Email) throws SQLException{
-		List<MemApplyViewVo> list = memberDao.selectMemApplyViewByEmail(p_Mem_Email);
+	public List<MemApplyViewVo> selectMemApplyViewByEmail(String p_Mem_Email)
+			throws SQLException {
+		List<MemApplyViewVo> list = memberDao
+				.selectMemApplyViewByEmail(p_Mem_Email);
 		return list;
 	}
 
 	// 여준영 부분
-	
-		public void updateMemberImg(MemberVo memberVo) throws SQLException{
-			memberDao.updateMemberImg(memberVo);
-			}
-	
 
+	public int updateMember(MemberVo memberVo) throws SQLException{
+		int result = memberDao.updateMember(memberVo);
+		return result;
+	}
+	
+	public void updateMemberImg(MemberVo memberVo) throws SQLException {
+		memberDao.updateMemberImg(memberVo);
+	}
+	
+	
 }

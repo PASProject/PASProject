@@ -108,8 +108,8 @@ body {
 <script type="text/javascript">
 	$(function() {
 		$("#login").click(function() {
-			var email = $('#email').val();
-			var pwd = $('#pwd').val();
+			var email = $('#mem_Email').val();
+			var pwd = $('#mem_Pass').val();
 			
 			$.ajax({
 				type : 'POST',
@@ -192,12 +192,12 @@ body {
 			<form>
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="email" name="email"
+						class="form-control" id="mem_Email" name="mem_Email"
 						placeholder="Enter email">
 				</div>
 				<div class="form-group">
 					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="pwd" name="pwd"
+						class="form-control" id="mem_Pass" name="mem_Pass"
 						placeholder="Enter password">
 				</div>
 				<div class="checkbox">
