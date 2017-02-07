@@ -31,6 +31,7 @@
 							<span>${freeBoardVo.frb_Content}</span>
 						</fieldset>
 					</form>
+			<!-- 여기서부터 댓글 -->
 					<div id="reply" style="border: solid 1px black;"></div>
 					<div style="background: gray">
 
@@ -57,16 +58,21 @@
 				type:'post',
 				success : function(data){
 					$.each(data, function(i) {
+						
 						var date = new Date(
 								data[i].frb_Reply_Time)
 						var year = date.getFullYear();
+						
 						var month = (1 + date.getMonth());
 						month = month >= 10 ? month : '0'
 								+ month;
+						
 						var day = date.getDate();
 						day = day >= 10 ? day : '0' + day;
+						
 						var fullD = year + '년' + month
 								+ '월' + day + '일';
+						
 						var tt = '<div>아이디 : '
 								+ data[i].frb_Reply_Mem
 								+ '  /  ' + '작성 날짜 : '

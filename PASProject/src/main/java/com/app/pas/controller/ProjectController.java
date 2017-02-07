@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -25,9 +26,11 @@ import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
+import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
+import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
 
 
@@ -39,6 +42,10 @@ public class ProjectController {
 	NoticeService noticeService;
 	@Autowired
 	ProjectBoardService projectBoardService;
+	
+	@Autowired
+	ProjectBoardReplyService projectBoardReplyService;
+	
 	@Autowired
 	AccountBoardService accountService;
 	
@@ -71,22 +78,7 @@ public class ProjectController {
 			
 			String url = "redirect:pmBoardList";
 			return url;
-		}
-
-//프로젝트 수정 From ------------------------------------------------------------------
-		
-//		@RequestMapping(value = "/updateFormProjectBoard", method = RequestMethod.POST)
-//		public String updateFormProjectBoard(ProjectBoardVo projectBoardVo, String pb_Article_Num, Model model ) throws NumberFormatException, SQLException {
-//			String url = "redirect:pmBoardList";
-//			
-//		 projectBoardVo =(ProjectBoardVo) projectBoardService.updateFormProjectBoard(Integer.parseInt(pb_Article_Num));
-//		 model.addAttribute("projectBoardVo", projectBoardVo);
-//			return url;
-//		}
-//		
-		
-		
-		
+		}		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
 		@RequestMapping(value= "/pmBoardUpdate")
 		public String updateProjectBoard(ProjectBoardVo projectBoardVo,Model model,HttpSession session) {
@@ -111,9 +103,10 @@ public class ProjectController {
 		@RequestMapping("/pmBoardMyProjectList")
 		public String myProjectList(Model model,HttpSession session,ProjectBoardVo projectBoardVo
 				) throws SQLException{
+			List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
+			
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
-			List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
 			projectBoardVo.setMem_Email(mem_Email); 
 			projectBoardVo.setProj_Num(1);
 			
@@ -125,8 +118,44 @@ public class ProjectController {
 			
 			return url;
 		}
-	
-		//댓글 올리기 -----------------------------------------------------
+		//글삭제 ------------------------------------------------------------------------
+		@RequestMapping("/deleteProjectBoard")
+		public String deleteProjectBoard(String pb_Article_Num) {
+			String url = "redirect:pmBoardMyProjectList";
+			try {
+				projectBoardService.deleteProjectBoard(Integer
+						.parseInt(pb_Article_Num));
+			} catch (NumberFormatException e) {
+				
+				e.printStackTrace();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			return url;
+		}
+
+//댓글 
+		
+//댓글 리스트---------------------------------------------------------------
+		@RequestMapping("/selectProjectBoardReply")
+		public @ResponseBody List<ProjectBoardReplyVo> selectProjectBoardReply(@RequestBody Map<String,Object> jsonMap,Model model
+				,Session session, String pb_Article_num) throws NumberFormatException, SQLException{
+			String url = "project/pmBoardList";
+			List<ProjectBoardReplyVo> projectBoardReplyList = new ArrayList<ProjectBoardReplyVo>();			
+			projectBoardReplyService.selectProjectBoardReply(Integer.parseInt(pb_Article_num));
+			
+//			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+//			String mem_Email = memberVo.getMem_Email();
+//			ProjectBoardReplyVo.setMem_Email(mem_Email); 
+			model.addAttribute("projectBoardReplyList",projectBoardReplyList);
+			System.out.println("projectBoardReplyList컨트롤러! : "+projectBoardReplyList);
+			return projectBoardReplyList;
+		}
+		
+		
+		
+//댓글 올리기 -----------------------------------------------------
 		@RequestMapping(value = "/insertProjectBoardReply", method = RequestMethod.GET)
 		public String insertProjectBoardReply(String pb_Article_Num, Model model) {
 			String url = "project/pmBoardList";
@@ -144,29 +173,13 @@ public class ProjectController {
 			return url;
 		}
 	
-		
-		@RequestMapping(value = "/pmBoardWrite", method = RequestMethod.GET)
-		public String writeFreeBoard(HttpSession session, Model model) {
-			String url = "project/pmBoardWrite";
-			return url;
-
-		}
-	//글삭제 ------------------------------------------------------------------------
-		@RequestMapping("/deleteProjectBoard")
-		public String deleteProjectBoard(String pb_Article_Num) {
-			String url = "redirect:pmBoardMyProjectList";
-			try {
-				projectBoardService.deleteProjectBoard(Integer
-						.parseInt(pb_Article_Num));
-			} catch (NumberFormatException e) {
-
-				e.printStackTrace();
-			} catch (SQLException e) {
-		
-				e.printStackTrace();
-			}
-			return url;
-		}
+//		
+//		@RequestMapping(value = "/pmBoardWrite", method = RequestMethod.GET)
+//		public String writeFreeBoard(HttpSession session, Model model) {
+//			String url = "project/pmBoardWrite";
+//			return url;
+//
+//		}
 
 		
 //------------------------------------------------------------------------------	
