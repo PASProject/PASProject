@@ -40,9 +40,10 @@
 					</div>
 				</div>
 				<div>
-					<input type="button" value="수정" onclick="go_update()"> <input
-						type="button" value="삭제" onclick="go_delete()"> <input
-						type="button" value="목록" onClick="go_list()">
+					<input type="button" value="수정" onclick="go_update()"> 
+					<input type="button" value="삭제" onclick="go_delete()"> 
+					<input type="button" value="목록" onClick="go_list()">
+					<input type="button"  value="추천!" onClick="go_like()">
 				</div>
 			</div>
 		
@@ -142,6 +143,9 @@
 			frm.method = "post";
 			frm.action = "freeBoardDelete";
 			frm.submit();
+		}
+		function go_like(){
+			location.href="FreeBoardLike?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
 		}
 
 	</script>

@@ -3,7 +3,7 @@ var msg;
 var loginUserId;
 function connect(loginUserId) {
 			wsocket = new SockJS(
-					"http://192.168.0.8:8181/pas/conSocket.sockjs");
+					"http://192.168.202.118:8181/pas/conSocket.sockjs");
 			this.loginUserId = loginUserId;
 			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;

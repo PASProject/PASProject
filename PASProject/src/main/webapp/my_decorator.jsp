@@ -71,7 +71,9 @@
 	href="<%=request.getContextPath()%>/resources/css/3-col-portfolio.css"
 	rel="stylesheet">
 
-
+<!-- bootstrap Validator -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -303,16 +305,14 @@ body {
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
 							</ul></li>
-							
-						<li><a href="#" id ="alarmMenu" class="glyphicon glyphicon-bell"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-							aria-expanded="false"
-							style="font-size: 25px;">
-							</a>
+
+						<li><a href="#" id="alarmMenu"
+							class="glyphicon glyphicon-bell" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false"
+							style="font-size: 25px;"> </a>
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
-							
-							</ul>
-							</li>
+
+							</ul></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -368,19 +368,18 @@ body {
 					console.log('success');
 					console.log(response);
 					 alert('사진이 등록되었습니다.'); 
-					$("#btn-upload1").attr("data-dismiss","modal");
+					
 					location.reload();
 					$('#profileImg').attr('src','<%=request.getContextPath()%>/resources/upload/${param.memberVo.mem_Img}');
-					
-				
+
 														},
-					error : function(jqXHR) {
-					
-					console.log('error');
+														error : function(jqXHR) {
+
+															console
+																	.log('error');
 														}
 													});
-			
-			
+
 										});
 					</script>
 
@@ -405,40 +404,39 @@ body {
 					<%@ include file="WEB-INF/views/main/myPage.jsp"%>
 				</div>
 				<div class="modal-footer" style="text-align: left">
+								
+						<button class="btn btn-default pull-right" type="submit" id="submit"
+							style="margin-left: 5px;">정보 수정하기</button>
+						 <script>
+							$('#submit').click(function(){
+								var mem_Phone = $('#mem_Phone').val();
+								var mem_Pass = $('#userPw').val();
+								alert(mem_Pass);
+								var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
+								$.ajax({
+									url: 'updateMember',
+									type:'post',
+									dataType:'json',
+									contentType:'application/json',
+									data:JSON.stringify(dataList),
+									success : function(data){
+										var i = data.T;
+										if(i=='1'){
+											location.reload();										
+										}else{
+											alert("실패");
+										}
+									},
+									failure: function(data){
+										alert('update Failed');
+									}
+								})
+							})
+							
+							
+							</script> 
 
-					<button class="btn btn-default pull-right" id="btnupload1" style="margin-left:5px;">정보
-						수정하기</button>
-					<script>
-		$('#btn-upload1').on('click', function() {
-			console.log('btn-upload');
-			var form = new FormData(document.getElementById('uploadForm'));
-		
-			$.ajax({
-				url : "<%=request.getContextPath()%>/main/c8",
-				data : form,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				type : 'POST',
-				success : 
-					function(response) {
-					console.log('success');
-					console.log(response);
-					 alert('사진이 등록되었습니다.'); 
-					$("#btn-upload1").attr("data-dismiss","modal");
-					location.reload();
-					$('#profileImg').attr('src','<%=request.getContextPath()%>/resources/upload/${param.memberVo.mem_Img}');
-
-														},
-														error : function(jqXHR) {
-
-															console
-																	.log('error');
-														}
-													});
-
-										});
-					</script>
+					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
 					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
@@ -447,17 +445,12 @@ body {
 							$('#closeModal').click(function() {
 								location.reload();
 							});
-						});
-					</script>
-
+						</script>
+				
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
 
 
 	<decorator:body />
@@ -585,7 +578,7 @@ body {
 				
 			});
 
-	
+
 </script>
 
 

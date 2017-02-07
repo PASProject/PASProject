@@ -1,7 +1,6 @@
 package com.app.pas.controller;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +27,7 @@ import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
+import com.app.pas.service.MemberService;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
@@ -48,6 +48,8 @@ public class ProjectController {
 	
 	@Autowired
 	AccountBoardService accountService;
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(Model model,@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
@@ -449,6 +451,26 @@ public class ProjectController {
 		return result;
 	}
 	
+	@RequestMapping("/pmMemberList")
+    public String pmMemberList(HttpSession session,Model model) throws SQLException{
+		String url="/project/teamMemberList";
+		/*int proj = (Integer) session.getAttribute("joinProj");*/
+		int proj=9;
+		int
+		per =1;
+		MemPositionViewVo memPositionView = new MemPositionViewVo();
+		memPositionView.setPjj_Per_Num(1);
+		memPositionView.setProj_Num(1);
+		
+        
+		List<MemPositionViewVo> list =memberService.selectMemberListByProj(memPositionView);
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		memPositionView.setMem_Email(memberVo.getMem_Email());
+		memPositionView =memberService.selectMemberPosition(memPositionView);
+		model.addAttribute("pmMemberList", list);
+		model.addAttribute("memPositionView", memPositionView);
+		return url;
+	}
 	
 	
 }
