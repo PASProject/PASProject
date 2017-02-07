@@ -206,7 +206,7 @@ function protectKey()
 			reply.submit();
 		}
 		function go_list(){
-			location.href="SkillSharingList"
+			location.href="SkillSharingBoardList"
 		}
 		function go_update(){
 			location.href="SkillSharingUpdate?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}";

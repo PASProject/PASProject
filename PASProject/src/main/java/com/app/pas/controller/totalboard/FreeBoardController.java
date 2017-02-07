@@ -24,7 +24,6 @@ import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.FreeBoardLikeVo;
 import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
-import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.service.board.FreeBoardReplyService;
 import com.app.pas.service.board.FreeBoardService;
 
@@ -38,8 +37,12 @@ public class FreeBoardController {
 	FreeBoardReplyService freeBoardReplyService;
 	
 	@RequestMapping("/freeBoardList")
-	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page) throws SQLException {
+	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page
+			,HttpServletRequest request) throws SQLException {
 		String url = "freeBoard/freeBoardList";
+		String delete = request.getParameter("delete");
+		
+		
 		int totalCount = 0 ;
 		/*Page<FreeBoardVo> postPage =freeBoardService.*/
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
@@ -55,8 +58,8 @@ public class FreeBoardController {
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
-		List<FreeBoardVo> likeCountViewList =freeBoardService.selectFreeLikeCountViewList();
 		model.addAttribute("paging",paging);
+		model.addAttribute("delete", delete);
 		model.addAttribute("freeBoardList", freeBoardList);
 		return url;
 	}
@@ -65,15 +68,19 @@ public class FreeBoardController {
 	public String detailFreeBoard(@RequestParam String frb_Article_Num,
 			HttpServletRequest request, Model model) throws NumberFormatException, SQLException{
 		String url="freeBoard/freeBoardDetail";
-		System.out.println(frb_Article_Num);
 		FreeBoardVo freeBoardVo = null;
+		String like = request.getParameter("like");
 		String message = request.getParameter("message");
-		
-			freeBoardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
-			if(message == null){
+		String delete = request.getParameter("delete");
+		String modify = request.getParameter("modify");
+		freeBoardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
+		if(message == null){
 			freeBoardService.updateFreeBoardCount(freeBoardVo);
 			}
+		model.addAttribute("delete", delete);
+		model.addAttribute("like", like);
 		model.addAttribute("freeBoardVo",freeBoardVo);
+		model.addAttribute("modify", modify);
 		return url;
 	}
 	
@@ -90,13 +97,15 @@ public class FreeBoardController {
 		freeBoardVo.setFrb_Article_Num(Integer.parseInt(frb_Article_Num));
 		freeBoardLikeVo.setFrb_Article_Num(Integer.parseInt(frb_Article_Num));
 		freeBoardLikeVo.setMem_Email(memberVo.getMem_Email());
-		System.out.println(freeBoardLikeVo.toString()+"컨트롤러@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
 		
 		LikeMember = freeBoardService.selectFreeBoardLikeList(freeBoardLikeVo);
 		
 		if(LikeMember == null){
 			freeBoardService.insertFreeboardLike(freeBoardLikeVo);
-			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&likee=yes&message=LikeOK";
+			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&like=yes&message=1";
+		}else{
+			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&like=no&message=1";
 		}
 		return url;
 	}
@@ -109,47 +118,48 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value="/freeBoardInsert",method=RequestMethod.POST)
-	public String insertFreeBoard(HttpSession session,FreeBoardVo freeBoardVo){
+	public String insertFreeBoard(HttpSession session,FreeBoardVo freeBoardVo) throws SQLException{
 		String url = "redirect:freeBoardList";
 		
-		/*MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
-		freeBoardVo.setMem_Email(mem_Email);*/
+		freeBoardVo.setMem_Email(mem_Email);
 		
-		freeBoardVo.setMem_Email("abc@naver.com");
 		freeBoardVo.setFrb_Kind("1");
 			
-		try {
-			freeBoardService.insertFreeBoard(freeBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			
+		freeBoardService.insertFreeBoard(freeBoardVo);
+		
 		return url;
 	}
 	
 	@RequestMapping(value ="/freeBoardUpdate",method = RequestMethod.GET)
-	public String updateFreeBoardForm(String frb_Article_Num, Model model) throws NumberFormatException, SQLException{
+	public String updateFreeBoardForm(String frb_Article_Num, Model model,HttpSession session) throws NumberFormatException, SQLException{
+		
 		String url="freeBoard/freeBoardUpdate";
-		FreeBoardVo freeBoardVo=null;
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String loginEmail = memberVo.getMem_Email();
+		FreeBoardVo freeboardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
+		String writeEmail = freeboardVo.getMem_Email();
+		if(loginEmail.equals(writeEmail)){
+				url = "freeBoard/freeBoardUpdate";
+				model.addAttribute("freeBoardVo", freeboardVo);
+		  }else{
+			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&modify=no&message=1";
+		  }
+		 
 		
-			freeBoardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
-		
-		model.addAttribute("freeBoardVo", freeBoardVo);
 		return url;
 	}
 	
 	@RequestMapping(value="/freeBoardUpdate",method=RequestMethod.POST)
-	public String updateFreeBoard(FreeBoardVo freeBoardVo){
+	public String updateFreeBoard(FreeBoardVo freeBoardVo) throws NumberFormatException, SQLException{
+		
 		String url = "redirect:freeBoardList";
+		
 		freeBoardVo.setFrb_Kind("1");
-		try {
-			freeBoardService.updateFreeBoard(freeBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		  
+		freeBoardService.updateFreeBoard(freeBoardVo);
+		
 		return url;
 	}
 	
@@ -161,17 +171,20 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value="/freeBoardDelete",method = RequestMethod.POST)
-	public String deleteFreeBoard(String frb_Article_Num){
+	public String deleteFreeBoard(String frb_Article_Num,HttpSession session) throws NumberFormatException, SQLException{
 		String url="redirect:freeBoardList";
-		try {
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String loginEmail = memberVo.getMem_Email();
+		FreeBoardVo freeboardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
+		  String writeEmail = freeboardVo.getMem_Email();
+		  
+		  if(loginEmail.equals(writeEmail)){
 			freeBoardService.deleteFreeBoard(Integer.parseInt(frb_Article_Num));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			url = "redirect:freeBoardList?delete=yes";
+		  }else{
+			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&delete=no&message=1";
+		  }
 		return url;
 	}
 	
