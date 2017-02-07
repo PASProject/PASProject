@@ -64,7 +64,7 @@ body {
 	margin: auto;
 }
 
-@font-face {
+ @font-face {
 	font-family: 'NanumGothic';
 	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
 }
@@ -72,7 +72,7 @@ body {
 body {
 	font-family: NanumGothic;
 }
-
+ 
 .divider {
 	position: relative;
 	width: 100%;
@@ -105,11 +105,14 @@ body {
 <meta charset="UTF-8">
 <title></title>
 
+</head>
+<body style="height: 90%">
+
 <script type="text/javascript">
 	$(function() {
 		$("#login").click(function() {
-			var email = $('#email').val();
-			var pwd = $('#pwd').val();
+			var email = $('#mem_Email').val();
+			var pwd = $('#mem_Pass').val();
 			
 			$.ajax({
 				type : 'POST',
@@ -135,7 +138,8 @@ body {
 										}
 
 									});
-						})
+                        		});
+						});
 
 		$('#login').keypress(function(e) {
 			var key = e.which;
@@ -147,7 +151,7 @@ body {
 		});
 
 		$(function() {
-			$("#searchEmail").click(function() {
+			$("#searchPwd").click(function() {
 				var sendEmail = $('#sendEmail').val();
 
 				$.ajax({
@@ -165,15 +169,47 @@ body {
 							alert("존재하지않는 이메일입니다.");
 						}
 					}
+                 
+				});
+			});
+			});
+			
+	
+	
+	
+	$(function() {
+			$("#searchEmail").click(function() {
+				var sendName = $('#sendName').val();
+				var sendPhone = $('#sendPhone').val();
+				
+				var dataList = {'sendName':sendName , 'sendPhone':sendPhone}
+				$.ajax({
+					type : 'POST',
+					url : 'searchEmail',
+					dataType : 'json',
+					contentType:'application/json',
+					data : JSON.stringify(dataList),
+					success : function(data) {
+						if (data.id != null) {
+							if(data.id==""){
+								alert("회원정보가 맞지않습니다.");
+							}else{
+							alert("해당 아이디는 "+data.id+"입니다.");
+							}
+						}
+					}
 
 				});
-			})
-		})
+			});
+			});
 
-	})
+
 </script>
-</head>
-<body style="height: 90%">
+
+
+
+
+
 
 	<div class="container2">
 
@@ -192,12 +228,12 @@ body {
 			<form>
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="email" name="email"
+						class="form-control" id="mem_Email" name="mem_Email"
 						placeholder="Enter email">
 				</div>
 				<div class="form-group">
 					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="pwd" name="pwd"
+						class="form-control" id="mem_Pass" name="mem_Pass"
 						placeholder="Enter password">
 				</div>
 				<div class="checkbox">
@@ -214,7 +250,10 @@ body {
 		<div class="container" style="padding: 20px;">
 			<span style="text-align: center">PAS에 처음 방문하셨다면 <a
 				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br>
-			<br> <a href="javscript:void(0);"><span
+			<br> 
+			 <a href="javscript:void(0);"><span
+				style="text-align: center" id="forget1">이메일 계정을 찾을려면 눌러 빨럼아</span></a><br><br>
+			<a href="javscript:void(0);"><span
 				style="text-align: center" id="forget">그게 아니라 비빌번호를 잊으신거?</span></a>
 		</div>
 		<div class="container" id="hiddenDiv" style="display: none">
@@ -224,19 +263,48 @@ body {
 						class="form-control" id="sendEmail" name="sendEmail"
 						placeholder="Enter email">
 				</div>
-				<input type="button" id="searchEmail"
+				<input type="button" id="searchPwd"
 					class="btn btn-default btn-block" value="임시비밀번호발급">
 			</form>
 		</div>
+		
+		<div class="container" id="hiddenEmail" style="display: none">
+			<form>
+				<div class="form-group">
+					<label for="Name">Name:</label> <input type="text"
+						class="form-control" id="sendName" name="sendName"
+						placeholder="Enter Name">
+				</div>
+				<div class="form-group">
+					<label for="Phone">Phone:</label> <input type="text"
+						class="form-control" id="sendPhone" name="sendPhone"
+						placeholder="010-xxxx-xxxx">
+				</div>
+				
+				<input type="button" id="searchEmail"
+					class="btn btn-default btn-block" value="이메일 찾기">
+			</form>
+		</div>
+		
 	</div>
 </body>
 <script>
 	$(document).ready(function() {
 		$('#forget').click(function() {
+			$("#hiddenEmail").hide();
 			$("#hiddenDiv").show();
+			
+		})
+		
+		$('#forget1').click(function() {
+			
+			$("#hiddenDiv").hide();
+			$("#hiddenEmail").show();
+			
 		})
 
 	});
+	
 </script>
 
 </html>

@@ -43,6 +43,9 @@
 							<a href="#">${projectVo.proj_Name }</a>
 						</h3>
 						<p>${projectVo.proj_Content}</p>
+						<c:if test="${status.count%3==0}">
+							<br>
+						</c:if>
 					</div>
 					<!-- Modal -->
 					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">
@@ -148,10 +151,11 @@
 			dataType:'json',
 			type:'post',
 			success:function(data){
+				$('#'+proj_Num+'btnZone #applyBtn').val('대기중');
+				$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 				 send('push:'+data.p_Mem_Email); 
 			},error:function(data){
 				alert("에러");
-				/* send('push:'+data); */
 			}
 		});
 	}

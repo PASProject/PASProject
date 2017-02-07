@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.MemberDao;
 import com.app.pas.dto.MemApplyViewVo;
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -33,8 +34,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void updateMember(MemberVo memberVo) throws SQLException {
-		client.update("updateMember",memberVo);
+	public int updateMember(MemberVo memberVo) throws SQLException {
+		return client.update("updateMember",memberVo);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemApplyViewVo selectMemApplyViewByMemProj(
 			MemApplyViewVo memApplyViewVo) throws SQLException {
-		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemPRoj",memApplyViewVo);
+		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemProj",memApplyViewVo);
 		return memApplyViewVo;
 	}
 	// 여준영 부분
@@ -77,6 +78,42 @@ public class MemberDaoImpl implements MemberDao {
 			throws SQLException {
 		List<MemApplyViewVo> list = (List<MemApplyViewVo>) client.queryForList("selectMemApplyViewByEmail",p_Mem_Email);
 		return list;
+	}
+
+	@Override
+	public MemberVo searchEmail(MemberVo memberVo) throws SQLException {
+		MemberVo MemberVo1 = (MemberVo) client.queryForObject("searchEmail",memberVo);
+		return MemberVo1;
+	}
+	public void updateApplyCommitCheck(int apply_Num) throws SQLException {
+		client.update("updateApplyCommitCheck",apply_Num);
+	}
+
+	@Override
+	public MemApplyViewVo selectMemApplyViewByApplyNum(int apply_Num)
+			throws SQLException {
+		MemApplyViewVo memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByApplyNum",apply_Num);
+		return memApplyViewVo;
+	}
+
+	@Override
+	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException {
+		client.delete("deleteApplyViewByApplyNum",apply_Num);
+
+	}
+
+	@Override
+	public List<MemPositionViewVo> selectMemberListByProj(MemPositionViewVo memPoistionViewVo)
+			throws SQLException {
+		List<MemPositionViewVo> list = client.queryForList("selectMemberListByProj",memPoistionViewVo );
+		return list;
+	}
+
+	@Override
+	public MemPositionViewVo selectMemberPosition(
+			MemPositionViewVo memPositionViewVo) throws SQLException {
+		MemPositionViewVo memPositionViewVo1 = (MemPositionViewVo) client.queryForObject("selectMemberPosition", memPositionViewVo);
+		return memPositionViewVo1; 
 	}
 
 	

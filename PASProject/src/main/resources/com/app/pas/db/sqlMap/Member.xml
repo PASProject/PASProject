@@ -7,6 +7,7 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="Member" type="com.app.pas.dto.MemberVo" />
 	<typeAlias alias ="MemApplyView" type="com.app.pas.dto.MemApplyViewVo"/>
+	<typeAlias alias ="MemPositionView" type="com.app.pas.dto.MemPositionViewVo"/>
 
 	<select id="selectMemberList" parameterClass="str" resultClass="Member">
 		select * from MEMBER where MEM_EMAIL LIKE '%'||#mem_Email#||'%'
@@ -15,6 +16,11 @@
 	<select id="selectMember" parameterClass="str" resultClass="Member">
 		select * from member where mem_email = #mem_Email#
 	</select>
+	
+	<select id="searchEmail" parameterClass="Member" resultClass="Member">
+		select * from member where mem_Name =#mem_Name# and mem_Phone = #mem_Phone#
+	</select>
+	
 
 	<update id="extraMemberPwd" parameterClass="Member">
 		update Member set mem_pass=#mem_Pass# where mem_email=#mem_Email#
@@ -51,9 +57,39 @@
 	<select id="selectMemApplyViewByEmail" parameterClass="str" resultClass="MemApplyView">
 		select * from mem_Apply_View where p_mem_Email = #p_Mem_Email# and apply_commit_check = '0' order by apply_num desc
 	</select>
+	
+	
+	<select id="selectMemApplyViewByApplyNum" parameterClass="int" resultClass="MemApplyView">
+		select * from mem_Apply_view where apply_Num = #apply_Num#
+	</select>
+	
+	<update id="updateApplyCommitCheck" parameterClass="int">
+		update mem_apply_view set apply_commit_check='1' where apply_Num = #apply_Num#
+	</update>
+	
+	<update id="deleteApplyViewByApplyNum" parameterClass="int">
+		delete mem_apply_view where apply_Num = #apply_Num#
+	</update>
+	
+	
 	<update id="updateMemberImg" parameterClass="Member">
 		UPDATE MEMBER SET
 		MEM_IMG=#mem_Img# WHERE MEM_EMAIL = #mem_Email#
 	</update>
+	
+	<select id="selectMemberListByProj" parameterClass="MemPositionView" resultClass="MemPositionView">
+	 select * 
+	 from Mem_Position_View 
+	 where proj_num = #proj_Num# and pjj_per_num = #pjj_Per_Num#
+	
+	</select>
+	
+	<select id="selectMemberPosition" parameterClass="MemPositionView" resultClass="MemPositionView">
+	select * 
+	from Mem_Position_View 
+	where mem_Email=#mem_Email# and proj_Num=#proj_Num# 
+	
+	</select>
+	
 	
 </sqlMap>
