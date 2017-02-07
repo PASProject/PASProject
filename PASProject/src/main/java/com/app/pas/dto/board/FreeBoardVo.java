@@ -13,7 +13,14 @@ public class FreeBoardVo {
 	private String mem_Email;
 	private String frb_Kind;
 	private int frb_Like_Count;
+	private String mem_Name;
 	
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
 	public int getFrb_Like_Count() {
 		return frb_Like_Count;
 	}

@@ -19,8 +19,8 @@
 	<insert id="insertFreeBoardReply" parameterClass="FreeBoardReply">
 		INSERT INTO
 		FREE_BOARD_REPLY(FRB_REPLY_NUM,FRB_ARTICLE_NUM,FRB_REPLY_MEM,
-		FRB_REPLY_CONTENT) 
-		VALUES(FREE_BOARD_REPLY_SEQ.NEXTVAL,#frb_Article_Num#,#frb_Reply_Mem#,#frb_Reply_Content#)
+		FRB_REPLY_CONTENT,FRB_REPLY_MEM_NAME) 
+		VALUES(FREE_BOARD_REPLY_SEQ.NEXTVAL,#frb_Article_Num#,#frb_Reply_Mem#,#frb_Reply_Content#,#frb_Reply_Mem_Name#)
 	</insert>
 
 

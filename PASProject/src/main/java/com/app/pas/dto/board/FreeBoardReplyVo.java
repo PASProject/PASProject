@@ -11,7 +11,14 @@ public class FreeBoardReplyVo {
 	private String frb_Reply_Mem;
 	private String frb_Reply_Content;
 	private Timestamp frb_Reply_Time;
+	private String frb_Reply_Mem_Name;
 	
+	public String getFrb_Reply_Mem_Name() {
+		return frb_Reply_Mem_Name;
+	}
+	public void setFrb_Reply_Mem_Name(String frb_Reply_Mem_Name) {
+		this.frb_Reply_Mem_Name = frb_Reply_Mem_Name;
+	}
 	public Timestamp getFrb_Reply_Time() {
 		return frb_Reply_Time;
 	}

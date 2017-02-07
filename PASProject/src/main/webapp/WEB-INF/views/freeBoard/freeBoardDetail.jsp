@@ -100,7 +100,7 @@
 								+ '월' + day + '일';
 						
 						var tt = '<div>아이디 : '
-								+ data[i].frb_Reply_Mem
+								+data[i].frb_Reply_Mem_Name +'( '+ data[i].frb_Reply_Mem +' )'
 								+ '  /  ' + '작성 날짜 : '
 								+ fullD + '<div>  ->'
 								+ data[i].frb_Reply_Content
@@ -141,7 +141,7 @@
 											var fullD = year + '년' + month
 													+ '월' + day + '일';
 											var tt = '<div >아이디 : '
-													+ data[i].frb_Reply_Mem
+													+data[i].frb_Reply_Mem_Name +'( '+ data[i].frb_Reply_Mem +' )'
 													+ '  /  ' + '작성 날짜 : '
 													+ fullD + '<div>  ->'
 													+ data[i].frb_Reply_Content
