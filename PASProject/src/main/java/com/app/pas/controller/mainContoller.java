@@ -383,5 +383,37 @@ public class mainContoller {
 				.selectMemApplyViewByEmail(p_Mem_Email);
 		return memApplyViewList;
 	}
+	
+	@RequestMapping(value="/searchEmail",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> SearchEmail(@RequestBody Map<String,Object> map,Model model) throws SQLException{
+		String Id="";
+		MemberVo memberVo = new MemberVo();
+		memberVo.setMem_Name(map.get("sendName").toString());
+		memberVo.setMem_Phone(map.get("sendPhone").toString());
+		
+		MemberVo memberVo1 =memberService.searchEmail(memberVo);
+		System.out.println(memberVo1+"이건 멤멤!!");
+		if(memberVo1 !=null){
+			
+			Id=memberVo1.getMem_Email();
+			}
+		System.out.println(Id+"이건아이디!!!!!");
+		
+		map.put("id", Id);
+		return map;
+	}
 
+	@RequestMapping(value="/agree",method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> agreeAlarm(@RequestBody Map<String,Object> map) throws SQLException{
+		String apply_Num = (String) map.get("apply_Num");
+		List<MemApplyViewVo> memApplyViewList =  memberService.updateApplyAgree(Integer.parseInt(apply_Num));
+		return memApplyViewList;
+	}
+	
+	@RequestMapping(value="/reject",method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> rejectAlarm(@RequestBody Map<String,Object> map) throws SQLException{
+		String apply_Num = (String)map.get("apply_Num");
+		List<MemApplyViewVo> memApplyViewList= memberService.updateApplyReject(Integer.parseInt(apply_Num));
+		return memApplyViewList;
+	}
 }

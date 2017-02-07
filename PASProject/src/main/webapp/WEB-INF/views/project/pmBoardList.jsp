@@ -46,9 +46,7 @@ padding: 10px;
 			 <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button>
 			 <br><br>
 			<fieldset>
-			<form name="frm" method="post" action="projectBoardInsert">
-			<input type="hidden" name="pb_Content" value="${ProjectBoardVo.pb_Content}">
-			
+			<form name="frm" method="post" action="pmBoardInsert">
 				
 				<table class="col-md-10" style="border: 2px solid #ddd">
 				<tr>
@@ -82,7 +80,7 @@ padding: 10px;
 						<td class="col-md-1">이경희 BA</td>
 						<td class="col-md-7">
 						게시물 번호 : ${pbList.pb_Article_Num}
-						<textarea rows="7" cols="100" name="pb_Content" readonly> ${pbList.pb_Content}</textarea>
+						<textarea rows="7" cols="100"  readonly> ${pbList.pb_Content}</textarea>
 						<br><br>
 						
 				<!-- 댓글 -->
@@ -113,7 +111,7 @@ padding: 10px;
 				}
 				
 				function go_myProjectList(){
-					location.href="myProjectList";
+					location.href="pmBoardMyProjectList";
 				}
 				
 // 				 function projectBordInsert(){

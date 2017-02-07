@@ -32,13 +32,19 @@
 		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#proj_Num#,#mem_Email#,#pb_Content#)
 	</insert>
 
+	<select id="updateFormProjectBoard" parameterClass="int" resultClass="ProjectBoard" >
+		SELECT * FROM PROJECT_BOARD 
+		WHERE PB_ARTICLE_NUM = #pb_Article_Num#
+	</select>
 
-<!-- 	<update id="updateProjectBoard" parameterClass="ProjectBoard"> -->
-<!-- 		UPDATE -->
-<!-- 		PROJECT_BOARD SET PB_CONTENT=#pb_Content#, PB_TITLE=#pb_Title#, -->
-<!-- 		WHERE -->
-<!-- 		PB_ARTICLE_NUM=#pb_Article_Num# -->
-<!-- 	</update> -->
+
+	<update id="updateProjectBoard" parameterClass="ProjectBoard">
+		UPDATE
+		PROJECT_BOARD SET PB_CONTENT=#pb_Content#
+		WHERE
+		PB_ARTICLE_NUM=#pb_Article_Num#
+	</update>
+
 
 	<delete id="deleteProjectBoard" parameterClass="int">
 		DELETE FROM

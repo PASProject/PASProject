@@ -37,7 +37,7 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 		client.insert("insertProjectBoard",projectBoardVo);
 		
 	}
-
+//글수정
 	@Override
 	public void updateProjectBoard(ProjectBoardVo projectBoardVo)
 			throws SQLException {
@@ -82,6 +82,13 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 			throws SQLException {
 		List<ProjectBoardVo> pbList  = client.queryForList("myProjectList", mem_Email);
 		return pbList;
+	}
+//글 수정 Form
+	@Override
+	public ProjectBoardVo updateFormProjectBoard(int pb_Atricle_Num)
+			throws SQLException {
+		ProjectBoardVo projectBoardVo = (ProjectBoardVo) client.queryForObject("ProjectBoardVo", pb_Atricle_Num);
+		return projectBoardVo;
 	}
 
 }
