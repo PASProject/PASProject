@@ -135,11 +135,12 @@
 <style>
 @font-face {
 	font-family: 'NanumGothic';
-	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
+	src: url(resources/fonts/NANUMGOTHIC.TTF) format('truetype');
 }
 </style>
 <style>
 body {
+	font-family : 'NanumGothic';
 	background-color: rgb(249, 249, 249);
 }
 
@@ -347,7 +348,7 @@ body {
 							$('#closeModal').click(function() {
 								location.reload();
 							});
-						});
+						})
 					</script>
 					<button class="btn btn-default pull-right" id="btn-upload1">사진
 						등록하기</button>
@@ -443,7 +444,8 @@ body {
 						$(document).ready(function() {
 							$('#closeModal').click(function() {
 								location.reload();
-							});
+							})
+						});
 						</script>
 				
 				</div>
@@ -475,7 +477,7 @@ body {
 	$(document).ready(
 			function() {
 				connect('init:' + '${sessionScope.loginUser.mem_Email}');
-				$(".dropdown").hover(
+				/* $(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')
 									.stop(true, true).slideDown("400");
@@ -485,7 +487,7 @@ body {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')
 									.stop(true, true).slideUp("400");
 							$(this).toggleClass('open');
-						});
+						}); */
 				$('#alarmMenu').on('click',function(){
 					$.ajax({
 						url:'alramView',

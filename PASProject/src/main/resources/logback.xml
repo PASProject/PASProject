@@ -41,7 +41,6 @@
     <logger name="com.app.pas.db.sqlMap.sqlmappers">
         <level value="trace" />
     </logger>
-
     <root level="info">
        <!-- <appender-ref ref="ROLLING"/>  -->
        <appender-ref ref="STDOUT" />

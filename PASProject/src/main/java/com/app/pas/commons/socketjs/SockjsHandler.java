@@ -2,17 +2,17 @@ package com.app.pas.commons.socketjs;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.PongMessage;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class SockjsHandler extends TextWebSocketHandler{
 
+public class SockjsHandler extends TextWebSocketHandler{
 	private Map<String,WebSocketSession> users= new ConcurrentHashMap<String, WebSocketSession>();
 	
 	@Override
@@ -20,6 +20,7 @@ public class SockjsHandler extends TextWebSocketHandler{
 			WebSocketMessage<?> message) throws Exception {
 		System.out.println("handleMessage 호출");
 		String userid;
+		
 		System.out.println(message.getPayload().toString()+"@@@@@@@@@@@@@@@@@@@@@@");
 		if(message.equals(null)) return;
 		System.out.println(message.getPayload().toString().length());

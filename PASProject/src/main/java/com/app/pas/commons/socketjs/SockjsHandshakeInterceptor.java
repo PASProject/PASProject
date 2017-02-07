@@ -36,12 +36,12 @@ public class SockjsHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	public boolean beforeHandshake(ServerHttpRequest request,
 			ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
+		ServletServerHttpRequest serverRequest = (ServletServerHttpRequest) request;
+		HttpSession session = serverRequest.getServletRequest().getSession();
+		
 		System.out.println("befor"+attributes);
-		ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
         System.out.println("URI:"+request.getURI());
-        HttpServletRequest req =  ssreq.getServletRequest();
-        HttpSession session = req.getSession();
-				System.out.println(session.getAttribute("a")+"세선@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(session.getAttribute("loginUser")+"세선@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
 		attributes.put("a", "비포 클래스");
 		

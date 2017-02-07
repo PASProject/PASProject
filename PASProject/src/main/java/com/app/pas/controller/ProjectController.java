@@ -200,7 +200,7 @@ public class ProjectController {
 	@RequestMapping("/pmNoticeList")
 	public String pmNoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
-		int proj_Num = (Integer) session.getAttribute("joinProj");
+		String proj_Num = (String) session.getAttribute("joinProj");
 		int totalCount = 0;
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 
@@ -213,11 +213,11 @@ public class ProjectController {
 		map.put("mem_Email", memberVo.getMem_Email());
 
 		try {
-			list = noticeService.getNoticeList(proj_Num);
+			list = noticeService.getNoticeList(Integer.parseInt(proj_Num));
 			model.addAttribute("NoticeList", list);
 			memPositionView = noticeService.getNoticePosition(map);
 			session.setAttribute("memPositionView", memPositionView);
-			totalCount = noticeService.selectNoticeCount(proj_Num);
+			totalCount = noticeService.selectNoticeCount(Integer.parseInt(proj_Num));
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
