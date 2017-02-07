@@ -30,7 +30,7 @@ table tr td {
 		<div class="col-md-10">
 			<div id="pbd"
 				style="padding: 10px; background-color: white; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 20px;">
-				<div style="height: auto;">
+				<div style="height: 80px;">
 					<form name="frm" method="post" action="pmBoardInsert">
 						<table class="col-md-12">
 							<tr>
@@ -65,7 +65,7 @@ table tr td {
 						<table class="col-md-12">
 							<tr>
 								<td rowspan=3>사진</td>
-								<td>이름</td>
+								<td>이름 ${pbList.mem_Email } </td>
 								<td class="text-right">
 									<div class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -84,7 +84,7 @@ table tr td {
 								</td>
 							</tr>
 							<tr>
-								<td>게시글등록날짜</td>
+								<td>게시글등록날짜<fmt:formatDate value="${pbList.pb_Wt_Date}" pattern="yyyy-MM-dd"/> </td>
 								<td></td>
 							</tr>
 						</table>
@@ -101,13 +101,12 @@ table tr td {
 
 					<div id="pbd"
 						style="background-color: #f5f5f5; border: 1px solid #ddd; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px;">
-						<form class="anser-write" method="post"
-							action="insertProjectBoardReply">
+						<div id = "${pbList.pb_Article_Num}"></div>
 							<textarea style="border: none; resize: none;" rows="1" cols="83"
-								name="pb_Reply_Content"></textarea>
-							<input type="submit" class="btn btn-default" value="댓글달기" />
-							<button class="btn btn-default " type="button">등록</button>
-						</form>
+								name="pb_Reply_Content" id = "${pbList.pb_Article_Num}pb_Reply_Content"></textarea>
+								
+							<input type="button" class="btn btn-default ${pbList.pb_Article_Num }" id="addReply" value="댓글달기" onclick="javascript:reply(${pbList.pb_Article_Num})" />
+							
 						<br> <br>
 
 					</div>
@@ -118,6 +117,55 @@ table tr td {
 
 
 			<script>
+			
+			$(document).ready(function(){
+					 $.ajax({
+						url:'selectProjectBoardReply',
+						contentType:'application/json',
+						dataType:'json',
+						type:'POST',
+						success:function(data){
+							var d ="";
+							$.each(data,function(i){
+								$.each(data,function(j){
+									var dt="";
+									dt = '작성자 '+data[i][j].pb_Reply_Mem +'내용'+ data[i][j].pb_Reply_Content+"<br>"
+									$('#'+data[i][j].pb_Article_Num).append(dt);
+									 d = j;
+								});
+							});
+							alert(d);
+						}
+					})
+				
+			})
+			
+				function reply(pb_Article_Num){
+					
+					var Article_Num = pb_Article_Num;
+					var pb_Reply_Content = $('#'+Article_Num+'pb_Reply_Content').val();
+					var dataList = {'pb_Reply_Content':pb_Reply_Content,'pb_Article_Num':Article_Num};
+					
+					$.ajax({
+						url:'insertProjectBoardReply',
+						data: JSON.stringify(dataList),
+						contentType:'application/json',
+						dataType:'json',
+						type:'post',
+						success:function(data){
+							var dt = "";
+							$.each(data,function(i){
+								dt += '작성자 '+data[i].pb_Reply_Mem +'내용'+ data[i].pb_Reply_Content+"<br>"
+							});
+							
+							$('#'+Article_Num).empty();
+							$('#'+Article_Num).append(dt);
+							$('#'+Article_Num+'pb_Reply_Content').val("");
+						}
+					});
+				}
+				
+
 				$(".anser-write input{type=submit}").click(addAnswer);
 				function addAnswer(e) {
 					e.preventDefault();

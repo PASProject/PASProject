@@ -6,7 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="ProjectBoardReply" type="com.app.pas.dto.board.ProejctBoardReplyVo" />
+	<typeAlias alias="ProjectBoardReply" type="com.app.pas.dto.board.ProjectBoardReplyVo" />
 
 	
 
@@ -14,7 +14,7 @@
 		resultClass="ProjectBoardReply">
 		SELECT *
 		FROM PROJECT_BOARD_REPLY
-		WHERE PB_ARTICLE_NUM LIKE '%'||#pb_Article_Num#||'%' 
+		WHERE PB_ARTICLE_NUM = #pb_Article_Num# 
 
 
 	</select>
@@ -28,7 +28,7 @@
 
 	<update id="updateProjectBoardReply" parameterClass="ProjectBoardReply">
 		UPDATE PROJECT_BOARD_REPLY SET PB_REPLY_CONTENT =#pb_Reply_Content# 
-		WHERE PB_REPLY_NUM= #pbReplyNum#
+		WHERE PB_REPLY_NUM= #pb_Reply_Num#
 	</update>
 
 	<delete id="deleteProjectBoardReply" parameterClass="int">
