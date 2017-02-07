@@ -24,10 +24,6 @@
 					<!-- <small>Secondary Text</small> -->
 
 					<button  style="margin-left:5px;" class="btn btn-default pull-right">생성하기</button>
-					<input class="btn btn-danger pull-right" type="button"  value="프로젝트게시판♥" onClick="go_Pb()">
-					<input type="button"  value="SkillSharingBoard" onClick="go_Pb()">
-					<input type ="button" value="ProjectBoard" onClick="go_ProjectBoard()">
-					<input type ="button" value="We_want_freedom" onClick="go_Fb()">
 				</h2>
 
 			</div>

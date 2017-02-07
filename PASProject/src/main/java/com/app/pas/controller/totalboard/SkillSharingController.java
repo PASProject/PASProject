@@ -38,7 +38,7 @@ public class SkillSharingController {
 	@Autowired
 	SkillSharingBoardReplyService skillSharingBoardReplyService;
 
-	@RequestMapping("/SkillSharingList")
+	@RequestMapping("/SkillSharingBoardList")
 	public String skillSharingBoardList(Model model,
 			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
@@ -194,7 +194,6 @@ public class SkillSharingController {
 		  String article_mem_Email = skillSharingBoardVo1.getMem_Email();
 		 
 		if(login_Mem_Email.equals(article_mem_Email)){
-			System.out.println("if로들어옴");
 		try {
 			skillSharingBoardVo = skillSharingBoardService
 					.selectSkillSharingBoardDetail(Integer

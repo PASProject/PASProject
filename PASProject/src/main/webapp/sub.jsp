@@ -55,7 +55,7 @@
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="http://www.jquery2dotnet.com">프로젝트 게시판</a></td>
+							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트 게시판</a></td>
 					</tr>
 				</table>
 			</div>
