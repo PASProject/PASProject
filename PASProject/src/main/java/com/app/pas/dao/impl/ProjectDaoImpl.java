@@ -15,11 +15,11 @@ public class ProjectDaoImpl implements ProjectDao {
 		this.client = client;
 	}
 
-	@Override
-	public List<ProjectVo> selectProjectList() throws SQLException {
-		List<ProjectVo> list = client.queryForList("selectProjectList");
-		return list;
-	}
+	 @Override
+	   public List<ProjectVo> selectProjectList() throws SQLException {
+	      List<ProjectVo> list = client.queryForList("selectProjectList");
+	      return list;
+	   }
 
 	@Override
 	public ProjectVo selectProject(int proj_Num) throws SQLException {

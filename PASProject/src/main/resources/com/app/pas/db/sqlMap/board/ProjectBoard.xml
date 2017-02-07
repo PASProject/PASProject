@@ -8,8 +8,10 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="ProjectBoard" type="com.app.pas.dto.board.ProjectBoardVo" />
 
-	<select id="selectProjectBoardList" resultClass="ProjectBoard">
-		SELECT * FROM PROJECT_BOARD ORDER BY PB_ARTICLE_NUM DESC
+	<select id="selectProjectBoardList" resultClass="ProjectBoard" parameterClass="int">
+		SELECT * FROM PROJECT_BOARD 
+		WHERE PROJ_NUM = #proj_Num#
+		ORDER BY PB_ARTICLE_NUM DESC
 
 	</select>
 

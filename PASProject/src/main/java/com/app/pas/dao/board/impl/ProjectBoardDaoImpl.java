@@ -19,8 +19,8 @@ public class ProjectBoardDaoImpl implements ProjectBoardDao{
 	}
 	
 	@Override
-	public List<ProjectBoardVo> selectProjectBoardList() throws SQLException {
-		List<ProjectBoardVo> list = client.queryForList("selectProjectBoardList");
+	public List<ProjectBoardVo> selectProjectBoardList(int proj_Num) throws SQLException {
+		List<ProjectBoardVo> list = client.queryForList("selectProjectBoardList",proj_Num);
 		return list;
 	}
 

@@ -9,7 +9,7 @@ import com.app.pas.dto.board.ProjectBoardVo;
 
 public interface ProjectBoardDao {
 	
-	public List<ProjectBoardVo> selectProjectBoardList()throws SQLException;
+	public List<ProjectBoardVo> selectProjectBoardList(int proj_Num)throws SQLException;
 	public ProjectBoardVo selectProjectBoard(int pb_Article_Num)throws SQLException;
 	public ProjectBoardVo updateFormProjectBoard(int pb_Atricle_Num) throws SQLException;
 	public List<ProjectBoardVo> selectProjectBoardListV(int pb_Article_Num)throws SQLException;
