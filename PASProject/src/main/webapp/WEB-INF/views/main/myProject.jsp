@@ -22,8 +22,9 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
-
-					<button  style="margin-left:5px;" class="btn btn-default pull-right">생성하기</button>
+					<input type="button" style="margin-left:5px;" class="btn btn-default pull-right" 
+					id="createProject" value="생성하기" data-toggle="modal" data-target="#create"
+							data-keyboard="false" data-backdrop="static">
 				</h2>
 
 			</div>
@@ -78,7 +79,31 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-
+		
+				<!-- 프로젝트 생성 모달   -->
+					<div class="modal fade" id="create" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title"></h4>
+									프로젝트 생성
+								</div>
+								<div class="modal-body" id="createBody">
+									생성자 : <input type="text" id = "mem_Email" value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br><br>
+									프로젝트 이름 : <input type="text" id="proj_Name" name = "proj_Name"><br><br>
+									프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea><br>
+								</div>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default" id = "createBtn" value="생성" />
+										
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
 
 
 		<hr>
@@ -112,6 +137,27 @@
 	</div>
 
 	<script>
+			
+	$(document).ready(function(){
+		$('#createBtn').on('click',function(){
+			var mem_Email = $('#mem_Email').val();
+			var proj_Name = $('#proj_Name').val();
+			var proj_Content = $('#proj_Content').val();
+			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content};
+			$.ajax({
+				url:'createProject',
+				contentType:'application/json',
+				data: JSON.stringify(dataList),
+				type:'post',
+				success:function(proj_Num){
+					location.href="../project/pmOverView?proj_Num="+proj_Num;
+				},
+				error : function(){
+					alert("프로젝트 생성 실패");
+				}
+			})
+		})
+	})
 	function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({

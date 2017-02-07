@@ -12,13 +12,6 @@ public class FreeBoardReplyVo {
 	private String frb_Reply_Content;
 	private Timestamp frb_Reply_Time;
 	
-	@Override
-	public String toString() {
-		return "FreeBoardReplyVo [frb_Reply_Num=" + frb_Reply_Num
-				+ ", frb_Article_Num=" + frb_Article_Num + ", frb_Reply_Mem="
-				+ frb_Reply_Mem + ", frb_Reply_Content=" + frb_Reply_Content
-				+ ", frb_Reply_Time=" + frb_Reply_Time + "]";
-	}
 	public Timestamp getFrb_Reply_Time() {
 		return frb_Reply_Time;
 	}

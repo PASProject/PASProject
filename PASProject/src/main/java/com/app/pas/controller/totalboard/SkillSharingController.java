@@ -158,7 +158,7 @@ public class SkillSharingController {
 	@RequestMapping(value = "/SkillSharingInsert", method = RequestMethod.POST)
 	public String insertskillSharingBoard(HttpSession session,
 			SkillSharingBoardVo skillSharingBoardVo) {
-		String url = "redirect:SkillSharingList";
+		String url = "redirect:SkillSharingBoardList";
 
 		
 		  MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -184,7 +184,6 @@ public class SkillSharingController {
 	public String updateskillSharingBoardForm(String ssb_Article_Num,
 			Model model,SkillSharingBoardVo skillSharingBoardVo, 
 			HttpServletResponse response, HttpSession session) throws NumberFormatException, SQLException, IOException {
-		/*String url = "SkillSharing/SkillSharingUpdate";*/
 		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		  String login_Mem_Email = memberVo.getMem_Email();
@@ -194,23 +193,15 @@ public class SkillSharingController {
 		  String article_mem_Email = skillSharingBoardVo1.getMem_Email();
 		 
 		if(login_Mem_Email.equals(article_mem_Email)){
-		try {
-			skillSharingBoardVo = skillSharingBoardService
-					.selectSkillSharingBoardDetail(Integer
-							.parseInt(ssb_Article_Num));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			skillSharingBoardVo = skillSharingBoardService.selectSkillSharingBoardDetail(Integer.parseInt(ssb_Article_Num));
+		
 		model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
 		return "SkillSharing/SkillSharingUpdate";
-	}else{
+		}else{
 		
 		skillSharingBoardService.updateSkillSharingBoardCountM(skillSharingBoardVo);
-		System.out.println("else로들어옴");
+		
 		return "redirect:SkillSharingDetail?ssb_Article_Num="+ ssb_Article_Num+"&modi=no";
 	}
 		
@@ -219,18 +210,10 @@ public class SkillSharingController {
 
 	@RequestMapping(value = "/SkillSharingUpdate", method = RequestMethod.POST)
 	public String updateskillSharingBoard(
-			SkillSharingBoardVo skillSharingBoardVo,HttpSession session) {
+			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
 		
-		  
-		String url = "redirect:SkillSharingList";
-		
-		try {
-			skillSharingBoardService
-					.updateSkillSharingBoard(skillSharingBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String url = "redirect:SkillSharingBoardList";
+		skillSharingBoardService.updateSkillSharingBoard(skillSharingBoardVo);
 		return url;
 	}
 
@@ -244,7 +227,7 @@ public class SkillSharingController {
 	@RequestMapping(value = "/SkillSharingDelete", method = RequestMethod.POST)
 	public String deleteskillSharingBoard(String ssb_Article_Num,HttpSession session,SkillSharingBoardVo skillSharingBoardVo) 
 			throws NumberFormatException, SQLException {
-		String url = "redirect:SkillSharingList";
+		String url = "redirect:SkillSharingBoardList";
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String login_Mem_Email = memberVo.getMem_Email();
 		  SkillSharingBoardVo skillSharingBoardVo1 = 

@@ -418,4 +418,14 @@ public class mainContoller {
 		List<MemApplyViewVo> memApplyViewList= memberService.updateApplyReject(Integer.parseInt(apply_Num));
 		return memApplyViewList;
 	}
+	
+	@RequestMapping(value= "/createProject",method = RequestMethod.POST)
+	public @ResponseBody int createProject(@RequestBody ProjectVo projectVo) throws SQLException{
+		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+		projectJoinVo.setMem_Email(projectVo.getMem_Email());
+		projectJoinVo.setPjj_Per_Num(1);
+		projectJoinVo.setPosition_Num(1);
+		int proj_Num = projectService.insertProject(projectVo,projectJoinVo);
+		return proj_Num;
+	}
 }

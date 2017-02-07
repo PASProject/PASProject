@@ -14,8 +14,6 @@ public class FreeBoardVo {
 	private String frb_Kind;
 	private int frb_Like_Count;
 	
-	
-	
 	public int getFrb_Like_Count() {
 		return frb_Like_Count;
 	}
