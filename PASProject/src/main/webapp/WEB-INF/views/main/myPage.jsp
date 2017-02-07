@@ -288,7 +288,8 @@
 					if ($('#1').css('display') != 'none') {
 						$('#2').show().siblings('div').hide();
 						$('#projBtn').text('개인정보 보기');
-					} else if ($('#2').css('display') != 'none') {
+						$.ajax({})
+						} else if ($('#2').css('display') != 'none') {
 						$('#1').show().siblings('div').hide();
 						$('#projBtn').text('프로젝트 정보 보기');
 					}

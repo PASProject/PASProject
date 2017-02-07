@@ -6,9 +6,6 @@
 	</decorator>
 	<decorator name="my" page="my_decorator.jsp">
 		<pattern>/main/*</pattern>
-	</decorator>
-
-	<decorator name="proj" page="proj_decorator.jsp">
 		<pattern>/qna/*</pattern>
 		<pattern>/freeBoard/*</pattern>
 		<pattern>/schedule/*</pattern>
@@ -16,8 +13,9 @@
 		<pattern>/product/*</pattern>
 		<pattern>/notice/*</pattern>
 		<pattern>/project/*</pattern>
-
 	</decorator>
+
+	
 	<decorator name="admin" page="admin_decorator.jsp">
 		<pattern>/admin/*.do</pattern>
 	</decorator>

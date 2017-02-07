@@ -452,9 +452,24 @@ body {
 		</div>
 	</div>
 
-
+	<c:choose>
+	<c:when test="${empty sessionScope.joinProj }">
 	<decorator:body />
-
+	
+	</c:when>
+		<c:otherwise>
+		<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="submenu" style="margin-top: 40px;">
+				<jsp:include page="sub.jsp" />
+			</div>
+			<decorator:body />
+		</div>
+	</div>
+			
+		</c:otherwise>
+	</c:choose>
+	
 	<c:set var="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
 </body>
 <script>
@@ -587,7 +602,7 @@ function go_agree(apply_Num){
 	alert(apply_Num);
 };
 	function logOut() {
-		location.href = "logOut";
+		location.href = "<%=request.getContextPath()%>/main/logOut";
 	}
 </script>
 </html>

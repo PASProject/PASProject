@@ -102,6 +102,9 @@ public class mainContoller {
 	public String logOut(HttpSession session, Model model) {
 		String url = "redirect:/index";
 		session.removeAttribute("loginUser");
+		if(session.getAttribute("joinProj")!=null&&session.getAttribute("joinProj")!="null"){
+			session.removeAttribute("joinProj");
+		}
 		return url;
 	}
 
@@ -199,7 +202,7 @@ public class mainContoller {
 		if (session.getAttribute("memName") != null) {
 			session.removeAttribute("memName");
 		}
-
+		
 		return url;
 	}
 
