@@ -37,7 +37,7 @@
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"
-							data-toggle="modal" data-target="#${projectVo.proj_Name }" data-keyboard="false" data-backdrop="static">
+							data-toggle="modal" data-target="#${projectVo.proj_Num }" data-keyboard="false" data-backdrop="static">
 						</a>
 						<h3>
 							<a href="#">${projectVo.proj_Name }</a>
@@ -48,7 +48,7 @@
 						</c:if>
 					</div>
 					<!-- Modal -->
-					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">
+					<div class="modal fade" id="${projectVo.proj_Num }" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -134,6 +134,7 @@
 					success:function(data){
 						if(data!=0){
 						$('#'+proj_Num+'btnZone #applyBtn').val('대기중');
+						$('#'+proj_Num+'btnZone #applyBtn').css('color','red');
 						$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 						}
 					}
@@ -152,6 +153,7 @@
 			type:'post',
 			success:function(data){
 				$('#'+proj_Num+'btnZone #applyBtn').val('대기중');
+				$('#'+proj_Num+'btnZone #applyBtn').css('color','red');
 				$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 				 send('push:'+data.p_Mem_Email); 
 			},error:function(data){

@@ -347,7 +347,7 @@ body {
 							$('#closeModal').click(function() {
 								location.reload();
 							});
-						});
+						})
 					</script>
 					<button class="btn btn-default pull-right" id="btn-upload1">사진
 						등록하기</button>
@@ -443,7 +443,8 @@ body {
 						$(document).ready(function() {
 							$('#closeModal').click(function() {
 								location.reload();
-							});
+							})
+						});
 						</script>
 				
 				</div>

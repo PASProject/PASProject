@@ -65,4 +65,11 @@ public class ProjectDaoImpl implements ProjectDao {
 		return list;
 	}
 
+	@Override
+	public ProjectVo selectLastInsertProject(String mem_Email)
+			throws SQLException {
+		ProjectVo projectVo = (ProjectVo) client.queryForObject("selectLastInsertProject",mem_Email);
+		return projectVo;
+	}
+
 }
