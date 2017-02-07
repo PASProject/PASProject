@@ -420,58 +420,39 @@ $(document)
 									validating : 'glyphicon glyphicon-refresh'
 								},
 								fields : {
-									mem_Phone : {
+									
+									mem_Name : {
 										validators : {
 											stringLength : {
+												min : 2,
+											},
+											notEmpty : {
+												message : '이름을 기입해 주세요'
+											}
+										}
+									},
+
+									mem_Phone : {
+										validators : {
+											regexp:{
+												 regexp : /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/,
+							                     message: '형식에 맞는 휴대폰 번호를 입력해 주세요.'
+											},
+											
+										/* 	stringLength : {
 												min : 12,
 												max : 13,
 												message :  '하이픈 붙혀서 전화번호 똑바로 좀 '
-											},
+											}, */
 											notEmpty : {
-												message : '저기...번호좀...ㅎㅎ'
+												message : '휴대폰 번호를 입력해 주세요.'
 											}
 											
 										}
 									},
-									address : {
-										validators : {
-											stringLength : {
-												min : 8,
-											},
-											notEmpty : {
-												message : 'Please supply your street address'
-											}
-										}
-									},
-									city : {
-										validators : {
-											stringLength : {
-												min : 4,
-											},
-											notEmpty : {
-												message : 'Please supply your city'
-											}
-										}
-									},
-									state : {
-										validators : {
-											notEmpty : {
-												message : 'Please select your state'
-											}
-										}
-									},
-									zip : {
-										validators : {
-											notEmpty : {
-												message : 'Please supply your zip code'
-											},
-											zipCode : {
-												country : 'US',
-												message : 'Please supply a vaild zip code'
-											}
-										}
-									},
-								mem_Email : {
+
+
+									mem_Email : {
 										validators : {
 											notEmpty : {
 												message : '이메일란을 입력해 주세요.'
@@ -484,17 +465,30 @@ $(document)
 
 									mem_Pass : {
 										validators : {
+											regexp:{
+												 regexp : /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/,
+							                     message: '비밀번호는 영문, 숫자, 특수문자가 꼭 들어가야 합니다.'
+											},
+											stringLength : {
+												min : 8,
+												max : 20,
+												message :  '비밀번호는 8~20자 사이의 영문+숫자 조합으로 해주세요 '
+											},
+											notEmpty : {
+												message : '공란입니다.'
+											},
 											identical : {
-												field : 'confirmPassword',
+												
 												message : 'Confirm your password below - type same password please'
 											}
+											
 										}
 									},
 									mem_Pass_CK : {
 										validators : {
 											identical : {
-												field : 'password',
-												message : 'The password and its confirm are not the same'
+												field : 'mem_Pass',
+												message : '위와 동일한 비밀번호를 입력해 주시기 바랍니다.'
 											}
 										}
 									},

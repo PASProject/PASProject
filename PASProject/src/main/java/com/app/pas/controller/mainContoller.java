@@ -1,6 +1,5 @@
 package com.app.pas.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -43,7 +42,7 @@ public class mainContoller {
 
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
@@ -53,7 +52,7 @@ public class mainContoller {
 
 	@Autowired
 	ProjectService projectService;
-	
+
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 		String url = "/main/loginForm";
@@ -98,13 +97,14 @@ public class mainContoller {
 		/* System.out.println("result값" + result); */
 		return result;
 	}
-	
-	@RequestMapping(value="/logOut")
-	public String logOut(HttpSession session, Model model){
+
+	@RequestMapping(value = "/logOut")
+	public String logOut(HttpSession session, Model model) {
 		String url = "redirect:/index";
 		session.removeAttribute("loginUser");
 		return url;
 	}
+
 	// 가입처리
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
 	public String joinForm(HttpSession session, Model model) {
@@ -190,13 +190,11 @@ public class mainContoller {
 		return url;
 	}
 
-	@RequestMapping("/myPage")
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
 	public String Mypage(HttpSession session, Model model) {
 		String url = "main/myPage";
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
-		MemberVo memName = memberService.getMember(memberVo
-				.getMem_Name());
+		MemberVo memName = memberService.getMember(memberVo.getMem_Name());
 		model.addAttribute("memName", memName);
 		if (session.getAttribute("memName") != null) {
 			session.removeAttribute("memName");
@@ -205,10 +203,32 @@ public class mainContoller {
 		return url;
 	}
 
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> MypageUpdate(HttpSession session,
+			Model model, @RequestBody Map<String, Object> map)
+			throws SQLException {
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Pass = (String) map.get("mem_Pass");
+		String mem_Phone = (String) map.get("mem_Phone");
+		String url = "redirect:myProject";
+		memberVo.setMem_Pass(mem_Pass);
+		memberVo.setMem_Phone(mem_Phone);
+
+		System.out.println(memberVo.toString());
+
+		/*
+		 * memberVo.setMem_Email("mem_Meai
+		 */int a = memberService.updateMember(memberVo);
+		System.out.println(a);
+		Map<String,Object> m = new HashMap<String, Object>();
+		m.put("T", a);
+		return m;
+	}
+
 	/*
 	 * MyProject 모달
 	 */
-	
+
 	@RequestMapping(value = "/mdlValue", method = RequestMethod.POST)
 	public @ResponseBody List<MemPositionViewVo> mdlValue(
 			@RequestBody Map<String, Object> map) throws SQLException {
@@ -217,56 +237,59 @@ public class mainContoller {
 				.selectMemPositionViewListByProjNum(proj_Num);
 		return list;
 	}
-	
-	
+
 	/*
-	 * OtherProject 모달 
+	 * OtherProject 모달
 	 */
 	@RequestMapping(value = "/mdlOtherValue", method = RequestMethod.POST)
-	public @ResponseBody List<MemPositionViewVo> mdlOtherValue(@RequestBody Map<String, Object> map) throws SQLException {
+	public @ResponseBody List<MemPositionViewVo> mdlOtherValue(
+			@RequestBody Map<String, Object> map) throws SQLException {
 		int proj_Num = (Integer) map.get("proj_Num");
 		List<MemPositionViewVo> list = projectService
 				.selectMemPositionViewListByProjNum(proj_Num);
 		return list;
 	}
 
-	
-	
-	@RequestMapping(value="/checkApply", method = RequestMethod.POST)
-	public @ResponseBody int mdlCheckApply(@RequestBody Map<String,Object> map,HttpSession session ) throws SQLException{
-		int proj_Num = (Integer)map.get("proj_Num");
+	@RequestMapping(value = "/checkApply", method = RequestMethod.POST)
+	public @ResponseBody int mdlCheckApply(
+			@RequestBody Map<String, Object> map, HttpSession session)
+			throws SQLException {
+		int proj_Num = (Integer) map.get("proj_Num");
 		MemApplyViewVo memApplyViewVo = new MemApplyViewVo();
 		memApplyViewVo.setProj_Num(proj_Num);
-		memApplyViewVo.setMem_Email(((MemberVo)session.getAttribute("loginUser")).getMem_Email());
-		int countMemApply = memberService.selectCountMemApplyView(memApplyViewVo);
+		memApplyViewVo.setMem_Email(((MemberVo) session
+				.getAttribute("loginUser")).getMem_Email());
+		int countMemApply = memberService
+				.selectCountMemApplyView(memApplyViewVo);
 		return countMemApply;
 	}
-	
-	
-	
-	@RequestMapping(value="/apply",method = RequestMethod.POST)
-	public @ResponseBody Map<String,Object> mdlInvite(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
-		int proj_Num =  (Integer) map.get("proj_Num");
+
+	@RequestMapping(value = "/apply", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> mdlInvite(
+			@RequestBody Map<String, Object> map, HttpSession session)
+			throws SQLException {
+		int proj_Num = (Integer) map.get("proj_Num");
 		ApplyVo applyVo = new ApplyVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		MemApplyViewVo memApplyViewVo = new MemApplyViewVo();
-		MemberVo member  = (MemberVo) session.getAttribute("loginUser");
-		
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+
 		applyVo.setMem_Email(member.getMem_Email());
 		applyVo.setProj_Num(proj_Num);
 		applyVo.setAlarm_Clsfct("1");
-		
+
 		projectJoinVo.setMem_Email(member.getMem_Email());
 		projectJoinVo.setProj_Num(proj_Num);
-		
+
 		memApplyViewVo.setMem_Email(member.getMem_Email());
 		memApplyViewVo.setProj_Num(proj_Num);
-		memApplyViewVo = projectService.insertApply(applyVo,projectJoinVo,memApplyViewVo);
+		memApplyViewVo = projectService.insertApply(applyVo, projectJoinVo,
+				memApplyViewVo);
 		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
 		map.put("p_Mem_Email", p_Mem_Email);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/simpleMessage", method = RequestMethod.POST)
 	public @ResponseBody int SimpleMessage(HttpSession session,
 			HttpServletRequest request, String sendEmail) throws SQLException,
@@ -308,28 +331,29 @@ public class mainContoller {
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
 	public String uploadByMultipartHttpServletRequest(MemberVo memberVo,
-			MultipartHttpServletRequest request, Model model,HttpSession session)
-			throws IOException {
+			MultipartHttpServletRequest request, Model model,
+			HttpSession session) throws IOException {
 
 		MultipartFile multipartFile = request.getFile("f");
 
 		if (!multipartFile.isEmpty()) {
-			/*String upload = request.getSession().Http*/
-			String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
+			/* String upload = request.getSession().Http */
+			String upload = new HttpServletRequestWrapper(request)
+					.getRealPath("/resources/upload");
 			System.out.println(upload);
 			File file = new File(upload, System.currentTimeMillis() + "$$"
 					+ multipartFile.getOriginalFilename());
 
-			
 			multipartFile.transferTo(file);
-			
+
 			model.addAttribute("title", request.getParameter("title"));
 			model.addAttribute("uploadPath", file.getAbsolutePath());
-//			MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+			// MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 			memberVo.setMem_Img(file.getName());
-			memberVo.setMem_Email(((MemberVo)(session.getAttribute("loginUser"))).getMem_Email());
+			memberVo.setMem_Email(((MemberVo) (session
+					.getAttribute("loginUser"))).getMem_Email());
 			session.removeAttribute("loginUser");
-			session.setAttribute("loginUser",memberVo);
+			session.setAttribute("loginUser", memberVo);
 			request.setAttribute("memberVo", memberVo);
 			try {
 				memberService.updateMemberImg(memberVo);
@@ -343,18 +367,20 @@ public class mainContoller {
 		return "main/c8";
 
 	}
-	
+
 	@RequestMapping(value = "/profileImg", method = RequestMethod.GET)
 	public String profileImg(HttpSession session, Model model) {
 		String url = "main/profileImg";
 		return url;
 	}
-	
-	@RequestMapping(value="/alramView",method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> selectAlarmView(HttpSession session) throws SQLException{
+
+	@RequestMapping(value = "/alramView", method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> selectAlarmView(
+			HttpSession session) throws SQLException {
 		MemberVo member = (MemberVo) session.getAttribute("loginUser");
 		String p_Mem_Email = member.getMem_Email();
-		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_Mem_Email);
+		List<MemApplyViewVo> memApplyViewList = memberService
+				.selectMemApplyViewByEmail(p_Mem_Email);
 		return memApplyViewList;
 	}
 	

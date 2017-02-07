@@ -6,6 +6,7 @@ import java.util.List;
 import com.app.pas.dao.MemberDao;
 import com.app.pas.dao.ProjectJoinDao;
 import com.app.pas.dto.MemApplyViewVo;
+import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectJoinVo;
 
@@ -102,9 +103,7 @@ public class MemberService {
 		
 	}
 	
-	// 여준영 부분
 
-	
 		public void updateMemberImg(MemberVo memberVo) throws SQLException{
 			memberDao.updateMemberImg(memberVo);
 			}
@@ -114,8 +113,25 @@ public class MemberService {
 			MemberVo memberVo1 = memberDao.searchEmail(memberVo);
 			return memberVo1;
 		}
+		
+		public List<MemPositionViewVo> selectMemberListByProj(MemPositionViewVo memPositionViewVo) throws SQLException{
+			List<MemPositionViewVo> memPositionViewVo1 =memberDao.selectMemberListByProj(memPositionViewVo);
+		       return memPositionViewVo1;
+		}
+		
+		public MemPositionViewVo selectMemberPosition(MemPositionViewVo memPositionViewVo) throws SQLException{
+			MemPositionViewVo  memPositionViewVo1 = memberDao.selectMemberPosition(memPositionViewVo);
+			return memPositionViewVo1;
+		}
 	
 
+	
+		
+		public int updateMember(MemberVo memberVo) throws SQLException{
+		int result = memberDao.updateMember(memberVo);
+		return result;
+	}
+	
 
 
 }
