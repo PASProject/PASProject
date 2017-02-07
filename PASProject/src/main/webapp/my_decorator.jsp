@@ -407,7 +407,7 @@ body {
 								
 						<button class="btn btn-default pull-right" type="submit" id="submit"
 							style="margin-left: 5px;">정보 수정하기</button>
-							<!-- <script>
+						 <script>
 							$('#submit').click(function(){
 								var mem_Phone = $('#mem_Phone').val();
 								var mem_Pass = $('#userPw').val();
@@ -434,51 +434,9 @@ body {
 							})
 							
 							
-							</script> -->
+							</script> 
 
-<<<<<<< HEAD
-						<button id="closeModal" type="button"
-							class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-						<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
-						<script>
-							$(document).ready(function() {
-								$('#closeModal').click(function() {
-									location.reload();
-								});
-=======
-					<button class="btn btn-default pull-right" id="btnupload1" style="margin-left:5px;">정보
-						수정하기</button>
-					<script>
-		$('#btn-upload1').on('click', function() {
-			console.log('btn-upload');
-			var form = new FormData(document.getElementById('uploadForm'));
-		
-			$.ajax({
-				url : "<%=request.getContextPath()%>/main/c8",
-				data : form,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				type : 'POST',
-				success : 
-					function(response) {
-					console.log('success');
-					console.log(response);
-					 alert('사진이 등록되었습니다.'); 
-					$("#btn-upload1").attr("data-dismiss","modal");
-					location.reload();
-					$('#profileImg').attr('src','<%=request.getContextPath()%>/resources/upload/${param.memberVo.mem_Img}');
-
-														},
-														error : function(jqXHR) {
-
-															console
-																	.log('error');
-														}
-													});
-
-										});
-					</script>
+					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
 					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
@@ -486,7 +444,6 @@ body {
 						$(document).ready(function() {
 							$('#closeModal').click(function() {
 								location.reload();
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 							});
 						</script>
 				
@@ -496,98 +453,11 @@ body {
 	</div>
 
 
-
-
-
-
 	<decorator:body />
 
 	<c:set var="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
 </body>
 <script>
-<<<<<<< HEAD
-	$(document)
-			.ready(
-					function() {
-						connect('init:' + '${sessionScope.loginUser.mem_Email}');
-						$(".dropdown").hover(
-								function() {
-									$('.dropdown-menu', this).not(
-											'.in .dropdown-menu').stop(true,
-											true).slideDown("400");
-									$(this).toggleClass('open');
-								},
-								function() {
-									$('.dropdown-menu', this).not(
-											'.in .dropdown-menu').stop(true,
-											true).slideUp("400");
-									$(this).toggleClass('open');
-								});
-						$('#alarmMenu')
-								.on(
-										'click',
-										function() {
-											$
-													.ajax({
-														url : 'alramView',
-														contentType : 'application/json',
-														dataType : 'json',
-														type : 'post',
-														success : (function(
-																data) {
-															var dataList = "";
-															$
-																	.each(
-																			data,
-																			function(
-																					i) {
-																				var date = new Date(
-																						data[i].apply_Time);
-																				var year = date
-																						.getFullYear();
-																				var month = (1 + date
-																						.getMonth());
-																				month = month >= 10 ? month
-																						: '0'
-																								+ month;
-																				var day = date
-																						.getDate();
-																				day = day >= 10 ? day
-																						: '0'
-																								+ day;
-																				var fullD = year
-																						+ '년'
-																						+ month
-																						+ '월'
-																						+ day
-																						+ '일';
-
-																				dataList += '<li>알림시각 : '
-																						+ fullD
-																						+ ' 프로젝트이름 : ['
-																						+ data[i].proj_Num
-																						+ '] '
-																						+ data[i].proj_Name
-																						+ ' 보낸사람 : '
-																						+ data[i].mem_Email
-																						+ ' 분류 : '
-																						+ data[i].alarm_Clsfct_Name
-																						+ '<a href="#">수락</a> / <a href="#">거절</a></li><br>';
-																				if (i == 2) {
-																					return false;
-																				}
-																			});
-															$('#dropMenu')
-																	.empty();
-															$('#dropMenu')
-																	.append(
-																			dataList);
-														})
-													})
-										})
-
-					});
-=======
 	$(document).ready(
 			function() {
 				connect('init:' + '${sessionScope.loginUser.mem_Email}');
@@ -708,8 +578,7 @@ body {
 				
 			});
 
-	
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
 </script>
 
 
