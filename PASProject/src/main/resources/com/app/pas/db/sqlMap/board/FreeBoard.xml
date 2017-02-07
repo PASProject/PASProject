@@ -80,7 +80,7 @@
 	</select>
 	
 	<select id="selectFreeLikeCountViewList" resultClass="FreeBoard">
-		select * from Skill_Like_Count_View 
+		select * from Skill_Like_Count_View
 	</select>
 
 </sqlMap>

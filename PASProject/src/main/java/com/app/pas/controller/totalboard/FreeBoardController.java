@@ -42,9 +42,9 @@ public class FreeBoardController {
 		String url = "freeBoard/freeBoardList";
 		int totalCount = 0 ;
 		/*Page<FreeBoardVo> postPage =freeBoardService.*/
-		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>(); 
+		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
 		
-			freeBoardList = freeBoardService.selectFreeBoardList();
+			freeBoardList = freeBoardService.selectFreeLikeCountViewList();
 			totalCount = freeBoardService.selectTotalCount();
 		
 		if(page.equals(null)||page ==""){
