@@ -2,6 +2,7 @@ package com.app.pas.commons.socketjs;
 
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,7 +29,6 @@ public class SockjsHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 			ServerHttpResponse response, WebSocketHandler wsHandler,
 			Exception ex) {
 		System.out.println("after");
-		
 		super.afterHandshake(request, response, wsHandler, ex);
 	}
 
