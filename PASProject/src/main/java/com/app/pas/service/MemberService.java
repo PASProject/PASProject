@@ -23,7 +23,6 @@ public class MemberService {
 		this.memberDao = memberDao;
 	}
 	
-
 	public MemberVo getMember(String memEmail) {
 		MemberVo member = null;
 		try {
