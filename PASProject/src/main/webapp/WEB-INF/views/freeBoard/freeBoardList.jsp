@@ -18,7 +18,11 @@
 
 </head>
 <body>
-
+		<c:if test="${delete == 'yes' }">
+		<script type="text/javascript">
+			alert("삭제 되었습니다.");
+		</script>
+		</c:if>
 			<!-- Page Header -->
 
 			<div class="col-md-10">
