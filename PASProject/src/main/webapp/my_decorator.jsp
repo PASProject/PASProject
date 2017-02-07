@@ -411,7 +411,6 @@ body {
 							$('#submit').click(function(){
 								var mem_Phone = $('#mem_Phone').val();
 								var mem_Pass = $('#userPw').val();
-								alert(mem_Pass);
 								var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
 								$.ajax({
 									url: 'updateMember',
@@ -557,7 +556,6 @@ body {
 				$(document).on('click','.go_agree',function(){
 					var apply_Num =$(this).attr('id');
 					dataList = {'apply_Num' : apply_Num};
-					alert(apply_Num);
 					$.ajax({
 						url:'agree',
 						dataType:'json',
@@ -598,9 +596,6 @@ body {
 
 
 <script>
-function go_agree(apply_Num){
-	alert(apply_Num);
-};
 	function logOut() {
 		location.href = "<%=request.getContextPath()%>/main/logOut";
 	}
