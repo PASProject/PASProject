@@ -7,6 +7,7 @@ import java.util.List;
 import com.app.pas.dao.board.TotalNoticeDao;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.TotalNoticeVo;
+import com.sun.security.ntlm.Client;
 
 public class TotalNoticeService {
  
@@ -23,6 +24,18 @@ public class TotalNoticeService {
 		return list; 
 		
 	}
-
+	//전체공지사항 Detail
+	public TotalNoticeVo selectTotalNoticeBoard(int ttnotice_Num) throws SQLException{
+		
+		TotalNoticeVo totalNoticeVo = totalnoticeDao.selectTotalNoticeBoard(ttnotice_Num);
+		
+		return totalNoticeVo;
+	}
+	//글쓰기
+	public TotalNoticeVo insertTotalNotice(TotalNoticeVo totalNoticeVo)throws SQLException{
+		totalnoticeDao.insertTotalNotice(totalNoticeVo);
+		
+		return totalNoticeVo;
+	}
 	
 }

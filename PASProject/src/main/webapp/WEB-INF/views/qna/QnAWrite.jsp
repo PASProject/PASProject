@@ -25,9 +25,9 @@
 			</fieldset>
 			<div class="clear"></div>
 
-			<input type="submit" value="글쓰기" class="submit"> <input
-				type="reset" value="취소" class="cancel"> <input type="button"
-				value="목록" onClick="go_list()">
+			<input type="submit" value="글쓰기" class="submit"> 	
+			<input type="reset" value="취소" class="cancel"> 
+			<input type="button" value="목록" onClick="go_list()">
 
 		</form>
 		<script>

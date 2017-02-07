@@ -34,10 +34,31 @@ public class AdminNoticeController {
 		return url;
 
 	}
-
-	@RequestMapping(value = "/noticeInsertForm", method = RequestMethod.GET)
-	public String insertNoticeForm(HttpSession session, Model model) {
-		String url = "";
+//전체 공지사항 Detail
+	@RequestMapping("/adminNoticeDetail")
+	public String detailTotalNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
+		String url = "admin/adminNoticeDetail";
+		
+		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
+		System.out.println("totalNoticeVo 디텔디텔: " + totalNoticeVo  );
+		model.addAttribute("totalNoticeVo",totalNoticeVo);
+		return url;
+	}
+	
+//글쓰기 폼 
+	@RequestMapping("/adminNoticeForm")
+	public String insertNoticeForm(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
+		String url = "admin/adminNoticeWrite";
+	
+		return url;
+	}
+//글쓰기	
+	@RequestMapping("/adminNoticeInsert" )
+	public String insertTotalNotice(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
+		String url = "admin/adminNoticeList";
+		totalNoticeVo.setAdmin_Email("admin");
+		totalNoticeService.insertTotalNotice(totalNoticeVo);
+	
 		return url;
 	}
 
