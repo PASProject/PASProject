@@ -200,6 +200,7 @@ public class mainContoller {
 			session.removeAttribute("memName");
 		}
 
+		
 		return url;
 	}
 

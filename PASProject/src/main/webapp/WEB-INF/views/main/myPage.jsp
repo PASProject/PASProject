@@ -277,7 +277,7 @@
 
 					<div id="2" style="display: none">
 						<div class="form-group">
-							참가프로젝트 개수<Br> 참가 프로젝트 이름<br> 참가 프로젝트에서의 위치<br> <br>
+							참가프로젝트 개수 : <Br> 참가 프로젝트 이름 : <br> 참가 프로젝트에서의 위치 : <br> <br>
 							<Br> <br> <br> <br> <br>
 						</div>
 					</div>
