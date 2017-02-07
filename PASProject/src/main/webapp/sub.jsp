@@ -48,14 +48,15 @@
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/pmNoticeList">공지사항</a></td>
+							href="<%=request.getContextPath()%>/project/pmNoticeList">프로젝트 공지사항</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;" href="#">채팅하기</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트 게시판</a></td>
+							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트
+								게시판</a></td>
 					</tr>
 				</table>
 			</div>
@@ -176,7 +177,7 @@
 		</div> -->
 	</div>
 </div>
-<hr style="border:1px solid; border-color:#ddd">
+<hr style="border: 1px solid; border-color: #ddd">
 <div class="panel-group" id="accordion">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -192,13 +193,21 @@
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/SkillSharing/SkillSharingBoardList">기술공유 게시판</a></td>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/notice/totalNoticeList">전체 공지사항</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/freeBoard/freeBoardList">커뮤니티</a></td>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/SkillSharing/SkillSharingBoardList">기술공유
+								게시판</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/qna/QnAList">QnA 게시판</a></td>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/freeBoard/freeBoardList">커뮤니티</a></td>
+					</tr>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/qna/QnAList">QnA 게시판</a></td>
 					</tr>
 				</table>
 			</div>

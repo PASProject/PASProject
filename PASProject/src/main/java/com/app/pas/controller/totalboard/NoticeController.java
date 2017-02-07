@@ -27,14 +27,14 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeService;
 
-	@RequestMapping("/noticeList")
+	@RequestMapping("/totalNoticeList")
 	public String NoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
-		int proj_Num = (Integer) session.getAttribute("joinProj");
+		/*int proj_Num = (Integer) session.getAttribute("joinProj");
 		int totalCount = 0;
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 
-		String url = "project/pmNoticeList";
+		
 
 		List<NoticeVo> list = null;
 		MemPositionViewVo memPositionView = new MemPositionViewVo();
@@ -63,8 +63,8 @@ public class NoticeController {
 		paging.setPageSize(10);
 		paging.setTotalCount(totalCount);
 
-		model.addAttribute("paging", paging);
-
+		model.addAttribute("paging", paging);*/
+		String url = "notice/totalNoticeList";
 		return url;
 
 	}

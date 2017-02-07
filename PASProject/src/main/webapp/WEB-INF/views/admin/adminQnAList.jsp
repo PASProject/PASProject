@@ -33,11 +33,12 @@
 					begin="${paging.beginNo}" end="${paging.endNo}">
 					<tr id="boardContents">
 					<td> 
-						<c:choose>
+				<c:choose>
 							<c:when test='${qnaBoardVo.qb_yn=="0"}'>답변미처리</c:when>
 							<c:otherwise>답변완료</c:otherwise>
-						</c:choose>
+				</c:choose>
 					</td>
+					
 						<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>
 						<td><a 
 							href="<%=request.getContextPath()%>/admin/AdminQnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">

@@ -8,6 +8,7 @@ public class TotalNoticeVo {
 	private String ttnotice_Content;
 	private int ttnotice_Inq_Count;
 	private String admin_Email;
+	
 	public int getTtnotice_Num() {
 		return ttnotice_Num;
 	}
