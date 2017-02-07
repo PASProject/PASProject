@@ -47,4 +47,7 @@
    		select * from mem_position_view where pjj_per_num = 1 and proj_num = #proj_Num#
    </select>
    
+   <select id = "selectLastInsertProject" parameterClass="str" resultClass="Project">
+   		SELECT * FROM (SELECT * FROM project WHERE mem_email=#mem_Email#  ORDER BY proj_Num DESC) WHERE ROWNUM = 1
+   </select>
 </sqlMap>

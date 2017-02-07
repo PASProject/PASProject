@@ -65,4 +65,13 @@ public class ProjectService {
 		memApplyViewVo = memberDao.selectMemApplyViewByMemProj(memApplyViewVo);
 		return memApplyViewVo;
 	}
+	
+	public int insertProject(ProjectVo projectVo,ProjectJoinVo projectJoinVo) throws SQLException{
+		projectDao.insertProject(projectVo);
+		ProjectVo project = projectDao.selectLastInsertProject(projectVo.getMem_Email());
+		projectJoinVo.setProj_Num(project.getProj_Num());
+		projectJoinDao.insertProjectJoin(projectJoinVo);
+		projectJoinDao.updateProjectJoin(projectJoinVo);
+		return project.getProj_Num();
+	}
 }
