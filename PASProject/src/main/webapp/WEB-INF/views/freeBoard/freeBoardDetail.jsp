@@ -31,6 +31,7 @@
 							<span>${freeBoardVo.frb_Content}</span>
 						</fieldset>
 					</form>
+			<!-- 여기서부터 댓글 -->
 					<div id="reply" style="border: solid 1px black;"></div>
 					<div style="background: gray">
 
@@ -39,9 +40,10 @@
 					</div>
 				</div>
 				<div>
-					<input type="button" value="수정" onclick="go_update()"> <input
-						type="button" value="삭제" onclick="go_delete()"> <input
-						type="button" value="목록" onClick="go_list()">
+					<input type="button" value="수정" onclick="go_update()"> 
+					<input type="button" value="삭제" onclick="go_delete()"> 
+					<input type="button" value="목록" onClick="go_list()">
+					<input type="button"  value="추천!" onClick="go_like()">
 				</div>
 			</div>
 		
@@ -57,16 +59,21 @@
 				type:'post',
 				success : function(data){
 					$.each(data, function(i) {
+						
 						var date = new Date(
 								data[i].frb_Reply_Time)
 						var year = date.getFullYear();
+						
 						var month = (1 + date.getMonth());
 						month = month >= 10 ? month : '0'
 								+ month;
+						
 						var day = date.getDate();
 						day = day >= 10 ? day : '0' + day;
+						
 						var fullD = year + '년' + month
 								+ '월' + day + '일';
+						
 						var tt = '<div>아이디 : '
 								+ data[i].frb_Reply_Mem
 								+ '  /  ' + '작성 날짜 : '
@@ -136,6 +143,9 @@
 			frm.method = "post";
 			frm.action = "freeBoardDelete";
 			frm.submit();
+		}
+		function go_like(){
+			location.href="FreeBoardLike?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
 		}
 
 	</script>

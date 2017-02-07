@@ -1,10 +1,13 @@
 package com.app.pas.controller.totalboard;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.board.FreeBoardLikeVo;
 import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.service.board.FreeBoardReplyService;
 import com.app.pas.service.board.FreeBoardService;
 
@@ -37,7 +42,7 @@ public class FreeBoardController {
 		String url = "freeBoard/freeBoardList";
 		int totalCount = 0 ;
 		/*Page<FreeBoardVo> postPage =freeBoardService.*/
-		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
+		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>(); 
 		
 			freeBoardList = freeBoardService.selectFreeBoardList();
 			totalCount = freeBoardService.selectTotalCount();
@@ -50,27 +55,49 @@ public class FreeBoardController {
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
-		System.out.println(paging.toString());
+		List<FreeBoardVo> likeCountViewList =freeBoardService.selectFreeLikeCountViewList();
 		model.addAttribute("paging",paging);
 		model.addAttribute("freeBoardList", freeBoardList);
 		return url;
 	}
 
 	@RequestMapping("/freeBoardDetail")
-	public String detailFreeBoard(@RequestParam String frb_Article_Num,Model model){
+	public String detailFreeBoard(@RequestParam String frb_Article_Num,
+			HttpServletRequest request, Model model) throws NumberFormatException, SQLException{
 		String url="freeBoard/freeBoardDetail";
 		System.out.println(frb_Article_Num);
 		FreeBoardVo freeBoardVo = null;
-		try {
+		String message = request.getParameter("message");
+		
 			freeBoardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			if(message == null){
+			freeBoardService.updateFreeBoardCount(freeBoardVo);
+			}
 		model.addAttribute("freeBoardVo",freeBoardVo);
+		return url;
+	}
+	
+	@RequestMapping("/FreeBoardLike")
+	public String detailskillSharingBoardLike(
+			@RequestParam String frb_Article_Num, Model model,
+			HttpSession session,HttpServletRequest request, HttpServletResponse response
+			,FreeBoardVo freeBoardVo ) throws SQLException, IOException {
+		
+		FreeBoardLikeVo freeBoardLikeVo = new FreeBoardLikeVo();
+		FreeBoardLikeVo LikeMember = new FreeBoardLikeVo();
+		String url = "redirect:freeBoardDetail?frb_Article_Num="+frb_Article_Num;
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		freeBoardVo.setFrb_Article_Num(Integer.parseInt(frb_Article_Num));
+		freeBoardLikeVo.setFrb_Article_Num(Integer.parseInt(frb_Article_Num));
+		freeBoardLikeVo.setMem_Email(memberVo.getMem_Email());
+		System.out.println(freeBoardLikeVo.toString()+"컨트롤러@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		LikeMember = freeBoardService.selectFreeBoardLikeList(freeBoardLikeVo);
+		
+		if(LikeMember == null){
+			freeBoardService.insertFreeboardLike(freeBoardLikeVo);
+			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&likee=yes&message=LikeOK";
+		}
 		return url;
 	}
 	
@@ -103,18 +130,12 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping(value ="/freeBoardUpdate",method = RequestMethod.GET)
-	public String updateFreeBoardForm(String frb_Article_Num, Model model){
+	public String updateFreeBoardForm(String frb_Article_Num, Model model) throws NumberFormatException, SQLException{
 		String url="freeBoard/freeBoardUpdate";
 		FreeBoardVo freeBoardVo=null;
-		try {
+		
 			freeBoardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		model.addAttribute("freeBoardVo", freeBoardVo);
 		return url;
 	}

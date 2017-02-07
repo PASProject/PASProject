@@ -114,12 +114,7 @@ padding: 10px;
 					location.href="pmBoardMyProjectList";
 				}
 				
-// 				 function projectBordInsert(){
-// 					frm.method = "post";
-// 					frm.action ="projectBordInsert";
-// 					frm.submit();
-					
-// 				}
+
 			
 			</script>
 		
