@@ -57,7 +57,6 @@ table tr td {
 
 
 
-
 			<c:forEach var="pbList" items="${pbList}">
 				<div style="margin-bottom: 20px;">
 					<div id="pbd"
@@ -127,14 +126,12 @@ table tr td {
 						success:function(data){
 							var d ="";
 							$.each(data,function(i){
-								$.each(data,function(j){
+								$.each(data[i],function(j){
 									var dt="";
-									dt = '작성자 '+data[i][j].pb_Reply_Mem +'내용'+ data[i][j].pb_Reply_Content+"<br>"
+									dt = '<span>작성자  '+data[i][j].pb_Reply_Mem +' / 내용  '+ data[i][j].pb_Reply_Content+'</span><br><br>';
 									$('#'+data[i][j].pb_Article_Num).append(dt);
-									 d = j;
 								});
 							});
-							alert(d);
 						}
 					})
 				
@@ -155,7 +152,7 @@ table tr td {
 						success:function(data){
 							var dt = "";
 							$.each(data,function(i){
-								dt += '작성자 '+data[i].pb_Reply_Mem +'내용'+ data[i].pb_Reply_Content+"<br>"
+								dt += '<span>작성자  '+data[i].pb_Reply_Mem +' / 내용  '+ data[i].pb_Reply_Content+'</span><br><br>';
 							});
 							
 							$('#'+Article_Num).empty();

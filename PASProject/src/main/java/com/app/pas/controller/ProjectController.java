@@ -153,7 +153,6 @@ public class ProjectController {
 			
 			List<List<ProjectBoardReplyVo>> fullList = new ArrayList<List<ProjectBoardReplyVo>>();
 			
-			
 			for(ProjectBoardVo x : list){
 				List<ProjectBoardReplyVo> projectBoardReplyList = new ArrayList<ProjectBoardReplyVo>();
 				projectBoardReplyList = projectBoardReplyService.selectProjectBoardReply(x.getPb_Article_Num());
