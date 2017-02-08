@@ -38,8 +38,8 @@ import com.app.pas.service.ProjectService;
 
 @Controller
 @RequestMapping("/main")
-public class mainContoller {
-
+public class mainContoller{
+	HttpServletRequest request;
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -206,6 +206,7 @@ public class mainContoller {
 	}
 
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	
 	public @ResponseBody Map<String, Object> MypageUpdate(HttpSession session,
 			Model model, @RequestBody Map<String, Object> map)
 			throws SQLException {
