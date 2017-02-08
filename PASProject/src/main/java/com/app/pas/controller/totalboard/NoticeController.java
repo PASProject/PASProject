@@ -21,24 +21,26 @@ import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.TotalNoticeVo;
 import com.app.pas.service.board.NoticeService;
+import com.app.pas.service.board.TotalNoticeService;
 
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
 
 	@Autowired
-	NoticeService noticeService;
+	TotalNoticeService totalNoticeService;
 
 	@RequestMapping("/totalNoticeList")
 	public String NoticeList(Model model, HttpSession session,
-			@RequestParam(value = "page", defaultValue = "1") String page) {
+			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
 	List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
 		
-	/*	noticeList = totalNoticeService.selectTotalNoticeList();*/
+		noticeList = totalNoticeService.selectTotalNoticeList();
 		
 		model.addAttribute("noticeList", noticeList);
-		
-		
+	
+		String url = "notice/totalNoticeList";
+		return url;
 		
 		/*int proj_Num = (Integer) session.getAttribute("joinProj");
 		int totalCount = 0;
@@ -72,31 +74,9 @@ public class NoticeController {
 		paging.setTotalCount(totalCount);
 
 		model.addAttribute("paging", paging);*/
-		String url = "notice/totalNoticeList";
-		return url;
 
 	}
-
-
-	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
-	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
-			String notice_Num) {
-		String url = "project/pmNoticeDetail";
-		// int iproj_Num = Integer.parseInt(proj_Num);
-		HashMap map = new HashMap();
-		map.put("proj_Num", proj_Num);
-		map.put("notice_Num", notice_Num);
-
-		try {
-			NoticeVo noticeVo = (NoticeVo) noticeService.getNoticeDetail(map);
-			request.setAttribute("NoticeVo", noticeVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return url;
-	}
+	
 
 
 
