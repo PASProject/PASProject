@@ -37,5 +37,20 @@ public class TotalNoticeService {
 		
 		return totalNoticeVo;
 	}
+	//글삭제 
+	public void deleteTotalNotice(int ttnotice_Num) throws SQLException{
+		totalnoticeDao.deleteTotalNotice(ttnotice_Num);
+	}
+	//글수정폼
+	public TotalNoticeVo UpdateFormTotalNotice (TotalNoticeVo totalNoticeVo,int ttnotice_Num) throws SQLException{
+		 totalnoticeDao.selectTotalNoticeBoard(ttnotice_Num);
+		
+		return totalNoticeVo;
+		
+	}
 	
+	//글수정
+	public void updateTotaTotalNotice(TotalNoticeVo totalNoticeVo) throws SQLException{
+		totalnoticeDao.updateTotalNotice(totalNoticeVo);
+	}
 }

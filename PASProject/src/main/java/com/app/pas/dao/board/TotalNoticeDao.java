@@ -13,9 +13,5 @@ public interface TotalNoticeDao {
 	public void updateTotalNotice(TotalNoticeVo totalNoticeVo )throws SQLException;
 	public void deleteTotalNotice(int ttnotice_Num)throws SQLException;
 
-	
-	
-	
-	
-	
+
 }

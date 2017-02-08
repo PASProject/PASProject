@@ -32,10 +32,9 @@ public class TotalNoticeDaoImpl implements TotalNoticeDao {
 			throws SQLException {
 		client.insert("insertTotalNotice",totalNoticeVo);
 	}
-
+//수정
 	@Override
-	public void updateTotalNotice(TotalNoticeVo totalNoticeVo)
-			throws SQLException {
+	public void updateTotalNotice(TotalNoticeVo totalNoticeVo)throws SQLException {
 		client.update("updateTotalNotice",totalNoticeVo);
 	}
 

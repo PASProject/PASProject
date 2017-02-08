@@ -49,8 +49,9 @@
 							style="border-top: 0px solid blue;">
 						
 						<button class="btn btn-default text-right" type="button"onclick="go_tt_NoticeList()">목록</button>
-						<button class="btn btn-default text-right" type="button" onClick="tt_NoticeUpdate()">수정</button> 
-						<button class="btn btn-default text-right" type="button" onClick="tt_NoticeDelete()">삭제</button>
+						<button class="btn btn-default text-right" type="button" onClick="tt_NoticeUpdateForm()">수정</button> 
+						<button class="btn btn-default text-right" type="button" onClick="adminNoticeDelete()">삭제</button>
+						
 						</td>	
 					</tr>
 		
@@ -63,13 +64,17 @@
 	 
  	}
  	
- 	function tt_NoticeUpdate(){
- 		location.href = ""
+ 	function tt_NoticeUpdateForm(){
+ 		location.href = "adminNoticeUpdateForm?ttnotice_Num=${totalNoticeVo.ttnotice_Num}";
  		
  	}
  
- 	function tt_NoticeDelete(){
+ 	function adminNoticeDelete(){
  		
+ 			frm.method = "post"
+			frm.action = "adminNoticeDelete";
+			frm.submit();
+
  	}
  
  
