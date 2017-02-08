@@ -31,12 +31,10 @@
 
 <title>3 Col Portfolio - Start Bootstrap Template</title>
 
+<!-- jQuery -->
 
-
-
-
-
-<!-- CSS -->
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!-- Bootstrap Core CSS -->
 
 
@@ -51,7 +49,6 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.autocomplete.css" />
 
 <!-- JS -->
 
@@ -60,16 +57,12 @@
 	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-
-<script type='text/javascript' src="<%=request.getContextPath()%>/resources/lib/jquery.bgiframe.min.js"></script>
-<script type='text/javascript' src="<%=request.getContextPath()%>/resources/lib/jquery.ajaxQueue.js"></script>
-<script type='text/javascript' src="<%=request.getContextPath()%>/resources/js/jquery.autocomplete.js"></script>
+	
 
 
 
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>

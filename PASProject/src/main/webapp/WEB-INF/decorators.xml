@@ -24,6 +24,7 @@
 
 
 	<excludes>
+	    <pattern>*/pmMemberInvite*</pattern>
 	    <pattern>*/memberAuth*</pattern>
 	    <pattern>*/myPage*</pattern>
 		<pattern>*/index.jsp</pattern>
