@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminMemberController {
 	
-	
-
 	@RequestMapping("/memberList")
 	public String MemberList(HttpSession session, Model model)
 			throws ServletException, IOException {
