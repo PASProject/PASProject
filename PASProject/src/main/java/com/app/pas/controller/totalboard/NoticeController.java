@@ -34,7 +34,7 @@ public class NoticeController {
 			@RequestParam(value = "page", defaultValue = "1") String page) {
 	List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
 		
-		noticeList = totalNoticeService.selectTotalNoticeList();
+	/*	noticeList = totalNoticeService.selectTotalNoticeList();*/
 		
 		model.addAttribute("noticeList", noticeList);
 		
