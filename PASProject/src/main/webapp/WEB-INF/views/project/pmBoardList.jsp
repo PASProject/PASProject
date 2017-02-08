@@ -34,8 +34,8 @@
 							<tr>
 								<td>사진</td>
 								<td><textarea placeholder="지금 무슨 생각으로 하고 계십니까?"
-										style="font-size: 18px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"
-										rows="2" cols="80;" name="pb_Content"></textarea></td>
+										style="font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"
+										rows="1" cols="70;" name="pb_Content"></textarea></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -183,13 +183,12 @@
 					$('textarea').focus(function(){
 						var keyEvent=$(this).attr('id')
 						$('#'+keyEvent).keyup(function(e){
-			
 							if((e.keyCode || e.which) == 13) { 
-								alert(keyEvent);
-								/* 'pb_Reply_Content' 자체를 replace  */
+								 e.preventDefault();
+								var textareaNumber= keyEvent.replace(/[^0-9]/g,"");
+								 reply(textareaNumber);
 							   }
-						})
-						
+						})						
 					});
 					 
 					 
