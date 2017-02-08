@@ -124,7 +124,10 @@ public class MemberService {
 			return memPositionViewVo1;
 		}
 	
-
+		public int selectCountMemApplyViewByEmail(String p_Mem_Email) throws SQLException{
+			int memApplyViewCount = memberDao.selectCountMemApplyViewByEmail(p_Mem_Email);
+			return memApplyViewCount;
+		}
 	
 		
 		public int updateMember(MemberVo memberVo) throws SQLException{

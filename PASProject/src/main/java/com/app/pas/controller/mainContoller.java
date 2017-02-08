@@ -386,6 +386,13 @@ public class mainContoller {
 		return memApplyViewList;
 	}
 	
+	@RequestMapping(value = "/alarmCount", method = RequestMethod.GET)
+	public @ResponseBody int selectAlarmCount(HttpSession session) throws SQLException{
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		int memApplyViewCount = memberService.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
+		return memApplyViewCount;
+	}
+	
 	@RequestMapping(value="/searchEmail",method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> SearchEmail(@RequestBody Map<String,Object> map,Model model) throws SQLException{
 		String Id="";
@@ -428,4 +435,6 @@ public class mainContoller {
 		int proj_Num = projectService.insertProject(projectVo,projectJoinVo);
 		return proj_Num;
 	}
+	
+	
 }
