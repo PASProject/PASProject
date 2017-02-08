@@ -46,7 +46,7 @@
 							<td style="text-align: center">${freeBoardVo.frb_Article_Num }</td>
 							<td><a
 								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
-							<td>${freeBoardVo.mem_Email }</td>
+							<td>${freeBoardVo.mem_Name}      (${freeBoardVo.mem_Email })</td>
 							<td style="text-align: center"><fmt:formatDate
 									value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
 							<td style="text-align: center">${freeBoardVo.frb_Inq_Count }</td>

@@ -59,8 +59,8 @@
 
 	<insert id="insertSkillSharingBoard" parameterClass="SkillSharingBoard">
 		INSERT INTO
-		SKILL_SHARING_BOARD(SSB_ARTICLE_NUM,SSB_CONTENT,SSB_TITLE,MEM_EMAIL) 
-		VALUES(SKILL_SHARING_BOARD_SEQ.NEXTVAL,#ssb_Content#,#ssb_Title#,#mem_Email#)
+		SKILL_SHARING_BOARD(SSB_ARTICLE_NUM,SSB_CONTENT,SSB_TITLE,MEM_EMAIL,MEM_NAME) 
+		VALUES(SKILL_SHARING_BOARD_SEQ.NEXTVAL,#ssb_Content#,#ssb_Title#,#mem_Email#,#mem_Name#)
 	</insert>
 
 

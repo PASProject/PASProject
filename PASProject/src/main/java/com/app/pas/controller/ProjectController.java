@@ -145,40 +145,35 @@ public class ProjectController {
 //댓글 
 		
 //댓글 리스트---------------------------------------------------------------
-		@RequestMapping("/selectProjectBoardReply")
-		public @ResponseBody List<ProjectBoardReplyVo> selectProjectBoardReply(@RequestBody Map<String,Object> jsonMap,Model model
-				,Session session, String pb_Article_num) throws NumberFormatException, SQLException{
-			String url = "project/pmBoardList";
-			List<ProjectBoardReplyVo> projectBoardReplyList = new ArrayList<ProjectBoardReplyVo>();			
-			projectBoardReplyService.selectProjectBoardReply(Integer.parseInt(pb_Article_num));
+		@RequestMapping(value = "/selectProjectBoardReply",method = RequestMethod.POST)
+		public @ResponseBody List<List<ProjectBoardReplyVo>> selectProjectBoardReply(HttpSession session) throws NumberFormatException, SQLException{
+			String proj_Num = (String) session.getAttribute("joinProj");
 			
-//			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
-//			String mem_Email = memberVo.getMem_Email();
-//			ProjectBoardReplyVo.setMem_Email(mem_Email); 
-			model.addAttribute("projectBoardReplyList",projectBoardReplyList);
-			System.out.println("projectBoardReplyList컨트롤러! : "+projectBoardReplyList);
-			return projectBoardReplyList;
+			List<ProjectBoardVo> list = projectBoardService.selectProjectBoardList(Integer.parseInt(proj_Num));
+			
+			List<List<ProjectBoardReplyVo>> fullList = new ArrayList<List<ProjectBoardReplyVo>>();
+			
+			for(ProjectBoardVo x : list){
+				List<ProjectBoardReplyVo> projectBoardReplyList = new ArrayList<ProjectBoardReplyVo>();
+				projectBoardReplyList = projectBoardReplyService.selectProjectBoardReply(x.getPb_Article_Num());
+				fullList.add(projectBoardReplyList);
+			}
+			
+		/*	model.addAttribute("projectBoardReplyList",projectBoardReplyList);*/
+			return fullList;
 		}
 		
 		
 		
 //댓글 올리기 -----------------------------------------------------
-		@RequestMapping(value = "/insertProjectBoardReply", method = RequestMethod.GET)
-		public String insertProjectBoardReply(String pb_Article_Num, Model model) {
-			String url = "project/pmBoardList";
+		@RequestMapping(value = "/insertProjectBoardReply", method = RequestMethod.POST)
+		public @ResponseBody List<ProjectBoardReplyVo> insertProjectBoardReply(@RequestBody ProjectBoardReplyVo projectBoardReplyVo,HttpSession session) throws SQLException {
+			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+			String mem_Email = memberVo.getMem_Email();
+			projectBoardReplyVo.setPb_Reply_Mem(mem_Email);;
+			List<ProjectBoardReplyVo> list =projectBoardReplyService.insertProjectBoardReply(projectBoardReplyVo);
 			
-			ProjectBoardVo projectBoardVo = null;
-			try {
-				projectBoardVo = projectBoardService
-						.selectProjectBoardDetail(Integer.parseInt(pb_Article_Num));
-			} catch (NumberFormatException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			model.addAttribute("freeBoardVo", projectBoardVo);
-			return url;
+			return list;
 		}
 	
 //		

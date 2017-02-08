@@ -26,9 +26,8 @@
 
 	<insert id="insertSkillSharingBoardReply" parameterClass="SkillSharingBoardReply">
 		INSERT INTO
-	    SkILL_SHARING_BOARD_REPLY(SSB_REPLY_NUM,SSB_ARTICLE_NUM,SSB_REPLY_MEM,SSB_REPLY_CONTENT) 
-	    VALUES(SKILL_SHARING_BOARD_REPLY_SEQ.NEXTVAL,#ssb_Article_Num#, #ssb_Reply_Mem# , #ssb_Reply_Content#)
-	
+	    SkILL_SHARING_BOARD_REPLY(SSB_REPLY_NUM,SSB_ARTICLE_NUM,SSB_REPLY_MEM,SSB_REPLY_CONTENT,SSB_REPLY_MEM_NAME) 
+	    VALUES(SKILL_SHARING_BOARD_REPLY_SEQ.NEXTVAL,#ssb_Article_Num#, #ssb_Reply_Mem# , #ssb_Reply_Content#,#ssb_Reply_Mem_Name#)
 	</insert>
 
 

@@ -139,7 +139,7 @@ function protectKey()
 					var fullD = year + '년' + month
 							+ '월' + day + '일';
 					var tt = '<div>아이디 : '
-							+ data[i].ssb_Reply_Mem
+							+data[i].ssb_Reply_Mem_Name +'( '+ data[i].ssb_Reply_Mem +' )'
 							+ '  /  ' + '작성 날짜 : '
 							+ fullD + '<div>  ->'
 							+ data[i].ssb_Reply_Content
@@ -180,7 +180,7 @@ function protectKey()
 										var fullD = year + '년' + month
 												+ '월' + day + '일';
 										var tt = '<div >아이디 : '
-												+ data[i].ssb_Reply_Mem
+												+data[i].ssb_Reply_Mem_Name +'( '+ data[i].ssb_Reply_Mem +' )'
 												+ '  /  ' + '작성 날짜 : '
 												+ fullD + '<div>  ->'
 												+ data[i].ssb_Reply_Content

@@ -222,6 +222,7 @@ body {
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+					
 						<li><a href="<%=request.getContextPath()%>/main/myProject">내
 								프로젝트 보기</a></li>
 						<li><a href="<%=request.getContextPath()%>/main/otherProject">다른
@@ -232,7 +233,7 @@ body {
 
 					</ul>
 				</div>
-
+				<div id="jkjk"></div>
 
 			</div>
 		</nav>
@@ -470,8 +471,8 @@ body {
 			
 		</c:otherwise>
 	</c:choose>
-	
 	<c:set var="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
+	
 </body>
 <script>
 	$(document).ready(

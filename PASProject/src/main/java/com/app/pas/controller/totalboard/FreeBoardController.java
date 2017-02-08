@@ -123,8 +123,10 @@ public class FreeBoardController {
 		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
+		String mem_Name = memberVo.getMem_Name();
+				
 		freeBoardVo.setMem_Email(mem_Email);
-		
+		freeBoardVo.setMem_Name(mem_Name);
 		freeBoardVo.setFrb_Kind("1");
 			
 		freeBoardService.insertFreeBoard(freeBoardVo);
@@ -211,6 +213,7 @@ public class FreeBoardController {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		freeBoardReplyVo.setFrb_Reply_Mem(mem_Email);
+		freeBoardReplyVo.setFrb_Reply_Mem_Name(memberVo.getMem_Name());
 		List<FreeBoardReplyVo> freeBoardReplyList = new ArrayList<FreeBoardReplyVo>();
 		try {
 			freeBoardReplyService.insertFreeBoardReply(freeBoardReplyVo);

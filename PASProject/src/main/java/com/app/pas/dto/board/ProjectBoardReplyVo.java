@@ -6,7 +6,8 @@ public class ProjectBoardReplyVo {
 	private int pb_Reply_Num;
 	private String pb_Reply_Mem;
 	private String pb_Reply_Content;
-	private int pb_Article_num;
+	private int pb_Article_Num;
+	
 	
 	public int getPb_Reply_Num() {
 		return pb_Reply_Num;
@@ -26,14 +27,13 @@ public class ProjectBoardReplyVo {
 	public void setPb_Reply_Content(String pb_Reply_Content) {
 		this.pb_Reply_Content = pb_Reply_Content;
 	}
-	public int getPb_Article_num() {
-		return pb_Article_num;
+	public int getPb_Article_Num() {
+		return pb_Article_Num;
 	}
-	public void setPb_Article_num(int pb_Article_num) {
-		this.pb_Article_num = pb_Article_num;
+	public void setPb_Article_Num(int pb_Article_Num) {
+		this.pb_Article_Num = pb_Article_Num;
 	}
-	
-	
+
 	
 	
 	
