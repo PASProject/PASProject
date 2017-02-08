@@ -28,13 +28,14 @@
 
 			<div class="col-md-12" id="pbd"
 				style="padding: 10px; background-color: white; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 20px;">
-				<div class="col-md-12" style="padding-left: 0px;">
+				<div class="col-md-12" style="padding-left: 0px; ">
 					<form name="frm" method="post" action="pmBoardInsert">
 						<table class="col-md-12">
-							<tr>
-								<td>사진</td>
-								<td><textarea placeholder="지금 무슨 생각으로 하고 계십니까?"
-										style="font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"
+							<tr >
+								<td>사진 ${projectBoardVo.mem_Img}
+								</td>
+								<td><textarea id="write" placeholder="지금 무슨 생각으로 하고 계십니까?"
+										style="font-size: 22px; resize:none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"
 										rows="1" cols="70;" name="pb_Content"></textarea></td>
 							</tr>
 							<tr>
@@ -192,14 +193,15 @@
 					});
 					 
 					 
-				
-					 
-					 
-					 
-					 
-					 
-					 
-					 
+	
+			/* 		 $('#write').keypress(function(event) {
+					    if (event.which == 13) {
+					       event.preventDefault();
+					       var s = $(this).val();
+					       $(this).val(s+"\n");
+					    }
+					 });​
+					  */
 					 
 					 
 					 
