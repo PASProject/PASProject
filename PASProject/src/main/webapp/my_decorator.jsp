@@ -51,6 +51,7 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.autocomplete.css" />
 
 <!-- JS -->
 
@@ -59,6 +60,13 @@
 	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+
+<script type='text/javascript' src="<%=request.getContextPath()%>/resources/lib/jquery.bgiframe.min.js"></script>
+<script type='text/javascript' src="<%=request.getContextPath()%>/resources/lib/jquery.ajaxQueue.js"></script>
+<script type='text/javascript' src="<%=request.getContextPath()%>/resources/js/jquery.autocomplete.js"></script>
+
+
+
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -312,6 +320,7 @@ body {
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
 							style="font-size: 25px;"> </a>
+							<span id="alarmCount" style = "color: red"></span>
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 
 							</ul></li>
@@ -478,6 +487,17 @@ body {
 	$(document).ready(
 			function() {
 				connect('init:' + '${sessionScope.loginUser.mem_Email}');
+				
+				$.ajax({
+					url :'<%=request.getContextPath()%>/main/alarmCount',
+					dataType : 'json',
+					type:'get',
+					success:function(data){
+							$('#alarmCount').text("");
+							$('#alarmCount').text(data);
+						}
+					});
+				
 				/* $(".dropdown").hover(
 						function() {
 							$('.dropdown-menu', this).not('.in .dropdown-menu')
@@ -490,12 +510,13 @@ body {
 							$(this).toggleClass('open');
 						}); */
 				$('#alarmMenu').on('click',function(){
+					
 					$.ajax({
 						url:'alramView',
 						contentType:'application/json',
 						dataType:'json',
 						type:'post',
-						success:(function(data) {
+						success:function(data) {
 							var dataList="";
 							$.each(data,function(i){
 								var date = new Date(data[i].apply_Time);
@@ -516,7 +537,18 @@ body {
 							});
 							$('#dropMenu').empty();
 							$('#dropMenu').append(dataList);
-						})
+						},
+						complete:function(){
+							$.ajax({
+								url :'<%=request.getContextPath()%>/main/alarmCount',
+								dataType : 'json',
+								type:'get',
+								success:function(data){
+										$('#alarmCount').text("");
+										$('#alarmCount').text(data);
+									}
+								})
+						}
 					})
 				});
 				
@@ -551,6 +583,17 @@ body {
 							});
 							$('#dropMenu').empty();
 							$('#dropMenu').append(dataList);
+						},
+						complete:function(){
+							$.ajax({
+								url :'<%=request.getContextPath()%>/main/alarmCount',
+								dataType : 'json',
+								type:'get',
+								success:function(data){
+										$('#alarmCount').text("");
+										$('#alarmCount').text(data);
+									}
+								})
 						}
 				});
 			});
@@ -587,7 +630,18 @@ body {
 							});
 							$('#dropMenu').empty();
 							$('#dropMenu').append(dataList);
-						}
+						},
+						complete:function(){
+							$.ajax({
+								url :'<%=request.getContextPath()%>/main/alarmCount',
+								dataType : 'json',
+								type:'get',
+								success:function(data){
+										$('#alarmCount').text("");
+										$('#alarmCount').text(data);
+									}
+							})
+					}
 					});
 				});
 				

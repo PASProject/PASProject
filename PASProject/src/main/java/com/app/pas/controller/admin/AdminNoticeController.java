@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AdminNoticeController {
 	
 //전체공지사항 List 
 	@RequestMapping("/totalNoticeList")
-	public String selectTotalNoticeList(HttpSession session, Model model) throws SQLException {
+	public String selectTotalNoticeList(HttpSession session, Model model,HttpServletRequest request) throws SQLException {
 		String url = "admin/adminNoticeList";
 		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
 		
@@ -34,29 +35,61 @@ public class AdminNoticeController {
 		return url;
 
 	}
-
-	@RequestMapping(value = "/noticeInsertForm", method = RequestMethod.GET)
-	public String insertNoticeForm(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping(value = "/noticeInsert", method = RequestMethod.POST)
-	public String insertNotice(HttpSession session, Model model) {
-		String url = "";
-		return url;
-	}
-
-	@RequestMapping("/noticeUpdate")
-	public String updateNotice(HttpSession session, Model model) {
-		String url = "";
+//전체 공지사항 Detail
+	@RequestMapping("/adminNoticeDetail")
+	public String detailTotalNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
+		String url = "admin/adminNoticeDetail";
+		
+		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
+		System.out.println("totalNoticeVo 디텔디텔: " + totalNoticeVo  );
+		model.addAttribute("totalNoticeVo",totalNoticeVo);
 		return url;
 	}
 	
-	@RequestMapping("/noticeDelete")
-	public String deleteNotice(HttpSession session, Model model){
-		String url="";
+//글쓰기 폼 
+	@RequestMapping(value = "/adminNoticeForm" , method=RequestMethod.GET)
+	public String insertNoticeForm(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
+		String url = "admin/adminNoticeWrite";
+	
 		return url;
 	}
+//글쓰기	
+	@RequestMapping(value = "/adminNoticeInsert", method=RequestMethod.POST)
+	public String insertTotalNotice(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
+		//String url = "redirect:adminNoticeList";
+		String url = "redirect:totalNoticeList";
+		totalNoticeVo.setAdmin_Email("admin");
+		totalNoticeService.insertTotalNotice(totalNoticeVo);
+	
+		return url;
+	}
+
+//삭제 	
+	@RequestMapping(value = "/adminNoticeDelete",method=RequestMethod.POST)
+	public String deleteNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException{
+		String url = "redirect:totalNoticeList";
+		totalNoticeService.deleteTotalNotice(Integer.parseInt(ttnotice_Num));
+		
+		return url;
+	}
+//수정 폼	
+	@RequestMapping("/adminNoticeUpdateForm")
+	public String totalNoticeUpdateForm(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
+		String url = "admin/adminNoticeUpdateForm";
+		TotalNoticeVo totalNoticeVo = null;
+		
+		totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
+		model.addAttribute("totalNoticeVo", totalNoticeVo);
+		return url;
+	}
+//진짜 수정	
+	@RequestMapping(value = "/adminNoticeUpdate", method=RequestMethod.POST)
+	public String updateTotalNotice(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
+		String url = "redirect:totalNoticeList";
+		totalNoticeService.updateTotaTotalNotice(totalNoticeVo);
+		
+		return url;
+	}
+
 
 }

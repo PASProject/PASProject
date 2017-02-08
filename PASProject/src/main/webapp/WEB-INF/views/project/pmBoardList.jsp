@@ -48,20 +48,30 @@
 
 			</div>
 
-			<div style="margin-top: 135px;">
-				<c:forEach var="pbList" items="${pbList}">
-					<div style="margin-top: 20px;">
-						<div id="pbd"
-							style="padding: 10px; background-color: white; border: 1px solid #ddd; border-bottom: 0px; border-top-left-radius: 2px; border-top-right-radius: 2px;">
-							<input type="hidden" value="${pbList.pb_Article_Num}"
-								id="${pbList.pb_Article_Num}Number">
-							<table class="col-md-12">
-								<tr>
-									<td rowspan=3>사진</td>
-									<td>이름 ${pbList.mem_Email }</td>
-									<td class="text-right">
+	
 
-										<div class="dropdown">
+			<c:forEach var="pbList" items="${pbList}">
+				<div style="margin-bottom: 20px;">
+					<div id="pbd"
+						style="padding: 10px; background-color: white; border: 1px solid #ddd; border-bottom: 0px; border-top-left-radius: 2px; border-top-right-radius: 2px;">
+						<table class="col-md-12">
+							<tr>
+								<td rowspan=3>사진</td>
+								<td>이름 ${pbList.mem_Email } </td>
+								<td class="text-right">
+									<div class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+											role="button"><span
+											class="glyphicon glyphicon-chevron-down"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#">글 수정하기</a></li>
+											<li><a href="#">글 삭제하기</a></li>
+											<!-- <li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li class="dropdown-header">Nav header</li>
+										<li><a href="#">Separated link</a></li>
+										<li><a href="#">One more separated link</a></li> -->
+										</ul>
 
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 												role="button" id="${pbList.mem_Email }A"> <span
@@ -138,6 +148,7 @@
 										<h4 class="modal-title"></h4>
 										<h1>${pbList.pb_Article_Num}번게시글</h1>
 
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 									</div>
 									<div class="modal-body" id="${pbList.pb_Article_Num }body">
 										<textarea rows="4" cols="70"

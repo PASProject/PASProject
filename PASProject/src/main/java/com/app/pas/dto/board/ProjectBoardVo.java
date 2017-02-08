@@ -10,8 +10,24 @@ public class ProjectBoardVo {
     private int proj_Num;
     private Timestamp pb_Wt_Date;
     private String pb_Content;
+    private String mem_Name;
+    private String mem_Img;
     
     
+    
+    
+	public String getMem_Img() {
+		return mem_Img;
+	}
+	public void setMem_Img(String mem_Img) {
+		this.mem_Img = mem_Img;
+	}
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
 	public Timestamp getPb_Wt_Date() {
 		return pb_Wt_Date;
 	}

@@ -7,6 +7,7 @@ public class ProjectVo {
 	private String proj_Content;
 	private String proj_Name;
 	private String proj_Check;
+	private String mem_Name;
 	
 	@Override
 	public String toString() {
@@ -14,6 +15,18 @@ public class ProjectVo {
 				+ ", proj_Content=" + proj_Content + ", proj_Name=" + proj_Name
 				+ ", proj_Check=" + proj_Check + "]";
 	}
+	
+	
+	public String getMem_Name() {
+		return mem_Name;
+	}
+
+
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
+
+
 	public int getProj_Num() {
 		return proj_Num;
 	}

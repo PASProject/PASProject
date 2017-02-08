@@ -20,10 +20,10 @@ public class TotalNoticeDaoImpl implements TotalNoticeDao {
 		List<TotalNoticeVo> list = client.queryForList("selectTotalNoticeList");
 		return list;
 	}
-
+//디테일
 	@Override
-	public TotalNoticeVo selectTotalNotice(int ttnotice_Num) throws SQLException {
-		TotalNoticeVo totalNoticeVo = (TotalNoticeVo)client.queryForObject("selectTotalNotice",ttnotice_Num);
+	public TotalNoticeVo selectTotalNoticeBoard(int ttnotice_Num) throws SQLException {
+		TotalNoticeVo totalNoticeVo = (TotalNoticeVo)client.queryForObject("selectTotalNoticeBoard",ttnotice_Num);
 		return totalNoticeVo;
 	}
 
@@ -32,10 +32,9 @@ public class TotalNoticeDaoImpl implements TotalNoticeDao {
 			throws SQLException {
 		client.insert("insertTotalNotice",totalNoticeVo);
 	}
-
+//수정
 	@Override
-	public void updateTotalNotice(TotalNoticeVo totalNoticeVo)
-			throws SQLException {
+	public void updateTotalNotice(TotalNoticeVo totalNoticeVo)throws SQLException {
 		client.update("updateTotalNotice",totalNoticeVo);
 	}
 

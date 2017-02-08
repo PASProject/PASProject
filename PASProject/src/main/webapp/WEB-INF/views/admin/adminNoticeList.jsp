@@ -15,33 +15,46 @@
 	<!-- <div class="col-md-10"> -->
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			Admin<small>Notice</small>
+			Admin<small>_Notice</small>
 		</h2>
-		<fieldset>
-			<table class="table table-hover">
-				<tr class="text-center">
-				
-					<th class="col-md-1" style="text-align: center">답변여부</th>
-					<th class="col-md-1" style="text-align: center">번호</th>
-					<th class="col-md-4" style="text-align: center">제목</th>
-					<th class="col-md-2" style="text-align: center">작성자</th>
-					<th class="col-md-1" style="text-align: center">작성일</th>
-					<th class="col-md-1" style="text-align: center">조회수</th>
-				</tr>
-				
-		<tr>
-			
-				<td style ="text-align: center">${noticeList.ttnotice_Num}</td>
-				<td>${noticeList.ttnotice_Title}</td>
-				<td>${noticeList.ttnotice_Content }</td>
-				<td style="text-align: center"></td>
+
+		<table class="table table-hover">
+			<tr class="text-center">
+
+				<th class="col-md-1" style="text-align: center">답변여부</th>
+				<th class="col-md-1" style="text-align: center">번호</th>
+				<th class="col-md-4" style="text-align: center">제목</th>
+				<th class="col-md-2" style="text-align: center">작성자</th>
+				<th class="col-md-1" style="text-align: center">작성일</th>
+				<th class="col-md-1" style="text-align: center">조회수</th>
+			</tr>
 	
-		</tr>
+	<c:forEach var="noticeList" items="${noticeList}">
+			<tr>
+				<td>답변미답변</td>
+				<td style="text-align: center">${noticeList.ttnotice_Num}</td>
+				<td>
+				<a href = "<%=request.getContextPath()%>
+					/admin/adminNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
+						${noticeList.ttnotice_Title}</a></td>
+				<td>이경희</td>
+				<td>${noticeList.ttnotice_Date}</td>
+				<td style="text-align: center"></td>
 
-</table>
+			</tr>
+	</c:forEach>
+		</table>
+	<button class="btn btn-default text-right" type="button" onClick="tt_NoticeInsert()">글쓰기</button>
 
-
-		</fieldset>
-<!-- </div> -->
+	<!-- </div> -->
+	<script>
+		function tt_NoticeInsert(){
+			location.href = "adminNoticeForm";
+			
+		}
+	
+	
+	
+	</script>
 </body>
 </html>

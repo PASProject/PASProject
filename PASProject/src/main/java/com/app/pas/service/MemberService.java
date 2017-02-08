@@ -123,14 +123,24 @@ public class MemberService {
 			MemPositionViewVo  memPositionViewVo1 = memberDao.selectMemberPosition(memPositionViewVo);
 			return memPositionViewVo1;
 		}
+		public int selectMemberTotalCount() throws SQLException {
+			int totalCount = memberDao.selectMemberTotalCount();
+			return totalCount;
+		}
 	
-
+		public int selectCountMemApplyViewByEmail(String p_Mem_Email) throws SQLException{
+			int memApplyViewCount = memberDao.selectCountMemApplyViewByEmail(p_Mem_Email);
+			return memApplyViewCount;
+		}
 	
 		
 		public int updateMember(MemberVo memberVo) throws SQLException{
 		int result = memberDao.updateMember(memberVo);
 		return result;
 	}
+		public void deleteMember(String mem_Email) throws SQLException {
+			memberDao.deleteMember(mem_Email);
+		}
 	
 
 

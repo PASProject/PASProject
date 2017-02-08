@@ -1,6 +1,7 @@
 package com.app.pas.controller.totalboard;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.NoticeVo;
+import com.app.pas.dto.board.TotalNoticeVo;
 import com.app.pas.service.board.NoticeService;
 
 @Controller
@@ -30,11 +32,17 @@ public class NoticeController {
 	@RequestMapping("/totalNoticeList")
 	public String NoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
+	List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
+		
+	/*	noticeList = totalNoticeService.selectTotalNoticeList();*/
+		
+		model.addAttribute("noticeList", noticeList);
+		
+		
+		
 		/*int proj_Num = (Integer) session.getAttribute("joinProj");
 		int totalCount = 0;
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-
-		
 
 		List<NoticeVo> list = null;
 		MemPositionViewVo memPositionView = new MemPositionViewVo();
@@ -69,23 +77,6 @@ public class NoticeController {
 
 	}
 
-	@RequestMapping(value = "/noticeWrite", method = RequestMethod.POST)
-	public String insertNotice(HttpSession session, NoticeVo noticeVo) {
-		String url = "redirect:/notice/noticeList";
-		int proj_Num = (Integer) session.getAttribute("joinProj");
-
-		noticeVo.setProj_Num(proj_Num);
-
-		try {
-			noticeService.insertNotice(noticeVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return url;
-
-	}
 
 	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
 	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
@@ -107,61 +98,6 @@ public class NoticeController {
 		return url;
 	}
 
-	@RequestMapping(value = "/noticeWrite", method = RequestMethod.GET)
-	public String writeNoticeForm(HttpServletRequest request, String proj_Num,
-			String notice_Num) {
-		String url = "project/pmNoticeWrite";
 
-		return url;
-
-	}
-
-	@RequestMapping(value = "/noticeUpdate", method = RequestMethod.GET)
-	public String updateUpdateForm(HttpServletRequest request, String proj_Num,
-			String notice_Num) {
-		String url = "project/pmNoticeUpdate";
-		HashMap map = new HashMap();
-		map.put("proj_Num", proj_Num);
-		map.put("notice_Num", notice_Num);
-
-		try {
-			NoticeVo noticeVo = (NoticeVo) noticeService.getNoticeDetail(map);
-			request.setAttribute("NoticeVo", noticeVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return url;
-
-	}
-
-	@RequestMapping(value = "/noticeUpdate", method = RequestMethod.POST)
-	public String updateUpdate(NoticeVo noticeVo) {
-		String url = "redirect:/notice/noticeList";
-
-		try {
-			noticeService.updateNotice(noticeVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return url;
-	}
-
-	@RequestMapping("/noticeDelete")
-	public String deleteNotice(HttpSession session, NoticeVo noticeVo) {
-		String url = "redirect:/notice/noticeList";
-		System.out.println(noticeVo.getProj_Num() + "이건프로젝트넘버@@@@");
-		try {
-			noticeService.deleteNotice(noticeVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return url;
-	}
 
 }

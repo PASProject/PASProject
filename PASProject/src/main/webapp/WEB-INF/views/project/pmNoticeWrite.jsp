@@ -23,7 +23,9 @@
 		
 			<form>
 				제목: <input type="text" name="notice_Title" /><br> 내용: <input
-					type="text" name="notice_Content" /><br> <input type="button"
+					type="text" name="notice_Content" /><br>
+					작성자: <input type="text" name="notice_Title" value="${loginUser.mem_Name }"/>
+					 <input type="button"
 					value="글쓰기" onClick="noticeBtn(this.form)" />
 			</form>
 
