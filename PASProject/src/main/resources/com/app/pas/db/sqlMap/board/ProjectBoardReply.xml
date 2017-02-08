@@ -14,7 +14,8 @@
 		resultClass="ProjectBoardReply">
 		SELECT *
 		FROM PROJECT_BOARD_REPLY
-		WHERE PB_ARTICLE_NUM = #pb_Article_Num# ORDER BY PB_REPLY_NUM DESC
+		WHERE PB_ARTICLE_NUM = #pb_Article_Num# ORDER BY PB_REPLY_NUM ASC
+
 	</select>
 
 	<insert id="insertProjectBoardReply" parameterClass="ProjectBoardReply">

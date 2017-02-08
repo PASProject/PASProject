@@ -146,8 +146,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseFive"><img
+				<a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/AccountBoardList"><img
 					style="width: 15%"
 					src="<%=request.getContextPath()%>/resources/img/won.png">&nbsp;프로젝트
 					회계</a>

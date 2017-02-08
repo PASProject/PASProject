@@ -58,6 +58,9 @@
 		select * from mem_Apply_View where p_mem_Email = #p_Mem_Email# and apply_commit_check = '0' order by apply_num desc
 	</select>
 	
+	<select id = "selectCountMemApplyViewByEmail" parameterClass="str" resultClass="int">
+			select count(*) from mem_Apply_View where p_mem_Email = #mem_Email# and apply_commit_check = '0'
+	</select>
 	
 	<select id="selectMemApplyViewByApplyNum" parameterClass="int" resultClass="MemApplyView">
 		select * from mem_Apply_view where apply_Num = #apply_Num#
