@@ -53,4 +53,10 @@ public class TotalNoticeService {
 	public void updateTotaTotalNotice(TotalNoticeVo totalNoticeVo) throws SQLException{
 		totalnoticeDao.updateTotalNotice(totalNoticeVo);
 	}
+	
+	
+	public int toTalNoticeTotalCount() throws SQLException{
+		int noticeCount = totalnoticeDao.toTalNoticeTotalCount();
+		return noticeCount;
+	}
 }

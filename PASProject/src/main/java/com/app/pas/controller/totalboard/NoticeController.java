@@ -34,46 +34,26 @@ public class NoticeController {
 	public String NoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
 	List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
+		int totalCount = 0;
 		
 		noticeList = totalNoticeService.selectTotalNoticeList();
+		totalCount = totalNoticeService.toTalNoticeTotalCount();
 		
-		model.addAttribute("noticeList", noticeList);
-	
-		String url = "notice/totalNoticeList";
-		return url;
-		
-		/*int proj_Num = (Integer) session.getAttribute("joinProj");
-		int totalCount = 0;
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-
-		List<NoticeVo> list = null;
-		MemPositionViewVo memPositionView = new MemPositionViewVo();
-		HashMap map = new HashMap();
-		map.put("proj_Num", proj_Num);
-		map.put("mem_Email", memberVo.getMem_Email());
-
-		try {
-			list = noticeService.getNoticeList(proj_Num);
-			model.addAttribute("NoticeList", list);
-			memPositionView = noticeService.getNoticePosition(map);
-			session.setAttribute("memPositionView", memPositionView);
-			totalCount = noticeService.selectNoticeCount(proj_Num);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
-
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
-		paging.setPageSize(10);
+		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
-
-		model.addAttribute("paging", paging);*/
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("noticeList", noticeList);
+		
+		String url = "notice/totalNoticeList";
+		return url;
+		
+		
 
 	}
 	@RequestMapping("/totalNoticeDetail")

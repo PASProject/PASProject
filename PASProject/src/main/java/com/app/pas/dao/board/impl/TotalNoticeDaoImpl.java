@@ -43,6 +43,13 @@ public class TotalNoticeDaoImpl implements TotalNoticeDao {
 		client.delete("deleteTotalNotice",ttnotice_Num);
 		
 	}
+
+
+	@Override
+	public int toTalNoticeTotalCount() throws SQLException {
+		int noticeCount = (Integer)client.queryForObject("toTalNoticeTotalCount");
+		return noticeCount;
+	}
 	
 
 	

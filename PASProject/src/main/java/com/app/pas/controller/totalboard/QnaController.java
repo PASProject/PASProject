@@ -44,7 +44,6 @@ public class QnaController {
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
 		try {
 			qnaList = qnaBoardService.selectQnaBoardList();
-			System.out.println("qnaboardList >> > > : " + qnaList);
 			totalCount = qnaBoardService.QnaSelectTotalCount();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

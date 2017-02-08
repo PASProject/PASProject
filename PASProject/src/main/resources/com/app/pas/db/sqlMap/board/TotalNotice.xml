@@ -38,8 +38,11 @@
 
 	<delete id="deleteTotalNotice" parameterClass="int">
 		DELETE FROM TOTAL_NOTICE WHERE TTNOTICE_NUM=#ttnotice_Num#
-
-
 	</delete>
+	
+	<select id="toTalNoticeTotalCount" resultClass="int">
+		SELECT COUNT(*)
+		FROM TOTAL_NOTICE
+	</select>
 
 </sqlMap>
