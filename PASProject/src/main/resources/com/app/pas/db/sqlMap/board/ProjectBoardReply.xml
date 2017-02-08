@@ -20,8 +20,8 @@
 
 	<insert id="insertProjectBoardReply" parameterClass="ProjectBoardReply">
 		INSERT INTO
-		PROJECT_BOARD_REPLY(PB_REPLY_NUM,PB_REPLY_MEM,PB_REPLY_CONTENT,PB_ARTICLE_NUM) 
-		VALUES(PROJECT_BOARD_REPLY_SEQ.NEXTVAL, #pb_Reply_Mem#, #pb_Reply_Content#, #pb_Article_Num#)
+		PROJECT_BOARD_REPLY(PB_REPLY_NUM,PB_REPLY_MEM,PB_REPLY_CONTENT,PB_ARTICLE_NUM,PB_REPLY_MEM_IMG,PB_REPLY_MEM_NAME) 
+		VALUES(PROJECT_BOARD_REPLY_SEQ.NEXTVAL, #pb_Reply_Mem#, #pb_Reply_Content#, #pb_Article_Num#,#pb_Reply_Mem_Img#,#pb_Reply_Mem_Name#)
 	</insert>
 
 

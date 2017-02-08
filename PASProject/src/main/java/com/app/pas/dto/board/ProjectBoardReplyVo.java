@@ -7,8 +7,22 @@ public class ProjectBoardReplyVo {
 	private String pb_Reply_Mem;
 	private String pb_Reply_Content;
 	private int pb_Article_Num;
+	private String pb_Reply_Mem_Img;
+	private String pb_Reply_Mem_Name;
 	
+	public String getPb_Reply_Mem_Img() {
+		return pb_Reply_Mem_Img;
+	}
+	public void setPb_Reply_Mem_Img(String pb_Reply_Mem_Img) {
+		this.pb_Reply_Mem_Img = pb_Reply_Mem_Img;
+	}
 	
+	public String getPb_Reply_Mem_Name() {
+		return pb_Reply_Mem_Name;
+	}
+	public void setPb_Reply_Mem_Name(String pb_Reply_Mem_Name) {
+		this.pb_Reply_Mem_Name = pb_Reply_Mem_Name;
+	}
 	public int getPb_Reply_Num() {
 		return pb_Reply_Num;
 	}
