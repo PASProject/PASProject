@@ -88,8 +88,8 @@ body.modal-open .background-container {
 			<h1>Project Automation System</h1>
 			<h3>Begin with us</h3>
 			<br> <a href="<%=request.getContextPath()%>/main/loginForm"
-				class="btn btn-dark btn-lg">들어가기</a>&nbsp;&nbsp;<a href="#about"
-				class="btn btn-dark btn-lg">가입하기</a>
+				class="btn btn-dark btn-lg" style="margin-right:10px;">들어가기</a><a href="#about"
+				class="btn btn-dark btn-lg" style="margin-left:10px;">가입하기</a>
 		</div>
 
 	</header>
@@ -179,7 +179,7 @@ body.modal-open .background-container {
 	<!-- Callout -->
 	<aside class="callout">
 		<div class="text-vertical-center">
-			<h1>Vertically Centered Text</h1>
+			<h1>허석원 앞머리 보소</h1>
 		</div>
 	</aside>
 
