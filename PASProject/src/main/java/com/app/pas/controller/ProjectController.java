@@ -87,12 +87,12 @@ public class ProjectController {
 		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
 		@RequestMapping(value= "/pmBoardUpdate")
-		public @ResponseBody void updateProjectBoard(@RequestBody ProjectBoardVo projectBoardVo,Model model,HttpSession session) throws SQLException {
+		public @ResponseBody int updateProjectBoard(@RequestBody ProjectBoardVo projectBoardVo,Model model,HttpSession session) throws SQLException {
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
 			projectBoardVo.setMem_Email(mem_Email); 
 				projectBoardService.updateProjectBoard(projectBoardVo);
-			return;
+			return 0;
 		}
 		
 		

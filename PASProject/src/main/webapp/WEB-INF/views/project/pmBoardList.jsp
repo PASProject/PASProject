@@ -61,6 +61,7 @@ table tr td {
 				<div style="margin-bottom: 20px;">
 					<div id="pbd"
 						style="padding: 10px; background-color: white; border: 1px solid #ddd; border-bottom: 0px; border-top-left-radius: 2px; border-top-right-radius: 2px;">
+						<input type="hidden" value="${pbList.pb_Article_Num}" id ="${pbList.pb_Article_Num}Number">
 						<table class="col-md-12">
 							<tr>
 								<td rowspan=3>사진</td>
@@ -167,7 +168,6 @@ table tr td {
 							});
 						}
 					})
-				
 			})
 			
 				function reply(pb_Article_Num){
@@ -209,9 +209,10 @@ table tr td {
 						location.reload();
 					},error:function(){
 						alert('에러');
+					},
+					done:function(){
+						$('#'+pb_Article_Num+'Number').focus();
 					}
-					
-					
 				})
 			}
 
