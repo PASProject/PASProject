@@ -11,8 +11,18 @@ public class NoticeVo {
 	private Timestamp notice_Date;
 	private int notice_Inq_Count;
 	private int proj_Num;
+	private String mem_Name;
 	
 	
+	
+	
+	
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
 	public Timestamp getNotice_Date() {
 		return notice_Date;
 	}

@@ -121,6 +121,13 @@ public class MemberDaoImpl implements MemberDao {
 		int totalCount = (Integer) client.queryForObject("selectTotalCountMember");
 		return totalCount;
 	}
+	@Override
+	public int selectCountMemApplyViewByEmail(String p_Mem_Email)
+			throws SQLException {
+		int memApplyViewCount = (Integer) client.queryForObject("selectCountMemApplyViewByEmail",p_Mem_Email);
+		return memApplyViewCount;
+
+	}
 
 	
 }

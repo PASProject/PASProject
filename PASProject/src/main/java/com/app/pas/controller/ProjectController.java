@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,10 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
+import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
@@ -50,6 +51,8 @@ public class ProjectController {
 	AccountBoardService accountService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	InviteService inviteService;
 	
 	//프로젝트 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
@@ -75,34 +78,26 @@ public class ProjectController {
 			//세션의 정보를 가져와서 넣음
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
+			String proj_Num = (String) session.getAttribute("joinProj");
 			projectBoardVo.setMem_Email(mem_Email); 
-	
-			projectBoardVo.setProj_Num(1);
-			System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
+
+			
+			projectBoardVo.setProj_Num(Integer.parseInt(proj_Num));
+
 			
 			projectBoardService.insertProjectBoard(projectBoardVo);
-			System.out.println("projectBoardVo"+projectBoardVo);
-			
 			String url = "redirect:pmBoardList";
 			return url;
 		}		
+		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
 		@RequestMapping(value= "/pmBoardUpdate")
-		public String updateProjectBoard(ProjectBoardVo projectBoardVo,Model model,HttpSession session) {
+		public @ResponseBody int updateProjectBoard(@RequestBody ProjectBoardVo projectBoardVo,Model model,HttpSession session) throws SQLException {
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
-			String url = "redirect:pmBoardMyProjectList";
 			projectBoardVo.setMem_Email(mem_Email); 
-			
-			System.out.println("여기오는가 수정수정?");
-			System.out.println("수정하는 중  vo값 : " +projectBoardVo  );
-			try {
 				projectBoardService.updateProjectBoard(projectBoardVo);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return url;
+			return 0;
 		}
 		
 		
@@ -125,20 +120,14 @@ public class ProjectController {
 			
 			return url;
 		}
+		
+		
 		//글삭제 ------------------------------------------------------------------------
 		@RequestMapping("/deleteProjectBoard")
-		public String deleteProjectBoard(String pb_Article_Num) {
-			String url = "redirect:pmBoardMyProjectList";
-			try {
-				projectBoardService.deleteProjectBoard(Integer
-						.parseInt(pb_Article_Num));
-			} catch (NumberFormatException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
+		public String deleteProjectBoard(String pb_Article_Num) throws NumberFormatException, SQLException {
+			String url = "redirect:pmBoardList";
+			projectBoardService.deleteProjectBoard(Integer.parseInt(pb_Article_Num));
+			
 			return url;
 		}
 
@@ -159,7 +148,6 @@ public class ProjectController {
 				fullList.add(projectBoardReplyList);
 			}
 			
-		/*	model.addAttribute("projectBoardReplyList",projectBoardReplyList);*/
 			return fullList;
 		}
 		
@@ -362,7 +350,8 @@ public class ProjectController {
 			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException{
 		String url="schedule/accountForm";
 		/*int proj_Num = (Integer) session.getAttribute("joinProj");*/
-		int proj_Num=1;
+		String Num=(String) session.getAttribute("joinProj");
+		int proj_Num = Integer.parseInt(Num);
 		int totalCount = 0;
 		List<AccountBoardVo> list =accountService.getAccountList(proj_Num);
 		System.out.println(list+"이건 리스트!!");
@@ -470,6 +459,22 @@ public class ProjectController {
 		memPositionView =memberService.selectMemberPosition(memPositionView);
 		model.addAttribute("pmMemberList", list);
 		model.addAttribute("memPositionView", memPositionView);
+		return url;
+	}
+	
+	@RequestMapping("/pmMemberInvite")
+	public String pmMemberInvite(HttpSession session) throws SQLException{
+		String url="/project/teamInvite";
+		String mem_Email="";
+		/*int proj_Num= (Integer) session.getAttribute("joinProj");*/
+		ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
+		projInviteViewVo.setProj_Num(1);
+		
+		List<ProjInviteViewVo> list =inviteService.selectInviteList(projInviteViewVo);
+		session.setAttribute("InviteList", list);
+		List<MemberVo> memberList =memberService.selectMemberList();
+		System.out.println(memberList+"멤버리스트!!!!!!!!!!!!!!!!!!");
+		session.setAttribute("memberList", memberList);
 		return url;
 	}
 	
