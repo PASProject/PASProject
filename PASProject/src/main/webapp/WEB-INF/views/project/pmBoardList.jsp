@@ -19,8 +19,6 @@
 			프로젝트 게시판 <small>프로젝트 게시판입니다. 경희씨 여기서 잡담하지 마세요.</small>
 		</h2>
 
-
-
 		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
 
 
@@ -33,7 +31,7 @@
 						<table class="col-md-12">
 							<tr>
 								<td>사진</td>
-								<td><textarea placeholder="지금 무슨 생각으로 하고 계십니까?"
+								<td><textarea class="pull-right" placeholder="지금 무슨 생각으로 하고 계십니까?"
 										style="font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"
 										rows="1" cols="70;" name="pb_Content"></textarea></td>
 							</tr>
