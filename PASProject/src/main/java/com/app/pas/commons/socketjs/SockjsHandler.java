@@ -21,7 +21,7 @@ public class SockjsHandler extends TextWebSocketHandler{
 		System.out.println("handleMessage 호출");
 		String userid;
 		
-		System.out.println(message.getPayload().toString()+"@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println(message.getPayload().toString()+" @@@@@@@@@@@@@@@@@@@@@@");
 		if(message.equals(null)) return;
 		System.out.println(message.getPayload().toString().length());
 			if(message.getPayload().toString().contains("init")&& message.getPayload().toString().length()>6){
