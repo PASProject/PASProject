@@ -66,20 +66,28 @@ table tr td {
 								<td rowspan=3>사진</td>
 								<td>이름 ${pbList.mem_Email } </td>
 								<td class="text-right">
+								
 									<div class="dropdown">
+									
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown"
-											role="button"><span
+											role="button" id = "${pbList.mem_Email }A">
+											
+											<span
 											class="glyphicon glyphicon-chevron-down"></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="#">글 수정하기</a></li>
-											<li><a href="#">글 삭제하기</a></li>
-											<!-- <li><a href="#">Something else here</a></li>
-										<li role="separator" class="divider"></li>
-										<li class="dropdown-header">Nav header</li>
-										<li><a href="#">Separated link</a></li>
-										<li><a href="#">One more separated link</a></li> -->
-										</ul>
+										<c:if test="${sessionScope.loginUser.mem_Email == pbList.mem_Email }">
+											<ul class="dropdown-menu">
+												<li><a href="#" class="img-responsive" 	data-toggle="modal" data-target="#${pbList.pb_Article_Num }modal"
+													data-keyboard="false" data-backdrop="static">글 수정하기</a></li>
+												<li><a href="deleteProjectBoard?pb_Article_Num=${pbList.pb_Article_Num}">글 삭제하기</a></li>
+												<!-- <li><a href="#">Something else here</a></li>
+											<li role="separator" class="divider"></li>
+											<li class="dropdown-header">Nav header</li>
+											<li><a href="#">Separated link</a></li>
+											<li><a href="#">One more separated link</a></li> -->
+											</ul>
+										</c:if>
 									</div>
+								
 								</td>
 							</tr>
 							<tr>
@@ -110,6 +118,30 @@ table tr td {
 
 					</div>
 				</div>
+				
+				<!-- 수정 모달 -->
+				<div class="modal fade" id="${pbList.pb_Article_Num }modal" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title"></h4>
+									<h1>${pbList.pb_Article_Num} 번 게시글</h1>
+
+								</div>
+								<div class="modal-body" id="${pbList.pb_Article_Num }body">
+									<textarea rows="4" cols="70" id ="${pbList.pb_Article_Num }pb_Content">${pbList.pb_Content}</textarea>
+								</div>
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default" value="수정완료"
+										onclick="javascript:updatePb(${pbList.pb_Article_Num })" />
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
 			</c:forEach>
 
 
@@ -118,6 +150,7 @@ table tr td {
 			<script>
 			
 			$(document).ready(function(){
+				
 					 $.ajax({
 						url:'selectProjectBoardReply',
 						contentType:'application/json',
@@ -162,6 +195,25 @@ table tr td {
 					});
 				}
 				
+			function updatePb(Article_Num){
+				var pb_Article_Num = Article_Num;
+				var pb_Content = $('#'+pb_Article_Num+'pb_Content').val();
+				var dataList = {'pb_Article_Num':pb_Article_Num,'pb_Content':pb_Content};
+				$.ajax({
+					url:'pmBoardUpdate',
+					contentType:'application/json',
+					dataType:'json',
+					type:'post',
+					data:JSON.stringify(dataList),
+					success:function(){
+						location.reload();
+					},error:function(){
+						alert('에러');
+					}
+					
+					
+				})
+			}
 
 				$(".anser-write input{type=submit}").click(addAnswer);
 				function addAnswer(e) {

@@ -75,34 +75,24 @@ public class ProjectController {
 			//세션의 정보를 가져와서 넣음
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
+			String proj_Num = (String) session.getAttribute("joinProj");
 			projectBoardVo.setMem_Email(mem_Email); 
-	
-			projectBoardVo.setProj_Num(1);
-			System.out.println("프로제이넘" +  projectBoardVo.getProj_Num());
+			
+			projectBoardVo.setProj_Num(Integer.parseInt(proj_Num));
 			
 			projectBoardService.insertProjectBoard(projectBoardVo);
-			System.out.println("projectBoardVo"+projectBoardVo);
-			
 			String url = "redirect:pmBoardList";
 			return url;
 		}		
+		
 //프로젝트 Board 글 수정 ------------------------------------------------------------------		
 		@RequestMapping(value= "/pmBoardUpdate")
-		public String updateProjectBoard(ProjectBoardVo projectBoardVo,Model model,HttpSession session) {
+		public @ResponseBody void updateProjectBoard(@RequestBody ProjectBoardVo projectBoardVo,Model model,HttpSession session) throws SQLException {
 			MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
-			String url = "redirect:pmBoardMyProjectList";
 			projectBoardVo.setMem_Email(mem_Email); 
-			
-			System.out.println("여기오는가 수정수정?");
-			System.out.println("수정하는 중  vo값 : " +projectBoardVo  );
-			try {
 				projectBoardService.updateProjectBoard(projectBoardVo);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return url;
+			return;
 		}
 		
 		
@@ -125,20 +115,14 @@ public class ProjectController {
 			
 			return url;
 		}
+		
+		
 		//글삭제 ------------------------------------------------------------------------
 		@RequestMapping("/deleteProjectBoard")
-		public String deleteProjectBoard(String pb_Article_Num) {
-			String url = "redirect:pmBoardMyProjectList";
-			try {
-				projectBoardService.deleteProjectBoard(Integer
-						.parseInt(pb_Article_Num));
-			} catch (NumberFormatException e) {
-				
-				e.printStackTrace();
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
+		public String deleteProjectBoard(String pb_Article_Num) throws NumberFormatException, SQLException {
+			String url = "redirect:pmBoardList";
+			projectBoardService.deleteProjectBoard(Integer.parseInt(pb_Article_Num));
+			
 			return url;
 		}
 
@@ -159,7 +143,6 @@ public class ProjectController {
 				fullList.add(projectBoardReplyList);
 			}
 			
-		/*	model.addAttribute("projectBoardReplyList",projectBoardReplyList);*/
 			return fullList;
 		}
 		
