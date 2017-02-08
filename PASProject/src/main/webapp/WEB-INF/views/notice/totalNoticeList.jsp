@@ -15,7 +15,7 @@
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			Admin<small>_Notice</small>
+			Total<small>_Notice</small>
 		</h2>
 
 		<table class="table table-hover">
@@ -35,7 +35,7 @@
 				<td style="text-align: center">${noticeList.ttnotice_Num}</td>
 				<td>
 				<a href = "<%=request.getContextPath()%>
-					/admin/totalNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
+					/notice/totalNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
 						${noticeList.ttnotice_Title}</a></td>
 				<td>이경희</td>
 				<td>${noticeList.ttnotice_Date}</td>
@@ -44,14 +44,11 @@
 			</tr>
 	</c:forEach>
 		</table>
-	<button class="btn btn-default text-right" type="button" onClick="tt_NoticeInsert()">글쓰기</button>
+
 
 	</div>
 	<script>
-		function tt_NoticeInsert(){
-			location.href = "adminNoticeForm";
-			
-		}
+	
 	
 	
 	

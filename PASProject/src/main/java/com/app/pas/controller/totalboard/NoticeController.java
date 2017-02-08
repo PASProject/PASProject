@@ -76,7 +76,15 @@ public class NoticeController {
 		model.addAttribute("paging", paging);*/
 
 	}
-	
+	@RequestMapping("/totalNoticeDetail")
+	public String detailTotalNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
+		String url = "notice/totalNoticeDetail";
+		
+		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
+		
+		model.addAttribute("totalNoticeVo",totalNoticeVo);
+		return url;
+	}
 
 
 

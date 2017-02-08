@@ -41,7 +41,6 @@ public class AdminNoticeController {
 		String url = "admin/adminNoticeDetail";
 		
 		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
-		System.out.println("totalNoticeVo 디텔디텔: " + totalNoticeVo  );
 		model.addAttribute("totalNoticeVo",totalNoticeVo);
 		return url;
 	}

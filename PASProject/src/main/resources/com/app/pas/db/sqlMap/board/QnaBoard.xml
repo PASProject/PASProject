@@ -25,8 +25,8 @@
 
 	<insert id="insertQnaBoard" parameterClass="QnaBoard">
 		INSERT INTO
-		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL)
-		VALUES(QNA_BOARD_SEQ.NEXTVAL,#qb_Title#,#qb_Content#,#qb_Password#,#mem_Email#)
+		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL,MEM_NAME)
+		VALUES(QNA_BOARD_SEQ.NEXTVAL,#qb_Title#,#qb_Content#,#qb_Password#,#mem_Email#,#mem_Name#)
 	</insert>
 
 	<update id="updateQnaYN" parameterClass="int">

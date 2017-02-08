@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.QnaBoardReplyVo;
 import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.service.MemberService;
 import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
 
@@ -25,7 +27,9 @@ public class QnaController {
 
 	@Autowired
 	QnaBoardService qnaBoardService;
-	//qnaList
+
+	@Autowired
+	MemberService memberService;
 	
 	@Autowired
 	QnaBoardReplyService qnaBoardReplyService;
@@ -73,8 +77,15 @@ public class QnaController {
 	public String insertQna(HttpSession session, Model model,
 			QnaBoardVo qnaBoardVo) {
 		String url = "redirect:QnAList";
-		qnaBoardVo.setMem_Email("abc@naver.com");
-		qnaBoardVo.setQb_Password("임시Password");
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+
+		String mem_Email = memberVo.getMem_Email();		
+		qnaBoardVo.setMem_Email(mem_Email);
+		
+		String mem_Name = memberVo.getMem_Name();
+		qnaBoardVo.setMem_Name(mem_Name);
+		
 		try {
 			qnaBoardService.insertQnaBoard(qnaBoardVo);
 		} catch (SQLException e) {
