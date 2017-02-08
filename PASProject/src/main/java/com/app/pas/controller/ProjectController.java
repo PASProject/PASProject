@@ -56,7 +56,9 @@ public class ProjectController {
 	
 	//프로젝트 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
-	public String selectProjectBoardList(ProjectBoardVo projectBoardVo,HttpSession session,Model model,@RequestParam(value = "page", defaultValue = "1") String page
+
+	public String selectProjectBoardList(HttpSession session,ProjectBoardVo projectBoardVo, Model model,@RequestParam(value = "page", defaultValue = "1") String page
+
 			) throws SQLException {
 		
 		List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
@@ -65,8 +67,10 @@ public class ProjectController {
 		String getProj_Num = (String) session.getAttribute("joinProj");
 		pbList = projectBoardService.selectProjectBoardList(Integer.parseInt(getProj_Num));
 		
+		
 		model.addAttribute("pbList", pbList);
 		
+
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		String mem_Name = memberVo.getMem_Name();
@@ -75,6 +79,7 @@ public class ProjectController {
 		projectBoardVo.setMem_Email(mem_Email);
 		projectBoardVo.setMem_Name(mem_Name);
 		projectBoardVo.setMem_Img(mem_Img);
+
 		
 		return url;
 	}
