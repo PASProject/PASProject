@@ -423,6 +423,7 @@ public class mainContoller {
 	public @ResponseBody int createProject(@RequestBody ProjectVo projectVo) throws SQLException{
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		projectJoinVo.setMem_Email(projectVo.getMem_Email());
+		projectJoinVo.setMem_Name(projectVo.getMem_Name());
 		projectJoinVo.setPjj_Per_Num(1);
 		projectJoinVo.setPosition_Num(1);
 		int proj_Num = projectService.insertProject(projectVo,projectJoinVo);

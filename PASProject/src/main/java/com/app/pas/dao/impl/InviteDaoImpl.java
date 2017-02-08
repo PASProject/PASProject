@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.InviteDao;
 import com.app.pas.dto.InviteVo;
+import com.app.pas.dto.ProjInviteViewVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class InviteDaoImpl implements InviteDao{
@@ -33,5 +34,11 @@ public class InviteDaoImpl implements InviteDao{
 	@Override
 	public void deleteInvite(int invite_Num) throws SQLException {
 		client.update("deleteInvite",invite_Num);
+	}
+
+	@Override
+	public List<ProjInviteViewVo> selectInviteList(ProjInviteViewVo projInviteViewVo) throws SQLException {
+		List<ProjInviteViewVo> list =client.queryForList("selectInviteList", projInviteViewVo);
+		return list;
 	}
 }
