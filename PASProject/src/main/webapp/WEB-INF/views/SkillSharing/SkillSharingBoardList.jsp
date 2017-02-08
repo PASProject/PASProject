@@ -33,12 +33,12 @@
 				<td>${SkillSharingBoardVo.ssb_Article_Num }</td>
 				<td><a
 					href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${SkillSharingBoardVo.ssb_Article_Num }">${SkillSharingBoardVo.ssb_Title}</a></td>
-				<td>${SkillSharingBoardVo.mem_Email }</td>
+				<td>${SkillSharingBoardVo.mem_Name} ( ${SkillSharingBoardVo.mem_Email } )</td>
 				<td>${SkillSharingBoardVo.ssb_wt_date }</td>
 				<td>${SkillSharingBoardVo.ssb_Content }</td>
 				<td>${SkillSharingBoardVo.ssb_Inq_Count }</td>
 				<td>${SkillSharingBoardVo.ssb_Like_Count }</td>
-
+				
 			</tr>
 		</c:forEach>
 		<tr>

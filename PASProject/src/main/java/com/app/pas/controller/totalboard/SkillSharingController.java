@@ -164,9 +164,7 @@ public class SkillSharingController {
 		  MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		  String mem_Email = memberVo.getMem_Email();
 		  skillSharingBoardVo.setMem_Email(mem_Email);
-		 
-
-		
+		  skillSharingBoardVo.setMem_Name(memberVo.getMem_Name());
 
 		try {
 			skillSharingBoardService
@@ -291,7 +289,9 @@ public class SkillSharingController {
 	(@RequestBody SkillSharingBoardReplyVo skillSharingBoardReplyVo, HttpSession session){
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
+		String mem_Name = memberVo.getMem_Name();
 		skillSharingBoardReplyVo.setSsb_Reply_Mem(mem_Email);
+		skillSharingBoardReplyVo.setSsb_Reply_Mem_Name(mem_Name);
 		List<SkillSharingBoardReplyVo> skillSharingBoardReplyList = new ArrayList<SkillSharingBoardReplyVo>();
 		try {
 			skillSharingBoardReplyService.insertSkillSharingBoardReply(skillSharingBoardReplyVo);

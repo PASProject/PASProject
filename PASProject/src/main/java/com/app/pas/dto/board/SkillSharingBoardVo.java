@@ -11,7 +11,15 @@ public class SkillSharingBoardVo {
 	private int ssb_Inq_Count;
 	private String mem_Email;
 	private int ssb_Like_Count;
+	private String mem_Name;
 	
+	
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
 	public int getSsb_Like_Count() {
 		return ssb_Like_Count;
 	}

@@ -12,6 +12,7 @@
 	<sqlMap resource="com/app/pas/db/sqlMap/board/FreeBoardReply.xml" />
 	<sqlMap resource="com/app/pas/db/sqlMap/board/Notice.xml" />
 	<sqlMap resource="com/app/pas/db/sqlMap/board/ProjectBoard.xml" />
+	<sqlMap resource="com/app/pas/db/sqlMap/board/ProjectBoardReply.xml"/>
 	<sqlMap resource="com/app/pas/db/sqlMap/board/QnaBoard.xml" />
 	<sqlMap resource="com/app/pas/db/sqlMap/board/QnaBoardReply.xml" />
 	<sqlMap resource="com/app/pas/db/sqlMap/board/SkillSharingBoard.xml" />

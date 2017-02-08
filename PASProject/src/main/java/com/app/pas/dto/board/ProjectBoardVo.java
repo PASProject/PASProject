@@ -8,14 +8,15 @@ public class ProjectBoardVo {
     private int pb_Inq_Count;
     private String mem_Email;
     private int proj_Num;
-    private Timestamp pb_wt_date;
+    private Timestamp pb_Wt_Date;
     private String pb_Content;
     
-	public Timestamp getPb_wt_date() {
-		return pb_wt_date;
+    
+	public Timestamp getPb_Wt_Date() {
+		return pb_Wt_Date;
 	}
-	public void setPb_wt_date(Timestamp pb_wt_date) {
-		this.pb_wt_date = pb_wt_date;
+	public void setPb_Wt_Date(Timestamp pb_Wt_Date) {
+		this.pb_Wt_Date = pb_Wt_Date;
 	}
 	public int getPb_Article_Num() {
 		return pb_Article_Num;
@@ -47,17 +48,4 @@ public class ProjectBoardVo {
 	public void setPb_Content(String pb_Content) {
 		this.pb_Content = pb_Content;
 	}
-	@Override
-	public String toString() {
-		return "ProjectBoardVo [pb_Article_Num=" + pb_Article_Num
-				+ ", pb_Inq_Count=" + pb_Inq_Count + ", mem_Email=" + mem_Email
-				+ ", proj_Num=" + proj_Num + ", pb_wt_date=" + pb_wt_date
-				+ ", pb_Content=" + pb_Content + "]";
-	}
-	
-    
-    
-    
-    
-	
 }
