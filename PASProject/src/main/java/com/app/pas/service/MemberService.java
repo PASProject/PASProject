@@ -123,6 +123,10 @@ public class MemberService {
 			MemPositionViewVo  memPositionViewVo1 = memberDao.selectMemberPosition(memPositionViewVo);
 			return memPositionViewVo1;
 		}
+		public int selectMemberTotalCount() throws SQLException {
+			int totalCount = memberDao.selectMemberTotalCount();
+			return totalCount;
+		}
 	
 
 	
@@ -131,6 +135,9 @@ public class MemberService {
 		int result = memberDao.updateMember(memberVo);
 		return result;
 	}
+		public void deleteMember(String mem_Email) throws SQLException {
+			memberDao.deleteMember(mem_Email);
+		}
 	
 
 

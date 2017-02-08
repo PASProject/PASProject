@@ -116,5 +116,11 @@ public class MemberDaoImpl implements MemberDao {
 		return memPositionViewVo1; 
 	}
 
+	@Override
+	public int selectMemberTotalCount() throws SQLException {
+		int totalCount = (Integer) client.queryForObject("selectTotalCountMember");
+		return totalCount;
+	}
+
 	
 }

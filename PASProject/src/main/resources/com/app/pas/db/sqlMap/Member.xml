@@ -91,5 +91,8 @@
 	
 	</select>
 	
+	<select id="selectTotalCountMember" resultClass="int">
+		select count(*) from member
+	</select>
 	
 </sqlMap>

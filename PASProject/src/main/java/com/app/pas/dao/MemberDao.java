@@ -27,4 +27,5 @@ public interface MemberDao {
 	public void deleteApplyViewByApplyNum(int apply_Num) throws SQLException;
 	public List<MemPositionViewVo> selectMemberListByProj(MemPositionViewVo memPoistionViewVo)throws SQLException;
     public MemPositionViewVo selectMemberPosition(MemPositionViewVo memPositionViewVo)throws SQLException;
+    public int selectMemberTotalCount() throws SQLException;
 }

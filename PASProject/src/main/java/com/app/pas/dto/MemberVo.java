@@ -1,5 +1,7 @@
 package com.app.pas.dto;
 
+import java.sql.Timestamp;
+
 public class MemberVo {
 
 	private String mem_Email;
@@ -9,13 +11,23 @@ public class MemberVo {
 	private String mem_Pass;
 	private String mem_Img;
 	private String mem_Approve;
+	private Timestamp mem_Join_Date;
 
 	@Override
 	public String toString() {
 		return "MemberVo [mem_Email=" + mem_Email + ", quit_Check="
 				+ quit_Check + ", mem_Name=" + mem_Name + ", mem_Phone="
 				+ mem_Phone + ", mem_Pass=" + mem_Pass + ", mem_Img=" + mem_Img
-				+ "]";
+				+ ", mem_Approve=" + mem_Approve + ", mem_Join_Date="
+				+ mem_Join_Date + "]";
+	}
+
+	public Timestamp getMem_Join_Date() {
+		return mem_Join_Date;
+	}
+
+	public void setMem_Join_Date(Timestamp mem_Join_Date) {
+		this.mem_Join_Date = mem_Join_Date;
 	}
 
 	public String getMem_Approve() {
