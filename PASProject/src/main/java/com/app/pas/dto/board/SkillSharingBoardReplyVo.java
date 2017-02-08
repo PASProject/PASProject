@@ -6,6 +6,15 @@ public class SkillSharingBoardReplyVo {
 	private int ssb_Article_Num;
 	private String ssb_Reply_Mem;
 	private String ssb_Reply_Content;
+	private String ssb_Reply_Mem_Name;
+	
+	public String getSsb_Reply_Mem_Name() {
+		return ssb_Reply_Mem_Name;
+	}
+
+	public void setSsb_Reply_Mem_Name(String ssb_Reply_Mem_Name) {
+		this.ssb_Reply_Mem_Name = ssb_Reply_Mem_Name;
+	}
 
 	public int getSsb_Reply_Num() {
 		return ssb_Reply_Num;

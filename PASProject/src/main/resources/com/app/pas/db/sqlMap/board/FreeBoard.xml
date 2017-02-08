@@ -51,8 +51,8 @@
 	
 	<insert id="insertFreeBoard" parameterClass="FreeBoard">
 		INSERT INTO
-		FREE_BOARD(FRB_ARTICLE_NUM,FRB_CONTENT,FRB_KIND,FRB_TITLE,MEM_EMAIL) 
-		VALUES(FREE_BOARD_SEQ.NEXTVAL,#frb_Content#,#frb_Kind#,#frb_Title#,#mem_Email#)
+		FREE_BOARD(FRB_ARTICLE_NUM,FRB_CONTENT,FRB_KIND,FRB_TITLE,MEM_EMAIL,MEM_NAME) 
+		VALUES(FREE_BOARD_SEQ.NEXTVAL,#frb_Content#,#frb_Kind#,#frb_Title#,#mem_Email#,#mem_Name#)
 	</insert>
 
 

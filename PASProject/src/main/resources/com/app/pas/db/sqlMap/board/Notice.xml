@@ -45,8 +45,8 @@
 
 	<insert id="insertNotice" parameterClass="Notice">
 		INSERT INTO
-		NOTICE(NOTICE_NUM,NOTICE_TITLE,NOTICE_CONTENT,PROJ_NUM)
-		VALUES(NOTICE_SEQ.NEXTVAL,#notice_Title#,#notice_Content#,#proj_Num#)
+		NOTICE(NOTICE_NUM,NOTICE_TITLE,NOTICE_CONTENT,PROJ_NUM,MEM_NAME)
+		VALUES(NOTICE_SEQ.NEXTVAL,#notice_Title#,#notice_Content#,#proj_Num#,#mem_Name#)
 
 	</insert>
 

@@ -7,7 +7,16 @@ public class ProjectJoinVo {
 	private int proj_Num;
 	private int pjj_Per_Num;
 	private int position_Num;
+	private String mem_Name;
 	
+	
+	
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
 	public String getMem_Email() {
 		return mem_Email;
 	}
