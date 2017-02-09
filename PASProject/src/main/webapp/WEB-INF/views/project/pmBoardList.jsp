@@ -128,7 +128,7 @@
 								</tr>
 								<tr>
 									<td><img
-										src="<%=request.getContextPath() %>/resources/upload/${pbList.mem_Img}"
+										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										id="thumbnail" alt="my image"
 										style="border-radius: 0px; width: 30px; height: 30px;" /></td>
 									<td><textarea
@@ -193,7 +193,8 @@
 							$.each(data,function(i){
 								$.each(data[i],function(j){
 									var dt="";
-									dt = '<span style="font-color:#337ab7; font-weight:bold;"> '+data[i][j].pb_Reply_Mem +' &nbsp;  '+ data[i][j].pb_Reply_Content+'</span><br><br>';
+									dt ='<table><tr><td><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="color:#337ab7; font-weight:bold">'
+									+data[i][j].pb_Reply_Mem +'</td><td>'+ data[i][j].pb_Reply_Content+'</td></tr><table>';
 									$('#'+data[i][j].pb_Article_Num).append(dt);
 								});
 							});
@@ -240,9 +241,9 @@
 						success:function(data){
 							var dt = "";
 							$.each(data,function(i){
-								dt +='<table><tr><td><img src="<%=request.getContextPath()%>/resources/upload/"+data[i].pb_Reply_Mem_Img+"></td><td>'
-								+data[i].pb_Reply_Mem +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table><span style="font-color:#337ab7; font-weight:bold;"> '
-								+data[i].pb_Reply_Mem +' &nbsp;  '+ data[i].pb_Reply_Content+'</span>';
+								dt +='<table><tr><td><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="color:#337ab7; font-weight:bold">'
+								+data[i].pb_Reply_Mem +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table>';
+								
 							});
 							
 							$('#'+Article_Num).empty();
