@@ -313,8 +313,11 @@ body {
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
 							style="font-size: 25px;"> </a>
-							<span id="alarmCount" style = "color: red"></span>
+
+							<span id="alarmCount" style = "color: red; display:none;"></span>
+
 							<span id = "alarmZone"></span>							
+
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 
 							</ul></li>

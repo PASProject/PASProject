@@ -45,10 +45,14 @@ public class QnaBoardService {
 	public void deleteQnaBoard(int qb_Article_Num) throws SQLException{
 		qnaBoardDao.deleteQnaBoard(qb_Article_Num);
 	}
-
+//페이지
 	public int QnaSelectTotalCount() throws SQLException {
 		int totalCount = qnaBoardDao.QnaSelectTotalCount();	
 		return totalCount;
+	}
+//조횟수	
+	public void QnaBoardCount(int qb_Article_Num) throws SQLException{
+		qnaBoardDao.QnaBoardCount(qb_Article_Num);
 	}
 	
 	

@@ -21,80 +21,51 @@ import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.TotalNoticeVo;
 import com.app.pas.service.board.NoticeService;
+import com.app.pas.service.board.TotalNoticeService;
 
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
 
 	@Autowired
-	NoticeService noticeService;
+	TotalNoticeService totalNoticeService;
 
 	@RequestMapping("/totalNoticeList")
 	public String NoticeList(Model model, HttpSession session,
-			@RequestParam(value = "page", defaultValue = "1") String page) {
+			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
 	List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
-		
-	/*	noticeList = totalNoticeService.selectTotalNoticeList();*/
-		
-		model.addAttribute("noticeList", noticeList);
-		
-		
-		
-		/*int proj_Num = (Integer) session.getAttribute("joinProj");
 		int totalCount = 0;
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-
-		List<NoticeVo> list = null;
-		MemPositionViewVo memPositionView = new MemPositionViewVo();
-		HashMap map = new HashMap();
-		map.put("proj_Num", proj_Num);
-		map.put("mem_Email", memberVo.getMem_Email());
-
-		try {
-			list = noticeService.getNoticeList(proj_Num);
-			model.addAttribute("NoticeList", list);
-			memPositionView = noticeService.getNoticePosition(map);
-			session.setAttribute("memPositionView", memPositionView);
-			totalCount = noticeService.selectNoticeCount(proj_Num);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
+		noticeList = totalNoticeService.selectTotalNoticeList();
+		
+		totalCount = totalNoticeService.toTalNoticeTotalCount();
+		
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
-
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
-		paging.setPageSize(10);
+		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
-
-		model.addAttribute("paging", paging);*/
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("noticeList", noticeList);
+		
 		String url = "notice/totalNoticeList";
 		return url;
-
+		
+		
+//통합공지사항 디테일
 	}
-
-
-	@RequestMapping(value = "/noticeDetail", method = RequestMethod.GET)
-	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
-			String notice_Num) {
-		String url = "project/pmNoticeDetail";
-		// int iproj_Num = Integer.parseInt(proj_Num);
-		HashMap map = new HashMap();
-		map.put("proj_Num", proj_Num);
-		map.put("notice_Num", notice_Num);
-
-		try {
-			NoticeVo noticeVo = (NoticeVo) noticeService.getNoticeDetail(map);
-			request.setAttribute("NoticeVo", noticeVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	@RequestMapping("/totalNoticeDetail")
+	public String detailTotalNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
+		String url = "notice/totalNoticeDetail";	
+		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
+		model.addAttribute("totalNoticeVo",totalNoticeVo);
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String session_Email = memberVo.getMem_Email();
+		totalNoticeService.totalNoticeCount(Integer.parseInt(ttnotice_Num));
 		return url;
 	}
 

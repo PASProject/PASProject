@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dto.board.TotalNoticeVo;
 import com.app.pas.service.board.TotalNoticeService;
 
@@ -25,15 +27,33 @@ public class AdminNoticeController {
 	
 //전체공지사항 List 
 	@RequestMapping("/totalNoticeList")
-	public String selectTotalNoticeList(HttpSession session, Model model,HttpServletRequest request) throws SQLException {
+	public String selectTotalNoticeList(HttpSession session, Model model,HttpServletRequest request,
+			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
 		String url = "admin/adminNoticeList";
 		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
 		
 		noticeList = totalNoticeService.selectTotalNoticeList();
 		
 		model.addAttribute("noticeList", noticeList);
+		
+		//페이지---------------
+		int totalCount = 0;
+		totalCount = totalNoticeService.toTalNoticeTotalCount();
+		
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging", paging);
+	
+
 		return url;
 
+	
 	}
 //전체 공지사항 Detail
 	@RequestMapping("/adminNoticeDetail")
@@ -41,7 +61,6 @@ public class AdminNoticeController {
 		String url = "admin/adminNoticeDetail";
 		
 		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
-		System.out.println("totalNoticeVo 디텔디텔: " + totalNoticeVo  );
 		model.addAttribute("totalNoticeVo",totalNoticeVo);
 		return url;
 	}
