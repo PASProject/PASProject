@@ -45,9 +45,8 @@
 					<tr>
 						<td colspan="3">${qnaBoardVo.qb_Content}<br>
 						</td>
-
-
 					</tr>
+					
 					<tr style="border-bottom: 2px solid #ddd">
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">

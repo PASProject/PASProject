@@ -25,6 +25,7 @@ import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
  * 
  * @author dhenton
  */
+
 public class SockjsHandshakeHandler extends DefaultHandshakeHandler {
 
 	@Override

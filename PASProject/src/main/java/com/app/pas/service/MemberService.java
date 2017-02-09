@@ -7,6 +7,7 @@ import com.app.pas.dao.MemberDao;
 import com.app.pas.dao.ProjectJoinDao;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectJoinVo;
 
@@ -141,8 +142,9 @@ public class MemberService {
 		public void deleteMember(String mem_Email) throws SQLException {
 			memberDao.deleteMember(mem_Email);
 		}
-		public List<MemberVo> selectMemberEmail(String mem_Email) throws SQLException {
-			List<MemberVo> list = memberDao.selectMemberEmail(mem_Email);
+	
+		public List<MemberCommandVo> selectMemberEmailList() throws SQLException{
+			List<MemberCommandVo> list=memberDao.selectMemberEmailList();
 			return list;
 		}
 	

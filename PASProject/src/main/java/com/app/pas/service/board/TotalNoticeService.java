@@ -7,6 +7,7 @@ import java.util.List;
 import com.app.pas.dao.board.TotalNoticeDao;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.TotalNoticeVo;
+import com.sun.security.ntlm.Client;
 
 public class TotalNoticeService {
  
@@ -23,6 +24,43 @@ public class TotalNoticeService {
 		return list; 
 		
 	}
-
+	//전체공지사항 Detail
+	public TotalNoticeVo selectTotalNoticeBoard(int ttnotice_Num) throws SQLException{
+		
+		TotalNoticeVo totalNoticeVo = totalnoticeDao.selectTotalNoticeBoard(ttnotice_Num);
+		
+		return totalNoticeVo;
+	}
+	//글쓰기
+	public TotalNoticeVo insertTotalNotice(TotalNoticeVo totalNoticeVo)throws SQLException{
+		totalnoticeDao.insertTotalNotice(totalNoticeVo);
+		
+		return totalNoticeVo;
+	}
+	//글삭제 
+	public void deleteTotalNotice(int ttnotice_Num) throws SQLException{
+		totalnoticeDao.deleteTotalNotice(ttnotice_Num);
+	}
+	//글수정폼
+	public TotalNoticeVo UpdateFormTotalNotice (TotalNoticeVo totalNoticeVo,int ttnotice_Num) throws SQLException{
+		 totalnoticeDao.selectTotalNoticeBoard(ttnotice_Num);
+		
+		return totalNoticeVo;
+		
+	}
 	
+	//글수정
+	public void updateTotaTotalNotice(TotalNoticeVo totalNoticeVo) throws SQLException{
+		totalnoticeDao.updateTotalNotice(totalNoticeVo);
+	}
+	
+	
+	public int toTalNoticeTotalCount() throws SQLException{
+		int noticeCount = totalnoticeDao.toTalNoticeTotalCount();
+		return noticeCount;
+	}
+	
+	public void totalNoticeCount (int ttnotice_Num) throws SQLException{
+		totalnoticeDao.totalNoticeCount(ttnotice_Num);
+	}
 }

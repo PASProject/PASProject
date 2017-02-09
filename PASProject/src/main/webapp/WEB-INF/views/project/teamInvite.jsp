@@ -1,64 +1,77 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-
+<meta charset="UTF-8">
+<title></title>
 </head>
 <body>
-<script type="text/javascript">
+	<div class="col-md-10">
+		<h2 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			í”„ë¡œì íŠ¸ íŒ€ì› ì´ˆëŒ€<small>dfef </small>
+		</h2>
+		<table class="table table-hover">
+			<tr>
+				<td>í”„ë¡œí•„ ì‚¬ì§„</td>
+				<td>ì´ë©”ì¼</td>
+				<td>ì´ë¦„</td>
+				<td>ì‹œê°</td>
+				<td>ìƒíƒœì—¬ë¶€</td>
+			</tr>
+			<c:forEach var="InviteList" items="${InviteList }">
+				<tr>
+					<td></td>
+					<td>${InviteList.mem_Email }</td>
+					<td>${InviteList.mem_Name }</td>
+					<td>${InviteList.invite_Time }</td>
+					<td>${InviteList.invite_Commit_Check }</td>
+				</tr>
+			</c:forEach>
+		</table>
 
-var availableTags = ["ÀÚµ¿¿Ï¼º±â´É","Autocomplete","°³¹ß·ÎÂ¥","±¹ÀÌ"];
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#invite">ì´ˆëŒ€</button>
+		<div class="modal fade" id="invite" role="dialog">
+			<div class="modal-dialog">
 
-$(function() {
-  $("#name").autocomplete({source:availableTags});
-});
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">íŒ€ì› ì´ˆëŒ€</h4>
+					</div>
+					<div class="modal-body">
+			<%-- 		<jsp:include page="invite.jsp"></jsp:include> --%>
+					<%@ include file="invite.jsp"%>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="inviteInsert">ì´ˆëŒ€</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+					</div>
+				</div>
 
-
-$(function(){
+			</div>
+		</div>
+	</div>
 	
-	  $('#alertBtn').click(function(){
-			alert("<%=session.getAttribute("memberList")%>");
-			
-		})
-});
-	  
-	  
+	<script>
+	$("#close").click(function(){
+		
+	    $('#zone').text("");
+	   
 
+	})
+	
 
-
-
-
-</script>
-<input type="text" id="name">
-<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">ÃÊ´ë</button>
- <input type="button" id="alertBtn" value="È®ÀÎ">
- 
- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-   <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">ÆÀ¿ø ÃÊ´ë</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-                 °Ë»ö:<input type="text" id="mem_Email">
-          
-      
-       
-        </div>
-        <div class="modal-footer">
-         <input type="button" class="btn btn-default" data-dismiss="modal" id="AccountInsert" value="È¸°è µî·Ï">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
+	
+	
+	</script>
 </body>
 </html>

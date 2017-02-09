@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.board.QnaBoardReplyVo;
 import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.service.MemberService;
 import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
 
@@ -25,7 +27,9 @@ public class QnaController {
 
 	@Autowired
 	QnaBoardService qnaBoardService;
-	//qnaList
+
+	@Autowired
+	MemberService memberService;
 	
 	@Autowired
 	QnaBoardReplyService qnaBoardReplyService;
@@ -40,7 +44,6 @@ public class QnaController {
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
 		try {
 			qnaList = qnaBoardService.selectQnaBoardList();
-			System.out.println("qnaboardList >> > > : " + qnaList);
 			totalCount = qnaBoardService.QnaSelectTotalCount();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,20 +64,47 @@ public class QnaController {
 		return url;
 	}
 
-//qna글쓰기
-	@RequestMapping("/QnAWrite")
-	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
-		String url = "qna/QnAWrite";
-		return url;
+	// 디테일 , 리플
+	@RequestMapping("/QnADetail")
+	public String detailQna(@RequestParam String qb_Article_Num, Model model,HttpSession session) throws NumberFormatException, SQLException {
+		String url = "qna/QnADetail";
+		QnaBoardReplyVo qnaBoardReplyVo = null;
+		
+		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer.parseInt(qb_Article_Num));
+		qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+		//조횟수
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+		String session_Email= memberVo.getMem_Email();
+		String qnaBoard_Email = qnaBoardVo.getMem_Email();
+		
+		if(!session_Email.equals(qnaBoard_Email)){
+		
+			qnaBoardService.QnaBoardCount(Integer.parseInt(qb_Article_Num));
+		}
+	
+		
+		
+		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
 
+		
+		return url;
 	}
+	
 
 	@RequestMapping(value = "/insertQnABoard", method = RequestMethod.POST)
 	public String insertQna(HttpSession session, Model model,
 			QnaBoardVo qnaBoardVo) {
 		String url = "redirect:QnAList";
-		qnaBoardVo.setMem_Email("abc@naver.com");
-		qnaBoardVo.setQb_Password("임시Password");
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+
+		String mem_Email = memberVo.getMem_Email();		
+		qnaBoardVo.setMem_Email(mem_Email);
+		
+		String mem_Name = memberVo.getMem_Name();
+		qnaBoardVo.setMem_Name(mem_Name);
+		
 		try {
 			qnaBoardService.insertQnaBoard(qnaBoardVo);
 		} catch (SQLException e) {
@@ -84,6 +114,13 @@ public class QnaController {
 
 		return url;
 
+	}
+//qna글쓰기
+	@RequestMapping("/QnAWrite")
+	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
+		String url = "qna/QnAWrite";
+		return url;
+		
 	}
 //수정 폼
 	@RequestMapping(value="/QnAUpdate",method=RequestMethod.GET)
@@ -107,16 +144,11 @@ public class QnaController {
 	}
 //글 수정
 	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
-	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
+	public String updateQnaBoard(QnaBoardVo qnaBoardVo) throws SQLException{
 		String url = "redirect:QnAList";
 
-		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
 
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
 		return url;
 	}
 
@@ -126,29 +158,6 @@ public class QnaController {
 		return url;
 	}
 
-	// 디테일 , 리플
-	@RequestMapping("/QnADetail")
-	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
-		String url = "qna/QnADetail";
-			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
-		QnaBoardReplyVo qnaBoardReplyVo = null;
-		try {
-			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
-					.parseInt(qb_Article_Num));
-			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
-			
-			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
-			model.addAttribute("qnaBoardVo", qnaBoardVo);
-			
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return url;
-	}
-	
 //댓글작성------------------------------------------------------------
 /*	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
 >>>>>>> refs/heads/leekhee7

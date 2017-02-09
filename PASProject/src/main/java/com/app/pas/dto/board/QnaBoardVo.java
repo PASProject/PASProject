@@ -11,6 +11,7 @@ public class QnaBoardVo {
 	private String mem_Email;
 	private Timestamp qb_Wt_Date;
 	private String qb_yn;
+	private String mem_Name;
 	
 	public Timestamp getQb_Wt_Date() {
 		return qb_Wt_Date;
@@ -61,6 +62,14 @@ public class QnaBoardVo {
 	public void setQb_yn(String qb_yn) {
 		this.qb_yn = qb_yn;
 	}
+
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
+	
 	@Override
 	public String toString() {
 		return "QnaBoardVo [qb_Article_Num=" + qb_Article_Num + ", qb_Title="

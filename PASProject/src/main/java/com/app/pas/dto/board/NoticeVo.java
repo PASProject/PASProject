@@ -13,9 +13,7 @@ public class NoticeVo {
 	private int proj_Num;
 	private String mem_Name;
 	
-	
-	
-	
+
 	
 	public String getMem_Name() {
 		return mem_Name;

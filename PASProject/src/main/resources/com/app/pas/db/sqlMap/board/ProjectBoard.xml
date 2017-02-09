@@ -30,8 +30,8 @@
 
 	<insert id="insertProjectBoard" parameterClass="ProjectBoard">
 		INSERT INTO
-		PROJECT_BOARD(PB_ARTICLE_NUM,PROJ_NUM,MEM_EMAIL,PB_CONTENT,MEM_NAME)
-		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#proj_Num#,#mem_Email#,#pb_Content#,#mem_Name#)
+		PROJECT_BOARD(PB_ARTICLE_NUM,PROJ_NUM,MEM_EMAIL,PB_CONTENT,MEM_NAME,MEM_IMG)
+		VALUES(PROJECT_BOARD_SEQ.NEXTVAL,#proj_Num#,#mem_Email#,#pb_Content#,#mem_Name#,#mem_Img#)
 	</insert>
 
 	<select id="updateFormProjectBoard" parameterClass="int" resultClass="ProjectBoard" >

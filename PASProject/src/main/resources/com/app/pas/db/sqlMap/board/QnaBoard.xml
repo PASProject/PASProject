@@ -25,8 +25,8 @@
 
 	<insert id="insertQnaBoard" parameterClass="QnaBoard">
 		INSERT INTO
-		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL)
-		VALUES(QNA_BOARD_SEQ.NEXTVAL,#qb_Title#,#qb_Content#,#qb_Password#,#mem_Email#)
+		QNA_BOARD(QB_ARTICLE_NUM,QB_TITLE,QB_CONTENT,QB_PASSWORD,MEM_EMAIL,MEM_NAME)
+		VALUES(QNA_BOARD_SEQ.NEXTVAL,#qb_Title#,#qb_Content#,#qb_Password#,#mem_Email#,#mem_Name#)
 	</insert>
 
 	<update id="updateQnaYN" parameterClass="int">
@@ -56,5 +56,10 @@
 		SELECT COUNT(*)
 		FROM QNA_BOARD
 	</select>
+	
+	<update id="QnaBoardCount" parameterClass="int">
+		UPDATE QNA_BOARD SET QB_INQ_COUNT =QB_INQ_COUNT+1
+		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
+	</update>
 
 </sqlMap>
