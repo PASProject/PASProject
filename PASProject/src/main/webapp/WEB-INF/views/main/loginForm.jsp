@@ -64,7 +64,7 @@ body {
 	margin: auto;
 }
 
- @font-face {
+@font-face {
 	font-family: 'NanumGothic';
 	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
 }
@@ -72,7 +72,7 @@ body {
 body {
 	font-family: NanumGothic;
 }
- 
+
 .divider {
 	position: relative;
 	width: 100%;
@@ -108,7 +108,7 @@ body {
 </head>
 <body style="height: 90%">
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(function() {
 		$("#login").click(function() {
 			var email = $('#mem_Email').val();
@@ -202,12 +202,30 @@ body {
 				});
 			});
 			});
+	
+	
+	  $(function() {
+          $("#sortable").sortable();
+          $("#sortable").disableSelection();
+          $('ul').shuffle();
+
+          $("#formsubmit").click(function(e){
+              if($('ul').validate()){
+            	  $('#1').hide();
+            	  $('#2').show();
+            	  e.preventDefault();
+              }else{
+            	  alert("No, you are not a human!");
+              }
+            	  
+            	  
+            	  
+            
+          });
+      });
 
 
 </script>
-
-
-
 
 
 
@@ -225,26 +243,31 @@ body {
 		</div>
 
 		<div class="container">
-			<form>
-				<div class="form-group">
-					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="mem_Email" name="mem_Email"
-						placeholder="Enter email">
-				</div>
-				<div class="form-group">
-					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="mem_Pass" name="mem_Pass"
-						placeholder="Enter password">
-				</div>
-				<div class="checkbox">
-					<label><input type="checkbox"> Remember me</label>
-				</div>
-				<input type="button" id="login" class="btn btn-default btn-block"
-					value="들어가기" name="login1">
-				<input type="button" class="btn btn-default btn-block"
-					value="나다싶으면눌러" onclick="admin_go()">	
+			<div id="1">
+				<%@ include file="CAPTCHA.jsp"%>
+			</div>
+			<div id="2" style="display:none">
+				<form>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email"
+							class="form-control" id="mem_Email" name="mem_Email"
+							placeholder="Enter email">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label> <input type="password"
+							class="form-control" id="mem_Pass" name="mem_Pass"
+							placeholder="Enter password">
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox"> Remember me</label>
+					</div>
+					<input type="button" id="login" class="btn btn-default btn-block"
+						value="들어가기" name="login1"> <input type="button"
+						class="btn btn-default btn-block" value="나다싶으면눌러"
+						onclick="admin_go()">
 
-			</form>
+				</form>
+			</div>
 		</div>
 		<div class="dividercontainer">
 			<div class="divider"></div>
@@ -252,10 +275,9 @@ body {
 		<div class="container" style="padding: 20px;">
 			<span style="text-align: center">PAS에 처음 방문하셨다면 <a
 				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br>
-			<br> 
-			 <a href="javscript:void(0);"><span
-				style="text-align: center" id="forget1">이메일 계정을 찾을려면 눌러 빨럼아</span></a><br><br>
-			<a href="javscript:void(0);"><span
+			<br> <a href="javscript:void(0);"><span
+				style="text-align: center" id="forget1">이메일 계정을 찾을려면 눌러 빨럼아</span></a><br>
+			<br> <a href="javscript:void(0);"><span
 				style="text-align: center" id="forget">그게 아니라 비빌번호를 잊으신거?</span></a>
 		</div>
 		<div class="container" id="hiddenDiv" style="display: none">
@@ -269,7 +291,7 @@ body {
 					class="btn btn-default btn-block" value="임시비밀번호발급">
 			</form>
 		</div>
-		
+
 		<div class="container" id="hiddenEmail" style="display: none">
 			<form>
 				<div class="form-group">
@@ -282,36 +304,36 @@ body {
 						class="form-control" id="sendPhone" name="sendPhone"
 						placeholder="010-xxxx-xxxx">
 				</div>
-				
+
 				<input type="button" id="searchEmail"
 					class="btn btn-default btn-block" value="이메일 찾기">
 			</form>
 		</div>
-		
+
 	</div>
-	
+
 </body>
 <script>
 
 	function admin_go(){
-		location.href="<%=request.getContextPath() %>/admin/memberList"
+		location.href="<%=request.getContextPath()%>
+	/admin/memberList"
 	}
-	
+
 	$(document).ready(function() {
 		$('#forget').click(function() {
 			$("#hiddenEmail").hide();
 			$("#hiddenDiv").show();
-			
+
 		})
-		
+
 		$('#forget1').click(function() {
-			
+
 			$("#hiddenDiv").hide();
 			$("#hiddenEmail").show();
-			
+
 		})
 
 	});
-	
 </script>
 </html>
