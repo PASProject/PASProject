@@ -12,6 +12,7 @@ public interface TotalNoticeDao {
 	public void insertTotalNotice(TotalNoticeVo totalNoticeVo) throws SQLException;
 	public void updateTotalNotice(TotalNoticeVo totalNoticeVo )throws SQLException;
 	public void deleteTotalNotice(int ttnotice_Num)throws SQLException;
-
+	public int toTalNoticeTotalCount()throws SQLException;
+	public void totalNoticeCount(int ttnotice_Num)throws SQLException;
 
 }

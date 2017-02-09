@@ -13,11 +13,15 @@
 </head>
 <body>
 	<div class="col-md-10">
+	
+	
+	
+	<form name="form" method="post" action="QnADetail">
+		<input type="hidden" name = "mem_Email" value="${qnaBoardReplyVo.mem_Email}">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>뭣이 궁금한ㄷㅣ</small>
 		</h2>
-		<fieldset>
 			<table class="table table-hover">
 				<tr class="text-center">
 				
@@ -50,9 +54,11 @@
 					</tr>
 				</c:forEach>
 			</table>
+			</form>
 
 			<div class="col-md-12 text-right">
 				<button class="btn btn-default" type="button" onclick="QnaWrite();">글쓰기</button>
+				
 				<script>
 					function QnaWrite() {
 						location.href = "QnAWrite";
@@ -98,7 +104,8 @@
 			</div>
 
 
-		</fieldset>
+
+			
 	</div>
 </body>
 </html>

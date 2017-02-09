@@ -10,6 +10,7 @@ public class TotalNoticeVo {
 	private String admin_Email;
 	private String ttnotice_Date;
 	
+	
 	public int getTtnotice_Num() {
 		return ttnotice_Num;
 	}
@@ -46,7 +47,7 @@ public class TotalNoticeVo {
 	public void setTtnotice_Date(String ttnotice_Date) {
 		this.ttnotice_Date = ttnotice_Date;
 	}
-	
+
 	
 	
 	
