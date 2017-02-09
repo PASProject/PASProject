@@ -73,7 +73,7 @@ public class mainContoller {
 			String pwd) {
 
 		int result = 0;
-
+System.out.println("asdfasdf");
 		MemberVo memberVo = null;
 
 		memberVo = memberService.getMember(email);
