@@ -8,6 +8,7 @@
 	<typeAlias alias="Member" type="com.app.pas.dto.MemberVo" />
 	<typeAlias alias ="MemApplyView" type="com.app.pas.dto.MemApplyViewVo"/>
 	<typeAlias alias ="MemPositionView" type="com.app.pas.dto.MemPositionViewVo"/>
+	<typeAlias alias="MemberCommand" type="com.app.pas.dto.MemberCommandVo"/>
 
 	<select id="selectMemberList" parameterClass="str" resultClass="Member">
 		select * from MEMBER where MEM_EMAIL LIKE '%'||#mem_Email#||'%'
@@ -96,6 +97,10 @@
 	
 	<select id="selectTotalCountMember" resultClass="int">
 		select count(*) from member
+	</select>
+	
+	<select id="selectMemberEmailList" resultClass="MemberCommand">
+		select mem_Email,mem_Name from MEMBER 
 	</select>
 	
 </sqlMap>

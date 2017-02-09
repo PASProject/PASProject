@@ -242,7 +242,7 @@ body {
 				<input type="button" id="login" class="btn btn-default btn-block"
 					value="들어가기" name="login1">
 				<input type="button" class="btn btn-default btn-block"
-					value="나다싶으면눌러" onclick="admin_go()">	
+					value="ADMIN" onclick="admin_go()">	
 
 			</form>
 		</div>
@@ -294,7 +294,7 @@ body {
 <script>
 
 	function admin_go(){
-		location.href="<%=request.getContextPath() %>/admin/memberList"
+		location.href="<%=request.getContextPath() %>/admin/adminLogin"
 	}
 	
 	$(document).ready(function() {

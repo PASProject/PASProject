@@ -17,11 +17,11 @@ public class SkillSharingBoardService {
 		this.skillsharingboardDao = skillsharingboardDao;
 	}
 
-	public List<SkillSharingBoardVo> selectSkillLikeCountViewList()
+	public List<SkillSharingBoardVo> selectSkillLikeCountViewList(String ssb_Title)
 			throws SQLException {
 		List<SkillSharingBoardVo> list = new ArrayList<SkillSharingBoardVo>();
 
-		list = skillsharingboardDao.selectSkillLikeCountViewList();
+		list = skillsharingboardDao.selectSkillLikeCountViewList(ssb_Title);
 
 		return list;
 	}
