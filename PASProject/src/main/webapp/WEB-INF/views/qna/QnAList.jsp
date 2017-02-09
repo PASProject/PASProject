@@ -9,19 +9,37 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-
 </head>
 <body>
 	<div class="col-md-10">
 	
+
 	
-	
-	<form name="form" method="post" action="QnADetail">
-		<input type="hidden" name = "mem_Email" value="${qnaBoardReplyVo.mem_Email}">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>뭣이 궁금한ㄷㅣ</small>
 		</h2>
+		
+		
+	<form action="QnaBoardSearch" method="post" name="frm">	
+
+<br> 
+		<select name = "keyField" size = "1">
+			<option value="qb_Title" selected>제목</option>
+			<option value = "mem_Name" selected>작성자</option>
+			<option value ="qb_Article_Num" selected>글번호</option>
+		</select>
+		<input type ="text" size ="20" name="keyWord" value="${keyword}">
+		<input type ="submit" value="검색" >
+		
+<br>	
+</form>
+
+	
+		
+		<form name="form" method="post" action="QnADetail">
+		<input type="hidden" name = "mem_Email" value="${qnaBoardReplyVo.mem_Email}">
+	<br>
 			<table class="table table-hover">
 				<tr class="text-center">
 				
@@ -105,6 +123,13 @@
 
 
 
+<script>
+// function check(){
+// 	location.href ="QnaBoardSearch?keyField=${keyField}&keyword=${keyword}";
+	
+// }
+
+</script>
 			
 	</div>
 </body>

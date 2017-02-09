@@ -395,13 +395,14 @@ public class mainContoller {
 		return memApplyViewList;
 	}
 
+	
 	@RequestMapping(value = "/alarmCount", method = RequestMethod.GET)
-	public @ResponseBody int selectAlarmCount(HttpSession session)
-			throws SQLException {
+	public @ResponseBody int selectAlarmCount(HttpSession session) throws SQLException{
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		int memApplyViewCount = memberService
 				.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
 		return memApplyViewCount;
+
 	}
 
 	@RequestMapping(value = "/searchEmail", method = RequestMethod.POST)

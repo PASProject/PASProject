@@ -15,26 +15,19 @@
 		<pattern>/project/*</pattern>
 	</decorator>
 
-	
-	<decorator name="admin" page="admin_decorator.jsp">
-		<pattern>/admin/*.do</pattern>
-	</decorator>
+
 
 
 
 
 	<excludes>
-	    <pattern>*/pmMemberInvite*</pattern>
 	    <pattern>*/memberAuth*</pattern>
 	    <pattern>*/myPage*</pattern>
 		<pattern>*/index.jsp</pattern>
 		<pattern>*/index*</pattern>
 		<pattern>*/joinForm*</pattern>
 		<pattern>*/loginForm*</pattern>
-		<pattern>/pwdsearch.do*</pattern>
-		<pattern>/findZipNum.do*</pattern>
-		<pattern>/idCheckForm.do*</pattern>
-		<pattern>/admin/adminLoginForm.do</pattern>
+		<pattern>*/admin*</pattern>
 		<pattern>*/aaa*</pattern>
 		<pattern>*/join*</pattern>
 	</excludes>
