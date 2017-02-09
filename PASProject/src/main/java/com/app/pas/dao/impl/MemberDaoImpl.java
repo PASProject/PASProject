@@ -129,5 +129,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+	@Override
+	public List<MemberVo> selectMemberEmail(String mem_Email) throws SQLException {
+		List<MemberVo> list = client.queryForList("selectMemberList", mem_Email);
+		return list;
+	}
+
 	
 }

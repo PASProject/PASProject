@@ -87,6 +87,9 @@
 	</select>
 	
 	<select id="selectSkillLikeCountViewList" resultClass="SkillSharingBoard">
-		select * from Skill_Like_Count_View 
+		select * from Skill_Like_Count_View WHERE SSB_TITLE LIKE '%'||#ssb_title#||'%'
 	</select>
+	
+	
+	
 </sqlMap>
