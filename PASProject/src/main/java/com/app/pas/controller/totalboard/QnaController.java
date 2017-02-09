@@ -27,12 +27,20 @@ public class QnaController {
 
 	@Autowired
 	QnaBoardService qnaBoardService;
-
 	@Autowired
-	MemberService memberService;
-	
+	MemberService memberService;	
 	@Autowired
 	QnaBoardReplyService qnaBoardReplyService;
+	
+	//검색
+	@RequestMapping("/QnaBoardSearch")
+	public String QnaBoardSearch(){
+		String url = "";
+		
+		return url;
+		
+	}
+	
 
 	// qnaList
 	@RequestMapping("/QnAList")

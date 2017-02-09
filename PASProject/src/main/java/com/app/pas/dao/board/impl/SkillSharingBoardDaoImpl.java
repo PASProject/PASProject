@@ -16,9 +16,9 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 	}
 
 	@Override
-	public List<SkillSharingBoardVo> selectSkillLikeCountViewList()
+	public List<SkillSharingBoardVo> selectSkillLikeCountViewList(String ssb_Title)
 			throws SQLException {
-		List<SkillSharingBoardVo> list = client.queryForList("selectSkillLikeCountViewList");
+		List<SkillSharingBoardVo> list = client.queryForList("selectSkillLikeCountViewList",ssb_Title);
 		return list;
 	}
 

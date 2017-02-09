@@ -134,7 +134,7 @@
 						<td><a style="text-decoration: none;" href="#">팀원 리스트</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="#">팀원 초대</a></td>
+						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/pmMemberInvite">팀원 초대</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;" href="#">프로젝트 참가</a></td>

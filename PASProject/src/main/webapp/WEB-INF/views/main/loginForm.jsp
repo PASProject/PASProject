@@ -243,30 +243,31 @@ body {
 		</div>
 
 		<div class="container">
+
 			<div id="1">
 				<%@ include file="CAPTCHA.jsp"%>
 			</div>
 			<div id="2" style="display:none">
 				<form>
-					<div class="form-group">
-						<label for="email">Email:</label> <input type="email"
-							class="form-control" id="mem_Email" name="mem_Email"
-							placeholder="Enter email">
-					</div>
-					<div class="form-group">
-						<label for="pwd">Password:</label> <input type="password"
-							class="form-control" id="mem_Pass" name="mem_Pass"
-							placeholder="Enter password">
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox"> Remember me</label>
-					</div>
-					<input type="button" id="login" class="btn btn-default btn-block"
-						value="들어가기" name="login1"> <input type="button"
-						class="btn btn-default btn-block" value="나다싶으면눌러"
-						onclick="admin_go()">
-
+				<div class="form-group">
+					<label for="email">Email:</label> <input type="email"
+						class="form-control" id="mem_Email" name="mem_Email"
+						placeholder="Enter email">
+				</div>
+				<div class="form-group">
+					<label for="pwd">Password:</label> <input type="password"
+						class="form-control" id="mem_Pass" name="mem_Pass"
+						placeholder="Enter password">
+				</div>
+				<div class="checkbox">
+					<label><input type="checkbox"> Remember me</label>
+				</div>
+				<input type="button" id="login" class="btn btn-default btn-block"
+					value="들어가기" name="login1">
+				<input type="button" class="btn btn-default btn-block"
+					value="ADMIN" onclick="admin_go()">	
 				</form>
+			
 			</div>
 		</div>
 		<div class="dividercontainer">
@@ -316,8 +317,7 @@ body {
 <script>
 
 	function admin_go(){
-		location.href="<%=request.getContextPath()%>
-	/admin/memberList"
+		location.href="<%=request.getContextPath()%>/admin/adminLogin"
 	}
 
 	$(document).ready(function() {

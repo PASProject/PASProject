@@ -6,6 +6,7 @@ import java.util.List;
 import com.app.pas.dao.MemberDao;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -129,5 +130,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+
+	public List<MemberCommandVo> selectMemberEmailList() throws SQLException {
+	
+		List<MemberCommandVo> list = client.queryForList("selectMemberEmailList", null);
+		return list;
+	}
 	
 }

@@ -1,98 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/lib/jquery.js"></script>
-<script type='text/javascript' src="<%=request.getContextPath() %>/resources/jquery/lib/jquery.bgiframe.min.js"></script>
-<script type='text/javascript' src="<%=request.getContextPath() %>/resources/jquery/lib/jquery.ajaxQueue.js"></script>
-<script type='text/javascript' src="<%=request.getContextPath() %>/resources/jquery/jquery.autocomplete.js"></script>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/jquery/jquery.autocomplete.css" />
-
-</head>	
+<title></title>
+</head>
 <body>
+	<div class="col-md-10">
+		<h2 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			프로젝트 팀원 초대<small>dfef </small>
+		</h2>
+		<table class="table table-hover">
+			<tr>
+				<td>프로필 사진</td>
+				<td>이메일</td>
+				<td>이름</td>
+				<td>시각</td>
+				<td>상태여부</td>
+			</tr>
+			<c:forEach var="InviteList" items="${InviteList }">
+				<tr>
+					<td></td>
+					<td>${InviteList.mem_Email }</td>
+					<td>${InviteList.mem_Name }</td>
+					<td>${InviteList.invite_Time }</td>
+					<td>${InviteList.invite_Commit_Check }</td>
+				</tr>
+			</c:forEach>
+		</table>
 
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#invite">초대</button>
+		<div class="modal fade" id="invite" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">팀원 초대</h4>
+					</div>
+					<div class="modal-body">
+			<%-- 		<jsp:include page="invite.jsp"></jsp:include> --%>
+					<%@ include file="invite.jsp"%>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="inviteInsert">초대</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
 	<script>
-	var data = [{name : '라쿠시', tel : '01000000000', company : '라쿠시 엔터테인먼트1'}
-	,{name : '라쿠시', tel : '01000000000', company : '마쿠시 엔터테인먼트2'}
-	,{name : '라쿠시', tel : '01000000000', company : '다쿠시 엔터테인먼트3'}
-	,{name : '라쿠시', tel : '01000000000', company : '라쿠시 엔터테인먼트2'}
-	,{name : '라쿠시', tel : '01000000000', company : '라쿠시 엔터테인먼트3'}
-							
-						];
-	</script>
-	
-	 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-	
-	
-	 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-         <input type="text" id="searchbox">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	  
-	
+	$("#close").click(function(){
+		
+	    $('#zone').text("");
+	   
+
+	})
 	
 
-	
-
-	<script>
-	$(document).ready(function() {
-	    $("#searchbox").autocomplete(data,{ 
-	    	matchContains: true,
-	        minChars: 0,
-	       width: 172,
-	       max: 10,
-	       multiple: false,
-	       scroll: true,
-	       scrollHeight: 300,
-	        formatItem: function(item){ return item.company; }
-
-
-	    }); 
-	    
-	
-	});
 	
 	
 	</script>
-        
 </body>
-
 </html>
