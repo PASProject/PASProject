@@ -1,5 +1,6 @@
 package com.app.pas.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.board.AccountBoardVo;
@@ -457,41 +459,58 @@ public class ProjectController {
 	}
 	
 	@RequestMapping("/pmMemberList")
-    public String pmMemberList(HttpSession session,Model model) throws SQLException{
-		String url="/project/teamMemberList";
-		/*int proj = (Integer) session.getAttribute("joinProj");*/
-		int proj=9;
-		int
-		per =1;
-		MemPositionViewVo memPositionView = new MemPositionViewVo();
-		memPositionView.setPjj_Per_Num(1);
-		memPositionView.setProj_Num(1);
-		
-        
-		List<MemPositionViewVo> list =memberService.selectMemberListByProj(memPositionView);
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		memPositionView.setMem_Email(memberVo.getMem_Email());
-		memPositionView =memberService.selectMemberPosition(memPositionView);
-		model.addAttribute("pmMemberList", list);
-		model.addAttribute("memPositionView", memPositionView);
-		return url;
-	}
-	
-	@RequestMapping("/pmMemberInvite")
-	public String pmMemberInvite(HttpSession session) throws SQLException{
-		String url="/project/teamInvite";
-		String mem_Email="";
-		/*int proj_Num= (Integer) session.getAttribute("joinProj");*/
-		ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
-		projInviteViewVo.setProj_Num(1);
-		
-		List<ProjInviteViewVo> list =inviteService.selectInviteList(projInviteViewVo);
-		session.setAttribute("InviteList", list);
-		List<MemberVo> memberList =memberService.selectMemberList();
-		System.out.println(memberList+"멤버리스트!!!!!!!!!!!!!!!!!!");
-		session.setAttribute("memberList", memberList);
-		return url;
-	}
+	   public String pmMemberList(HttpSession session, Model model)
+	         throws SQLException {
+	      String url = "/project/teamMemberList";
+	      /* int proj = (Integer) session.getAttribute("joinProj"); */
+	      int proj = 9;
+	      int per = 1;
+	      MemPositionViewVo memPositionView = new MemPositionViewVo();
+	      memPositionView.setPjj_Per_Num(1);
+	      memPositionView.setProj_Num(1);
+
+	      List<MemPositionViewVo> list = memberService
+	            .selectMemberListByProj(memPositionView);
+	      MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+	      memPositionView.setMem_Email(memberVo.getMem_Email());
+	      memPositionView = memberService.selectMemberPosition(memPositionView);
+	      model.addAttribute("pmMemberList", list);
+	      model.addAttribute("memPositionView", memPositionView);
+	      return url;
+	   }
+
+	   @RequestMapping(value="/pmMemberInvite", method=RequestMethod.GET)
+	   public String pmMemberInvite(HttpSession session) throws SQLException {
+	      String url = "/project/teamInvite";
+	      String mem_Email = "";
+	      /* int proj_Num= (Integer) session.getAttribute("joinProj"); */
+	      ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
+	      projInviteViewVo.setProj_Num(1);
+
+	      List<ProjInviteViewVo> list = inviteService
+	            .selectInviteList(projInviteViewVo);
+	      session.setAttribute("InviteList", list);
+	     
+	             
+	             
+	      
+	      return url;
+	   }
+	   
+	   @RequestMapping(value="/pmMemberInvite",method=RequestMethod.POST)
+	   public @ResponseBody List<MemberCommandVo> pmMemberInviteList() throws SQLException {
+		   List<MemberCommandVo> memberList = memberService.selectMemberEmailList();
+		      System.out.println(memberList + "硫ㅻ쾭由ъ뒪�듃!!!!!!!!!!!!!!!!!!");
+		     
+	      return memberList;
+	   }
+	   
+	   @RequestMapping(value="/pmInviteInsert",method=RequestMethod.POST)
+	   public void pmInviteInsert(String mem_Email,HttpServletRequest request) throws SQLException, UnsupportedEncodingException{
+		   System.out.println(mem_Email+"이건 에이젝스 멤멤~");
+		   
+		   
+	   }
 	
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 
 public interface MemberDao {
@@ -29,5 +30,6 @@ public interface MemberDao {
     public MemPositionViewVo selectMemberPosition(MemPositionViewVo memPositionViewVo)throws SQLException;
     public int selectMemberTotalCount() throws SQLException;
     public int selectCountMemApplyViewByEmail(String p_Mem_Email) throws SQLException;
+    public List<MemberCommandVo> selectMemberEmailList()throws SQLException;
 
 }
