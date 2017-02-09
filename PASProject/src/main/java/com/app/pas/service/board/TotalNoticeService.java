@@ -59,4 +59,8 @@ public class TotalNoticeService {
 		int noticeCount = totalnoticeDao.toTalNoticeTotalCount();
 		return noticeCount;
 	}
+	
+	public void totalNoticeCount (int ttnotice_Num) throws SQLException{
+		totalnoticeDao.totalNoticeCount(ttnotice_Num);
+	}
 }

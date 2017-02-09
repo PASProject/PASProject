@@ -55,15 +55,17 @@ public class NoticeController {
 		return url;
 		
 		
-
+//통합공지사항 디테일
 	}
 	@RequestMapping("/totalNoticeDetail")
 	public String detailTotalNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
-		String url = "notice/totalNoticeDetail";
-		
+		String url = "notice/totalNoticeDetail";	
 		TotalNoticeVo totalNoticeVo = totalNoticeService.selectTotalNoticeBoard(Integer.parseInt(ttnotice_Num));
-		
 		model.addAttribute("totalNoticeVo",totalNoticeVo);
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String session_Email = memberVo.getMem_Email();
+		totalNoticeService.totalNoticeCount(Integer.parseInt(ttnotice_Num));
 		return url;
 	}
 

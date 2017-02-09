@@ -15,10 +15,13 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			전체 공지사항 <small>글 읽기</small>
 		</h2>
-
 		<form name="frm" method="post" action="totalNoticeDetail">
-			<input type="hidden" name="ttnotice_Num"
-				value="${totalNoticeVo.ttnotice_Num }">
+				<input type="hidden" name="ttnotice_Num">
+				
+<!-- 		<form name="frm" method="post" action="totalNoticeDetail"> -->
+<!-- 			<input type="hidden" name="ttnotice_Num" -->
+<%-- 				value="${totalNoticeVo.ttnotice_Num }"> --%>
+
 			<table class="table" style="border-top: 2px;">
 				<tr style="border-top: 2px solid #add">
 					<td class="col-md-9">
