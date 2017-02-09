@@ -21,7 +21,7 @@ function connect(loginUserId) {
 	
 	function onMessage(evt) {
 		var data = evt.data;
-		alert("꺼저");
+		$('#alarmZone').append("알림이야 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ힝 속았찌");
 	}
 	function onClose(evt) {
 		appendMessage("연결을 끊었습니다.");

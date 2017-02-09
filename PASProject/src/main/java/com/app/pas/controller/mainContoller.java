@@ -38,7 +38,7 @@ import com.app.pas.service.ProjectService;
 
 @Controller
 @RequestMapping("/main")
-public class mainContoller{
+public class mainContoller {
 	HttpServletRequest request;
 	@Autowired
 	private JavaMailSender mailSender;
@@ -55,6 +55,14 @@ public class mainContoller{
 
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
+
+		if (session != null) {
+			session.removeAttribute("loginUser");
+			if (session.getAttribute("joinProj") != null
+					&& session.getAttribute("joinProj") != "null") {
+				session.removeAttribute("joinProj");
+			}
+		}
 		String url = "/main/loginForm";
 		return url;
 	}
@@ -102,7 +110,8 @@ public class mainContoller{
 	public String logOut(HttpSession session, Model model) {
 		String url = "redirect:/index";
 		session.removeAttribute("loginUser");
-		if(session.getAttribute("joinProj")!=null&&session.getAttribute("joinProj")!="null"){
+		if (session.getAttribute("joinProj") != null
+				&& session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
 		}
 		return url;
@@ -206,7 +215,6 @@ public class mainContoller{
 	}
 
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
-	
 	public @ResponseBody Map<String, Object> MypageUpdate(HttpSession session,
 			Model model, @RequestBody Map<String, Object> map)
 			throws SQLException {
@@ -223,7 +231,7 @@ public class mainContoller{
 		 * memberVo.setMem_Email("mem_Meai
 		 */int a = memberService.updateMember(memberVo);
 		System.out.println(a);
-		Map<String,Object> m = new HashMap<String, Object>();
+		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("T", a);
 		return m;
 	}
@@ -386,57 +394,65 @@ public class mainContoller{
 				.selectMemApplyViewByEmail(p_Mem_Email);
 		return memApplyViewList;
 	}
-	
+
 	@RequestMapping(value = "/alarmCount", method = RequestMethod.GET)
-	public @ResponseBody int selectAlarmCount(HttpSession session) throws SQLException{
+	public @ResponseBody int selectAlarmCount(HttpSession session)
+			throws SQLException {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		int memApplyViewCount = memberService.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
+		int memApplyViewCount = memberService
+				.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
 		return memApplyViewCount;
 	}
-	
-	@RequestMapping(value="/searchEmail",method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> SearchEmail(@RequestBody Map<String,Object> map,Model model) throws SQLException{
-		String Id="";
+
+	@RequestMapping(value = "/searchEmail", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> SearchEmail(
+			@RequestBody Map<String, Object> map, Model model)
+			throws SQLException {
+		String Id = "";
 		MemberVo memberVo = new MemberVo();
 		memberVo.setMem_Name(map.get("sendName").toString());
 		memberVo.setMem_Phone(map.get("sendPhone").toString());
-		
-		MemberVo memberVo1 =memberService.searchEmail(memberVo);
-		System.out.println(memberVo1+"이건 멤멤!!");
-		if(memberVo1 !=null){
-			
-			Id=memberVo1.getMem_Email();
-			}
-		System.out.println(Id+"이건아이디!!!!!");
-		
+
+		MemberVo memberVo1 = memberService.searchEmail(memberVo);
+		System.out.println(memberVo1 + "이건 멤멤!!");
+		if (memberVo1 != null) {
+
+			Id = memberVo1.getMem_Email();
+		}
+		System.out.println(Id + "이건아이디!!!!!");
+
 		map.put("id", Id);
 		return map;
 	}
 
-	@RequestMapping(value="/agree",method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> agreeAlarm(@RequestBody Map<String,Object> map) throws SQLException{
+	@RequestMapping(value = "/agree", method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> agreeAlarm(
+			@RequestBody Map<String, Object> map) throws SQLException {
 		String apply_Num = (String) map.get("apply_Num");
-		List<MemApplyViewVo> memApplyViewList =  memberService.updateApplyAgree(Integer.parseInt(apply_Num));
+		List<MemApplyViewVo> memApplyViewList = memberService
+				.updateApplyAgree(Integer.parseInt(apply_Num));
 		return memApplyViewList;
 	}
-	
-	@RequestMapping(value="/reject",method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> rejectAlarm(@RequestBody Map<String,Object> map) throws SQLException{
-		String apply_Num = (String)map.get("apply_Num");
-		List<MemApplyViewVo> memApplyViewList= memberService.updateApplyReject(Integer.parseInt(apply_Num));
+
+	@RequestMapping(value = "/reject", method = RequestMethod.POST)
+	public @ResponseBody List<MemApplyViewVo> rejectAlarm(
+			@RequestBody Map<String, Object> map) throws SQLException {
+		String apply_Num = (String) map.get("apply_Num");
+		List<MemApplyViewVo> memApplyViewList = memberService
+				.updateApplyReject(Integer.parseInt(apply_Num));
 		return memApplyViewList;
 	}
-	
-	@RequestMapping(value= "/createProject",method = RequestMethod.POST)
-	public @ResponseBody int createProject(@RequestBody ProjectVo projectVo) throws SQLException{
+
+	@RequestMapping(value = "/createProject", method = RequestMethod.POST)
+	public @ResponseBody int createProject(@RequestBody ProjectVo projectVo)
+			throws SQLException {
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		projectJoinVo.setMem_Email(projectVo.getMem_Email());
 		projectJoinVo.setMem_Name(projectVo.getMem_Name());
 		projectJoinVo.setPjj_Per_Num(1);
 		projectJoinVo.setPosition_Num(1);
-		int proj_Num = projectService.insertProject(projectVo,projectJoinVo);
+		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
-	
-	
+
 }
