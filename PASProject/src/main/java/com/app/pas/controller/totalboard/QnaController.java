@@ -64,13 +64,33 @@ public class QnaController {
 		return url;
 	}
 
-//qna글쓰기
-	@RequestMapping("/QnAWrite")
-	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
-		String url = "qna/QnAWrite";
-		return url;
+	// 디테일 , 리플
+	@RequestMapping("/QnADetail")
+	public String detailQna(@RequestParam String qb_Article_Num, Model model,HttpSession session) throws NumberFormatException, SQLException {
+		String url = "qna/QnADetail";
+		QnaBoardReplyVo qnaBoardReplyVo = null;
+		
+		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer.parseInt(qb_Article_Num));
+		qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
+		//조횟수
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginUser");
+		String session_Email= memberVo.getMem_Email();
+		String qnaBoard_Email = qnaBoardVo.getMem_Email();
+		
+		if(!session_Email.equals(qnaBoard_Email)){
+		
+			qnaBoardService.QnaBoardCount(Integer.parseInt(qb_Article_Num));
+		}
+	
+		
+		
+		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
 
+		
+		return url;
 	}
+	
 
 	@RequestMapping(value = "/insertQnABoard", method = RequestMethod.POST)
 	public String insertQna(HttpSession session, Model model,
@@ -95,6 +115,13 @@ public class QnaController {
 		return url;
 
 	}
+//qna글쓰기
+	@RequestMapping("/QnAWrite")
+	public String writeQna(Model model, QnaBoardVo qnaBoardVo) {
+		String url = "qna/QnAWrite";
+		return url;
+		
+	}
 //수정 폼
 	@RequestMapping(value="/QnAUpdate",method=RequestMethod.GET)
 	public String updateQnaForm(@RequestParam String qb_Article_Num,
@@ -117,16 +144,11 @@ public class QnaController {
 	}
 //글 수정
 	@RequestMapping(value="/QnAUpdate", method=RequestMethod.POST)
-	public String updateQnaBoard(QnaBoardVo qnaBoardVo){
+	public String updateQnaBoard(QnaBoardVo qnaBoardVo) throws SQLException{
 		String url = "redirect:QnAList";
 
-		try {
 			qnaBoardService.updateQnaBoard(qnaBoardVo);
 
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
 		return url;
 	}
 
@@ -136,29 +158,6 @@ public class QnaController {
 		return url;
 	}
 
-	// 디테일 , 리플
-	@RequestMapping("/QnADetail")
-	public String detailQna(@RequestParam String qb_Article_Num, Model model) {
-		String url = "qna/QnADetail";
-			//List<QnaBoardReplyVo> QnaReplyList = new ArrayList<QnaBoardReplyVo>();	
-		QnaBoardReplyVo qnaBoardReplyVo = null;
-		try {
-			QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
-					.parseInt(qb_Article_Num));
-			qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer.parseInt(qb_Article_Num));
-			
-			model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
-			model.addAttribute("qnaBoardVo", qnaBoardVo);
-			
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return url;
-	}
-	
 //댓글작성------------------------------------------------------------
 /*	@RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
 >>>>>>> refs/heads/leekhee7

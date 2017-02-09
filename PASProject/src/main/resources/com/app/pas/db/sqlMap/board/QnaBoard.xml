@@ -56,5 +56,10 @@
 		SELECT COUNT(*)
 		FROM QNA_BOARD
 	</select>
+	
+	<update id="QnaBoardCount" parameterClass="int">
+		UPDATE QNA_BOARD SET QB_INQ_COUNT =QB_INQ_COUNT+1
+		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
+	</update>
 
 </sqlMap>
