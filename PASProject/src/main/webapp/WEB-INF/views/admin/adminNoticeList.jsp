@@ -21,7 +21,7 @@
 		<table class="table table-hover">
 			<tr class="text-center">
 
-				<th class="col-md-1" style="text-align: center">답변여부</th>
+			
 				<th class="col-md-1" style="text-align: center">번호</th>
 				<th class="col-md-4" style="text-align: center">제목</th>
 				<th class="col-md-2" style="text-align: center">작성자</th>
@@ -31,7 +31,7 @@
 	
 	<c:forEach var="noticeList" items="${noticeList}">
 			<tr>
-				<td>답변미답변</td>
+				
 				<td style="text-align: center">${noticeList.ttnotice_Num}</td>
 				<td>
 				<a href = "<%=request.getContextPath()%>
@@ -45,6 +45,40 @@
 	</c:forEach>
 		</table>
 	<button class="btn btn-default text-right" type="button" onClick="tt_NoticeInsert()">글쓰기</button>
+
+<div class="col-md-12 text-center">
+				<c:if test="${paging.finalPageNo>0 }">
+					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+
+							<li class="page-item"><a class="page-link"
+								href="totalNoticeList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+
+
+							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
+								varStatus="status">
+										<li class="page-item" id="number"><a
+											class="page-link" href="totalNoticeList?page=${i}">${i}</a></li>
+										<script>
+										$('li').each(function(){
+										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+										    {
+										    $(this).addClass('active').siblings().removeClass('active');
+										    }
+										});
+										</script>
+							</c:forEach>
+							<li class="page-item"><a class="page-link"
+								href="totalNoticeList?page=${finalPageNo}">끝 페이지</a></li>
+						</ul>
+					</nav>
+				</c:if>
+			</div>
+
+
+
 
 	<!-- </div> -->
 	<script>

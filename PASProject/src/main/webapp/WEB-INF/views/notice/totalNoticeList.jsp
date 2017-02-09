@@ -74,8 +74,6 @@
 							</c:forEach>
 							<li class="page-item"><a class="page-link"
 								href="totalNoticeList?page=${finalPageNo}">끝 페이지</a></li>
-
-
 						</ul>
 					</nav>
 				</c:if>

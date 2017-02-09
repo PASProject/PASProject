@@ -37,6 +37,7 @@ public class NoticeController {
 		int totalCount = 0;
 		
 		noticeList = totalNoticeService.selectTotalNoticeList();
+		
 		totalCount = totalNoticeService.toTalNoticeTotalCount();
 		
 		if (page.equals(null) || page == "") {
