@@ -30,8 +30,8 @@
    </select>
    
    <update id="insertProject" parameterClass="Project">
-      insert into PROJECT(PROJ_NUM,MEM_EMAIL,PROJ_CONTENT,PROJ_NAME,MEM_NAME) 
-	  VALUES(PROJECT_SEQ.NEXTVAL,#mem_Email#,#proj_Content#,#proj_Name#,#mem_Name#)
+      insert into PROJECT(PROJ_NUM,MEM_EMAIL,PROJ_CONTENT,PROJ_NAME,MEM_NAME,mem_Img) 
+	  VALUES(PROJECT_SEQ.NEXTVAL,#mem_Email#,#proj_Content#,#proj_Name#,#mem_Name#,#mem_Img#)
    </update>
    
    <update id="updateProject" parameterClass="Project">

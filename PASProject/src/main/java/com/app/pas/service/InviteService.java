@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.InviteDao;
+import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.ProjInviteViewVo;
 
 public class InviteService {
@@ -18,6 +19,10 @@ public class InviteService {
        List<ProjInviteViewVo> list = inviteDao.selectInviteList(projInviteViewVo); 
 		return list;
 		
+	}
+	
+	public void insertInvite(InviteVo inviteVo) throws SQLException{
+		inviteDao.insertInvite(inviteVo);
 	}
 	
 

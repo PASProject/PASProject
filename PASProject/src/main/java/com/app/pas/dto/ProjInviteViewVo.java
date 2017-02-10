@@ -1,5 +1,7 @@
 package com.app.pas.dto;
 
+import java.sql.Timestamp;
+
 public class ProjInviteViewVo {
 	
 	private int invite_Num;
@@ -10,6 +12,31 @@ public class ProjInviteViewVo {
 	private int proj_Num;
 	private String proj_Name;
 	private String alarm_Clsfct_Name;
+	private String mem_Name;
+	private Timestamp invite_Time;
+	private String mem_Img;
+	
+	
+	
+		
+	public String getMem_Img() {
+		return mem_Img;
+	}
+	public void setMem_Img(String mem_Img) {
+		this.mem_Img = mem_Img;
+	}
+	public Timestamp getInvite_Time() {
+		return invite_Time;
+	}
+	public void setInvite_Time(Timestamp invite_Time) {
+		this.invite_Time = invite_Time;
+	}
+	public String getMem_Name() {
+		return mem_Name;
+	}
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
+	}
 	public int getInvite_Num() {
 		return invite_Num;
 	}
