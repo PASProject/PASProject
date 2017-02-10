@@ -14,6 +14,57 @@
 </head>
 <body>
 
+
+<script type="text/javascript">
+         $(function() {
+            // 콤보박스가 변경될 때 이벤트 발생
+            $('#positionSelect').change(function() {
+                // 드롭다운리스트에서 선택된 값을 텍스트박스에 출력
+                var selectedText =
+                	
+                   /*   $("option:selected").text();
+                    //$("option:selected").text();
+ */                  $(":selected").text(); 
+                $('#position_Name').val(selectedText);
+               /*  $('[name="positionSelect"] option:eq(0)').attr("selected","selected"); */
+                alert("여기까진옴");
+            });
+         })   
+            
+        
+            
+            
+            
+            $(function() {
+            $('#TeamMemberUpdate').click(function() {
+                   alert('왜통과를안함?');    
+            var position_Name=$("#position_Name").val();
+            var mem_Email =$("#mem_Email").val();
+            
+            var dataList={
+            		'position_Name':position_Name,'mem_Email':mem_Email};
+            $.ajax({
+            	
+            	type:'POST',
+            	url:'TeamMemberUpdate',
+            	dataType:'JSON',
+            	contentType : 'application/json; charset=UTF-8',
+				data : JSON.stringify(dataList),
+				success : function() {
+					
+				}
+            	
+            	
+            });
+            })
+            
+        });
+    </script>
+
+
+
+
+
 <div class="col-md-8">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
@@ -52,16 +103,15 @@
            <br>
             <c:choose>
             <c:when test="${memPositionView.position_Name eq 'PL' }">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">직책
-            <span class="caret"></span></button><br>
-            <ul class="dropdown-menu">
-            <li><a href="#">PL</a></li>
-            <li><a href="#">TA</a></li>
-            <li><a href="#">AA</a></li>
-            <li><a href="#">DA</a></li>
-            <li><a href="#">BA</a></li>
-            
-            </ul>
+            <select id="positionSelect">
+            <option></option>
+            <option>PL</option>
+            <option>DA</option>
+            <option>TA</option>
+            <option>AA</option>
+            <option>BA</option>
+           </select>
+           <input type="text" id="position_Name" value="${pmMemberList.position_Name }"/><br>
  
             </c:when>
             <c:otherwise>
@@ -76,7 +126,7 @@
         <div class="modal-footer">
         
         <c:if test="${memPositionView.position_Name eq 'PL' }">
-         <input type="button" class="btn btn-default" data-dismiss="modal" id="AccountUpdate" value="직책 수정">
+         <input type="button" class="btn btn-default" data-dismiss="modal" id="TeamMemberUpdate" value="직책 수정">
          <input type="button" class="btn btn-default" data-dismiss="modal" id="AccountDelete" value="팀원 탈퇴">
         </c:if>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,17 +135,7 @@
       
     </div>
   </div>
-  													
-											
-											
-											
-											
-											
-											
-											
-											
-											
-											</td>
+ </td>
 					<td>${pmMemberList.mem_Email }</td>
 					</tr>
 				</c:forEach>

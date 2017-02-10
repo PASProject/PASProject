@@ -548,6 +548,23 @@ public class ProjectController {
 		   
 		   
 	   }
+	   
+	   @RequestMapping(value="TeamMemberUpdate", method=RequestMethod.POST)
+	   public void TeamMemberUpdate(@RequestBody Map<String,Object> map ){
+		   System.out.println(map.get("mem_Email")+"맵의!!!!!!!!!!");
+	   }
+	   
+	   @RequestMapping(value="activeModal", method=RequestMethod.POST)
+	   public @ResponseBody AccountBoardVo activeModal(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
+		    AccountBoardVo accountBoardVo = new AccountBoardVo();
+		    System.out.println(map.get("acc_Num")+"이것은!!!!!!!!!acc_Num");
+		    accountBoardVo.setAcc_Num(Integer.parseInt(map.get("acc_Num").toString()));
+		    accountBoardVo.setProj_Num(Integer.parseInt((String)session.getAttribute("joinProj")));
+		    
+         		accountBoardVo = accountService.selectAccountBoardByAcc(accountBoardVo);
+         		System.out.println(accountBoardVo.getAcc_Content()+"이것은!!!!!!!boardVo");
+         		return accountBoardVo;
+	   }
 	
 	
 }
