@@ -14,9 +14,10 @@
 <body>
 	<h1>SkillSharingBoard</h1>
 	<form>
-		제목 : <input type="text" name="ssb_Title" />&nbsp; <input type="button"
-			onclick="searchTitle(this.form);" value="검색">
+		제목 : <input type="text" name="ssb_Title" />&nbsp; 
+		<input type="button" onclick="searchTitle(this.form);" value="검색">
 	</form>
+	
 	<table style="width: 83%">
 		<tr>
 			<th>번호</th>

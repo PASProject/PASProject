@@ -138,11 +138,11 @@ public class MemberService {
 		public int updateMember(MemberVo memberVo) throws SQLException{
 		int result = memberDao.updateMember(memberVo);
 		return result;
-	}
+		}
 		public void deleteMember(String mem_Email) throws SQLException {
 			memberDao.deleteMember(mem_Email);
 		}
-		
+	
 		public List<MemberCommandVo> selectMemberEmailList() throws SQLException{
 			List<MemberCommandVo> list=memberDao.selectMemberEmailList();
 			return list;

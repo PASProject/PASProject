@@ -40,13 +40,13 @@ public class SkillSharingController {
 
 	@RequestMapping("/SkillSharingBoardList")
 	public String skillSharingBoardList(Model model,
-			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
+			@RequestParam(value = "page", defaultValue = "1") String page,@RequestParam(defaultValue="") String ssb_Title) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
 		int totalCount = 0;
 		List<SkillSharingBoardVo> skillSharingBoardList = new ArrayList<SkillSharingBoardVo>();
 		
 			skillSharingBoardList = skillSharingBoardService
-					.selectSkillLikeCountViewList();
+					.selectSkillLikeCountViewList(ssb_Title);
 			totalCount = skillSharingBoardService.selectTotalCount();
 		/*	int likeCount = skillSharingBoardService.selectCountSharingBoardLike(ssb_Article_Num);*/
 
@@ -253,17 +253,14 @@ public class SkillSharingController {
 
 	@RequestMapping("/searchTitle")
 	public String searchTitle(
-			@RequestParam(defaultValue = "") String ssb_Title, Model model) {
-		String url = "SkillSharing/SkillSharingBoardList";
-		List<SkillSharingBoardVo> skillSharingBoardList = null;
-		try {
-			skillSharingBoardList = skillSharingBoardService
-					.selectSearchSsbTitle(ssb_Title);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		model.addAttribute("skillSharingBoardList", skillSharingBoardList);
+			@RequestParam(defaultValue = "") String ssb_Title, Model model) throws SQLException {
+		String url = "redirect:SkillSharingBoardList?ssb_Title="+ssb_Title;
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+ssb_Title);
+		/*List<SkillSharingBoardVo> skillSharingBoardList = null;
+	
+			skillSharingBoardList = skillSharingBoardService.selectSearchSsbTitle(ssb_Title);
+		
+		model.addAttribute("skillSharingBoardList", skillSharingBoardList);*/
 		return url;
 	}
 	

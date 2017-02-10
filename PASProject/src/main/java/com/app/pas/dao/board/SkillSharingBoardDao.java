@@ -8,7 +8,7 @@ import com.app.pas.dto.board.SkillSharingBoardVo;
 
 public interface SkillSharingBoardDao {
 	
-	public List<SkillSharingBoardVo> selectSkillLikeCountViewList()throws SQLException;
+	public List<SkillSharingBoardVo> selectSkillLikeCountViewList(String ssb_Title)throws SQLException;
 	public SkillSharingBoardVo selectSkillSharingBoard(int ssb_Article_Num)throws SQLException;
 	public SkillSharingBoardVo selectSkillSharingBoardTitle(String ssb_Title) throws SQLException;
 	public void insertSkillSharingBoard(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;

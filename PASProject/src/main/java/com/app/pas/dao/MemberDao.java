@@ -12,9 +12,7 @@ public interface MemberDao {
 	public List<MemberVo> selectMemberList()throws SQLException;
 	public MemberVo selectMember(String mem_Email)throws SQLException;
 	public void insertMember(MemberVo memberVo)throws SQLException;
-	
 	public int updateMember(MemberVo memberVo)throws SQLException;
-	
 	public void deleteMember(String mem_Email)throws SQLException;
 	public void extraMemberPwd(MemberVo memberVo)throws SQLException;
 	public void AuthMember(String mem_Email)throws SQLException;

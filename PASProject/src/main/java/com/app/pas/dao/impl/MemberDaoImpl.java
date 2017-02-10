@@ -130,12 +130,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
-	@Override
+
 	public List<MemberCommandVo> selectMemberEmailList() throws SQLException {
-		
+	
 		List<MemberCommandVo> list = client.queryForList("selectMemberEmailList", null);
 		return list;
 	}
-
 	
 }
