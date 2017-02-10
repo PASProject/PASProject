@@ -43,11 +43,12 @@ public class SockjsHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session,
 			@RequestBody TextMessage message) throws Exception {
-/*		System.out.println(message.getPayload());
+	/*	System.out.println(message.getPayload());
 	      Gson gson = new Gson();
 	      Map<String,Object> map = new HashMap<String,Object>();
 	      map = (Map<String,Object>) gson.fromJson(message.getPayload().toString(), map.getClass());
 	      System.out.println(map.get("push")+"@@@@@@@@@@@@ 푸쉬시수시ㅜ시ㅜ시ㅜ시ㅜ시ㅜ시ㅜ시ㅟㅜ시ㅜ");*/
+	
 	  }
 
 	@Override
