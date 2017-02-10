@@ -73,7 +73,7 @@ public class mainContoller {
 			String pwd) {
 
 		int result = 0;
-
+System.out.println("asdfasdf");
 		MemberVo memberVo = null;
 
 		memberVo = memberService.getMember(email);
@@ -450,6 +450,7 @@ public class mainContoller {
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		projectJoinVo.setMem_Email(projectVo.getMem_Email());
 		projectJoinVo.setMem_Name(projectVo.getMem_Name());
+		projectJoinVo.setMem_Img(projectVo.getMem_Img());
 		projectJoinVo.setPjj_Per_Num(1);
 		projectJoinVo.setPosition_Num(1);
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);

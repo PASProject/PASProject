@@ -43,19 +43,19 @@
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"
-							data-toggle="modal" data-target="#${projectVo.proj_Name }"
+							data-toggle="modal" data-target="#${status.index }"
 							data-keyboard="false" data-backdrop="static">
 						</a>
 						<h3>
 							<a href="#">${projectVo.proj_Name }</a>
 						</h3>
 						<p>${projectVo.proj_Content}</p>
-						<c:if test="${status.count%3==0}">
+					<%-- 	<c:if test="${status.count%3==0}">
 							<br>
-						</c:if>
+						</c:if> --%>
 					</div>
 					<!-- Modal -->
-					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">
+					<div class="modal fade" id="${status.index }" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -92,6 +92,7 @@
 								</div>
 								<div class="modal-body" id="createBody">
 									생성자 : <input type="text" id = "mem_Email" value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br><br>
+									       <input type="hidden" id="mem_Img" value="${sessionScope.loginUser.mem_Img }">
 									프로젝트 이름 : <input type="text" id="proj_Name" name = "proj_Name"><br><br>
 									프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea><br>
 								</div>
@@ -143,7 +144,8 @@
 			var mem_Email = $('#mem_Email').val();
 			var proj_Name = $('#proj_Name').val();
 			var proj_Content = $('#proj_Content').val();
-			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content};
+			var mem_Img = $('#mem_Img').val();
+			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img};
 			$.ajax({
 				url:'createProject',
 				contentType:'application/json',

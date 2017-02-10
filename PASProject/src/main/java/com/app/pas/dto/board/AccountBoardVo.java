@@ -12,6 +12,8 @@ public class AccountBoardVo {
 	private String acc_Content;
 	private int acc_Total;
 	private int proj_Num;
+	
+	
 	public int getAcc_Num() {
 		return acc_Num;
 	}
