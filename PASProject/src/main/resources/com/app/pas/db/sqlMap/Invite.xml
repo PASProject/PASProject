@@ -14,8 +14,8 @@
    </select>
    
    <update id="insertInvite" parameterClass="Invite">
-      insert into INVITE(INVITE_NUM,INVITE_CONTENT,PROJ_NUM) 
-	  VALUES(INVITE_SEQ.NEXTVAL,#invite_Content#,#proj_Num#)
+      insert into INVITE(INVITE_NUM,INVITE_CONTENT,PROJ_NUM,MEM_EMAIL) 
+	  VALUES(INVITE_SEQ.NEXTVAL,#invite_Content#,#proj_Num#,#mem_Email#)
 	  
    </update>
    
@@ -32,9 +32,9 @@
    select * 
    from proj_invite_view 
    where proj_Num = #proj_Num# 
-   
-   
    </select>
+   
+   
    
    
 </sqlMap>
