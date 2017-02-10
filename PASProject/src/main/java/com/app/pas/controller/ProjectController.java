@@ -21,16 +21,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
+import com.app.pas.dto.ProjectJoinVo;
+import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
+import com.app.pas.service.ProjectJoinService;
+import com.app.pas.service.ProjectService;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
@@ -54,6 +59,10 @@ public class ProjectController {
 	MemberService memberService;
 	@Autowired
 	InviteService inviteService;
+	@Autowired
+	ProjectService projectService;
+	@Autowired
+	ProjectJoinService projectJoinService;
 
 	// 프로젝트 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
@@ -419,8 +428,7 @@ public class ProjectController {
 				.toString()));
 		accountService.InsertAccountBoard(accountBoardVo);
 		return result;
-	}
-
+	}  
 	@RequestMapping(value = "/AccountBoardUpdate", method = RequestMethod.POST)
 	public @ResponseBody int AccountBoardUpdate(
 			@RequestBody Map<String, Object> map) throws SQLException,
@@ -490,10 +498,11 @@ public class ProjectController {
 	   @RequestMapping(value="/pmMemberInvite", method=RequestMethod.GET)
 	   public String pmMemberInvite(HttpSession session) throws SQLException {
 	      String url = "/project/teamInvite";
+	      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
 	      String mem_Email = "";
 	      /* int proj_Num= (Integer) session.getAttribute("joinProj"); */
 	      ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
-	      projInviteViewVo.setProj_Num(1);
+	      projInviteViewVo.setProj_Num(proj_Num);
 
 	      List<ProjInviteViewVo> list = inviteService
 	            .selectInviteList(projInviteViewVo);
@@ -514,8 +523,28 @@ public class ProjectController {
 	   }
 	   
 	   @RequestMapping(value="/pmInviteInsert",method=RequestMethod.POST)
-	   public void pmInviteInsert(String mem_Email,HttpServletRequest request) throws SQLException, UnsupportedEncodingException{
-		   System.out.println(mem_Email+"이건 에이젝스 멤멤~");
+	   public void pmInviteInsert(String mem_Email,HttpSession session) throws SQLException, UnsupportedEncodingException{
+		      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
+	          ProjectVo projectVo=projectService.selectProject(proj_Num);
+	          MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+	          MemberVo memberVo1= memberService.getMember(mem_Email);
+	          System.out.println(memberVo1.getMem_Name()+"내이름은!!!!!");
+	          
+	          InviteVo inviteVo = new InviteVo();
+	          ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+	          
+	          inviteVo.setMem_Email(mem_Email);
+	          inviteVo.setProj_Num(proj_Num);
+	          projectJoinVo.setMem_Email(mem_Email);
+	          projectJoinVo.setProj_Num(proj_Num);
+	          projectJoinVo.setMem_Name(memberVo1.getMem_Name());
+	          projectJoinVo.setMem_Img(memberVo1.getMem_Img());
+	          
+	          
+	          
+	          projectJoinService.insertProject(projectJoinVo);
+	          inviteService.insertInvite(inviteVo);
+	          
 		   
 		   
 	   }
