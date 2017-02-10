@@ -36,7 +36,7 @@ public class SockjsHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	public boolean beforeHandshake(ServerHttpRequest request,
 			ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
-		
+		super.beforeHandshake(request, response, wsHandler, attributes);
 		ServletServerHttpRequest serverRequest = (ServletServerHttpRequest) request;
 		HttpSession session = serverRequest.getServletRequest().getSession();
 		
