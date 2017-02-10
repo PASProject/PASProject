@@ -18,13 +18,16 @@ public class QnaBoardService {
 	public void setQnaBoardDao(QnaBoardDao qnaBoardDao) {
 		this.qnaBoardDao = qnaBoardDao;
 	}
+//	public List<QnaBoardVo> QbNameSearch(String mem_Name)	throws SQLException{
+//	List<QnaBoardVo> nameList = new ArrayList<QnaBoardVo>();
+//	nameList = qnaBoardDao.QbNameSearch(mem_Name);
+//	return nameList;
+//}
 
-	public List<QnaBoardVo> selectQnaBoardList() throws SQLException {
+	public List<QnaBoardVo> selectQnaBoardList(QnaBoardVo qnaBoarVo ) throws SQLException {
 		List<QnaBoardVo> list = new ArrayList<QnaBoardVo>();
-		list = qnaBoardDao.selectQnaBoardList();
-
+		list = qnaBoardDao.selectQnaBoardList(qnaBoarVo);
 		return list;
-
 	}
 
 	public void insertQnaBoard(QnaBoardVo qnaBoardVo) throws SQLException {
@@ -56,8 +59,6 @@ public class QnaBoardService {
 	}
 	
 	
-	
-	
-	
+
 
 }

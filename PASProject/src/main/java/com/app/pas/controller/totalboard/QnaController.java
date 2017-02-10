@@ -2,11 +2,14 @@ package com.app.pas.controller.totalboard;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,9 @@ public class QnaController {
 	MemberService memberService;	
 	@Autowired
 	QnaBoardReplyService qnaBoardReplyService;
+	@Autowired
+	HttpServletRequest request;
+	
 	
 	//검색
 	@RequestMapping("/QnaBoardSearch")
@@ -45,19 +51,55 @@ public class QnaController {
 	// qnaList
 	@RequestMapping("/QnAList")
 	public String QnaList(Model model,
-			@RequestParam(value = "page", defaultValue = "1") String page) {
+			@RequestParam(value = "page", defaultValue = "1") String page,QnaBoardVo qnaBoarVo
+			,@RequestParam(defaultValue="")String keyword,@RequestParam(defaultValue="") String keyField
+			,@RequestParam(defaultValue="")String name,@RequestParam(defaultValue="")String title,
+			@RequestParam(defaultValue="")String number) throws SQLException {
 
 		String url = "qna/QnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
-		try {
-			qnaList = qnaBoardService.selectQnaBoardList();
-			totalCount = qnaBoardService.QnaSelectTotalCount();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+		//검색
+//		keyword = request.getParameter("keyword");  //입력창
+//		keyField = request.getParameter("keyField");  //선택창
+		
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^keyField값 : " + keyField);
+		System.out.println("keyword : " +  keyword);//입력창
+		
+//		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
+	
+
+		
+		if(keyField==("name")||keyField.equals("name")){
+			
+			qnaBoarVo.setMem_Name(keyword);
+			qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
+			System.out.println("--------------name 키워드 : " + keyword);
+			
+			
+		}else if(keyField==("title")||keyField.equals("title")){
+			qnaBoarVo.setQb_Title(keyword);
+			qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);	
+			System.out.println("-----------------title 키워드 : " + keyword);
+			
+			
+		}else if(keyField==("number")||keyField.equals("number")){
+			qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
+			qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
+			System.out.println("-----------------number 키워드 : " + keyword);
 		}
+
+		model.addAttribute("qnaList", qnaList);
+		
+//		else{
+//			qnaList = qnaBoardService.selectQnaBoardList();
+//			model.addAttribute("qnaList", qnaList);
+//		}
+			
 		// 페이징처리
+		totalCount = qnaBoardService.QnaSelectTotalCount();
+		
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
@@ -67,8 +109,8 @@ public class QnaController {
 		paging.setTotalCount(totalCount);
 
 		model.addAttribute("paging", paging);
-		model.addAttribute("qnaList", qnaList);
 
+		
 		return url;
 	}
 

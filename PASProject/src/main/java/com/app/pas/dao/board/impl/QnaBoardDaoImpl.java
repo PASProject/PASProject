@@ -16,10 +16,20 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 	}
 
 	@Override
-	public List<QnaBoardVo> selectQnaBoardList() throws SQLException {
-		List<QnaBoardVo> list = client.queryForList("selectQnaBoardList");
+	public List<QnaBoardVo> selectQnaBoardList(QnaBoardVo qnaBoarVo) throws SQLException {
+		List<QnaBoardVo> list = client.queryForList("selectQnaBoardList",qnaBoarVo);
 		return list;
 	}
+	
+////이름 찾기
+//	@Override
+//	public List<QnaBoardVo> QbNameSearch(String mem_Name) throws SQLException {
+//		System.out.println("임플의 네임 : " + mem_Name);
+//		List<QnaBoardVo> nameList =(List) client.queryForObject("QbNameSearch", mem_Name);
+//		System.out.println("임플의 리스트 : " + nameList);
+//		return nameList;
+//	}
+
 	
 	@Override
 	public QnaBoardVo selectQnaBoard(int qb_Article_Num) throws SQLException {
@@ -68,7 +78,6 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		client.update("deleteQnaYN",qb_Article_Num);
 		
 	}
-
 
 
 	

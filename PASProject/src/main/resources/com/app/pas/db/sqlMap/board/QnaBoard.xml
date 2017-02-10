@@ -8,13 +8,14 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="QnaBoard" type="com.app.pas.dto.board.QnaBoardVo" />
 
-	<select id="selectQnaBoardList" resultClass="QnaBoard">
-		SELECT *
-		FROM
-		QNA_BOARD
+	<select id="selectQnaBoardList" resultClass="QnaBoard" parameterClass="QnaBoard">
+		SELECT * FROM QNA_BOARD
+		WHERE MEM_NAME LIKE #mem_Name# OR 
+		QB_ARTICLE_NUM LIKE #qb_Article_Num# OR 
+		QB_TITLE LIKE #qb_Title#
 		ORDER BY QB_ARTICLE_NUM DESC
-
 	</select>
+	
 
 	<select id="selectQnaBoard" parameterClass="int" resultClass="QnaBoard">
 		SELECT *
@@ -61,5 +62,6 @@
 		UPDATE QNA_BOARD SET QB_INQ_COUNT =QB_INQ_COUNT+1
 		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</update>
+
 
 </sqlMap>
