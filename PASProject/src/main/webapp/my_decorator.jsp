@@ -489,7 +489,7 @@ font-weight:bold;
 <script>
 	$(document).ready(
 			function() {
-				connect('init:' + '${sessionScope.loginUser.mem_Email}');
+				connect();
 				
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
