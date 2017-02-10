@@ -155,7 +155,8 @@
 				$('#'+proj_Num+'btnZone #applyBtn').val('대기중');
 				$('#'+proj_Num+'btnZone #applyBtn').css('color','red');
 				$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
-				 send('push:'+data.p_Mem_Email); 
+				var pushData = {'push':data.p_Mem_Email};
+				 send(JSON.stringify(pushData)); 
 			},error:function(data){
 				alert("에러");
 			}
