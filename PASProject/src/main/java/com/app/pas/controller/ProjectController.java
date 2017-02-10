@@ -479,11 +479,11 @@ public class ProjectController {
 	         throws SQLException {
 	      String url = "/project/teamMemberList";
 	      /* int proj = (Integer) session.getAttribute("joinProj"); */
-	      int proj = 9;
+	      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
 	      int per = 1;
 	      MemPositionViewVo memPositionView = new MemPositionViewVo();
 	      memPositionView.setPjj_Per_Num(1);
-	      memPositionView.setProj_Num(1);
+	      memPositionView.setProj_Num(proj_Num);
 
 	      List<MemPositionViewVo> list = memberService
 	            .selectMemberListByProj(memPositionView);
