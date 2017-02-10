@@ -238,7 +238,7 @@
         </div>
         <div class="modal-body">
           <p>Some text in the modal.</p>
-                 날짜:<input type="text" id="acc_Date">
+                 날짜:<input type="date" id="acc_Date">
           수입:<input type="text" id ="acc_Imp">
         비용:<input type="text" id="acc_Exp">  
         내용:<input type="text" id="acc_Content">
