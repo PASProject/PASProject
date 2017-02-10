@@ -50,4 +50,8 @@
    <select id = "selectLastInsertProject" parameterClass="str" resultClass="Project">
    		SELECT * FROM (SELECT * FROM project WHERE mem_email=#mem_Email#  ORDER BY proj_Num DESC) WHERE ROWNUM = 1
    </select>
+   
+   <update id="updateProjectImg" parameterClass="Project">
+    update Project set proj_Img=#proj_Img# where proj_Num = #proj_Num#
+   </update>
 </sqlMap>
