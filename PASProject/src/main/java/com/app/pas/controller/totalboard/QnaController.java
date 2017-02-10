@@ -68,28 +68,33 @@ public class QnaController {
 		System.out.println("keyword : " +  keyword);//입력창
 		
 //		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
-	
-
 		
-		if(keyField==("name")||keyField.equals("name")){
+		
+		
+		if(keyField==""|| keyField.equals(null)){
+			System.out.println("asdsad");
+		}
+
+		else if(keyField==("name")||keyField.equals("name")){
 			
 			qnaBoarVo.setMem_Name(keyword);
-			qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
 			System.out.println("--------------name 키워드 : " + keyword);
 			
 			
 		}else if(keyField==("title")||keyField.equals("title")){
 			qnaBoarVo.setQb_Title(keyword);
-			qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);	
 			System.out.println("-----------------title 키워드 : " + keyword);
 			
 			
 		}else if(keyField==("number")||keyField.equals("number")){
-			qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
-			qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
+			if(!(keyword.isEmpty()||keyword==null))
+				qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
+			
 			System.out.println("-----------------number 키워드 : " + keyword);
 		}
-
+		
+		
+		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
 		model.addAttribute("qnaList", qnaList);
 		
 //		else{

@@ -29,6 +29,11 @@ public class QnaBoardService {
 		list = qnaBoardDao.selectQnaBoardList(qnaBoarVo);
 		return list;
 	}
+	//리스트 전체 조회 
+	public List<QnaBoardVo> selectAllQna()throws SQLException{
+		List<QnaBoardVo>list = new ArrayList<QnaBoardVo>();
+		return list;
+	}
 
 	public void insertQnaBoard(QnaBoardVo qnaBoardVo) throws SQLException {
 		qnaBoardDao.insertQnaBoard(qnaBoardVo);
