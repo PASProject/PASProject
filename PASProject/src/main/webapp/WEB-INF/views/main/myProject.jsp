@@ -43,7 +43,7 @@
 					<div class="col-md-4 portfolio-item">
 						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 							class="img-responsive" src="http://placehold.it/700x400"
-							data-toggle="modal" data-target="#${projectVo.proj_Name }"
+							data-toggle="modal" data-target="#${status.index }"
 							data-keyboard="false" data-backdrop="static">
 						</a>
 						<h3>
@@ -55,7 +55,7 @@
 						</c:if>
 					</div>
 					<!-- Modal -->
-					<div class="modal fade" id="${projectVo.proj_Name }" role="dialog">
+					<div class="modal fade" id="${status.index }" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
