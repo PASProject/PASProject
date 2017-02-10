@@ -24,40 +24,50 @@
 
 		<div class="col-md-10">
 
-			<div class="col-md-12" id="pbd"
+			<div id="pbd"
 				style="padding: 10px; background-color: white; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 20px;">
-				<div class="col-md-12" style="padding-left: 0px;">
-					<form name="frm" method="post" action="pmBoardInsert">
-						<table class="col-md-12">
-							<tr>
-								<td><img
-									src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
-									id="thumbnail" alt="my image"
-									style="border-radius: 0px; width: 60px; height: 60px;" /></td>
-								<td><textarea class="pull-right" cols="63" rows="1"
-										name="pb_Content" placeholder="도대체 무슨 생각하면서 사냐??"
-										style="font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
-							</tr>
-							<tr>
-								<td colspan=2">
-									<hr style="color: #ddd; margin-top: 10px; margin-bottom: 10px;">
-								</td>
+				<form name="frm" method="post" action="pmBoardInsert">
+					<table>
+						<tr>
+							<td><script>
+							$(function(){
+								 $(document).on('input', 'textarea', function () {
+								        $(this).outerHeight(38).outerHeight(this.scrollHeight); // 38 or '1em' -min-height
+								    }); 
+							});
+							</script> <textarea class="pull-right" cols="68" rows="1" id="textArea"
+									name="pb_Content" placeholder="도대체 무슨 생각하면서 사냐??"
+									style="padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
+						</tr>
+						<tr>
+							<td>
+								<hr style="color: #ddd; margin-top: 10px; margin-bottom: 10px;">
+							</td>
+						</tr>
 
-							</tr>
-							<tr>
-								<td></td>
-								<td><button class="btn btn-default pull-right"
-										type="submit">글올리기</button></td>
-							</tr>
-						</table>
-						<div style="claer: both"></div>
-					</form>
-				</div>
+						<tr>
+							<td><button class="btn btn-default pull-right" type="submit">글올리기</button></td>
+						</tr>
+
+					</table>
+				</form>
 
 			</div>
 
 
-			<div style="margin-top: 155px;">
+
+
+
+
+
+
+
+
+
+
+
+
+			<div style="margin-top: 20px;">
 				<c:forEach var="pbList" items="${pbList}">
 					<div style="margin-bottom: 20px;">
 						<div id="pbd"
@@ -127,22 +137,27 @@
 
 								</tr>
 								<tr>
-									<td><img
+									<td style="padding-top:5px; padding-right: 5px"><img
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										id="thumbnail" alt="my image"
 										style="border-radius: 0px; width: 30px; height: 30px;" /></td>
-									<td><textarea
-											style="resize: none; border: 1px solid #ddd; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; resize: none;"
-											rows="1" cols="83" name="pb_Reply_Content"
-											id="${pbList.pb_Article_Num}pb_Reply_Content"></textarea> <input
-										type="button"
-										class="btn btn-default ${pbList.pb_Article_Num }"
-										id="addReply" value="댓글달기"
-										onclick="javascript:reply(${pbList.pb_Article_Num})" /></td>
+									<td class="col-md-12"
+										style="padding-top:5px; padding-left: 0px; padding-right: 0px;">
+										<div class="form-inline">
+											<input class="form-control" style="min-width: 100%;"
+												placeholder="댓글을 입력하세요" name="pb_Reply_Content"
+												id="${pbList.pb_Article_Num}pb_Reply_Content" />
+											<%-- <input type="button"
+												class="btn btn-default ${pbList.pb_Article_Num }"
+												id="addReply" value="댓글달기"
+												onclick="javascript:reply(${pbList.pb_Article_Num})" /> --%>
+										</div>
+									</td>
 
 								</tr>
 
 							</table>
+
 
 						</div>
 
@@ -200,29 +215,19 @@
 							});
 						}
 					})
-					$('textarea').focus(function(){
+					$('input').focus(function(){
 						var keyEvent=$(this).attr('id')
 						$('#'+keyEvent).keyup(function(e){
 							if((e.keyCode || e.which) == 13) { 
-								 e.preventDefault();
+								 e.preventDefault();   
 								var textareaNumber= keyEvent.replace(/[^0-9]/g,"");
 								 reply(textareaNumber);
-							   }
+								 e.preventDefault();   
+							}
 						})						
 					});
 					 
-					 
-	
-			/* 		 $('#write').keypress(function(event) {
-					    if (event.which == 13) {
-					       event.preventDefault();
-					       var s = $(this).val();
-					       $(this).val(s+"\n");
-					    }
-					 });​
-					  */
-					 
-					 
+				
 					 
 			})
 			
@@ -241,7 +246,7 @@
 						success:function(data){
 							var dt = "";
 							$.each(data,function(i){
-								dt +='<table><tr><td><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="color:#337ab7; font-weight:bold">'
+								dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
 								+data[i].pb_Reply_Mem +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table>';
 								
 							});

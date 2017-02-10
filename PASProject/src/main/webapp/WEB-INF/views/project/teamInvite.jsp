@@ -26,11 +26,15 @@
 			</tr>
 			<c:forEach var="InviteList" items="${InviteList }">
 				<tr>
-					<td></td>
+					<td><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}"></td>
 					<td>${InviteList.mem_Email }</td>
 					<td>${InviteList.mem_Name }</td>
 					<td>${InviteList.invite_Time }</td>
-					<td>${InviteList.invite_Commit_Check }</td>
+					<c:if test="${InviteList.invite_Commit_Check eq 0}">
+					<td>미수락중</td>
+					</c:if>
+					
+					
 				</tr>
 			</c:forEach>
 		</table>

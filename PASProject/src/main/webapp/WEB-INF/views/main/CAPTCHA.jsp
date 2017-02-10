@@ -47,7 +47,27 @@
 
             })(jQuery);
 
-          
+  
+    		  $(function($) {
+    		          $("#sortable").sortable();
+    		          $("#sortable").disableSelection();
+    		          $('ul').shuffle();
+
+    		          $("#formsubmit").click(function(e){
+    		              if($('ul').validate()){
+    		            	  $('#1').hide();
+    		            	  $('#2').show();
+    		            	  e.preventDefault();
+    		              }else{
+    		            	  alert("No, you are not a human!");
+    		              }
+    		            	  
+    		            	  
+    		            	  
+    		            
+    		          });
+    		      });
+    		
         </script>
 <style type="text/css">
 form.registration {

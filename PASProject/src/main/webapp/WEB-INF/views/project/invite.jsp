@@ -68,7 +68,7 @@
 			$("#inviteInsert")
 					.click(
 							function() {
-								var mem_Email =
+								var mem_Email = $("input[type=hidden]").val();
 								alert(mem_Email+"알ㄹ라라라라라");
 								var d = "";
 								
@@ -82,6 +82,8 @@
 												'mem_Email' : mem_Email
 											},
 											success : function() {
+												alert('초대완료!');
+												location.href="<%=request.getContextPath()%>/project/pmMemInvite"
 
 											}
 										});
@@ -91,13 +93,13 @@
 
 							})
 							
-							$("#chuga").click(function(){
+							$("#chuga").    click(function(){
 								
 								var email = $('#searchbox').val();
 								var data="";
 								data=$('#zone').html();
 							    alert(data);
-								data +='<a href="#" id="'+email+'" >'+email,+'</a><br>'; 	
+								data +='<a href="#">'+email+' </a> <input type="hidden" id="'+email+'" value="'+email+'"/><br>'; 	
 								if(email!=null){
 									$('#zone').html(data);	
 								}else{

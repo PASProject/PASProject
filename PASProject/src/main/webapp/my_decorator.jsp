@@ -180,6 +180,7 @@ body {
 	background-color: #4D76A3;
 }
 
+
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #4D76A3;
@@ -199,6 +200,11 @@ body {
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
+}
+#a li a:hover{
+background-color:#6093cc;
+color:white;
+font-weight:bold;
 }
 </style>
 
@@ -222,7 +228,7 @@ body {
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right" id="a">
 					
 						<li><a href="<%=request.getContextPath()%>/main/myProject">내
 								프로젝트 보기</a></li>
