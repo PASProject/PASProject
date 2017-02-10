@@ -19,7 +19,7 @@
 				var acc_Imp = $('#acc_Imp').val();
 				var acc_Exp = $('#acc_Exp').val();
 				var acc_Content = $('#acc_Content').val();
-				var proj_Num = '1';
+				var proj_Num = $('#proj_Num').val();
 
 				var dataList = {
 					'acc_Date' : acc_Date,
@@ -27,6 +27,7 @@
 					'acc_Exp' : acc_Exp,
 					'acc_Content' : acc_Content,
 					'proj_Num' : proj_Num
+					
 				};
 				$.ajax({
 
@@ -55,7 +56,7 @@
 				var acc_Imp = $('#upacc_Imp').val();
 				var acc_Exp = $('#upacc_Exp').val();
 				var acc_Content = $('#upacc_Content').val();
-				var proj_Num = '1';
+				var proj_Num = $('#upproj_Num').val();
 
 				var dataList = {
 						
@@ -92,7 +93,7 @@
 				var acc_Imp = $('#upacc_Imp').val();
 				var acc_Exp = $('#upacc_Exp').val();
 				var acc_Content = $('#upacc_Content').val();
-				var proj_Num = '1';
+				var proj_Num = $('#upproj_Num').val();
 
 				var dataList = {
 						
@@ -173,8 +174,9 @@
         </div>
         <div class="modal-body">
           <p>Some text in the modal.</p>
-          <input type="hidden" id="upacc_Num" value="${AccountBoardList.acc_Num }">
-                 날짜:<input type="text" id="upacc_Date" value="${AccountBoardList.acc_Date }">
+          <input type="text" id="upproj_Num" value="${joinProj }">
+          <input type="text" id="upacc_Num" value="${AccountBoardList.acc_Num }">
+                 날짜:<input type="date" id="upacc_Date" value="${AccountBoardList.acc_Date }">
           수입:<input type="text" id ="upacc_Imp" value="${AccountBoardList.acc_Imp }">
         비용:<input type="text" id="upacc_Exp" value="${AccountBoardList.acc_Exp }">   
         내용:<input type="text" id="upacc_Content" value="${AccountBoardList.acc_Content }">
@@ -238,7 +240,8 @@
         </div>
         <div class="modal-body">
           <p>Some text in the modal.</p>
-                 날짜:<input type="text" id="acc_Date">
+         프로젝트번호 <input type="text" id="proj_Num" value="${joinProj }" readonly>
+                 날짜:<input type="date" id="acc_Date">
           수입:<input type="text" id ="acc_Imp">
         비용:<input type="text" id="acc_Exp">  
         내용:<input type="text" id="acc_Content">
