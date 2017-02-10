@@ -29,6 +29,9 @@
 
 <!-- jQuery -->
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<%--  --%>
+
+
 
 
 <!-- Bootstrap Core JavaScript -->
@@ -66,7 +69,7 @@ body {
 
 @font-face {
 	font-family: 'NanumGothic';
-	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
+	src: url(resources/fonts/NANUMGOTHIC.TTF) format('truetype');
 }
 
 body {
@@ -113,8 +116,9 @@ body {
 		$("#login").click(function() {
 			var email = $('#mem_Email').val();
 			var pwd = $('#mem_Pass').val();
-			
+		
 			$.ajax({
+				
 				type : 'POST',
 				url : '/pas/main/login',
 				dataType : 'json',
@@ -124,6 +128,7 @@ body {
 				},
 				success : function(result) {
 					if (result == 1) {
+						alert('감?');
                         location.href="<%=request.getContextPath()%>/main/myProject"
 											} else if (result == 0) {
 												alert("아이디가 틀렸습니다");
@@ -204,26 +209,7 @@ body {
 			});
 	
 	
-	  $(function() {
-          $("#sortable").sortable();
-          $("#sortable").disableSelection();
-          $('ul').shuffle();
-
-          $("#formsubmit").click(function(e){
-              if($('ul').validate()){
-            	  $('#1').hide();
-            	  $('#2').show();
-            	  e.preventDefault();
-              }else{
-            	  alert("No, you are not a human!");
-              }
-            	  
-            	  
-            	  
-            
-          });
-      });
-
+	
 
 </script>
 
@@ -246,28 +232,31 @@ body {
 
 			<div id="1">
 				<%@ include file="CAPTCHA.jsp"%>
+				<%-- <jsp:include page="CAPTCHA.jsp" /> --%>
+				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>
 			</div>
-			<div id="2" style="display:none">
+			<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+			<div id="2" style="display: none">
 				<form>
-				<div class="form-group">
-					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="mem_Email" name="mem_Email"
-						placeholder="Enter email">
-				</div>
-				<div class="form-group">
-					<label for="pwd">Password:</label> <input type="password"
-						class="form-control" id="mem_Pass" name="mem_Pass"
-						placeholder="Enter password">
-				</div>
-				<div class="checkbox">
-					<label><input type="checkbox"> Remember me</label>
-				</div>
-				<input type="button" id="login" class="btn btn-default btn-block"
-					value="들어가기" name="login1">
-				<input type="button" class="btn btn-default btn-block"
-					value="ADMIN" onclick="admin_go()">	
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="email"
+							class="form-control" id="mem_Email" name="mem_Email"
+							placeholder="Enter email">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label> <input type="password"
+							class="form-control" id="mem_Pass" name="mem_Pass"
+							placeholder="Enter password">
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox"> Remember me</label>
+					</div>
+					<input type="button" id="login" class="btn btn-default btn-block"
+						value="들어가기" name="login1"> <input type="button"
+						class="btn btn-default btn-block" value="ADMIN"
+						onclick="admin_go()">
 				</form>
-			
+
 			</div>
 		</div>
 		<div class="dividercontainer">
@@ -317,7 +306,8 @@ body {
 <script>
 
 	function admin_go(){
-		location.href="<%=request.getContextPath()%>/admin/adminLogin"
+		location.href="<%=request.getContextPath()%>
+	/admin/adminLogin"
 	}
 
 	$(document).ready(function() {
