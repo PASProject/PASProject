@@ -34,7 +34,7 @@
 <!-- jQuery -->
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <!-- Bootstrap Core CSS -->
 
 
@@ -118,7 +118,6 @@
 
 
 
-
 <!--  For modal -->
 
 
@@ -136,7 +135,7 @@
 <style>
 @font-face {
 	font-family: 'NanumGothic';
-	src: url(<%=request.getContextPath()%>resources/fonts/NANUMGOTHIC.TTF) format('truetype');
+	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF) format('truetype');
 }
 </style>
 <style>
@@ -290,16 +289,7 @@ font-weight:bold;
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
-								<li><a href="#" onclick="imgUploadModal();"> <!-- 		String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload"); -->
-
-										<%-- <% 
-								String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
-								MemberVo member = new MemberVo();								
-								member = (MemberVo)session.getAttribute("loginUser");
-								String img = member.getMem_Img();
-								upload = upload+"\\"+img;
-									
-								%> --%> <%-- <img src="<%=upload%>" --%> <img
+								<li><a href="#" onclick="imgUploadModal();"> <img
 										class="img-thumbnail"
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
