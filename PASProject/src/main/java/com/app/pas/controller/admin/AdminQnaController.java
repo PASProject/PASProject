@@ -32,13 +32,34 @@ public class AdminQnaController {
 	// 관리자 Qna 리스트
 	@RequestMapping("/AdminQnAList")
 	public String QnaList(Model model,
-			@RequestParam(value = "page", defaultValue = "1") String page)
-			throws SQLException {
+			@RequestParam(value = "page", defaultValue = "1") String page,QnaBoardVo qnaBoarVo
+			,@RequestParam(defaultValue="")String keyword,@RequestParam(defaultValue="") String keyField
+			,@RequestParam(defaultValue="")String name,@RequestParam(defaultValue="")String title,
+			@RequestParam(defaultValue="")String number) throws SQLException {
 		String url = "admin/adminQnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
+		
+		if(keyField==""|| keyField.equals(null)){
+			System.out.println("asdsad");
+		}
+		else if(keyField==("name")||keyField.equals("name")){
+			
+			qnaBoarVo.setMem_Name(keyword);
+			System.out.println("--------------name 키워드 : " + keyword);
+			
+			
+		}else if(keyField==("title")||keyField.equals("title")){
+			qnaBoarVo.setQb_Title(keyword);
+			System.out.println("-----------------title 키워드 : " + keyword);
+			
+			
+		}else if(keyField==("number")||keyField.equals("number")){
+			if(!(keyword.isEmpty()||keyword==null))
+				qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
+			}
 
-		qnaList = qnaBoardService.selectQnaBoardList();
+		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
 		totalCount = qnaBoardService.QnaSelectTotalCount();
 
 		// 페이징처리
@@ -54,6 +75,10 @@ public class AdminQnaController {
 		model.addAttribute("qnaList", qnaList);
 
 		return url;
+		
+		
+		
+		
 	}
 	//디테일
 	@RequestMapping("/AdminQnADetail")
