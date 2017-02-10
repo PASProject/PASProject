@@ -17,6 +17,8 @@
 		</isGreaterThan>		 
 		ORDER BY QB_ARTICLE_NUM DESC
 	</select>
+	
+	
 	<select id="selectAllQna" resultClass="QnaBoard">
 	SELECT * FROM QNA_BOARD
 	</select>

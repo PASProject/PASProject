@@ -17,7 +17,26 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>뭣이 궁금한ㄷㅣ</small>
 		</h2>
-		<fieldset>
+				<form name="form" method="post" action="AdminQnAList">
+<!-- 	<form action="QnaBoardSearch" method="post">	 -->
+
+<br> 
+		<select name = "keyField" size = "1">
+			<option value="title" selected>제목</option>
+			<option value = "name" selected>작성자</option>
+			<option value ="number" selected>글번호</option>
+		</select>
+		<input type ="text" size ="20" name="keyword" value="${keyword}" >
+		<input type ="submit" value="검색" >
+		
+<br>	
+		
+		
+
+		
+		
+		
+	
 			<table class="table table-hover">
 				<tr class="text-center">
 					<th class="col-md-1" style="text-align: center">답변여부</th>
@@ -51,7 +70,7 @@
 					</tr>
 				</c:forEach>
 			</table>
-
+		</form>
 			<div class="col-md-12 text-right">
 				
 				<script>
@@ -95,7 +114,6 @@
 			</div>
 
 
-		</fieldset>
 	</div>
 </body>
 </html>

@@ -37,16 +37,6 @@ public class QnaController {
 	@Autowired
 	HttpServletRequest request;
 	
-	
-	//검색
-	@RequestMapping("/QnaBoardSearch")
-	public String QnaBoardSearch(){
-		String url = "";
-		
-		return url;
-		
-	}
-	
 
 	// qnaList
 	@RequestMapping("/QnAList")
@@ -55,26 +45,16 @@ public class QnaController {
 			,@RequestParam(defaultValue="")String keyword,@RequestParam(defaultValue="") String keyField
 			,@RequestParam(defaultValue="")String name,@RequestParam(defaultValue="")String title,
 			@RequestParam(defaultValue="")String number) throws SQLException {
-
 		String url = "qna/QnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
 	
-		//검색
-//		keyword = request.getParameter("keyword");  //입력창
-//		keyField = request.getParameter("keyField");  //선택창
-		
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^keyField값 : " + keyField);
 		System.out.println("keyword : " +  keyword);//입력창
-		
-//		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
-		
-		
 		
 		if(keyField==""|| keyField.equals(null)){
 			System.out.println("asdsad");
 		}
-
 		else if(keyField==("name")||keyField.equals("name")){
 			
 			qnaBoarVo.setMem_Name(keyword);
