@@ -40,5 +40,5 @@
     <sqlMap resource="com/app/pas/db/sqlMap/Project.xml" />
     <sqlMap resource="com/app/pas/db/sqlMap/ProjectJoin.xml" />
     <sqlMap resource="com/app/pas/db/sqlMap/ScheduleCalendar.xml" />
-    
+    <sqlMap resource="com/app/pas/db/sqlMap/MemberLog.xml"/>
 </sqlMapConfig>
