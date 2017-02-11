@@ -17,6 +17,7 @@ public interface QnaBoardDao {
 	  public void updateQnaYN(int qb_Article_Num)throws SQLException;
 	  public void deleteQnaYN(int qb_Article_Num )throws SQLException;
 	  public void QnaBoardCount(int keyword)throws SQLException;
+	  public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo)throws SQLException;
 	  
 
 	  

@@ -229,7 +229,7 @@ body {
 
 		<div class="container">
 
-			<div id="1" style="display:none;">
+			<div id="1" >
 				<%@ include file="CAPTCHA.jsp"%>
 				<%-- <jsp:include page="CAPTCHA.jsp" /> --%>
 				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>

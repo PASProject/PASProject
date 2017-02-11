@@ -18,6 +18,20 @@
 		ORDER BY QB_ARTICLE_NUM DESC
 	</select>
 	
+	<select id="QnaSelectTotalCount" resultClass="int">
+		SELECT COUNT(*)
+		FROM QNA_BOARD
+	</select>
+	
+	<select id="QnaSearchTotalCount" resultClass="int" parameterClass="QnaBoard">
+		SELECT COUNT(*)
+		FROM QNA_BOARD
+		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		QB_TITLE LIKE '%'||#qb_Title#||'%'
+		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
+		QB_ARTICLE_NUM = #qb_Article_Num# 
+		</isGreaterThan>		 
+	</select>
 	
 	<select id="selectAllQna" resultClass="QnaBoard">
 	SELECT * FROM QNA_BOARD
@@ -60,10 +74,6 @@
 		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</delete>
 
-	<select id="QnaSelectTotalCount" resultClass="int">
-		SELECT COUNT(*)
-		FROM QNA_BOARD
-	</select>
 	
 	<update id="QnaBoardCount" parameterClass="int">
 		UPDATE QNA_BOARD SET QB_INQ_COUNT =QB_INQ_COUNT+1

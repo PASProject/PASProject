@@ -40,29 +40,42 @@ public class AdminQnaController {
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
 		
-		if(keyField==""|| keyField.equals(null)){
+		if (keyField == "" || keyField.equals(null)) {
 			System.out.println("asdsad");
-		}
-		else if(keyField==("name")||keyField.equals("name")){
+			totalCount = qnaBoardService.QnaSelectTotalCount();
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			Paging paging = new Paging();
+			paging.setPageNo(Integer.parseInt(page));
+			paging.setPageSize(5);
+			paging.setTotalCount(totalCount);
+
+			model.addAttribute("paging", paging);
 			
+		}else{
+			
+			
+		 if (keyField == ("name") || keyField.equals("name")) {
+
 			qnaBoarVo.setMem_Name(keyword);
 			System.out.println("--------------name 키워드 : " + keyword);
-			
-			
-		}else if(keyField==("title")||keyField.equals("title")){
+
+		} else if (keyField == ("title") || keyField.equals("title")) {
 			qnaBoarVo.setQb_Title(keyword);
 			System.out.println("-----------------title 키워드 : " + keyword);
-			
-			
-		}else if(keyField==("number")||keyField.equals("number")){
-			if(!(keyword.isEmpty()||keyword==null))
+
+		} else if (keyField == ("number") || keyField.equals("number")) {
+			if (!(keyword.isEmpty() || keyword == null))
 				qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
-			}
+
+			System.out.println("-----------------number 키워드 : " + keyword);
+		}
 
 		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
-		totalCount = qnaBoardService.QnaSelectTotalCount();
-
-		// 페이징처리
+		model.addAttribute("qnaList", qnaList);
+		
+		totalCount =(Integer)qnaBoardService.QnaSearchTotalCount(qnaBoarVo);
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
@@ -72,13 +85,9 @@ public class AdminQnaController {
 		paging.setTotalCount(totalCount);
 
 		model.addAttribute("paging", paging);
-		model.addAttribute("qnaList", qnaList);
 
+	}
 		return url;
-		
-		
-		
-		
 	}
 	//디테일
 	@RequestMapping("/AdminQnADetail")
