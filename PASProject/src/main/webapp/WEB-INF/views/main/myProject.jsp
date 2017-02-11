@@ -22,6 +22,8 @@
 				<h2 class="page-header">
 					내 프로젝트 목록
 					<!-- <small>Secondary Text</small> -->
+
+
 				</h2>
 
 			</div>
@@ -37,9 +39,9 @@
 					<br> <br>
 					<div class="text-center">
 						<img src="<%=request.getContextPath()%>/resources/img/plus.png">
-							id="createProject" value="생성하기" data-toggle="modal"
-							data-target="#create" data-keyboard="false"
-							style="cursor: pointer; width: 430px;" data-backdrop="static" />
+						id="createProject" value="생성하기" data-toggle="modal"
+						data-target="#create" data-keyboard="false" style="cursor:
+						pointer; width: 430px;" data-backdrop="static" />
 					</div>
 				</div>
 
@@ -50,77 +52,39 @@
 
 				<c:forEach items="${myProjectList}" var="projectVo"
 					varStatus="status">
-					<div class="col-md-3 portfolio-item">
 
+					<div class="col-md-3" id="box"
+						style="margin-bottom:30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
+						<h3 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
-
+							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
+						</h3>
+						<h4>프로젝트 팀명</h4>
+						<hr style="margin-top: 10px; margin-bottom: 10px;">
+						<div
+							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
+							<p>${projectVo.proj_Content}</p>
+						</div>
 						<script>
-						$(function(){
-							$("#box").hover(function () {
-							    $(this).find('#box').fadeIn(100);
-							},
-							function () {
-							    $(this).find('#box').fadeOut(100);
-							});
-						})
-</script>
-
-
-
-
-						<div id="box"
-							style="background-color: white; float: left; padding: 15px !important; width: 300px; height: 400px; position: relative; margin-right: 20px !important; margin-bottom: 20px !important; border-radius: 4px; border: 1px solid #ccc !important;">
-							<h3 style="font-weight: bold;">${projectVo.proj_Name }
-							
-							<img src="<%=request.getContextPath() %>/resources/upload/${projectVo.mem_Img}">
-							</h3>
-							<h4>마지막 업데이트(방문?) :</h4>
-							<input type="button" class="btn btn-default pull-right"
-								value="입장하기" onclick="javascript:gogo(${projectVo.proj_Num})" />
-							<script>
 							$(function(){
 								goModal(${projectVo.proj_Num});
 							});
 							</script>
-							
-							<div id="${projectVo.proj_Num}body"></div>
-							
-							<%-- 사진중에 pl사진은 겉에다가 테두리를 칠거임 --%>
-							<!-- <script>
+
+						<div id="${projectVo.proj_Num}body"></div>
+
+						<%-- 사진중에 pl사진은 겉에다가 테두리를 칠거임 --%>
+						<!-- <script>
 							$(function(){
 								var img = "pas/resources/upload/${projectVo.mem_Img}";
 								if()
 							})
 							</script> -->
-						</div>
-						<div>
-							${projectVo.proj_Name }
-							<script>
-							$(function(){
-								goModal(${projectVo.proj_Num});
-							});
-							</script>
-							<div id="${projectVo.proj_Num}body">팀원</div>
-							<br> <input type="button" class="btn btn-default"
-								value="입장하기" onclick="javascript:gogo(${projectVo.proj_Num})" />
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-
-						</div>
-
-						<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
-							class="img-responsive" src="http://placehold.it/700x400"
-							data-toggle="modal" data-target="#${status.index }"
-							data-keyboard="false" data-backdrop="static">
-						</a>
-						<h3>
-							<a href="#">${projectVo.proj_Name }</a>
-						</h3>
-						<p>${projectVo.proj_Content}</p>
-					<%-- 	<c:if test="${status.count%3==0}">
-							<br>
-						</c:if> --%>
+						<hr style="margin-top: 10px; margin-bottom: 10px;">
+						<button class="btn btn-block"
+							onclick="javascript:gogo(${projectVo.proj_Num})" id="greenBtn">입장하기</button>
 					</div>
+
 					<!-- Modal -->
 					<div class="modal fade" id="${status.index }" role="dialog">
 						<div class="modal-dialog">
@@ -141,6 +105,7 @@
 							</div>
 						</div>
 					</div>
+
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
@@ -177,7 +142,7 @@
 		</div>
 
 
-		<hr>
+
 
 		<!-- Pagination -->
 
@@ -271,7 +236,7 @@
 			success:function(data){
 				var tt="";
 				$.each(data,function(i){
-					tt+= '<img class="img-thumbnail" style="border-radius:50%; width:40px; height:40px" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					tt+= '<img class="img-thumbnail" style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
 				})
 				$('#'+proj_Num+'body').empty();
 				$('#'+proj_Num+'body').append(tt);
