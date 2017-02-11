@@ -19,6 +19,7 @@ public class QnaBoardService {
 		this.qnaBoardDao = qnaBoardDao;
 	}
 
+
 	public List<QnaBoardVo> selectQnaBoardList(QnaBoardVo qnaBoarVo ) throws SQLException {
 		List<QnaBoardVo> list = new ArrayList<QnaBoardVo>();
 		list = qnaBoardDao.selectQnaBoardList(qnaBoarVo);
@@ -51,6 +52,10 @@ public class QnaBoardService {
 //페이지
 	public int QnaSelectTotalCount() throws SQLException {
 		int totalCount = qnaBoardDao.QnaSelectTotalCount();	
+		return totalCount;
+	}
+	public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo) throws SQLException{
+		int totalCount = qnaBoardDao.QnaSearchTotalCount(qnaBoardVo);
 		return totalCount;
 	}
 //조횟수	

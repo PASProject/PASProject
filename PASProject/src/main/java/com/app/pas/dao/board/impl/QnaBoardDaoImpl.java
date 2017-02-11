@@ -56,6 +56,11 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		return totalCount;
 		
 	}
+	@Override
+	public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo) throws SQLException {
+		int totalCount = (Integer)client.queryForObject("QnaSearchTotalCount",qnaBoardVo);
+		return	totalCount;
+	}
 
 	@Override
 	public void QnaBoardCount(int qb_Article_Num) throws SQLException {
@@ -74,6 +79,7 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		client.update("deleteQnaYN",qb_Article_Num);
 		
 	}
+
 
 
 	
