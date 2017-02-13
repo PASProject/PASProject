@@ -9,6 +9,7 @@ public class ProjectVo {
 	private String proj_Check;
 	private String mem_Name;
 	private String mem_Img;
+	private String proj_Img;
 	
 	@Override
 	public String toString() {
@@ -19,6 +20,18 @@ public class ProjectVo {
 	
 	
 	
+	public String getProj_Img() {
+		return proj_Img;
+	}
+
+
+
+	public void setProj_Img(String proj_Img) {
+		this.proj_Img = proj_Img;
+	}
+
+
+
 	public String getMem_Img() {
 		return mem_Img;
 	}

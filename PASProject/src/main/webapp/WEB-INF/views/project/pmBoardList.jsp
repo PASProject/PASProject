@@ -35,7 +35,7 @@
 								        $(this).outerHeight(38).outerHeight(this.scrollHeight); // 38 or '1em' -min-height
 								    }); 
 							});
-							</script> <textarea class="pull-right" cols="68" rows="1" id="textArea"
+							</script> <textarea class="pull-right" cols="60" rows="1" id="textArea"
 									name="pb_Content" placeholder="도대체 무슨 생각하면서 사냐??"
 									style="padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
 						</tr>

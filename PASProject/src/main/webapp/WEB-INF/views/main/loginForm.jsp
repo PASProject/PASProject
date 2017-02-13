@@ -128,7 +128,6 @@ body {
 				},
 				success : function(result) {
 					if (result == 1) {
-						alert('감?');
                         location.href="<%=request.getContextPath()%>/main/myProject"
 											} else if (result == 0) {
 												alert("아이디가 틀렸습니다");
@@ -230,13 +229,13 @@ body {
 
 		<div class="container">
 
-			<div id="1">
+			<div id="1" >
 				<%@ include file="CAPTCHA.jsp"%>
 				<%-- <jsp:include page="CAPTCHA.jsp" /> --%>
 				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>
 			</div>
 			<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-			<div id="2" style="display: none">
+			<div id="2" >
 				<form>
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"

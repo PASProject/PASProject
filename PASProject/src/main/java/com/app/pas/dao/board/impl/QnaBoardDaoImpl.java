@@ -16,9 +16,15 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 	}
 
 	@Override
-	public List<QnaBoardVo> selectQnaBoardList() throws SQLException {
-		List<QnaBoardVo> list = client.queryForList("selectQnaBoardList");
+	public List<QnaBoardVo> selectQnaBoardList(QnaBoardVo qnaBoarVo) throws SQLException {
+		List<QnaBoardVo> list = client.queryForList("selectQnaBoardList",qnaBoarVo);
 		return list;
+	}
+//리스트전체 조회
+	@Override
+	public List<QnaBoardVo> selectAllQna() throws SQLException {
+		List<QnaBoardVo>list =client.queryForList("selectAllQna");
+		return null;
 	}
 	
 	@Override
@@ -49,6 +55,11 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		int totalCount = (Integer) client.queryForObject("QnaSelectTotalCount");
 		return totalCount;
 		
+	}
+	@Override
+	public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo) throws SQLException {
+		int totalCount = (Integer)client.queryForObject("QnaSearchTotalCount",qnaBoardVo);
+		return	totalCount;
 	}
 
 	@Override

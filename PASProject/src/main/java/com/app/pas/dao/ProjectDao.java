@@ -16,4 +16,5 @@ public interface ProjectDao {
 	public List<ProjectVo> selectMyProjectListById(String mem_Email)throws SQLException;
 	public List<ProjectVo> selectOtherProjectListById(String mem_Email) throws SQLException;
 	public ProjectVo selectLastInsertProject(String mem_Email) throws SQLException;
+	public void updateProjectImg(ProjectVo projectVo) throws SQLException;
 }

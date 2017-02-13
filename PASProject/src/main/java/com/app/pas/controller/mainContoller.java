@@ -73,7 +73,6 @@ public class mainContoller {
 			String pwd) {
 
 		int result = 0;
-System.out.println("asdfasdf");
 		MemberVo memberVo = null;
 
 		memberVo = memberService.getMember(email);
@@ -182,7 +181,21 @@ System.out.println("asdfasdf");
 			session.removeAttribute("proj_Num");
 		}
 
+		if (session.getAttribute("joinProj") != null
+				&& session.getAttribute("joinProj") != "null") {
+			session.removeAttribute("joinProj");
+		}
 		return url;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	@RequestMapping("/otherProject")
@@ -198,8 +211,12 @@ System.out.println("asdfasdf");
 		if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
 		}
-
+		if (session.getAttribute("joinProj") != null
+				&& session.getAttribute("joinProj") != "null") {
+			session.removeAttribute("joinProj");
+		}
 		return url;
+		
 	}
 
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)

@@ -34,7 +34,7 @@
 <!-- jQuery -->
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <!-- Bootstrap Core CSS -->
 
 
@@ -57,7 +57,7 @@
 	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-	
+
 
 
 
@@ -118,7 +118,6 @@
 
 
 
-
 <!--  For modal -->
 
 
@@ -136,12 +135,13 @@
 <style>
 @font-face {
 	font-family: 'NanumGothic';
-	src: url(<%=request.getContextPath()%>resources/fonts/NANUMGOTHIC.TTF) format('truetype');
+	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
+		format('truetype');
 }
 </style>
 <style>
 body {
-	font-family : 'NanumGothic';
+	font-family: 'NanumGothic';
 	background-color: rgb(249, 249, 249);
 }
 
@@ -180,7 +180,6 @@ body {
 	background-color: #4D76A3;
 }
 
-
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #4D76A3;
@@ -201,14 +200,30 @@ body {
 	width: 40px;
 	height: 40px;
 }
-#a li a:hover{
-background-color:#6093cc;
-color:white;
-font-weight:bold;
+
+#a li a:hover {
+	background-color: #6093cc;
+	color: white;
+	font-weight: bold;
 }
 </style>
 
-
+<style>
+#greenBtn {
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+	background-color: #6cc644;
+	background-image: -webkit-linear-gradient(#91dd70, #55ae2e);
+	background-image: linear-gradient(#91dd70, #55ae2e);
+	border: 1px solid #5aad35;
+}
+#greenBtn:hover {
+    background-color: #55a532;
+    background-image: -webkit-linear-gradient(#85d063, #4f992f);
+    background-image: linear-gradient(#85d063, #4f992f);
+    border-color: #519d30;
+}
+</style>
 
 
 
@@ -229,7 +244,7 @@ font-weight:bold;
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
-					
+
 						<li><a href="<%=request.getContextPath()%>/main/myProject">내
 								프로젝트 보기</a></li>
 						<li><a href="<%=request.getContextPath()%>/main/otherProject">다른
@@ -290,16 +305,7 @@ font-weight:bold;
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
-								<li><a href="#" onclick="imgUploadModal();"> <!-- 		String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload"); -->
-
-										<%-- <% 
-								String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
-								MemberVo member = new MemberVo();								
-								member = (MemberVo)session.getAttribute("loginUser");
-								String img = member.getMem_Img();
-								upload = upload+"\\"+img;
-									
-								%> --%> <%-- <img src="<%=upload%>" --%> <img
+								<li><a href="#" onclick="imgUploadModal();"> <img
 										class="img-thumbnail"
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
@@ -318,11 +324,8 @@ font-weight:bold;
 						<li><a href="#" id="alarmMenu"
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
-							style="font-size: 25px;"> </a>
-
-							<span id="alarmCount" style = "color: red; display:none;"></span>
-
-							<span id = "alarmZone"></span>							
+							style="font-size: 25px;"> </a> <span id="alarmCount"
+							style="color: red; display: none;"></span> <span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 
@@ -418,10 +421,10 @@ font-weight:bold;
 					<%@ include file="WEB-INF/views/main/myPage.jsp"%>
 				</div>
 				<div class="modal-footer" style="text-align: left">
-								
-						<button class="btn btn-default pull-right" type="submit" id="submit"
-							style="margin-left: 5px;">정보 수정하기</button>
-						 <script>
+
+					<button class="btn btn-default pull-right" type="submit"
+						id="submit" style="margin-left: 5px;">정보 수정하기</button>
+					<script>
 							$('#submit').click(function(){
 								var mem_Phone = $('#mem_Phone').val();
 								var mem_Pass = $('#userPw').val();
@@ -447,9 +450,9 @@ font-weight:bold;
 							})
 							
 							
-							</script> 
+							</script>
 
-					
+
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
 					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
@@ -460,31 +463,31 @@ font-weight:bold;
 							})
 						});
 						</script>
-				
+
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<c:choose>
-	<c:when test="${empty sessionScope.joinProj }">
-	<decorator:body />
-	
-	</c:when>
-		<c:otherwise>
-		<div class="container">
-		<div class="row">
-			<div class="col-md-2" id="submenu" style="margin-top: 40px;">
-				<jsp:include page="sub.jsp" />
-			</div>
+		<c:when test="${empty sessionScope.joinProj }">
 			<decorator:body />
-		</div>
-	</div>
-			
+
+		</c:when>
+		<c:otherwise>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2" id="submenu" style="margin-top: 40px;">
+						<jsp:include page="sub.jsp" />
+					</div>
+					<decorator:body />
+				</div>
+			</div>
+
 		</c:otherwise>
 	</c:choose>
 	<c:set var="loginUserEmail" value="${loginUser.mem_Email}"></c:set>
-	
+
 </body>
 <script>
 	$(document).ready(
@@ -657,7 +660,8 @@ font-weight:bold;
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>/main/logOut";
+		location.href = "<%=request.getContextPath()%>
+	/main/logOut";
 	}
 </script>
 </html>

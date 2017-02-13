@@ -79,4 +79,9 @@ public class ProjectService {
 		ProjectVo projectVo =projectDao.selectProject(proj_Num);
 		return projectVo;
 	}
+	
+	public void updateProjectImg(ProjectVo projectVo) throws SQLException {
+		projectDao.updateProjectImg(projectVo);
+	}
+	
 }

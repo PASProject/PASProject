@@ -134,6 +134,42 @@
 	   
 	   
    })
+   
+   function show(acc_Num){
+			
+			
+			$(function() {	
+			alert(acc_Num+"도아줘!");
+			var datalist = {'acc_Num':acc_Num}
+	   $.ajax({
+			type :'POST',
+			url : 'activeModal',
+			dataType : 'json',
+			contentType : 'application/json; charset=UTF-8',
+			data : JSON.stringify(datalist),
+			success : function(data){
+				alert(data.acc_Content);
+				
+				/* $("#upacc_Date").html(data.acc_Date);
+				$("#upacc_Imp").html(data.acc_Imp);
+				$("#upacc_Exp").html(data.acc_Exp);
+				$("#upacc_Content").html(data.acc_Content); */
+				$('#modalAccount').modal('show');   
+
+				 
+			}
+		  
+		   
+		   
+		   
+		   
+	   })
+			})
+	   
+	   
+	   
+	   
+   }
 
 	
 
@@ -160,47 +196,9 @@
 				</tr>
 				<c:forEach var="AccountBoardList" items="${AccountBoardList }">
 					<tr>
-						<td><a href="#" data-toggle="modal"
-							data-target="#${AccountBoardList.acc_Num}">${AccountBoardList.acc_Date}</a>
-
-							<!-- Modal -->
-							<div class="modal fade" id="${AccountBoardList.acc_Num}"
-								role="dialog">
-								<div class="modal-dialog">
-
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">상세 정보</h4>
-										</div>
-										<div class="modal-body">
-											<p>Some text in the modal.</p>
-											<input type="text" id="upproj_Num" value="${joinProj }">
-											<input type="text" id="upacc_Num"
-												value="${AccountBoardList.acc_Num }"> 날짜:<input
-												type="date" id="upacc_Date"
-												value="${AccountBoardList.acc_Date }"> 수입:<input
-												type="text" id="upacc_Imp"
-												value="${AccountBoardList.acc_Imp }"> 비용:<input
-												type="text" id="upacc_Exp"
-												value="${AccountBoardList.acc_Exp }"> 내용:<input
-												type="text" id="upacc_Content"
-												value="${AccountBoardList.acc_Content }">
-
-										</div>
-										<div class="modal-footer">
-											<input type="button" class="btn btn-default"
-												data-dismiss="modal" id="AccountUpdate" value="회계 수정">
-											<input type="button" class="btn btn-default"
-												data-dismiss="modal" id="AccountDelete" value="회계삭제">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
-										</div>
-									</div>
-
-								</div>
-							</div></td>
+						<td>
+						<button type="button"  onclick="show(${AccountBoardList.acc_Num})">
+                        ${AccountBoardList.acc_Date}</button></td>
 						<td>${AccountBoardList.acc_Imp }</td>
 						<td>${AccountBoardList.acc_Exp }</td>
 						<td class="col-md-4 text-center">${AccountBoardList.acc_Content }</td>
@@ -227,6 +225,41 @@
 						</c:if></td>
 				</tr>
 			</table>
+			
+			<!-- Modal -->
+							<div class="modal fade" id="modalAccount"
+		    						role="dialog">
+								<div class="modal-dialog">
+
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">상세 정보</h4>
+										</div>
+										<div class="modal-body">
+											<p>Some text in the modal.</p>
+											프로젝트 번호:<input type="text" id="upproj_Num"> <br>
+											날짜:<input type="text" id="upacc_Date"><br>
+											수입:<input type="text" id="upacc_Imp"><br>
+											지출:<input type="text" id="upacc_Exp"><br>
+											내용:<input type="text" id="upacc_Content"><br>									
+
+										</div>
+										<div class="modal-footer">
+											<input type="button" class="btn btn-default"
+												data-dismiss="modal" id="AccountUpdate" value="회계 수정">
+											<input type="button" class="btn btn-default"
+												data-dismiss="modal" id="AccountDelete" value="회계삭제">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+										</div>
+									</div>
+
+								</div>
+							</div>
+			
+			
 
 
 			<button type="button" class="btn btn-default" data-toggle="modal"
