@@ -149,11 +149,12 @@
 			data : JSON.stringify(datalist),
 			success : function(data){
 				alert(data.acc_Content);
-				
-				/* $("#upacc_Date").html(data.acc_Date);
-				$("#upacc_Imp").html(data.acc_Imp);
-				$("#upacc_Exp").html(data.acc_Exp);
-				$("#upacc_Content").html(data.acc_Content); */
+				$('#upproj_Num').val(data.proj_Num);
+				$("#upacc_Num").val(data.acc_Num);
+				$("#upacc_Date").val(data.acc_Date);
+				$("#upacc_Imp").val(data.acc_Imp);
+				$("#upacc_Exp").val(data.acc_Exp);
+				$("#upacc_Content").val(data.acc_Content); 
 				$('#modalAccount').modal('show');   
 
 				 
@@ -239,6 +240,7 @@
 										</div>
 										<div class="modal-body">
 											<p>Some text in the modal.</p>
+											게시물 번호:<input type="text" id="upacc_Num"><br>
 											프로젝트 번호:<input type="text" id="upproj_Num"> <br>
 											날짜:<input type="text" id="upacc_Date"><br>
 											수입:<input type="text" id="upacc_Imp"><br>

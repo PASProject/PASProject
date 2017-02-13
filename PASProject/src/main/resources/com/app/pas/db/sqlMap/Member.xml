@@ -103,4 +103,12 @@
 		select mem_Email,mem_Name from MEMBER 
 	</select>
 	
+	<select id="selectMemberPhone" parameterClass="str" resultClass="str">
+	    select mem_Phone 
+	    from member 
+	    where mem_Email= #mem_Email#
+	</select>
+	
+	
+	
 </sqlMap>

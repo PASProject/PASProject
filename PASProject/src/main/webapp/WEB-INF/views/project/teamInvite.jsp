@@ -11,6 +11,7 @@
 <title></title>
 </head>
 <body>
+<form>
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
@@ -30,17 +31,14 @@
 					<td>${InviteList.mem_Email }</td>
 					<td>${InviteList.mem_Name }</td>
 					<td>${InviteList.invite_Time }</td>
-					<c:if test="${InviteList.invite_Commit_Check eq 0}">
-					<td>미수락중</td>
-					</c:if>
-					
-					
+					<td>미수락중 / <input type="button" value="초대취소" onclick="deleteBtn(this.form)"></td>
 				</tr>
+				<input type="hidden" name="inviteMem_Email" value="${InviteList.mem_Email }">
 			</c:forEach>
 		</table>
 
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#invite">초대</button>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#invite">초대</button>
+		
 		<div class="modal fade" id="invite" role="dialog">
 			<div class="modal-dialog">
 
@@ -64,18 +62,23 @@
 			</div>
 		</div>
 	</div>
+	</form>
 	
 	<script>
 	$("#close").click(function(){
 		
 	    $('#zone').text("");
-	   
 
 	})
 	
-
 	
-	
+	function deleteBtn(form){
+		
+		form.action="deleteInvite";
+		form.method="post";
+		form.submit();
+		
+	}
 	</script>
 </body>
 </html>

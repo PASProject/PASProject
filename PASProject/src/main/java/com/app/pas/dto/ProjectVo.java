@@ -10,6 +10,7 @@ public class ProjectVo {
 	private String mem_Name;
 	private String mem_Img;
 	private String proj_Img;
+    private String mem_Phone;
 	
 	@Override
 	public String toString() {
@@ -20,6 +21,18 @@ public class ProjectVo {
 	
 	
 	
+	public String getMem_Phone() {
+		return mem_Phone;
+	}
+
+
+
+	public void setMem_Phone(String mem_Phone) {
+		this.mem_Phone = mem_Phone;
+	}
+
+
+
 	public String getProj_Img() {
 		return proj_Img;
 	}

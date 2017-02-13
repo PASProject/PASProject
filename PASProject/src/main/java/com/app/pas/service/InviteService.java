@@ -25,5 +25,9 @@ public class InviteService {
 		inviteDao.insertInvite(inviteVo);
 	}
 	
+	public void deleteInvite(InviteVo inviteVo) throws SQLException {
+		inviteDao.deleteInvite(inviteVo);
+	}
+	
 
 }

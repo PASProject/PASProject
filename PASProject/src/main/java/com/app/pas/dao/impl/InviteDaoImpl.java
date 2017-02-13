@@ -32,8 +32,8 @@ public class InviteDaoImpl implements InviteDao{
 	}
 
 	@Override
-	public void deleteInvite(int invite_Num) throws SQLException {
-		client.update("deleteInvite",invite_Num);
+	public void deleteInvite(InviteVo inviteVo) throws SQLException {
+		client.update("deleteInvite",inviteVo);
 	}
 
 	@Override
