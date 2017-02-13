@@ -23,7 +23,6 @@
       p:dataSource-ref="dataSource"
       p:typeAliasPackages="com.app.pas.**"
       p:mappingLocations="classpath:com/app/pas/db/sqlMap/*.xml"
-      
       /> <!-- iBatis 완성.... -->
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
