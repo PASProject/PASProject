@@ -11,7 +11,7 @@ public class MemPositionViewVo {
 	private String position_Name;
 	private int proj_Num;
 	private String proj_Name;
-
+	
 
 	@Override
 	public String toString() {

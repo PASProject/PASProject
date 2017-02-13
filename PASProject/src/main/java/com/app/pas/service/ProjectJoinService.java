@@ -17,5 +17,9 @@ public class ProjectJoinService {
 		projectjoinDao.insertProjectJoin(projectjoinVo);
 	}
 	
+	public void deleteProjectJoin(ProjectJoinVo projectJoinVo) throws SQLException{
+		projectjoinDao.deleteProjectJoin(projectJoinVo);
+	}
+	
 	
 }

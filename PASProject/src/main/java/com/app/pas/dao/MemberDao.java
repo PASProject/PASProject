@@ -29,5 +29,6 @@ public interface MemberDao {
     public int selectMemberTotalCount() throws SQLException;
     public int selectCountMemApplyViewByEmail(String p_Mem_Email) throws SQLException;
     public List<MemberCommandVo> selectMemberEmailList()throws SQLException;
+    public String selectMemberPhone(String mem_Email)throws SQLException;
 
 }

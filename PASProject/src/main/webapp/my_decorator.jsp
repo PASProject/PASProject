@@ -52,12 +52,12 @@
 
 <!-- JS -->
 
-
+<%-- 
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-	
+	 --%>
 
 
 

@@ -24,8 +24,8 @@
       WHERE INVITE_NUM = #invite_Num#
    </update>
    
-   <update id="deleteInvite" parameterClass="int">
-      delete from INVITE where INVITE_NUM=#invite_Num#
+   <update id="deleteInvite" parameterClass="Invite">
+      delete from INVITE where proj_Num=#proj_Num# and mem_Email=#mem_Email#
    </update>
    
    <select id="selectInviteList" parameterClass="ProjInviteView" resultClass="ProjInviteView">
@@ -33,6 +33,8 @@
    from proj_invite_view 
    where proj_Num = #proj_Num# 
    </select>
+   
+   
    
    
    

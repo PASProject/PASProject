@@ -81,9 +81,9 @@
 											data : {
 												'mem_Email' : mem_Email
 											},
-											success : function() {
+											success : function(data) {
 												alert('초대완료!');
-												location.href="<%=request.getContextPath()%>/project/pmMemInvite"
+												location.href="<%=request.getContextPath()%>/project/pmMemberInvite"
 
 											}
 										});
