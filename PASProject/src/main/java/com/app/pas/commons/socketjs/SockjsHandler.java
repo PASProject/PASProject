@@ -1,7 +1,6 @@
 package com.app.pas.commons.socketjs;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,8 +10,6 @@ import org.springframework.web.socket.PongMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-
-import com.google.gson.Gson;
 
 
 public class SockjsHandler extends TextWebSocketHandler{

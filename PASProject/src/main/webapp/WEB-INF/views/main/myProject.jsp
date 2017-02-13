@@ -11,8 +11,6 @@
 </head>
 
 <body>
-
-
 	<!-- Page Content -->
 	<div class="container">
 
@@ -20,8 +18,11 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">
-					내 프로젝트 목록
-					<!-- <small>Secondary Text</small> -->
+					참여 프로젝트 목록
+					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
+						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
+			
+
 
 
 				</h2>
@@ -33,15 +34,17 @@
 		<c:choose>
 			<c:when test="${empty myProjectList}">
 				<div class="col-md-12 ">
-					<h3 class="text-center" style="line-height: 1.4; margin-top: 0px;">
+					<h3 class="text-center" style="line-height: 1.4; margin-top: 50px;">
 						참여중이거나 완료된 프로젝트가 없습니다<br>프로젝트를 만들어 주세요
 					</h3>
 					<br> <br>
 					<div class="text-center">
-						<img src="<%=request.getContextPath()%>/resources/img/plus.png">
+
+						<img src="<%=request.getContextPath()%>/resources/img/plus1.png"
 						id="createProject" value="생성하기" data-toggle="modal"
 						data-target="#create" data-keyboard="false" style="cursor:
 						pointer; width: 430px;" data-backdrop="static" />
+
 					</div>
 				</div>
 
@@ -81,8 +84,8 @@
 							})
 							</script> -->
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
-						<button class="btn btn-block"
-							onclick="javascript:gogo(${projectVo.proj_Num})" id="greenBtn">입장하기</button>
+						<button class="btn btn-block btn-default"
+							onclick="javascript:gogo(${projectVo.proj_Num})" id="greenBtn1">입장하기</button>
 					</div>
 
 					<!-- Modal -->
@@ -94,7 +97,6 @@
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"></h4>
 									${projectVo.proj_Name }
-
 								</div>
 								<div class="modal-body" id="${projectVo.proj_Num}body">팀원
 								</div>
@@ -143,7 +145,7 @@
 
 
 
-
+<%-- 
 		<!-- Pagination -->
 
 
@@ -161,7 +163,7 @@
 					</ul>
 				</div>
 			</div>
-		</c:if>
+		</c:if> --%>
 
 		<!--
 		<hr>

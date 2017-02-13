@@ -209,7 +209,7 @@ body {
 </style>
 
 <style>
-#greenBtn {
+.createProject {
 	color: #fff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 	background-color: #6cc644;
@@ -217,7 +217,7 @@ body {
 	background-image: linear-gradient(#91dd70, #55ae2e);
 	border: 1px solid #5aad35;
 }
-#greenBtn:hover {
+.createProject:hover {
     background-color: #55a532;
     background-image: -webkit-linear-gradient(#85d063, #4f992f);
     background-image: linear-gradient(#85d063, #4f992f);
@@ -245,9 +245,9 @@ body {
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
 
-						<li><a href="<%=request.getContextPath()%>/main/myProject">내
+						<li><a href="<%=request.getContextPath()%>/main/myProject">참여
 								프로젝트 보기</a></li>
-						<li><a href="<%=request.getContextPath()%>/main/otherProject">다른
+						<li><a href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 
 					</ul>
@@ -660,8 +660,7 @@ body {
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>
-	/main/logOut";
+		location.href = "<%=request.getContextPath()%>/main/logOut";
 	}
 </script>
 </html>
