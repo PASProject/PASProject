@@ -6,8 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="QnaBoard" type="com.app.pas.dto.board.QnaBoardVo" />
-
+	
 	<select id="selectQnaBoardList" resultClass="QnaBoard" parameterClass="QnaBoard">
 		SELECT * FROM QNA_BOARD
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and

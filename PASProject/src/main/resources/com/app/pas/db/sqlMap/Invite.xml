@@ -6,8 +6,7 @@
 
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="Invite" type="com.app.pas.dto.InviteVo" />
-   <typeAlias alias="ProjInviteView" type="com.app.pas.dto.ProjInviteViewVo" />
+   
    
    <select id="selectInvite" parameterClass="str" resultClass="int" >
       select * from Invite where INVITE_NUM=#invite_Num#

@@ -6,7 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="FreeBoardReply" type="com.app.pas.dto.board.FreeBoardReplyVo" />
+	
 
 
 	<select id="selectFreeBoardReply" parameterClass="int"

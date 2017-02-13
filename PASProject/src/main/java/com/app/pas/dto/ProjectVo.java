@@ -1,6 +1,13 @@
 package com.app.pas.dto;
 
-public class ProjectVo {
+import java.io.Serializable;
+
+import kr.or.ddit.commons.ibatis.Alias;
+import lombok.Data;
+
+@Alias("Project")
+@Data
+public class ProjectVo implements Serializable{
 
 	private int proj_Num;
 	private String mem_Email;

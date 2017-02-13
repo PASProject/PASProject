@@ -1,8 +1,15 @@
 package com.app.pas.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ScheduleCalendarVo {
+import kr.or.ddit.commons.ibatis.Alias;
+import lombok.Data;
+
+
+@Alias("ScheduleCalendar")
+@Data
+public class ScheduleCalendarVo implements Serializable {
 
 	
 	private int gt_Num;

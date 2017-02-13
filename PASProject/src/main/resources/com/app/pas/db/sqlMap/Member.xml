@@ -5,10 +5,7 @@
 <sqlMap namespace="Member">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="Member" type="com.app.pas.dto.MemberVo" />
-	<typeAlias alias ="MemApplyView" type="com.app.pas.dto.MemApplyViewVo"/>
-	<typeAlias alias ="MemPositionView" type="com.app.pas.dto.MemPositionViewVo"/>
-	<typeAlias alias="MemberCommand" type="com.app.pas.dto.MemberCommandVo"/>
+	
 
 	<select id="selectMemberList" parameterClass="str" resultClass="Member">
 		select * from MEMBER where MEM_EMAIL LIKE '%'||#mem_Email#||'%'

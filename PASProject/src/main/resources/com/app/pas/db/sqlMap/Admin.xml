@@ -6,17 +6,16 @@
 
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="admin" type="com.app.pas.dto.AdminVo" />
    
-   <select id="selectAdmin" parameterClass="str" resultClass="admin" >
+   <select id="selectAdmin" parameterClass="str" resultClass="Admin" >
       select * from admin where admin_email=#admin_Email#
    </select>
    
-   <update id="insertAdmin" parameterClass="admin">
+   <update id="insertAdmin" parameterClass="Admin">
       insert into member(admin_email,admin_pass) values(#admin_Email#,#admin_Pass#)
    </update>
    
-   <update id="updateAdmin" parameterClass="admin">
+   <update id="updateAdmin" parameterClass="Admin">
       update admin set admin_email=#admin_Pass# where admin_email=#admin_Email#
    </update>
    

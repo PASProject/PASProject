@@ -6,8 +6,7 @@
 
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="Project" type="com.app.pas.dto.ProjectVo" />
-   <typeAlias alias="MemPositionViewVo" type="com.app.pas.dto.MemPositionViewVo"/>
+  
    
    <select id="selectProjectList" parameterClass="int" resultClass="Project" >
       select * from PROJECT where PROJ_NUM LIKE '%'||#proj_Num#||'%'
@@ -16,14 +15,14 @@
    	 select * from project where proj_num = #proj_Num#
    </select>
    
-   <select id="selectMyProjectListById" parameterClass="str" resultClass="project">
+   <select id="selectMyProjectListById" parameterClass="str" resultClass="Project">
     select A.MEM_EMAIL AS MEM_EMAIL, A.PROJ_CONTENT AS PROJ_CONTENT, A.PROJ_NAME AS PROJ_NAME, A.PROJ_NUM AS PROJ_NUM, A.PROJ_CHECK AS PROJ_CHECK
 	from project A, (select distinct proj_num from mem_position_view where mem_email = #mem_Email# and pjj_per_num=1)m
 	where A.PROJ_NUM = M.PROJ_NUM
 	and a.proj_check='y'
    </select>
    
-   <select id="selectOtherProjectListById" parameterClass="str" resultClass="project">
+   <select id="selectOtherProjectListById" parameterClass="str" resultClass="Project">
 	    select A.MEM_EMAIL AS MEM_EMAIL, A.PROJ_CONTENT AS PROJ_CONTENT, A.PROJ_NAME AS PROJ_NAME, A.PROJ_NUM AS PROJ_NUM, A.PROJ_CHECK AS PROJ_CHECK
 		from project A
     	where proj_num not in ( select distinct proj_num from mem_position_view where mem_email =#mem_Email# and pjj_per_Num ='1')    
@@ -43,7 +42,7 @@
       delete from PROJECT where PROJ_NUM=#proj_Num#
    </update>
    
-   <select id="selectMemPositionViewListByProjNum" parameterClass="int" resultClass="MemPositionViewVo">
+   <select id="selectMemPositionViewListByProjNum" parameterClass="int" resultClass="MemPositionView">
    		select * from mem_position_view where pjj_per_num = 1 and proj_num = #proj_Num#
    </select>
    

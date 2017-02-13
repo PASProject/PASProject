@@ -1,6 +1,15 @@
 package com.app.pas.dto.board;
 
-public class SkillSharingBoardReplyVo {
+import java.io.Serializable;
+
+import kr.or.ddit.commons.ibatis.Alias;
+import lombok.Data;
+
+
+
+@Alias("SkillSharingBoardReply")
+@Data
+public class SkillSharingBoardReplyVo implements Serializable{
 
 	private int ssb_Reply_Num;
 	private int ssb_Article_Num;
@@ -8,44 +17,6 @@ public class SkillSharingBoardReplyVo {
 	private String ssb_Reply_Content;
 	private String ssb_Reply_Mem_Name;
 	
-	public String getSsb_Reply_Mem_Name() {
-		return ssb_Reply_Mem_Name;
-	}
-
-	public void setSsb_Reply_Mem_Name(String ssb_Reply_Mem_Name) {
-		this.ssb_Reply_Mem_Name = ssb_Reply_Mem_Name;
-	}
-
-	public int getSsb_Reply_Num() {
-		return ssb_Reply_Num;
-	}
-
-	public void setSsb_Reply_Num(int ssb_Reply_Num) {
-		this.ssb_Reply_Num = ssb_Reply_Num;
-	}
-
-	public int getSsb_Article_Num() {
-		return ssb_Article_Num;
-	}
-
-	public void setSsb_Article_Num(int ssb_Article_Num) {
-		this.ssb_Article_Num = ssb_Article_Num;
-	}
-
-	public String getSsb_Reply_Mem() {
-		return ssb_Reply_Mem;
-	}
-
-	public void setSsb_Reply_Mem(String ssb_Reply_Mem) {
-		this.ssb_Reply_Mem = ssb_Reply_Mem;
-	}
-
-	public String getSsb_Reply_Content() {
-		return ssb_Reply_Content;
-	}
-
-	public void setSsb_Reply_Content(String ssb_Reply_Content) {
-		this.ssb_Reply_Content = ssb_Reply_Content;
-	}
+	
 
 }

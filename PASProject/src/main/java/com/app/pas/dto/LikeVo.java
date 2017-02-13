@@ -1,15 +1,17 @@
 package com.app.pas.dto;
 
-public class LikeVo {
+import java.io.Serializable;
+
+import kr.or.ddit.commons.ibatis.Alias;
+import lombok.Data;
+
+
+@Alias("Like")
+@Data
+public class LikeVo implements Serializable{
  private int likeCount;
 
-public int getLikeCount() {
-	return likeCount;
-}
 
-public void setLikeCount(int likeCount) {
-	this.likeCount = likeCount;
-}
  
  
 }

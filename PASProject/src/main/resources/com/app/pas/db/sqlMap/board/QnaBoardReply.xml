@@ -6,7 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="QnaBoardReply" type="com.app.pas.dto.board.QnaBoardReplyVo" />
+	
 
 
 	<select id="selectQnaReply" parameterClass="int"

@@ -6,7 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="SkillSharingBoardReply" type="com.app.pas.dto.board.SkillSharingBoardReplyVo" />
+	
 
 	<select id="selectSkillSharingBoardReplyList" resultClass="SkillSharingBoardReply">
 		SELECT *
