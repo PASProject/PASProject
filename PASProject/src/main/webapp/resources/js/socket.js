@@ -3,7 +3,7 @@ var msg;
 var loginUserId;
 function connect(loginUserId) {
 			wsocket = new SockJS(
-					"http://192.168.202.118:8181/pas/conSocket.sockjs");
+					"http://192.168.0.8:8181/pas/conSocket.sockjs");
 			this.loginUserId = loginUserId;
 			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;
@@ -21,7 +21,7 @@ function connect(loginUserId) {
 	
 	function onMessage(evt) {
 		var data = evt.data;
-		$('#alarmZone').append("알림이야 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ힝 속았찌");
+		alert("꺼저");
 	}
 	function onClose(evt) {
 		appendMessage("연결을 끊었습니다.");

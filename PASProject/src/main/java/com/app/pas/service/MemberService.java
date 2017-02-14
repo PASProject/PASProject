@@ -35,7 +35,12 @@ public class MemberService {
 		}
 		return member;
 	}
-
+	
+	public List<MemberVo> selectMemList(String mem_Email) throws SQLException {
+		List<MemberVo> list = memberDao.selectMemList(mem_Email);
+		return list;
+	}
+	
 	public void insertMember(MemberVo memberVo) throws SQLException {
 		memberDao.insertMember(memberVo);
 	}
@@ -147,7 +152,10 @@ public class MemberService {
 			List<MemberCommandVo> list=memberDao.selectMemberEmailList();
 			return list;
 		}
-	
+		public void updateMemberQuitCheck(MemberVo memberVo) throws SQLException {
+			memberDao.updateMemberQuitCheck(memberVo);
+			
+		}
 
 
 }

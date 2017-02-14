@@ -44,11 +44,10 @@ public class AdminMemberController {
 			@RequestParam(defaultValue = "") String mem_Email)
 			throws SQLException {
 		String url = "admin/adminMemberList";
-		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@["+mem_Email+"]@@@@@@@@@@@@@@@@@@@@@@@@@");
 		int totalCount = 0;
 		List<MemberVo> memberList = new ArrayList<MemberVo>();
-
-		memberList = memberService.selectMemberList();
+		memberList = memberService.selectMemList(mem_Email);
 		totalCount = memberService.selectMemberTotalCount();
 
 		if (page.equals(null) || page == "") {
@@ -101,8 +100,29 @@ public class AdminMemberController {
 			@RequestParam(value = "mem_Email") String mem_Email,
 			HttpSession session) throws NumberFormatException, SQLException {
 		String url = "redirect:memberList";
-
-		memberService.deleteMember(mem_Email);
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
+		/*memberService.deleteMember(mem_Email);*/
+		
+		return url;
+	}
+	
+	@RequestMapping("/memberQuitCheck")
+	public String memberQuitCheck(
+			@RequestParam(value = "") String mem_Email, String quit_Check,
+			HttpSession session,MemberVo memberVo) throws NumberFormatException, SQLException {
+		String url = "redirect:memberList";
+		System.out.println("@@@@@@@@@@@@@@@@@@@"+mem_Email+"@@@@@@@@@@@@@@@@@@@");
+		System.out.println("@@@@@@@@@@@@@@@@@@@"+quit_Check+"@@@@@@@@@@@@@@@@@@@");
+		System.out.println(memberVo.toString());
+		memberVo = memberService.getMember(mem_Email);
+		memberVo.setQuit_Check(quit_Check);
+		memberService.updateMemberQuitCheck(memberVo);
 
 		return url;
 	}
