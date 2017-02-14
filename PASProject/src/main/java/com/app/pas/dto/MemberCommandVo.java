@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class MemberCommandVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1165704238208399835L;
 	private String mem_Email;
 	private String mem_Name;
 	

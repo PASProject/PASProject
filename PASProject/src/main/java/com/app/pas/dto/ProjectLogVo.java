@@ -13,7 +13,11 @@ import lombok.Data;
 @Alias("ProjectLog")
 public class ProjectLogVo implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5065305516347041627L;
 	private String mem_Email;
 	private int proj_Num;
 	private int proj_Log_Num;

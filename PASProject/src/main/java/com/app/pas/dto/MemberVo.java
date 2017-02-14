@@ -11,6 +11,11 @@ import lombok.Data;
 @Data
 public class MemberVo implements Serializable{
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6042004488942536271L;
 	private String mem_Email;
 	private String quit_Check;
 	private String mem_Name;

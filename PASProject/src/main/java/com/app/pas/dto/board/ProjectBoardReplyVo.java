@@ -10,6 +10,10 @@ import lombok.Data;
 public class ProjectBoardReplyVo implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1617531274522471839L;
 	private int pb_Reply_Num;
 	private String pb_Reply_Mem;
 	private String pb_Reply_Content;

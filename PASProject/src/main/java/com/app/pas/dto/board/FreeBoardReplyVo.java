@@ -13,6 +13,10 @@ public class FreeBoardReplyVo implements Serializable{
 
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5305142254812233310L;
 	private int frb_Reply_Num;
 	private int frb_Article_Num;
 	private String frb_Reply_Mem;

@@ -11,6 +11,10 @@ import lombok.Data;
 public class AccountBoardVo implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1934031726029780543L;
 	private int acc_Num;
 	private Timestamp acc_Date;
 	private int acc_Imp;

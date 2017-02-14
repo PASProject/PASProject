@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class InviteVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7380871539250222346L;
 	private int invite_Num;
 	private String invite_Content;
 	private String invite_Commit_Check;

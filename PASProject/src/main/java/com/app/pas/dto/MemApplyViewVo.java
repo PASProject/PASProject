@@ -10,6 +10,10 @@ import lombok.Data;
 @Alias("MemApplyView")
 @Data
 public class MemApplyViewVo implements Serializable{
+	
+
+	private static final long serialVersionUID = -2564133866533752763L;
+	
 	private int apply_Num;
 	private Timestamp apply_Time;
 	private String apply_Commit_Check;

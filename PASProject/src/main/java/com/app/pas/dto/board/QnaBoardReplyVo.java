@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class QnaBoardReplyVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8811232382707712323L;
 	private int qb_Reply_Num;
 	private String qb_Reply_Time;
 	private int qb_Article_Num;

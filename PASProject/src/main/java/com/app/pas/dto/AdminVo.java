@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class AdminVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6355823050838702970L;
 	private String admin_Email;
 	private String admin_Pass;
 	
