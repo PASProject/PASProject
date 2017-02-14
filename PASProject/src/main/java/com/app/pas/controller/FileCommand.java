@@ -1,5 +1,8 @@
 package com.app.pas.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileCommand {

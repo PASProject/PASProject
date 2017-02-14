@@ -76,7 +76,7 @@ public class MemberDaoImpl implements MemberDao {
 		memApplyViewVo = (MemApplyViewVo) client.queryForObject("selectMemApplyViewByMemProj",memApplyViewVo);
 		return memApplyViewVo;
 	}
-	// 여준영 부분
+	// �뿬以��쁺 遺�遺�
 		public void updateMemberImg(MemberVo memberVo) throws SQLException{
 		    client.update("updateMemberImg",memberVo);
 		}
@@ -145,9 +145,17 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void updateMemberQuitCheck(MemberVo memberVo) throws SQLException {
 		client.update("updateMemberQuitCheck", memberVo);
 		
 	}
 
+=======
+	public String selectMemberPhone(String mem_Email) throws SQLException {
+		String mem_Phone = (String) client.queryForObject("selectMemberPhone", mem_Email);
+		return mem_Phone;
+	}
+	
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 }

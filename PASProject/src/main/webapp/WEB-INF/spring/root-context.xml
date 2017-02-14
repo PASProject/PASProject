@@ -4,12 +4,20 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
+    <context:component-scan base-package="com.app"  use-default-filters="false">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    
+    </context:component-scan> 
+    
 <!-- ////////////////////////////////////////// Dao  //////////////////////////////////////////////////////////// -->
  	<bean id="AdminDao" class="com.app.pas.dao.impl.AdminDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="ApplyDao" class="com.app.pas.dao.impl.ApplyDaoImpl" p:client-ref="SqlMapClient"/>
@@ -20,6 +28,8 @@
 	<bean id="ProjectDao" class="com.app.pas.dao.impl.ProjectDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="ProjectJoinDao" class="com.app.pas.dao.impl.ProjectJoinDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="ScheduleCalendarDao" class="com.app.pas.dao.impl.ScheduleCalendarDaoImpl" p:client-ref="SqlMapClient"/>
+	<!-- <bean id="MemberLogDao" class="com.app.pas.dao.impl.MemberLogDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="ProjectLogDao" class="com.app.pas.dao.impl.ProjectLogDaoImpl" p:client-ref="SqlMapClient"/> -->
 	
 	<bean id="AccountBoardDao" class="com.app.pas.dao.board.impl.AccountBoardDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="FreeBoardDao" class="com.app.pas.dao.board.impl.FreeBoardDaoImpl" p:client-ref="SqlMapClient"/>
@@ -44,6 +54,8 @@
 	<bean id="ProjectJoinService" class="com.app.pas.service.ProjectJoinService" p:projectjoinDao-ref="ProjectJoinDao"/>
 	<bean id="ProjectService" class="com.app.pas.service.ProjectService" p:projectDao-ref="ProjectDao" p:applyDao-ref="ApplyDao" p:projectJoinDao-ref="ProjectJoinDao" p:memberDao-ref="MemberDao"/>
 	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:schedulecalendarDao-ref="ScheduleCalendarDao"/>
+	<!-- <bean id="MemberLogService" class="com.app.pas.service.MemberLogService" p:memberLogDao-ref="MemberLogDao"/>
+	<bean id="ProjectLogService" class="com.app.pas.service.ProjectLogService" p:projectLogDao-ref="ProjectLogDao"/> -->
 	
 	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>
 	<bean id="FreeBoardService" class="com.app.pas.service.board.FreeBoardService" p:freeboardDao-ref="FreeBoardDao"/>
@@ -56,5 +68,5 @@
 	<bean id="SkillSharingBoardService" class="com.app.pas.service.board.SkillSharingBoardService" p:skillsharingboardDao-ref="SkillSharingBoardDao"/>
 	<bean id="SkillSharingBoardReplyService" class="com.app.pas.service.board.SkillSharingBoardReplyService" p:skillSharingBoardReplyDao-ref="SkillSharingBoardReplyDao"/>
 	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
-
+	
 </beans>

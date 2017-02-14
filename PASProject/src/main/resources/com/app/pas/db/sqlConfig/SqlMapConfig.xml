@@ -1,44 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
- 
- 
 <!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"   
      "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">  
 
 <sqlMapConfig>
+	<sqlMap resource="com/app/pas/db/sqlMap/blank.xml"/>
 		
-	<sqlMap resource="com/app/pas/db/sqlMap/board/AccountBoard.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/FreeBoard.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/FreeBoardReply.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/Notice.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/ProjectBoard.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/ProjectBoardReply.xml"/>
-	<sqlMap resource="com/app/pas/db/sqlMap/board/QnaBoard.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/QnaBoardReply.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/SkillSharingBoard.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/SkillSharingBoardReply.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/board/TotalNotice.xml" />
-	
-	
-	
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/DataDictionary.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/GantChart.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/MeasualWorkDefinition.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/ProcessDefinition.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/RequirementDefinition.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/TableDefinition.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/TermDictionary.xml" />
-	<sqlMap resource="com/app/pas/db/sqlMap/dic/WordDictionary.xml" />
-
-
-    <sqlMap resource="com/app/pas/db/sqlMap/Admin.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/Apply.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/DeadLine.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/Invite.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/Member.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/Position.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/Project.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/ProjectJoin.xml" />
-    <sqlMap resource="com/app/pas/db/sqlMap/ScheduleCalendar.xml" />
-    
 </sqlMapConfig>

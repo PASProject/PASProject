@@ -7,7 +7,7 @@
 
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="ProjectJoin" type="com.app.pas.dto.ProjectJoinVo" />
+  
    
    
    <select id="selectProjectJoinList" parameterClass="str" resultClass="ProjectJoin" >
@@ -19,8 +19,8 @@
    </select>
    
    <update id="insertProjectJoin" parameterClass="ProjectJoin">
-      insert into Project_Join(MEM_EMAIL,PROJ_NUM) 
-	  VALUES(#mem_Email#,#proj_Num#)
+      insert into Project_Join(MEM_EMAIL,PROJ_NUM,mem_name,mem_Img) 
+	  VALUES(#mem_Email#,#proj_Num#,#mem_Name#,#mem_Img#)
    </update>
    
    <update id="updateProjectJoin" parameterClass="ProjectJoin">

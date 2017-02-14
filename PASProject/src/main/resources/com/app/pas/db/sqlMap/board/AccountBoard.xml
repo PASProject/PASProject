@@ -6,7 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="AccountBoard" type="com.app.pas.dto.board.AccountBoardVo" />
+	
 
 	<select id="selectAccountBoardByProj" parameterClass="int" resultClass="AccountBoard">
 		SELECT *

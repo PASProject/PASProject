@@ -72,4 +72,10 @@ public class ProjectDaoImpl implements ProjectDao {
 		return projectVo;
 	}
 
+	@Override
+	public void updateProjectImg(ProjectVo projectVo) throws SQLException {
+		client.update("updateProjectImg", projectVo);
+		
+	}
+
 }

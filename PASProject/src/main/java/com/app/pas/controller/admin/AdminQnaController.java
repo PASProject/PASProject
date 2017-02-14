@@ -32,16 +32,50 @@ public class AdminQnaController {
 	// 관리자 Qna 리스트
 	@RequestMapping("/AdminQnAList")
 	public String QnaList(Model model,
-			@RequestParam(value = "page", defaultValue = "1") String page)
-			throws SQLException {
+			@RequestParam(value = "page", defaultValue = "1") String page,QnaBoardVo qnaBoarVo
+			,@RequestParam(defaultValue="")String keyword,@RequestParam(defaultValue="") String keyField
+			,@RequestParam(defaultValue="")String name,@RequestParam(defaultValue="")String title,
+			@RequestParam(defaultValue="")String number) throws SQLException {
 		String url = "admin/adminQnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
+		
+		if (keyField == "" || keyField.equals(null)) {
+			System.out.println("asdsad");
+			totalCount = qnaBoardService.QnaSelectTotalCount();
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			Paging paging = new Paging();
+			paging.setPageNo(Integer.parseInt(page));
+			paging.setPageSize(5);
+			paging.setTotalCount(totalCount);
 
-		qnaList = qnaBoardService.selectQnaBoardList();
-		totalCount = qnaBoardService.QnaSelectTotalCount();
+			model.addAttribute("paging", paging);
+			
+		}else{
+			
+			
+		 if (keyField == ("name") || keyField.equals("name")) {
 
-		// 페이징처리
+			qnaBoarVo.setMem_Name(keyword);
+			System.out.println("--------------name 키워드 : " + keyword);
+
+		} else if (keyField == ("title") || keyField.equals("title")) {
+			qnaBoarVo.setQb_Title(keyword);
+			System.out.println("-----------------title 키워드 : " + keyword);
+
+		} else if (keyField == ("number") || keyField.equals("number")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
+
+			System.out.println("-----------------number 키워드 : " + keyword);
+		}
+
+		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
+		model.addAttribute("qnaList", qnaList);
+		
+		totalCount =(Integer)qnaBoardService.QnaSearchTotalCount(qnaBoarVo);
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
@@ -51,8 +85,8 @@ public class AdminQnaController {
 		paging.setTotalCount(totalCount);
 
 		model.addAttribute("paging", paging);
-		model.addAttribute("qnaList", qnaList);
 
+	}
 		return url;
 	}
 	//디테일

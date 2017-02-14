@@ -6,16 +6,15 @@
 
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="Invite" type="com.app.pas.dto.InviteVo" />
-   <typeAlias alias="ProjInviteView" type="com.app.pas.dto.ProjInviteViewVo" />
+   
    
    <select id="selectInvite" parameterClass="str" resultClass="int" >
       select * from Invite where INVITE_NUM=#invite_Num#
    </select>
    
    <update id="insertInvite" parameterClass="Invite">
-      insert into INVITE(INVITE_NUM,INVITE_CONTENT,PROJ_NUM) 
-	  VALUES(INVITE_SEQ.NEXTVAL,#invite_Content#,#proj_Num#)
+      insert into INVITE(INVITE_NUM,INVITE_CONTENT,PROJ_NUM,MEM_EMAIL) 
+	  VALUES(INVITE_SEQ.NEXTVAL,#invite_Content#,#proj_Num#,#mem_Email#)
 	  
    </update>
    
@@ -24,17 +23,19 @@
       WHERE INVITE_NUM = #invite_Num#
    </update>
    
-   <update id="deleteInvite" parameterClass="int">
-      delete from INVITE where INVITE_NUM=#invite_Num#
+   <update id="deleteInvite" parameterClass="Invite">
+      delete from INVITE where proj_Num=#proj_Num# and mem_Email=#mem_Email#
    </update>
    
    <select id="selectInviteList" parameterClass="ProjInviteView" resultClass="ProjInviteView">
    select * 
    from proj_invite_view 
    where proj_Num = #proj_Num# 
-   
-   
    </select>
+   
+   
+   
+   
    
    
 </sqlMap>

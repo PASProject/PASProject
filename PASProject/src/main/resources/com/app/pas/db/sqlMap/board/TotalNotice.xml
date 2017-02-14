@@ -6,7 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="TotalNotice" type="com.app.pas.dto.board.TotalNoticeVo" />
+	
 
 	<select id="selectTotalNoticeList" resultClass="TotalNotice">
 		SELECT *

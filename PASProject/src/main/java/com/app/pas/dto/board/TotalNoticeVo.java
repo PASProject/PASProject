@@ -1,6 +1,15 @@
 package com.app.pas.dto.board;
 
-public class TotalNoticeVo {
+import java.io.Serializable;
+
+import kr.or.ddit.commons.ibatis.Alias;
+import lombok.Data;
+
+
+
+@Alias("TotalNotice")
+@Data
+public class TotalNoticeVo implements Serializable{
 
 	
 	private int ttnotice_Num;
@@ -9,45 +18,6 @@ public class TotalNoticeVo {
 	private int ttnotice_Inq_Count;
 	private String admin_Email;
 	private String ttnotice_Date;
-	
-	
-	public int getTtnotice_Num() {
-		return ttnotice_Num;
-	}
-	public void setTtnotice_Num(int ttnotice_Num) {
-		this.ttnotice_Num = ttnotice_Num;
-	}
-	public String getTtnotice_Title() {
-		return ttnotice_Title;
-	}
-	public void setTtnotice_Title(String ttnotice_Title) {
-		this.ttnotice_Title = ttnotice_Title;
-	}
-	public String getTtnotice_Content() {
-		return ttnotice_Content;
-	}
-	public void setTtnotice_Content(String ttnotice_Content) {
-		this.ttnotice_Content = ttnotice_Content;
-	}
-	public int getTtnotice_Inq_Count() {
-		return ttnotice_Inq_Count;
-	}
-	public void setTtnotice_Inq_Count(int ttnotice_Inq_Count) {
-		this.ttnotice_Inq_Count = ttnotice_Inq_Count;
-	}
-	public String getAdmin_Email() {
-		return admin_Email;
-	}
-	public void setAdmin_Email(String admin_Email) {
-		this.admin_Email = admin_Email;
-	}
-	public String getTtnotice_Date() {
-		return ttnotice_Date;
-	}
-	public void setTtnotice_Date(String ttnotice_Date) {
-		this.ttnotice_Date = ttnotice_Date;
-	}
-
 	
 	
 	

@@ -7,22 +7,22 @@
 
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="apply" type="com.app.pas.dto.ApplyVo" />
    
-   <select id="selectApply" parameterClass="int" resultClass="apply" >
+   
+   <select id="selectApply" parameterClass="int" resultClass="Apply" >
       select * from apply where apply_num=#apply_Num#
    </select>
    
-   <select id="selectApplyList" parameterClass="int" resultClass="apply">
+   <select id="selectApplyList" parameterClass="int" resultClass="Apply">
       select * from apply where apply_num like '%'||#apply_Num#||'%'
    </select>
    
-   <update id="insertApply" parameterClass="apply">
+   <update id="insertApply" parameterClass="Apply">
       insert into apply(apply_num,mem_email,proj_num) values(APPLY_SEQ.NEXTVAL,#mem_Email#,#proj_Num#)
    </update>
    
    
-   <update id="updateApply" parameterClass="apply">
+   <update id="updateApply" parameterClass="Apply">
       update apply set apply_commit_check =#apply_Commit_Check# where apply_num=#apply_Num#
    </update>
    

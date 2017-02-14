@@ -71,10 +71,10 @@ public class MemberService {
 		return list;
 	}
 	
-	// 가입초대 수락 -> 조인테이블 업데이트
+	// 媛��엯珥덈� �닔�씫 -> 議곗씤�뀒�씠釉� �뾽�뜲�씠�듃
 	public List<MemApplyViewVo> updateApplyAgree(int apply_Num) throws SQLException{
 		
-		// check 1로 업데이트 apply_commit_check
+		// check 1濡� �뾽�뜲�씠�듃 apply_commit_check
 		memberDao.updateApplyCommitCheck(apply_Num);
 		
 		MemApplyViewVo memApplyViewVo = memberDao.selectMemApplyViewByApplyNum(apply_Num);
@@ -84,26 +84,26 @@ public class MemberService {
 		projectJoinVo.setPjj_Per_Num(1);
 		projectJoinVo.setPosition_Num(9);
 		
-		// 조인 pjj_per_num 업데이트
+		// 議곗씤 pjj_per_num �뾽�뜲�씠�듃
 		projectJoinDao.updateProjectJoin(projectJoinVo);
 		
-		// 최신 알림 리스트 리턴
+		// 理쒖떊 �븣由� 由ъ뒪�듃 由ы꽩
 		List<MemApplyViewVo> list = memberDao.selectMemApplyViewByEmail(memApplyViewVo.getP_Mem_Email());
 		return list;
 	}
 
-	// 가입초대 거부 
+	// 媛��엯珥덈� 嫄곕� 
 	public List<MemApplyViewVo> updateApplyReject(int apply_Num) throws SQLException{
 		
 		MemApplyViewVo memApplyViewVo = memberDao.selectMemApplyViewByApplyNum(apply_Num);
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		projectJoinVo.setMem_Email(memApplyViewVo.getMem_Email());
 		projectJoinVo.setProj_Num(memApplyViewVo.getProj_Num());
-		// 프로젝트조인 테이블에서 삭제 
+		// �봽濡쒖젥�듃議곗씤 �뀒�씠釉붿뿉�꽌 �궘�젣 
 		projectJoinDao.deleteProjectJoin(projectJoinVo);
-		// 초대 메세지 삭제
+		// 珥덈� 硫붿꽭吏� �궘�젣
 		memberDao.deleteApplyViewByApplyNum(apply_Num);
-		// 최신 리스트 리턴
+		// 理쒖떊 由ъ뒪�듃 由ы꽩
 		List<MemApplyViewVo> list = memberDao.selectMemApplyViewByEmail(memApplyViewVo.getP_Mem_Email());
 		return list;
 		
@@ -152,10 +152,20 @@ public class MemberService {
 			List<MemberCommandVo> list=memberDao.selectMemberEmailList();
 			return list;
 		}
+<<<<<<< HEAD
 		public void updateMemberQuitCheck(MemberVo memberVo) throws SQLException {
 			memberDao.updateMemberQuitCheck(memberVo);
 			
 		}
+=======
+		
+		public String selectMemberPhone(String mem_Email) throws SQLException{
+			String mem_Phone = memberDao.selectMemberPhone(mem_Email);
+			return mem_Phone;
+			
+		}
+	
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 
 
 }

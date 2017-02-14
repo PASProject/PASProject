@@ -21,16 +21,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
+import com.app.pas.dto.ProjectJoinVo;
+import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
+import com.app.pas.service.ProjectJoinService;
+import com.app.pas.service.ProjectService;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
@@ -54,8 +59,12 @@ public class ProjectController {
 	MemberService memberService;
 	@Autowired
 	InviteService inviteService;
+	@Autowired
+	ProjectService projectService;
+	@Autowired
+	ProjectJoinService projectJoinService;
 
-	// 프로젝트 Board List ---------------------------------------------
+	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
 			ProjectBoardVo projectBoardVo, Model model,
@@ -75,14 +84,14 @@ public class ProjectController {
 		return url;
 	}
 
-	// 프로젝트 board 게시글 올리기-----------------------------------------
+	// �봽濡쒖젥�듃 board 寃뚯떆湲� �삱由ш린-----------------------------------------
 	@RequestMapping(value = "/pmBoardInsert", method = RequestMethod.POST)
 	public String insertProjectBoard(Model model,
 			ProjectBoardVo projectBoardVo, HttpSession session)
 			throws SQLException {
 		// int proj_Num = (Integer) session.getAttribute("joinProj");
 
-		// 세션의 정보를 가져와서 넣음
+		// �꽭�뀡�쓽 �젙蹂대�� 媛��졇���꽌 �꽔�쓬
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		String mem_Img = memberVo.getMem_Img();
@@ -98,7 +107,7 @@ public class ProjectController {
 		return url;
 	}
 
-	// 프로젝트 Board 글 수정
+	// �봽濡쒖젥�듃 Board 湲� �닔�젙
 	// ------------------------------------------------------------------
 	@RequestMapping(value = "/pmBoardUpdate")
 	public @ResponseBody int updateProjectBoard(
@@ -111,7 +120,7 @@ public class ProjectController {
 		return 0;
 	}
 
-	// 내가 쓴 글 보기 --------------------------------------------------
+	// �궡媛� �벖 湲� 蹂닿린 --------------------------------------------------
 	@RequestMapping("/pmBoardMyProjectList")
 	public String myProjectList(Model model, HttpSession session,
 			ProjectBoardVo projectBoardVo) throws SQLException {
@@ -131,7 +140,7 @@ public class ProjectController {
 		return url;
 	}
 
-	// 글삭제
+	// 湲��궘�젣
 	// ------------------------------------------------------------------------
 	@RequestMapping("/deleteProjectBoard")
 	public String deleteProjectBoard(String pb_Article_Num)
@@ -143,9 +152,9 @@ public class ProjectController {
 		return url;
 	}
 
-	// 댓글
+	// �뙎湲�
 
-	// 댓글 리스트---------------------------------------------------------------
+	// �뙎湲� 由ъ뒪�듃---------------------------------------------------------------
 	@RequestMapping(value = "/selectProjectBoardReply", method = RequestMethod.POST)
 	public @ResponseBody List<List<ProjectBoardReplyVo>> selectProjectBoardReply(
 			HttpSession session) throws NumberFormatException, SQLException {
@@ -166,7 +175,7 @@ public class ProjectController {
 		return fullList;
 	}
 
-	// 댓글 올리기 -----------------------------------------------------
+	// �뙎湲� �삱由ш린 -----------------------------------------------------
 	@RequestMapping(value = "/insertProjectBoardReply", method = RequestMethod.POST)
 	public @ResponseBody List<ProjectBoardReplyVo> insertProjectBoardReply(
 			@RequestBody ProjectBoardReplyVo projectBoardReplyVo,
@@ -200,7 +209,7 @@ public class ProjectController {
 		return url;
 	}
 
-	// 프로젝트 Notice 리스트
+	// �봽濡쒖젥�듃 Notice 由ъ뒪�듃
 	@RequestMapping("/pmNoticeList")
 	public String pmNoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
@@ -244,7 +253,7 @@ public class ProjectController {
 
 	}
 
-	// 프로젝트 Notice게시판 글쓰기 POST
+	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 湲��벐湲� POST
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
 		String url = "redirect:/project/pmNoticeList";
@@ -263,7 +272,7 @@ public class ProjectController {
 
 	}
 
-	// 프로젝트 Notice게시판 글쓰기 Form
+	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 湲��벐湲� Form
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.GET)
 	public String pmNoticeWriteForm(HttpServletRequest request,
 			String proj_Num, String notice_Num) {
@@ -273,7 +282,7 @@ public class ProjectController {
 
 	}
 
-	// 프로젝트 Notice게시판 디테일
+	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �뵒�뀒�씪
 	@RequestMapping(value = "/pmNoticeDetail", method = RequestMethod.GET)
 	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
 			String notice_Num) {
@@ -294,7 +303,7 @@ public class ProjectController {
 		return url;
 	}
 
-	// 프로젝트 Notice게시판 수정 Form
+	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �닔�젙 Form
 	@RequestMapping(value = "/pmNoticeUpdate", method = RequestMethod.GET)
 	public String pmNoticeUpdateForm(HttpServletRequest request,
 			String proj_Num, String notice_Num) {
@@ -315,7 +324,7 @@ public class ProjectController {
 
 	}
 
-	// 프로젝트 Notice게시판 수정 POST
+	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �닔�젙 POST
 	@RequestMapping(value = "/pmNoticeUpdate", method = RequestMethod.POST)
 	public String updateUpdate(NoticeVo noticeVo) {
 		String url = "redirect:/project/pmNoticeList";
@@ -333,7 +342,7 @@ public class ProjectController {
 	@RequestMapping("/pmNoticeDelete")
 	public String deleteNotice(HttpSession session, NoticeVo noticeVo) {
 		String url = "redirect:/notice/pmNoticeList";
-		System.out.println(noticeVo.getProj_Num() + "이건프로젝트넘버@@@@");
+		System.out.println(noticeVo.getProj_Num() + "�씠嫄댄봽濡쒖젥�듃�꽆踰�@@@@");
 		try {
 			noticeService.deleteNotice(noticeVo);
 		} catch (SQLException e) {
@@ -348,7 +357,7 @@ public class ProjectController {
 	public String PmOverView(HttpSession session, Model model,
 			@RequestParam String proj_Num) {
 		String url = "project/pmOverView";
-		// joinProj 현재 접속한 프로젝트 번호
+		// joinProj �쁽�옱 �젒�냽�븳 �봽濡쒖젥�듃 踰덊샇
 		session.setAttribute("joinProj", proj_Num);
 		return url;
 	}
@@ -369,7 +378,7 @@ public class ProjectController {
 		int proj_Num = Integer.parseInt(Num);
 		int totalCount = 0;
 		List<AccountBoardVo> list = accountService.getAccountList(proj_Num);
-		System.out.println(list + "이건 리스트!!");
+		System.out.println(list + "�씠嫄� 由ъ뒪�듃!!");
 		if (list.isEmpty() != true) {
 			int Imp = accountService.sumAccountImp(proj_Num);
 			int Exp = accountService.sumAccountExp(proj_Num);
@@ -419,8 +428,7 @@ public class ProjectController {
 				.toString()));
 		accountService.InsertAccountBoard(accountBoardVo);
 		return result;
-	}
-
+	}  
 	@RequestMapping(value = "/AccountBoardUpdate", method = RequestMethod.POST)
 	public @ResponseBody int AccountBoardUpdate(
 			@RequestBody Map<String, Object> map) throws SQLException,
@@ -440,7 +448,7 @@ public class ProjectController {
 		java.sql.Timestamp sts = new java.sql.Timestamp(t.getTime());
 		accountBoardVo.setAcc_Date(sts);
 		System.out.println(accountBoardVo.getAcc_Date()
-				+ "이것은 accountboardVo accDate");
+				+ "�씠寃껋� accountboardVo accDate");
 		int acc_Imp = Integer.parseInt(map.get("acc_Imp").toString());
 		accountBoardVo.setAcc_Imp(acc_Imp);
 		int acc_Exp = Integer.parseInt(map.get("acc_Exp").toString());
@@ -471,11 +479,11 @@ public class ProjectController {
 	         throws SQLException {
 	      String url = "/project/teamMemberList";
 	      /* int proj = (Integer) session.getAttribute("joinProj"); */
-	      int proj = 9;
+	      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
 	      int per = 1;
 	      MemPositionViewVo memPositionView = new MemPositionViewVo();
 	      memPositionView.setPjj_Per_Num(1);
-	      memPositionView.setProj_Num(1);
+	      memPositionView.setProj_Num(proj_Num);
 
 	      List<MemPositionViewVo> list = memberService
 	            .selectMemberListByProj(memPositionView);
@@ -490,10 +498,11 @@ public class ProjectController {
 	   @RequestMapping(value="/pmMemberInvite", method=RequestMethod.GET)
 	   public String pmMemberInvite(HttpSession session) throws SQLException {
 	      String url = "/project/teamInvite";
+	      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
 	      String mem_Email = "";
 	      /* int proj_Num= (Integer) session.getAttribute("joinProj"); */
 	      ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
-	      projInviteViewVo.setProj_Num(1);
+	      projInviteViewVo.setProj_Num(proj_Num);
 
 	      List<ProjInviteViewVo> list = inviteService
 	            .selectInviteList(projInviteViewVo);
@@ -508,18 +517,110 @@ public class ProjectController {
 	   @RequestMapping(value="/pmMemberInvite",method=RequestMethod.POST)
 	   public @ResponseBody List<MemberCommandVo> pmMemberInviteList() throws SQLException {
 		   List<MemberCommandVo> memberList = memberService.selectMemberEmailList();
-		      System.out.println(memberList + "硫ㅻ쾭由ъ뒪�듃!!!!!!!!!!!!!!!!!!");
+		      System.out.println(memberList + "筌롢끇苡��뵳�딅뮞占쎈뱜!!!!!!!!!!!!!!!!!!");
 		     
 	      return memberList;
 	   }
 	   
 	   @RequestMapping(value="/pmInviteInsert",method=RequestMethod.POST)
-	   public void pmInviteInsert(String mem_Email,HttpServletRequest request) throws SQLException, UnsupportedEncodingException{
-		   System.out.println(mem_Email+"이건 에이젝스 멤멤~");
+	   public @ResponseBody int pmInviteInsert(String mem_Email,HttpSession session) throws SQLException, UnsupportedEncodingException{
+		   int result=1;   
+		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
+	          ProjectVo projectVo=projectService.selectProject(proj_Num);
+	          MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+	          MemberVo memberVo1= memberService.getMember(mem_Email);
+	          System.out.println(memberVo1.getMem_Name()+"�궡�씠由꾩�!!!!!");
+	          
+	          InviteVo inviteVo = new InviteVo();
+	          ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+	          
+	          inviteVo.setMem_Email(mem_Email);
+	          inviteVo.setProj_Num(proj_Num);
+	          projectJoinVo.setMem_Email(mem_Email);
+	          projectJoinVo.setProj_Num(proj_Num);
+	          projectJoinVo.setMem_Name(memberVo1.getMem_Name());
+	          projectJoinVo.setMem_Img(memberVo1.getMem_Img());
+	          
+	          
+	          
+	          projectJoinService.insertProject(projectJoinVo);
+	          inviteService.insertInvite(inviteVo);
+	          return result;
 		   
 		   
 	   }
-	
+	   
+	   @RequestMapping(value="TeamMemberUpdate", method=RequestMethod.POST)
+	   public void TeamMemberUpdate(@RequestBody Map<String,Object> map ){
+		   System.out.println(map.get("mem_Email")+"留듭쓽!!!!!!!!!!");
+	   }
+	   
+	   @RequestMapping(value="activeModal", method=RequestMethod.POST)
+	   public @ResponseBody AccountBoardVo activeModal(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
+		    AccountBoardVo accountBoardVo = new AccountBoardVo();
+		    System.out.println(map.get("acc_Num")+"�씠寃껋�!!!!!!!!!acc_Num");
+		    accountBoardVo.setAcc_Num(Integer.parseInt(map.get("acc_Num").toString()));
+		    accountBoardVo.setProj_Num(Integer.parseInt((String)session.getAttribute("joinProj")));
+		    
+         		accountBoardVo = accountService.selectAccountBoardByAcc(accountBoardVo);
+         		System.out.println(accountBoardVo.getAcc_Content()+"�씠寃껋�!!!!!!!boardVo");
+         		return accountBoardVo;
+	   }
+	   
+	   @RequestMapping(value="activeMemberModal", method=RequestMethod.POST)
+	   public @ResponseBody MemPositionViewVo activeMemberModal(@RequestBody Map<String,Object>  map,HttpSession session,HttpServletRequest request) throws SQLException, UnsupportedEncodingException{
+		   request.setCharacterEncoding("utf-8");
+		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
+		   
+		   
+		   MemPositionViewVo memPositionViewVo = new MemPositionViewVo();
+		   memPositionViewVo.setMem_Email(map.get("mem_Email").toString());
+		   memPositionViewVo.setProj_Num(proj_Num);
+		   
+		   memPositionViewVo = memberService.selectMemberPosition(memPositionViewVo); 
+		   String mem_Phone = memberService.selectMemberPhone(map.get("mem_Email").toString());
+		   System.out.println(mem_Phone+"이건 전화번호~!");
+		   memPositionViewVo.setMem_Phone(mem_Phone);
+		   
+		   return memPositionViewVo;
+		   
+		   
+	   }
+	   
+	   @RequestMapping(value="TeamMemberDelete", method=RequestMethod.POST)
+	   public @ResponseBody int TeamMemberDelete(@RequestBody Map<String,Object> map ,HttpSession session) throws SQLException{
+		    
+		   int result =1;
+		   
+		   ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
+		   projectJoinVo.setMem_Email(map.get("mem_Email").toString());
+		   projectJoinVo.setProj_Num(proj_Num);
+		   
+		   projectJoinService.deleteProjectJoin(projectJoinVo);
+		   return result;
+	   }
+	   
+	   @RequestMapping(value="deleteInvite", method=RequestMethod.POST)
+	   public String DeleteInvite(String inviteMem_Email,HttpSession session) throws SQLException{
+		   String url = "redirect:pmMemberInvite";
+		   InviteVo inviteVo =new InviteVo();
+		   System.out.println(inviteMem_Email+"이건 인바이메일!");
+		  int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
+		  inviteVo.setMem_Email(inviteMem_Email);
+		  inviteVo.setProj_Num(proj_Num);
+		  ProjectJoinVo projectJoinvo = new ProjectJoinVo();
+		  projectJoinvo.setMem_Email(inviteVo.getMem_Email());
+		  projectJoinvo.setProj_Num(proj_Num);
+		  projectJoinService.deleteProjectJoin(projectJoinvo);
+		  inviteService.deleteInvite(inviteVo);
+		   
+		   
+		   
+		   return url;
+		   
+	   }
+	 
 	
 }
 /*

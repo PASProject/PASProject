@@ -6,8 +6,6 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="FreeBoard" type="com.app.pas.dto.board.FreeBoardVo" />
-	<typeAlias alias="FreeBoardLike" type="com.app.pas.dto.board.FreeBoardLikeVo" />
 	
 	<insert id="insertFreeboardLike" parameterClass="FreeBoardLike">
 		INSERT INTO
