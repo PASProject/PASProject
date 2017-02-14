@@ -217,11 +217,12 @@ body {
 	background-image: linear-gradient(#91dd70, #55ae2e);
 	border: 1px solid #5aad35;
 }
+
 .createProject:hover {
-    background-color: #55a532;
-    background-image: -webkit-linear-gradient(#85d063, #4f992f);
-    background-image: linear-gradient(#85d063, #4f992f);
-    border-color: #519d30;
+	background-color: #55a532;
+	background-image: -webkit-linear-gradient(#85d063, #4f992f);
+	background-image: linear-gradient(#85d063, #4f992f);
+	border-color: #519d30;
 }
 </style>
 
@@ -245,12 +246,16 @@ body {
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
 
-						<li><a href="<%=request.getContextPath()%>/main/myProject">참여
-								프로젝트 보기</a></li>
+						<li><a id="myProjectList"
+							href="<%=request.getContextPath()%>/main/myProject">참여 프로젝트
+								보기</a></li>
+
 						<li><a href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 
+
 					</ul>
+
 					<ul class="nav navbar-nav navbar-right">
 
 					</ul>
@@ -650,17 +655,18 @@ body {
 					}
 					});
 				});
-				
-				
+		
 			});
 
-
+	})
+	
 </script>
 
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>/main/logOut";
+		location.href = "<%=request.getContextPath()%>
+	/main/logOut";
 	}
 </script>
 </html>

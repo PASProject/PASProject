@@ -19,9 +19,10 @@
 			<div class="col-lg-12">
 				<h2 class="page-header">
 					참여 프로젝트 목록
-					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
-						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
-			
+					<button class="btn pull-right createProject" id="createProject"
+						data-toggle="modal" data-target="#create" data-keyboard="false"
+						data-backdrop="static">프로젝트 생성하기</button>
+
 
 
 
@@ -41,9 +42,9 @@
 					<div class="text-center">
 
 						<img src="<%=request.getContextPath()%>/resources/img/plus1.png"
-						id="createProject" value="생성하기" data-toggle="modal"
-						data-target="#create" data-keyboard="false" style="cursor:
-						pointer; width: 430px;" data-backdrop="static" />
+							id="createProject" value="생성하기" data-toggle="modal"
+							data-target="#create" data-keyboard="false"
+							style="cursor: pointer; width: 430px;" data-backdrop="static" />
 
 					</div>
 				</div>
@@ -57,7 +58,7 @@
 					varStatus="status">
 
 					<div class="col-md-3" id="box"
-						style="margin-bottom:30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
+						style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
 						<h3 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
@@ -145,7 +146,7 @@
 
 
 
-<%-- 
+		<%-- 
 		<!-- Pagination -->
 
 
@@ -248,16 +249,7 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
