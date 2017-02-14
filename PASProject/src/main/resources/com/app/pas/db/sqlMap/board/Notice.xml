@@ -9,19 +9,14 @@
 	
 	<typeAlias alias="mapp" type="java.util.HashMap" />
 	
-
 	<!-- <select id="selectNoticeList" resultClass="Notice"> SELECT * FROM NOTICE 
 		ORDER BY NOTICE_NUM DESC </select> -->
 
-    <select id="selectNoticePosition" parameterClass="mapp" resultClass="NoticePosition">
-    
+    <select id="selectNoticePosition" parameterClass="mapp" resultClass="MemPositionView">
        SELECT * 
        FROM MEM_POSITION_VIEW 
        WHERE PROJ_NUM = #proj_Num# AND MEM_EMAIL=#mem_Email#
-    
-    
     </select>
-   
     
 
 	<select id="selectNotice" parameterClass="int" resultClass="Notice">
