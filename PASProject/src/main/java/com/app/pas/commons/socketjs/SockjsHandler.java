@@ -1,6 +1,7 @@
 package com.app.pas.commons.socketjs;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,25 +12,14 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
+
 
 public class SockjsHandler extends TextWebSocketHandler{
+	
 	private Map<String,WebSocketSession> users= new ConcurrentHashMap<String, WebSocketSession>();
 	
-	/*@Override
-	public void handleMessage(WebSocketSession session,
-			WebSocketMessage<?> message) throws Exception {
-		System.out.println("handleMessage 호출");
-		System.out.println(message.getPayload().toString()+" @@@@@@@@@@@@@@@@@@@@@@");
-		if(message.equals(null)) return;
-		
-		System.out.println(message.getPayload().toString().length());
-			if(message.getPayload().toString().contains("push")){
-				String pushMessage = message.getPayload().toString().substring(5);
-					session = users.get(pushMessage);
-					session.sendMessage(message);
-			}
-			
-	}*/
+	
 	   
 	@Override
 	protected void handlePongMessage(WebSocketSession session,
@@ -40,11 +30,14 @@ public class SockjsHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session,
 			@RequestBody TextMessage message) throws Exception {
-	/*	System.out.println(message.getPayload());
-	      Gson gson = new Gson();
+		System.out.println(message.getPayload());
+	    /*  Gson gson = new Gson();
 	      Map<String,Object> map = new HashMap<String,Object>();
 	      map = (Map<String,Object>) gson.fromJson(message.getPayload().toString(), map.getClass());
-	      System.out.println(map.get("push")+"@@@@@@@@@@@@ 푸쉬시수시ㅜ시ㅜ시ㅜ시ㅜ시ㅜ시ㅜ시ㅟㅜ시ㅜ");*/
+	      String msg= (String) map.get("push");
+	      String user = (String) map.get("user");
+	      session = users.get(user);
+	      session.sendMessage(message);*/
 	
 	  }
 

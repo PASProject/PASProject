@@ -11,6 +11,10 @@ import lombok.Data;
 @Data
 public class ProjectBoardVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -767077232241060471L;
 	private int pb_Article_Num;
     private int pb_Inq_Count;
     private String mem_Email;

@@ -12,6 +12,10 @@ import lombok.Data;
 @Data
 public class SkillSharingBoardVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1850067388974714472L;
 	private int ssb_Article_Num;
 	private Timestamp ssb_wt_date;
 	private String ssb_Content;

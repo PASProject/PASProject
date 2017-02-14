@@ -85,7 +85,6 @@
 			<version>1.1.0.RELEASE</version>
 		</dependency>
 
-
 		<!-- site mesh -->
 		<dependency>
 			<groupId>opensymphony</groupId>
@@ -100,7 +99,6 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.1.0.7.0</version>
 		</dependency>
-
 
 
 		<dependency>

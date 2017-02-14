@@ -9,6 +9,10 @@ import lombok.Data;
 @Data
 public class MemPositionViewVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7989759546828049086L;
 	private String mem_Email;
 	private String mem_Name;
 	private String mem_Phone;

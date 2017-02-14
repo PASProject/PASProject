@@ -9,6 +9,10 @@ import lombok.Data;
 @Data
 public class ProjInviteViewVo implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1532908507364078448L;
 	private int invite_Num;
 	private String invite_Commit_Check;
 	private String invite_Content;

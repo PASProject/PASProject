@@ -22,9 +22,16 @@
       p:configLocation="classpath:com/app/pas/db/sqlConfig/SqlMapConfig.xml"
       p:dataSource-ref="dataSource"
       p:typeAliasPackages="com.app.pas.**"
-      p:mappingLocations="classpath:com/app/pas/db/sqlMap/*.xml"
       
-      /> <!-- iBatis 완성.... -->
+      > <!-- iBatis 완성.... -->
+      <property name="mappingLocations">
+      <list>
+      	<value>classpath:com/app/pas/db/sqlMap/*.xml</value>
+      	<value>classpath:com/app/pas/db/sqlMap/board/*.xml</value>
+      	<value>classpath:com/app/pas/db/sqlMap/dic/*.xml</value>
+      	</list>
+      </property>
+      </bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
 	
