@@ -6,13 +6,16 @@ import java.sql.Timestamp;
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
 
-@Data
 @Alias("MemberLog")
+@Data
 public class MemberLogVo implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3033284700984859060L;
+	/**
+	 * 
+	 */
 	private String mem_Email;
 	private Timestamp mem_Log_Time;
 	private int mem_Log_Num;

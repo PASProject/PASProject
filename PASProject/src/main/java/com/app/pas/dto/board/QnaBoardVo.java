@@ -10,6 +10,10 @@ import lombok.Data;
 @Alias("QnaBoard")
 @Data
 public class QnaBoardVo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7623969246269740169L;
 	private int qb_Article_Num;
 	private String qb_Title;
 	private String qb_Content;

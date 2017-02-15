@@ -12,6 +12,10 @@ import lombok.Data;
 public class TotalNoticeVo implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2078976471396907838L;
 	private int ttnotice_Num;
 	private String ttnotice_Title;
 	private String ttnotice_Content;

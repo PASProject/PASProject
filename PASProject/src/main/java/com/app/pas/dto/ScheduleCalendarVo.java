@@ -12,6 +12,10 @@ import lombok.Data;
 public class ScheduleCalendarVo implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1962789608836030585L;
 	private int gt_Num;
 	private Timestamp sc_Start_Date;
 	private Timestamp sc_End_Date;

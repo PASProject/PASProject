@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class ApplyVo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2221490699953627878L;
 	private int apply_Num;
 	private String apply_Commit_Check;
 	private String mem_Email;

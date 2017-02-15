@@ -11,6 +11,10 @@ import lombok.Data;
 public class FreeBoardLikeVo implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 554231981599807318L;
 	private int frb_Article_Num;
 	private String mem_Email;
 	

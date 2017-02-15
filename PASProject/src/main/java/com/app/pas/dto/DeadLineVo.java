@@ -10,6 +10,10 @@ import lombok.Data;
 @Data
 public class DeadLineVo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6772671613443009431L;
 	private int gt_Num;
 	private String dd_Charge_Mem;
 	private String dd_Content;
