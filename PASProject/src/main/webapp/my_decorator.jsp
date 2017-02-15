@@ -198,23 +198,26 @@ body {
 	background-image: linear-gradient(#91dd70, #55ae2e);
 	border: 1px solid #5aad35;
 }
+
 .createProject:hover {
-    background-color: #55a532;
-    background-image: -webkit-linear-gradient(#85d063, #4f992f);
-    background-image: linear-gradient(#85d063, #4f992f);
-    border-color: #519d30;
+	background-color: #55a532;
+	background-image: -webkit-linear-gradient(#85d063, #4f992f);
+	background-image: linear-gradient(#85d063, #4f992f);
+	border-color: #519d30;
 }
-#content{
-    background-color: #f9f9f9;
-border:1px solid #ddd;
-border-radius:5px;
-    margin-top:25px;
-    min-height:800px;
-    margin-bottom:5%;
+
+#content {
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin-top: 25px;
+	min-height: 800px;
+	margin-bottom: 5%;
 }
-.page-header{
-margin-top:20px;
-margin-bottom:20px;
+
+.page-header {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 </style>
 
@@ -238,9 +241,11 @@ margin-bottom:20px;
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
 
-						<li><a id="myProjectList" href="<%=request.getContextPath()%>/main/myProject">참여
-								프로젝트 보기</a></li>
-						<li><a id="otherProjectList" href="<%=request.getContextPath()%>/main/otherProject">외부
+						<li><a id="myProjectList"
+							href="<%=request.getContextPath()%>/main/myProject">참여 프로젝트
+								보기</a></li>
+						<li><a id="otherProjectList"
+							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 
 					</ul>
@@ -294,7 +299,8 @@ margin-bottom:20px;
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
 							style="padding-top: 5px; padding-bottom: 5px;"> <img
-								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
+								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
+								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
@@ -302,7 +308,8 @@ margin-bottom:20px;
 										class="img-thumbnail"
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
-										data-keyboard="false" data-backdrop="static" id="profileImg" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
+										data-keyboard="false" data-backdrop="static" id="profileImg"
+										onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'" />
 								</a></li>
 								<li class="divider"></li>
 								<li><a href="#" data-toggle="modal"
@@ -471,7 +478,38 @@ margin-bottom:20px;
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2" id="submenu" style="margin-top: 25px;">
-						<jsp:include page="sub.jsp" />
+						<%@ include file="sub.jsp" %>
+						<script>
+		$('#btn-upload2').on('click', function() {
+			var form = new FormData(document.getElementById('projImg'));
+		
+			$.ajax({
+				
+				url : "<%=request.getContextPath()%>/project/c9",
+				data : form,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				type : 'POST',
+				success : 
+					function(response) {
+					console.log('success');
+					console.log(response);
+					 alert('사진이 등록되었습니다.'); 
+					
+					location.reload();
+					$('#proj_Img').attr('src','<%=request.getContextPath()%>/resources/upload2/${projectVo.proj_Img}');
+														},
+														error : function(jqXHR) {
+
+															console
+																	.log('error');
+														}
+													});
+
+										});
+					</script>
+
 					</div>
 					<decorator:body />
 				</div>
@@ -663,7 +701,8 @@ $(function(){
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>/main/logOut";
+		location.href = "<%=request.getContextPath()%>
+	/main/logOut";
 	}
 </script>
 </html>

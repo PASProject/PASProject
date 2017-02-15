@@ -29,12 +29,12 @@ font-size:12px;
 	<table>
 		<tr>
 			<td style="padding-left:20px;"><img class="img-thumbnail"
-				src="<%=request.getContextPath() %>/resources/upload/${projectVo.proj_Img}"
+				src="<%=request.getContextPath() %>/resources/upload2/${projectVo.proj_Img}"
 				id="asdf" alt="your image" /></td>
 			<td style="padding-left: 75px;">
 			프로젝트 사진을 업로드 해주세요.<br>사진 크기는 1mb이하만 가능합니다.<br><br><br>
-				<form id="proj_Img" enctype="multipart/form-data">
-					<input class="" type="file" id="fileId" name="proj_Img" onchange="document.getElementById('asdf').src = window.URL.createObjectURL(this.files[0])">
+				<form id="projImg" enctype="multipart/form-data">
+					<input class="" type="file" id="fileId" name="ff" onchange="document.getElementById('asdf').src = window.URL.createObjectURL(this.files[0])">
 				</form>
 			</td>
 		</tr>

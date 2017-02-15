@@ -34,74 +34,12 @@ font-size:12px;
 					<input class="" type="file" id="fileId" name="f"
 						onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
 				</form>
-				 <!-- <button class="btn btn-default" id="btn-upload">등록</button> -->
-				<!-- <button id="asdf">gg</button> 
-				<div  id="ajax-content"></div>
-				<script>
-				$(document).ready(function(){ $('#asdf').click(function(){ $('#ajax-content').load('profileImg #profile'); return false; }); });
-
-				</script> -->
+				
 			</td>
 		</tr>
 	</table>
 
-	<script>
-		<%-- $('#btn-upload').on('click', function() {
-			console.log('btn-upload');
-			var form = new FormData(document.getElementById('uploadForm'));
-		
-			$.ajax({
-				url : "c8",
-				data : form,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				type : 'POST',
-				success : function(response) {
-					console.log('success');
-					console.log(response);
-					alert('사진이 등록되었습니다.');
-					$('#profileImg').attr('src','<%=request.getContextPath() %>/resources/upload/${param.memberVo.mem_Img}')
-				},
-				error : function(jqXHR) {
-					console.log('error');
-				}
-			});
-		}); --%>
-	</script>
-
-
-	<%-- <button id="save">Load User</button>
-	<div id="loading"></div>
-
-	<script>
-		$('#save').click(function() {
-							$('#loading').html('<img src="<%=request.getContextPath()%>/resources/upload/${loginUser.mem_Img}"> loading...');
-
-							// run ajax request
-							$.ajax({
-								type : "GET",
-								dataType : "json",
-								url : "c8",
-								success : function(d) {
-									// replace div's content with returned data
-									$('#loading').html(d);
-								}
-							});
-						});
-	</script>
-	<button class="btn btn-primary" id="btn1">연습이당</button>
-	<div id="imgView"></div>
-	<script>
-		$(function() {
-			$('#btn1').on('click', function(e) {
-				/*  e.preventDefault(); */
-				$("#img1").attr("src", $("#image_url").val());
-			});
-		});
-	</script>
-
- --%>
+	
 
 </body>
 <script>

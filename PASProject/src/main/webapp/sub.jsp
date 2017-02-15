@@ -33,40 +33,48 @@
 
 
 
-<%--프로젝트 이미지 수정해야함 --%>
+	<%--프로젝트 이미지 수정해야함 --%>
 
 
-<img id="proj_Img" style="border: 1px solid #ddd; border-radius:5px; width: 163px; margin-bottom:15px;" src="<%=request.getContextPath()%>/resources/img/1.jpg">
-<script>
-		$('#proj_Img').on('click', function() {
-			console.log('proj_Img');
-			var form = new FormData(document.getElementById('uploadprojImg'));
-		
-			$.ajax({
-				url : "<%=request.getContextPath()%>/main/uploadProjectImg",
-				data : form,
-				dataType : 'text',
-				processData : false,
-				contentType : false,
-				type : 'POST',
-				success : 
-					function(response) {
-					console.log('success');
-					console.log(response);
-					 alert('사진이 등록되었습니다.'); 
-					location.reload();
-					$('#proj_Img').attr('src','<%=request.getContextPath()%>/resources/upload/${param.projectVo.proj_Img}');
+	<img class="img-thumbnail" id="proj_Img"
+		style="border: 1px solid #ddd; margin-bottom:15px;"
+		src="<%=request.getContextPath()%>/resources/upload2/${projectVo.proj_Img }"
+		data-toggle="modal" data-target="#imgUploadModal2"
+		data-keyboard="false" data-backdrop="static"
+		onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" />
 
-														},
-														error : function(jqXHR) {
 
-															console
-																	.log('error');
-														}
-													});
-
-										});
+	<!-- imgUpModal -->
+	<div class="modal fade" id="imgUploadModal2" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header"
+					style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">사진을 등록하렴</h3>
+				</div>
+				<div class="modal-body">
+					<%@ include file="WEB-INF/views/project/c9.jsp"%>
+				</div>
+				<div class="modal-footer" style="text-align: left">
+					<button id="closeModal" type="button" class="btn btn-default"
+						data-dismiss="modal">닫기</button>
+					<script>
+						$(document).ready(function() {
+							$('#closeModal').click(function() {
+								location.reload();
+							});
+						})
 					</script>
+					<button class="btn btn-default pull-right" id="btn-upload2">사진
+						등록하기</button>
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -89,7 +97,8 @@
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/pmNoticeList">프로젝트 공지사항</a></td>
+							href="<%=request.getContextPath()%>/project/pmNoticeList">프로젝트
+								공지사항</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;" href="#">채팅하기</a></td>
@@ -116,8 +125,8 @@
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/work/workList">파일리스트</a> <span
-							class="label label-success">New</span></td>
+						<td><a href="<%=request.getContextPath()%>/work/workList">파일리스트</a>
+							<span class="label label-success">New</span></td>
 					</tr>
 					<tr>
 						<td><a href="<%=request.getContextPath()%>/work/loadFile">들어가기</a></td>
@@ -126,7 +135,8 @@
 						<td><a href="<%=request.getContextPath()%>/work/"></a></td>
 					</tr>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/work/pmMemberInvite">Tex</a></td>
+						<td><a
+							href="<%=request.getContextPath()%>/work/pmMemberInvite">Tex</a></td>
 					</tr>
 				</table>
 			</div>
@@ -174,7 +184,9 @@
 						<td><a style="text-decoration: none;" href="#">팀원 리스트</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/pmMemberInvite">팀원 초대</a></td>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/project/pmMemberInvite">팀원
+								초대</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;" href="#">프로젝트 참가</a></td>
@@ -186,7 +198,8 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/AccountBoardList"><img
+				<a style="text-decoration: none;"
+					href="<%=request.getContextPath()%>/project/AccountBoardList"><img
 					style="width: 15%"
 					src="<%=request.getContextPath()%>/resources/img/won.png">&nbsp;프로젝트
 					회계</a>
@@ -233,7 +246,8 @@
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/notice/totalNoticeList">전체 공지사항</a></td>
+							href="<%=request.getContextPath()%>/notice/totalNoticeList">전체
+								공지사항</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"

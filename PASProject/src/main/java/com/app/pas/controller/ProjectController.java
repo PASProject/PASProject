@@ -652,40 +652,45 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/c9", method = RequestMethod.POST)
-	public String uploadByMultipartHttpServletRequest2(@ModelAttribute ProjectVo projectVo,
+	public String uploadByMultipartHttpServletRequest2(ProjectVo projectVo,
 			MultipartHttpServletRequest request, Model model,
 			HttpSession session) throws IOException {
-
-		MultipartFile multipartFile = request.getFile("proj_Img");
+		
+		MultipartFile multipartFile = request.getFile("ff");
 
 		if (!multipartFile.isEmpty()) {
 			String upload = new HttpServletRequestWrapper(request)
-					.getRealPath("/resources/upload");
+					.getRealPath("/resources/upload2");
 
-			System.out.println(upload);
 			File file = new File(upload, System.currentTimeMillis() + "$$"
 					+ multipartFile.getOriginalFilename());
 
 			multipartFile.transferTo(file);
-
-			/*
-			 * model.addAttribute("title", request.getParameter("title"));
-			 * model.addAttribute("uploadPath", file.getAbsolutePath());
-			 */
+					
+			System.out.println(upload);
+			System.out.println(file);
+			System.out.println(multipartFile);
+			 model.addAttribute("title", request.getParameter("title"));
+			 model.addAttribute("uploadPath", file.getAbsolutePath());
+			
 			int proj_Num = Integer.parseInt((String) session
 					.getAttribute("joinProj"));
 			projectVo.setProj_Img(file.getName());
 			projectVo.setProj_Num(proj_Num);
 
 			session.removeAttribute("joinProj");
+			System.out.println(session);
 			session.setAttribute("joinProj", projectVo);
+			System.out.println(session);
 			request.setAttribute("projectVo", projectVo);
+			System.out.println(session);
 			try {
 				projectService.updateProjectImg(projectVo);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("다된거같은데");
 			return "project/c9";
 		}
 		System.out.println("null");
