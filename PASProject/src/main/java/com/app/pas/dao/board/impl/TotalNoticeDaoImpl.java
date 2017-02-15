@@ -16,8 +16,8 @@ public class TotalNoticeDaoImpl implements TotalNoticeDao {
 	
 	
 	@Override
-	public List<TotalNoticeVo> selectTotalNoticeList() throws SQLException {
-		List<TotalNoticeVo> list = client.queryForList("selectTotalNoticeList");
+	public List<TotalNoticeVo> selectTotalNoticeList(TotalNoticeVo totalNoticeVo) throws SQLException {
+		List<TotalNoticeVo> list = client.queryForList("selectTotalNoticeList",totalNoticeVo);
 		return list;
 	}
 //디테일
@@ -56,6 +56,14 @@ public class TotalNoticeDaoImpl implements TotalNoticeDao {
 	public void totalNoticeCount(int ttnotice_Num) throws SQLException {
 		client.update("totalNoticeCount",ttnotice_Num);
 		
+	}
+
+
+	@Override
+	public int toTalNoticeSearchCount(TotalNoticeVo totalNoticeVo)
+			throws SQLException {
+		int ttNoticeCount = (Integer)client.queryForObject("toTalNoticeSearchCount",totalNoticeVo);
+		return ttNoticeCount;
 	}
 	
 

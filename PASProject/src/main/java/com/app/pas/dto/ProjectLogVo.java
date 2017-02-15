@@ -9,11 +9,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import lombok.Data;
 
-@Data
+
 @Alias("ProjectLog")
+@Data
 public class ProjectLogVo implements Serializable{
 
 	
+
 	/**
 	 * 
 	 */

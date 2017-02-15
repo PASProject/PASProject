@@ -40,19 +40,28 @@ public class SkillSharingController {
 
 	@RequestMapping("/SkillSharingBoardList")
 	public String skillSharingBoardList(Model model,
-			@RequestParam(value = "page", defaultValue = "1") String page,@RequestParam(defaultValue="") String ssb_Title) throws SQLException {
+			@RequestParam(value = "page", defaultValue = "1") String page,
+			@RequestParam(defaultValue="") String ssb_Title,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number,
+			SkillSharingBoardVo skillSharingBoardVo
+			) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
 		int totalCount = 0;
 		List<SkillSharingBoardVo> skillSharingBoardList = new ArrayList<SkillSharingBoardVo>();
 		
-			skillSharingBoardList = skillSharingBoardService
-					.selectSkillLikeCountViewList(ssb_Title);
+//			skillSharingBoardList = skillSharingBoardService
+//					.selectSkillLikeCountViewList(ssb_Title);
+//			totalCount = skillSharingBoardService.selectTotalCount();
+	
+		if (keyField == "" || keyField.equals(null)) {
 			totalCount = skillSharingBoardService.selectTotalCount();
-		/*	int likeCount = skillSharingBoardService.selectCountSharingBoardLike(ssb_Article_Num);*/
-
-		if (page.equals(null) || page == "") {
-			page = "" + 1;
-		}
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
 
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
@@ -60,10 +69,47 @@ public class SkillSharingController {
 		paging.setTotalCount(totalCount);
 
 		model.addAttribute("paging", paging);
-		model.addAttribute("skillSharingBoardList", skillSharingBoardList);
-		return url;
+		}else{
+			
+			 if (keyField == ("name") || keyField.equals("name")) {
 
-	}
+				 skillSharingBoardVo.setMem_Name(keyword);
+					System.out.println("--------------name 키워드 : " + keyword);
+
+				} else if (keyField == ("title") || keyField.equals("title")) {
+					skillSharingBoardVo.setSsb_Title(keyword);
+					System.out.println("-----------------title 키워드 : " + keyword);
+
+				} else if (keyField == ("number") || keyField.equals("number")) {
+					if (!(keyword.isEmpty() || keyword == null))
+						skillSharingBoardVo.setSsb_Article_Num(Integer.parseInt(keyword));
+
+					System.out.println("-----------------number 키워드 : " + keyword);
+				}
+			 skillSharingBoardList = skillSharingBoardService.selectSkillSharingBoardList(skillSharingBoardVo);
+				model.addAttribute("skillSharingBoardList", skillSharingBoardList);
+				
+				totalCount =(Integer)skillSharingBoardService.skillSharingSearchCount(skillSharingBoardVo);
+				if (page.equals(null) || page == "") {
+					page = "" + 1;
+				}
+				Paging paging = new Paging();
+				paging.setPageNo(Integer.parseInt(page));
+				paging.setPageSize(5);
+				paging.setTotalCount(totalCount);
+
+				model.addAttribute("paging", paging);
+
+			}
+			
+			
+		return url;
+			
+			
+		}
+		//model.addAttribute("skillSharingBoardList", skillSharingBoardList);
+		
+
 
 	@RequestMapping("/SkillSharingDetail")
 	public String detailskillSharingBoard(@RequestParam String ssb_Article_Num,

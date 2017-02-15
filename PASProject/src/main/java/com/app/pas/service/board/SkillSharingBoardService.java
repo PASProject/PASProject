@@ -25,6 +25,20 @@ public class SkillSharingBoardService {
 
 		return list;
 	}
+	//전체 리스트 출력 
+	public List<SkillSharingBoardVo> selectSkillSharingBoardList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException{
+		List<SkillSharingBoardVo> list = new ArrayList<SkillSharingBoardVo>();
+		list = skillsharingboardDao.selectSkillSharingBoardList(skillSharingBoardVo);
+		return list;
+	}
+	
+	public int skillSharingSearchCount(SkillSharingBoardVo skillSharingBoardVo)
+	throws SQLException{
+		int totalCount = skillsharingboardDao.skillSharingSearchCount(skillSharingBoardVo);
+		return totalCount;
+	}
+	
+	
 
 	public SkillSharingBoardVo selectSkillSharingBoardDetail(int ssb_Article_Num)
 			throws SQLException {

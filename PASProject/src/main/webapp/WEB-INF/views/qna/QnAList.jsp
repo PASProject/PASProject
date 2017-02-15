@@ -11,10 +11,12 @@
 <title></title>
 </head>
 <body>
+
 	<div class="col-md-10" id="content">
+
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>뭣이 궁금한ㄷㅣ</small>
+			QnA <small>게시판</small>
 		</h2>
 		
 
