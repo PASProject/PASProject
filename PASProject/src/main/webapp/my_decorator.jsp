@@ -103,25 +103,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--  For modal -->
 
 
@@ -180,13 +161,9 @@ body {
 	color: white;
 }
 
-#droptoggle:hover {
-	background-color: #4D76A3;
-}
-
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
-	background-color: #4D76A3;
+	background-color: #6093cc
 }
 
 .col-md-3 {

@@ -29,7 +29,16 @@
 	<div class="row"> -->
 <!-- 		<div class="col-sm-3 col-md-3"> -->
 <div class="panel-group" id="accordion">
+
+
+
+
+<%--프로젝트 이미지 수정해야함 --%>
 <img style="width: 80%" src="<%=request.getContextPath()%>/resources/img/manager.png">
+
+
+
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
@@ -69,29 +78,28 @@
 				<a style="text-decoration: none;" data-toggle="collapse"
 					data-parent="#accordion" href="#collapseTwo"><img
 					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/file.png">&nbsp;산출물
-					관리</a>
+					src="<%=request.getContextPath()%>/resources/img/file.png">&nbsp;작업공간</a>
 			</h4>
 		</div>
-		<!-- <div id="collapseTwo" class="panel-collapse collapse">
+		<div id="collapseTwo" class="panel-collapse collapse">
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Orders</a> <span
-							class="label label-success">$ 320</span></td>
+						<td><a href="<%=request.getContextPath()%>/work/workList">파일리스트</a> <span
+							class="label label-success">New</span></td>
 					</tr>
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Invoices</a></td>
+						<td><a href="<%=request.getContextPath()%>/work/loadFile">들어가기</a></td>
 					</tr>
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Shipments</a></td>
+						<td><a href="<%=request.getContextPath()%>/work/"></a></td>
 					</tr>
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Tex</a></td>
+						<td><a href="<%=request.getContextPath()%>/work/pmMemberInvite">Tex</a></td>
 					</tr>
 				</table>
 			</div>
-		</div> -->
+		</div>
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">

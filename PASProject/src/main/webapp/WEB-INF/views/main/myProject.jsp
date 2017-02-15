@@ -39,7 +39,6 @@
 					</h3>
 					<br> <br>
 					<div class="text-center">
-
 						<img src="<%=request.getContextPath()%>/resources/img/plus1.png"
 						id="createProject" value="생성하기" data-toggle="modal"
 						data-target="#create" data-keyboard="false" style="cursor:

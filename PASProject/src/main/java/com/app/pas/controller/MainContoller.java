@@ -38,7 +38,7 @@ import com.app.pas.service.ProjectService;
 
 @Controller
 @RequestMapping("/main")
-public class mainContoller {
+public class MainContoller {
 	HttpServletRequest request;
 	@Autowired
 	private JavaMailSender mailSender;
