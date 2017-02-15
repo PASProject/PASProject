@@ -152,12 +152,12 @@ public class MemberService {
 			List<MemberCommandVo> list=memberDao.selectMemberEmailList();
 			return list;
 		}
-<<<<<<< HEAD
+
 		public void updateMemberQuitCheck(MemberVo memberVo) throws SQLException {
 			memberDao.updateMemberQuitCheck(memberVo);
 			
 		}
-=======
+
 		
 		public String selectMemberPhone(String mem_Email) throws SQLException{
 			String mem_Phone = memberDao.selectMemberPhone(mem_Email);
@@ -165,7 +165,7 @@ public class MemberService {
 			
 		}
 	
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
 
 
 }
