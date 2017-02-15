@@ -208,7 +208,7 @@
 							$.each(data,function(i){
 								$.each(data[i],function(j){
 									var dt="";
-									dt ='<table><tr><td><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="color:#337ab7; font-weight:bold">'
+									dt ='<table><tr><td><img style="padding-top:5px; padding-right:5px; width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
 									+data[i][j].pb_Reply_Mem +'</td><td>'+ data[i][j].pb_Reply_Content+'</td></tr><table>';
 									$('#'+data[i][j].pb_Article_Num).append(dt);
 								});

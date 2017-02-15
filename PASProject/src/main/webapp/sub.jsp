@@ -34,8 +34,39 @@
 
 
 <%--프로젝트 이미지 수정해야함 --%>
-<img style="border: 1px solid #ddd; border-radius:5px; width: 163px; margin-bottom:15px;" src="<%=request.getContextPath()%>/resources/img/1.jpg">
 
+
+<img id="proj_Img" style="border: 1px solid #ddd; border-radius:5px; width: 163px; margin-bottom:15px;" src="<%=request.getContextPath()%>/resources/img/1.jpg">
+<script>
+		$('#proj_Img').on('click', function() {
+			console.log('proj_Img');
+			var form = new FormData(document.getElementById('uploadprojImg'));
+		
+			$.ajax({
+				url : "<%=request.getContextPath()%>/main/uploadProjectImg",
+				data : form,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				type : 'POST',
+				success : 
+					function(response) {
+					console.log('success');
+					console.log(response);
+					 alert('사진이 등록되었습니다.'); 
+					location.reload();
+					$('#proj_Img').attr('src','<%=request.getContextPath()%>/resources/upload/${param.projectVo.proj_Img}');
+
+														},
+														error : function(jqXHR) {
+
+															console
+																	.log('error');
+														}
+													});
+
+										});
+					</script>
 
 
 

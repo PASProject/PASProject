@@ -294,7 +294,7 @@ margin-bottom:20px;
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
 							style="padding-top: 5px; padding-bottom: 5px;"> <img
-								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
+								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
@@ -302,7 +302,7 @@ margin-bottom:20px;
 										class="img-thumbnail"
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
-										data-keyboard="false" data-backdrop="static" id="profileImg" />
+										data-keyboard="false" data-backdrop="static" id="profileImg" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
 								</a></li>
 								<li class="divider"></li>
 								<li><a href="#" data-toggle="modal"

@@ -353,8 +353,7 @@ public class MainContoller {
 		return url;
 	}
 
-	private String savePath = "resources/upload";
-
+	
 	// 씨벌 왤케 안되냐 이건 아작스 씌벌
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
@@ -395,7 +394,7 @@ public class MainContoller {
 		return "main/c8";
 
 	}
-
+	
 	@RequestMapping(value = "/profileImg", method = RequestMethod.GET)
 	public String profileImg(HttpSession session, Model model) {
 		String url = "main/profileImg";

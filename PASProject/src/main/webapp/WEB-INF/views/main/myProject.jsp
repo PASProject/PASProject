@@ -248,18 +248,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	function gogo(proj_Num){
 		location.href="../project/pmOverView?proj_Num="+proj_Num;
 	}
