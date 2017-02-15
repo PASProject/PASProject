@@ -26,34 +26,60 @@ public class AdminNoticeController {
 	TotalNoticeService totalNoticeService;
 	
 //전체공지사항 List 
-	@RequestMapping("/totalNoticeList")
+	@RequestMapping("/AdminTotalNoticeList")
 	public String selectTotalNoticeList(HttpSession session, Model model,HttpServletRequest request,
-			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
+			@RequestParam(value = "page", defaultValue = "1") String page,
+			TotalNoticeVo totalNoticeVo ,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number) throws SQLException {
 		String url = "admin/adminNoticeList";
 		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
-		
-		noticeList = totalNoticeService.selectTotalNoticeList();
-		
-		model.addAttribute("noticeList", noticeList);
-		
-		//페이지---------------
 		int totalCount = 0;
-		totalCount = totalNoticeService.toTalNoticeTotalCount();
 		
-		if (page.equals(null) || page == "") {
-			page = "" + 1;
-		}
+
+		if (keyField == "" || keyField.equals(null)) {
+			totalCount = totalNoticeService.toTalNoticeTotalCount();
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
 		
 		model.addAttribute("paging", paging);
+		}else{
+			
+			if(keyField == ("title") || keyField.equals("title")) {
+				
+				totalNoticeVo.setTtnotice_Title(keyword);
+				System.out.println("-----------------title 키워드 : " + keyword);
+				
+			}else if (keyField == ("number") || keyField.equals("number")) {
+				if (!(keyword.isEmpty() || keyword == null))
+					totalNoticeVo.setTtnotice_Num(Integer.parseInt(keyword));
+
+				System.out.println("-----------------number 키워드 : " + keyword);
+			}
+				noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
+				model.addAttribute("noticeList", noticeList);
+				
+			totalCount = totalNoticeService.toTalNoticeSearchCount(totalNoticeVo);
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			Paging paging = new Paging();
+			paging.setPageNo(Integer.parseInt(page));
+			paging.setPageSize(5);
+			paging.setTotalCount(totalCount);
+			
+			model.addAttribute("paging", paging);
+			}
 	
 
 		return url;
-
-	
 	}
 //전체 공지사항 Detail
 	@RequestMapping("/adminNoticeDetail")

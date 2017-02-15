@@ -16,7 +16,7 @@
 	<div class="col-md-10">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			프로젝트 게시판 <small>프로젝트 게시판입니다. 경희씨 여기서 잡담하지 마세요.</small>
+			프로젝트 게시판 <small>자유롭게 이야기하세요</small>
 		</h2>
 
 		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
@@ -36,7 +36,7 @@
 								    }); 
 							});
 							</script> <textarea class="pull-right" cols="60" rows="1" id="textArea"
-									name="pb_Content" placeholder="도대체 무슨 생각하면서 사냐??"
+									name="pb_Content" placeholder="팀원들에게 남길말을 적어주세요"
 									style="padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
 						</tr>
 						<tr>

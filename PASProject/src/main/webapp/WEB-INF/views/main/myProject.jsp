@@ -61,7 +61,7 @@
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
 						</h3>
-						<h4>프로젝트 팀명</h4>
+						<h4>${projectVo.proj_Team}</h4>
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
 							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
@@ -125,11 +125,10 @@
 						생성자 : <input type="text" id="mem_Email"
 							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
 						<br> <input type="hidden" id="mem_Img"
-							value="${sessionScope.loginUser.mem_Img }"> 프로젝트 이름 : <input
-							type="text" id="proj_Name" name="proj_Name"><br> <br>
-						프로젝트 내용 :
-						<textarea rows="15" cols="30" name="proj_Content"
-							id="proj_Content"></textarea>
+							value="${sessionScope.loginUser.mem_Img }"> 
+							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
+							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
+						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
 						<br>
 					</div>
 					<div class="modal-footer">
@@ -187,8 +186,10 @@
 			var mem_Email = $('#mem_Email').val();
 			var proj_Name = $('#proj_Name').val();
 			var proj_Content = $('#proj_Content').val();
+			var proj_Team = $('#proj_Team').val();
 			var mem_Img = $('#mem_Img').val();
-			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img};
+			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
+					'proj_Team':proj_Team};
 			$.ajax({
 				url:'createProject',
 				contentType:'application/json',

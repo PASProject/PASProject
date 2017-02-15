@@ -17,6 +17,18 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			Admin<small>_Notice</small>
 		</h2>
+		
+		<form name="form" method="post" action="AdminTotalNoticeList">
+		
+		<br> 
+		<select name = "keyField" size = "1">
+			<option value="title" selected>제목</option>
+			<option value ="number" selected>글번호</option>
+		</select>
+		<input type ="text" size ="20" name="keyword" value="${keyword}" >
+		<input type ="submit" value="검색" >
+		
+		<br>	
 
 		<table class="table table-hover">
 			<tr class="text-center">
@@ -77,7 +89,7 @@
 				</c:if>
 			</div>
 
-
+</form>
 
 
 	<!-- </div> -->

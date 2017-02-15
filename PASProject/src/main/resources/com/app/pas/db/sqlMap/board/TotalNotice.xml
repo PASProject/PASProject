@@ -8,20 +8,38 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	
 
-	<select id="selectTotalNoticeList" resultClass="TotalNotice">
-		SELECT *
-		FROM TOTAL_NOTICE
+	<select id="selectTotalNoticeList" resultClass="TotalNotice" parameterClass="TotalNotice">
+		SELECT * FROM TOTAL_NOTICE
+		WHERE TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%'
+		<isGreaterThan  prepend="and" property="ttnotice_Num" compareValue="0">
+		TTNOTICE_NUM = #ttnotice_Num# 
+		</isGreaterThan>		 
 		ORDER BY TTNOTICE_NUM DESC
-
 	</select>
+	
+	<select id ="toTalNoticeSearchCount" resultClass="int" parameterClass="TotalNotice">
+		SELECT COUNT(*)
+		FROM TOTAL_NOTICE
+		WHERE
+		TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%'
+		<isGreaterThan  prepend="and" property="ttnotice_Num" compareValue="0">
+		TTNOTICE_NUM = #ttnotice_Num# 
+		</isGreaterThan>
+	</select>
+	
 
+
+
+	<select id="toTalNoticeTotalCount" resultClass="int">
+		SELECT COUNT(*)
+		FROM TOTAL_NOTICE
+	</select>
+	
 	<select id="selectTotalNoticeBoard" parameterClass="int"
 		resultClass="TotalNotice">
 		SELECT *
 		FROM TOTAL_NOTICE
 		WHERE TTNOTICE_NUM LIKE '%'||#ttnotice_Num#||'%'
-
-
 	</select>
 
 	<insert id="insertTotalNotice" parameterClass="TotalNotice">
@@ -40,10 +58,6 @@
 		DELETE FROM TOTAL_NOTICE WHERE TTNOTICE_NUM=#ttnotice_Num#
 	</delete>
 	
-	<select id="toTalNoticeTotalCount" resultClass="int">
-		SELECT COUNT(*)
-		FROM TOTAL_NOTICE
-	</select>
 	
 	<update id="totalNoticeCount" parameterClass="int">
 		UPDATE TOTAL_NOTICE SET TTNOTICE_INQ_COUNT = TTNOTICE_INQ_COUNT+1

@@ -56,7 +56,6 @@ public class QnaController {
 		System.out.println("keyword : " + keyword);// 입력창
 
 		if (keyField == "" || keyField.equals(null)) {
-			System.out.println("asdsad");
 			totalCount = qnaBoardService.QnaSelectTotalCount();
 			if (page.equals(null) || page == "") {
 				page = "" + 1;

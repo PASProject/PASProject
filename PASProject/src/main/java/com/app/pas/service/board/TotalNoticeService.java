@@ -17,13 +17,17 @@ public class TotalNoticeService {
 		this.totalnoticeDao = totalnoticeDao;
 	}
 	//토탈 노티스 List 
-	public List<TotalNoticeVo> selectTotalNoticeList() throws SQLException{
+	public List<TotalNoticeVo> selectTotalNoticeList(TotalNoticeVo totalNoticeVo) throws SQLException{
 		List<TotalNoticeVo> list = new ArrayList<TotalNoticeVo>();
-		list = totalnoticeDao.selectTotalNoticeList();
-				
+		list = totalnoticeDao.selectTotalNoticeList(totalNoticeVo);
 		return list; 
-		
-	}
+		}
+    public int toTalNoticeSearchCount(TotalNoticeVo totalNoticeVo)throws SQLException{
+    	int ttNoticeCount = totalnoticeDao.toTalNoticeSearchCount(totalNoticeVo);
+    	return ttNoticeCount;
+    }
+    
+	
 	//전체공지사항 Detail
 	public TotalNoticeVo selectTotalNoticeBoard(int ttnotice_Num) throws SQLException{
 		
