@@ -235,7 +235,7 @@ body {
 
 
 </head>
-<title>최종! 2E6099</title>
+<title>최종!</title>
 <body>
 	<header>
 
@@ -249,9 +249,9 @@ body {
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
 
-						<li><a href="<%=request.getContextPath()%>/main/myProject">참여
+						<li><a id="myProjectList" href="<%=request.getContextPath()%>/main/myProject">참여
 								프로젝트 보기</a></li>
-						<li><a href="<%=request.getContextPath()%>/main/otherProject">외부
+						<li><a id="otherProjectList" href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 
 					</ul>
@@ -660,7 +660,17 @@ body {
 
 
 </script>
+<script>
+$(function(){
+	var a = location.href;
+	if(a.indexOf("otherProject")==-1){
+		$('#myProjectList').css('background-color','#6093cc');
+	}else if(a.indexOf("otherProject")!=-1){
+		$('#otherProjectList').css('background-color','#6093cc');
+	} 
+})
 
+</script>
 
 <script>
 	function logOut() {
