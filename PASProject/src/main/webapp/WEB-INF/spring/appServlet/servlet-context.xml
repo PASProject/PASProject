@@ -55,7 +55,7 @@
 	
 	<beans:bean id="conHandler" class="com.app.pas.commons.socketjs.SockjsHandler"/>
 	<beans:bean id ="SockjsHandshakeHandler" class="com.app.pas.commons.socketjs.SockjsHandshakeHandler"/>
-		
+	
 	<websocket:handlers allowed-origins="*" >
 		<websocket:mapping handler="conHandler" path="/conSocket.sockjs"/>
 		<websocket:handshake-handler ref="SockjsHandshakeHandler"/>

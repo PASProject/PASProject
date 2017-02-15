@@ -102,7 +102,6 @@
 		</dependency>
 
 
-
 		<dependency>
 			<groupId>kr.or.ddit</groupId>
 			<artifactId>ibatis-typealias-generator</artifactId>
