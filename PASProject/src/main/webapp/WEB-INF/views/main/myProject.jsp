@@ -16,7 +16,7 @@
 
 		<!-- Page Header -->
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12" >
 				<h2 class="page-header">
 					참여 프로젝트 목록
 					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"

@@ -9,6 +9,9 @@
 <title></title>
 </head>
 <body>
+<div class="col-md-10" id="content"></div>
  <h1>${sessionScope.joinProj }번프로젝트  오버뷰</h1> 
+</div>
 </body>
+
 </html>

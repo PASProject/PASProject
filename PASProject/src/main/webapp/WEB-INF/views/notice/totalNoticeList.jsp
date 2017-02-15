@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<div class="col-md-10">
+	<div class="col-md-10" id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			Total<small>_Notice</small>

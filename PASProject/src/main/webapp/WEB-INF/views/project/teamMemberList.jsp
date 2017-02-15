@@ -154,7 +154,7 @@
 
 
 
-<div class="col-md-8">
+<div class="col-md-10" id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 인원<small> ${memPositionView.proj_Name}</small>

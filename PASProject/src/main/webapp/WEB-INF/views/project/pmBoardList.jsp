@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<div class="col-md-10">
+	<div class="col-md-8"  id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 게시판 <small>프로젝트 게시판입니다. 경희씨 여기서 잡담하지 마세요.</small>
@@ -22,8 +22,7 @@
 		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
 
 
-		<div class="col-md-10">
-
+		<div class="col-md-12" >
 			<div id="pbd"
 				style="padding: 10px; background-color: white; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 20px;">
 				<form name="frm" method="post" action="pmBoardInsert">
@@ -33,11 +32,12 @@
 							$(function(){
 								 $(document).on('input', 'textarea', function () {
 								        $(this).outerHeight(38).outerHeight(this.scrollHeight); // 38 or '1em' -min-height
-								    }); 
+								    });
+								 $('#my)
 							});
-							</script> <textarea class="pull-right" cols="60" rows="1" id="textArea"
+							</script> <textarea class="pull-right" rows="1" id="textArea"
 									name="pb_Content" placeholder="도대체 무슨 생각하면서 사냐??"
-									style="padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
+									style="width:690px; padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
 						</tr>
 						<tr>
 							<td>
@@ -295,6 +295,6 @@
 
 
 	</div>
-	</div>
+
 </body>
 </html>

@@ -127,7 +127,7 @@
 <style>
 body {
 	font-family: 'NanumGothic';
-	background-color: rgb(249, 249, 249);
+	background-color: white;
 }
 
 .navbar-default {
@@ -203,6 +203,18 @@ body {
     background-image: -webkit-linear-gradient(#85d063, #4f992f);
     background-image: linear-gradient(#85d063, #4f992f);
     border-color: #519d30;
+}
+#content{
+    background-color: #f9f9f9;
+border:1px solid #ddd;
+border-radius:5px;
+    margin-top:25px;
+    min-height:800px;
+    margin-bottom:5%;
+}
+.page-header{
+margin-top:20px;
+margin-bottom:20px;
 }
 </style>
 
@@ -458,7 +470,7 @@ body {
 		<c:otherwise>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2" id="submenu" style="margin-top: 40px;">
+					<div class="col-md-2" id="submenu" style="margin-top: 25px;">
 						<jsp:include page="sub.jsp" />
 					</div>
 					<decorator:body />

@@ -34,7 +34,7 @@
 
 
 <%--프로젝트 이미지 수정해야함 --%>
-<img style="width: 80%" src="<%=request.getContextPath()%>/resources/img/manager.png">
+<img style="border: 1px solid #ddd; border-radius:5px; width: 163px; margin-bottom:15px;" src="<%=request.getContextPath()%>/resources/img/1.jpg">
 
 
 

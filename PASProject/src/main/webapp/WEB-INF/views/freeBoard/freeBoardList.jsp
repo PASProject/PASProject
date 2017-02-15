@@ -25,7 +25,7 @@
 		</c:if>
 			<!-- Page Header -->
 
-			<div class="col-md-10">
+			<div class="col-md-10" id="content">
 				<h2 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					FreeBoard <small>아무말이나 하셔도 되요♥</small>
