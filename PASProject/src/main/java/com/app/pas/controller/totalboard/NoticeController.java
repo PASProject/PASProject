@@ -37,7 +37,8 @@ public class NoticeController {
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "") String keyField,
 			@RequestParam(defaultValue = "") String title,
-			@RequestParam(defaultValue = "") String number) throws SQLException {
+			@RequestParam(defaultValue = "") String number,
+			@RequestParam(defaultValue = "") String content) throws SQLException {
 		String url = "notice/totalNoticeList";
 		int totalCount = 0;
 		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
@@ -65,14 +66,19 @@ public class NoticeController {
 				totalNoticeVo.setTtnotice_Num(Integer.parseInt(keyword));
 
 			System.out.println("-----------------number 키워드 : " + keyword);
+		}else if (keyField == ("content") || keyField.equals("content")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				totalNoticeVo.setTtnotice_Content(keyword);
+
+			System.out.println("-----------------content 키워드 : " + keyword);
 		}
 			noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
 			model.addAttribute("noticeList", noticeList);
 			
-		totalCount = totalNoticeService.toTalNoticeSearchCount(totalNoticeVo);
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
+		totalCount = totalNoticeService.toTalNoticeSearchCount(totalNoticeVo);
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);

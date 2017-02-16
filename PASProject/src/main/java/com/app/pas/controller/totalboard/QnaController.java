@@ -46,7 +46,9 @@ public class QnaController {
 			@RequestParam(defaultValue = "") String keyField,
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") String title,
-			@RequestParam(defaultValue = "") String number) throws SQLException {
+			@RequestParam(defaultValue = "") String number,
+			@RequestParam(defaultValue = "") String content
+			) throws SQLException {
 		String url = "qna/QnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
@@ -84,20 +86,25 @@ public class QnaController {
 				qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
 
 			System.out.println("-----------------number 키워드 : " + keyword);
+		} else if (keyField == ("content") || keyField.equals("content")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoarVo.setQb_Content(keyword);
+
+			System.out.println("-----------------content 키워드 : " + keyword);
 		}
 
 		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
 		model.addAttribute("qnaList", qnaList);
 		
-		totalCount =(Integer)qnaBoardService.QnaSearchTotalCount(qnaBoarVo);
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
+		totalCount =(Integer)qnaBoardService.QnaSearchTotalCount(qnaBoarVo);
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
-
+		
 		model.addAttribute("paging", paging);
 
 	}

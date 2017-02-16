@@ -104,4 +104,9 @@ public class FreeBoardService {
 		return list;
 		
 	}
+	
+	public int freeBoardSearchCount (FreeBoardVo freeBoardVo)throws SQLException{
+		int totalCount =freeboardDao.freeBoardSearchCount(freeBoardVo);
+		return totalCount;
+	}
 }

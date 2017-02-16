@@ -103,4 +103,11 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 		return list;
 	}
 
+	@Override
+	public int freeBoardSearchCount(FreeBoardVo freeBoardVo)
+			throws SQLException {
+		int likeCount = (Integer)client.queryForObject("freeBoardSearchCount", freeBoardVo);
+		return likeCount;
+	}
+
 }

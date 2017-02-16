@@ -10,7 +10,8 @@
 
 	<select id="selectTotalNoticeList" resultClass="TotalNotice" parameterClass="TotalNotice">
 		SELECT * FROM TOTAL_NOTICE
-		WHERE TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%'
+		WHERE TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%' and
+		TTNOTICE_CONTENT LIKE '%'||#ttnotice_Content#||'%' 
 		<isGreaterThan  prepend="and" property="ttnotice_Num" compareValue="0">
 		TTNOTICE_NUM = #ttnotice_Num# 
 		</isGreaterThan>		 
@@ -21,7 +22,8 @@
 		SELECT COUNT(*)
 		FROM TOTAL_NOTICE
 		WHERE
-		TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%'
+		TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%' and
+		TTNOTICE_CONTENT LIKE '%'||#ttnotice_Content#||'%' 
 		<isGreaterThan  prepend="and" property="ttnotice_Num" compareValue="0">
 		TTNOTICE_NUM = #ttnotice_Num# 
 		</isGreaterThan>

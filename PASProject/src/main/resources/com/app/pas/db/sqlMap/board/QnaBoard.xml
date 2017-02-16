@@ -10,6 +10,7 @@
 	<select id="selectQnaBoardList" resultClass="QnaBoard" parameterClass="QnaBoard">
 		SELECT * FROM QNA_BOARD
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
 		QB_TITLE LIKE '%'||#qb_Title#||'%'
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
@@ -26,6 +27,7 @@
 		SELECT COUNT(*)
 		FROM QNA_BOARD
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
 		QB_TITLE LIKE '%'||#qb_Title#||'%'
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 

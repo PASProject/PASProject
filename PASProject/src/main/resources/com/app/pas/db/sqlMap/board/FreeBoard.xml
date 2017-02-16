@@ -7,6 +7,29 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	
+	<select id="selectFreeBoardList" resultClass="FreeBoard">
+		SELECT * FROM FREE_BOARD
+		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+		FRB_TITLE LIKE '%'||#frb_Title#||'%'
+		<isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
+		FRB_ARTICLE_NUM = #frb_Article_Num# 
+		</isGreaterThan>		 
+		ORDER BY frb_Article_Num DESC
+	</select>
+	
+	<select id="freeBoardSearchCount" resultClass="int" parameterClass="FreeBoard">
+	SELECT COUNT(*)
+	FROM FREE_BOARD
+	WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+	FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+	FRB_TITLE LIKE '%'||#frb_Title#||'%'
+	<isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
+		FRB_ARTICLE_NUM = #frb_Article_Num# 
+	</isGreaterThan>
+	</select>
+	
+	
 	<insert id="insertFreeboardLike" parameterClass="FreeBoardLike">
 		INSERT INTO
 		FREE_BOARD_LIKE(FRB_ARTICLE_NUM,MEM_EMAIL) 
@@ -29,12 +52,6 @@
 
 	</select>
 	
-	<select id="selectFreeBoardList" resultClass="FreeBoard">
-		SELECT *
-		FROM FREE_BOARD
-		ORDER BY frb_Article_Num DESC
-
-	</select>
 
 	<select id="selectFreeBoard" parameterClass="int"
 		resultClass="FreeBoard">
