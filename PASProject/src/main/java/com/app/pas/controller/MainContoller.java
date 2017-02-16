@@ -59,8 +59,11 @@ public class MainContoller {
 		if (session != null) {
 			session.removeAttribute("loginUser");
 			if (session.getAttribute("joinProj") != null
-					&& session.getAttribute("joinProj") != "null") {
+					|| session.getAttribute("joinProj") != "null") {
 				session.removeAttribute("joinProj");
+			}
+			if(session.getAttribute("joinProjectVo")!=null || session.getAttribute("joinProjectVo") !="null" ){
+				session.removeAttribute("joinProjectVo");
 			}
 		}
 		String url = "/main/loginForm";
@@ -182,9 +185,16 @@ public class MainContoller {
 		}
 
 		if (session.getAttribute("joinProj") != null
-				&& session.getAttribute("joinProj") != "null") {
+				|| session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
 		}
+		if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+			session.removeAttribute("joinProjectVo");
+		}
+
+
+		
 		return url;
 		
 		
@@ -212,8 +222,12 @@ public class MainContoller {
 			session.removeAttribute("proj_Num");
 		}
 		if (session.getAttribute("joinProj") != null
-				&& session.getAttribute("joinProj") != "null") {
+				|| session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
+		}
+		if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+			session.removeAttribute("joinProjectVo");
 		}
 		return url;
 		
@@ -353,8 +367,7 @@ public class MainContoller {
 		return url;
 	}
 
-	private String savePath = "resources/upload";
-
+	
 	// 씨벌 왤케 안되냐 이건 아작스 씌벌
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
@@ -395,7 +408,7 @@ public class MainContoller {
 		return "main/c8";
 
 	}
-
+	
 	@RequestMapping(value = "/profileImg", method = RequestMethod.GET)
 	public String profileImg(HttpSession session, Model model) {
 		String url = "main/profileImg";

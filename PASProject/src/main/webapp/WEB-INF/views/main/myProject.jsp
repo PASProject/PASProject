@@ -12,19 +12,15 @@
 
 <body>
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
 		<!-- Page Header -->
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12" >
 				<h2 class="page-header">
 					참여 프로젝트 목록
 					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
 						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
-			
-
-
-
 				</h2>
 
 			</div>
@@ -57,11 +53,11 @@
 
 					<div class="col-md-3" id="box"
 						style="margin-bottom:30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
-						<h3 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
+						<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
-						</h3>
-						<h4>${projectVo.proj_Team}</h4>
+						</h4>
+						<h5>${projectVo.proj_Team}</h5>
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
 							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
@@ -245,18 +241,6 @@
 			}
 		})
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -6,7 +6,7 @@ import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
 
 @Alias("Project")
-@Data
+ @Data
 public class ProjectVo implements Serializable{
 
 	/**

@@ -23,23 +23,26 @@ font-size:12px;
 
 <body>
 
+
+
+
 	<table>
 		<tr>
 			<td style="padding-left:20px;"><img class="img-thumbnail"
-				src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
-				id="blah" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/></td>
+				src="<%=request.getContextPath() %>/resources/upload2/${projectVo.proj_Img}"
+				id="asdf" alt="your image" /></td>
 			<td style="padding-left: 75px;">
-			프로필 사진을 업로드 해주세요.<br>사진 크기는 1mb이하만 가능합니다.<br><br><br>
-				<form id="uploadForm" enctype="multipart/form-data">
-					<input class="" type="file" id="fileId" name="f"
-						onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+			프로젝트 사진을 업로드 해주세요.<br>사진 크기는 1mb이하만 가능합니다.<br><br><br>
+				<form id="projImg" enctype="multipart/form-data">
+					<input class="" type="file" id="fileId" name="ff" onchange="document.getElementById('asdf').src = window.URL.createObjectURL(this.files[0])">
 				</form>
-				
 			</td>
 		</tr>
 	</table>
 
-	
+	<script>
+
+	</script>
 
 </body>
 <script>
