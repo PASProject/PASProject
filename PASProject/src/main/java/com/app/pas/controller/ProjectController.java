@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.InviteVo;
@@ -189,15 +190,24 @@ public class ProjectController {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Name = memberVo.getMem_Name();
 		String mem_Img = memberVo.getMem_Img();
-		projectBoardReplyVo.setPb_Reply_Mem(mem_Name);
+		String mem_Email = memberVo.getMem_Email();
+		projectBoardReplyVo.setPb_Reply_Mem_Name(mem_Name);
+		projectBoardReplyVo.setPb_Reply_Mem(mem_Email);
 		projectBoardReplyVo.setPb_Reply_Mem_Img(mem_Img);
-		;
+		
 		List<ProjectBoardReplyVo> list = projectBoardReplyService
 				.insertProjectBoardReply(projectBoardReplyVo);
 
 		return list;
 	}
+	@RequestMapping(value = "/deleteProjectBoardReply",method=RequestMethod.GET)
+	public String deleteProjectBoardReply(@RequestParam String pb_Reply_Num) throws NumberFormatException, SQLException{
+		String url = "redirect:/project/pmBoardList";
+		projectBoardReplyService.deleteProjectBoardReply(Integer.parseInt(pb_Reply_Num));
+		return url; 
+	}
 
+	
 	//
 	// @RequestMapping(value = "/pmBoardWrite", method = RequestMethod.GET)
 	// public String writeFreeBoard(HttpSession session, Model model) {

@@ -28,4 +28,8 @@ public class ProjectBoardReplyService {
 		List<ProjectBoardReplyVo> list = projectBoardReplyDao.selectProjectBoardReply(pb_Article_num);
 		return list;
 	}
+	
+	public void deleteProjectBoardReply(int pb_Reply_Num) throws SQLException{
+		projectBoardReplyDao.deleteProjectBoardReply(pb_Reply_Num);
+	}
 }
