@@ -101,8 +101,8 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
  -->
- 
- <%-- 스크롤바 없애는거 --%>
+
+<%-- 스크롤바 없애는거 --%>
 <!-- <script>
 $(function(){
 $('html, body').css({'overflow': 'hidden', 'height': '100%'});
@@ -157,7 +157,7 @@ body {
 	/* min-height: 28px; */
 	/* height: 11px; */
 	height: 42px;
-	background-color: #4D76A3;
+	background-color: #6093cc;
 }
 
 .navbar-default  .navbar-header>a {
@@ -169,6 +169,8 @@ body {
 }
 
 .navbar-inverse {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	margin-top: 30px;
 	background-color: #6093cc;
 	border-color: #6093cc;
@@ -203,11 +205,6 @@ body {
 	height: 40px;
 }
 
-#a li a:hover {
-	background-color: #6093cc;
-	color: white;
-	font-weight: bold;
-}
 </style>
 
 <style>
@@ -243,12 +240,16 @@ body {
 </style>
 <script>
 $(function(){
-	$('#colorpick').click(function(){
-		$('.navbar navbar-default').css({
-			ba
+	$('#navbar').css({
+		'filter':'brightness(80%)'	
+		});
+		$('#myProjectList').css({
+		'filter':'brightness(125%)'
+	});
+		$('#otherProjectList').css({
+			'filter':'brightness(125%)'
 		})
 	})
-})
 </script>
 
 
@@ -261,18 +262,19 @@ $(function(){
 	<header>
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
-			id="navbar">
-			<div class="container">
+		<div class="background-color" style="height: auto;">
+
+			<nav class="navbar navbar-default navbar-fixed-top container "
+				role="navigation" id="navbar">
+
 
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
-						<li><button id="colorpick">색 바꾸기</button>
 						<li><a id="myProjectList"
-							href="<%=request.getContextPath()%>/main/myProject">참여 프로젝트
-								보기</a></li>
+							href="<%=request.getContextPath()%>/main/myProject"><p>참여 프로젝트
+								보기</p></a></li>
 						<li><a id="otherProjectList"
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
@@ -281,17 +283,19 @@ $(function(){
 					<ul class="nav navbar-nav navbar-right">
 
 					</ul>
+
+					<div id="jkjk"></div>
+
 				</div>
-				<div id="jkjk"></div>
+			</nav>
 
-			</div>
-		</nav>
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
-			id="navbar">
+		</div>
+		<nav class="navbar navbar-inverse navbar-fixed-top container"
+			role="navigation" id="navbar">
 
-			<div class="container">
+			<div class="">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
+				<div class="navbar-header ">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span> <span
@@ -304,7 +308,7 @@ $(function(){
 
 						</c:when>
 						<c:otherwise>
-		
+
 						</c:otherwise>
 					</c:choose>
 					<a class="navbar-brand" href="#" style="font-size: 20px;"><b>프로젝트
@@ -516,7 +520,7 @@ $(function(){
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2" id="submenu" style="margin-top: 25px;">
-						<%@ include file="sub.jsp" %>
+						<%@ include file="sub.jsp"%>
 						<script>
 		$('#btn-upload2').on('click', function() {
 			var form = new FormData(document.getElementById('projImg'));
