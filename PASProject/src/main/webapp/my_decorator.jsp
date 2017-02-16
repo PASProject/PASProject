@@ -101,7 +101,23 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
  -->
+ 
+ <%-- 스크롤바 없애는거 --%>
+<!-- <script>
+$(function(){
+$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+})
 
+</script> -->
+<!-- <script>
+$(function(){
+	$('#myProjectBody').on('scroll touchmove mousewheel', function(e) {
+		   e.preventDefault();
+		   e.stopPropagation(); 
+		   return false;
+	})
+})
+</script> -->
 
 
 
@@ -225,7 +241,15 @@ body {
 	margin-bottom: 20px;
 }
 </style>
-
+<script>
+$(function(){
+	$('#colorpick').click(function(){
+		$('.navbar navbar-default').css({
+			ba
+		})
+	})
+})
+</script>
 
 
 
@@ -245,7 +269,7 @@ body {
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
-
+						<li><button id="colorpick">색 바꾸기</button>
 						<li><a id="myProjectList"
 							href="<%=request.getContextPath()%>/main/myProject">참여 프로젝트
 								보기</a></li>
@@ -283,7 +307,7 @@ body {
 		
 						</c:otherwise>
 					</c:choose>
-					<a class="navbar-brand" href="#" style="font-size: 25px;"><b>프로젝트
+					<a class="navbar-brand" href="#" style="font-size: 20px;"><b>프로젝트
 							자동화 시스템</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -715,8 +739,7 @@ $(function(){
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>
-	/main/logOut";
+		location.href = "<%=request.getContextPath()%>/main/logOut";
 	}
 </script>
 </html>

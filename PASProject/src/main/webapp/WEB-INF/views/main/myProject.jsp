@@ -12,7 +12,7 @@
 
 <body>
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
 		<!-- Page Header -->
 		<div class="row">
@@ -21,10 +21,6 @@
 					참여 프로젝트 목록
 					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
 						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
-			
-
-
-
 				</h2>
 
 			</div>

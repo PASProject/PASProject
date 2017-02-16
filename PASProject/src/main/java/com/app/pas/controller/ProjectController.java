@@ -374,6 +374,13 @@ public class ProjectController {
 		return url;
 	}
 
+	@RequestMapping("/billing")
+	public String Billing(HttpSession session, Model model){
+		String url = "project/billing";
+		
+		return url;
+	}
+	
 	@RequestMapping("/AccountBoardList")
 	public String AccountBoardList(HttpSession session, Model model,
 			@RequestParam(value = "page", defaultValue = "1") String page)

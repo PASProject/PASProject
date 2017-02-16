@@ -77,6 +77,9 @@
 
 
 
+
+
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
@@ -87,7 +90,7 @@
 					관리</a>
 			</h4>
 		</div>
-		<div id="collapseOne" class="panel-collapse collapse in">
+		<div id="collapseOne" class="panel-collapse collapse">
 			<div class="panel-body">
 				<table class="table"
 					style="margin-bottom: 0px; border-top: 0px solid blue;">
@@ -106,6 +109,10 @@
 						<td><a style="text-decoration: none;"
 							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트
 								게시판</a></td>
+					</tr>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/project/billing">돈관리</a></td>
 					</tr>
 				</table>
 			</div>
