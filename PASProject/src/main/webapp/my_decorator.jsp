@@ -94,8 +94,13 @@
 
 
 
-
-
+<%--여준영 모험 --%>
+<!-- <link
+	href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+	rel="stylesheet" />
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+ -->
 
 
 
@@ -269,6 +274,15 @@ body {
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
+					<c:choose>
+						<c:when test="${empty sessionScope.joinProj }">
+
+
+						</c:when>
+						<c:otherwise>
+		
+						</c:otherwise>
+					</c:choose>
 					<a class="navbar-brand" href="#" style="font-size: 25px;"><b>프로젝트
 							자동화 시스템</b></a>
 				</div>

@@ -643,8 +643,7 @@ public class ProjectController {
 
 	@RequestMapping(value = "/c9", method = RequestMethod.GET)
 	public String profileImgForm(HttpSession session, Model model) throws SQLException {
-		int proj_Num = Integer.parseInt((String) session
-				.getAttribute("joinProj"));
+		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));
 		ProjectVo projectVo = projectService.selectProject(proj_Num);
 		model.addAttribute("projectVo",projectVo);
 		String url = "project/c9";
@@ -682,7 +681,7 @@ public class ProjectController {
 			System.out.println(session);
 			session.setAttribute("joinProj", projectVo);
 			System.out.println(session);
-			request.setAttribute("projectVo", projectVo);
+			session.setAttribute("projectVo", projectVo);
 			System.out.println(session);
 			try {
 				projectService.updateProjectImg(projectVo);
@@ -693,8 +692,9 @@ public class ProjectController {
 			System.out.println("다된거같은데");
 			return "project/c9";
 		}
-		System.out.println("null");
-		return "project/c9";
+		
+
+		return "projectVo/c9";
 
 	}
 

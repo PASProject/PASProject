@@ -185,6 +185,10 @@ public class MainContoller {
 				&& session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
 		}
+		
+
+
+		
 		return url;
 		
 		

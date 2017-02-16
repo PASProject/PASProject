@@ -57,11 +57,11 @@
 
 					<div class="col-md-3" id="box"
 						style="margin-bottom:30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
-						<h3 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
+						<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
-						</h3>
-						<h4>${projectVo.proj_Team}</h4>
+						</h4>
+						<h5>${projectVo.proj_Team}</h5>
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
 							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">

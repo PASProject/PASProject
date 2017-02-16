@@ -35,13 +35,12 @@
 
 	<%--프로젝트 이미지 수정해야함 --%>
 
-
-	<img class="img-thumbnail" id="proj_Img"
-		style="border: 1px solid #ddd; margin-bottom:15px;"
+	<img class="img-thumbnail" id="proj_Img" 
+		style="cursor: pointer; border: 1px solid #ddd; margin-bottom:15px;"
 		src="<%=request.getContextPath()%>/resources/upload2/${projectVo.proj_Img }"
 		data-toggle="modal" data-target="#imgUploadModal2"
 		data-keyboard="false" data-backdrop="static"
-		onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" />
+		 onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" /> 
 
 
 	<!-- imgUpModal -->
