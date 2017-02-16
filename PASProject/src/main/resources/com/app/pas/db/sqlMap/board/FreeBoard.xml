@@ -7,7 +7,7 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	
-	<select id="selectFreeBoardList" resultClass="FreeBoard">
+	<select id="selectFreeBoardList" resultClass="FreeBoard" parameterClass="FreeBoard">
 		SELECT * FROM FREE_BOARD
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		FRB_CONTENT LIKE '%'||#frb_Content#||'%' and

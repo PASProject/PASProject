@@ -18,6 +18,7 @@
 		</h2>
 
 <form name="form" method="post" action="SkillSharingBoardList">
+	<input type = "hidden" name = "mem_Email" value="${SkillSharingBoardVo.mem_Email}">
 	<br> 
 		<select name = "keyField" size = "1">
 			<option value="title" selected>제목</option>
@@ -40,7 +41,6 @@
 					<th class="col-md-1">조회수</th>
 					<th class="col-md-1">추천수</th>
 				</tr>
-	
 	
 		<c:forEach items="${skillSharingBoardList }" var="SkillSharingBoardVo"
 			begin="${paging.beginNo}" end="${paging.endNo}">

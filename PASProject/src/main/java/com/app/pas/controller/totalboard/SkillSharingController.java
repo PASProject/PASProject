@@ -53,8 +53,7 @@ public class SkillSharingController {
 		int totalCount = 0;
 		List<SkillSharingBoardVo> skillSharingBoardList = new ArrayList<SkillSharingBoardVo>();
 
-		// skillSharingBoardList = skillSharingBoardService
-		// .selectSkillLikeCountViewList(ssb_Title);
+		
 		// totalCount = skillSharingBoardService.selectTotalCount();
 
 		if (keyField == "" || keyField.equals(null)) {
@@ -84,8 +83,8 @@ public class SkillSharingController {
 				if (!(keyword.isEmpty() || keyword == null))
 					skillSharingBoardVo.setSsb_Article_Num(Integer
 							.parseInt(keyword));
-
 				System.out.println("-----------------number 키워드 : " + keyword);
+			
 			} else if (keyField == ("content") || keyField.equals("content")) {
 				if (!(keyword.isEmpty() || keyword == null))
 					skillSharingBoardVo.setSsb_Content(keyword);
@@ -95,6 +94,10 @@ public class SkillSharingController {
 			skillSharingBoardList = skillSharingBoardService
 					.selectSkillSharingBoardList(skillSharingBoardVo);
 			model.addAttribute("skillSharingBoardList", skillSharingBoardList);
+			
+			 skillSharingBoardList = skillSharingBoardService
+					 .selectSkillLikeCountViewList(ssb_Title);
+			 model.addAttribute("skillSharingBoardList",skillSharingBoardList);
 
 			if (page.equals(null) || page == "") {
 				page = "" + 1;

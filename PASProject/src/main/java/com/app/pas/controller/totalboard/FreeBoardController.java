@@ -41,62 +41,60 @@ public class FreeBoardController {
 			,HttpServletRequest request,
 			@RequestParam(defaultValue = "") String keyword,
 			@RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
-			FreeBoardVo freeBoardVo
-			) throws SQLException {
+			FreeBoardVo freeboardVo ) throws SQLException {
 		String url = "freeBoard/freeBoardList";
 		String delete = request.getParameter("delete");
 		
 		
 		int totalCount = 0 ;
-		
+		/*Page<FreeBoardVo> postPage =freeBoardService.*/
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
-		
 
-//			totalCount = freeBoardService.selectTotalCount();
-		
-		if (keyField == "" || keyField.equals(null)) {
-			totalCount = freeBoardService.selectTotalCount();
-		
 		if(page.equals(null)||page ==""){
-			page = ""+1;
-		}
-		Paging paging = new Paging();
-		paging.setPageNo(Integer.parseInt(page));
-		paging.setPageSize(10);
-		paging.setTotalCount(totalCount);
-
-		model.addAttribute("paging", paging);
-		}else {
-
-			if (keyField == ("name") || keyField.equals("name")) {
-				freeBoardVo.setMem_Email(keyword);
-				System.out.println("--------------name 키워드 : " + keyword);
-
-			} else if(keyField ==("title")|| keyField.equals("title")){
-				freeBoardVo.setFrb_Title(keyword);
-				System.out.println("-----------------title 키워드 : " + keyword);
-
-			} else if (keyField == ("number") || keyField.equals("number")) {
-				if (!(keyword.isEmpty() || keyword == null))
-					freeBoardVo.setFrb_Article_Num(Integer.parseInt(keyword));
-				System.out.println("-----------------number 키워드 : " + keyword);
-				
-			} else if (keyField == ("content") || keyField.equals("content")) {
-				if (!(keyword.isEmpty() || keyword == null))
-					freeBoardVo.setFrb_Content(keyword);
-
-				System.out.println("-----------------content 키워드 : " + keyword);
-			}
-
-		//	freeBoardList = freeBoardService.selectFreeLikeCountViewList();
+			totalCount = freeBoardService.selectTotalCount();
 			if (page.equals(null) || page == "") {
 				page = "" + 1;
 			}
+		
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		model.addAttribute("paging",paging);
+		}else{
+			if (keyField == ("name") || keyField.equals("name")) {
+
+				freeboardVo.setMem_Name(keyword);
+				System.out.println("--------------name 키워드 : " + keyword);
+
+			}else if (keyField == ("title") || keyField.equals("title")) {
+				freeboardVo.setFrb_Title(keyword);
+				System.out.println("-----------------title 키워드 : " + keyword);
+
+			}else if (keyField == ("number") || keyField.equals("number")) {
+				if (!(keyword.isEmpty() || keyword == null))
+					freeboardVo.setFrb_Article_Num(Integer
+							.parseInt(keyword));
+				System.out.println("-----------------number 키워드 : " + keyword);
 			
-			totalCount = (Integer) freeBoardService.freeBoardSearchCount(freeBoardVo);
+			}else if (keyField == ("content") || keyField.equals("content")) {
+				if (!(keyword.isEmpty() || keyword == null))
+					freeboardVo.setFrb_Content(keyword);
+
+				System.out.println("-----------------content 키워드 : " + keyword);
+			}
+			
+			freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
+			model.addAttribute("freeBoardList", freeBoardList);
+		
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			totalCount = freeBoardService.selectTotalCount();
 			Paging paging = new Paging();
 			paging.setPageNo(Integer.parseInt(page));
 			paging.setPageSize(5);
@@ -104,20 +102,12 @@ public class FreeBoardController {
 
 			model.addAttribute("paging", paging);
 		
-
 		}
-		freeBoardList = freeBoardService.selectFreeBoardList();
-		model.addAttribute("freeBoardList", freeBoardList);
-		
+	
+		model.addAttribute("delete", delete);
 		return url;
 	}
 
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/freeBoardDetail")
 	public String detailFreeBoard(@RequestParam String frb_Article_Num,
 			HttpServletRequest request, Model model) throws NumberFormatException, SQLException{

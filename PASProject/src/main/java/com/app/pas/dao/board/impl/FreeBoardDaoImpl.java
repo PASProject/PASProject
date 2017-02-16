@@ -16,8 +16,8 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	}
 
 	@Override
-	public List<FreeBoardVo> selectFreeBoardList() throws SQLException {
-		List<FreeBoardVo> list = client.queryForList("selectFreeBoardList");
+	public List<FreeBoardVo> selectFreeBoardList(FreeBoardVo freeBoardVo) throws SQLException {
+		List<FreeBoardVo> list = client.queryForList("selectFreeBoardList",freeBoardVo);
 		return list;
 	}
 
