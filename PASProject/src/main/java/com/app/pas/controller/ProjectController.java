@@ -194,7 +194,7 @@ public class ProjectController {
 		projectBoardReplyVo.setPb_Reply_Mem_Name(mem_Name);
 		projectBoardReplyVo.setPb_Reply_Mem(mem_Email);
 		projectBoardReplyVo.setPb_Reply_Mem_Img(mem_Img);
-		;
+		
 		List<ProjectBoardReplyVo> list = projectBoardReplyService
 				.insertProjectBoardReply(projectBoardReplyVo);
 
