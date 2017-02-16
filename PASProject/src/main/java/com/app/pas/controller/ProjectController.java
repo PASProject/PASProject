@@ -215,7 +215,7 @@ public class ProjectController {
 		return url;
 	}
 
-	// �봽濡쒖젥�듃 Notice 由ъ뒪�듃
+	
 	@RequestMapping("/pmNoticeList")
 	public String pmNoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
@@ -361,10 +361,12 @@ public class ProjectController {
 
 	@RequestMapping("/pmOverView")
 	public String PmOverView(HttpSession session, Model model,
-			@RequestParam String proj_Num) {
+			@RequestParam String proj_Num) throws NumberFormatException, SQLException {
 		String url = "project/pmOverView";
 		// joinProj �쁽�옱 �젒�냽�븳 �봽濡쒖젥�듃 踰덊샇
 		session.setAttribute("joinProj", proj_Num);
+		ProjectVo projectVo = projectService.selectProject(Integer.parseInt(proj_Num));
+		session.setAttribute("joinProjectVo", projectVo);
 		return url;
 	}
 
@@ -660,7 +662,7 @@ public class ProjectController {
 	@RequestMapping(value = "/c9", method = RequestMethod.POST)
 	public String uploadByMultipartHttpServletRequest2(ProjectVo projectVo,
 			MultipartHttpServletRequest request, Model model,
-			HttpSession session) throws IOException {
+			HttpSession session) throws IOException, SQLException {
 		
 		MultipartFile multipartFile = request.getFile("ff");
 
@@ -685,18 +687,7 @@ public class ProjectController {
 			projectVo.setProj_Num(proj_Num);
 
 			session.removeAttribute("joinProj");
-			System.out.println(session);
-			session.setAttribute("joinProj", projectVo);
-			System.out.println(session);
-			session.setAttribute("projectVo", projectVo);
-			System.out.println(session);
-			try {
 				projectService.updateProjectImg(projectVo);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("다된거같은데");
 			return "project/c9";
 		}
 		

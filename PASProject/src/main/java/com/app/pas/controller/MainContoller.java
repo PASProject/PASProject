@@ -59,8 +59,11 @@ public class MainContoller {
 		if (session != null) {
 			session.removeAttribute("loginUser");
 			if (session.getAttribute("joinProj") != null
-					&& session.getAttribute("joinProj") != "null") {
+					|| session.getAttribute("joinProj") != "null") {
 				session.removeAttribute("joinProj");
+			}
+			if(session.getAttribute("joinProjectVo")!=null || session.getAttribute("joinProjectVo") !="null" ){
+				session.removeAttribute("joinProjectVo");
 			}
 		}
 		String url = "/main/loginForm";
@@ -182,10 +185,13 @@ public class MainContoller {
 		}
 
 		if (session.getAttribute("joinProj") != null
-				&& session.getAttribute("joinProj") != "null") {
+				|| session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
 		}
-		
+		if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+			session.removeAttribute("joinProjectVo");
+		}
 
 
 		
@@ -216,8 +222,12 @@ public class MainContoller {
 			session.removeAttribute("proj_Num");
 		}
 		if (session.getAttribute("joinProj") != null
-				&& session.getAttribute("joinProj") != "null") {
+				|| session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
+		}
+		if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+			session.removeAttribute("joinProjectVo");
 		}
 		return url;
 		
