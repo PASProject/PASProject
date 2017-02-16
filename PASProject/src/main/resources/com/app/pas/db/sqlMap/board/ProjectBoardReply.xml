@@ -32,8 +32,6 @@
 
 	<delete id="deleteProjectBoardReply" parameterClass="int">
 		DELETE FROM PROJECT_BOARD_REPLY WHERE PB_REPLY_NUM=#pb_Reply_Num#
-
-
 	</delete>
 
 </sqlMap>
