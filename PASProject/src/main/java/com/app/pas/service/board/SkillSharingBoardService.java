@@ -25,9 +25,10 @@ public class SkillSharingBoardService {
 
 		return list;
 	}
-	//ÀüÃ¼ ¸®½ºÆ® Ãâ·Â 
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ 
 	public List<SkillSharingBoardVo> selectSkillSharingBoardList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException{
 		List<SkillSharingBoardVo> list = new ArrayList<SkillSharingBoardVo>();
+		System.out.println("5555555555555555555555555555"+skillSharingBoardVo.toString());
 		list = skillsharingboardDao.selectSkillSharingBoardList(skillSharingBoardVo);
 		return list;
 	}
@@ -137,5 +138,10 @@ public class SkillSharingBoardService {
 
 		return skillSharingBoardLike;
 	}
-	
+	public List<SkillSharingBoardVo> skillSharingSearch_Content_Title(SkillSharingBoardVo skillSharingBoardVo)
+	throws SQLException{
+		List<SkillSharingBoardVo> list = 
+				skillsharingboardDao.skillSharingSearch_Content_Title(skillSharingBoardVo);
+	return list;
+	}
 }

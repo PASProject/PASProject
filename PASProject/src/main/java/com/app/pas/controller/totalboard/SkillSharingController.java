@@ -48,6 +48,7 @@ public class SkillSharingController {
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_content,
 			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
 		int totalCount = 0;
@@ -90,6 +91,11 @@ public class SkillSharingController {
 					skillSharingBoardVo.setSsb_Content(keyword);
 
 				System.out.println("-----------------content 키워드 : " + keyword);
+			} else if(keyField == ("title_content")|| keyField.equals("title_content")) {
+				skillSharingBoardVo.setSsb_Title(keyword);
+				/*skillSharingBoardVo.setSsb_Content(keyword);*/
+				skillSharingBoardVo.setSsb_Title_Content(keyword);
+		 
 			}
 			skillSharingBoardList = skillSharingBoardService
 					.selectSkillSharingBoardList(skillSharingBoardVo);

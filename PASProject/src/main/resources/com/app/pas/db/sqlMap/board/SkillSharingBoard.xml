@@ -6,6 +6,7 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="SkillSharingBoard" type="com.app.pas.dto.board.SkillSharingBoardVo"/>
 	
 	<select id="selectSkillSharingBoardList" resultClass="SkillSharingBoard" parameterClass="SkillSharingBoard">
 		SELECT * FROM SKILL_SHARING_BOARD
@@ -15,14 +16,19 @@
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>
+		<isNotEmpty prepend="or" property="ssb_Title_Content">
+		SSB_CONTENT LIKE '%'||#ssb_Title_Content#||'%' 
+		</isNotEmpty>
 		ORDER BY SSB_ARTICLE_NUM DESC
+		
 	</select>
 	
 	<select id="skillSharingSearchCount" resultClass="int" parameterClass="SkillSharingBoard">
 		SELECT COUNT(*)
 		FROM SKILL_SHARING_BOARD
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
-		SSB_TITLE LIKE '%'||#ssb_Title#||'%'
+		SSB_TITLE LIKE '%'||#ssb_Title#||'%' and
+		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' 
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>

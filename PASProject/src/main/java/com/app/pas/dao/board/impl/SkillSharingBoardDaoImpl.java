@@ -143,6 +143,13 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 		return list;
 	}
 
+	@Override
+	public List<SkillSharingBoardVo> skillSharingSearch_Content_Title(
+			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
+		List<SkillSharingBoardVo>list = client.queryForList("skillSharingSearch_Content_Title",skillSharingBoardVo);
+		return list;
+	}
+
 	}
 
 	

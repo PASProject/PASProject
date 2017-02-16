@@ -24,6 +24,7 @@ public class SkillSharingBoardVo implements Serializable{
 	private String mem_Email;
 	private int ssb_Like_Count;
 	private String mem_Name;
+	private String ssb_Title_Content;
 	
 	
 	
