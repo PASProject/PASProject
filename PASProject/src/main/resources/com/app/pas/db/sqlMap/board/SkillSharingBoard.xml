@@ -12,13 +12,12 @@
 		SELECT * FROM SKILL_SHARING_BOARD
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		SSB_TITLE LIKE '%'||#ssb_Title#||'%' and
+		SSB_CONTENT || SSB_TITLE  LIKE '%'||#ssb_Title_Content#||'%' and
 		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' 
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>
-		<isNotEmpty prepend="or" property="ssb_Title_Content">
-		SSB_CONTENT LIKE '%'||#ssb_Title_Content#||'%' 
-		</isNotEmpty>
+
 		ORDER BY SSB_ARTICLE_NUM DESC
 		
 	</select>

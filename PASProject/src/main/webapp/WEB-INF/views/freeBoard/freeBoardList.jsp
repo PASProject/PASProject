@@ -23,7 +23,7 @@
 	</c:if>
 	<!-- Page Header -->
 
-	<div class="col-md-10">
+	<div class="col-md-10" id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			FreeBoard <small>자유롭게 이야기하세요</small>
@@ -86,13 +86,6 @@
 
 			<div class="col-md-10">
 				<input type="button" value="글쓰기" onclick="wrtie_form()">
-
-			<div class="col-md-10" id="content">
-				<h2 class="page-header"
-					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-					FreeBoard <small>아무말이나 하셔도 되요♥</small>
-				</h2>
-
 
 				<script>
 					function wrtie_form() {
