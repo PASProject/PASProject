@@ -29,6 +29,7 @@
 			<option value = "name" selected>작성자</option>
 			<option value ="number" selected>글번호</option>
 			<option value ="content" selected>내용</option>
+			<option value ="title_content" selected>제목+내용</option>
 		</select>
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >
@@ -95,8 +96,8 @@
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 
-							<li class="page-item"><a class="page-link"
-								href="QnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+							<li class="page-item">
+							<a class="page-link" href="QnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
 
 
 							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"

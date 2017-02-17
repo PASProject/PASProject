@@ -373,7 +373,6 @@ public class ProjectController {
 	public String PmOverView(HttpSession session, Model model,
 			@RequestParam String proj_Num) throws NumberFormatException, SQLException {
 		String url = "project/pmOverView";
-		// joinProj �쁽�옱 �젒�냽�븳 �봽濡쒖젥�듃 踰덊샇
 		session.setAttribute("joinProj", proj_Num);
 		ProjectVo projectVo = projectService.selectProject(Integer.parseInt(proj_Num));
 		session.setAttribute("joinProjectVo", projectVo);
@@ -540,11 +539,11 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/pmMemberInvite", method = RequestMethod.POST)
-	public @ResponseBody List<MemberCommandVo> pmMemberInviteList()
+	public @ResponseBody List<MemberCommandVo> pmMemberInviteList(HttpSession session)
 			throws SQLException {
+		String Proj_Num = (String) session.getAttribute("joinProj");
 		List<MemberCommandVo> memberList = memberService
-				.selectMemberEmailList();
-		System.out.println(memberList + "筌롢끇苡��뵳�딅뮞占쎈뱜!!!!!!!!!!!!!!!!!!");
+				.selectMemberEmailList(Integer.parseInt(Proj_Num));
 
 		return memberList;
 	}
@@ -563,14 +562,14 @@ public class ProjectController {
 
 		InviteVo inviteVo = new InviteVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
-
+		
 		inviteVo.setMem_Email(mem_Email);
 		inviteVo.setProj_Num(proj_Num);
+		
 		projectJoinVo.setMem_Email(mem_Email);
 		projectJoinVo.setProj_Num(proj_Num);
 		projectJoinVo.setMem_Name(memberVo1.getMem_Name());
 		projectJoinVo.setMem_Img(memberVo1.getMem_Img());
-
 		projectJoinService.insertProject(projectJoinVo);
 		inviteService.insertInvite(inviteVo);
 		return result;

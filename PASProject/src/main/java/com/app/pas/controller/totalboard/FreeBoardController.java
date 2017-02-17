@@ -45,6 +45,8 @@ public class FreeBoardController {
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_Content,
+			
 			FreeBoardVo freeboardVo ) throws SQLException {
 		String url = "freeBoard/freeBoardList";
 		String delete = request.getParameter("delete");
@@ -84,26 +86,36 @@ public class FreeBoardController {
 			}else if (keyField == ("content") || keyField.equals("content")) {
 				if (!(keyword.isEmpty() || keyword == null))
 					freeboardVo.setFrb_Content(keyword);
-
 				System.out.println("-----------------content 키워드 : " + keyword);
+				
+			}else if(keyField ==("title_Content")|| keyField.equals("title_Content")){
+				if(!(keyword.isEmpty()|| keyword == null))
+					freeboardVo.setFrb_title_Content(keyword);
 			}
 			
 			freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
 			model.addAttribute("freeBoardList", freeBoardList);
 		
-			if (page.equals(null) || page == "") {
-				page = "" + 1;
-			}
-			totalCount = freeBoardService.selectTotalCount();
+			totalCount = freeBoardService.freeBoardSearchCount(freeboardVo);
 			Paging paging = new Paging();
 			paging.setPageNo(Integer.parseInt(page));
 			paging.setPageSize(5);
 			paging.setTotalCount(totalCount);
-
+			
 			model.addAttribute("paging", paging);
 		
 		}
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
 	
+		totalCount = freeBoardService.freeBoardSearchCount(freeboardVo);
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging", paging);
 		model.addAttribute("delete", delete);
 		return url;
 	}

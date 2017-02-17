@@ -25,6 +25,7 @@
 			<option value="title" selected>제목</option>
 			<option value = "name" selected>작성자</option>
 			<option value ="number" selected>글번호</option>
+			<option value ="title_content" selected>제목+내용</option>
 		</select>
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >

@@ -31,8 +31,10 @@ import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
 
@@ -53,6 +55,9 @@ public class MainContoller {
 	@Autowired
 	ProjectService projectService;
 
+	@Autowired
+	InviteService inviteService;
+	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
@@ -329,6 +334,7 @@ public class MainContoller {
 				memApplyViewVo);
 		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
 		map.put("p_Mem_Email", p_Mem_Email);
+		
 		return map;
 	}
 
@@ -416,13 +422,20 @@ public class MainContoller {
 	}
 
 	@RequestMapping(value = "/alramView", method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> selectAlarmView(
+	public @ResponseBody Map<String,Object> selectAlarmView(
 			HttpSession session) throws SQLException {
 		MemberVo member = (MemberVo) session.getAttribute("loginUser");
 		String p_Mem_Email = member.getMem_Email();
+		String mem_Email = member.getMem_Email();
 		List<MemApplyViewVo> memApplyViewList = memberService
 				.selectMemApplyViewByEmail(p_Mem_Email);
-		return memApplyViewList;
+		List<ProjInviteViewVo> projInviteViewList = inviteService.selectInviteListByMemEmail(mem_Email);
+		
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		
+		return alarmMap;
 	}
 
 	
@@ -445,35 +458,79 @@ public class MainContoller {
 		memberVo.setMem_Phone(map.get("sendPhone").toString());
 
 		MemberVo memberVo1 = memberService.searchEmail(memberVo);
-		System.out.println(memberVo1 + "이건 멤멤!!");
 		if (memberVo1 != null) {
 
 			Id = memberVo1.getMem_Email();
 		}
-		System.out.println(Id + "이건아이디!!!!!");
 
 		map.put("id", Id);
 		return map;
 	}
 
-	@RequestMapping(value = "/agree", method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> agreeAlarm(
-			@RequestBody Map<String, Object> map) throws SQLException {
+	@RequestMapping(value = "/agreeApply", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> agreeApplyAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		
 		String apply_Num = (String) map.get("apply_Num");
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = member.getMem_Email();
+		
 		List<MemApplyViewVo> memApplyViewList = memberService
 				.updateApplyAgree(Integer.parseInt(apply_Num));
-		return memApplyViewList;
+		List<ProjInviteViewVo> projInviteViewList = inviteService.selectInviteListByMemEmail(mem_Email);
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		
+		return alarmMap;
 	}
-
-	@RequestMapping(value = "/reject", method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> rejectAlarm(
-			@RequestBody Map<String, Object> map) throws SQLException {
+	
+	
+	@RequestMapping(value = "/rejectApply", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> rejectApplyAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
 		String apply_Num = (String) map.get("apply_Num");
-		List<MemApplyViewVo> memApplyViewList = memberService
-				.updateApplyReject(Integer.parseInt(apply_Num));
-		return memApplyViewList;
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = member.getMem_Email();
+		List<MemApplyViewVo> memApplyViewList = memberService.updateApplyReject(Integer.parseInt(apply_Num));
+		List<ProjInviteViewVo> projInviteViewList = inviteService.selectInviteListByMemEmail(mem_Email);
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		return alarmMap;
+	}
+	
+	@RequestMapping(value = "/agreeInvite", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> agreeInviteAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		String invite_Num = (String) map.get("invite_Num");
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String p_mem_Email = member.getMem_Email();
+		
+		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_mem_Email);
+		List<ProjInviteViewVo> projInviteViewList = inviteService.updataInviteAgree(Integer.parseInt(invite_Num));
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		return alarmMap;
 	}
 
+	@RequestMapping(value = "/rejectInvite", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> rejectInviteAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		String invite_Num = (String) map.get("invite_Num");
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String p_Mem_Email = member.getMem_Email();
+		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_Mem_Email);
+		List<ProjInviteViewVo> projInviteViewList = inviteService.updataInviteReject(Integer.parseInt(invite_Num));
+		
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		return alarmMap;
+	}
+	
+	
 	@RequestMapping(value = "/createProject", method = RequestMethod.POST)
 	public @ResponseBody int createProject(@RequestBody ProjectVo projectVo)
 			throws SQLException {

@@ -204,7 +204,6 @@ body {
 	width: 40px;
 	height: 40px;
 }
-
 </style>
 
 <style>
@@ -273,8 +272,8 @@ $(function(){
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
 						<li><a id="myProjectList"
-							href="<%=request.getContextPath()%>/main/myProject"><p>참여 프로젝트
-								보기</p></a></li>
+							href="<%=request.getContextPath()%>/main/myProject"><p>참여
+									프로젝트 보기</p></a></li>
 						<li><a id="otherProjectList"
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
@@ -565,7 +564,7 @@ $(function(){
 <script>
 	$(document).ready(
 			function() {
-				connect();
+				/* connect(); */
 				
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
@@ -588,17 +587,23 @@ $(function(){
 									.stop(true, true).slideUp("400");
 							$(this).toggleClass('open');
 						}); */
+						
 				$('#alarmMenu').on('click',function(){
-					
 					$.ajax({
 						url:'alramView',
 						contentType:'application/json',
 						dataType:'json',
 						type:'post',
 						success:function(data) {
-							var dataList="";
-							$.each(data,function(i){
-								var date = new Date(data[i].apply_Time);
+							var dataListApply="";
+							var dataListInvite="";
+							var memApplyViewList="";
+							var projInviteViewList = "";
+							memApplyViewList = data.memApplyViewList;
+							projInviteViewList = data.projInviteViewList;
+							
+							$.each(memApplyViewList,function(i){
+								var date = new Date(memApplyViewList[i].apply_Time);
 								var year = date.getFullYear();
 								var month = (1 + date.getMonth());
 								month = month >= 10 ? month : '0'
@@ -607,15 +612,36 @@ $(function(){
 								day = day >= 10 ? day : '0' + day;
 								var fullD = year + '년' + month
 										+ '월' + day + '일';
-								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
-								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+"<input type='button' id="+data[i].apply_Num+" class='go_agree' value='수락'>"
-								+" / <input type='button' id="+data[i].apply_Num+" class='go_reject' value='거절'></a></li><br>";
+								dataListApply += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+memApplyViewList[i].proj_Num+'] '+ memApplyViewList[i].proj_Name+
+								' 보낸사람 : '+memApplyViewList[i].mem_Email+' 분류 : [ '+memApplyViewList[i].alarm_Clsfct_Name+"] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
+								+" / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
 								if(i==2){
 									return false;
 								}
 							});
+							
+							$.each(projInviteViewList,function(i){
+								var date = new Date(projInviteViewList[i].invite_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListInvite += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+projInviteViewList[i].proj_Num+'] '+ projInviteViewList[i].proj_Name+
+								' 보낸사람 : '+projInviteViewList[i].mem_Email+' 분류 : [ '+projInviteViewList[i].alarm_Clsfct_Name+" ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
+								+" / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							var fullDataList = dataListApply + "<hr color='red'/>"+ dataListInvite
 							$('#dropMenu').empty();
-							$('#dropMenu').append(dataList);
+							$('#dropMenu').append(fullDataList);
+							
 						},
 						complete:function(){
 							$.ajax({
@@ -631,20 +657,30 @@ $(function(){
 					})
 				});
 				
-				$(document).on('click','.go_reject',function(){
+						
+						
+						
+				$(document).on('click','.go_rejectApply',function(){
 					var apply_Num =$(this).attr('id');
 					dataList = {'apply_Num' : apply_Num};
+					
 					$.ajax({
-						url:'reject',
+						url:'rejectApply',
 						dataType:'json',
 						contentType:'application/json',
 						data: JSON.stringify(dataList),
 						type:'post',
 						success:function(data){
 							alert('가입신청 거절');
-							var dataList="";
-							$.each(data,function(i){
-								var date = new Date(data[i].apply_Time);
+							var dataListApply="";
+							var dataListInvite="";
+							var memApplyViewList="";
+							var projInviteViewList = "";
+							memApplyViewList = data.memApplyViewList;
+							projInviteViewList = data.projInviteViewList;
+							
+							$.each(memApplyViewList,function(i){
+								var date = new Date(memApplyViewList[i].apply_Time);
 								var year = date.getFullYear();
 								var month = (1 + date.getMonth());
 								month = month >= 10 ? month : '0'
@@ -653,15 +689,36 @@ $(function(){
 								day = day >= 10 ? day : '0' + day;
 								var fullD = year + '년' + month
 										+ '월' + day + '일';
-								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
-								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+"<input type='button' id="+data[i].apply_Num+" class='go_agree' value='수락'>"
-								+" / <input type='button' id="+data[i].apply_Num+" class='go_reject' value='거절'></a></li><br>";
+								dataListApply += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+memApplyViewList[i].proj_Num+'] '+ memApplyViewList[i].proj_Name+
+								' 보낸사람 : '+memApplyViewList[i].mem_Email+' 분류 : [ '+memApplyViewList[i].alarm_Clsfct_Name+"] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
+								+" / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
 								if(i==2){
 									return false;
 								}
 							});
+							
+							$.each(projInviteViewList,function(i){
+								var date = new Date(projInviteViewList[i].invite_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListInvite += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+projInviteViewList[i].proj_Num+'] '+ projInviteViewList[i].proj_Name+
+								' 보낸사람 : '+projInviteViewList[i].mem_Email+' 분류 : [ '+projInviteViewList[i].alarm_Clsfct_Name+" ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
+								+" / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							var fullDataList = dataListApply + "<hr color='red'/>"+ dataListInvite
 							$('#dropMenu').empty();
-							$('#dropMenu').append(dataList);
+							$('#dropMenu').append(fullDataList);
+							
 						},
 						complete:function(){
 							$.ajax({
@@ -678,20 +735,27 @@ $(function(){
 			});
 				
 				
-				$(document).on('click','.go_agree',function(){
+				
+				$(document).on('click','.go_agreeApply',function(){
 					var apply_Num =$(this).attr('id');
 					dataList = {'apply_Num' : apply_Num};
 					$.ajax({
-						url:'agree',
+						url:'agreeApply',
 						dataType:'json',
 						contentType:'application/json',
 						data: JSON.stringify(dataList),
 						type:'post',
 						success:function(data){
 							alert('가입신청 승인');
-							var dataList="";
-							$.each(data,function(i){
-								var date = new Date(data[i].apply_Time);
+							var dataListApply="";
+							var dataListInvite="";
+							var memApplyViewList="";
+							var projInviteViewList = "";
+							memApplyViewList = data.memApplyViewList;
+							projInviteViewList = data.projInviteViewList;
+							
+							$.each(memApplyViewList,function(i){
+								var date = new Date(memApplyViewList[i].apply_Time);
 								var year = date.getFullYear();
 								var month = (1 + date.getMonth());
 								month = month >= 10 ? month : '0'
@@ -700,15 +764,36 @@ $(function(){
 								day = day >= 10 ? day : '0' + day;
 								var fullD = year + '년' + month
 										+ '월' + day + '일';
-								dataList += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+data[i].proj_Num+'] '+ data[i].proj_Name+
-								' 보낸사람 : '+data[i].mem_Email+' 분류 : '+data[i].alarm_Clsfct_Name+"<input type='button' id="+data[i].apply_Num+" class='go_agree' value='수락'>"
-								+" / <input type='button' id="+data[i].apply_Num+" class='go_reject' value='거절'></a></li><br>";
+								dataListApply += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+memApplyViewList[i].proj_Num+'] '+ memApplyViewList[i].proj_Name+
+								' 보낸사람 : '+memApplyViewList[i].mem_Email+' 분류 : [ '+memApplyViewList[i].alarm_Clsfct_Name+"] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
+								+" / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
 								if(i==2){
 									return false;
 								}
 							});
+							
+							$.each(projInviteViewList,function(i){
+								var date = new Date(projInviteViewList[i].invite_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListInvite += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+projInviteViewList[i].proj_Num+'] '+ projInviteViewList[i].proj_Name+
+								' 보낸사람 : '+projInviteViewList[i].mem_Email+' 분류 : [ '+projInviteViewList[i].alarm_Clsfct_Name+" ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
+								+" / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							var fullDataList = dataListApply + "<hr color='red'/>"+ dataListInvite
 							$('#dropMenu').empty();
-							$('#dropMenu').append(dataList);
+							$('#dropMenu').append(fullDataList);
+							
 						},
 						complete:function(){
 							$.ajax({
@@ -723,6 +808,157 @@ $(function(){
 					}
 					});
 				});
+				
+				
+				
+				$(document).on('click','.go_agreeInvite',function(){
+					var invite_Num =$(this).attr('id');
+					dataList = {'invite_Num' : invite_Num};
+					$.ajax({
+						url:'agreeInvite',
+						dataType:'json',
+						contentType:'application/json',
+						data: JSON.stringify(dataList),
+						type:'post',
+						success:function(data){
+							alert('초대수락');
+							var dataListApply="";
+							var dataListInvite="";
+							var memApplyViewList="";
+							var projInviteViewList = "";
+							memApplyViewList = data.memApplyViewList;
+							projInviteViewList = data.projInviteViewList;
+							
+							$.each(memApplyViewList,function(i){
+								var date = new Date(memApplyViewList[i].apply_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListApply += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+memApplyViewList[i].proj_Num+'] '+ memApplyViewList[i].proj_Name+
+								' 보낸사람 : '+memApplyViewList[i].mem_Email+' 분류 : [ '+memApplyViewList[i].alarm_Clsfct_Name+"] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
+								+" / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							$.each(projInviteViewList,function(i){
+								var date = new Date(projInviteViewList[i].invite_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListInvite += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+projInviteViewList[i].proj_Num+'] '+ projInviteViewList[i].proj_Name+
+								' 보낸사람 : '+projInviteViewList[i].mem_Email+' 분류 : [ '+projInviteViewList[i].alarm_Clsfct_Name+" ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
+								+" / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							var fullDataList = dataListApply + "<hr color='red'/>"+ dataListInvite
+							$('#dropMenu').empty();
+							$('#dropMenu').append(fullDataList);
+							
+						},
+						complete:function(){
+							$.ajax({
+								url :'<%=request.getContextPath()%>/main/alarmCount',
+								dataType : 'json',
+								type:'get',
+								success:function(data){
+										$('#alarmCount').text("");
+										$('#alarmCount').text(data);
+									}
+							})
+					}
+					});
+				});
+				
+				
+				
+				$(document).on('click','.go_rejectInvite',function(){
+					var invite_Num =$(this).attr('id');
+					dataList = {'invite_Num' : invite_Num};
+					$.ajax({
+						url:'agreeInvite',
+						dataType:'json',
+						contentType:'application/json',
+						data: JSON.stringify(dataList),
+						type:'post',
+						success:function(data){
+							alert('초대 거절');
+							var dataListApply="";
+							var dataListInvite="";
+							var memApplyViewList="";
+							var projInviteViewList = "";
+							memApplyViewList = data.memApplyViewList;
+							projInviteViewList = data.projInviteViewList;
+							
+							$.each(memApplyViewList,function(i){
+								var date = new Date(memApplyViewList[i].apply_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListApply += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+memApplyViewList[i].proj_Num+'] '+ memApplyViewList[i].proj_Name+
+								' 보낸사람 : '+memApplyViewList[i].mem_Email+' 분류 : [ '+memApplyViewList[i].alarm_Clsfct_Name+"] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
+								+" / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							$.each(projInviteViewList,function(i){
+								var date = new Date(projInviteViewList[i].invite_Time);
+								var year = date.getFullYear();
+								var month = (1 + date.getMonth());
+								month = month >= 10 ? month : '0'
+										+ month;
+								var day = date.getDate();
+								day = day >= 10 ? day : '0' + day;
+								var fullD = year + '년' + month
+										+ '월' + day + '일';
+								dataListInvite += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+projInviteViewList[i].proj_Num+'] '+ projInviteViewList[i].proj_Name+
+								' 보낸사람 : '+projInviteViewList[i].mem_Email+' 분류 : [ '+projInviteViewList[i].alarm_Clsfct_Name+" ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
+								+" / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
+								if(i==2){
+									return false;
+								}
+							});
+							
+							var fullDataList = dataListApply + "<hr color='red'/>"+ dataListInvite
+							$('#dropMenu').empty();
+							$('#dropMenu').append(fullDataList);
+							
+						},
+						complete:function(){
+							$.ajax({
+								url :'<%=request.getContextPath()%>/main/alarmCount',
+								dataType : 'json',
+								type:'get',
+								success:function(data){
+										$('#alarmCount').text("");
+										$('#alarmCount').text(data);
+									}
+							})
+					}
+					});
+				});
+				
 				
 				
 			});
@@ -743,7 +979,8 @@ $(function(){
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>/main/logOut";
+		location.href = "<%=request.getContextPath()%>
+	/main/logOut";
 	}
 </script>
 </html>

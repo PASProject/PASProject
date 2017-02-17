@@ -36,6 +36,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 
 	
 	<!-- sitemesh filter -->
@@ -53,6 +54,22 @@
 		
 	</filter-mapping>
 	
+	 
+	<!--  	 login filter --> 
+	<filter>
+	  <filter-name>loginSessionFilter</filter-name>
+	  <filter-class>com.app.pas.commons.filter.LoginSessionFilter</filter-class>
+	  <init-param>
+      <param-name>uri</param-name>
+      <param-value>proj_Num</param-value>
+    </init-param>
+	</filter>
+	<filter-mapping>
+	  <filter-name>loginSessionFilter</filter-name>
+      <url-pattern>/project/*</url-pattern>
+	</filter-mapping> 
+	
+	
 	<!-- encoding filter -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -69,4 +86,8 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+
+	
 </web-app>

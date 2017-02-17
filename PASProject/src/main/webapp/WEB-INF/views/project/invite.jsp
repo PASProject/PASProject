@@ -27,7 +27,6 @@
 		var data = "";
 		
 		$(function() {
-			
 			$.ajax({
 				type : 'POST',
 				url : 'pmMemberInvite',
