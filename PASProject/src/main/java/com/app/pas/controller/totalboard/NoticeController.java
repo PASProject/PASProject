@@ -38,7 +38,9 @@ public class NoticeController {
 			@RequestParam(defaultValue = "") String keyField,
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
-			@RequestParam(defaultValue = "") String content) throws SQLException {
+			@RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_Content
+			) throws SQLException {
 		String url = "notice/totalNoticeList";
 		int totalCount = 0;
 		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
@@ -69,8 +71,12 @@ public class NoticeController {
 		}else if (keyField == ("content") || keyField.equals("content")) {
 			if (!(keyword.isEmpty() || keyword == null))
 				totalNoticeVo.setTtnotice_Content(keyword);
-
 			System.out.println("-----------------content 키워드 : " + keyword);
+			
+		}else if (keyField ==("title_Content")|| keyField.equals("title_Content")){
+			if(!(keyword.isEmpty() || keyword == null))
+				totalNoticeVo.setTtnotice_Title_Content(keyword);
+			System.out.println("모야모야 : " + totalNoticeVo.getTtnotice_Title_Content());
 		}
 			noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
 			model.addAttribute("noticeList", noticeList);
