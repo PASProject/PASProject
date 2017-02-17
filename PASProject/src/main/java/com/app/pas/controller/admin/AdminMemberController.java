@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -96,18 +97,16 @@ public class AdminMemberController {
 	}
 
 	@RequestMapping("/memberDelete")
-	public String deleteMember(
-			@RequestParam(value = "mem_Email") String mem_Email,
-			HttpSession session) throws NumberFormatException, SQLException {
+	public String deleteMember(String mem_Email, HttpSession session) throws NumberFormatException, SQLException {
 		String url = "redirect:memberList";
 		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
 		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
 		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
-		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
-		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
-		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
-		System.out.println("@@@@@@@[          "+mem_Email+"         }@@@@@@@@@@@");
-		/*memberService.deleteMember(mem_Email);*/
+		StringTokenizer st = new StringTokenizer(mem_Email, ",");
+		while(st.hasMoreTokens()){
+			memberService.deleteMember(st.nextElement().toString());
+		}
+		
 		
 		return url;
 	}

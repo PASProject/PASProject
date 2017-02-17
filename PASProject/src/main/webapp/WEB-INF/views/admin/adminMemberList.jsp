@@ -9,14 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style>
-</style>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -70,10 +70,10 @@
 				<td><select id="quitCheck" name="quitCheck" 
 				onchange="change_go(this.value,'${memberVo.mem_Email}')">
 						<option value="y"
-							<c:if test="${memberVo.quit_Check== 'y'}">selected="selected"</c:if>
+							<c:if test="${memberVo.quit_Check=='y'}">selected="selected"</c:if>
 						>YES</option>
 						<option value="n"
-							<c:if test="${memberVo.quit_Check== 'n'}">selected="selected"</c:if> 
+							<c:if test="${memberVo.quit_Check=='n'}">selected="selected"</c:if> 
 						>NO</option>
 				</select></td>
 				
@@ -127,11 +127,11 @@
 // 		$("input[name=mem_Email]").val();
 		var ck = "";
 		$(":checkbox[name='check']:checked").each(function(i,ve){
-			ck +=ve.value+ A ",";
+			ck +=ve.value+",";
 		});
-		alert(ck);
+		alert('삭제가 완료되었습니다.');
 			 
-		location.href = "memberDelete?mem_Email="+mem_Email;
+		location.href = "memberDelete?mem_Email="+ck;
 	}
 	
 	function go_cart_delete() {
