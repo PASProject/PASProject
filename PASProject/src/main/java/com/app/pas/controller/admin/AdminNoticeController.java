@@ -62,6 +62,10 @@ public class AdminNoticeController {
 					totalNoticeVo.setTtnotice_Num(Integer.parseInt(keyword));
 
 				System.out.println("-----------------number 키워드 : " + keyword);
+			}else if(keyField ==("title_Content")|| keyField.equals("title_Content")){
+				if(!(keyword.isEmpty()|| keyword ==null))
+					totalNoticeVo.setTtnotice_Title_Content(keyword);
+				
 			}
 				noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
 				model.addAttribute("noticeList", noticeList);

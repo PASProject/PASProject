@@ -95,7 +95,7 @@ public class QnaController {
 		} else if (keyField == ("title_content") || keyField.equals("title_content")){
 			if (!(keyword.isEmpty() || keyword == null))
 				qnaBoarVo.setQb_Title_Content(keyword);
-			System.out.println("모시모시 : " + qnaBoarVo.getQb_Content());
+			
 		}
 
 		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
