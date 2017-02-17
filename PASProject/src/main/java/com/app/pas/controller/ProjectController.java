@@ -257,7 +257,7 @@ public class ProjectController {
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
 		String url = "redirect:/project/pmNoticeList";
-		int proj_Num = (Integer) session.getAttribute("joinProj");
+		int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
 
 		noticeVo.setProj_Num(proj_Num);
 
@@ -341,7 +341,7 @@ public class ProjectController {
 
 	@RequestMapping("/pmNoticeDelete")
 	public String deleteNotice(HttpSession session, NoticeVo noticeVo) {
-		String url = "redirect:/notice/pmNoticeList";
+		String url = "redirect:/project/pmNoticeList";
 		System.out.println(noticeVo.getProj_Num() + "�씠嫄댄봽濡쒖젥�듃�꽆踰�@@@@");
 		try {
 			noticeService.deleteNotice(noticeVo);
@@ -354,11 +354,12 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/pmOverView")
-	public String PmOverView(HttpSession session, Model model,
+	public String PmOverView(HttpSession session,
 			@RequestParam String proj_Num) {
 		String url = "project/pmOverView";
-		// joinProj �쁽�옱 �젒�냽�븳 �봽濡쒖젥�듃 踰덊샇
+		
 		session.setAttribute("joinProj", proj_Num);
+		
 		return url;
 	}
 
@@ -511,12 +512,13 @@ public class ProjectController {
 	             
 	             
 	      
-	      return url;
+	      return url; 
 	   }
 	   
 	   @RequestMapping(value="/pmMemberInvite",method=RequestMethod.POST)
-	   public @ResponseBody List<MemberCommandVo> pmMemberInviteList() throws SQLException {
-		   List<MemberCommandVo> memberList = memberService.selectMemberEmailList();
+	   public @ResponseBody List<MemberCommandVo> pmMemberInviteList(HttpSession session) throws SQLException {
+		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
+		   List<MemberCommandVo> memberList = memberService.selectMemberEmailList(proj_Num);
 		      System.out.println(memberList + "筌롢끇苡��뵳�딅뮞占쎈뱜!!!!!!!!!!!!!!!!!!");
 		     
 	      return memberList;

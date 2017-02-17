@@ -23,10 +23,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
@@ -138,7 +140,7 @@ public class mainContoller {
 		try {
 			memberService.insertMember(memberVo);
 			String content = memberVo.getMem_Email()
-					+ "(님)의 계정 승인 확인 메일입니다. "
+					+ "(님)의 계정 승인 확인 메일입니다. 인증 확인을 위해서 승인 버튼을 클릭해주세요.<br>"
 					+ "<a href='http://localhost:8181/pas/main/memberAuth?mem_Email="
 					+ memberVo.getMem_Email() + "'>승인확인</a>";
 
@@ -199,9 +201,12 @@ public class mainContoller {
 	}
 
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, Model model)
+	public String OtherProject(HttpSession session, Model model,
+			@RequestParam(value = "page", defaultValue = "1") String page)
 			throws SQLException {
 		String url = "/main/otherProject";
+		
+		
 
 		List<ProjectVo> list;
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -215,6 +220,11 @@ public class mainContoller {
 				&& session.getAttribute("joinProj") != "null") {
 			session.removeAttribute("joinProj");
 		}
+		
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
+		
 		return url;
 		
 	}
@@ -325,7 +335,8 @@ public class mainContoller {
 
 		request.setCharacterEncoding("utf-8");
 		int result = -1;
-		String pwd = (Math.random() * 100000) + 100000 + "";
+		long Lpwd = (long)((Math.random() * 100000) + 100000);
+		String pwd = Lpwd+"";
 		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd + "입니다";
 		SimpleMailMessage message = new SimpleMailMessage();
 

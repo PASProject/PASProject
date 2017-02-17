@@ -53,4 +53,12 @@
    <update id="updateProjectImg" parameterClass="Project">
     update Project set proj_Img=#proj_Img# where proj_Num = #proj_Num#
    </update>
+   
+   <select id="selectOtherProjectCount" parameterClass="str" resultClass="int">
+   
+    select count(*)
+		from project A
+    	where proj_num not in ( select distinct proj_num from mem_position_view where mem_email =#mem_Email# and pjj_per_Num ='1')
+   
+   </select>
 </sqlMap>
