@@ -2,8 +2,6 @@ package com.app.pas.service;
 
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.app.pas.dao.ProjectLogDao;
 import com.app.pas.dto.ProjectLogVo;
 
