@@ -94,19 +94,23 @@ public class SkillSharingController {
 			} else if(keyField == ("title_content")|| keyField.equals("title_content")) {
 				//skillSharingBoardVo.setSsb_Title(keyword);
 				/*skillSharingBoardVo.setSsb_Content(keyword);*/
+				
 				System.out.println("존트짜증 ㅡㅡ");
 				skillSharingBoardVo.setSsb_Title_Content(keyword);
+				System.out.println("타이틀+컨텐츠  : " + skillSharingBoardVo.getSsb_Title_Content());
 		 
 			}
 			skillSharingBoardList = skillSharingBoardService
 					.selectSkillSharingBoardList(skillSharingBoardVo);
 			model.addAttribute("skillSharingBoardList", skillSharingBoardList);
 			
-			 skillSharingBoardList = skillSharingBoardService
-					 .selectSkillLikeCountViewList(ssb_Title);
-			 model.addAttribute("skillSharingBoardList",skillSharingBoardList);
 
-			if (page.equals(null) || page == "") {
+			/*skillSharingBoardList = skillSharingBoardService
+				 .selectSkillLikeCountViewList(ssb_Title);
+			 model.addAttribute("skillSharingBoardList",skillSharingBoardList);*/
+
+			 
+			 if (page.equals(null) || page == "") {
 				page = "" + 1;
 			}
 			totalCount = (Integer) skillSharingBoardService

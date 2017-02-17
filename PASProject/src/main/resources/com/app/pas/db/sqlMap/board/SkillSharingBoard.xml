@@ -6,17 +6,21 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="SkillSharingBoard" type="com.app.pas.dto.board.SkillSharingBoardVo"/>
+	
+	<select id="selectSkillLikeCountViewList" resultClass="SkillSharingBoard">
+		select * from Skill_Like_Count_View
+		WHERE SSB_TITLE LIKE '%'||#ssb_title#||'%'
+	</select>
 	
 	<select id="selectSkillSharingBoardList" resultClass="SkillSharingBoard" parameterClass="SkillSharingBoard">
-		SELECT * FROM SKILL_SHARING_BOARD
+		SELECT * FROM Skill_Like_Count_View
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		SSB_TITLE LIKE '%'||#ssb_Title#||'%' and
-		SSB_CONTENT || SSB_TITLE  LIKE '%'||#ssb_Title_Content#||'%' and
-		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' 
+		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and 
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>
+		SSB_CONTENT || SSB_TITLE LIKE '%'||#ssb_Title_Content#||'%'
 
 		ORDER BY SSB_ARTICLE_NUM DESC
 		
@@ -103,9 +107,6 @@
 		select count(*) from SKILL_SHARING_BOARD
 	</select>
 	
-	<select id="selectSkillLikeCountViewList" resultClass="SkillSharingBoard">
-		select * from Skill_Like_Count_View WHERE SSB_TITLE LIKE '%'||#ssb_title#||'%'
-	</select>
 	
 	
 	
