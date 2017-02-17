@@ -53,4 +53,8 @@
    <update id="updateProjectImg" parameterClass="Project">
     update Project set proj_Img=#proj_Img# where proj_Num = #proj_Num#
    </update>
+   
+   <update id="updateProjectColor" parameterClass="Project">
+   update Project set proj_Color=#proj_Color# where proj_Num = #proj_Num#
+   </update>
 </sqlMap>

@@ -695,6 +695,33 @@ public class ProjectController {
 		return "projectVo/c9";
 
 	}
+	@RequestMapping(value="/color", method=RequestMethod.POST)
+	public @ResponseBody String Color(@RequestBody String color, Model model, HttpSession session) throws SQLException{
+	
+
+		ProjectVo projectVo = new ProjectVo();
+
+		String realColor = "#"+color.substring(0, 6);
+		System.out.println(realColor);
+		String proj = (String) session.getAttribute("joinProj");
+		projectVo.setProj_Num(Integer.parseInt(proj));
+		
+		projectVo.setProj_Color(realColor);
+		
+		projectService.updateProjectColor(projectVo);
+		
+		projectVo = projectService.selectProject(Integer.parseInt(proj));
+	  
+		return projectVo.getProj_Color();
+		
+	}
+	
+	@RequestMapping(value="/colorList")
+	public String ColorList(HttpSession session, Model model) throws SQLException{
+		String url = "project/colorList";
+		return url;
+	}
+
 
 }
 /*

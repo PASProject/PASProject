@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.app.pas.commons.ChangeColor;
 import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
@@ -486,5 +487,5 @@ public class MainContoller {
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
-
+	
 }

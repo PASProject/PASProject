@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.app.pas.dao.MemberLogDao;
 import com.app.pas.dto.MemberLogVo;
+import com.app.pas.dto.ProjectVo;
 
 public class MemberLogService {
 
