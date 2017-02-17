@@ -27,12 +27,12 @@
 		var data = "";
 		
 		$(function() {
-			
 			$.ajax({
 				type : 'POST',
 				url : 'pmMemberInvite',
 				dataType : 'JSON',
 				success : function(d) {
+					alert(d);
 					setData(JSON.parse(d));
 				}
 

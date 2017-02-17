@@ -93,7 +93,7 @@ public class LoginSessionFilter implements Filter {
          res.sendRedirect("/pas/index");
          return;
       } else {
-         chain.doFilter(req, res);
+         
       }
 
       chain.doFilter(req, res);
