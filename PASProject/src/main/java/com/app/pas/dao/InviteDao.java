@@ -12,4 +12,7 @@ public interface InviteDao {
 	public void updateInvite(InviteVo inviteVo)throws SQLException;
 	public void deleteInvite(InviteVo inviteVo)throws SQLException;
 	public List<ProjInviteViewVo> selectInviteList(ProjInviteViewVo projInviteViewVo)throws SQLException;
+	public List<ProjInviteViewVo> selectInviteListByMemEmail(String mem_Email) throws SQLException;
+	public void updateInviteCommitCheck(InviteVo inviteVo) throws SQLException;
+	public InviteVo selectInvite(int invite_Num) throws SQLException;
 }

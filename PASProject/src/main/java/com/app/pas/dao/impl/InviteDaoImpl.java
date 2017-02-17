@@ -41,4 +41,22 @@ public class InviteDaoImpl implements InviteDao{
 		List<ProjInviteViewVo> list =client.queryForList("selectInviteList", projInviteViewVo);
 		return list;
 	}
+
+	@Override
+	public List<ProjInviteViewVo> selectInviteListByMemEmail(String mem_Email)
+			throws SQLException {
+		List<ProjInviteViewVo> list = client.queryForList("selectInviteListByMemEmail",mem_Email);
+		return list;
+	}
+
+	@Override
+	public void updateInviteCommitCheck(InviteVo inviteVo) throws SQLException {
+		client.update("updateInviteCommitCheck",inviteVo);
+	}
+
+	@Override
+	public InviteVo selectInvite(int invite_Num) throws SQLException {
+		InviteVo inviteVo = (InviteVo) client.queryForObject("selectInvite",invite_Num);
+		return inviteVo;
+	}
 }

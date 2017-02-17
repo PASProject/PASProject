@@ -562,14 +562,14 @@ public class ProjectController {
 
 		InviteVo inviteVo = new InviteVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
-
+		
 		inviteVo.setMem_Email(mem_Email);
 		inviteVo.setProj_Num(proj_Num);
+		
 		projectJoinVo.setMem_Email(mem_Email);
 		projectJoinVo.setProj_Num(proj_Num);
 		projectJoinVo.setMem_Name(memberVo1.getMem_Name());
 		projectJoinVo.setMem_Img(memberVo1.getMem_Img());
-
 		projectJoinService.insertProject(projectJoinVo);
 		inviteService.insertInvite(inviteVo);
 		return result;
