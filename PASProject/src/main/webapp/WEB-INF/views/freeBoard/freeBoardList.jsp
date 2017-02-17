@@ -16,6 +16,7 @@
 
 </head>
 <body>
+<div class="col-md-10" id="content">
 	<c:if test="${delete == 'yes' }">
 		<script type="text/javascript">
 			alert("삭제 되었습니다.");
@@ -66,24 +67,40 @@
 					</tr>
 				</c:forEach>
 			</TABLE>
-
+			</form>
+			
+			
+			<div class="col-md-12 text-center">
 			<c:if test="${paging.finalPageNo>0}">
 				<c:set value="${paging.prevPageNo}" var="prevPageNo" />
 				<c:set value="${paging.finalPageNo}" var="finalPageNo" />
-				<c:set value="${paging.nextPageNo}" var="nextPageNo" />
-
-				<c:if test="${paging.pageNo>prevPageNo}">
-					<a href="freeBoardList?page=${prevPageNo}">[이전]</a>
-				</c:if>
-				<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-					varStatus="status">
-					<a href="freeBoardList?page=${i}">[${i}]</a>
-				</c:forEach>
-				<c:if test="${paging.pageNo<finalPageNo}">
-					<a href="freeBoardList?page=${nextPageNo}">[다음]</a>
-				</c:if>
-			</c:if>
-
+				<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+				
+				<li class="page-item">
+							<a class="page-link" href="freeBoardList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+				
+				
+			<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
+								varStatus="status">
+										<li class="page-item" id="number"><a
+											class="page-link" href="freeBoardList?page=${i}">${i}</a></li>
+										<script>
+										$('li').each(function(){
+										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+										    {
+										    $(this).addClass('active').siblings().removeClass('active');
+										    }
+										});
+										</script>
+							</c:forEach>
+							<li class="page-item"><a class="page-link"
+								href="QnAList?page=${finalPageNo}">끝 페이지</a></li>
+								</ul>
+								</nav>
+								</c:if>
+								</div>
+								
 
 			<div class="col-md-10">
 				<input type="button" value="글쓰기" onclick="wrtie_form()">
@@ -94,11 +111,11 @@
 					}
 				</script>
 			</div>
-		</form>
+		
 
 	</div>
 
-
+</div>
 
 </body>
 

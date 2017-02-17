@@ -100,7 +100,15 @@ public class QnaController {
 
 		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
 		model.addAttribute("qnaList", qnaList);
+		totalCount = (Integer)qnaBoardService.QnaSearchTotalCount(qnaBoarVo);
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
 		
+		model.addAttribute("paging", paging);
+
+	}
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
@@ -111,8 +119,6 @@ public class QnaController {
 		paging.setTotalCount(totalCount);
 		
 		model.addAttribute("paging", paging);
-
-	}
 			
 		// 페이징처리
 	

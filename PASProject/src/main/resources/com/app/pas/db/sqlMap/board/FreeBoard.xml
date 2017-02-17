@@ -9,7 +9,8 @@
 	
 	<select id="selectFreeBoardList" resultClass="FreeBoard" parameterClass="FreeBoard">
 		SELECT * FROM Free_Like_Count_View
-		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		WHERE
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
 		FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
 		FRB_TITLE LIKE '%'||#frb_Title#||'%'
@@ -22,8 +23,10 @@
 	<select id="freeBoardSearchCount" resultClass="int" parameterClass="FreeBoard">
 	SELECT COUNT(*)
 	FROM FREE_BOARD
-	WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+	WHERE 
+	MEM_NAME LIKE '%'||#mem_Name#||'%' and
 	FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+	FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
 	FRB_TITLE LIKE '%'||#frb_Title#||'%'
 	<isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
 		FRB_ARTICLE_NUM = #frb_Article_Num# 

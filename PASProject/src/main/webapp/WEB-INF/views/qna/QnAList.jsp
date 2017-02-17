@@ -96,8 +96,8 @@
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 
-							<li class="page-item"><a class="page-link"
-								href="QnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+							<li class="page-item">
+							<a class="page-link" href="QnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
 
 
 							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"

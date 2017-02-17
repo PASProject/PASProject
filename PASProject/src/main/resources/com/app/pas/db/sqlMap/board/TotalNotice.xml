@@ -25,10 +25,11 @@
 		FROM TOTAL_NOTICE
 		WHERE
 		TTNOTICE_TITLE LIKE '%'||#ttnotice_Title#||'%' and
-		TTNOTICE_CONTENT LIKE '%'||#ttnotice_Content#||'%' 
+		TTNOTICE_CONTENT LIKE '%'||#ttnotice_Content#||'%' and
 		<isGreaterThan  prepend="and" property="ttnotice_Num" compareValue="0">
 		TTNOTICE_NUM = #ttnotice_Num# 
 		</isGreaterThan>
+		TTNOTICE_CONTENT || TTNOTICE_TITLE LIKE '%'||#ttnotice_Title_Content#||'%'
 	</select>
 	
 

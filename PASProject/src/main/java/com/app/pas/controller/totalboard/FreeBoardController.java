@@ -96,19 +96,26 @@ public class FreeBoardController {
 			freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
 			model.addAttribute("freeBoardList", freeBoardList);
 		
-			if (page.equals(null) || page == "") {
-				page = "" + 1;
-			}
-			totalCount = freeBoardService.selectTotalCount();
+			totalCount = freeBoardService.freeBoardSearchCount(freeboardVo);
 			Paging paging = new Paging();
 			paging.setPageNo(Integer.parseInt(page));
 			paging.setPageSize(5);
 			paging.setTotalCount(totalCount);
-
+			
 			model.addAttribute("paging", paging);
 		
 		}
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
 	
+		totalCount = freeBoardService.freeBoardSearchCount(freeboardVo);
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging", paging);
 		model.addAttribute("delete", delete);
 		return url;
 	}
