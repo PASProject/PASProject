@@ -55,9 +55,6 @@
 						value="참가 신청하기" />
 				</div>
 
-				<input type="button" class="btn btn-default" value="신청하기"
-					id="applyBtn" onclick="javascript:goApply(${projectVo.proj_Num})" />
-
 				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 					class="img-responsive" src="http://placehold.it/700x400"
 					data-toggle="modal" data-target="#${projectVo.proj_Num }"
@@ -71,31 +68,7 @@
 				<br>
 
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="${projectVo.proj_Num }" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title"></h4>
-							${projectVo.proj_Name }
-						</div>
-						<div class="modal-body" id="${projectVo.proj_Num}body">팀원</div>
-						<div class="modal-footer">
-
-							<div id="${projectVo.proj_Num}btnZone">
-								<input type="button" class="btn btn-default" value="신청하기"
-									id="applyBtn"
-									onclick="javascript:goApply(${projectVo.proj_Num})" />
-							</div>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-						</div>
-					</div>
-
-				</div>
-			</div>
+		
 		</c:forEach>
 		<!-- /.row -->
 
@@ -156,7 +129,7 @@
 		});
 	}
 	
-/* 	function goApply(proj_Num){
+ 	function goApply(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
 			url:'apply',
@@ -174,7 +147,7 @@
 				alert("에러");
 			}
 		});
-	} */
+	}
 </script>
 
 </body>

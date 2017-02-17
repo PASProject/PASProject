@@ -234,7 +234,11 @@
 			success:function(data){
 				var tt="";
 				$.each(data,function(i){
-					tt+= '<img class="img-thumbnail" style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					if(data[i].position_Num==1){
+						tt+= '<img style="border-radius:50%;  border: 3px solid cyan; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					}else{
+						tt+= '<img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					}
 				})
 				$('#'+proj_Num+'body').empty();
 				$('#'+proj_Num+'body').append(tt);

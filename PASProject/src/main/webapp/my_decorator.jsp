@@ -565,7 +565,7 @@ $(function(){
 <script>
 	$(document).ready(
 			function() {
-				connect();
+				/* connect(); */
 				
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
@@ -588,8 +588,8 @@ $(function(){
 									.stop(true, true).slideUp("400");
 							$(this).toggleClass('open');
 						}); */
+						
 				$('#alarmMenu').on('click',function(){
-					
 					$.ajax({
 						url:'alramView',
 						contentType:'application/json',
