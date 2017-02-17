@@ -30,7 +30,7 @@
 <tr>
 <td>${NoticeList.notice_Num }</td>
 
-<td><a href="<%=request.getContextPath() %>/notice/noticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></td>
+<td><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></td>
 
 <td>${NoticeList.notice_Date }</td>
 
@@ -57,13 +57,13 @@
 				</c:if></td>
 		</tr>
 </table>
-<c:if test="${memPositionView.position_Name eq 'PM' }">
+<c:if test="${memPositionView.position_Name eq 'PL' }">
 
 <input type="button" value="글쓰기" onclick="writeBtn()"/>
 </c:if>
 <script>
 function writeBtn(){
-	location.href="<%=request.getContextPath()%>/notice/noticeWrite";
+	location.href="<%=request.getContextPath()%>/project/pmNoticeWrite";
 }
 </script>
 </body>

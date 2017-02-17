@@ -27,9 +27,8 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
 		<!-- Projects Row -->
-		<c:forEach items="${otherProjectList}" var="projectVo">
+		<c:forEach items="${otherProjectList}" var="projectVo" varStatus="status">
 			<div class="col-md-3" id="box"
 				style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
 				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h4>
@@ -101,22 +100,6 @@
 		<!-- /.row -->
 
 		<hr>
-
-		<!-- Pagination -->
-		<div class="row text-center">
-			<div class="col-lg-12">
-				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul>
-			</div>
-		</div>
-		<!-- /.row -->
 
 		<hr>
 		<footer>

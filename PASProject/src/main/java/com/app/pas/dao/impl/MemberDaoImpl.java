@@ -131,9 +131,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 
-	public List<MemberCommandVo> selectMemberEmailList() throws SQLException {
+	public List<MemberCommandVo> selectMemberEmailList(int proj_Num) throws SQLException {
 	
-		List<MemberCommandVo> list = client.queryForList("selectMemberEmailList", null);
+		List<MemberCommandVo> list = client.queryForList("selectMemberEmailList", proj_Num);
 		return list;
 	}
 
@@ -141,6 +141,12 @@ public class MemberDaoImpl implements MemberDao {
 	public String selectMemberPhone(String mem_Email) throws SQLException {
 		String mem_Phone = (String) client.queryForObject("selectMemberPhone", mem_Email);
 		return mem_Phone;
+	}
+
+	@Override
+	public int selectOtherProjectCount(String mem_Email) throws SQLException {
+	  int result=(Integer) client.queryForObject("selectOtherProjectCount", mem_Email);
+		return result;
 	}
 	
 }
