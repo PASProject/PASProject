@@ -21,6 +21,7 @@ public class LoginSessionFilter implements Filter {
 	/* private FilterConfig filterConfig; */
 	private List<String> whiteList;
 	private List<String> staticResourceList;
+	private static int PROJNUM=1;
 
 	public LoginSessionFilter() {
 		whiteList = new ArrayList<String>();
@@ -71,9 +72,10 @@ public class LoginSessionFilter implements Filter {
 		MemberVo member = (MemberVo) session.getAttribute("loginUser");
 
 		if (request.getParameter("proj_Num") == null) {
-
+            
 		} else {
 			proj_NumN = Integer.parseInt(request.getParameter("proj_Num"));
+			PROJNUM=proj_NumN; 
 
 		}
 
@@ -87,7 +89,7 @@ public class LoginSessionFilter implements Filter {
 
 		System.out.println(proj_Num + "갑니다!!!");
 
-		if (member == null || proj_Num != proj_NumN) {
+		if (member == null || proj_Num != PROJNUM) {
 			res.sendRedirect("/pas/index");
 			return;
 		} else {
