@@ -164,13 +164,15 @@
 				<tr>
 					<td class="col-md-2 text-center" >직책</td>
 					<td class="col-md-2 text-center">이름</td>
-					<td class="col-md-5 text-center">이메일</td>
+					<td class="col-md-2 text-center">이메일</td>
+					<td class="col-md-4 text-center">마지막 접속 시간</td>
 			</tr>
 				<c:forEach var="pmMemberList" items="${pmMemberList }">
 					<tr class="text-center">
 					<td class="text-center">${pmMemberList.position_Name }</td>
 					<td class="text-center"><input type="button" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/> </td>
 					<td>${pmMemberList.mem_Email }</td>
+					<td>${pmMemberList.proj_Log_Time}</td>
 					</tr>
 				</c:forEach>
 			</table>
