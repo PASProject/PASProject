@@ -47,7 +47,8 @@ public class QnaController {
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
-			@RequestParam(defaultValue = "") String content
+			@RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_content
 			) throws SQLException {
 		String url = "qna/QnAList";
 		int totalCount = 0;
@@ -89,8 +90,12 @@ public class QnaController {
 		} else if (keyField == ("content") || keyField.equals("content")) {
 			if (!(keyword.isEmpty() || keyword == null))
 				qnaBoarVo.setQb_Content(keyword);
-
 			System.out.println("-----------------content 키워드 : " + keyword);
+		
+		} else if (keyField == ("title_content") || keyField.equals("title_content")){
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoarVo.setQb_Title_Content(keyword);
+			System.out.println("모시모시 : " + qnaBoarVo.getQb_Content());
 		}
 
 		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
