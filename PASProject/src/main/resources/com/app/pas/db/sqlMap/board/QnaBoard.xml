@@ -9,12 +9,14 @@
 	
 	<select id="selectQnaBoardList" resultClass="QnaBoard" parameterClass="QnaBoard">
 		SELECT * FROM QNA_BOARD
-		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		WHERE 
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
-		QB_TITLE LIKE '%'||#qb_Title#||'%'
+		QB_TITLE LIKE '%'||#qb_Title#||'%' and
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
-		</isGreaterThan>		 
+		</isGreaterThan>	
+		QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%'	 
 		ORDER BY QB_ARTICLE_NUM DESC
 	</select>
 	
@@ -26,12 +28,14 @@
 	<select id="QnaSearchTotalCount" resultClass="int" parameterClass="QnaBoard">
 		SELECT COUNT(*)
 		FROM QNA_BOARD
-		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		WHERE 
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
-		QB_TITLE LIKE '%'||#qb_Title#||'%'
+		QB_TITLE LIKE '%'||#qb_Title#||'%' and
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
 		</isGreaterThan>		 
+		QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%'	 
 	</select>
 	
 	<select id="selectAllQna" resultClass="QnaBoard">

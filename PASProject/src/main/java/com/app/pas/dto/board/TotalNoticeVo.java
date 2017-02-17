@@ -22,6 +22,7 @@ public class TotalNoticeVo implements Serializable{
 	private int ttnotice_Inq_Count;
 	private String admin_Email;
 	private String ttnotice_Date;
+	private String ttnotice_Title_Content;
 	
 	
 	
