@@ -30,7 +30,8 @@ public interface MemberDao {
     public MemPositionViewVo selectMemberPosition(MemPositionViewVo memPositionViewVo)throws SQLException;
     public int selectMemberTotalCount() throws SQLException;
     public int selectCountMemApplyViewByEmail(String p_Mem_Email) throws SQLException;
-    public List<MemberCommandVo> selectMemberEmailList()throws SQLException;
+    public List<MemberCommandVo> selectMemberEmailList(int proj_Num)throws SQLException;
     public String selectMemberPhone(String mem_Email)throws SQLException;
+    public int selectOtherProjectCount(String mem_Email) throws SQLException;
 
 }

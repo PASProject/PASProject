@@ -148,8 +148,8 @@ public class MemberService {
 			memberDao.deleteMember(mem_Email);
 		}
 	
-		public List<MemberCommandVo> selectMemberEmailList() throws SQLException{
-			List<MemberCommandVo> list=memberDao.selectMemberEmailList();
+		public List<MemberCommandVo> selectMemberEmailList(int proj_Num) throws SQLException{
+			List<MemberCommandVo> list=memberDao.selectMemberEmailList(proj_Num);
 			return list;
 		}
 
@@ -163,6 +163,10 @@ public class MemberService {
 			String mem_Phone = memberDao.selectMemberPhone(mem_Email);
 			return mem_Phone;
 			
+		}
+		public int selectOtherProjectCount(String mem_Email) throws SQLException{
+			 int result =memberDao.selectOtherProjectCount(mem_Email);
+		     return result;
 		}
 	
 

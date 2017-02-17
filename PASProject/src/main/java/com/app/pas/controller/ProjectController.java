@@ -1,5 +1,7 @@
 package com.app.pas.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -9,16 +11,21 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.InviteVo;
@@ -68,14 +75,14 @@ public class ProjectController {
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
 			ProjectBoardVo projectBoardVo, Model model,
-			@RequestParam(value = "page", defaultValue = "1") String page
-	) throws SQLException {
-	
+			@RequestParam(value = "page", defaultValue = "1") String page)
+			throws SQLException {
+
 		List<ProjectBoardVo> pbList = new ArrayList<ProjectBoardVo>();
 		String url = "project/pmBoardList";
 
 		String getProj_Num = (String) session.getAttribute("joinProj");
-		
+
 		pbList = projectBoardService.selectProjectBoardList(Integer
 				.parseInt(getProj_Num));
 
@@ -182,16 +189,25 @@ public class ProjectController {
 			HttpSession session) throws SQLException {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Name = memberVo.getMem_Name();
-		String mem_Img  = memberVo.getMem_Img();
-		projectBoardReplyVo.setPb_Reply_Mem(mem_Name);
+		String mem_Img = memberVo.getMem_Img();
+		String mem_Email = memberVo.getMem_Email();
+		projectBoardReplyVo.setPb_Reply_Mem_Name(mem_Name);
+		projectBoardReplyVo.setPb_Reply_Mem(mem_Email);
 		projectBoardReplyVo.setPb_Reply_Mem_Img(mem_Img);
-		;
+		
 		List<ProjectBoardReplyVo> list = projectBoardReplyService
 				.insertProjectBoardReply(projectBoardReplyVo);
 
 		return list;
 	}
+	@RequestMapping(value = "/deleteProjectBoardReply",method=RequestMethod.GET)
+	public String deleteProjectBoardReply(@RequestParam String pb_Reply_Num) throws NumberFormatException, SQLException{
+		String url = "redirect:/project/pmBoardList";
+		projectBoardReplyService.deleteProjectBoardReply(Integer.parseInt(pb_Reply_Num));
+		return url; 
+	}
 
+	
 	//
 	// @RequestMapping(value = "/pmBoardWrite", method = RequestMethod.GET)
 	// public String writeFreeBoard(HttpSession session, Model model) {
@@ -209,7 +225,7 @@ public class ProjectController {
 		return url;
 	}
 
-	// �봽濡쒖젥�듃 Notice 由ъ뒪�듃
+	
 	@RequestMapping("/pmNoticeList")
 	public String pmNoticeList(Model model, HttpSession session,
 			@RequestParam(value = "page", defaultValue = "1") String page) {
@@ -355,10 +371,11 @@ public class ProjectController {
 
 	@RequestMapping("/pmOverView")
 	public String PmOverView(HttpSession session, Model model,
-			@RequestParam String proj_Num) {
+			@RequestParam String proj_Num) throws NumberFormatException, SQLException {
 		String url = "project/pmOverView";
-		// joinProj �쁽�옱 �젒�냽�븳 �봽濡쒖젥�듃 踰덊샇
 		session.setAttribute("joinProj", proj_Num);
+		ProjectVo projectVo = projectService.selectProject(Integer.parseInt(proj_Num));
+		session.setAttribute("joinProjectVo", projectVo);
 		return url;
 	}
 
@@ -368,6 +385,13 @@ public class ProjectController {
 		return url;
 	}
 
+	@RequestMapping("/billing")
+	public String Billing(HttpSession session, Model model){
+		String url = "project/billing";
+		
+		return url;
+	}
+	
 	@RequestMapping("/AccountBoardList")
 	public String AccountBoardList(HttpSession session, Model model,
 			@RequestParam(value = "page", defaultValue = "1") String page)
@@ -428,7 +452,8 @@ public class ProjectController {
 				.toString()));
 		accountService.InsertAccountBoard(accountBoardVo);
 		return result;
-	}  
+	}
+
 	@RequestMapping(value = "/AccountBoardUpdate", method = RequestMethod.POST)
 	public @ResponseBody int AccountBoardUpdate(
 			@RequestBody Map<String, Object> map) throws SQLException,
@@ -475,153 +500,211 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/pmMemberList")
-	   public String pmMemberList(HttpSession session, Model model)
-	         throws SQLException {
-	      String url = "/project/teamMemberList";
-	      /* int proj = (Integer) session.getAttribute("joinProj"); */
-	      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
-	      int per = 1;
-	      MemPositionViewVo memPositionView = new MemPositionViewVo();
-	      memPositionView.setPjj_Per_Num(1);
-	      memPositionView.setProj_Num(proj_Num);
+	public String pmMemberList(HttpSession session, Model model)
+			throws SQLException {
+		String url = "/project/teamMemberList";
+		/* int proj = (Integer) session.getAttribute("joinProj"); */
+		int proj_Num = Integer.parseInt((String) session
+				.getAttribute("joinProj"));
+		int per = 1;
+		MemPositionViewVo memPositionView = new MemPositionViewVo();
+		memPositionView.setPjj_Per_Num(1);
+		memPositionView.setProj_Num(proj_Num);
 
-	      List<MemPositionViewVo> list = memberService
-	            .selectMemberListByProj(memPositionView);
-	      MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-	      memPositionView.setMem_Email(memberVo.getMem_Email());
-	      memPositionView = memberService.selectMemberPosition(memPositionView);
-	      model.addAttribute("pmMemberList", list);
-	      model.addAttribute("memPositionView", memPositionView);
-	      return url;
-	   }
+		List<MemPositionViewVo> list = memberService
+				.selectMemberListByProj(memPositionView);
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		memPositionView.setMem_Email(memberVo.getMem_Email());
+		memPositionView = memberService.selectMemberPosition(memPositionView);
+		model.addAttribute("pmMemberList", list);
+		model.addAttribute("memPositionView", memPositionView);
+		return url;
+	}
 
-	   @RequestMapping(value="/pmMemberInvite", method=RequestMethod.GET)
-	   public String pmMemberInvite(HttpSession session) throws SQLException {
-	      String url = "/project/teamInvite";
-	      int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
-	      String mem_Email = "";
-	      /* int proj_Num= (Integer) session.getAttribute("joinProj"); */
-	      ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
-	      projInviteViewVo.setProj_Num(proj_Num);
+	@RequestMapping(value = "/pmMemberInvite", method = RequestMethod.GET)
+	public String pmMemberInvite(HttpSession session) throws SQLException {
+		String url = "/project/teamInvite";
+		int proj_Num = Integer.parseInt((String) session
+				.getAttribute("joinProj"));
+		String mem_Email = "";
+		/* int proj_Num= (Integer) session.getAttribute("joinProj"); */
+		ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
+		projInviteViewVo.setProj_Num(proj_Num);
 
-	      List<ProjInviteViewVo> list = inviteService
-	            .selectInviteList(projInviteViewVo);
-	      session.setAttribute("InviteList", list);
-	     
-	             
-	             
-	      
-	      return url;
-	   }
-	   
-	   @RequestMapping(value="/pmMemberInvite",method=RequestMethod.POST)
-	   public @ResponseBody List<MemberCommandVo> pmMemberInviteList() throws SQLException {
-		   List<MemberCommandVo> memberList = memberService.selectMemberEmailList();
-		      System.out.println(memberList + "筌롢끇苡��뵳�딅뮞占쎈뱜!!!!!!!!!!!!!!!!!!");
-		     
-	      return memberList;
-	   }
-	   
-	   @RequestMapping(value="/pmInviteInsert",method=RequestMethod.POST)
-	   public @ResponseBody int pmInviteInsert(String mem_Email,HttpSession session) throws SQLException, UnsupportedEncodingException{
-		   int result=1;   
-		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
-	          ProjectVo projectVo=projectService.selectProject(proj_Num);
-	          MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-	          MemberVo memberVo1= memberService.getMember(mem_Email);
-	          System.out.println(memberVo1.getMem_Name()+"�궡�씠由꾩�!!!!!");
-	          
-	          InviteVo inviteVo = new InviteVo();
-	          ProjectJoinVo projectJoinVo = new ProjectJoinVo();
-	          
-	          inviteVo.setMem_Email(mem_Email);
-	          inviteVo.setProj_Num(proj_Num);
-	          projectJoinVo.setMem_Email(mem_Email);
-	          projectJoinVo.setProj_Num(proj_Num);
-	          projectJoinVo.setMem_Name(memberVo1.getMem_Name());
-	          projectJoinVo.setMem_Img(memberVo1.getMem_Img());
-	          
-	          
-	          
-	          projectJoinService.insertProject(projectJoinVo);
-	          inviteService.insertInvite(inviteVo);
-	          return result;
-		   
-		   
-	   }
-	   
-	   @RequestMapping(value="TeamMemberUpdate", method=RequestMethod.POST)
-	   public void TeamMemberUpdate(@RequestBody Map<String,Object> map ){
-		   System.out.println(map.get("mem_Email")+"留듭쓽!!!!!!!!!!");
-	   }
-	   
-	   @RequestMapping(value="activeModal", method=RequestMethod.POST)
-	   public @ResponseBody AccountBoardVo activeModal(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
-		    AccountBoardVo accountBoardVo = new AccountBoardVo();
-		    System.out.println(map.get("acc_Num")+"�씠寃껋�!!!!!!!!!acc_Num");
-		    accountBoardVo.setAcc_Num(Integer.parseInt(map.get("acc_Num").toString()));
-		    accountBoardVo.setProj_Num(Integer.parseInt((String)session.getAttribute("joinProj")));
-		    
-         		accountBoardVo = accountService.selectAccountBoardByAcc(accountBoardVo);
-         		System.out.println(accountBoardVo.getAcc_Content()+"�씠寃껋�!!!!!!!boardVo");
-         		return accountBoardVo;
-	   }
-	   
-	   @RequestMapping(value="activeMemberModal", method=RequestMethod.POST)
-	   public @ResponseBody MemPositionViewVo activeMemberModal(@RequestBody Map<String,Object>  map,HttpSession session,HttpServletRequest request) throws SQLException, UnsupportedEncodingException{
-		   request.setCharacterEncoding("utf-8");
-		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
-		   
-		   
-		   MemPositionViewVo memPositionViewVo = new MemPositionViewVo();
-		   memPositionViewVo.setMem_Email(map.get("mem_Email").toString());
-		   memPositionViewVo.setProj_Num(proj_Num);
-		   
-		   memPositionViewVo = memberService.selectMemberPosition(memPositionViewVo); 
-		   String mem_Phone = memberService.selectMemberPhone(map.get("mem_Email").toString());
-		   System.out.println(mem_Phone+"이건 전화번호~!");
-		   memPositionViewVo.setMem_Phone(mem_Phone);
-		   
-		   return memPositionViewVo;
-		   
-		   
-	   }
-	   
-	   @RequestMapping(value="TeamMemberDelete", method=RequestMethod.POST)
-	   public @ResponseBody int TeamMemberDelete(@RequestBody Map<String,Object> map ,HttpSession session) throws SQLException{
-		    
-		   int result =1;
-		   
-		   ProjectJoinVo projectJoinVo = new ProjectJoinVo();
-		   int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
-		   projectJoinVo.setMem_Email(map.get("mem_Email").toString());
-		   projectJoinVo.setProj_Num(proj_Num);
-		   
-		   projectJoinService.deleteProjectJoin(projectJoinVo);
-		   return result;
-	   }
-	   
-	   @RequestMapping(value="deleteInvite", method=RequestMethod.POST)
-	   public String DeleteInvite(String inviteMem_Email,HttpSession session) throws SQLException{
-		   String url = "redirect:pmMemberInvite";
-		   InviteVo inviteVo =new InviteVo();
-		   System.out.println(inviteMem_Email+"이건 인바이메일!");
-		  int proj_Num= Integer.parseInt((String) session.getAttribute("joinProj"));
-		  inviteVo.setMem_Email(inviteMem_Email);
-		  inviteVo.setProj_Num(proj_Num);
-		  ProjectJoinVo projectJoinvo = new ProjectJoinVo();
-		  projectJoinvo.setMem_Email(inviteVo.getMem_Email());
-		  projectJoinvo.setProj_Num(proj_Num);
-		  projectJoinService.deleteProjectJoin(projectJoinvo);
-		  inviteService.deleteInvite(inviteVo);
-		   
-		   
-		   
-		   return url;
-		   
-	   }
-	 
-	
+		List<ProjInviteViewVo> list = inviteService
+				.selectInviteList(projInviteViewVo);
+		session.setAttribute("InviteList", list);
+
+		return url;
+	}
+
+	@RequestMapping(value = "/pmMemberInvite", method = RequestMethod.POST)
+	public @ResponseBody List<MemberCommandVo> pmMemberInviteList(HttpSession session)
+			throws SQLException {
+		String Proj_Num = (String) session.getAttribute("joinProj");
+		List<MemberCommandVo> memberList = memberService
+				.selectMemberEmailList(Integer.parseInt(Proj_Num));
+
+		return memberList;
+	}
+
+	@RequestMapping(value = "/pmInviteInsert", method = RequestMethod.POST)
+	public @ResponseBody int pmInviteInsert(String mem_Email,
+			HttpSession session) throws SQLException,
+			UnsupportedEncodingException {
+		int result = 1;
+		int proj_Num = Integer.parseInt((String) session
+				.getAttribute("joinProj"));
+		ProjectVo projectVo = projectService.selectProject(proj_Num);
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		MemberVo memberVo1 = memberService.getMember(mem_Email);
+		System.out.println(memberVo1.getMem_Name() + "�궡�씠由꾩�!!!!!");
+
+		InviteVo inviteVo = new InviteVo();
+		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+
+		inviteVo.setMem_Email(mem_Email);
+		inviteVo.setProj_Num(proj_Num);
+		projectJoinVo.setMem_Email(mem_Email);
+		projectJoinVo.setProj_Num(proj_Num);
+		projectJoinVo.setMem_Name(memberVo1.getMem_Name());
+		projectJoinVo.setMem_Img(memberVo1.getMem_Img());
+
+		projectJoinService.insertProject(projectJoinVo);
+		inviteService.insertInvite(inviteVo);
+		return result;
+
+	}
+
+	@RequestMapping(value = "TeamMemberUpdate", method = RequestMethod.POST)
+	public void TeamMemberUpdate(@RequestBody Map<String, Object> map) {
+		System.out.println(map.get("mem_Email") + "留듭쓽!!!!!!!!!!");
+	}
+
+	@RequestMapping(value = "activeModal", method = RequestMethod.POST)
+	public @ResponseBody AccountBoardVo activeModal(
+			@RequestBody Map<String, Object> map, HttpSession session)
+			throws SQLException {
+		AccountBoardVo accountBoardVo = new AccountBoardVo();
+		System.out.println(map.get("acc_Num") + "�씠寃껋�!!!!!!!!!acc_Num");
+		accountBoardVo.setAcc_Num(Integer.parseInt(map.get("acc_Num")
+				.toString()));
+		accountBoardVo.setProj_Num(Integer.parseInt((String) session
+				.getAttribute("joinProj")));
+
+		accountBoardVo = accountService.selectAccountBoardByAcc(accountBoardVo);
+		System.out.println(accountBoardVo.getAcc_Content()
+				+ "�씠寃껋�!!!!!!!boardVo");
+		return accountBoardVo;
+	}
+
+	@RequestMapping(value = "activeMemberModal", method = RequestMethod.POST)
+	public @ResponseBody MemPositionViewVo activeMemberModal(
+			@RequestBody Map<String, Object> map, HttpSession session,
+			HttpServletRequest request) throws SQLException,
+			UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		int proj_Num = Integer.parseInt((String) session
+				.getAttribute("joinProj"));
+
+		MemPositionViewVo memPositionViewVo = new MemPositionViewVo();
+		memPositionViewVo.setMem_Email(map.get("mem_Email").toString());
+		memPositionViewVo.setProj_Num(proj_Num);
+
+		memPositionViewVo = memberService
+				.selectMemberPosition(memPositionViewVo);
+		String mem_Phone = memberService.selectMemberPhone(map.get("mem_Email")
+				.toString());
+		System.out.println(mem_Phone + "이건 전화번호~!");
+		memPositionViewVo.setMem_Phone(mem_Phone);
+
+		return memPositionViewVo;
+
+	}
+
+	@RequestMapping(value = "TeamMemberDelete", method = RequestMethod.POST)
+	public @ResponseBody int TeamMemberDelete(
+			@RequestBody Map<String, Object> map, HttpSession session)
+			throws SQLException {
+
+		int result = 1;
+
+		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+		int proj_Num = Integer.parseInt((String) session
+				.getAttribute("joinProj"));
+		projectJoinVo.setMem_Email(map.get("mem_Email").toString());
+		projectJoinVo.setProj_Num(proj_Num);
+
+		projectJoinService.deleteProjectJoin(projectJoinVo);
+		return result;
+	}
+
+	@RequestMapping(value = "deleteInvite", method = RequestMethod.POST)
+	public String DeleteInvite(String inviteMem_Email, HttpSession session)
+			throws SQLException {
+		String url = "redirect:pmMemberInvite";
+		InviteVo inviteVo = new InviteVo();
+		System.out.println(inviteMem_Email + "이건 인바이메일!");
+		int proj_Num = Integer.parseInt((String) session
+				.getAttribute("joinProj"));
+		inviteVo.setMem_Email(inviteMem_Email);
+		inviteVo.setProj_Num(proj_Num);
+		ProjectJoinVo projectJoinvo = new ProjectJoinVo();
+		projectJoinvo.setMem_Email(inviteVo.getMem_Email());
+		projectJoinvo.setProj_Num(proj_Num);
+		projectJoinService.deleteProjectJoin(projectJoinvo);
+		inviteService.deleteInvite(inviteVo);
+
+		return url;
+
+	}
+
+	@RequestMapping(value = "/c9", method = RequestMethod.GET)
+	public String profileImgForm(HttpSession session, Model model) throws SQLException {
+		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));
+		ProjectVo projectVo = projectService.selectProject(proj_Num);
+		model.addAttribute("projectVo",projectVo);
+		String url = "project/c9";
+		return url;
+	}
+
+	@RequestMapping(value = "/c9", method = RequestMethod.POST)
+	public String uploadByMultipartHttpServletRequest2(ProjectVo projectVo,
+			MultipartHttpServletRequest request, Model model,
+			HttpSession session) throws IOException, SQLException {
+		
+		MultipartFile multipartFile = request.getFile("ff");
+
+		if (!multipartFile.isEmpty()) {
+			String upload = new HttpServletRequestWrapper(request)
+					.getRealPath("/resources/upload2");
+
+			File file = new File(upload, System.currentTimeMillis() + "$$"
+					+ multipartFile.getOriginalFilename());
+
+			multipartFile.transferTo(file);
+					
+			System.out.println(upload);
+			System.out.println(file);
+			System.out.println(multipartFile);
+			 model.addAttribute("title", request.getParameter("title"));
+			 model.addAttribute("uploadPath", file.getAbsolutePath());
+			
+			int proj_Num = Integer.parseInt((String) session
+					.getAttribute("joinProj"));
+			projectVo.setProj_Img(file.getName());
+			projectVo.setProj_Num(proj_Num);
+
+			session.removeAttribute("joinProj");
+				projectService.updateProjectImg(projectVo);
+			return "project/c9";
+		}
+		
+
+		return "projectVo/c9";
+
+	}
+
 }
 /*
  * @RequestMapping("/projectBoardReplyList")

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 
 <decorators defaultdir="/">
-	<decorator name="main" page="page_decorator.jsp">
-		<pattern>/</pattern>
-	</decorator>
 	<decorator name="my" page="my_decorator.jsp">
 		<pattern>/main/*</pattern>
 		<pattern>/qna/*</pattern>
@@ -13,6 +10,7 @@
 		<pattern>/product/*</pattern>
 		<pattern>/notice/*</pattern>
 		<pattern>/project/*</pattern>
+		<pattern>/work/*</pattern>
 	</decorator>
 
 

@@ -20,7 +20,7 @@
 </form>
 <script>
 function updateBtn(form){
-	form.action="<%=request.getContextPath()%>/notice/noticeUpdate";
+	form.action="<%=request.getContextPath()%>/project/pmNoticeUpdate";
 	form.method="post";
 	form.submit();
 }

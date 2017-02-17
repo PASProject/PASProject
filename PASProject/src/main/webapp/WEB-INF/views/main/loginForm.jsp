@@ -305,7 +305,9 @@ body {
 <script>
 
 	function admin_go(){
-		location.href="<%=request.getContextPath()%>/admin/adminLogin"
+		
+		location.href="<%=request.getContextPath()%>/admin/adminLogin";
+
 	}
 
 	$(document).ready(function() {

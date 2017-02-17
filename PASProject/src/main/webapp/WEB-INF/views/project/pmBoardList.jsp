@@ -13,17 +13,15 @@
 </head>
 
 <body>
-	<div class="col-md-10">
+	<div class="col-md-8"  id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			프로젝트 게시판 <small>프로젝트 게시판입니다. 경희씨 여기서 잡담하지 마세요.</small>
+			프로젝트 게시판 <small>자유롭게 이야기하세요</small>
 		</h2>
-
 		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
 
 
-		<div class="col-md-10">
-
+		<div class="col-md-12" >
 			<div id="pbd"
 				style="padding: 10px; background-color: white; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 20px;">
 				<form name="frm" method="post" action="pmBoardInsert">
@@ -33,11 +31,12 @@
 							$(function(){
 								 $(document).on('input', 'textarea', function () {
 								        $(this).outerHeight(38).outerHeight(this.scrollHeight); // 38 or '1em' -min-height
-								    }); 
+								    });
 							});
-							</script> <textarea class="pull-right" cols="60" rows="1" id="textArea"
-									name="pb_Content" placeholder="도대체 무슨 생각하면서 사냐??"
-									style="padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
+
+							</script> <textarea class="pull-right" rows="1" id="textArea"
+									name="pb_Content" placeholder="팀원들에게 남길말을 적어주세요"
+									style="width:690px; padding-left: 15px; padding-right: 15px; font-size: 22px; resize: none; border: none; overflow: auto; outline: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;"></textarea></td>
 						</tr>
 						<tr>
 							<td>
@@ -204,12 +203,22 @@
 						dataType:'json',
 						type:'POST',
 						success:function(data){
+							var login_Email ="";
+							login_Email= "${sessionScope.loginUser.mem_Email}";
+							
 							var d ="";
 							$.each(data,function(i){
 								$.each(data[i],function(j){
 									var dt="";
-									dt ='<table><tr><td><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="color:#337ab7; font-weight:bold">'
-									+data[i][j].pb_Reply_Mem +'</td><td>'+ data[i][j].pb_Reply_Content+'</td></tr><table>';
+									
+									if(login_Email==data[i][j].pb_Reply_Mem){
+										dt ='<table><tr><td><img style="padding-top:5px; padding-right:5px; width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
+										+data[i][j].pb_Reply_Mem_Name +'</td><td>'+ data[i][j].pb_Reply_Content+'<span><a href="#" >수정</a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i][j].pb_Reply_Num+'" >삭제</a> </span></td></tr><table>';
+									}else{
+										dt ='<table><tr><td><img style="padding-top:5px; padding-right:5px; width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
+										+data[i][j].pb_Reply_Mem_Name +'</td><td>'+ data[i][j].pb_Reply_Content+'</td></tr><table>';
+									}
+									
 									$('#'+data[i][j].pb_Article_Num).append(dt);
 								});
 							});
@@ -236,7 +245,8 @@
 					var Article_Num = pb_Article_Num;
 					var pb_Reply_Content = $('#'+Article_Num+'pb_Reply_Content').val();
 					var dataList = {'pb_Reply_Content':pb_Reply_Content,'pb_Article_Num':Article_Num};
-					
+					var login_Email ="";
+					login_Email= "${sessionScope.loginUser.mem_Email}";
 					$.ajax({
 						url:'insertProjectBoardReply',
 						data: JSON.stringify(dataList),
@@ -246,8 +256,13 @@
 						success:function(data){
 							var dt = "";
 							$.each(data,function(i){
-								dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
-								+data[i].pb_Reply_Mem +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table>';
+								if(login_Email==data[i].pb_Reply_Mem){
+									dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
+									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'<span><a href="#" >수정</a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i].pb_Reply_Num+'" >삭제</a> </span></td></tr><table>';
+								}else{
+									dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
+									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table>';
+								}
 								
 							});
 							
@@ -295,6 +310,6 @@
 
 
 	</div>
-	</div>
+
 </body>
 </html>

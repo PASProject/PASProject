@@ -32,31 +32,66 @@ public class NoticeController {
 
 	@RequestMapping("/totalNoticeList")
 	public String NoticeList(Model model, HttpSession session,
-			@RequestParam(value = "page", defaultValue = "1") String page) throws SQLException {
-	List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
+			@RequestParam(value = "page", defaultValue = "1") String page,
+			TotalNoticeVo totalNoticeVo ,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number,
+			@RequestParam(defaultValue = "") String content) throws SQLException {
+		String url = "notice/totalNoticeList";
 		int totalCount = 0;
-		
-		noticeList = totalNoticeService.selectTotalNoticeList();
-		
-		totalCount = totalNoticeService.toTalNoticeTotalCount();
-		
+		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
+		if (keyField == "" || keyField.equals(null)) {
+			totalCount = totalNoticeService.toTalNoticeTotalCount();
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			Paging paging = new Paging();
+			paging.setPageNo(Integer.parseInt(page));
+			paging.setPageSize(5);
+			paging.setTotalCount(totalCount);
+
+			model.addAttribute("paging", paging);
+			
+		}else{
+			
+			if(keyField == ("title") || keyField.equals("title")) {
+	
+			totalNoticeVo.setTtnotice_Title(keyword);
+			System.out.println("-----------------title 키워드 : " + keyword);
+			
+		}else if (keyField == ("number") || keyField.equals("number")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				totalNoticeVo.setTtnotice_Num(Integer.parseInt(keyword));
+
+			System.out.println("-----------------number 키워드 : " + keyword);
+		}else if (keyField == ("content") || keyField.equals("content")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				totalNoticeVo.setTtnotice_Content(keyword);
+
+			System.out.println("-----------------content 키워드 : " + keyword);
+		}
+			noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
+			model.addAttribute("noticeList", noticeList);
+			
 		if (page.equals(null) || page == "") {
 			page = "" + 1;
 		}
+		totalCount = totalNoticeService.toTalNoticeSearchCount(totalNoticeVo);
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
 		
 		model.addAttribute("paging", paging);
-		model.addAttribute("noticeList", noticeList);
+		}
 		
-		String url = "notice/totalNoticeList";
 		return url;
-		
+	}	
 		
 //통합공지사항 디테일
-	}
+	
 	@RequestMapping("/totalNoticeDetail")
 	public String detailTotalNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException {
 		String url = "notice/totalNoticeDetail";	

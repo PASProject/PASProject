@@ -16,8 +16,8 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	}
 
 	@Override
-	public List<FreeBoardVo> selectFreeBoardList() throws SQLException {
-		List<FreeBoardVo> list = client.queryForList("selectFreeBoardList");
+	public List<FreeBoardVo> selectFreeBoardList(FreeBoardVo freeBoardVo) throws SQLException {
+		List<FreeBoardVo> list = client.queryForList("selectFreeBoardList",freeBoardVo);
 		return list;
 	}
 
@@ -101,6 +101,13 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 	public List<FreeBoardVo> selectFreeLikeCountViewList() throws SQLException {
 		List<FreeBoardVo> list = client.queryForList("selectFreeLikeCountViewList");
 		return list;
+	}
+
+	@Override
+	public int freeBoardSearchCount(FreeBoardVo freeBoardVo)
+			throws SQLException {
+		int likeCount = (Integer)client.queryForObject("freeBoardSearchCount", freeBoardVo);
+		return likeCount;
 	}
 
 }

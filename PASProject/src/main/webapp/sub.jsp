@@ -29,7 +29,59 @@
 	<div class="row"> -->
 <!-- 		<div class="col-sm-3 col-md-3"> -->
 <div class="panel-group" id="accordion">
-<img style="width: 80%" src="<%=request.getContextPath()%>/resources/img/manager.png">
+
+
+	
+	
+
+
+
+	<%--프로젝트 이미지 수정해야함 --%>
+
+	<img class="img-thumbnail" id="proj_Img" 
+		style="cursor: pointer; border: 1px solid #ddd; margin-bottom:15px;"
+		src="<%=request.getContextPath()%>/resources/upload2/${sessionScope.joinProjectVo.proj_Img}"
+		data-toggle="modal" data-target="#imgUploadModal2"
+		data-keyboard="false" data-backdrop="static"
+		 onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" /> 
+
+	<!-- imgUpModal -->
+	<div class="modal fade" id="imgUploadModal2" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header"
+					style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">사진을 등록하렴</h3>
+				</div>
+				<div class="modal-body">
+					<%@ include file="WEB-INF/views/project/c9.jsp"%>
+				</div>
+				<div class="modal-footer" style="text-align: left">
+					<button id="closeModal" type="button" class="btn btn-default"
+						data-dismiss="modal">닫기</button>
+					<script>
+						$(document).ready(function() {
+							$('#closeModal').click(function() {
+								location.reload();
+							});
+						})
+					</script>
+					<button class="btn btn-default pull-right" id="btn-upload2">사진
+						등록하기</button>
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
@@ -40,7 +92,7 @@
 					관리</a>
 			</h4>
 		</div>
-		<div id="collapseOne" class="panel-collapse collapse in">
+		<div id="collapseOne" class="panel-collapse collapse">
 			<div class="panel-body">
 				<table class="table"
 					style="margin-bottom: 0px; border-top: 0px solid blue;">
@@ -49,7 +101,8 @@
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/pmNoticeList">프로젝트 공지사항</a></td>
+							href="<%=request.getContextPath()%>/project/pmNoticeList">프로젝트
+								공지사항</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;" href="#">채팅하기</a></td>
@@ -58,6 +111,10 @@
 						<td><a style="text-decoration: none;"
 							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트
 								게시판</a></td>
+					</tr>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/project/billing">돈관리</a></td>
 					</tr>
 				</table>
 			</div>
@@ -69,29 +126,29 @@
 				<a style="text-decoration: none;" data-toggle="collapse"
 					data-parent="#accordion" href="#collapseTwo"><img
 					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/file.png">&nbsp;산출물
-					관리</a>
+					src="<%=request.getContextPath()%>/resources/img/file.png">&nbsp;작업공간</a>
 			</h4>
 		</div>
-		<!-- <div id="collapseTwo" class="panel-collapse collapse">
+		<div id="collapseTwo" class="panel-collapse collapse">
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Orders</a> <span
-							class="label label-success">$ 320</span></td>
+						<td><a href="<%=request.getContextPath()%>/work/workList">파일리스트</a>
+							<span class="label label-success">New</span></td>
 					</tr>
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Invoices</a></td>
+						<td><a href="<%=request.getContextPath()%>/work/loadFile">들어가기</a></td>
 					</tr>
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Shipments</a></td>
+						<td><a href="<%=request.getContextPath()%>/work/"></a></td>
 					</tr>
 					<tr>
-						<td><a href="http://www.jquery2dotnet.com">Tex</a></td>
+						<td><a
+							href="<%=request.getContextPath()%>/work/pmMemberInvite">Tex</a></td>
 					</tr>
 				</table>
 			</div>
-		</div> -->
+		</div>
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -132,10 +189,12 @@
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a style="text-decoration: none;" href="#">팀원 리스트</a></td>
+						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/pmMemberList">팀원 리스트</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/pmMemberInvite">팀원 초대</a></td>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/project/pmMemberInvite">팀원
+								초대</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;" href="#">프로젝트 참가</a></td>
@@ -147,7 +206,8 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a style="text-decoration: none;" href="<%=request.getContextPath()%>/project/AccountBoardList"><img
+				<a style="text-decoration: none;"
+					href="<%=request.getContextPath()%>/project/AccountBoardList"><img
 					style="width: 15%"
 					src="<%=request.getContextPath()%>/resources/img/won.png">&nbsp;프로젝트
 					회계</a>
@@ -194,7 +254,8 @@
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/notice/totalNoticeList">전체 공지사항</a></td>
+							href="<%=request.getContextPath()%>/notice/totalNoticeList">전체
+								공지사항</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"

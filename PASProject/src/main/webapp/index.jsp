@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="decorator"
-	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+   uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -21,18 +21,18 @@
 <!-- CSS -->
 <!-- Bootstrap Core CSS -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+   href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
+   rel="stylesheet">
 <!-- Custom CSS -->
 <link
-	href="<%=request.getContextPath()%>/resources/css/stylish-portfolio.css"
-	rel="stylesheet">
+   href="<%=request.getContextPath()%>/resources/css/stylish-portfolio.css"
+   rel="stylesheet">
 <link
-	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
+   href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
+   rel="stylesheet" type="text/css">
 <link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
-	rel="stylesheet" type="text/css">
+   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+   rel="stylesheet" type="text/css">
 
 
 <!-- JS -->
@@ -40,225 +40,225 @@
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+   src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <!-- bootstrap Validator -->
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+   src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 
 
 </head>
 <style>
 body.modal-open .background-container {
-	-webkit-filter: blur(4px);
-	-moz-filter: blur(4px);
-	-o-filter: blur(4px);
-	-ms-filter: blur(4px);
-	filter: blur(4px);
-	filter: url("https://gist.githubusercontent.com/amitabhaghosh197/b7865b409e835b5a43b5/raw/1a255b551091924971e7dee8935fd38a7fdf7311/blur"
-		.svg #blur);
-	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+   -webkit-filter: blur(4px);
+   -moz-filter: blur(4px);
+   -o-filter: blur(4px);
+   -ms-filter: blur(4px);
+   filter: blur(4px);
+   filter: url("https://gist.githubusercontent.com/amitabhaghosh197/b7865b409e835b5a43b5/raw/1a255b551091924971e7dee8935fd38a7fdf7311/blur"
+      .svg #blur);
+   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 }
 </style>
 <body>
 
-	<!-- Navigation -->
-	<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i
-		class="fa fa-bars"></i></a>
-	<nav id="sidebar-wrapper">
-		<ul class="sidebar-nav">
-			<a id="menu-close" href="#"
-				class="btn btn-light btn-lg pull-right toggle"><i
-				class="fa fa-times"></i></a>
-			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
-			</li>
-			<li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
-			<li><a href="#about" onclick=$("#menu-close").click();>로그인</a></li>
-			<li><a href="#services" onclick=$("#menu-close").click();>Services</a>
-			</li>
-			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
-			</li>
-			<li><a href="#contact" onclick=$("#menu-close").click();>Contact</a>
-			</li>
-		</ul>
-	</nav>
+   <!-- Navigation -->
+   <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i
+      class="fa fa-bars"></i></a>
+   <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+         <a id="menu-close" href="#"
+            class="btn btn-light btn-lg pull-right toggle"><i
+            class="fa fa-times"></i></a>
+         <li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
+         </li>
+         <li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
+         <li><a href="#about" onclick=$("#menu-close").click();>로그인</a></li>
+         <li><a href="#services" onclick=$("#menu-close").click();>Services</a>
+         </li>
+         <li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
+         </li>
+         <li><a href="#contact" onclick=$("#menu-close").click();>Contact</a>
+         </li>
+      </ul>
+   </nav>
 
-	<!-- Header -->
-	<header id="top" class="header">
-		<div class="text-vertical-center">
-			<h1>Project Automation System</h1>
-			<h3>Begin with us</h3>
-			<br> <a href="<%=request.getContextPath()%>/main/loginForm"
-				class="btn btn-dark btn-lg" style="margin-right:10px;">들어가기</a><a href="#about"
-				class="btn btn-dark btn-lg" style="margin-left:10px;">가입하기</a>
-		</div>
+   <!-- Header -->
+   <header id="top" class="header">
+      <div class="text-vertical-center">
+         <h1>Project Automation System</h1>
+         <h3>Begin with us</h3>
+         <br> <a href="<%=request.getContextPath()%>/main/loginForm"
+            class="btn btn-dark btn-lg" style="margin-right:10px;">들어가기</a><a href="#about"
+            class="btn btn-dark btn-lg" style="margin-left:10px;">가입하기</a>
+      </div>
 
-	</header>
-
-
-	
-	<!-- joinForm -->
-	<section id="about" class="about" style="padding-top: 20px;">
-	<!-- 	<div class="container" style="height: 500px;"> -->
-			<div class="include">
-				<jsp:include page="WEB-INF/views/main/joinForm.jsp" />
-			</div>
-		<!-- </div> -->
-	</section>
-
-	<!-- Services -->
-	<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-	<section id="services" class="services bg-primary">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-lg-10 col-lg-offset-1">
-					<h2>Our Services</h2>
-					<hr class="small">
-					<div class="row">
-						<div class="col-md-3 col-sm-6">
-							<div class="service-item">
-								<span class="fa-stack fa-4x"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-cloud fa-stack-1x text-primary"></i>
-								</span>
-								<h4>
-									<strong>Service Name</strong>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a href="#" class="btn btn-light">Learn More</a>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="service-item">
-								<span class="fa-stack fa-4x"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-compass fa-stack-1x text-primary"></i>
-								</span>
-								<h4>
-									<strong>Service Name</strong>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a href="#" class="btn btn-light">Learn More</a>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="service-item">
-								<span class="fa-stack fa-4x"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-flask fa-stack-1x text-primary"></i>
-								</span>
-								<h4>
-									<strong>Service Name</strong>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a href="#" class="btn btn-light">Learn More</a>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<div class="service-item">
-								<span class="fa-stack fa-4x"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-shield fa-stack-1x text-primary"></i>
-								</span>
-								<h4>
-									<strong>Service Name</strong>
-								</h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-								<a href="#" class="btn btn-light">Learn More</a>
-							</div>
-						</div>
-					</div>
-					<!-- /.row (nested) -->
-				</div>
-				<!-- /.col-lg-10 -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</section>
-
-	<!-- Callout -->
-	<aside class="callout">
-		<div class="text-vertical-center">
-			<h1>허석원 앞머리 보소</h1>
-		</div>
-	</aside>
-
-	<!-- Portfolio -->
-	<section id="portfolio" class="portfolio">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 col-lg-offset-1 text-center">
-					<h2>Our Work</h2>
-					<hr class="small">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="portfolio-item">
-								<a href="#"> <img class="img-portfolio img-responsive"
-									src="resources/img/portfolio-1.jpg">
-								</a>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="portfolio-item">
-								<a href="#"> <img class="img-portfolio img-responsive"
-									src="resources/img/portfolio-2.jpg">
-								</a>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="portfolio-item">
-								<a href="#"> <img class="img-portfolio img-responsive"
-									src="resources/img/portfolio-3.jpg">
-								</a>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="portfolio-item">
-								<a href="#"> <img class="img-portfolio img-responsive"
-									src="resources/img/portfolio-4.jpg">
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- /.row (nested) -->
-					<a href="#" class="btn btn-dark">View More Items</a>
-				</div>
-				<!-- /.col-lg-10 -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</section>
-
-	<!-- Call to Action -->
-	<aside class="call-to-action bg-primary">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h3>The buttons below are impossible to resist.</h3>
-					<a href="#" class="btn btn-lg btn-light">Click Me!</a> <a href="#"
-						class="btn btn-lg btn-dark">Look at Me!</a>
-				</div>
-			</div>
-		</div>
-	</aside>
-
-	<!-- Map -->
-	<section id="contact" class="map">
-		<iframe 
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3214.6942064252853!2d127.41313421567885!3d36.319721680050385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35654ed2a5624215%3A0xd5804494a6b5b505!2z64yA642V7J247J6s6rCc67Cc7JuQ!5e0!3m2!1sko!2sus!4v1485430658172"
-			width="100%" height="100%" frameborder="0" style="border: 0"
-			allowfullscreen></iframe>
-		<br /> <!-- <small> <a
-			href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-		</small> -->
+   </header>
 
 
+   
+   <!-- joinForm -->
+   <section id="about" class="about" style="padding-top: 20px;">
+   <!--    <div class="container" style="height: 500px;"> -->
+         <div class="include">
+            <jsp:include page="WEB-INF/views/main/joinForm.jsp" />
+         </div>
+      <!-- </div> -->
+   </section>
+
+   <!-- Services -->
+   <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+   <section id="services" class="services bg-primary">
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+               <h2>Our Services</h2>
+               <hr class="small">
+               <div class="row">
+                  <div class="col-md-3 col-sm-6">
+                     <div class="service-item">
+                        <span class="fa-stack fa-4x"> <i
+                           class="fa fa-circle fa-stack-2x"></i> <i
+                           class="fa fa-cloud fa-stack-1x text-primary"></i>
+                        </span>
+                        <h4>
+                           <strong>Service Name</strong>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#" class="btn btn-light">Learn More</a>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="service-item">
+                        <span class="fa-stack fa-4x"> <i
+                           class="fa fa-circle fa-stack-2x"></i> <i
+                           class="fa fa-compass fa-stack-1x text-primary"></i>
+                        </span>
+                        <h4>
+                           <strong>Service Name</strong>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#" class="btn btn-light">Learn More</a>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="service-item">
+                        <span class="fa-stack fa-4x"> <i
+                           class="fa fa-circle fa-stack-2x"></i> <i
+                           class="fa fa-flask fa-stack-1x text-primary"></i>
+                        </span>
+                        <h4>
+                           <strong>Service Name</strong>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#" class="btn btn-light">Learn More</a>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="service-item">
+                        <span class="fa-stack fa-4x"> <i
+                           class="fa fa-circle fa-stack-2x"></i> <i
+                           class="fa fa-shield fa-stack-1x text-primary"></i>
+                        </span>
+                        <h4>
+                           <strong>Service Name</strong>
+                        </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#" class="btn btn-light">Learn More</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.row (nested) -->
+            </div>
+            <!-- /.col-lg-10 -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container -->
+   </section>
+
+   <!-- Callout -->
+   <aside class="callout">
+      <div class="text-vertical-center">
+         <h1>허석원 앞머리 보소</h1>
+      </div>
+   </aside>
+
+   <!-- Portfolio -->
+   <section id="portfolio" class="portfolio">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+               <h2>Our Work</h2>
+               <hr class="small">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="portfolio-item">
+                        <a href="#"> <img class="img-portfolio img-responsive"
+                           src="resources/img/portfolio-1.jpg">
+                        </a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="portfolio-item">
+                        <a href="#"> <img class="img-portfolio img-responsive"
+                           src="resources/img/portfolio-2.jpg">
+                        </a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="portfolio-item">
+                        <a href="#"> <img class="img-portfolio img-responsive"
+                           src="resources/img/portfolio-3.jpg">
+                        </a>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="portfolio-item">
+                        <a href="#"> <img class="img-portfolio img-responsive"
+                           src="resources/img/portfolio-4.jpg">
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.row (nested) -->
+               <a href="#" class="btn btn-dark">View More Items</a>
+            </div>
+            <!-- /.col-lg-10 -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container -->
+   </section>
+
+   <!-- Call to Action -->
+   <aside class="call-to-action bg-primary">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12 text-center">
+               <h3>The buttons below are impossible to resist.</h3>
+               <a href="#" class="btn btn-lg btn-light">Click Me!</a> <a href="#"
+                  class="btn btn-lg btn-dark">Look at Me!</a>
+            </div>
+         </div>
+      </div>
+   </aside>
+
+   <!-- Map -->
+   <section id="contact" class="map">
+      <iframe 
+         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3214.6942064252853!2d127.41313421567885!3d36.319721680050385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35654ed2a5624215%3A0xd5804494a6b5b505!2z64yA642V7J247J6s6rCc67Cc7JuQ!5e0!3m2!1sko!2sus!4v1485430658172"
+         width="100%" height="100%" frameborder="0" style="border: 0"
+         allowfullscreen></iframe>
+      <br /> <!-- <small> <a
+         href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+      </small> -->
 
 
 
 
-		<!--
+
+
+      <!--
     <div id="map"></div>
     
     <script>
@@ -275,7 +275,7 @@ body.modal-open .background-container {
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqJfiDdF82GMj5tgcIEbO8qgFJAVw0wLE&callback=initMap"
     async defer></script> -->
 
-	</section>
+   </section>
 
 
 
@@ -295,40 +295,40 @@ body.modal-open .background-container {
 
 
 
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 col-lg-offset-1 text-center">
-					<h4>
-						<strong>Start Bootstrap</strong>
-					</h4>
-					<p>
-						AIzaSyCqJfiDdF82GMj5tgcIEbO8qgFJAVw0wLE 3481 Melrose Place <br>Beverly
-						Hills, CA 90210
-					</p>
-					<ul class="list-unstyled">
-						<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-						<li><i class="fa fa-envelope-o fa-fw"></i> <a
-							href="mailto:name@example.com">name@example.com</a></li>
-					</ul>
-					<br>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-						</li>
-					</ul>
-					<hr class="small">
-					<p class="text-muted">Copyright &copy; Your Website 2014</p>
-				</div>
-			</div>
-		</div>
-		<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i
-			class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-	</footer>
+   <!-- Footer -->
+   <footer>
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+               <h4>
+                  <strong>Start Bootstrap</strong>
+               </h4>
+               <p>
+                  AIzaSyCqJfiDdF82GMj5tgcIEbO8qgFJAVw0wLE 3481 Melrose Place <br>Beverly
+                  Hills, CA 90210
+               </p>
+               <ul class="list-unstyled">
+                  <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                  <li><i class="fa fa-envelope-o fa-fw"></i> <a
+                     href="mailto:name@example.com">name@example.com</a></li>
+               </ul>
+               <br>
+               <ul class="list-inline">
+                  <li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                  </li>
+               </ul>
+               <hr class="small">
+               <p class="text-muted">Copyright &copy; Your Website 2014</p>
+            </div>
+         </div>
+      </div>
+      <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i
+         class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+   </footer>
 </body>
 
 <!-- Custom Theme JavaScript -->
@@ -409,121 +409,121 @@ body.modal-open .background-container {
 <script>
 $(document)
 .ready(
-		function() {
-			$('#reg_form')
-					.bootstrapValidator(
-							{
-								// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-								feedbackIcons : {
-									valid : 'glyphicon glyphicon-ok',
-									invalid : 'glyphicon glyphicon-remove',
-									validating : 'glyphicon glyphicon-refresh'
-								},
-								fields : {
-									
-									mem_Name : {
-										validators : {
-											stringLength : {
-												min : 2,
-											},
-											notEmpty : {
-												message : '이름을 기입해 주세요'
-											}
-										}
-									},
+      function() {
+         $('#reg_form')
+               .bootstrapValidator(
+                     {
+                        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                        feedbackIcons : {
+                           valid : 'glyphicon glyphicon-ok',
+                           invalid : 'glyphicon glyphicon-remove',
+                           validating : 'glyphicon glyphicon-refresh'
+                        },
+                        fields : {
+                           
+                           mem_Name : {
+                              validators : {
+                                 stringLength : {
+                                    min : 2,
+                                 },
+                                 notEmpty : {
+                                    message : '이름을 기입해 주세요'
+                                 }
+                              }
+                           },
 
-									mem_Phone : {
-										validators : {
-											regexp:{
-												 regexp : /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/,
-							                     message: '형식에 맞는 휴대폰 번호를 입력해 주세요.'
-											},
-											
-										/* 	stringLength : {
-												min : 12,
-												max : 13,
-												message :  '하이픈 붙혀서 전화번호 똑바로 좀 '
-											}, */
-											notEmpty : {
-												message : '휴대폰 번호를 입력해 주세요.'
-											}
-											
-										}
-									},
+                           mem_Phone : {
+                              validators : {
+                                 regexp:{
+                                     regexp : /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/,
+                                          message: '형식에 맞는 휴대폰 번호를 입력해 주세요.'
+                                 },
+                                 
+                              /*    stringLength : {
+                                    min : 12,
+                                    max : 13,
+                                    message :  '하이픈 붙혀서 전화번호 똑바로 좀 '
+                                 }, */
+                                 notEmpty : {
+                                    message : '휴대폰 번호를 입력해 주세요.'
+                                 }
+                                 
+                              }
+                           },
 
 
-									mem_Email : {
-										validators : {
-											notEmpty : {
-												message : '이메일란을 입력해 주세요.'
-											},
-											emailAddress : {
-												message : '형식에 맞는 이메일 주소를 입력해 주세요.'
-											}
-										}
-									},
+                           mem_Email : {
+                              validators : {
+                                 notEmpty : {
+                                    message : '이메일란을 입력해 주세요.'
+                                 },
+                                 emailAddress : {
+                                    message : '형식에 맞는 이메일 주소를 입력해 주세요.'
+                                 }
+                              }
+                           },
 
-									mem_Pass : {
-										validators : {
-											regexp:{
-												 regexp : /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/,
-							                     message: '비밀번호는 영문, 숫자, 특수문자가 꼭 들어가야 합니다.'
-											},
-											stringLength : {
-												min : 8,
-												max : 20,
-												message :  '비밀번호는 8~20자 사이의 영문+숫자 조합으로 해주세요 '
-											},
-											notEmpty : {
-												message : '공란입니다.'
-											},
-											identical : {
-												
-												message : 'Confirm your password below - type same password please'
-											}
-											
-										}
-									},
-									mem_Pass_CK : {
-										validators : {
-											identical : {
-												field : 'mem_Pass',
-												message : '위와 동일한 비밀번호를 입력해 주시기 바랍니다.'
-											}
-										}
-									},
+                           mem_Pass : {
+                              validators : {
+                                 regexp:{
+                                     regexp : /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/,
+                                          message: '비밀번호는 영문, 숫자, 특수문자가 꼭 들어가야 합니다.'
+                                 },
+                                 stringLength : {
+                                    min : 8,
+                                    max : 20,
+                                    message :  '비밀번호는 8~20자 사이의 영문+숫자 조합으로 해주세요 '
+                                 },
+                                 notEmpty : {
+                                    message : '공란입니다.'
+                                 },
+                                 identical : {
+                                    
+                                    message : 'Confirm your password below - type same password please'
+                                 }
+                                 
+                              }
+                           },
+                           mem_Pass_CK : {
+                              validators : {
+                                 identical : {
+                                    field : 'mem_Pass',
+                                    message : '위와 동일한 비밀번호를 입력해 주시기 바랍니다.'
+                                 }
+                              }
+                           },
 
-								}
-							})
+                        }
+                     })
 
-					.on(
-							'success.form.bv',
-							function(e) {
-								$('#success_message').slideDown({
-									opacity : "show"
-								}, "slow") // Do something ...
-								$('#reg_form').data(
-										'bootstrapValidator')
-										.resetForm();
+               .on(
+                     'success.form.bv',
+                     function(e) {
+                        $('#success_message').slideDown({
+                           opacity : "show"
+                        }, "slow") // Do something ...
+                        $('#reg_form').data(
+                              'bootstrapValidator')
+                              .resetForm();
 
-								// Prevent form submission
-								e.preventDefault();
+                        // Prevent form submission
+                        e.preventDefault();
 
-								// Get the form instance
-								var $form = $(e.target);
+                        // Get the form instance
+                        var $form = $(e.target);
 
-								// Get the BootstrapValidator instance
-								var bv = $form
-										.data('bootstrapValidator');
+                        // Get the BootstrapValidator instance
+                        var bv = $form
+                              .data('bootstrapValidator');
 
-								// Use Ajax to submit form data
-								$.post($form.attr('action'), $form
-										.serialize(), function(
-										result) {
-									console.log(result);
-								}, 'json');
-							});
-		});
+                        // Use Ajax to submit form data
+                        $.post($form.attr('action'), $form
+                              .serialize(), function(
+                              result) {
+                           console.log(result);
+                        }, 'json');
+                     });
+      });
 </script>
 
 </html>

@@ -12,7 +12,7 @@
 
 <body>
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
 		<!-- Page Header -->
 		<div class="row">
@@ -27,13 +27,12 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
 		<!-- Projects Row -->
-		<c:forEach items="${otherProjectList}" var="projectVo">
+		<c:forEach items="${otherProjectList}" var="projectVo" varStatus="status">
 			<div class="col-md-3" id="box"
 				style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
-				<h3 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h3>
-				<h4>프로젝트 팀명</h4>
+				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h4>
+				<h5>${projectVo.proj_Team}</h5>
 				<div
 					style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
 					<p>${projectVo.proj_Content}</p>
@@ -56,9 +55,6 @@
 						value="참가 신청하기" />
 				</div>
 
-				<input type="button" class="btn btn-default" value="신청하기"
-					id="applyBtn" onclick="javascript:goApply(${projectVo.proj_Num})" />
-
 				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 					class="img-responsive" src="http://placehold.it/700x400"
 					data-toggle="modal" data-target="#${projectVo.proj_Num }"
@@ -72,51 +68,11 @@
 				<br>
 
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="${projectVo.proj_Num }" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title"></h4>
-							${projectVo.proj_Name }
-						</div>
-						<div class="modal-body" id="${projectVo.proj_Num}body">팀원</div>
-						<div class="modal-footer">
-
-							<div id="${projectVo.proj_Num}btnZone">
-								<input type="button" class="btn btn-default" value="신청하기"
-									id="applyBtn"
-									onclick="javascript:goApply(${projectVo.proj_Num})" />
-							</div>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-						</div>
-					</div>
-
-				</div>
-			</div>
+		
 		</c:forEach>
 		<!-- /.row -->
 
 		<hr>
-
-		<!-- Pagination -->
-		<div class="row text-center">
-			<div class="col-lg-12">
-				<ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul>
-			</div>
-		</div>
-		<!-- /.row -->
 
 		<hr>
 		<footer>
@@ -173,7 +129,7 @@
 		});
 	}
 	
-/* 	function goApply(proj_Num){
+ 	function goApply(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
 			url:'apply',
@@ -191,7 +147,7 @@
 				alert("에러");
 			}
 		});
-	} */
+	}
 </script>
 
 </body>

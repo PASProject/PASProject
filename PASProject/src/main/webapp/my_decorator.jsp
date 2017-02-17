@@ -94,28 +94,30 @@
 
 
 
+<%--여준영 모험 --%>
+<!-- <link
+	href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+	rel="stylesheet" />
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+ -->
 
+<%-- 스크롤바 없애는거 --%>
+<!-- <script>
+$(function(){
+$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</script> -->
+<!-- <script>
+$(function(){
+	$('#myProjectBody').on('scroll touchmove mousewheel', function(e) {
+		   e.preventDefault();
+		   e.stopPropagation(); 
+		   return false;
+	})
+})
+</script> -->
 
 
 
@@ -146,7 +148,7 @@
 <style>
 body {
 	font-family: 'NanumGothic';
-	background-color: rgb(249, 249, 249);
+	background-color: white;
 }
 
 .navbar-default {
@@ -155,7 +157,7 @@ body {
 	/* min-height: 28px; */
 	/* height: 11px; */
 	height: 42px;
-	background-color: #4D76A3;
+	background-color: #6093cc;
 }
 
 .navbar-default  .navbar-header>a {
@@ -167,6 +169,8 @@ body {
 }
 
 .navbar-inverse {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	margin-top: 30px;
 	background-color: #6093cc;
 	border-color: #6093cc;
@@ -180,13 +184,9 @@ body {
 	color: white;
 }
 
-#droptoggle:hover {
-	background-color: #4D76A3;
-}
-
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
-	background-color: #4D76A3;
+	background-color: #6093cc
 }
 
 .col-md-3 {
@@ -205,11 +205,6 @@ body {
 	height: 40px;
 }
 
-#a li a:hover {
-	background-color: #6093cc;
-	color: white;
-	font-weight: bold;
-}
 </style>
 
 <style>
@@ -221,14 +216,41 @@ body {
 	background-image: linear-gradient(#91dd70, #55ae2e);
 	border: 1px solid #5aad35;
 }
+
 .createProject:hover {
-    background-color: #55a532;
-    background-image: -webkit-linear-gradient(#85d063, #4f992f);
-    background-image: linear-gradient(#85d063, #4f992f);
-    border-color: #519d30;
+	background-color: #55a532;
+	background-image: -webkit-linear-gradient(#85d063, #4f992f);
+	background-image: linear-gradient(#85d063, #4f992f);
+	border-color: #519d30;
+}
+
+#content {
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin-top: 25px;
+	min-height: 800px;
+	margin-bottom: 5%;
+}
+
+.page-header {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 </style>
-
+<script>
+$(function(){
+	$('#navbar').css({
+		'filter':'brightness(80%)'	
+		});
+		$('#myProjectList').css({
+		'filter':'brightness(125%)'
+	});
+		$('#otherProjectList').css({
+			'filter':'brightness(125%)'
+		})
+	})
+</script>
 
 
 
@@ -240,42 +262,56 @@ body {
 	<header>
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
-			id="navbar">
-			<div class="container">
+		<div class="background-color" style="height: auto;">
+
+			<nav class="navbar navbar-default navbar-fixed-top container "
+				role="navigation" id="navbar">
+
 
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right" id="a">
-
-						<li><a id="myProjectList" href="<%=request.getContextPath()%>/main/myProject">참여
-								프로젝트 보기</a></li>
-						<li><a id="otherProjectList" href="<%=request.getContextPath()%>/main/otherProject">외부
+						<li><a id="myProjectList"
+							href="<%=request.getContextPath()%>/main/myProject"><p>참여 프로젝트
+								보기</p></a></li>
+						<li><a id="otherProjectList"
+							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
 					</ul>
+
+					<div id="jkjk"></div>
+
 				</div>
-				<div id="jkjk"></div>
+			</nav>
 
-			</div>
-		</nav>
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
-			id="navbar">
+		</div>
+		<nav class="navbar navbar-inverse navbar-fixed-top container"
+			role="navigation" id="navbar">
 
-			<div class="container">
+			<div class="">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
+				<div class="navbar-header ">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span> <span
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#" style="font-size: 25px;"><b>프로젝트
+					<c:choose>
+						<c:when test="${empty sessionScope.joinProj }">
+
+
+						</c:when>
+						<c:otherwise>
+
+						</c:otherwise>
+					</c:choose>
+					<a class="navbar-brand" href="#" style="font-size: 20px;"><b>프로젝트
 							자동화 시스템</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -306,6 +342,7 @@ body {
 							aria-expanded="false"
 							style="padding-top: 5px; padding-bottom: 5px;"> <img
 								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
+								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
@@ -313,7 +350,8 @@ body {
 										class="img-thumbnail"
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
-										data-keyboard="false" data-backdrop="static" id="profileImg" />
+										data-keyboard="false" data-backdrop="static" id="profileImg"
+										onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'" />
 								</a></li>
 								<li class="divider"></li>
 								<li><a href="#" data-toggle="modal"
@@ -481,8 +519,39 @@ body {
 		<c:otherwise>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2" id="submenu" style="margin-top: 40px;">
-						<jsp:include page="sub.jsp" />
+					<div class="col-md-2" id="submenu" style="margin-top: 25px;">
+						<%@ include file="sub.jsp"%>
+						<script>
+		$('#btn-upload2').on('click', function() {
+			var form = new FormData(document.getElementById('projImg'));
+		
+			$.ajax({
+				
+				url : "<%=request.getContextPath()%>/project/c9",
+				data : form,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				type : 'POST',
+				success : 
+					function(response) {
+					console.log('success');
+					console.log(response);
+					 alert('사진이 등록되었습니다.'); 
+					
+					location.reload();
+					$('#proj_Img').attr('src','<%=request.getContextPath()%>/resources/upload2/${projectVo.proj_Img}');
+														},
+														error : function(jqXHR) {
+
+															console
+																	.log('error');
+														}
+													});
+
+										});
+					</script>
+
 					</div>
 					<decorator:body />
 				</div>
@@ -496,7 +565,7 @@ body {
 <script>
 	$(document).ready(
 			function() {
-				connect();
+				/* connect(); */
 				
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
@@ -519,8 +588,8 @@ body {
 									.stop(true, true).slideUp("400");
 							$(this).toggleClass('open');
 						}); */
+						
 				$('#alarmMenu').on('click',function(){
-					
 					$.ajax({
 						url:'alramView',
 						contentType:'application/json',

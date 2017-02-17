@@ -12,19 +12,15 @@
 
 <body>
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
 		<!-- Page Header -->
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12" >
 				<h2 class="page-header">
 					참여 프로젝트 목록
 					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
 						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
-			
-
-
-
 				</h2>
 
 			</div>
@@ -39,7 +35,6 @@
 					</h3>
 					<br> <br>
 					<div class="text-center">
-
 						<img src="<%=request.getContextPath()%>/resources/img/plus1.png"
 						id="createProject" value="생성하기" data-toggle="modal"
 						data-target="#create" data-keyboard="false" style="cursor:
@@ -58,11 +53,11 @@
 
 					<div class="col-md-3" id="box"
 						style="margin-bottom:30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
-						<h3 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
+						<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
-						</h3>
-						<h4>프로젝트 팀명</h4>
+						</h4>
+						<h5>${projectVo.proj_Team}</h5>
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
 							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
@@ -126,11 +121,10 @@
 						생성자 : <input type="text" id="mem_Email"
 							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
 						<br> <input type="hidden" id="mem_Img"
-							value="${sessionScope.loginUser.mem_Img }"> 프로젝트 이름 : <input
-							type="text" id="proj_Name" name="proj_Name"><br> <br>
-						프로젝트 내용 :
-						<textarea rows="15" cols="30" name="proj_Content"
-							id="proj_Content"></textarea>
+							value="${sessionScope.loginUser.mem_Img }"> 
+							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
+							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
+						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
 						<br>
 					</div>
 					<div class="modal-footer">
@@ -188,8 +182,10 @@
 			var mem_Email = $('#mem_Email').val();
 			var proj_Name = $('#proj_Name').val();
 			var proj_Content = $('#proj_Content').val();
+			var proj_Team = $('#proj_Team').val();
 			var mem_Img = $('#mem_Img').val();
-			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img};
+			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
+					'proj_Team':proj_Team};
 			$.ajax({
 				url:'createProject',
 				contentType:'application/json',
@@ -238,25 +234,17 @@
 			success:function(data){
 				var tt="";
 				$.each(data,function(i){
-					tt+= '<img class="img-thumbnail" style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					if(data[i].position_Num==1){
+						tt+= '<img style="border-radius:50%;  border: 3px solid cyan; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					}else{
+						tt+= '<img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+					}
 				})
 				$('#'+proj_Num+'body').empty();
 				$('#'+proj_Num+'body').append(tt);
 			}
 		})
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

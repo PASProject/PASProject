@@ -101,8 +101,8 @@
 		select count(*) from member
 	</select>
 	
-	<select id="selectMemberEmailList" resultClass="MemberCommand">
-		select mem_Email,mem_Name from MEMBER 
+	<select id="selectMemberEmailList" parameterClass="int" resultClass="MemberCommand">
+		select * from member where mem_email not in (select mem_email from project_Join where  proj_num = #proj_Num#)
 	</select>
 	
 	<select id="selectMemberPhone" parameterClass="str" resultClass="str">
@@ -110,6 +110,8 @@
 	    from member 
 	    where mem_Email= #mem_Email#
 	</select>
+	
+	
 	
 	
 	

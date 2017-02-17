@@ -54,6 +54,7 @@ public class QnaBoardService {
 		int totalCount = qnaBoardDao.QnaSelectTotalCount();	
 		return totalCount;
 	}
+//검색 결과에 따른 페이지
 	public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo) throws SQLException{
 		int totalCount = qnaBoardDao.QnaSearchTotalCount(qnaBoardVo);
 		return totalCount;

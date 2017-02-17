@@ -24,4 +24,8 @@ public interface SkillSharingBoardDao {
 	public void deleteSkillSharingBoardLike(SkillSharingBoardLikeVo skillSharingBoardLikeVo)throws SQLException;
 	public int selectCountSharingBoardLike(int ssb_Article_Num) throws SQLException;
 	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(SkillSharingBoardLikeVo skillSharingBoardLikeVo)throws SQLException;
+	
+	public List<SkillSharingBoardVo>selectSkillSharingBoardList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
+	public int skillSharingSearchCount(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
+	public List<SkillSharingBoardVo> skillSharingSearch_Content_Title(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
 }

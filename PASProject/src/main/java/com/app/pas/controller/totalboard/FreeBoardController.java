@@ -38,7 +38,14 @@ public class FreeBoardController {
 	
 	@RequestMapping("/freeBoardList")
 	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page
-			,HttpServletRequest request) throws SQLException {
+			,HttpServletRequest request,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number,
+			@RequestParam(defaultValue = "") String content,
+			FreeBoardVo freeboardVo ) throws SQLException {
 		String url = "freeBoard/freeBoardList";
 		String delete = request.getParameter("delete");
 		
@@ -46,21 +53,58 @@ public class FreeBoardController {
 		int totalCount = 0 ;
 		/*Page<FreeBoardVo> postPage =freeBoardService.*/
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
-		
-			freeBoardList = freeBoardService.selectFreeLikeCountViewList();
-			totalCount = freeBoardService.selectTotalCount();
-		
+
 		if(page.equals(null)||page ==""){
-			page = ""+1;
-		}
+			totalCount = freeBoardService.selectTotalCount();
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
 		
 		Paging paging = new Paging();
 		paging.setPageNo(Integer.parseInt(page));
 		paging.setPageSize(5);
 		paging.setTotalCount(totalCount);
 		model.addAttribute("paging",paging);
+		}else{
+			if (keyField == ("name") || keyField.equals("name")) {
+
+				freeboardVo.setMem_Name(keyword);
+				System.out.println("--------------name 키워드 : " + keyword);
+
+			}else if (keyField == ("title") || keyField.equals("title")) {
+				freeboardVo.setFrb_Title(keyword);
+				System.out.println("-----------------title 키워드 : " + keyword);
+
+			}else if (keyField == ("number") || keyField.equals("number")) {
+				if (!(keyword.isEmpty() || keyword == null))
+					freeboardVo.setFrb_Article_Num(Integer
+							.parseInt(keyword));
+				System.out.println("-----------------number 키워드 : " + keyword);
+			
+			}else if (keyField == ("content") || keyField.equals("content")) {
+				if (!(keyword.isEmpty() || keyword == null))
+					freeboardVo.setFrb_Content(keyword);
+
+				System.out.println("-----------------content 키워드 : " + keyword);
+			}
+			
+			freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
+			model.addAttribute("freeBoardList", freeBoardList);
+		
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			totalCount = freeBoardService.selectTotalCount();
+			Paging paging = new Paging();
+			paging.setPageNo(Integer.parseInt(page));
+			paging.setPageSize(5);
+			paging.setTotalCount(totalCount);
+
+			model.addAttribute("paging", paging);
+		
+		}
+	
 		model.addAttribute("delete", delete);
-		model.addAttribute("freeBoardList", freeBoardList);
 		return url;
 	}
 

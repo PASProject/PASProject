@@ -11,13 +11,12 @@
 <title></title>
 </head>
 <body>
-	<div class="col-md-10">
-	
 
-	
+	<div class="col-md-10" id="content">
+
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>뭣이 궁금한ㄷㅣ</small>
+			QnA <small>게시판</small>
 		</h2>
 		
 
@@ -29,6 +28,7 @@
 			<option value="title" selected>제목</option>
 			<option value = "name" selected>작성자</option>
 			<option value ="number" selected>글번호</option>
+			<option value ="content" selected>내용</option>
 		</select>
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >

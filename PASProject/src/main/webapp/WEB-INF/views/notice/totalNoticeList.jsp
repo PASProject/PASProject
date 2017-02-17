@@ -12,12 +12,25 @@
 
 </head>
 <body>
-	<div class="col-md-10">
+	<div class="col-md-10" id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			Total<small>_Notice</small>
 		</h2>
-	<fieldset>
+		
+	<form name="form" method="post" action="totalNoticeList">
+<!-- 	<form action="QnaBoardSearch" method="post">	 -->
+
+<br> 
+		<select name = "keyField" size = "1">
+			<option value="title" selected>제목</option>
+			<option value ="number" selected>글번호</option>
+			<option value ="content" selected>내용</option>
+		</select>
+		<input type ="text" size ="20" name="keyword" value="${keyword}" >
+		<input type ="submit" value="검색" >	
+<br>	
+
 		<table class="table table-hover">
 			<tr class="text-center">
 
@@ -45,6 +58,7 @@
 			</tr>
 	</c:forEach>
 		</table>
+		
 
 
 
@@ -79,9 +93,9 @@
 				</c:if>
 			</div>
 			
-			</fieldset>
+		
+	</form>
 	</div>
-	
 	
 </body>
 </html>

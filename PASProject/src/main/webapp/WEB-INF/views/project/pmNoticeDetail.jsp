@@ -36,15 +36,15 @@
 
 
 </table>
-<c:if test="${memPositionView.position_Name eq 'PM' }">
-<input type="button" value="수정" onclick="location.href='<%=request.getContextPath()%>/notice/noticeUpdate?proj_Num=${NoticeVo.proj_Num}&notice_Num=${NoticeVo.notice_Num}'"/>
+<c:if test="${memPositionView.position_Name eq 'PL' }">
+<input type="button" value="수정" onclick="location.href='<%=request.getContextPath()%>/project/pmNoticeUpdate?proj_Num=${NoticeVo.proj_Num}&notice_Num=${NoticeVo.notice_Num}'"/>
 <input type="button" value="삭제" onclick="deleteBtn(this.form)">
 </c:if>
 </form>
 
 <script>
 function deleteBtn(form){
-	 form.action="<%=request.getContextPath()%>/notice/noticeDelete";
+	 form.action="<%=request.getContextPath()%>/project/pmNoticeDelete";
 	 form.method="post";
 	 form.submit();
 	

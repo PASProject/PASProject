@@ -17,9 +17,9 @@ public class FreeBoardService {
 		this.freeboardDao = freeboardDao;
 	}
 	
-	public List<FreeBoardVo> selectFreeBoardList() throws SQLException{
+	public List<FreeBoardVo> selectFreeBoardList(FreeBoardVo freeBoardVo) throws SQLException{
 		List<FreeBoardVo> list= new ArrayList<FreeBoardVo>();
-		list = freeboardDao.selectFreeBoardList();
+		list = freeboardDao.selectFreeBoardList(freeBoardVo);
 		return list;
 	}
  
@@ -103,5 +103,10 @@ public class FreeBoardService {
 		list = freeboardDao.selectFreeLikeCountViewList();
 		return list;
 		
+	}
+	
+	public int freeBoardSearchCount (FreeBoardVo freeBoardVo)throws SQLException{
+		int totalCount =freeboardDao.freeBoardSearchCount(freeBoardVo);
+		return totalCount;
 	}
 }
