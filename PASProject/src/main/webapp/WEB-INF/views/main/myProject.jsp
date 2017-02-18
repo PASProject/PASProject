@@ -22,11 +22,11 @@ $(function(){
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12" >
-				<h2 class="page-header">
+				<h3 class="page-header">
 					참여 프로젝트 목록
 					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
 						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
-				</h2>
+				</h3>
 
 			</div>
 		</div>

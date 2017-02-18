@@ -10,8 +10,8 @@
 </head>
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
-			style="padding-bottom: 0px; border-bottom: 0px;">30만원타고시포</h2>
+		<h3 class="page-header"
+			style="padding-bottom: 0px; border-bottom: 0px;">30만원타고시포</h3>
 		<small>스키장</small>
 		<table class="table table-hover">
 			<tr>

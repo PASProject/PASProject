@@ -14,10 +14,10 @@
 
 	<div class="col-md-10" id="content">
 
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>게시판</small>
-		</h2>
+		</h3>
 		
 
 		<form name="form" method="post" action="QnAList">

@@ -10,8 +10,8 @@
 </head>
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">파일 리스트</h2>
+		<h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">파일 리스트</h3>
 		
 		<div>
 		

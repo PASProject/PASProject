@@ -39,10 +39,10 @@
 		
 			<!-- 본문! -->
 			<div class="col-md-10" id="content">
-				<h2 class="page-header"
+				<h3 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					FreeBoard <small>글 쓰기</small>
-				</h2>
+				</h3>
 
 				<div style="border: solid 1px black;">
 					<form name="frm" method="post">

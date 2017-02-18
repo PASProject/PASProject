@@ -12,10 +12,10 @@
 </head>
 <body>
 <div class="col-md-10">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			기술공유 <small>게시판</small>
-		</h2>
+		</h3>
 
 <form name="form" method="post" action="SkillSharingBoardList">
 	<input type = "hidden" name = "mem_Email" value="${SkillSharingBoardVo.mem_Email}">

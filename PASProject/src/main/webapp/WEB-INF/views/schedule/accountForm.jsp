@@ -180,11 +180,11 @@
 
 
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 회계<small>총 수입: ${sumImp}원 / 총 지출:${sumExp}원
 				[total.val();원 ] </small>
-		</h2>
+		</h3>
 		<form>
 			<table class="table">
 				<tr>

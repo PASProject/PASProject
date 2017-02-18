@@ -241,6 +241,8 @@ body {
 .page-header {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	padding-left:20px;
+	border:0px solid white;
 }
 </style>
 <script>
@@ -294,21 +296,12 @@ $(function(){
 					id="bs-example-navbar-collapse-1">
 					
 					<ul class="nav navbar-nav navbar-left" id="a">
-					<li>
-					PAS
-					</li>
+						<li><a style="color:white;" href="<%=request.getContextPath()%>/main/myProject"><b>
+							PAS
+							</b></a>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right" id="a">
-
-
-
-
-
-
-
-
-
-
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -351,20 +344,21 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a id="teamName" class="navbar-brand" href="#" style="font-size: 20px;">
+					<p id="teamName" class="navbar-brand"  style="font-size: 20px; margin-bottom:0px;">
 					
 					<b>
 					
 					<c:choose>
 					<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
-					프로젝트 자동화 시스템
+					<a style="color:white; text-decoration: none;" href="<%=request.getContextPath()%>/main/myProject"><b>프로젝트 자동화 시스템</b></a>
 					</c:when>
 					<c:otherwise>
-					${sessionScope.joinProjectVo.proj_Name}
+					<a style="color:white; text-decoration: none;" href="<%=request.getContextPath() %>/project/pmOverView">
+					${sessionScope.joinProjectVo.proj_Name}</a>
 					</c:otherwise>
 					</c:choose>
 					
-					</b></a>
+					</b>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"

@@ -283,6 +283,7 @@
 		</div>
 	</div>
 </div>
+<hr style="border: 1px solid; border-color: #ddd">
 <!-- 		</div> -->
 <div class="panel-group" id="accordion">
 	<div class="panel panel-default">
@@ -292,7 +293,7 @@
 					data-parent="#accordion" href="#collapseSeven"><img
 					style="width: 15%"
 					src="<%=request.getContextPath()%>/resources/img/chat.png">&nbsp;색깔
-					바꾸기</a>
+					바꾸기<span class="label label-success">new</span></a>
 			</h4>
 		</div>
 		<div id="collapseSeven" class="panel-collapse collapse">

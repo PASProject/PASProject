@@ -33,7 +33,7 @@
 	<!-- Page Header -->
 	<div class="row">
 		<div class="col-md-12">
-			<h2 class="page-header"
+			<h3 class="page-header"
 				style="border: 0px; padding-bottom: 0px; margin-top: 0px; margin-left: 10px;">
 				<img class="img-thumbnail"
 					src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
@@ -43,7 +43,7 @@
 						정보</button>
 				</small>
 
-			</h2>
+			</h3>
 			<div id="bubble" style="height: auto; padding-left: 30px;">
 				<div class="row">
 					<div id="1">

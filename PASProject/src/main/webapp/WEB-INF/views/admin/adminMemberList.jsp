@@ -20,9 +20,9 @@
 
 </head>
 <body>
-	<h1>
+	<h3>
 		운영자 회원 관리<input type="button" value="EXIT" onclick="go_Home()">
-	</h1>
+	</h3>
 	<a></a>
 	<form>
 		이메일 : <input type="text" name="mem_Email" />&nbsp; <input

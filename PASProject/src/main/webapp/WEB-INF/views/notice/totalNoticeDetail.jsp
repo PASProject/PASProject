@@ -11,10 +11,10 @@
 </head>
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			전체 공지사항 <small>글 읽기</small>
-		</h2>
+		</h3>
 		<form name="frm" method="post" action="totalNoticeDetail">
 				<input type="hidden" name="ttnotice_Num">
 				

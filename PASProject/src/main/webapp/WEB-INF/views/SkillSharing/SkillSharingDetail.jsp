@@ -92,10 +92,10 @@ function protectKey()
 		
 	</form>
 		<div class="col-md-10">
-				<h2 class="page-header"
+				<h3 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					<small>댓글</small>
-				</h2>
+				</h3>
 
 				<div style="border: solid 1px black;">
 					<form name="reply" method="post">

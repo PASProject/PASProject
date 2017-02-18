@@ -13,10 +13,10 @@
 </head>
 <body>
 	<div class="col-md-10">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			관리자 페이지 <small>_QnA 게시판</small>
-		</h2>
+		</h3>
 				<form name="form" method="post" action="AdminQnAList">
 <!-- 	<form action="QnaBoardSearch" method="post">	 -->
 
