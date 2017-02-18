@@ -143,13 +143,16 @@ $(function(){
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
+
 }
+
 </style>
 <style>
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
 }
+
 
 .navbar-default {
 	font-size: 13px;
@@ -289,7 +292,23 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
+					
+					<ul class="nav navbar-nav navbar-left" id="a">
+					<li>
+					PAS
+					</li>
+					</ul>
 					<ul class="nav navbar-nav navbar-right" id="a">
+
+
+
+
+
+
+
+
+
+
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -332,8 +351,20 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a class="navbar-brand" href="#" style="font-size: 20px;"><b>프로젝트
-							자동화 시스템</b></a>
+					<a id="teamName" class="navbar-brand" href="#" style="font-size: 20px;">
+					
+					<b>
+					
+					<c:choose>
+					<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
+					프로젝트 자동화 시스템
+					</c:when>
+					<c:otherwise>
+					${sessionScope.joinProjectVo.proj_Name}
+					</c:otherwise>
+					</c:choose>
+					
+					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
@@ -349,7 +380,7 @@ $(function(){
 										<input type="text" class="form-control" placeholder="프로젝트 검색"
 											name="q">
 										<div class="input-group-btn">
-											<button class="btn btn-default" type="submit">
+											<button style="width:40px;"class="btn btn-default" type="submit">
 												<i class="glyphicon glyphicon-search"></i>
 											</button>
 										</div>
