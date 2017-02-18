@@ -11,6 +11,13 @@
 </head>
 
 <body>
+<script>
+$(function(){
+	$('#otherProjectList').css({
+		'filter':'brightness(125%)'
+	});
+	})
+</script>
 	<!-- Page Content -->
 	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 

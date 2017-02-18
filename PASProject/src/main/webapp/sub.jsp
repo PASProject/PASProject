@@ -301,52 +301,86 @@
 					<tr>
 						<td>
 							<div class="row" id="colors" style="margin: auto;">
-								<div id="cc" style="background-color:#3c5574 "></div>
-								<div id="cc" style="background-color:#303030 "></div>
-								<div id="cc" style="background-color:#717171 "></div>
-								<div id="cc" style="background-color:#786153 "></div>
-								<div id="cc" style="background-color:#ad9f84 "></div>
-								<div id="cc" style="background-color:#e5c271 "></div>
-								<div id="cc" style="background-color:#e7a25d "></div>
-								<div id="cc" style="background-color:#e9825f "></div>
-								<div id="cc" style="background-color:#d55c53 "></div>
-								<div id="cc" style="background-color:#974140 "></div>
-								<div id="cc" style="background-color:#98b45d "></div>
-								<div id="cc" style="background-color:#58aa48 "></div>
-								<div id="cc" style="background-color:#24945a "></div>
-								<div id="cc" style="background-color:#2b9e99 "></div>
-								<div id="cc" style="background-color:#38716b "></div>
-								<div id="cc" style="background-color:#58adcc "></div>
-								<div id="cc" style="background-color:#6093cc "></div>
-								<div id="cc" style="background-color:#3978bf "></div>
-								<div id="cc" style="background-color:#39699a "></div>
-								<div id="cc" style="background-color:#21497d "></div>
-								<div id="cc" style="background-color:#7278b2 "></div>
-								<div id="cc" style="background-color:#675d91 "></div>
-								<div id="cc" style="background-color:#a36bac "></div>
-								<div id="cc" style="background-color:#ce7da6 "></div>
-								<div id="cc" style="background-color:#dc7391 "></div>
-								<div id="cc" style="background-color:#720001 "></div>
-								<div id="cc" style="background-color:#297000 "></div>
-								<div id="cc" style="background-color:#4a1059 "></div>
+								<div class="cc" style="background-color:#3c5574 "></div>
+								<div class="cc" style="background-color:#303030 "></div>
+								<div class="cc" style="background-color:#717171 "></div>
+								<div class="cc"  style="background-color:#786153 "></div>
+								<div class="cc"  style="background-color:#ad9f84 "></div>
+								<div class="cc"  style="background-color:#e5c271 "></div>
+								<div class="cc"  style="background-color:#e7a25d "></div>
+								<div class="cc"  style="background-color:#e9825f "></div>
+								<div class="cc"  style="background-color:#d55c53 "></div>
+								<div class="cc"  style="background-color:#974140 "></div>
+								<div class="cc"  style="background-color:#98b45d "></div>
+								<div class="cc"  style="background-color:#58aa48 "></div>
+								<div class="cc"  style="background-color:#24945a "></div>
+								<div class="cc"  style="background-color:#2b9e99 "></div>
+								<div class="cc"  style="background-color:#38716b "></div>
+								<div class="cc"  style="background-color:#58adcc "></div>
+								<div class="cc"  style="background-color:#6093cc "></div>
+								<div class="cc"  style="background-color:#3978bf "></div>
+								<div class="cc"  style="background-color:#39699a "></div>
+								<div class="cc"  style="background-color:#21497d "></div>
+								<div class="cc"  style="background-color:#7278b2 "></div>
+								<div class="cc"  style="background-color:#675d91 "></div>
+								<div class="cc"  style="background-color:#a36bac "></div>
+								<div class="cc"  style="background-color:#ce7da6 "></div>
+								<div class="cc"  style="background-color:#dc7391 "></div>
+								<div class="cc"  style="background-color:#720001 "></div>
+								<div class="cc"  style="background-color:#297000 "></div>
+								<div class="cc"  style="background-color:#4a1059 "></div>
 							</div>
 					<script>
 					$(function(){
-						$('').click(function(){
+						
+						$('.cc').click(function(){
 							var $color = $(this).css('background-color');
-							
-							
-							
-							$('#colors').children(function(){
-								backgroundColor :$color
-							},'slow');
-							
+							var a = location.href;
+							if(a.indexOf("otherProject")==-1){
+								$('#myProjectList').css({
+									backgroundColor : $color,
+									'color' : 'white'
+								});
+							}else if(a.indexOf("otherProject")!=-1){
+								$('#otherProjectList').css({
+									backgroundColor : $color,
+									'color':'white'
+								});
+							}
+						
+						$('#navbar').animate({
+							backgroundColor: $color
+						},'slow');
+						$('#navbar2').animate({
+							backgroundColor: $color
+						},'slow');
+						$('#myProjectList').animate({
+							backgroundColor: $color
+						},'slow');
+						$('#otherProjectList').animate({
+							backgroundColor: $color,
+							'filter':'brightness(125%)'
+						},'slow');
+						$('#navbar2').animate({
+							boderBottomColor : $color
+						},'slow');
+						
+						var b = $color.split("(")[1].split(")")[0];
+						b = b.split(",");
+						
+						var hex = b.map(function(x){
+							x = parseInt(x).toString(16);
+							return(x.length==1)?"0"+x:x;
+						})
+						hex = hex.join("");
+						alert(hex);
 							
 							$.ajax({
 								url : 'color',
 								type: 'post',
 								data : hex,
-								succss : function(result){
+								datatype : 'json',
+								success : function(result){
 									alert('성공');
 								},
 								error : function(result){

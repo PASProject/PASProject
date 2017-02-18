@@ -157,7 +157,7 @@ body {
 	/* min-height: 28px; */
 	/* height: 11px; */
 	height: 42px;
-	background-color: #6093cc;
+/* 	background-color: #6093cc; */
 }
 
 .navbar-default  .navbar-header>a {
@@ -172,7 +172,7 @@ body {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-top: 30px;
-	background-color: #6093cc;
+/* 	background-color: #6093cc; */
 	border-bottom-color: #6093cc;
 	border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
@@ -187,7 +187,7 @@ body {
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
-	background-color: #6093cc;
+/* 	background-color: #6093cc; */
 	color: white;
 }
 
@@ -247,9 +247,6 @@ $(function(){
 		$('#myProjectList').css({
 		'filter':'brightness(125%)'
 	});
-		$('#otherProjectList').css({
-			'filter':'brightness(125%)'
-		})
 	})
 </script>
 
@@ -289,7 +286,6 @@ $(function(){
 
 					</ul>
 
-					<div id="jkjk"></div>
 
 				</div>
 			</nav>
@@ -297,7 +293,7 @@ $(function(){
 		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-top container"
 			role="navigation" id="navbar2"
-			style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>">
+			style="border:0px solid white; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>">
 
 			<div class="">
 				<!-- Brand and toggle get grouped for better mobile display -->
