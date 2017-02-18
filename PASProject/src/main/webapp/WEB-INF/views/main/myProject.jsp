@@ -7,10 +7,15 @@
 
 <head>
 
-
 </head>
 
 <body>
+<script>
+$(function(){
+	$('#navbar').css('background-color','#3c5574');
+	$('#navbar2').css('background-color','#3c5574');
+})
+</script>
 	<!-- Page Content -->
 	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
