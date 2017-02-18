@@ -32,6 +32,7 @@
 				url : 'pmMemberInvite',
 				dataType : 'JSON',
 				success : function(d) {
+					alert(d);
 					setData(JSON.parse(d));
 				}
 
