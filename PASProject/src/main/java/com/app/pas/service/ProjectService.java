@@ -83,7 +83,15 @@ public class ProjectService {
 	public void updateProjectImg(ProjectVo projectVo) throws SQLException {
 		projectDao.updateProjectImg(projectVo);
 	}
+
 	public void updateProjectColor(ProjectVo projectVo) throws SQLException{
 		projectDao.updateProjectColor(projectVo);
+
+	}
+	public List<Integer> selectInviteProjNumByMemEmail(String mem_Email) throws SQLException{ 
+		 
+	List<Integer> list =	projectDao.selectInviteProjNumByMemEmail(mem_Email);
+		return list;
+
 	}
 }
