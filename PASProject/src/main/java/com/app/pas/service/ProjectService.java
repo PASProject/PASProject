@@ -84,4 +84,9 @@ public class ProjectService {
 		projectDao.updateProjectImg(projectVo);
 	}
 	
+	public List<Integer> selectInviteProjNumByMemEmail(String mem_Email) throws SQLException{ 
+		 
+	List<Integer> list =	projectDao.selectInviteProjNumByMemEmail(mem_Email);
+		return list;
+	}
 }

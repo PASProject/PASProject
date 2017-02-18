@@ -78,4 +78,11 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 	}
 
+	@Override
+	public List<Integer> selectInviteProjNumByMemEmail(String mem_Email)
+			throws SQLException {
+   List<Integer> list =client.queryForList("selectInviteProjNumByMemEmail", mem_Email);
+		return list;
+	}
+
 }

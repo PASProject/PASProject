@@ -47,13 +47,30 @@
 				</script>
 				<div id="${projectVo.proj_Num}body"></div>
 				<div id="warning" style="display:none;">
-				<h4 style="color:red">그만 좀 쳐 누르고 기다려 좀 기다려라</h4>
+				<h4 style="color:red">그만 좀 쳐 누르고 기다려 좀 기다려라</h4>    
 				</div>
+				<c:forEach var="inviteList" items="${inviteList }" varStatus="status">
+				<c:choose>
+				<c:when test="${projectVo.proj_Num == inviteList }">
+				<div id="${projectVo.proj_Num}btnZone">
+					<input class="btn btn-block btn-default" type="text"
+						value="초대 요청이 전달 된 프로젝트 입니다." readonly />			
+				</div>
+				</c:when>
+				
+				<c:otherwise>
+				
 				<div id="${projectVo.proj_Num}btnZone">
 					<input class="btn btn-block btn-default" type="button"
 						onclick="javascript:goApply(${projectVo.proj_Num})" id="applyBtn"
-						value="참가 신청하기" />
+						value="참가 신청하기" />			
 				</div>
+				
+				
+				</c:otherwise>
+				</c:choose>
+				</c:forEach>
+				
 
 				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 					class="img-responsive" src="http://placehold.it/700x400"
