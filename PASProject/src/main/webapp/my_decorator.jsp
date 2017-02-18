@@ -157,7 +157,7 @@ body {
 	/* min-height: 28px; */
 	/* height: 11px; */
 	height: 42px;
-/* 	background-color: #6093cc; */
+	background-color: #3c5574;
 }
 
 .navbar-default  .navbar-header>a {
@@ -172,7 +172,7 @@ body {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-top: 30px;
-/* 	background-color: #6093cc; */
+	background-color: #3c5574;
 	border-bottom-color: #6093cc;
 	border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
@@ -187,7 +187,8 @@ body {
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
-/* 	background-color: #6093cc; */
+	background-color: #3c5574;
+	filter: brightness(125%);
 	color: white;
 }
 
@@ -245,9 +246,27 @@ $(function(){
 		'filter':'brightness(80%)'	
 		});
 		$('#myProjectList').css({
-		'filter':'brightness(125%)'
+		'filter':'brightness(125%)',
+/* 		'background-color': '#3c5574' */
 	});
+	var a = location.href;
+	if(a.indexOf("myProject")!=-1){
+		$('#myProjectList').css({
+			'background-color': '#3c5574' 
+		})
+	}
+	if(a.indexOf("otherProject")!=-1){
+		$('#otherProjectList').css({
+			'filter':'brightness(125%)',
+			'background-color': '#3c5574'
+	});
+		$('#myProjectList').css({
+			'filter':'brightness(100%)'
+		})
+		
+	}
 	})
+
 </script>
 
 
@@ -973,7 +992,7 @@ $(function(){
 
 </script>
 <script>
-$(function(){
+/* $(function(){
 	var a = location.href;
 	if(a.indexOf("otherProject")==-1){
 		$('#myProjectList').css('background-color','#6093cc');
@@ -981,7 +1000,7 @@ $(function(){
 		$('#otherProjectList').css('background-color','#6093cc');
 	} 
 })
-
+ */
 </script>
 
 <script>

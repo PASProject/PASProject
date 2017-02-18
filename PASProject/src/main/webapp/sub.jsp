@@ -306,9 +306,6 @@
 								<div class="cc" style="background-color:#717171 "></div>
 								<div class="cc"  style="background-color:#786153 "></div>
 								<div class="cc"  style="background-color:#ad9f84 "></div>
-								<div class="cc"  style="background-color:#e5c271 "></div>
-								<div class="cc"  style="background-color:#e7a25d "></div>
-								<div class="cc"  style="background-color:#e9825f "></div>
 								<div class="cc"  style="background-color:#d55c53 "></div>
 								<div class="cc"  style="background-color:#974140 "></div>
 								<div class="cc"  style="background-color:#98b45d "></div>
@@ -325,7 +322,6 @@
 								<div class="cc"  style="background-color:#675d91 "></div>
 								<div class="cc"  style="background-color:#a36bac "></div>
 								<div class="cc"  style="background-color:#ce7da6 "></div>
-								<div class="cc"  style="background-color:#dc7391 "></div>
 								<div class="cc"  style="background-color:#720001 "></div>
 								<div class="cc"  style="background-color:#297000 "></div>
 								<div class="cc"  style="background-color:#4a1059 "></div>
@@ -337,16 +333,15 @@
 							var $color = $(this).css('background-color');
 							var a = location.href;
 							if(a.indexOf("otherProject")==-1){
-								$('#myProjectList').css({
-									backgroundColor : $color,
-									'color' : 'white'
-								});
-							}else if(a.indexOf("otherProject")!=-1){
+								$('#myProjectList').animate({
+									backgroundColor:$color
+								},'slow');
+							}/* else if(a.indexOf("otherProject")!=-1){
 								$('#otherProjectList').css({
 									backgroundColor : $color,
 									'color':'white'
 								});
-							}
+							} */
 						
 						$('#navbar').animate({
 							backgroundColor: $color
@@ -373,15 +368,14 @@
 							return(x.length==1)?"0"+x:x;
 						})
 						hex = hex.join("");
-						alert(hex);
-							
+						
 							$.ajax({
 								url : 'color',
 								type: 'post',
 								data : hex,
 								datatype : 'json',
 								success : function(result){
-									alert('성공');
+									
 								},
 								error : function(result){
 									alert('실패');
