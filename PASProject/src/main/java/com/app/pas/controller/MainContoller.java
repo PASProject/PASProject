@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.pas.commons.ChangeColor;
 import com.app.pas.dto.ApplyVo;
+import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
@@ -223,7 +224,9 @@ public class MainContoller {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		list = projectService.selectOtherProjectListById(memberVo
 				.getMem_Email());
+		List<Integer> list2= projectService.selectInviteProjNumByMemEmail(memberVo.getMem_Email());
 		model.addAttribute("otherProjectList", list);
+		model.addAttribute("inviteList",list2);
 		if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
 		}
