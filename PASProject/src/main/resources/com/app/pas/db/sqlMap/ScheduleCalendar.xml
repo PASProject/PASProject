@@ -9,22 +9,17 @@
    
    
    
-   <select id="selectScheduleCalendarList" parameterClass="str" resultClass="ScheduleCalendar" >
-      select * from Schedule_Calendar where GT_NUM LIKE '%'||#gt_Num#||'%'
+   <select id="selectScheduleCalendarList" parameterClass="int" resultClass="ScheduleCalendar" >
+      select * from Schedule_Calendar where sc_proj_num= #sc_Proj_Num#
    </select>
    
    <update id="insertScheduleCalendar" parameterClass="ScheduleCalendar">
-      insert into Schedule_Calendar(GT_NUM,SC_START_DATE,SC_END_DATE,SC_COLOR,SC_CHARGE_MEM) 
-	  VALUES(#gt_Num#,#sc_Start_Date#,#sc_End_Date#,#sc_Color#,#sc_Charge_Mem#)
+      insert into Schedule_Calendar(SC_NUM,SC_START_DATE,SC_END_DATE,SC_TITLE,SC_COLOR,SC_WK_NAME,SC_WK_MEM_EMAIL,SC_PROJ_NUM) 
+	  VALUES(SCHEDULE_CALENDAR_SEQ.nextval,#sc_Start_Date#,#sc_End_Date#,#sc_Title#,#sc_Color#,#sc_Wk_Name#,#sc_Wk_Mem_Email#,#sc_Proj_Num#)
    </update>
-   
-   <update id="updateScheduleCalendar" parameterClass="ScheduleCalendar">
-      UPDATE Schedule_Calendar SET SC_START_DATE=#sc_Start_Date#, SC_END_DATE=#sc_End_Date#,SC_COLOR=#sc_Color#,
-      SC_CHARGE_MEM=#sc_Charge_Mem# WHERE GT_NUM=#gt_Num#	  
-   </update>
-   
+    
    <update id="deleteScheduleCalendar" parameterClass="int">
-      delete from Schedule_Calendar where GT_NUM=#gt_Num#
+      delete from Schedule_Calendar where SC_NUM=#sc_Num#
    </update>
    
 </sqlMap>

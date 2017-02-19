@@ -35,6 +35,8 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 <!-- Bootstrap Core CSS -->
 
 
@@ -61,11 +63,13 @@
 
 =======
 	 --%>
+<script src='<%=request.getContextPath()%>/resources/lib/moment.min.js'></script>
 
-
-
-
-
+<script
+	src='<%=request.getContextPath()%>/resources/lib/fullcalendar.js'></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/lib/gcal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
@@ -76,6 +80,16 @@
 	href="<%=request.getContextPath()%>/resources/css/3-col-portfolio.css"
 	rel="stylesheet">
 
+<link
+	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
+	rel='stylesheet' />
+	
+<link
+	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
+	rel='stylesheet' media='print' />
+	
+	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+<script src="https://unpkg.com/flatpickr"></script>
 <!-- bootstrap Validator -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
@@ -241,6 +255,10 @@ body {
 .page-header {
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+/* flatpickr 인덱스 위치 */
+div.flatpickr-calendar {
+    z-index: 99999;
 }
 </style>
 <script>

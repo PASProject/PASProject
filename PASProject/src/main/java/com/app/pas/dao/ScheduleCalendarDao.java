@@ -7,8 +7,7 @@ import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ScheduleCalendarVo;
 
 public interface ScheduleCalendarDao {
-	public List<ScheduleCalendarVo> selectScheduleCalendarList()throws SQLException;
+	public List<ScheduleCalendarVo> selectScheduleCalendarList(int sc_Proj_Num)throws SQLException;
 	public void insertScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo)throws SQLException;
-	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo)throws SQLException;
-	public void deleteScheduleCalendar(int gt_Num)throws SQLException;
+	public void deleteScheduleCalendar(int sc_Num)throws SQLException;
 }

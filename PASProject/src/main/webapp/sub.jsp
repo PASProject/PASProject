@@ -173,7 +173,7 @@
 				<table class="table" style="margin-bottom: 0px; border-top: 0px;">
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="http://www.jquery2dotnet.com">월별 일정 관리</a></td>
+							href="<%=request.getContextPath()%>/project/pmCalendar">월별 일정 관리</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
