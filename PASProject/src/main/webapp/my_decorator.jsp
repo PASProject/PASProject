@@ -34,7 +34,7 @@
 <!-- jQuery -->
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Bootstrap Core CSS -->
 
 
@@ -143,7 +143,9 @@ $(function(){
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
+
 }
+
 </style>
 <style>
 body {
@@ -151,29 +153,31 @@ body {
 	background-color: white;
 }
 
+
 .navbar-default {
 	font-size: 13px;
 	margin-top: -10px;
 	/* min-height: 28px; */
 	/* height: 11px; */
 	height: 42px;
-	background-color: #6093cc;
+	background-color: #3c5574;
 }
 
 .navbar-default  .navbar-header>a {
-	color: white;
+	color: white !important;
 }
 
 .navbar-default  .navbar-nav>li>a {
-	color: white;
+	color: white !important;
 }
 
 .navbar-inverse {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-top: 30px;
-	background-color: #6093cc;
-	border-color: #6093cc;
+	background-color: #3c5574;
+	border-bottom-color: #6093cc;
+	border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .navbar-inverse  .navbar-header>a {
@@ -186,7 +190,9 @@ body {
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
-	background-color: #6093cc
+	background-color: #3c5574;
+	filter: brightness(125%);
+	color: white;
 }
 
 .col-md-3 {
@@ -243,12 +249,27 @@ $(function(){
 		'filter':'brightness(80%)'	
 		});
 		$('#myProjectList').css({
-		'filter':'brightness(125%)'
+		'filter':'brightness(125%)',
+/* 		'background-color': '#3c5574' */
 	});
-		$('#otherProjectList').css({
-			'filter':'brightness(125%)'
+	var a = location.href;
+	if(a.indexOf("myProject")!=-1){
+		$('#myProjectList').css({
+			'background-color': '#3c5574' 
 		})
+	}
+	if(a.indexOf("otherProject")!=-1){
+		$('#otherProjectList').css({
+			'filter':'brightness(125%)',
+			'background-color': '#3c5574'
+	});
+		$('#myProjectList').css({
+			'filter':'brightness(100%)'
+		})
+		
+	}
 	})
+
 </script>
 
 
@@ -264,17 +285,37 @@ $(function(){
 		<div class="background-color" style="height: auto;">
 
 			<nav class="navbar navbar-default navbar-fixed-top container "
-				role="navigation" id="navbar">
+				role="navigation" id="navbar"
+				style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>">
 
 
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
+					
+					<ul class="nav navbar-nav navbar-left" id="a">
+					<li>
+					PAS
+					</li>
+					</ul>
 					<ul class="nav navbar-nav navbar-right" id="a">
+
+
+
+
+
+
+
+
+
+
+
 						<li><a id="myProjectList"
+							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/myProject"><p>참여
 									프로젝트 보기</p></a></li>
 						<li><a id="otherProjectList"
+							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 
@@ -283,14 +324,14 @@ $(function(){
 
 					</ul>
 
-					<div id="jkjk"></div>
 
 				</div>
 			</nav>
 
 		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-top container"
-			role="navigation" id="navbar">
+			role="navigation" id="navbar2"
+			style="border:0px solid white; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>">
 
 			<div class="">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -310,32 +351,26 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a class="navbar-brand" href="#" style="font-size: 20px;"><b>프로젝트
-							자동화 시스템</b></a>
+					<a id="teamName" class="navbar-brand" href="#" style="font-size: 20px;">
+					
+					<b>
+					
+					<c:choose>
+					<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
+					프로젝트 자동화 시스템
+					</c:when>
+					<c:otherwise>
+					${sessionScope.joinProjectVo.proj_Name}
+					</c:otherwise>
+					</c:choose>
+					
+					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<div class="col-md-12 col-md-3">
-								<form class="navbar-form" role="search">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="프로젝트 검색"
-											name="q">
-										<div class="input-group-btn">
-											<button class="btn btn-default" type="submit">
-												<i class="glyphicon glyphicon-search"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
-
-
-
-
-						</li>
+						
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
@@ -518,7 +553,8 @@ $(function(){
 		<c:otherwise>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-2" id="submenu" style="margin-top: 25px;">
+					<div class="col-md-2" id="submenu"
+						style="margin-top: 25px; padding-left: 0px;">
 						<%@ include file="sub.jsp"%>
 						<script>
 		$('#btn-upload2').on('click', function() {
@@ -966,7 +1002,7 @@ $(function(){
 
 </script>
 <script>
-$(function(){
+/* $(function(){
 	var a = location.href;
 	if(a.indexOf("otherProject")==-1){
 		$('#myProjectList').css('background-color','#6093cc');
@@ -974,7 +1010,7 @@ $(function(){
 		$('#otherProjectList').css('background-color','#6093cc');
 	} 
 })
-
+ */
 </script>
 
 <script>

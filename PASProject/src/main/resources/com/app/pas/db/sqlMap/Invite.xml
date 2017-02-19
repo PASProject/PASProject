@@ -43,6 +43,12 @@
    		update invite set invite_commit_check = '1' where proj_num =#proj_Num# and mem_email = #mem_Email#
    </update>
    
+   <select id="selectInviteProjNumByMemEmail" parameterClass="str" resultClass="int">
+    select proj_Num
+   	from invite 
+   	where mem_Email=#mem_Email# and invite_Commit_check ='0' order by invite_num desc
+   </select>
+   
    
    
 </sqlMap>

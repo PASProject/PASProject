@@ -23,6 +23,8 @@ public class ProjectVo implements Serializable{
 	private String proj_Img;
     private String mem_Phone;
     private String proj_Team;
+    private String proj_Color;
+    private String proj_Search;
     
 	
 
