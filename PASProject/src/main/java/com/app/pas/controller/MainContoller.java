@@ -62,6 +62,11 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
+	/**
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
@@ -180,7 +185,17 @@ public class MainContoller {
 		return url;
 	}
 	
-//내가 참여한 프로젝트 -----------------------------------------------------------------------
+
+	/**
+	 * 내가 참여한 프로젝트 리스트와 프로젝트를 검색한 결과의 리스트를 뿌려주는 메소드
+	 * 
+	 * @param session : 로그인한 회원의 기본키인 Email을 받음
+	 * @param model :  내가 참여한 프로젝트의 리스트를 뿌려주는 기능을 model에 넣음
+	 * @param proj_Search : jsp파일로부터 입력받은 검색어를 가져옴 
+	 * @param projectVo : 회원의email과 검색어를 projectVo 에 넣음
+	 * @return : myProject.jsp 파일로 return
+	 * @throws SQLException
+	 */
 	@RequestMapping("/myProject")
 	public String MyProject(HttpSession session, Model model,
 			@RequestParam(defaultValue = "")String proj_Search,
