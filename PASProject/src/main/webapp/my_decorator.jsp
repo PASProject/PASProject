@@ -979,8 +979,7 @@ $(function(){
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>
-	/main/logOut";
+		location.href = "/pas/main/logOut";
 	}
 </script>
 </html>
