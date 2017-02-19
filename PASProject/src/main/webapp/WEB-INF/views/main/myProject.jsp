@@ -16,6 +16,10 @@ $(function(){
 	$('#navbar2').css('background-color','#3c5574');
 })
 </script>
+	
+
+							
+						
 	<!-- Page Content -->
 	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
@@ -24,6 +28,21 @@ $(function(){
 			<div class="col-lg-12" >
 				<h2 class="page-header">
 					참여 프로젝트 목록
+
+								<form class="navbar-form" action ="myProject" name = "myProject"
+								method="post">
+									<div class="input-group">
+
+										<input type="text" class="form-control" placeholder="프로젝트 검색"
+										name = "proj_Search">
+										<div class="input-group-btn">
+											<button style="width:40px;"class="btn btn-default" type="submit">
+												<i class="glyphicon glyphicon-search"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+
 					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
 						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
 				</h2>

@@ -51,20 +51,19 @@ public class ProjectDaoImpl implements ProjectDao {
 				"selectMemPositionViewListByProjNum", proj_Num);
 		return list;
 	}
-
+	
+//내가 참여한 프로젝트 검색리스트
 	@Override
-	public List<ProjectVo> selectMyProjectListById(String mem_Email)
-			throws SQLException {
-		List<ProjectVo> list = client.queryForList("selectMyProjectListById",
-				mem_Email);
+	public List<ProjectVo> selectMyProjectListById(ProjectVo projectVo)throws SQLException {
+		List<ProjectVo> list = client.queryForList("selectMyProjectListById",projectVo);
 		return list;
 	}
-
+//외부프로젝트  --------------------------------------------------------------------
 	@Override
-	public List<ProjectVo> selectOtherProjectListById(String mem_Email)
+	public List<ProjectVo> selectOtherProjectListById(ProjectVo projectVo)
 			throws SQLException {
 		List<ProjectVo> list = client.queryForList(
-				"selectOtherProjectListById", mem_Email);
+				"selectOtherProjectListById", projectVo);
 		return list;
 	}
 
@@ -93,5 +92,7 @@ public class ProjectDaoImpl implements ProjectDao {
    List<Integer> list =client.queryForList("selectInviteProjNumByMemEmail", mem_Email);
 		return list;
 	}
+
+
 
 }

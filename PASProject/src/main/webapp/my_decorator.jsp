@@ -370,28 +370,7 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-
-							<div class="col-md-12 col-md-3">
-
-								<form class="navbar-form" role="search">
-									<div class="input-group">
-
-										<input type="text" class="form-control" placeholder="프로젝트 검색"
-											name="q">
-										<div class="input-group-btn">
-											<button style="width:40px;"class="btn btn-default" type="submit">
-												<i class="glyphicon glyphicon-search"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
-
-
-
-
-						</li>
+						
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"

@@ -15,8 +15,7 @@
 		select * from project where proj_num = #proj_Num#
 	</select>
 
-	<select id="selectMyProjectListById" parameterClass="str"
-		resultClass="Project">
+	<select id="selectMyProjectListById" parameterClass="Project" resultClass="Project">
 		select A.MEM_EMAIL AS MEM_EMAIL, A.PROJ_CONTENT AS PROJ_CONTENT, A.PROJ_NAME
 		AS PROJ_NAME,A.PROJ_TEAM AS PROJ_TEAM,A.PROJ_NUM AS PROJ_NUM,
 		A.PROJ_CHECK AS PROJ_CHECK
@@ -24,16 +23,17 @@
 		mem_email = #mem_Email# and pjj_per_num=1)m
 		where A.PROJ_NUM = M.PROJ_NUM
 		and a.proj_check='y'
+		and PROJ_NAME like '%'||#proj_Search#||'%'
 	</select>
 
-	<select id="selectOtherProjectListById" parameterClass="str"
-		resultClass="Project">
+	<select id="selectOtherProjectListById" parameterClass="Project" resultClass="Project">
 		select A.MEM_EMAIL AS MEM_EMAIL, A.PROJ_CONTENT AS PROJ_CONTENT, A.PROJ_NAME
 		AS PROJ_NAME,A.PROJ_TEAM AS PROJ_TEAM, A.PROJ_NUM AS PROJ_NUM,
 		A.PROJ_CHECK AS PROJ_CHECK
 		from project A
 		where proj_num not in ( select distinct proj_num from mem_position_view
 		where mem_email =#mem_Email# and pjj_per_Num ='1')
+		and PROJ_NAME like '%'||#proj_Search#||'%'
 	</select>
 
 	<update id="insertProject" parameterClass="Project">

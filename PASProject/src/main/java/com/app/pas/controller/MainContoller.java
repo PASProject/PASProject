@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.app.pas.commons.ChangeColor;
 import com.app.pas.dto.ApplyVo;
-import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
@@ -39,6 +40,7 @@ import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
+import com.sun.mail.iap.Response;
 
 @Controller
 @RequestMapping("/main")
@@ -177,67 +179,103 @@ public class MainContoller {
 		memberService.AuthMember(mem_Email);
 		return url;
 	}
-
+	
+//내가 참여한 프로젝트 -----------------------------------------------------------------------
 	@RequestMapping("/myProject")
-	public String MyProject(HttpSession session, Model model)
-			throws SQLException {
+	public String MyProject(HttpSession session, Model model,
+			@RequestParam(defaultValue = "")String proj_Search,
+			ProjectVo projectVo) throws SQLException {
 		String url = "main/myProject";
+		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
-		List<ProjectVo> list = projectService.selectMyProjectListById(memberVo
-				.getMem_Email());
-		model.addAttribute("myProjectList", list);
-		if (session.getAttribute("proj_Num") != null) {
+		String mem_Email = memberVo.getMem_Email();
+	
+		projectVo.setMem_Email(mem_Email);
+		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
+		
+		if (proj_Search == "" || proj_Search.equals(null)) {
+			if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
-		}
+			}
 
-		if (session.getAttribute("joinProj") != null
+			if (session.getAttribute("joinProj") != null
 				|| session.getAttribute("joinProj") != "null") {
-			session.removeAttribute("joinProj");
-		}
-		if (session.getAttribute("joinProjectVo") != null
+				session.removeAttribute("joinProj");
+			}
+			if (session.getAttribute("joinProjectVo") != null
 				|| session.getAttribute("joinProjectVo") != "null") {
-			session.removeAttribute("joinProjectVo");
-		}
+				session.removeAttribute("joinProjectVo");
+			}
+		}else{
+			if (session.getAttribute("proj_Num") != null) {
+				session.removeAttribute("proj_Num");
+				}
 
-
-		
-		return url;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				if (session.getAttribute("joinProj") != null
+				|| session.getAttribute("joinProj") != "null") {
+					session.removeAttribute("joinProj");
+				}
+				if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+					session.removeAttribute("joinProjectVo");
+				}
+				projectVo.setProj_Search(proj_Search);
+				
+			}
+			model.addAttribute("myProjectList", list);
+			return url;
 	}
-
+//---------------------------------------------------------------------------------
+//외부 프로젝트
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, Model model)
+	public String OtherProject(HttpSession session, Model model,
+			@RequestParam(defaultValue = "")String proj_Search,ProjectVo projectVo,
+			HttpServletResponse response)
 			throws SQLException {
-		String url = "/main/otherProject";
 
-		List<ProjectVo> list;
+		
+		String url = "/main/otherProject";
+		List<ProjectVo> list = new ArrayList<ProjectVo>();
+		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		list = projectService.selectOtherProjectListById(memberVo
-				.getMem_Email());
+		String mem_Email = memberVo.getMem_Email();
+		projectVo.setMem_Email(mem_Email);
+		
+		if(proj_Search == "" || proj_Search.equals(null)){
+			if (session.getAttribute("proj_Num") != null) {
+				session.removeAttribute("proj_Num");
+			}
+			if (session.getAttribute("joinProj") != null
+					|| session.getAttribute("joinProj") != "null") {
+				session.removeAttribute("joinProj");
+			}
+			if (session.getAttribute("joinProjectVo") != null
+					|| session.getAttribute("joinProjectVo") != "null") {
+				session.removeAttribute("joinProjectVo");
+			}
+
+		}else{
+			
+			if (session.getAttribute("proj_Num") != null) {
+				session.removeAttribute("proj_Num");
+			}
+			if (session.getAttribute("joinProj") != null
+					|| session.getAttribute("joinProj") != "null") {
+				session.removeAttribute("joinProj");
+			}
+			if (session.getAttribute("joinProjectVo") != null
+					|| session.getAttribute("joinProjectVo") != "null") {
+				session.removeAttribute("joinProjectVo");
+			}
+			
+			projectVo.setProj_Search(proj_Search);
+			
+		}
+		
+		list = projectService.selectOtherProjectListById(projectVo);
 		List<Integer> list2= projectService.selectInviteProjNumByMemEmail(memberVo.getMem_Email());
 		model.addAttribute("otherProjectList", list);
 		model.addAttribute("inviteList",list2);
-		if (session.getAttribute("proj_Num") != null) {
-			session.removeAttribute("proj_Num");
-		}
-		if (session.getAttribute("joinProj") != null
-				|| session.getAttribute("joinProj") != "null") {
-			session.removeAttribute("joinProj");
-		}
-		if (session.getAttribute("joinProjectVo") != null
-				|| session.getAttribute("joinProjectVo") != "null") {
-			session.removeAttribute("joinProjectVo");
-		}
 		return url;
 		
 	}
