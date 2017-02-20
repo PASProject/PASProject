@@ -149,6 +149,21 @@ public class SkillSharingBoardDaoImpl implements SkillSharingBoardDao {
 		List<SkillSharingBoardVo>list = client.queryForList("skillSharingSearch_Content_Title",skillSharingBoardVo);
 		return list;
 	}
+//내가 쓴글 
+	@Override
+	public List<SkillSharingBoardVo> skill_myPostList(
+			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
+		List<SkillSharingBoardVo>list = client.queryForList("skill_myPostList",skillSharingBoardVo);
+		return list;
+
+	}
+
+	@Override
+	public int skill_myPostCount(SkillSharingBoardVo skillSharingBoardVo)
+			throws SQLException {
+		int totalCount = (Integer)client.queryForObject("skill_myPostCount",skillSharingBoardVo);
+		return totalCount;
+	}
 
 	}
 

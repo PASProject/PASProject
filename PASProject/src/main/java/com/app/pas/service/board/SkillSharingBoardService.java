@@ -16,6 +16,18 @@ public class SkillSharingBoardService {
 			SkillSharingBoardDao skillsharingboardDao) {
 		this.skillsharingboardDao = skillsharingboardDao;
 	}
+	
+	//내가쓴글 리스트
+	public List<SkillSharingBoardVo> skill_myPostList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException{
+		List<SkillSharingBoardVo> list = skillsharingboardDao.skill_myPostList(skillSharingBoardVo);
+		return list;
+	}
+	//내가 쓴글 리스트 페이징
+	public int skill_myPostCount(SkillSharingBoardVo skillSharingBoardVo) throws SQLException{
+		int totalCount = skillsharingboardDao.skill_myPostCount(skillSharingBoardVo);
+		return totalCount;
+	}
+	
 
 	public List<SkillSharingBoardVo> selectSkillLikeCountViewList(String ssb_Title)
 			throws SQLException {

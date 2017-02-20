@@ -18,6 +18,8 @@ public interface QnaBoardDao {
 	  public void deleteQnaYN(int qb_Article_Num )throws SQLException;
 	  public void QnaBoardCount(int keyword)throws SQLException;
 	  public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo)throws SQLException;
+	  public List<QnaBoardVo> myPostList(QnaBoardVo qnaBoardVo) throws SQLException;
+	  public int myPostListCount(QnaBoardVo qnaBoardVo)throws SQLException;
 	  
 
 	  
