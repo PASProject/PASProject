@@ -65,7 +65,7 @@
 						<td><a 
 							href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
 								${qnaBoardVo.qb_Title}</a></td>
-						<td>${qnaBoardVo.mem_Email }</td>
+						<td>${qnaBoardVo.mem_Name }</td>
 						<td style="text-align: center"><fmt:formatDate
 								value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
 						<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td>

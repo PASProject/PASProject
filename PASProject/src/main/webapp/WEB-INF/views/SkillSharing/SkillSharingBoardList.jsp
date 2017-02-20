@@ -37,7 +37,7 @@
 				
 					<th class="col-md-1" >번호</th>
 					<th class="col-md-4" >제목</th>
-					<th class="col-md-1" >이메일</th>
+					<th class="col-md-1" >작성자</th>
 					<th class="col-md-1">작성일</th>
 					<th class="col-md-1">조회수</th>
 					<th class="col-md-1">추천수</th>
@@ -49,7 +49,7 @@
 				<td>${SkillSharingBoardVo.ssb_Article_Num }</td>
 				<td><a
 					href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${SkillSharingBoardVo.ssb_Article_Num }">${SkillSharingBoardVo.ssb_Title}</a></td>
-				<td>${SkillSharingBoardVo.mem_Name} ( ${SkillSharingBoardVo.mem_Email } )</td>
+			    <td> ${SkillSharingBoardVo.mem_Name} </td>
 				<td>${SkillSharingBoardVo.ssb_wt_date }</td>
 				
 				<td>${SkillSharingBoardVo.ssb_Inq_Count }</td>
