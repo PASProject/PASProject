@@ -141,6 +141,7 @@ $(function(){
 			</c:otherwise>
 		</c:choose>
 
+
 		<!-- 프로젝트 생성 모달   -->
 		<div class="modal fade" id="create" role="dialog">
 			<div class="modal-dialog">

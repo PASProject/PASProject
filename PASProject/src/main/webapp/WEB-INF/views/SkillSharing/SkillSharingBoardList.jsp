@@ -37,7 +37,7 @@
 				
 					<th class="col-md-1" >번호</th>
 					<th class="col-md-4" >제목</th>
-					<th class="col-md-1" >이메일</th>
+					<th class="col-md-1" >작성자</th>
 					<th class="col-md-1">작성일</th>
 					<th class="col-md-1">조회수</th>
 					<th class="col-md-1">추천수</th>
@@ -49,7 +49,7 @@
 				<td>${SkillSharingBoardVo.ssb_Article_Num }</td>
 				<td><a
 					href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${SkillSharingBoardVo.ssb_Article_Num }">${SkillSharingBoardVo.ssb_Title}</a></td>
-				<td>${SkillSharingBoardVo.mem_Name} ( ${SkillSharingBoardVo.mem_Email } )</td>
+			    <td> ${SkillSharingBoardVo.mem_Name} </td>
 				<td>${SkillSharingBoardVo.ssb_wt_date }</td>
 				
 				<td>${SkillSharingBoardVo.ssb_Inq_Count }</td>
@@ -60,6 +60,57 @@
 		</table>
 		</form>
 		
+		<input type="button" value="글쓰기" onclick="wrtie_form()" class="btn btn-default">
+		
+		
+		<!-- 페이징시작 -->
+		<form action ="skill_myPostList" method="post" name="frm">
+			<button id = "skillmyPost" class="btn btn-default" type="submit">내가 쓴 글보기</button>
+		
+			<c:choose>
+					<c:when test='${!empty skillSharingBoardVo.mem_Email}'>
+						<script>
+							$(function() {
+								$('#skillmyPost').hide();
+							})
+						</script>
+						<input class="btn btn-default inline" type="button" onclick="SkillSharingBoardList()" value="목록">
+						
+		<div class="col-md-12 text-center">
+				<c:if test="${paging.finalPageNo>0 }">
+					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+
+							<li class="page-item"><a class="page-link"
+								href="skill_myPostList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+
+
+							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
+								varStatus="status">
+										<li class="page-item" id="number"><a
+											class="page-link" href="skill_myPostList?page=${i}">${i}</a></li>
+										<script>
+										$('li').each(function(){
+										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+										    {
+										    $(this).addClass('active').siblings().removeClass('active');
+										    }
+										});
+										</script>
+							</c:forEach>
+							<li class="page-item"><a class="page-link"
+								href="skill_myPostList?page=${finalPageNo}">끝 페이지</a></li>
+								</ul>
+							</nav>
+						</c:if>
+					</div>
+	  			</form>
+			</div>
+		</c:when>
+		
+		<c:otherwise>
 		<div class="col-md-12 text-center">
 				<c:if test="${paging.finalPageNo>0 }">
 					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
@@ -94,9 +145,17 @@
 			</div>
 			
 
-	<div class="col-md-12 text-right">
-	<input type="button" value="글쓰기" onclick="wrtie_form()" class="btn btn-default">
+	
+	
+	</c:otherwise>
+</c:choose>
+	
+	
 	<script>
+		function SkillSharingBoardList(){
+			location.href = "SkillSharingBoardList";
+		}
+	
 		function wrtie_form() {
 			location.href = "SkillSharingWrite";
 		}
@@ -107,8 +166,7 @@
 			form.submit();
 		};
 	</script>
-	</div>
-	</div>
+
 	
 </body>
 

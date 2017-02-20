@@ -92,8 +92,7 @@
 														data-target="#${pbList.pb_Article_Num }modal"
 														data-keyboard="false" data-backdrop="static">글 수정하기</a></li>
 													<li><a
-														href="deleteProjectBoard?pb_Article_Num=${pbList.pb_Article_Num}">글
-															삭제하기</a></li>
+														href="deleteProjectBoard?pb_Article_Num=${pbList.pb_Article_Num}">글삭제하기</a></li>
 												</ul>
 											</c:if>
 										</div></td>

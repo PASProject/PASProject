@@ -35,7 +35,8 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <!-- Bootstrap Core CSS -->
 
@@ -69,7 +70,8 @@
 	src='<%=request.getContextPath()%>/resources/lib/fullcalendar.js'></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/lib/gcal.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
@@ -83,12 +85,13 @@
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
-	
+
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
-	
-	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+
+<link rel="stylesheet"
+	href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 <script src="https://unpkg.com/flatpickr"></script>
 <!-- bootstrap Validator -->
 <script
@@ -157,16 +160,13 @@ $(function(){
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
-
 }
-
 </style>
 <style>
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
 }
-
 
 .navbar-default {
 	font-size: 13px;
@@ -258,7 +258,7 @@ body {
 }
 /* flatpickr 인덱스 위치 */
 div.flatpickr-calendar {
-    z-index: 99999;
+	z-index: 99999;
 }
 </style>
 <script>
@@ -312,8 +312,15 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
+<<<<<<< HEAD
+
+					<ul class="nav navbar-nav navbar-left" id="a">
+						<li>PAS</li>
+					</ul>
+=======
 					
 				
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 					<ul class="nav navbar-nav navbar-right" id="a">
 
 						<li><a id="myProjectList"
@@ -354,14 +361,12 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a id="teamName" class="navbar-brand" href="#" style="font-size: 20px;">
-					
-					<b>
-					
-					<c:choose>
-					<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
+					<a id="teamName" class="navbar-brand" href="#"
+						style="font-size: 20px;"> <b> <c:choose>
+								<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
 					프로젝트 자동화 시스템
 					</c:when>
+
 					<c:otherwise>
 					<p id="tn" >${sessionScope.joinProjectVo.proj_Name}&nbsp;<span class="caret" style="display:none;"></span></p>
 					</c:otherwise>
@@ -375,6 +380,7 @@ $(function(){
 						
 					})
 					</script>
+
 					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -382,10 +388,12 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+
 						<li>
 						<a data-toggle="modal" style="font-size : 28px; margin-top : -4px; cursor:pointer" data-target="#create" data-keyboard="false" data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
 						
 						</li>
+
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
@@ -436,6 +444,36 @@ $(function(){
 		</nav>
 	</header>
 
+			<!-- 프로젝트 생성 모달   -->
+		<div class="modal fade" id="create" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"></h4>
+						프로젝트 생성
+					</div>
+					<div class="modal-body" id="createBody">
+						생성자 : <input type="text" id="mem_Email"
+							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
+						<br> <input type="hidden" id="mem_Img"
+							value="${sessionScope.loginUser.mem_Img }"> 
+							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
+							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
+						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" id="createBtn"
+							value="생성" />
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">
 		<div class="modal-dialog">
@@ -1001,25 +1039,29 @@ $(function(){
 						},
 						complete:function(){
 							$.ajax({
-								url :'<%=request.getContextPath()%>/main/alarmCount',
-								dataType : 'json',
-								type:'get',
-								success:function(data){
-										$('#alarmCount').text("");
-										$('#alarmCount').text(data);
-									}
-							})
-					}
+								url :'/pas/main/alarmCount',
+																		dataType : 'json',
+																		type : 'get',
+																		success : function(
+																				data) {
+																			$(
+																					'#alarmCount')
+																					.text(
+																							"");
+																			$(
+																					'#alarmCount')
+																					.text(
+																							data);
+																		}
+																	})
+														}
+													});
+										});
+
 					});
-				});
-				
-				
-				
-			});
-
-
 </script>
 <script>
+
 
 $(document).ready(function(){
 	$('#createBtn').on('click',function(){
@@ -1031,7 +1073,7 @@ $(document).ready(function(){
 		var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
 				'proj_Team':proj_Team};
 		$.ajax({
-			url:'createProject',
+			url:'/pas/main/createProject',
 			contentType:'application/json',
 			data: JSON.stringify(dataList),
 			type:'post',
@@ -1044,6 +1086,7 @@ $(document).ready(function(){
 		})
 	})
 })
+
 
 </script>
 

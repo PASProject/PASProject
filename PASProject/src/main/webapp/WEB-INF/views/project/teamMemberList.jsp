@@ -14,7 +14,6 @@
 </head>
 <body>
 
-
 <script type="text/javascript">
          $(function() {
             // 콤보박스가 변경될 때 이벤트 발생
@@ -27,7 +26,6 @@
  */                  $(":selected").text(); 
                 $('#position_Name').val(selectedText);
                /*  $('[name="positionSelect"] option:eq(0)').attr("selected","selected"); */
-                alert("여기까진옴");
             });
          })   
             
@@ -37,7 +35,6 @@
             
             $(function() {
             $('#TeamMemberUpdate').click(function() {
-                   alert('왜통과를안함?');    
             var position_Name=$("#position_Name").val();
             var mem_Email =$("#mem_Email").val();
             
@@ -64,7 +61,6 @@
         	 
         	 
         	 $(function(){
-        		 alert(mem_Email+'멤버메일!');
         		 var dataList = {'mem_Email': mem_Email};
         		 
         		 $.ajax({
@@ -217,7 +213,7 @@
             </c:choose>
           이메일:<input type="email" id ="mem_Email" READONLY><br>
         이름:<input type="text" id="mem_Name"  READONLY><br>   
-        전화번호:<input type="text" id="mem_Phone" >
+        전화번호:<input type="text" id="mem_Phone" READONLY><br>
        
         </div>
         <div class="modal-footer">

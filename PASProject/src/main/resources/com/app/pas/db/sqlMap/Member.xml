@@ -82,9 +82,15 @@
 	 select * 
 	 from Mem_Position_View 
 	 where proj_num = #proj_Num# and pjj_per_num = #pjj_Per_Num#
-	
 	</select>
 	
+	<select id="selectMemberPositionByEmail" parameterClass="MemPositionView" resultClass="MemPositionView">
+	select * 
+	from Mem_Position_View 
+	where mem_Email=#mem_Email# and proj_Num=#proj_Num# and pjj_per_num = 1
+	</select>
+	
+		
 	<select id="selectMemberPosition" parameterClass="MemPositionView" resultClass="MemPositionView">
 	select * 
 	from Mem_Position_View 

@@ -36,6 +36,100 @@ public class QnaController {
 	QnaBoardReplyService qnaBoardReplyService;
 	@Autowired
 	HttpServletRequest request;
+	
+	//내가쓴글 보기
+	@RequestMapping("/myPostList")
+	public String myPostList(Model model,
+			@RequestParam(value = "page", defaultValue = "1") String page,
+			QnaBoardVo qnaBoardVo,
+			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number,
+			@RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_content,
+			String myPost,
+			HttpSession session
+			) throws SQLException {
+		String url = "qna/QnAList";
+		int totalCount = 0;
+		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
+		//로그인 정보 가져오기
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		qnaBoardVo.setMem_Email(mem_Email);
+		
+	
+		if (keyField == "" || keyField.equals(null)) {
+			qnaList = qnaBoardService.myPostList(qnaBoardVo);
+			model.addAttribute("qnaList", qnaList);
+			totalCount = qnaBoardService.myPostListCount(qnaBoardVo);
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+			Paging paging = new Paging();
+			paging.setPageNo(Integer.parseInt(page));
+			paging.setPageSize(5);
+			paging.setTotalCount(totalCount);
+
+			model.addAttribute("paging", paging);
+			
+		}else{
+			
+			
+		 if (keyField == ("name") || keyField.equals("name")) {
+
+			 qnaBoardVo.setMem_Name(keyword);
+			System.out.println("--------------name 키워드 : " + keyword);
+
+		} else if (keyField == ("title") || keyField.equals("title")) {
+			qnaBoardVo.setQb_Title(keyword);
+			System.out.println("-----------------title 키워드 : " + keyword);
+
+		} else if (keyField == ("number") || keyField.equals("number")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoardVo.setQb_Article_Num(Integer.parseInt(keyword));
+
+			System.out.println("-----------------number 키워드 : " + keyword);
+		} else if (keyField == ("content") || keyField.equals("content")) {
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoardVo.setQb_Content(keyword);
+			System.out.println("-----------------content 키워드 : " + keyword);
+		
+		} else if (keyField == ("title_content") || keyField.equals("title_content")){
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoardVo.setQb_Title_Content(keyword);
+			
+		}
+
+		qnaList = qnaBoardService.myPostList(qnaBoardVo);
+		model.addAttribute("qnaList", qnaList);
+		totalCount = (Integer)qnaBoardService.myPostListCount(qnaBoardVo);
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging", paging);
+
+	}
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
+		totalCount =(Integer)qnaBoardService.myPostListCount(qnaBoardVo);
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging", paging);
+
+	
+		return url;
+	}
+	
+	
 
 	// qnaList
 	@RequestMapping("/QnAList")
@@ -48,16 +142,13 @@ public class QnaController {
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
-			@RequestParam(defaultValue = "") String title_content
+			@RequestParam(defaultValue = "") String title_content,
+			String myPost,
+			HttpSession session
 			) throws SQLException {
 		String url = "qna/QnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
-
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^keyField값 : "
-				+ keyField);
-		System.out.println("keyword : " + keyword);// 입력창
-
 		if (keyField == "" || keyField.equals(null)) {
 			totalCount = qnaBoardService.QnaSelectTotalCount();
 			if (page.equals(null) || page == "") {
@@ -161,12 +252,10 @@ public class QnaController {
 
 		String mem_Email = memberVo.getMem_Email();
 		qnaBoardVo.setMem_Email(mem_Email);
-		System.out.println("mem_Name 디버깅  : " + mem_Email);
-
+	
 		String mem_Name = memberVo.getMem_Name();
 		qnaBoardVo.setMem_Name(mem_Name);
-		System.out.println("mem_Name 디버깅  : " + mem_Name);
-
+	
 		try {
 			qnaBoardService.insertQnaBoard(qnaBoardVo);
 		} catch (SQLException e) {

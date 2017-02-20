@@ -30,6 +30,18 @@ public class QnaBoardService {
 		List<QnaBoardVo>list = new ArrayList<QnaBoardVo>();
 		return list;
 	}
+	
+	//내가 쓴 글 조회 
+	public List<QnaBoardVo> myPostList(QnaBoardVo qnaBoardVo) throws SQLException{
+		List<QnaBoardVo> list = qnaBoardDao.myPostList(qnaBoardVo);
+		return list;
+	}
+	//내가 쓴글 카운트 
+	public int myPostListCount (QnaBoardVo qnaBoardVo) throws SQLException{
+		int totalCount = qnaBoardDao.myPostListCount(qnaBoardVo);
+		return totalCount;
+	}
+	
 
 	public void insertQnaBoard(QnaBoardVo qnaBoardVo) throws SQLException {
 		qnaBoardDao.insertQnaBoard(qnaBoardVo);

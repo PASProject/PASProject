@@ -110,4 +110,17 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 		return likeCount;
 	}
 
+	@Override
+	public List<FreeBoardVo> frb_myPost(FreeBoardVo freeBoardVo)
+			throws SQLException {
+		List<FreeBoardVo> list = client.queryForList("frb_myPost",freeBoardVo);
+		return list;
+	}
+
+	@Override
+	public int frb_myPostCount(FreeBoardVo freeBoardVo) throws SQLException {
+		int totalCount = (Integer) client.queryForObject("frb_myPostCount", freeBoardVo);
+		return totalCount;
+	}
+
 }

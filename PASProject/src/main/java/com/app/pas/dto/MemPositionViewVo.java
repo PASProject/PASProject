@@ -24,7 +24,7 @@ public class MemPositionViewVo implements Serializable{
 	private int proj_Num;
 	private String proj_Name;
 	private Timestamp proj_Log_Time;
-
+	private String pjj_Color;
 	
 
 }
