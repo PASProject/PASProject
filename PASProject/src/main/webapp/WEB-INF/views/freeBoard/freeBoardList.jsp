@@ -59,7 +59,7 @@
 						<td style="text-align: center">${freeBoardVo.frb_Article_Num }</td>
 						<td><a
 							href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
-						<td>${freeBoardVo.mem_Name}(${freeBoardVo.mem_Email })</td>
+						<td>${freeBoardVo.mem_Name}</td>
 						<td style="text-align: center"><fmt:formatDate
 								value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
 						<td style="text-align: center">${freeBoardVo.frb_Inq_Count }</td>
@@ -93,7 +93,7 @@
 										    }
 										});
 										</script>
-							</c:forEach>
+			</c:forEach>
 							<li class="page-item"><a class="page-link"
 								href="QnAList?page=${finalPageNo}">끝 페이지</a></li>
 								</ul>
@@ -103,7 +103,8 @@
 								
 
 			<div class="col-md-10">
-				<input type="button" value="글쓰기" onclick="wrtie_form()">
+				<input type="button" class="btn btn-default" value="글쓰기" onclick="wrtie_form()">
+				<button class="btn btn-default" type="button" name="myPost" onclick="frb_myPost();">내가 쓴 글보기</button>
 
 				<script>
 					function wrtie_form() {
