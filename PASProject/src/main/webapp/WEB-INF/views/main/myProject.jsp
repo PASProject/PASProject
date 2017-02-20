@@ -10,12 +10,24 @@
 </head>
 
 <body>
+
+<script>
+$(function(){
+	
+		var popUrl = 'tempNotice';  
+		var popOption = 'width=1050, height=440, resizable=no, scrollbars=no, status=no;';   
+		    window.open(popUrl,"",popOption);
+	
+})
+
+</script>
 <script>
 $(function(){
 	$('#navbar').css('background-color','#3c5574');
 	$('#navbar2').css('background-color','#3c5574');
 })
 </script>
+
 	<!-- Page Content -->
 	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 

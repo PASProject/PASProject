@@ -60,6 +60,14 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
+	//공지팝업
+	@RequestMapping(value="/tempNotice")
+	public String tempNotice(HttpSession session, Model model){
+	String url = "/main/tempNotice";
+	return url;
+		
+	}
+	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
