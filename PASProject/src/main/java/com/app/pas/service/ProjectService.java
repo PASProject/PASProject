@@ -36,10 +36,10 @@ public class ProjectService {
 	public void setApplyDao(ApplyDao applyDao) {
 		this.applyDao = applyDao;
 	}
-
-	public List<ProjectVo> selectMyProjectListById(String mem_Email)
+//내가 참여한 프로젝트 리스트 
+	public List<ProjectVo> selectMyProjectListById(ProjectVo projectVo)
 			throws SQLException {
-		List<ProjectVo> list = projectDao.selectMyProjectListById(mem_Email);
+		List<ProjectVo> list = projectDao.selectMyProjectListById(projectVo);
 		return list;
 	}
 
@@ -54,8 +54,8 @@ public class ProjectService {
 		return list;
 	}
 
-	public List<ProjectVo> selectOtherProjectListById(String mem_Email) throws SQLException{
-		List<ProjectVo> list = projectDao.selectOtherProjectListById(mem_Email);
+	public List<ProjectVo> selectOtherProjectListById(ProjectVo projectVo) throws SQLException{
+		List<ProjectVo> list = projectDao.selectOtherProjectListById(projectVo);
 		return list;
 	}
 	

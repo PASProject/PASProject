@@ -53,7 +53,7 @@
 	<bean id="PositionService" class="com.app.pas.service.PositionService" p:positionDao-ref="PositionDao"/>
 	<bean id="ProjectJoinService" class="com.app.pas.service.ProjectJoinService" p:projectjoinDao-ref="ProjectJoinDao"/>
 	<bean id="ProjectService" class="com.app.pas.service.ProjectService" p:projectDao-ref="ProjectDao" p:applyDao-ref="ApplyDao" p:projectJoinDao-ref="ProjectJoinDao" p:memberDao-ref="MemberDao"/>
-	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:schedulecalendarDao-ref="ScheduleCalendarDao"/>
+	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:scheduleCalendarDao-ref="ScheduleCalendarDao"/>
 	<bean id="MemberLogService" class="com.app.pas.service.MemberLogService" p:memberLogDao-ref="MemberLogDao"/>
 	<bean id="ProjectLogService" class="com.app.pas.service.ProjectLogService" p:projectLogDao-ref="ProjectLogDao"/>
 	

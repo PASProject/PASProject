@@ -3,6 +3,8 @@ package com.app.pas.service.board;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlType;
+
 import com.app.pas.dao.board.ProjectBoardReplyDao;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 

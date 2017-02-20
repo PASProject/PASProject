@@ -71,10 +71,10 @@ public class AdminMemberController {
 
 	@RequestMapping(value = "/mdlValue2", method = RequestMethod.POST)
 	public @ResponseBody List<ProjectVo> mdlValue(
-			@RequestBody Map<String, Object> map) throws SQLException {
+			@RequestBody Map<String, Object> map,ProjectVo projectVo) throws SQLException {
 		String mem_Email = (String) map.get("mem_Email");
-		List<ProjectVo> list = projectService
-				.selectMyProjectListById(mem_Email);
+		projectVo.setMem_Email(mem_Email);
+		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
 		
 		return list;
 	}

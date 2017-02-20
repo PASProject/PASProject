@@ -35,6 +35,8 @@ import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.dto.ScheduleCalendarCommand;
+import com.app.pas.dto.ScheduleCalendarVo;
 import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
@@ -43,6 +45,7 @@ import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectJoinService;
 import com.app.pas.service.ProjectService;
+import com.app.pas.service.ScheduleCalendarService;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
@@ -70,7 +73,10 @@ public class ProjectController {
 	ProjectService projectService;
 	@Autowired
 	ProjectJoinService projectJoinService;
-
+	@Autowired
+	ScheduleCalendarService scheduleCalendarService;
+	
+	
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
@@ -730,8 +736,41 @@ public class ProjectController {
 		String url = "project/colorList";
 		return url;
 	}
+	
+	@RequestMapping(value="/pmCalendar", method = RequestMethod.GET)
+	public String pmCalendarView(HttpSession session,Model model) throws SQLException{
+		String url = "schedule/monthlySchedule";
+		return url;
+	}
 
-
+	@RequestMapping(value="calendarList",method = RequestMethod.GET)
+	public @ResponseBody List<ScheduleCalendarCommand> calendarList(HttpSession session) throws SQLException{
+		String sc_Proj_Num = (String) session.getAttribute("joinProj");
+		List<ScheduleCalendarVo> list = scheduleCalendarService.selectScheduleCalendarList(Integer.parseInt(sc_Proj_Num));
+		List<ScheduleCalendarCommand> scheduleCalendarList = new ArrayList<ScheduleCalendarCommand>();
+		for(ScheduleCalendarVo x : list){
+			ScheduleCalendarCommand command = new ScheduleCalendarCommand();
+			command = x.toCommand();
+			scheduleCalendarList.add(command);
+		}
+		return scheduleCalendarList;
+	}
+	
+	@RequestMapping(value="addCal",method = RequestMethod.POST)
+	public @ResponseBody ScheduleCalendarCommand addCal (@RequestBody ScheduleCalendarCommand scheduleCalendarCommand,HttpSession session) throws SQLException{
+		String sc_Proj_Num = (String) session.getAttribute("joinProj");
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		ScheduleCalendarVo scheduleCalendarVo = new ScheduleCalendarVo();
+		
+		scheduleCalendarVo = scheduleCalendarVo.fromCommand(scheduleCalendarCommand);
+		scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(sc_Proj_Num));
+		scheduleCalendarVo.setSc_Wk_Mem_Email(memberVo.getMem_Email());
+		scheduleCalendarVo.setSc_Wk_Name(memberVo.getMem_Name());
+		scheduleCalendarVo.setSc_Color("blue");
+		scheduleCalendarService.insertScheduleCalendar(scheduleCalendarVo);
+		
+		return scheduleCalendarVo.toCommand();
+	}
 }
 /*
  * @RequestMapping("/projectBoardReplyList")

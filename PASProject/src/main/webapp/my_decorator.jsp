@@ -35,6 +35,8 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 <!-- Bootstrap Core CSS -->
 
 
@@ -61,11 +63,13 @@
 
 =======
 	 --%>
+<script src='<%=request.getContextPath()%>/resources/lib/moment.min.js'></script>
 
-
-
-
-
+<script
+	src='<%=request.getContextPath()%>/resources/lib/fullcalendar.js'></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/lib/gcal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
@@ -76,6 +80,16 @@
 	href="<%=request.getContextPath()%>/resources/css/3-col-portfolio.css"
 	rel="stylesheet">
 
+<link
+	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
+	rel='stylesheet' />
+	
+<link
+	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
+	rel='stylesheet' media='print' />
+	
+	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+<script src="https://unpkg.com/flatpickr"></script>
 <!-- bootstrap Validator -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
@@ -242,6 +256,10 @@ body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+/* flatpickr 인덱스 위치 */
+div.flatpickr-calendar {
+    z-index: 99999;
+}
 </style>
 <script>
 $(function(){
@@ -370,28 +388,7 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-
-							<div class="col-md-12 col-md-3">
-
-								<form class="navbar-form" role="search">
-									<div class="input-group">
-
-										<input type="text" class="form-control" placeholder="프로젝트 검색"
-											name="q">
-										<div class="input-group-btn">
-											<button style="width:40px;"class="btn btn-default" type="submit">
-												<i class="glyphicon glyphicon-search"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
-
-
-
-
-						</li>
+						
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
@@ -1036,7 +1033,7 @@ $(function(){
 
 <script>
 	function logOut() {
-		location.href = "<%=request.getContextPath()%>/main/logOut";
+		location.href = "/pas/main/logOut";
 	}
 </script>
 </html>

@@ -13,10 +13,11 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
+	
 	@Override
-	public List<ScheduleCalendarVo> selectScheduleCalendarList()
+	public List<ScheduleCalendarVo> selectScheduleCalendarList(int sc_Proj_Num)
 			throws SQLException {
-		List<ScheduleCalendarVo> list = client.queryForList("selectScheduleCalendarList");
+		List<ScheduleCalendarVo> list = client.queryForList("selectScheduleCalendarList",sc_Proj_Num);
 		return list;
 	}
 
@@ -27,15 +28,10 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		
 	}
 
+	
 	@Override
-	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo)
-			throws SQLException {
-		client.update("updateScheduleCalendar",scheduleCalendarVo);
-	}
-
-	@Override
-	public void deleteScheduleCalendar(int gt_Num) throws SQLException {
-		client.update("deleteScheduleCalendar",gt_Num);
+	public void deleteScheduleCalendar(int sc_Num) throws SQLException {
+		client.update("deleteScheduleCalendar",sc_Num);
 	}
 
 }
