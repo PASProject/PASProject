@@ -28,7 +28,8 @@ $(function(){
 			<div class="col-lg-12">
 				<h2 class="page-header">
 					외부 프로젝트 목록
-						<form style="float:right; margin-top:-5px;" class="navbar-form" action="otherProject" method="post">
+					<form style="float: right; margin-top: -5px;" class="navbar-form"
+						action="otherProject" method="post">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="프로젝트 검색"
 								name="proj_Search" />
@@ -38,16 +39,16 @@ $(function(){
 									<i class="glyphicon glyphicon-search"></i>
 								</button>
 							</div>
-							</div>
-						</form>
-				
-					
-						
-						
-						
-						
+						</div>
+					</form>
+
+
+
+
+
+
 					<!-- <small>Secondary Text</small> -->
-					
+
 				</h2>
 			</div>
 		</div>
@@ -149,10 +150,13 @@ $(function(){
 			success:function(data){
 				var tt="";
 				$.each(data,function(i){
-					tt += '<div> 아이디 : '+data[i].mem_Email+'<br> 이름 : '+data[i].mem_Name+'<br> 직책 :'+data[i].position_Name+'<hr color=\'red\'></div>'
+					if(data[i].position_Num==1){
+					tt += '<table><tr><td rowspan="2"><img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" ></td><td>팀장 : '+data[i].mem_Name+'</td></tr><tr><td> 이메일 : '+data[i].mem_Email+'</td></tr></table><div>'
+					}
 				})
 				$('#'+proj_Num+'body').empty();
 				$('#'+proj_Num+'body').append(tt);
+				
 			},
 			complete:function(){
 				$.ajax({

@@ -31,6 +31,9 @@
 	height: 20px;
 	margin: 5px;
 }
+.panel-title>a{
+font-weight:bold;
+}
 </style>
 </head>
 <!-- <div class="container">
@@ -94,10 +97,8 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion"
-					href="#collapseOne" style="text-decoration: none;"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/manager.png">&nbsp;&nbsp;프로젝트
-					관리</a>
+					href="#collapseOne" style="text-decoration: none;"><img src="<%=request.getContextPath() %>/resources/img/controls.png"><span>&nbsp;&nbsp;&nbsp;프로젝트
+					관리</span></a>
 			</h4>
 		</div>
 		<div id="collapseOne" class="panel-collapse collapse">
@@ -132,9 +133,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseTwo"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/file.png">&nbsp;작업공간</a>
+					data-parent="#accordion" href="#collapseTwo"><img src="<%=request.getContextPath() %>/resources/img/work.png"><span>&nbsp;&nbsp;&nbsp;작업 공간</span></a>
 			</h4>
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse">
@@ -162,10 +161,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseThree"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/calendar.png">&nbsp;일정
-					관리</a>
+					data-parent="#accordion" href="#collapseThree"><img src="<%=request.getContextPath() %>/resources/img/calendar.png"><span>&nbsp;&nbsp;&nbsp;일정 관리</span></a>
 			</h4>
 		</div>
 		<div id="collapseThree" class="panel-collapse collapse">
@@ -187,10 +183,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseFour"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/users.png">&nbsp;팀원
-					관리</a>
+					data-parent="#accordion" href="#collapseFour"><img src="<%=request.getContextPath() %>/resources/img/users.png"><span>&nbsp;&nbsp;&nbsp;팀원 관리</span></a>
 			</h4>
 		</div>
 		<div id="collapseFour" class="panel-collapse collapse">
@@ -215,10 +208,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;"
-					href="<%=request.getContextPath()%>/project/AccountBoardList"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/won.png">&nbsp;프로젝트
-					회계</a>
+					href="<%=request.getContextPath()%>/project/AccountBoardList"><img src="<%=request.getContextPath() %>/resources/img/cash.png"><span>&nbsp;&nbsp;&nbsp;프로젝트 회계</span></a>
 			</h4>
 		</div>
 		<!-- <div id="collapseFour" class="panel-collapse collapse">
@@ -251,10 +241,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseSix"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/chat.png">&nbsp;전체
-					게시판</a>
+					data-parent="#accordion" href="#collapseSix"><img src="<%=request.getContextPath() %>/resources/img/comments.png"><span>&nbsp;&nbsp;&nbsp;전체 게시판</span></a>
 			</h4>
 		</div>
 		<div id="collapseSix" class="panel-collapse collapse">
@@ -289,10 +276,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseSeven"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/chat.png">&nbsp;색깔
-					바꾸기</a>
+					data-parent="#accordion" href="#collapseSeven"><img src="<%=request.getContextPath() %>/resources/img/color.png"><span>&nbsp;&nbsp;&nbsp;색깔 바꾸기</span></a>
 			</h4>
 		</div>
 		<div id="collapseSeven" class="panel-collapse collapse">
@@ -301,9 +285,9 @@
 					<tr>
 						<td>
 							<div class="row" id="colors" style="margin: auto;">
-								<div class="cc" style="background-color:#3c5574 "></div>
-								<div class="cc" style="background-color:#303030 "></div>
-								<div class="cc" style="background-color:#717171 "></div>
+								<div class="cc"  style="background-color:#3c5574 "></div>
+								<div class="cc"  style="background-color:#303030 "></div>
+								<div class="cc"  style="background-color:#717171 "></div>
 								<div class="cc"  style="background-color:#786153 "></div>
 								<div class="cc"  style="background-color:#ad9f84 "></div>
 								<div class="cc"  style="background-color:#d55c53 "></div>

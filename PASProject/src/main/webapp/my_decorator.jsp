@@ -410,7 +410,9 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
+								<li><a href="#">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
+								<li><a href="#">내가 작성한 게시물</a></li>
 								<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 

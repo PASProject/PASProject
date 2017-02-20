@@ -42,7 +42,7 @@ $(function(){
 
 <div class="container">
 	<h3>CRUD 기능은 없습니다. 변동사항 생길시 <b>main/tempNotice.jsp</b> 에서 수작업 하시길</h3>
-	<table class="table">
+	<table class="table table-striped">
 		<tr>
 			<th>누가?</th>
 			<th>무엇을?</th>
