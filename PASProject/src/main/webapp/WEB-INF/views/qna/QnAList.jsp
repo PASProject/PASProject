@@ -77,10 +77,16 @@
 
 			<div class="col-md-12 text-right">
 				<button class="btn btn-default" type="button" onclick="QnaWrite();">글쓰기</button>
+			
+				<button class="btn btn-default" type="button" name="myPost" onclick="myPostList();">내가 쓴 글보기</button>
 				
 				<script>
 					function QnaWrite() {
 						location.href = "QnAWrite";
+					}
+					
+					function myPostList(){
+						location.href = "myPostList";
 					}
 				</script>
 			</div>
