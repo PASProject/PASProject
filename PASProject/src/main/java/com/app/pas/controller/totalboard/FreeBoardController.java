@@ -55,7 +55,6 @@ public class FreeBoardController {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		freeboardVo.setMem_Email(mem_Email);
-		System.out.println("혹시 프리보드메일안보내짐? : " + freeboardVo.getMem_Email());
 
 		if(page.equals(null)||page ==""){
 			totalCount = freeBoardService.frb_myPostCount(freeboardVo);

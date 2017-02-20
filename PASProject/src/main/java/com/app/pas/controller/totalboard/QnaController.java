@@ -124,8 +124,7 @@ public class QnaController {
 		paging.setTotalCount(totalCount);
 		
 		model.addAttribute("paging", paging);
-			
-		// 페이징처리
+
 	
 		return url;
 	}
