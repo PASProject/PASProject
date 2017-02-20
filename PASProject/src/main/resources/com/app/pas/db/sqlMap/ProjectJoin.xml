@@ -32,4 +32,7 @@
       delete from Project_Join where MEM_EMAIL=#mem_Email# and proj_num = #proj_Num#
    </update>
    
+   <update id="updateProjectJoinColor" parameterClass="ProjectJoin"> 
+   	update project_join set pjj_Color = #pjj_Color# where MEM_EMAIL=#mem_Email# and proj_num = #proj_Num#
+   </update>
 </sqlMap>

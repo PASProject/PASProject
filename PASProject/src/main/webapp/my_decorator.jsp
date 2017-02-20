@@ -312,15 +312,10 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-<<<<<<< HEAD
 
 					<ul class="nav navbar-nav navbar-left" id="a">
 						<li>PAS</li>
 					</ul>
-=======
-					
-				
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 					<ul class="nav navbar-nav navbar-right" id="a">
 
 						<li><a id="myProjectList"

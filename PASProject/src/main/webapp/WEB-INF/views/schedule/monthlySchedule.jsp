@@ -10,10 +10,56 @@
 <body>
 
 <div class="col-md-10" id="content">
-<h3> 월별 일정 관리</h3>
-<c:forEach items="${memPositionViewVo}" var="memPositionView" >
-<div style=" width:100px; background-color: <c:out value='${memPositionView.pjj_Color}'/>" > ${memPositionView.mem_Name}</div>
-</c:forEach>
+
+	<h2 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			월별 일정 관리<small >&nbsp;&nbsp;&nbsp;<a href="#" rel="popover" data-popover-content="#myPopover">참여인원 보기</a></small>
+		</h2>
+		
+<div id="myPopover" class="hide">
+	<ul>
+		<c:forEach items="${memPositionViewVo}" var="memPositionView" varStatus = "status">
+		<li style="list-style: none; margin-left:-20%; margin-bottom: 8%"><img src="<%=request.getContextPath() %>/resources/upload/${memPositionView.mem_Img}"
+								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
+								id="thumbnail" alt="my image" /> ${memPositionView.mem_Name} &nbsp;&nbsp;
+								<div class="dropdown" style="display: inline">
+								<a href="#" class="dropdown-toggle"  data-toggle="dropdown"><span class="${memPositionView.mem_Email }" style="background-color:<c:out value='${memPositionView.pjj_Color}'/>">&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+								<ul class="dropdown-menu">
+									<li>	<div class="row" id="colorPick" style="margin: auto; " >
+								<span id = "${memPositionView.mem_Email }" style="background-color:#3c5574; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#303030; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#717171; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#786153; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#ad9f84;  cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#d55c53; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#974140 ; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#98b45d; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#58aa48 ; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#24945a ; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#2b9e99; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#38716b; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#58adcc; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#6093cc; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#3978bf; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#39699a; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#21497d ; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#7278b2; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#675d91 ; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#a36bac; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#ce7da6; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#720001; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#297000 ; cursor : pointer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+								<span id = "${memPositionView.mem_Email }" style="background-color:#4a1059; cursor : pointer ">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	</div></li>
+								</ul>
+								</div>
+								 </li>
+		</c:forEach>
+	</ul>
+</div>
+
+
+							
 <br>
 	<div id='calendar' >
 	</div>
@@ -62,7 +108,20 @@
 </div>
 	
 	<script>
+	
 $(function(){
+	
+	 $('[rel="popover"]').popover({
+	        container: 'body',
+	        html: true,
+	        content: function () {
+	            var clone = $($(this).data('popover-content')).clone(true).removeClass('hide');
+	            return clone;
+	        }
+	    }).click(function(e) {
+	        e.preventDefault();
+	    });
+	 
 	$('#calendar').fullCalendar({
 			editable : true,
 			eventLimit : true,
@@ -90,7 +149,7 @@ $(function(){
 				 $('#addCalendarModal').modal();
 			},eventClick:function(calEvent,jsEvent,view){
 				
-				$('#detailModalTitle').text("일정 확인"+calEvent.id);
+				$('#detailModalTitle').text("일정 확인");
 				$('#detailTitle').val(calEvent.title);
 				$('#detailDatePicker1').val(moment(calEvent.start).format('YYYY-MM-DD HH:mm'));
 				if(calEvent.end !=null){
@@ -113,7 +172,39 @@ $(function(){
 				
 				$('#detailDescription').val(calEvent.description);
 				$('#detailCalendarModal').modal();
-			}
+			},
+			  eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+				  var loginUser = '${loginUser.mem_Email}';
+					  if((event.id).indexOf(loginUser)>-1){
+						  var id = (event.id).substring(loginUser.length);
+						  var start =moment(event.start).format('YYYY-MM-DD HH:mm');
+						  var end;
+						  if(event.end!=null){
+							  end = moment(event.end).format('YYYY-MM-DD HH:mm');
+						  }else{
+							  end = moment(event.start).format('YYYY-MM-DD HH:mm');
+						  }
+						  var description = event.description;
+						  var title = event.title;
+						  var color = event.color;
+						  var dataList = {'id':id,'start':start,'end':end,'description':description,'title':title,'color':color};
+						  $.ajax({
+								dataType:'json',
+								contentType:'application/json',
+								url:'updateCal',
+								data:JSON.stringify(dataList),
+								type:'post',
+								success:function(data){
+									$('#calendar').fullCalendar('refetchEvents');
+								},
+								error : function(){
+									alert("실패");
+								}
+						  })
+					  }else{
+						  $('#calendar').fullCalendar('refetchEvents');
+					  }
+				  }
 			
 		});
 	
@@ -205,6 +296,31 @@ $(function(){
 				}else{
 					alert("실패");
 				}
+			}
+		})
+	});
+	
+	$('#colorPick span').on('click',function(){
+		var color = $(this).css('background-color');		
+		var b = color.split("(")[1].split(")")[0];
+		b = b.split(",");
+		var mem_Email = $(this).attr('id');
+		var hex = b.map(function(x){
+			x = parseInt(x).toString(16);
+			return(x.length==1)?"0"+x:x;
+		})
+		hex = '#'+hex.join("");
+		var dataList = {'mem_Email':mem_Email,'pjj_Color':hex}
+		$.ajax({
+			dataType:'json',
+			contentType:'application/json',
+			url:'updateCalColor',
+			data:JSON.stringify(dataList),
+			type:'post',
+			success:function(data){
+				alert("성공");
+				$('.'+mem_Email).css('background-color',hex);
+				$('#calendar').fullCalendar('refetchEvents');
 			}
 		})
 	})

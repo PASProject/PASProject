@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,13 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.PositionVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
@@ -43,6 +42,7 @@ import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
+import com.app.pas.service.PositionService;
 import com.app.pas.service.ProjectJoinService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.ScheduleCalendarService;
@@ -75,7 +75,8 @@ public class ProjectController {
 	ProjectJoinService projectJoinService;
 	@Autowired
 	ScheduleCalendarService scheduleCalendarService;
-	
+	@Autowired
+	PositionService positionService;
 	
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
@@ -821,6 +822,22 @@ public class ProjectController {
 		
 		return deleteSuccess;
 	}
+	@RequestMapping(value="updateCalColor",method= RequestMethod.POST)
+	public @ResponseBody boolean updateCalColor(@RequestBody ProjectJoinVo projectJoinVo,HttpSession session) throws SQLException{
+		String proj_Num = (String) session.getAttribute("joinProj");
+		projectJoinVo.setProj_Num(Integer.parseInt(proj_Num));
+		projectJoinService.updateProjectJoinColor(projectJoinVo);
+		ScheduleCalendarVo scheduleCalendarVo = new ScheduleCalendarVo();
+		
+		scheduleCalendarVo.setSc_Color(projectJoinVo.getPjj_Color());
+		scheduleCalendarVo.setSc_Wk_Mem_Email(projectJoinVo.getMem_Email());
+		
+		scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(proj_Num));
+		scheduleCalendarService.updateScheduleCalendarColor(scheduleCalendarVo);
+		
+		return true;
+	}
+	
 }
 /*
  * @RequestMapping("/projectBoardReplyList")

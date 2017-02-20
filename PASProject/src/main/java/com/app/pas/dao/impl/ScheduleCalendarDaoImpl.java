@@ -42,4 +42,11 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		
 	}
 
+	@Override
+	public void updateScheduleCalendarColor(
+			ScheduleCalendarVo scheduleCalendarVo) throws SQLException {
+		client.update("updateScheduleCalendarColor",scheduleCalendarVo);
+		
+	}
+
 }

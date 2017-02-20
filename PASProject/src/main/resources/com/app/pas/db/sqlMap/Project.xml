@@ -55,7 +55,7 @@
 	<select id="selectMemPositionViewListByProjNum" parameterClass="int"
 		resultClass="MemPositionView">
 		select * from mem_position_view where pjj_per_num = 1 and proj_num =
-		#proj_Num#
+		#proj_Num# order by POSITION_NUM asc
 	</select>
 
 	<select id="selectLastInsertProject" parameterClass="str"

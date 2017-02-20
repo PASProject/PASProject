@@ -28,4 +28,10 @@
    		where sc_Num=#sc_Num# and sc_proj_num = #sc_Proj_Num#
    </update>
    
+   <update id="updateScheduleCalendarColor" parameterClass="ScheduleCalendar">
+   	update Schedule_Calendar 
+   		set sc_color = #sc_Color#
+   		where sc_proj_num = #sc_Proj_Num# and sc_wk_mem_email = #sc_Wk_Mem_Email#
+   </update>
+   
 </sqlMap>
