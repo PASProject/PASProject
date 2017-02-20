@@ -29,7 +29,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>3 Col Portfolio - Start Bootstrap Template</title>
+<title>PAS - Project Automation System</title>
 
 <!-- jQuery -->
 
@@ -382,7 +382,10 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+						<li>
+						<a data-toggle="modal" style="font-size : 28px; margin-top : -4px; cursor:pointer" data-target="#create" data-keyboard="false" data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
 						
+						</li>
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
@@ -1015,15 +1018,31 @@ $(function(){
 
 </script>
 <script>
-/* $(function(){
-	var a = location.href;
-	if(a.indexOf("otherProject")==-1){
-		$('#myProjectList').css('background-color','#6093cc');
-	}else if(a.indexOf("otherProject")!=-1){
-		$('#otherProjectList').css('background-color','#6093cc');
-	} 
+
+$(document).ready(function(){
+	$('#createBtn').on('click',function(){
+		var mem_Email = $('#mem_Email').val();
+		var proj_Name = $('#proj_Name').val();
+		var proj_Content = $('#proj_Content').val();
+		var proj_Team = $('#proj_Team').val();
+		var mem_Img = $('#mem_Img').val();
+		var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
+				'proj_Team':proj_Team};
+		$.ajax({
+			url:'createProject',
+			contentType:'application/json',
+			data: JSON.stringify(dataList),
+			type:'post',
+			success:function(proj_Num){
+				location.href="../project/pmOverView?proj_Num="+proj_Num;
+			},
+			error : function(){
+				alert("프로젝트 생성 실패");
+			}
+		})
+	})
 })
- */
+
 </script>
 
 <script>

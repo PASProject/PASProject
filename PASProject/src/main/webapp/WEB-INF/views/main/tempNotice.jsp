@@ -12,10 +12,25 @@
 	rel="stylesheet">
 	<script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <style>
    #dday {margin-left: 50px; font-weight:bold; font-size:70px; color:#f94f4c; letter-spacing:0px; font-family:arial;}
 </style>
 </head>
+<script>
+
+$(function(){
+	if($('#asdf').prop("checked")){
+		alert('asdfasdfasdf?');		
+	}
+	/* var $checkbox = $('#cb').val();
+	if(($checkbox).prop('checked')){
+	window.close(); */
+
+})
+
+
+</script>
 <body>
 	<script>
    var now = new Date();
@@ -24,6 +39,7 @@
    gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
    document.write('<div id="dday">D-<span style=color: "#f94f4c; font-size:70px;">' + gap + '</span></div>');
 </script>  
+
 <div class="container">
 	<h3>CRUD 기능은 없습니다. 변동사항 생길시 <b>main/tempNotice.jsp</b> 에서 수작업 하시길</h3>
 	<table class="table">
@@ -70,6 +86,8 @@
 			<td>회원정보 수정기능</td>
 		</tr>
 	</table>
+	<h4 class="text-right">오늘 하루 팝업창 안보기<input id="asdf" type="checkbox"/></h4>
+
 	</div>
 </body>
 </html>

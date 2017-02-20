@@ -36,9 +36,9 @@ $(function(){
 			<div class="col-lg-12" >
 				<h2 class="page-header">
 					참여 프로젝트 목록
-					<span class="btn-group">
-								<form class="navbar-form" action ="myProject" name = "myProject"
-								method="post">
+					
+								<form style="float:right; margin-top : -5px;" class="navbar-form" action ="myProject" name = "myProject"
+								method="post" >
 									<div class="input-group" >
 										<input type="text" class="form-control" placeholder="프로젝트 검색"
 										name = "proj_Search">
@@ -49,10 +49,10 @@ $(function(){
 										</div>
 									</div>
 								</form>
+											
 
-					<button class="btn createProject" id="createProject" data-toggle="modal"
-						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
-						</span>
+					
+						
 				</h2>
 
 			</div>
@@ -208,30 +208,6 @@ $(function(){
 	</div>
 
 	<script>
-			
-	$(document).ready(function(){
-		$('#createBtn').on('click',function(){
-			var mem_Email = $('#mem_Email').val();
-			var proj_Name = $('#proj_Name').val();
-			var proj_Content = $('#proj_Content').val();
-			var proj_Team = $('#proj_Team').val();
-			var mem_Img = $('#mem_Img').val();
-			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
-					'proj_Team':proj_Team};
-			$.ajax({
-				url:'createProject',
-				contentType:'application/json',
-				data: JSON.stringify(dataList),
-				type:'post',
-				success:function(proj_Num){
-					location.href="../project/pmOverView?proj_Num="+proj_Num;
-				},
-				error : function(){
-					alert("프로젝트 생성 실패");
-				}
-			})
-		})
-	})
 
 /* 	function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
