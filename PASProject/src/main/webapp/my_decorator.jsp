@@ -29,7 +29,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>3 Col Portfolio - Start Bootstrap Template</title>
+<title>PAS - Project Automation System</title>
 
 <!-- jQuery -->
 
@@ -205,7 +205,7 @@ body {
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #3c5574;
-	filter: brightness(125%);
+
 	color: white;
 }
 
@@ -287,9 +287,11 @@ $(function(){
 		
 	}
 	})
+	
+</script>
+<script>
 
 </script>
-
 
 
 
@@ -310,21 +312,16 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
+<<<<<<< HEAD
 
 					<ul class="nav navbar-nav navbar-left" id="a">
 						<li>PAS</li>
 					</ul>
+=======
+					
+				
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 					<ul class="nav navbar-nav navbar-right" id="a">
-
-
-
-
-
-
-
-
-
-
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -334,11 +331,8 @@ $(function(){
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
-
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-
-					</ul>
+					
 
 
 				</div>
@@ -372,22 +366,39 @@ $(function(){
 								<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
 					프로젝트 자동화 시스템
 					</c:when>
-								<c:otherwise>
-					${sessionScope.joinProjectVo.proj_Name}
+
+					<c:otherwise>
+					<p id="tn" >${sessionScope.joinProjectVo.proj_Name}&nbsp;<span class="caret" style="display:none;"></span></p>
 					</c:otherwise>
-							</c:choose>
+					</c:choose>
+					<script>
+					$(function(){
+						$('#tn').mouseover(function(){
+							$('.caret').show();
+						})
+					/* 	$('#tn').click */
+						
+					})
+					</script>
 
 					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
+				
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 
+						<li>
+						<a data-toggle="modal" style="font-size : 28px; margin-top : -4px; cursor:pointer" data-target="#create" data-keyboard="false" data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
+						
+						</li>
+
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
-							style="padding-top: 5px; padding-bottom: 5px;"> <img
+							style="padding-top: 5px; padding-bottom: 5px;background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"> 
+							<img
 								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
@@ -413,8 +424,8 @@ $(function(){
 						<li><a href="#" id="alarmMenu"
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
-							style="font-size: 25px;"> </a> <span id="alarmCount"
-							style="color: red; display: none;"></span> <span id="alarmZone"></span>
+							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;"> </a> <span id="alarmCount"
+							style="color: red;  display: none;"></span> <span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 
@@ -431,6 +442,36 @@ $(function(){
 		</nav>
 	</header>
 
+			<!-- 프로젝트 생성 모달   -->
+		<div class="modal fade" id="create" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"></h4>
+						프로젝트 생성
+					</div>
+					<div class="modal-body" id="createBody">
+						생성자 : <input type="text" id="mem_Email"
+							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
+						<br> <input type="hidden" id="mem_Img"
+							value="${sessionScope.loginUser.mem_Img }"> 
+							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
+							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
+						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" id="createBtn"
+							value="생성" />
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">
 		<div class="modal-dialog">
@@ -1018,15 +1059,33 @@ $(function(){
 					});
 </script>
 <script>
-	/* $(function(){
-	 var a = location.href;
-	 if(a.indexOf("otherProject")==-1){
-	 $('#myProjectList').css('background-color','#6093cc');
-	 }else if(a.indexOf("otherProject")!=-1){
-	 $('#otherProjectList').css('background-color','#6093cc');
-	 } 
-	 })
-	 */
+
+
+$(document).ready(function(){
+	$('#createBtn').on('click',function(){
+		var mem_Email = $('#mem_Email').val();
+		var proj_Name = $('#proj_Name').val();
+		var proj_Content = $('#proj_Content').val();
+		var proj_Team = $('#proj_Team').val();
+		var mem_Img = $('#mem_Img').val();
+		var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
+				'proj_Team':proj_Team};
+		$.ajax({
+			url:'/pas/main/createProject',
+			contentType:'application/json',
+			data: JSON.stringify(dataList),
+			type:'post',
+			success:function(proj_Num){
+				location.href="../project/pmOverView?proj_Num="+proj_Num;
+			},
+			error : function(){
+				alert("프로젝트 생성 실패");
+			}
+		})
+	})
+})
+
+
 </script>
 
 <script>

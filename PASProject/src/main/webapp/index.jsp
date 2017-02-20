@@ -407,8 +407,7 @@ body.modal-open .background-container {
    
     </script>
 <script>
-$(document)
-.ready(
+$(document).ready(
       function() {
          $('#reg_form')
                .bootstrapValidator(

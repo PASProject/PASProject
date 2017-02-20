@@ -10,16 +10,24 @@
 </head>
 
 <body>
+
+<script>
+$(function(){
+	
+		var popUrl = 'tempNotice';  
+		var popOption = 'width=1050, height=440, resizable=no, scrollbars=no, status=no;';   
+		    window.open(popUrl,"",popOption);
+	
+})
+
+</script>
 <script>
 $(function(){
 	$('#navbar').css('background-color','#3c5574');
 	$('#navbar2').css('background-color','#3c5574');
 })
 </script>
-	
 
-							
-						
 	<!-- Page Content -->
 	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 
@@ -28,11 +36,10 @@ $(function(){
 			<div class="col-lg-12" >
 				<h2 class="page-header">
 					참여 프로젝트 목록
-
-								<form class="navbar-form" action ="myProject" name = "myProject"
-								method="post">
-									<div class="input-group">
-
+					
+								<form style="float:right; margin-top : -5px;" class="navbar-form" action ="myProject" name = "myProject"
+								method="post" >
+									<div class="input-group" >
 										<input type="text" class="form-control" placeholder="프로젝트 검색"
 										name = "proj_Search">
 										<div class="input-group-btn">
@@ -42,9 +49,10 @@ $(function(){
 										</div>
 									</div>
 								</form>
+											
 
-					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
-						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
+					
+						
 				</h2>
 
 			</div>
@@ -131,36 +139,6 @@ $(function(){
 			</c:otherwise>
 		</c:choose>
 
-		<!-- 프로젝트 생성 모달   -->
-		<div class="modal fade" id="create" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title"></h4>
-						프로젝트 생성
-					</div>
-					<div class="modal-body" id="createBody">
-						생성자 : <input type="text" id="mem_Email"
-							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
-						<br> <input type="hidden" id="mem_Img"
-							value="${sessionScope.loginUser.mem_Img }"> 
-							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
-							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
-						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
-						<br>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" id="createBtn"
-							value="생성" />
-
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
 
 
 <%-- 
@@ -200,30 +178,6 @@ $(function(){
 	</div>
 
 	<script>
-			
-	$(document).ready(function(){
-		$('#createBtn').on('click',function(){
-			var mem_Email = $('#mem_Email').val();
-			var proj_Name = $('#proj_Name').val();
-			var proj_Content = $('#proj_Content').val();
-			var proj_Team = $('#proj_Team').val();
-			var mem_Img = $('#mem_Img').val();
-			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
-					'proj_Team':proj_Team};
-			$.ajax({
-				url:'createProject',
-				contentType:'application/json',
-				data: JSON.stringify(dataList),
-				type:'post',
-				success:function(proj_Num){
-					location.href="../project/pmOverView?proj_Num="+proj_Num;
-				},
-				error : function(){
-					alert("프로젝트 생성 실패");
-				}
-			})
-		})
-	})
 
 /* 	function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
