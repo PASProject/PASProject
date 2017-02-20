@@ -319,7 +319,7 @@ $(function(){
 			type:'post',
 			success:function(data){
 				alert("성공");
-				$('.'+mem_Email).css('background-color',hex);
+				/* $('.'+mem_Email).css('background-color',hex); */
 				$('#calendar').fullCalendar('refetchEvents');
 			}
 		})
