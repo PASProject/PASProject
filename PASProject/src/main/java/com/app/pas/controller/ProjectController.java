@@ -807,6 +807,20 @@ public class ProjectController {
 		
 		return scheduleCalendarVo.toCommand();
 		}
+	
+	@RequestMapping(value="deleteCal",method = RequestMethod.POST)
+	public @ResponseBody boolean deleteCal(@RequestBody Map<String,Object> map) throws SQLException{
+		String sc_Num = (String) map.get("sc_Num");
+		boolean deleteSuccess = false;
+		int flag = scheduleCalendarService.deleteScheduleCalendar(Integer.parseInt(sc_Num));
+		if(flag!=0){
+			deleteSuccess = true;
+		}else{
+			deleteSuccess = false;
+		}
+		
+		return deleteSuccess;
+	}
 }
 /*
  * @RequestMapping("/projectBoardReplyList")

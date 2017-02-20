@@ -101,7 +101,8 @@ $(function(){
 				var loginUser = '${loginUser.mem_Email}';
 				
 				if((calEvent.id).indexOf(loginUser)>-1){
-					$('#detailFooter').html('<button type="button" class="btn btn-default" id="updateCalendar">수정</button> <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>'
+					$('#detailFooter').html('<button type="button" class="btn btn-default" id="updateCalendar">수정</button> <button type="button" class="btn btn-default" id="deleteCalendar">삭제</button>'
+							+ '<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>'
 							+'<input type="hidden" value="'+(calEvent.id).substring(loginUser.length)+'" id="sc_Num">'+
 							'<input type="hidden" value="'+calEvent.color+'" id="sc_Color">'
 					);
@@ -138,7 +139,8 @@ $(function(){
 			data:JSON.stringify(dataList),
 			type:'post',
 			success:function(data){
-				$('#calendar').fullCalendar('renderEvent', data, true);
+				$('#calendar').fullCalendar('refetchEvents');
+
 				$("#addCalendarModal").modal("hide");
 				$("#title").val("");
 				$("#datePicker1").val("");
@@ -175,12 +177,34 @@ $(function(){
 				item.end = data.end;
 				item.color = data.color;
 				item.description = data.description;
-				$('#calendar').fullCalendar('updateEvents',item);
 				$('#calendar').fullCalendar('refetchEvents');
 				$('#detailCalendarModal').modal("hide");
 				$('#detailDatePicker1').val("");
 				$('#detailDatePicker2').val("");
 				$('#detailDescription').val("");
+			}
+		})
+	});
+	
+	$(document).on('click','#deleteCalendar',function(){
+		var sc_Num = $('#sc_Num').val();
+		var dataList = {"sc_Num":sc_Num};
+		$.ajax({
+			dataType:'json',
+			contentType:'application/json',
+			url:'deleteCal',
+			data:JSON.stringify(dataList),
+			type:'post',
+			success:function(data){
+				if(data){
+					$('#calendar').fullCalendar('refetchEvents');
+					$('#detailCalendarModal').modal("hide");
+					$('#detailDatePicker1').val("");
+					$('#detailDatePicker2').val("");
+					$('#detailDescription').val("");
+				}else{
+					alert("실패");
+				}
 			}
 		})
 	})

@@ -28,4 +28,8 @@ public class ScheduleCalendarService {
 	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo) throws SQLException{
 		scheduleCalendarDao.updateScheduleCalendar(scheduleCalendarVo);
 	}
+	public int deleteScheduleCalendar(int sc_Num) throws SQLException{
+		int flag = scheduleCalendarDao.deleteScheduleCalendar(sc_Num);
+		return flag;
+	}
 }

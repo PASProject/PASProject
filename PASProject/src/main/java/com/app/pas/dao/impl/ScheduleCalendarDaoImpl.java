@@ -30,8 +30,9 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 
 	
 	@Override
-	public void deleteScheduleCalendar(int sc_Num) throws SQLException {
-		client.update("deleteScheduleCalendar",sc_Num);
+	public int deleteScheduleCalendar(int sc_Num) throws SQLException {
+		int flag = client.update("deleteScheduleCalendar",sc_Num);
+		return flag;
 	}
 
 	@Override
