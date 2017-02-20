@@ -10,4 +10,5 @@ public interface ScheduleCalendarDao {
 	public List<ScheduleCalendarVo> selectScheduleCalendarList(int sc_Proj_Num)throws SQLException;
 	public void insertScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo)throws SQLException;
 	public void deleteScheduleCalendar(int sc_Num)throws SQLException;
+	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
 }

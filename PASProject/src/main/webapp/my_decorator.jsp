@@ -35,7 +35,8 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <!-- Bootstrap Core CSS -->
 
@@ -69,7 +70,8 @@
 	src='<%=request.getContextPath()%>/resources/lib/fullcalendar.js'></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/lib/gcal.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
@@ -83,12 +85,13 @@
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
-	
+
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
-	
-	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+
+<link rel="stylesheet"
+	href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 <script src="https://unpkg.com/flatpickr"></script>
 <!-- bootstrap Validator -->
 <script
@@ -157,16 +160,13 @@ $(function(){
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
-
 }
-
 </style>
 <style>
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
 }
-
 
 .navbar-default {
 	font-size: 13px;
@@ -258,7 +258,7 @@ body {
 }
 /* flatpickr 인덱스 위치 */
 div.flatpickr-calendar {
-    z-index: 99999;
+	z-index: 99999;
 }
 </style>
 <script>
@@ -310,11 +310,9 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-					
+
 					<ul class="nav navbar-nav navbar-left" id="a">
-					<li>
-					PAS
-					</li>
+						<li>PAS</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right" id="a">
 
@@ -369,26 +367,23 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a id="teamName" class="navbar-brand" href="#" style="font-size: 20px;">
-					
-					<b>
-					
-					<c:choose>
-					<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
+					<a id="teamName" class="navbar-brand" href="#"
+						style="font-size: 20px;"> <b> <c:choose>
+								<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
 					프로젝트 자동화 시스템
 					</c:when>
-					<c:otherwise>
+								<c:otherwise>
 					${sessionScope.joinProjectVo.proj_Name}
 					</c:otherwise>
-					</c:choose>
-					
+							</c:choose>
+
 					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						
+
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
@@ -1001,34 +996,37 @@ $(function(){
 						},
 						complete:function(){
 							$.ajax({
-								url :'<%=request.getContextPath()%>/main/alarmCount',
-								dataType : 'json',
-								type:'get',
-								success:function(data){
-										$('#alarmCount').text("");
-										$('#alarmCount').text(data);
-									}
-							})
-					}
+								url :'/pas/main/alarmCount',
+																		dataType : 'json',
+																		type : 'get',
+																		success : function(
+																				data) {
+																			$(
+																					'#alarmCount')
+																					.text(
+																							"");
+																			$(
+																					'#alarmCount')
+																					.text(
+																							data);
+																		}
+																	})
+														}
+													});
+										});
+
 					});
-				});
-				
-				
-				
-			});
-
-
 </script>
 <script>
-/* $(function(){
-	var a = location.href;
-	if(a.indexOf("otherProject")==-1){
-		$('#myProjectList').css('background-color','#6093cc');
-	}else if(a.indexOf("otherProject")!=-1){
-		$('#otherProjectList').css('background-color','#6093cc');
-	} 
-})
- */
+	/* $(function(){
+	 var a = location.href;
+	 if(a.indexOf("otherProject")==-1){
+	 $('#myProjectList').css('background-color','#6093cc');
+	 }else if(a.indexOf("otherProject")!=-1){
+	 $('#otherProjectList').css('background-color','#6093cc');
+	 } 
+	 })
+	 */
 </script>
 
 <script>

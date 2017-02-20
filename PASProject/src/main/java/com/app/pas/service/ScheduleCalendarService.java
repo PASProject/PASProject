@@ -25,4 +25,7 @@ public class ScheduleCalendarService {
 	public void insertScheduleCalendar (ScheduleCalendarVo scheduleCalendarVo)throws SQLException{
 		scheduleCalendarDao.insertScheduleCalendar(scheduleCalendarVo);
 	}
+	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo) throws SQLException{
+		scheduleCalendarDao.updateScheduleCalendar(scheduleCalendarVo);
+	}
 }

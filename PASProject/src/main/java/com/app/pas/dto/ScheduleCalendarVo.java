@@ -23,7 +23,7 @@ public class ScheduleCalendarVo implements Serializable {
 	private String sc_Title;
 	private int sc_Proj_Num;
 	private String sc_Color;
-	
+	private String sc_Description;
 	
 	public ScheduleCalendarCommand toCommand(){
 		ScheduleCalendarCommand scheduleCalendarCommand = new ScheduleCalendarCommand();
@@ -32,6 +32,8 @@ public class ScheduleCalendarVo implements Serializable {
 		scheduleCalendarCommand.setEnd(this.getSc_End_Date());
 		scheduleCalendarCommand.setTitle(this.getSc_Title());
 		scheduleCalendarCommand.setColor(this.getSc_Color());
+		scheduleCalendarCommand.setDescription(this.sc_Description);
+		scheduleCalendarCommand.setId(this.sc_Wk_Mem_Email+this.sc_Num);
 		return scheduleCalendarCommand;
 	}
 	
@@ -43,6 +45,7 @@ public class ScheduleCalendarVo implements Serializable {
 		scheduleCalendarVo.setSc_End_Date(scheduleCalendarCommand.getEnd()) ;
 		scheduleCalendarVo.setSc_Title( scheduleCalendarCommand.getTitle());
 		scheduleCalendarVo.setSc_Color(scheduleCalendarCommand.getColor()) ;
+		scheduleCalendarVo.setSc_Description(scheduleCalendarCommand.getDescription());
 		return scheduleCalendarVo;
 	}
 	
