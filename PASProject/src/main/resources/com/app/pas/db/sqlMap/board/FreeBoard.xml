@@ -7,6 +7,37 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	
+	<select id="frb_myPost" resultClass="FreeBoard" parameterClass="FreeBoard">
+	SELECT * FROM Free_Like_Count_View
+		WHERE
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+		FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
+		FRB_TITLE LIKE '%'||#frb_Title#||'%'
+		<isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
+		FRB_ARTICLE_NUM = #frb_Article_Num# 
+		</isGreaterThan>		 
+		and MEM_EMAIL like '%'||#mem_Email#||'%'	
+		ORDER BY frb_Article_Num DESC
+	</select>
+	
+	<select id="frb_myPostCount" resultClass="int" parameterClass="FreeBoard">
+		SELECT COUNT(*)
+		FROM Free_Like_Count_View
+		WHERE
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+		FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
+		FRB_TITLE LIKE '%'||#frb_Title#||'%'
+		<isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
+		FRB_ARTICLE_NUM = #frb_Article_Num# 
+		</isGreaterThan>		 
+		and MEM_EMAIL like '%'||#mem_Email#||'%'	
+		ORDER BY frb_Article_Num DESC
+	
+	</select>
+	
+
 	<select id="selectFreeBoardList" resultClass="FreeBoard" parameterClass="FreeBoard">
 		SELECT * FROM Free_Like_Count_View
 		WHERE
