@@ -9,31 +9,31 @@
 <title></title>
 </head>
 <body>
-<script>
-$(function(){
-$('.td').click(function(){
-	  $('#edit').hide();
-	  $('td').each(function(){
-	    var content = $(this).html();
-	    $(this).html('<textarea>' + content + '</textarea>');
-	  });  
-	  
-	  $('#save').show();
-	  $('.info').fadeIn('fast');
-	});
+	<script>
+		$(function() {
+			$('.td').click(function() {
+				$('#edit').hide();
+				$('td').each(function() {
+					var content = $(this).html();
+					$(this).html('<textarea>' + content + '</textarea>');
+				});
 
-	$('#save').click(function(){
-	  $('#save, .info').hide();
-	  $('textarea').each(function(){
-	    var content = $(this).val();//.replace(/\n/g,"<br>");
-	    $(this).html(content);
-	    $(this).contents().unwrap();    
-	  }); 
+				$('#save').show();
+				$('.info').fadeIn('fast');
+			});
 
-	  $('#edit').show(); 
-	});
-})
-</script>
+			$('#save').click(function() {
+				$('#save, .info').hide();
+				$('textarea').each(function() {
+					var content = $(this).val();//.replace(/\n/g,"<br>");
+					$(this).html(content);
+					$(this).contents().unwrap();
+				});
+
+				$('#edit').show();
+			});
+		})
+	</script>
 	<div class="col-md-10" id="content">
 		<h2 class="page-header"
 			style="padding-bottom: 0px; border-bottom: 0px;">30만원타고시포</h2>
@@ -44,10 +44,7 @@ $('.td').click(function(){
 			</h1>
 			<table class="table table-bordered" id="dbclick">
 				<thead>
-					<tr>
-						<th>Field 1</th>
-						<th>Field 2</th>
-						<th>Field 3</th>
+					<tr>th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,11 +61,23 @@ $('.td').click(function(){
 			<button class="btn btn-info" id="edit">
 				<span class="glyphicon glyphicon-edit"></span> edit
 			</button>
-			<button class="btn btn-success" id="save" style="display:none">
+			<button class="btn btn-success" id="save" style="display: none">
 				<span class="glyphicon glyphicon-save"></span> save
 			</button>
-			<span class="info" style="display: none;">(here you can do some ajax action...)</span>
+			<span class="info" style="display: none;">(here you can do
+				some ajax action...)</span>
 		</div>
+
+
+		<img src="<%=request.getContextPath()%>/resources/img/sun1.png"
+			style="position: relative; width: 68px; height: 68px"/>
+			<div style="position:relative; top: -3.84em; left:1.03em; width:80px;">
+			<img src="<%=request.getContextPath() %>/resources/img/yeo.png" style="width:40px; height:40px; border-radius:50%"/>
+			</div>
+			
+		
 	</div>
+
+
 </body>
 </html>
