@@ -47,7 +47,6 @@
 					<th class="col-md-1" style="text-align: center">작성일</th>
 					<th class="col-md-1" style="text-align: center">조회수</th>
 				</tr>
-
 				<c:forEach items="${qnaList}" var="qnaBoardVo"
 					begin="${paging.beginNo}" end="${paging.endNo}">
 					<tr id="boardContents">
@@ -73,13 +72,18 @@
 			<button class="btn btn-default" type="button" onclick="QnaWrite();">글쓰기</button>
 
 			<form name="form" method="post" action="myPostList">
-				<button class="btn btn-default" name="myPost" type="submit"> 내가 쓴 글보기</button>
+				<button id="ReadMyPost" class="btn btn-default" name="myPost" type="submit"> 내가 쓴 글보기</button>
 
 <!-- if문 -->
 			<c:choose>
 			<c:when test='${!empty qnaBoardVo.mem_Email }'>
-							
-				<input class="btn btn-default" name = "qnaTotalList" type="button" onclick="QnAList()" value="목록">						
+							<script>
+							$(function(){
+								$('#ReadMyPost').hide();
+							})
+							</script>
+				<input class="btn btn-default inline" name = "qnaTotalList" type="button" onclick="QnAList()" value="목록">						
+				
 				<div class="col-md-12 text-center">
 					<c:if test="${paging.finalPageNo>0 }">
 						<c:set value="${paging.firstPageNo}" var="firstPageNo" />

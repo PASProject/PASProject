@@ -58,7 +58,6 @@ public class QnaController {
 		//로그인 정보 가져오기
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
-		System.out.println("회원의 이메일 : " + memberVo.getMem_Email());
 		qnaBoardVo.setMem_Email(mem_Email);
 		
 	
@@ -151,13 +150,6 @@ public class QnaController {
 		String url = "qna/QnAList";
 		int totalCount = 0;
 		List<QnaBoardVo> qnaList = new ArrayList<QnaBoardVo>();
-		//로그인 정보 가져오기
-//		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-//		String mem_Email = memberVo.getMem_Email();
-//		qnaBoarVo.setMem_Email(mem_Email);	
-//		System.out.println("회원의 이메일 : " + qnaBoarVo.getMem_Email());
-		
-
 		if (keyField == "" || keyField.equals(null)) {
 			totalCount = qnaBoardService.QnaSelectTotalCount();
 			if (page.equals(null) || page == "") {

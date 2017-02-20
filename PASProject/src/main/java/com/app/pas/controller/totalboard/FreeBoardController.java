@@ -36,24 +36,110 @@ public class FreeBoardController {
 	@Autowired
 	FreeBoardReplyService freeBoardReplyService;
 	
+	
+	//내가쓴글 보기 
+	@RequestMapping("/frb_myPost")
+	public String frb_myPost(Model model,@RequestParam(value="page",defaultValue="1")String page
+			,HttpServletRequest request,
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number, @RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_Content, FreeBoardVo freeboardVo,HttpSession session ) throws SQLException {
+		
+		String url = "freeBoard/freeBoardList";
+		String delete = request.getParameter("delete");
+		int totalCount = 0 ;
+	
+		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
+		//로그인정보 가져오기
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		freeboardVo.setMem_Email(mem_Email);
+		System.out.println("혹시 프리보드메일안보내짐? : " + freeboardVo.getMem_Email());
+
+		if(page.equals(null)||page ==""){
+			totalCount = freeBoardService.frb_myPostCount(freeboardVo);
+			if (page.equals(null) || page == "") {
+				page = "" + 1;
+			}
+		
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		model.addAttribute("paging",paging);
+		}	else{
+				if (keyField == ("name") || keyField.equals("name")) {
+	
+					freeboardVo.setMem_Name(keyword);
+					System.out.println("--------------name 키워드 : " + keyword);
+	
+				}else if (keyField == ("title") || keyField.equals("title")) {
+					freeboardVo.setFrb_Title(keyword);
+					System.out.println("-----------------title 키워드 : " + keyword);
+	
+				}else if (keyField == ("number") || keyField.equals("number")) {
+					if (!(keyword.isEmpty() || keyword == null))
+						freeboardVo.setFrb_Article_Num(Integer
+								.parseInt(keyword));
+					System.out.println("-----------------number 키워드 : " + keyword);
+				
+				}else if (keyField == ("content") || keyField.equals("content")) {
+					if (!(keyword.isEmpty() || keyword == null))
+						freeboardVo.setFrb_Content(keyword);
+					System.out.println("-----------------content 키워드 : " + keyword);
+					
+				}else if(keyField ==("title_Content")|| keyField.equals("title_Content")){
+					if(!(keyword.isEmpty()|| keyword == null))
+						freeboardVo.setFrb_title_Content(keyword);
+				}
+//				
+//				freeBoardList = freeBoardService.frb_myPost(freeboardVo);
+//				model.addAttribute("freeBoardList", freeBoardList);
+//			
+				totalCount = freeBoardService.frb_myPostCount(freeboardVo);
+				Paging paging = new Paging();
+				paging.setPageNo(Integer.parseInt(page));
+				paging.setPageSize(5);
+				paging.setTotalCount(totalCount);
+				
+				model.addAttribute("paging", paging);
+			
+			}
+		if (page.equals(null) || page == "") {
+			page = "" + 1;
+		}
+		freeBoardList = freeBoardService.frb_myPost(freeboardVo);
+		model.addAttribute("freeBoardList", freeBoardList);
+		
+		totalCount = freeBoardService.frb_myPostCount(freeboardVo);
+		Paging paging = new Paging();
+		paging.setPageNo(Integer.parseInt(page));
+		paging.setPageSize(5);
+		paging.setTotalCount(totalCount);
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("delete", delete);
+		return url;
+	}
+	
+	
+	
+	
+	
+	//자유게시판 전체 리스트
 	@RequestMapping("/freeBoardList")
 	public String CommunityList(Model model,@RequestParam(value="page",defaultValue="1")String page
 			,HttpServletRequest request,
-			@RequestParam(defaultValue = "") String keyword,
-			@RequestParam(defaultValue = "") String keyField,
-			@RequestParam(defaultValue = "") String name,
-			@RequestParam(defaultValue = "") String title,
-			@RequestParam(defaultValue = "") String number,
-			@RequestParam(defaultValue = "") String content,
-			@RequestParam(defaultValue = "") String title_Content,
-			
-			FreeBoardVo freeboardVo ) throws SQLException {
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "") String keyField,
+			@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String title,
+			@RequestParam(defaultValue = "") String number, @RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String title_Content, FreeBoardVo freeboardVo ) throws SQLException {
+		
 		String url = "freeBoard/freeBoardList";
 		String delete = request.getParameter("delete");
-		
-		
 		int totalCount = 0 ;
-		/*Page<FreeBoardVo> postPage =freeBoardService.*/
+	
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
 
 		if(page.equals(null)||page ==""){
