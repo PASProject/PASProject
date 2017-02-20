@@ -8,7 +8,8 @@
 <meta charset='utf-8' />
 </head>
 <body>
-	<div id='calendar' style=" margin:auto;">
+<div class="col-md-10" id="content">
+	<div id='calendar' >
 	</div>
 	<div id="calendarModal" class="modal fade">
 <div class="modal-dialog">
@@ -28,7 +29,7 @@
     </div>
 </div>
 </div>
-
+</div>
 	
 	<script>
 // 	$(document).ready(
@@ -103,6 +104,7 @@ $(function(){
 				 $('#datePicker2').val(date.format());
 				 $('#calendarModal').modal();
 			}
+			
 		});
 	
 	$('#datePicker1').change(function(){
