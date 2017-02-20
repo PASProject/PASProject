@@ -30,7 +30,6 @@ import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
-import com.app.pas.dto.PositionVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
@@ -743,11 +742,24 @@ public class ProjectController {
 	public String pmCalendarView(HttpSession session,Model model) throws SQLException{
 		String url = "schedule/monthlySchedule";
 		String proj_Num = (String) session.getAttribute("joinProj");
+		
 		MemPositionViewVo memPositionViewVo = new MemPositionViewVo();
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		
 		memPositionViewVo.setProj_Num(Integer.parseInt(proj_Num));
+		
 		memPositionViewVo.setPjj_Per_Num(1);
+		
 		List<MemPositionViewVo> list = memberService.selectMemberListByProj(memPositionViewVo);
+		
+		memPositionViewVo.setMem_Email(memberVo.getMem_Email());
+		
+		MemPositionViewVo memPosition = memberService.selectMemberPositionByEmail(memPositionViewVo);
+		
+		
 		model.addAttribute("memPositionViewVo",list);
+		model.addAttribute("memPosition",memPosition);
 		return url;
 	}
 
@@ -793,17 +805,20 @@ public class ProjectController {
 	@RequestMapping(value="updateCal",method = RequestMethod.POST)
 	public  @ResponseBody ScheduleCalendarCommand updateCal(@RequestBody ScheduleCalendarCommand scheduleCalendarCommand,HttpSession session )throws SQLException{
 		String sc_Proj_Num = (String) session.getAttribute("joinProj");
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		ScheduleCalendarVo scheduleCalendarVo = new ScheduleCalendarVo();
 		
 		String sc_Num = scheduleCalendarCommand.getId();
+		// sc_Num으로 vo하나 셀렉트
+		ScheduleCalendarVo select = scheduleCalendarService.selectScheduleCalendarByScNum(Integer.parseInt(sc_Num));
+		
 		
 		scheduleCalendarVo = scheduleCalendarVo.fromCommand(scheduleCalendarCommand);
 		scheduleCalendarVo.setSc_Num(Integer.parseInt(sc_Num));
 		
 		scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(sc_Proj_Num));
-		scheduleCalendarVo.setSc_Wk_Name(memberVo.getMem_Name());
-		scheduleCalendarVo.setSc_Wk_Mem_Email(memberVo.getMem_Email());
+		scheduleCalendarVo.setSc_Wk_Name(select.getSc_Wk_Name());
+		scheduleCalendarVo.setSc_Wk_Mem_Email(select.getSc_Wk_Mem_Email());
+		
 		scheduleCalendarService.updateScheduleCalendar(scheduleCalendarVo);
 		
 		return scheduleCalendarVo.toCommand();
@@ -836,6 +851,18 @@ public class ProjectController {
 		scheduleCalendarService.updateScheduleCalendarColor(scheduleCalendarVo);
 		
 		return true;
+	}
+	
+	@RequestMapping(value="selectDetailCal",method= RequestMethod.POST)
+	public @ResponseBody MemPositionViewVo selectDetailCal(@RequestBody  ScheduleCalendarCommand scheduleCalendarCommand)throws SQLException{
+		ScheduleCalendarVo scheduleCalendarVo = new ScheduleCalendarVo();
+		scheduleCalendarVo = scheduleCalendarVo.fromCommand(scheduleCalendarCommand);
+		ScheduleCalendarVo select = scheduleCalendarService.selectScheduleCalendarByScNum(scheduleCalendarVo.getSc_Num());
+		MemPositionViewVo memPositionViewVo = new MemPositionViewVo();
+		memPositionViewVo.setMem_Email(select.getSc_Wk_Mem_Email());
+		memPositionViewVo.setProj_Num(select.getSc_Proj_Num());
+		MemPositionViewVo memPosition = memberService.selectMemberPositionByEmail(memPositionViewVo);
+		return memPosition;
 	}
 	
 }

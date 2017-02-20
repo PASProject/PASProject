@@ -49,4 +49,11 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		
 	}
 
+	@Override
+	public ScheduleCalendarVo selectScheduleCalendarByScNum(int sc_Num)
+			throws SQLException {
+		ScheduleCalendarVo scheduleCalendarVo = (ScheduleCalendarVo) client.queryForObject("selectScheduleCalendarByScNum",sc_Num);
+		return scheduleCalendarVo;
+	}
+
 }

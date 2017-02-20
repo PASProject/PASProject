@@ -40,6 +40,9 @@ public class ScheduleCalendarVo implements Serializable {
 	
 	public ScheduleCalendarVo fromCommand(ScheduleCalendarCommand scheduleCalendarCommand){
 		ScheduleCalendarVo scheduleCalendarVo = new ScheduleCalendarVo();
+		if(scheduleCalendarCommand.getId()!=null){
+			scheduleCalendarVo.setSc_Num(Integer.parseInt(scheduleCalendarCommand.getId()));
+		}
 		
 		scheduleCalendarVo.setSc_Start_Date(scheduleCalendarCommand.getStart());
 		scheduleCalendarVo.setSc_End_Date(scheduleCalendarCommand.getEnd()) ;

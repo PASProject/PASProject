@@ -12,4 +12,5 @@ public interface ScheduleCalendarDao {
 	public int deleteScheduleCalendar(int sc_Num)throws SQLException;
 	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
 	public void updateScheduleCalendarColor(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
+	public ScheduleCalendarVo selectScheduleCalendarByScNum(int sc_Num)throws SQLException;
 }

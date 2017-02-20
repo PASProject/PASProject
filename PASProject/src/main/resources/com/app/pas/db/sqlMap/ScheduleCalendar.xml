@@ -7,8 +7,6 @@
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
    
-   
-   
    <select id="selectScheduleCalendarList" parameterClass="int" resultClass="ScheduleCalendar" >
       select * from Schedule_Calendar where sc_proj_num= #sc_Proj_Num#
    </select>
@@ -34,4 +32,7 @@
    		where sc_proj_num = #sc_Proj_Num# and sc_wk_mem_email = #sc_Wk_Mem_Email#
    </update>
    
+   <select id = "selectScheduleCalendarByScNum" parameterClass="int" resultClass="ScheduleCalendar">
+   		select * from Schedule_Calendar where sc_Num = #sc_Num#
+   </select>
 </sqlMap>
