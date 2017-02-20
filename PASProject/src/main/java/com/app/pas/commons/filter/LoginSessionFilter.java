@@ -73,7 +73,7 @@ public class LoginSessionFilter implements Filter {
 			
 		}*/
 		
-		System.out.println(uri+"유알아이!");
+		
 		
 		    int  proj_Num=0;
 		    int proj_NumN=0;
@@ -96,7 +96,7 @@ public class LoginSessionFilter implements Filter {
 			}
 					
 				
-				System.out.println(proj_Num+"갑니다!!!");
+				
 			
 			
 			if(member == null || proj_Num != proj_NumN){

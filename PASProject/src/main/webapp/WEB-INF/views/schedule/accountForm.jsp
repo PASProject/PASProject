@@ -139,7 +139,7 @@
 			
 			
 			$(function() {	
-			alert(acc_Num+"도아줘!");
+			
 			var datalist = {'acc_Num':acc_Num}
 	   $.ajax({
 			type :'POST',

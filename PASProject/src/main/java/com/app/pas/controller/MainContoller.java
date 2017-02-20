@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,17 +129,16 @@ public class MainContoller {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(HttpSession session, MemberVo memberVo,
-			HttpServletRequest request) throws UnsupportedEncodingException,
-			MessagingException {
+			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
+			MessagingException, SQLException {
 		String url = "redirect:/index";
 		request.setCharacterEncoding("utf-8");
-
-		/*
-		 * System.out.println(memberVo);
-		 * System.out.println(memberVo.getMem_Email());
-		 */
-
-		try {
+		
+		 /*System.out.println(memberVo);
+		 System.out.println(memberVo.getMem_Email());*/
+		
+		
+			System.out.println("중복이아닙니다.");
 			memberService.insertMember(memberVo);
 			String content = memberVo.getMem_Email()
 					+ "(님)의 계정 승인 확인 메일입니다. "
@@ -156,13 +156,31 @@ public class MainContoller {
 			mailSender.send(message);
 
 			url = "/main/joinAuthForm";
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
 		return url;
 	}
+	
+	@RequestMapping(value = "/EmailCheck", method = RequestMethod.POST)
+	@ResponseBody 
+	public boolean EmailCheck(HttpSession session, MemberVo memberVo,Model model,
+			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
+			MessagingException, SQLException {
+		
+		boolean result = false;
+		
+		String asd = request.getParameter("mem_Email");
+		System.out.println(asd);
+		
+		System.out.println(memberVo);
+		if(memberService.getMember(memberVo.getMem_Email()) != null ){
+			result = false;
+		}else{
+			System.out.println("중복아님");
+			result = true;
+		}
+		return result;
+	}
+	
 
 	@RequestMapping(value = "/memberAuth", method = RequestMethod.GET)
 	public String MemberAuth(String mem_Email) throws SQLException {
@@ -250,17 +268,23 @@ public class MainContoller {
 			Model model, @RequestBody Map<String, Object> map)
 			throws SQLException {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		
 		String mem_Pass = (String) map.get("mem_Pass");
+		if(mem_Pass ==""|| mem_Pass==null){
+			memberVo.setMem_Pass(memberVo.getMem_Pass());
+		}else{
+			memberVo.setMem_Pass(mem_Pass);	
+		}
+		
 		String mem_Phone = (String) map.get("mem_Phone");
-		String url = "redirect:myProject";
-		memberVo.setMem_Pass(mem_Pass);
 		memberVo.setMem_Phone(mem_Phone);
+		String url = "redirect:myProject";
+		
+		
 
 		System.out.println(memberVo.toString());
 
-		/*
-		 * memberVo.setMem_Email("mem_Meai
-		 */int a = memberService.updateMember(memberVo);
+		int a = memberService.updateMember(memberVo);
 		System.out.println(a);
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("T", a);

@@ -69,7 +69,6 @@
 					.click(
 							function() {
 								var mem_Email = $("input[type=hidden]").val();
-								alert(mem_Email+"알ㄹ라라라라라");
 								var d = "";
 								
 								$('#zone').text("");
@@ -98,7 +97,6 @@
 								var email = $('#searchbox').val();
 								var data="";
 								data=$('#zone').html();
-							    alert(data);
 								data +='<a href="#">'+email+' </a> <input type="hidden" id="'+email+'" value="'+email+'"/><br>'; 	
 								if(email!=null){
 									$('#zone').html(data);	

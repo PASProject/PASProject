@@ -27,7 +27,7 @@
  */                  $(":selected").text(); 
                 $('#position_Name').val(selectedText);
                /*  $('[name="positionSelect"] option:eq(0)').attr("selected","selected"); */
-                alert("여기까진옴");
+              
             });
          })   
             
@@ -37,7 +37,7 @@
             
             $(function() {
             $('#TeamMemberUpdate').click(function() {
-                   alert('왜통과를안함?');    
+                  
             var position_Name=$("#position_Name").val();
             var mem_Email =$("#mem_Email").val();
             
@@ -64,7 +64,7 @@
         	 
         	 
         	 $(function(){
-        		 alert(mem_Email+'멤버메일!');
+        		 
         		 var dataList = {'mem_Email': mem_Email};
         		 
         		 $.ajax({
@@ -75,7 +75,7 @@
         			 data:JSON.stringify(dataList),
         			 contentType: 'application/json; charset=UTF-8',
         			 success:function(data){
-        				 alert(data.mem_Phone);
+        				
         				 $('#mem_Img').attr('src','<%=request.getContextPath()%>/resources/upload/data.mem_Img');
         				 $('#position_Name').val(data.position_Name);
         				 $('#mem_Email').val(data.mem_Email);

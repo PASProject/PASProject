@@ -24,6 +24,7 @@ public class FreeBoardVo implements Serializable{
 	private String frb_Kind;
 	private int frb_Like_Count;
 	private String mem_Name;
+	private String frb_Tag;
 	
 
 	

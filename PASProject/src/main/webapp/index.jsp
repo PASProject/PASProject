@@ -88,8 +88,8 @@ body.modal-open .background-container {
          <h1>Project Automation System</h1>
          <h3>Begin with us</h3>
          <br> <a href="<%=request.getContextPath()%>/main/loginForm"
-            class="btn btn-dark btn-lg" style="margin-right:10px;">들어가기</a><a href="#about"
-            class="btn btn-dark btn-lg" style="margin-left:10px;">가입하기</a>
+            class="btn btn-dark btn-lg" style="margin-right:10px;">들어가기</a>
+            <a href="#about" class="btn btn-dark btn-lg" style="margin-left:10px;">가입하기</a>
       </div>
 
    </header>
@@ -179,7 +179,7 @@ body.modal-open .background-container {
    <!-- Callout -->
    <aside class="callout">
       <div class="text-vertical-center">
-         <h1>허석원 앞머리 보소</h1>
+         <h1>PAS에 오신것을 환영합니다.</h1>
       </div>
    </aside>
 
@@ -301,16 +301,16 @@ body.modal-open .background-container {
          <div class="row">
             <div class="col-lg-10 col-lg-offset-1 text-center">
                <h4>
-                  <strong>Start Bootstrap</strong>
+                  <strong>Project Automation System</strong>
                </h4>
                <p>
-                  AIzaSyCqJfiDdF82GMj5tgcIEbO8qgFJAVw0wLE 3481 Melrose Place <br>Beverly
-                  Hills, CA 90210
+                  Create by DDIT NCS2 PASII TEAM  <br>
+                  	대전광역시 중구 대흥동 500 영민빌딩 2층 042-222-8202
                </p>
                <ul class="list-unstyled">
-                  <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                  <li><i class="fa fa-phone fa-fw"></i> (042)222-8202</li>
                   <li><i class="fa fa-envelope-o fa-fw"></i> <a
-                     href="mailto:name@example.com">name@example.com</a></li>
+                     href="mailto:jbs6871@gmail.com">jbs6871@gmail.com</a></li>
                </ul>
                <br>
                <ul class="list-inline">
@@ -322,7 +322,7 @@ body.modal-open .background-container {
                   </li>
                </ul>
                <hr class="small">
-               <p class="text-muted">Copyright &copy; Your Website 2014</p>
+               <p class="text-muted">Copyright &copy; PASII 2017</p>
             </div>
          </div>
       </div>
@@ -423,9 +423,15 @@ $(document)
                            
                            mem_Name : {
                               validators : {
-                                 stringLength : {
+                            	  regexp:{
+                                      regexp : /^[가-힝]{2,5}$/,
+                                      message: '이름을 기입해 주세요.2~5글자'
+                                  }, 
+                                 /* stringLength : {
                                     min : 2,
-                                 },
+                                  	max : 5,
+                                    message : '이름을 기입해 주세요.'
+                                 }, */
                                  notEmpty : {
                                     message : '이름을 기입해 주세요'
                                  }
@@ -475,7 +481,7 @@ $(document)
                                     message :  '비밀번호는 8~20자 사이의 영문+숫자 조합으로 해주세요 '
                                  },
                                  notEmpty : {
-                                    message : '공란입니다.'
+                                    message : '비밀번호를 입력해 주세요.'
                                  },
                                  identical : {
                                     
@@ -489,7 +495,10 @@ $(document)
                                  identical : {
                                     field : 'mem_Pass',
                                     message : '위와 동일한 비밀번호를 입력해 주시기 바랍니다.'
-                                 }
+                                 },
+                                 notEmpty : {
+                                     message : '비밀번호 확인을 입력해 주세요.'
+                                  },
                               }
                            },
 

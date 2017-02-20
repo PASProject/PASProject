@@ -468,9 +468,43 @@ $(function(){
 						id="submit" style="margin-left: 5px;">정보 수정하기</button>
 					<script>
 							$('#submit').click(function(){
-								var mem_Phone = $('#mem_Phone').val();
+								
+								
+								var Pass_result = true;
+								var Pass_CK = true;
+								var Phone_CK = true;
+								
+								 //전화번호 정규식	
+							    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+								var mem_Phone= $('#mem_Phone').val();
+							    	if(!Phone_Pt.test(mem_Phone)){
+							    		Phone_CK = false;
+									}else{
+										Phone_CK = true;
+									}
+								
+								//비밀번호 정규식
+							    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
+							    var Pass = 	$('#userPw').val();
+							    	if(!Pass_Pt.test(Pass)){
+										Pass_result = false;
+									}else{
+										Pass_result = true;
+									}
+							    	
+							    //비밀번호 확인 정규식
+							   	var Pass = $('#userPw').val();
+							    var Pass_Check= $('#userPw2').val();
+							    	if(Pass != Pass_Check){
+							    		Pass_CK = false;
+									}else{
+										Pass_CK = true;
+									}
+							    	
+							    if(Pass_result == true && Pass_CK == true){
+							    	
 								var mem_Pass = $('#userPw').val();
-								var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
+								var dataList = {'mem_Pass':mem_Pass};
 								$.ajax({
 									url: '<%=request.getContextPath()%>/main/updateMember',
 									type:'post',
@@ -489,6 +523,29 @@ $(function(){
 										alert('update Failed');
 									}
 								})
+								}else if(Phone_CK == true){
+									
+									var mem_Phone = $('#mem_Phone').val();
+									var dataList = {'mem_Phone':mem_Phone};
+									$.ajax({
+										url: '<%=request.getContextPath()%>/main/updateMember',
+										type:'post',
+										dataType:'json',
+										contentType:'application/json',
+										data:JSON.stringify(dataList),
+										success : function(data){
+											var i = data.T;
+											if(i=='1'){
+												location.reload();										
+											}else{
+												alert("실패");
+											}
+										},
+										failure: function(data){
+											alert('update Failed');
+										}
+									})
+									}
 							})
 							
 							

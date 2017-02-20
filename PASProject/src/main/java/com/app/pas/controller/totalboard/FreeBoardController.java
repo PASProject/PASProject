@@ -45,6 +45,7 @@ public class FreeBoardController {
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
+			@RequestParam(defaultValue = "") String tag,
 			FreeBoardVo freeboardVo ) throws SQLException {
 		String url = "freeBoard/freeBoardList";
 		String delete = request.getParameter("delete");
@@ -86,6 +87,11 @@ public class FreeBoardController {
 					freeboardVo.setFrb_Content(keyword);
 
 				System.out.println("-----------------content 키워드 : " + keyword);
+			}else if (keyField == ("tag") || keyField.equals("tag")) {
+				if (!(keyword.isEmpty() || keyword == null))
+					freeboardVo.setFrb_Content(keyword);
+
+				System.out.println("-----------------tag 키워드 : " + keyword);
 			}
 			
 			freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
@@ -172,7 +178,7 @@ public class FreeBoardController {
 		freeBoardVo.setMem_Email(mem_Email);
 		freeBoardVo.setMem_Name(mem_Name);
 		freeBoardVo.setFrb_Kind("1");
-			
+		System.out.println("@@@@@@@@@@@@@@@@@@"+freeBoardVo);	
 		freeBoardService.insertFreeBoard(freeBoardVo);
 		
 		return url;
@@ -193,7 +199,7 @@ public class FreeBoardController {
 			url = "redirect:freeBoardDetail?frb_Article_Num="+ frb_Article_Num+"&modify=no&message=1";
 		  }
 		 
-		
+		System.out.println("@@@@@@@@"+freeboardVo);
 		return url;
 	}
 	

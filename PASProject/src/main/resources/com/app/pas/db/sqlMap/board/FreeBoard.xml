@@ -8,10 +8,11 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	
 	<select id="selectFreeBoardList" resultClass="FreeBoard" parameterClass="FreeBoard">
-		SELECT * FROM FREE_BOARD
+		SELECT * FROM Free_Like_Count_View
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
-		FRB_TITLE LIKE '%'||#frb_Title#||'%'
+		FRB_TITLE LIKE '%'||#frb_Title#||'%' and
+		FRB_TAG LIKE '%'||#frb_Tag#||'%'
 		<isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
 		FRB_ARTICLE_NUM = #frb_Article_Num# 
 		</isGreaterThan>		 
@@ -66,8 +67,8 @@
 	
 	<insert id="insertFreeBoard" parameterClass="FreeBoard">
 		INSERT INTO
-		FREE_BOARD(FRB_ARTICLE_NUM,FRB_CONTENT,FRB_KIND,FRB_TITLE,MEM_EMAIL,MEM_NAME) 
-		VALUES(FREE_BOARD_SEQ.NEXTVAL,#frb_Content#,#frb_Kind#,#frb_Title#,#mem_Email#,#mem_Name#)
+		FREE_BOARD(FRB_ARTICLE_NUM,FRB_CONTENT,FRB_KIND,FRB_TITLE,MEM_EMAIL,MEM_NAME,FRB_TAG) 
+		VALUES(FREE_BOARD_SEQ.NEXTVAL,#frb_Content#,#frb_Kind#,#frb_Title#,#mem_Email#,#mem_Name#,#frb_Tag#)
 	</insert>
 
 

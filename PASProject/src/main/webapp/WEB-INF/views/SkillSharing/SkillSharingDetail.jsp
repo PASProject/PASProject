@@ -35,7 +35,7 @@ function protectKey()
 <h1>SkillSharingDetail</h1>
 	<c:if test="${like != null }">
 		<script type="text/javascript">
-			alert("이미추천했다규");
+			alert("이미 추천한 게시글 입니다.");
 		</script>
 	</c:if>
 	<c:if test="${modi != null }">
@@ -50,7 +50,7 @@ function protectKey()
 	</c:if>
 	<c:if test="${likee != null }">
 		<script type="text/javascript">
-			alert("추천완료!데헷");
+			alert("추천 되었습니다.");
 		</script>
 	</c:if>
 
