@@ -205,7 +205,7 @@ body {
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #3c5574;
-	filter: brightness(125%);
+
 	color: white;
 }
 
@@ -287,9 +287,11 @@ $(function(){
 		
 	}
 	})
+	
+</script>
+<script>
 
 </script>
-
 
 
 
@@ -311,22 +313,8 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					
-					<ul class="nav navbar-nav navbar-left" id="a">
-					<li>
-					PAS
-					</li>
-					</ul>
+				
 					<ul class="nav navbar-nav navbar-right" id="a">
-
-
-
-
-
-
-
-
-
-
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -336,11 +324,8 @@ $(function(){
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
-
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-
-					</ul>
+					
 
 
 				</div>
@@ -378,13 +363,22 @@ $(function(){
 					프로젝트 자동화 시스템
 					</c:when>
 					<c:otherwise>
-					${sessionScope.joinProjectVo.proj_Name}
+					<p id="tn" >${sessionScope.joinProjectVo.proj_Name}&nbsp;<span class="caret" style="display:none;"></span></p>
 					</c:otherwise>
 					</c:choose>
-					
+					<script>
+					$(function(){
+						$('#tn').mouseover(function(){
+							$('.caret').show();
+						})
+					/* 	$('#tn').click */
+						
+					})
+					</script>
 					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
+				
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
@@ -392,7 +386,8 @@ $(function(){
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
-							style="padding-top: 5px; padding-bottom: 5px;"> <img
+							style="padding-top: 5px; padding-bottom: 5px;background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"> 
+							<img
 								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
@@ -418,8 +413,8 @@ $(function(){
 						<li><a href="#" id="alarmMenu"
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
-							style="font-size: 25px;"> </a> <span id="alarmCount"
-							style="color: red; display: none;"></span> <span id="alarmZone"></span>
+							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;"> </a> <span id="alarmCount"
+							style="color: red;  display: none;"></span> <span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 

@@ -328,7 +328,6 @@
 							</div>
 					<script>
 					$(function(){
-						
 						$('.cc').click(function(){
 							var $color = $(this).css('background-color');
 							var a = location.href;
@@ -359,6 +358,29 @@
 						$('#navbar2').animate({
 							boderBottomColor : $color
 						},'slow');
+		
+						$('#droptoggle').click(function(){
+							$(this).css({
+								backgroundColor:$color
+							})
+						})
+						$('#droptoggle').animate({
+							backgroundColor:$color
+						},'slow');
+						
+						$('#alarmMenu').animate({
+							backgroundColor : $color
+						},'slow');
+						$('#alarmMenu').click(function(){
+							$(this).css({
+								backgroundColor:$color
+							})
+						})
+						
+						
+						
+						
+						
 						
 						var b = $color.split("(")[1].split(")")[0];
 						b = b.split(",");

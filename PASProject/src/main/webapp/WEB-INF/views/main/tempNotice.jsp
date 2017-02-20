@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>몰아부칩시다</title>
+<title>몰아붙입시다</title>
 <link
 	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
 	rel="stylesheet">
