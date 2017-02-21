@@ -298,7 +298,7 @@ $(function(){
 
 </head>
 <title>최종!</title>
-<body style="overflow:hidden;">
+<body >
 	<header>
 
 		<!-- Navigation -->
@@ -411,10 +411,7 @@ $(function(){
 
 								<li><a href="<%= request.getContextPath()%>/main/myPostBoard">내가 작성한 게시물</a></li>
 
-								<li><a href="#">내가 작성한 게시물</a></li>
-								<li><a href="#">내가 작성한 댓글</a></li>
-
-								<li class="divider"></li>
+												<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
 							</ul></li>

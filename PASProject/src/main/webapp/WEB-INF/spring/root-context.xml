@@ -61,12 +61,8 @@
 	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:scheduleCalendarDao-ref="ScheduleCalendarDao"/>
 	<bean id="MemberLogService" class="com.app.pas.service.MemberLogService" p:memberLogDao-ref="MemberLogDao"/>
 	<bean id="ProjectLogService" class="com.app.pas.service.ProjectLogService" p:projectLogDao-ref="ProjectLogDao"/>
-
 	<bean id="MainService" class="com.app.pas.service.MainService" p:mainDao-ref="MainDao"/>
-
 	<bean id="CalendarService" class="com.app.pas.service.CalendarService" p:calendarDao-ref="CalendarDao"/>
-
-	
 	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>
 	<bean id="FreeBoardService" class="com.app.pas.service.board.FreeBoardService" p:freeboardDao-ref="FreeBoardDao"/>
 	<bean id="FreeBoardReplyService" class="com.app.pas.service.board.FreeBoardReplyService" p:freeboardReplyDao-ref="FreeBoardReplyDao"/>
