@@ -19,5 +19,11 @@ public class SpreadSheetDaoImpl implements SpreadSheetDao {
 		int result = (Integer) client.update("insertSpreadSheet", spreadSheetVo);
 		return result;
 	}
+	@Override
+	public SpreadSheetVo selectSpreadSheetByDocNum(int doc_Num)
+			throws SQLException {
+		SpreadSheetVo spreadSheetVo = (SpreadSheetVo) client.queryForObject("selectSpreadSheetByDocNum", doc_Num);
+		return spreadSheetVo;
+	}
 
 }

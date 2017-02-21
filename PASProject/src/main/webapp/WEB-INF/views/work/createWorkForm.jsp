@@ -39,7 +39,7 @@
 		});
 		
 		$('#createSpreadSheet').on('click',function(){
-			location.href="/pas/project/work/viewSpreadSheet";
+			location.href="/pas/project/work/spreadSheetForm";
 		});
 	})
 		

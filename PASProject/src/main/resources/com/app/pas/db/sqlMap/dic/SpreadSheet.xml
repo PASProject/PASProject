@@ -13,4 +13,7 @@
       VALUES(#sp_Content#,#dic_Num#)
    </update>
 
+	<select id="selectSpreadSheetByDocNum" parameterClass="int" resultClass="SpreadSheet">
+		select * from spread_sheet where dic_num = #doc_Num#
+	</select>
 </sqlMap>

@@ -20,8 +20,8 @@
     padding-right: 0px;
     background-color: white;
     border: 0px solid black;">
-    
-    <div id="spreadsheet" style="width:auto;"></div>
+<div><input type="button" value="생성하기" id="createSpreadSheetBtn" class = "btn btn-default">&nbsp;&nbsp;<input type="button" value="돌아가기" id ="goBackBtn" class="btn btn-default"></div><br>   
+<div id="spreadsheet" style="width:auto;"></div>
 </div>
 <script>
 $(function() {
@@ -32,10 +32,33 @@ $(function() {
         },
         pdf: {                
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
-        }
+        },
+       
     });
-});
+    $('#createSpreadSheetBtn').on('click',function(){
+    	var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
+    	var sheet = spreadsheet.sheetByIndex(0);
+        var dataList = sheet.toJSON();
+        $.ajax({
+        	type : "POST",
+			url : "createSpreadSheet",
+			dataType : "json", 
+			data : JSON.stringify(dataList),
+			contentType : "application/json",
+			success:function(result){
+				if(result){
+					location.href="/pas/project/work/workList";
+				}else{
+					alert("생성 실패");
+				}
+			}
+        })
+    });
     
-    </script>   
+    $('#goBackBtn').on('click',function(){
+    	
+    })
+});
+</script>
 </body>
 </html>

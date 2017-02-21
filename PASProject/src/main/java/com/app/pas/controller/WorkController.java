@@ -53,9 +53,9 @@ public class WorkController {
 		url = "/work/createWorkForm";
 		return url;
 	}
-	@RequestMapping(value="viewSpreadSheet",method = RequestMethod.GET)
+	@RequestMapping(value="spreadSheetForm",method = RequestMethod.GET)
 	public String createSheet(HttpSession session) throws SQLException{
-		String url = "/work/viewSpreadSheet";
+		String url = "/work/spreadSheetForm";
 		return url;
 	}
 	
@@ -89,15 +89,19 @@ public class WorkController {
 	}
 	
 	@RequestMapping("selectDocument")
-	public String selectDocument(DocumentVo documentVo) throws SQLException{
+	public String selectDocument(DocumentVo documentVo,HttpSession session,Model model) throws SQLException{
 		
-		String url = "/work/spreadSheet";
+		String url = "";
+		String proj_Num = (String) session.getAttribute("joinProj");
 		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
-		if(selectVo ==null){ return "redirect:workList"; }
+		if(selectVo ==null || selectVo.getProj_Num()!=Integer.parseInt(proj_Num)){ return "redirect:workList"; }
 		
 		if(selectVo.getDoc_Kind()==1){
-			
+			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+			model.addAttribute("spreadSheetVo",spreadSheetVo);
+			url = "/work/viewSpreadSheet";
 		}
+		
 		return url;
 	}
 

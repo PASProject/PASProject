@@ -25,4 +25,9 @@ public class SpreadSheetService {
 		}
 		return flag;
 	}
+	
+	public SpreadSheetVo selectSpreadSheetByDocNum(int doc_Num) throws SQLException{
+		SpreadSheetVo spreadSheetVo =spreadSheetDao.selectSpreadSheetByDocNum(doc_Num);
+		return spreadSheetVo;
+	}
 }
