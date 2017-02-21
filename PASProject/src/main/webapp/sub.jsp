@@ -113,7 +113,9 @@
 								공지사항</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="#">채팅하기</a></td>
+						<td><a style="text-decoration: none;"
+						 href="#" onClick="window.open('http://localhost:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=800,height=400,top=700,left=1200')">채팅하기</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"

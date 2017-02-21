@@ -227,7 +227,7 @@ public class ProjectController {
 
 	@RequestMapping("/pmChat")
 	public String PmChat(HttpSession session, Model model) {
-		String url = "";
+		String url = "/project/demo_audio_only";
 		return url;
 	}
 

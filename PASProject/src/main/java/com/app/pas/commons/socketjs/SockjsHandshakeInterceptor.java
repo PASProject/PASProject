@@ -13,6 +13,7 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 
 import com.app.pas.dto.MemberVo;
 
+//SocketInteceptor
 @Component
 public class SockjsHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	
@@ -23,6 +24,7 @@ public class SockjsHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 		}
 		return null;
 	}*/
+	
 	
 	@Override
 	public void afterHandshake(ServerHttpRequest request,
