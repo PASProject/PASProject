@@ -7,10 +7,45 @@
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
    
+   <select id="frb_myPost" resultClass="FreeBoard" parameterClass="FreeBoard">
+   SELECT * FROM Free_Like_Count_View
+      WHERE
+      MEM_NAME LIKE '%'||#mem_Name#||'%' and
+      FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+      FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
+      FRB_TITLE LIKE '%'||#frb_Title#||'%' and
+      FRB_TAG LIKE '%'||#frb_Tag#||'%'
+      <isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
+      FRB_ARTICLE_NUM = #frb_Article_Num# 
+      </isGreaterThan>       
+      and MEM_EMAIL like '%'||#mem_Email#||'%'   
+      ORDER BY frb_Article_Num DESC
+   </select>
+   
+   <select id="frb_myPostCount" resultClass="int" parameterClass="FreeBoard">
+      SELECT COUNT(*)
+      FROM Free_Like_Count_View
+      WHERE
+      MEM_NAME LIKE '%'||#mem_Name#||'%' and
+      FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+      FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
+      FRB_TITLE LIKE '%'||#frb_Title#||'%' and
+      FRB_TAG LIKE '%'||#frb_Tag#||'%'
+      <isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
+      FRB_ARTICLE_NUM = #frb_Article_Num# 
+      </isGreaterThan>       
+      and MEM_EMAIL like '%'||#mem_Email#||'%'   
+      ORDER BY frb_Article_Num DESC
+   
+   </select>
+   
+
    <select id="selectFreeBoardList" resultClass="FreeBoard" parameterClass="FreeBoard">
       SELECT * FROM Free_Like_Count_View
-      WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+      WHERE
+      MEM_NAME LIKE '%'||#mem_Name#||'%' and
       FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
+      FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
       FRB_TITLE LIKE '%'||#frb_Title#||'%' and
       FRB_TAG LIKE '%'||#frb_Tag#||'%'
       <isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
@@ -22,9 +57,12 @@
    <select id="freeBoardSearchCount" resultClass="int" parameterClass="FreeBoard">
    SELECT COUNT(*)
    FROM FREE_BOARD
-   WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
+   WHERE 
+   MEM_NAME LIKE '%'||#mem_Name#||'%' and
    FRB_CONTENT LIKE '%'||#frb_Content#||'%' and
-   FRB_TITLE LIKE '%'||#frb_Title#||'%'
+   FRB_CONTENT || FRB_TITLE LIKE '%'||#frb_title_Content#||'%' and
+   FRB_TITLE LIKE '%'||#frb_Title#||'%' and
+   FRB_TAG LIKE '%'||#frb_Tag#||'%'
    <isGreaterThan  prepend="and" property="frb_Article_Num" compareValue="0">
       FRB_ARTICLE_NUM = #frb_Article_Num# 
    </isGreaterThan>
@@ -38,11 +76,14 @@
    </insert>
    
    <delete id="deleteFreeBoardLike" parameterClass="FreeBoardLike">
-      DELETE FROM FREE_BOARD_LIKE WHERE FRB_ARTICLE_NUM=#frb_Article_Num# and MEM_EMAIL=#mem_Email#
+      DELETE FROM FREE_BOARD_LIKE 
+      WHERE FRB_ARTICLE_NUM=#frb_Article_Num# and MEM_EMAIL=#mem_Email#
    </delete>
    
    <select id="selectFreeBoardLike" resultClass="int">
-      select count(*) from FREE_BOARD_LIKE WHERE FRB_ARTICLE_NUM=#FRB_Article_Num#
+      select count(*) 
+      from FREE_BOARD_LIKE 
+      WHERE FRB_ARTICLE_NUM=#FRB_Article_Num#
    </select>
    
    <select id="selectFreeBoardLikeList" parameterClass="FreeBoardLike"
@@ -73,7 +114,7 @@
 
 
    <update id="updateFreeBoard" parameterClass="FreeBoard">
-      UPDATE FREE_BOARD SET FRB_CONTENT=#frb_Content#, FRB_KIND=#frb_Kind#,
+      UPDATE FREE_BOARD SET FRB_CONTENT=#frb_Content#, FRB_KIND=#frb_Kind#,FRB_TAG=#frb_Tag#,
       FRB_TITLE=#frb_Title# WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
    </update>
 
