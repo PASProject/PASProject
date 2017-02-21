@@ -52,9 +52,26 @@
 						<c:otherwise>커뮤니티</c:otherwise>
 					</c:choose>
 				</td>
+				<!--qna?num=${MyPostBoardVo.num } -->
 				<td>${MyPostBoardVo.num }</td>
-				<td> <c:when test='${MyPostBoardVo.yn eq "0" }'>QnA게시판
-				<a href="<%=request.getContextPath()%>/main/myPostDetail_qna?num=${MyPostBoardVo.num }">${MyPostBoardVo.title}</a></c:when></td>
+				<td>
+				<c:choose>  
+					<c:when test='${MyPostBoardVo.yn eq "0" }'>
+					<a href="<%=request.getContextPath()%>/main/myPostDetail_qna?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
+					</c:when>
+					<c:when test='${MyPostBoardVo.yn eq "1" }'>
+					<a href="<%=request.getContextPath()%>/main/myPostDetail_qna?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
+					</c:when>
+					<c:when test='${MyPostBoardVo.ssb_y_n eq skill }'>
+					<a href="<%=request.getContextPath()%>/main/myPostDetail_skill?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
+					</c:when>
+					
+					<c:otherwise>
+					<a href="<%=request.getContextPath()%>/main/myPostDetail_frb?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
+					</c:otherwise>
+					
+				</c:choose>
+				</td>
 				<td>${MyPostBoardVo.dt }</td>
 				<td>${MyPostBoardVo.cnt}</td>
 				

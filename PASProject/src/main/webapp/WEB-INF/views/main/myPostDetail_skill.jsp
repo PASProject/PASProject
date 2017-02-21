@@ -15,29 +15,29 @@
 <div class="col-md-10" id="content">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>내가쓴글읽기</small>
+			기술공유<small>내가쓴글읽기</small>
 		</h2>
 		
 					<table class="table" style="border-top: 2px;">
 					<tr style="border-top: 2px solid #ddd">
 						<td class="col-md-9"><h3
 								style="margin-top: 10px; margin-bottom: 10px">
-								<b>${qnaBoardVo.qb_Title}</b>
+								<b>${skillSharingBoardVo.ssb_Title}</b>
 							</h3></td>
 						<td class="col-md-1"
 							style="vertical-align: middle; text-align: right"><span
 							style="font-size: 13px">조회수</span>&nbsp; <span
-							style="font-size: 11px;"> ${qnaBoardVo.qb_Inq_Count }</span></td>
+							style="font-size: 11px;"> ${skillSharingBoardVo.ssb_Inq_Count }</span></td>
 						<td class="col-md-2"
 							style="vertical-align: middle; text-align: right"><span
 							style="font-size: 11px"><fmt:formatDate
-									value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
+									value="${skillSharingBoardVo.ssb_wt_date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
 					</tr>
 					<tr>
-						<td colspan="3">${qnaBoardVo.mem_Email }</td>
+						<td colspan="3">${skillSharingBoardVo.mem_Email }</td>
 					</tr>
 					<tr>
-						<td colspan="3">${qnaBoardVo.qb_Content}<br>
+						<td colspan="3">${skillSharingBoardVo.ssb_Content}<br>
 						</td>
 					</tr>
 					
@@ -53,10 +53,11 @@
 					
 					<tr>
 						<td>
-							관리자 답변 ><br>
-							<c:if test ='${qnaBoardVo.qb_yn eq "1"}'>
-								${qnaBoardReplyVo.qb_Reply_Content}
-							</c:if>
+							댓글 ><br>
+							작성자 :${skillSharingBoardReplyVo.ssb_Reply_Mem_Name}
+							<br>
+							내용: ${skillSharingBoardReplyVo.ssb_Reply_Content}
+						
 						</td>
 					</tr>
 					

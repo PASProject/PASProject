@@ -6,12 +6,20 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	
+
 	<select id="myPostBoard_Qna" resultClass="QnaBoard" parameterClass="QnaBoard">
 		SELECT * FROM QNA_BOARD
 		WHERE 
-		MEM_EMAIL LIKE '%'||#mem_Email#||'%'
+		QB_ARTICLE_NUM = #qb_Article_Num#
 	</select>
+	
+	<select id="myPostBoard_Skill" resultClass="SkillSharingBoard" parameterClass="SkillSharingBoard">
+		SELECT * FROM SKILL_SHARING_BOARD
+		WHERE
+		SSB_ARTICLE_NUM = #ssb_Article_Num#
+	</select>
+	
+	
 	
 	<select id="myPostBoard_frb" resultClass="FreeBoard" parameterClass="FreeBoard">
 		SELECT * FROM Free_Like_Count_View
@@ -19,11 +27,6 @@
 		MEM_EMAIL like '%'||#mem_Email#||'%'
 	</select>
 	
-	<select id="myPostBoard_Skill" resultClass="SkillSharingBoard" parameterClass="SkillSharingBoard">
-		SELECT * FROM Skill_Like_Count_View
-		WHERE
-		MEM_EMAIL like '%'||#mem_Email#||'%'
-	</select>
 	
 	
 	<select id="MyPostBoard" resultClass="MyPostBoardVo" parameterClass="MyPostBoardVo">

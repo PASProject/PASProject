@@ -7,6 +7,7 @@ import com.app.pas.dao.MainDao;
 import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.dto.board.SkillSharingBoardReplyVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.sun.security.ntlm.Client;
@@ -19,9 +20,9 @@ public class MainDaoImpl implements MainDao{
 	}
 //내가쓴글 보기 Qna
 	@Override
-	public List<QnaBoardVo> myPostBoard_Qna(QnaBoardVo qnaBoardVo) throws SQLException {
-		List<QnaBoardVo> list = client.queryForList("myPostBoard_Qna",qnaBoardVo);
-		return list;
+	public QnaBoardVo myPostBoard_Qna(QnaBoardVo qnaBoardVo) throws SQLException {
+		QnaBoardVo qnaBoardVO = (QnaBoardVo)client.queryForObject("myPostBoard_Qna", qnaBoardVo);
+		return qnaBoardVO;
 	}
 //커뮤니티
 	@Override
@@ -32,16 +33,26 @@ public class MainDaoImpl implements MainDao{
 	}
 //기술공유
 	@Override
-	public List<SkillSharingBoardVo> myPostBoard_Skill(
+	public SkillSharingBoardVo myPostBoard_Skill(
 			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
-		List<SkillSharingBoardVo> list = client.queryForList("myPostBoard_Skill",skillSharingBoardVo);
-		return list;
+		SkillSharingBoardVo skillSharingBoardVO = (SkillSharingBoardVo)client.queryForObject("myPostBoard_Skill",skillSharingBoardVo);
+		return skillSharingBoardVO;
 	}
+
+	
 	@Override
 	public List<MyPostBoardVo> MyPostBoard(MyPostBoardVo myPostBoardVo)
 			throws SQLException {
 		List<MyPostBoardVo> list = client.queryForList("MyPostBoard",myPostBoardVo);
 		return list;
+	}
+	@Override
+	public SkillSharingBoardReplyVo selectSkillSharingBoardReply(
+			int ssb_Article_Num)
+			throws SQLException {
+		SkillSharingBoardReplyVo skillSharingBoardReplyVO = (SkillSharingBoardReplyVo)
+				client.queryForObject("selectSkillSharingBoardReply", ssb_Article_Num);
+		return skillSharingBoardReplyVO;
 	}
 
 }
