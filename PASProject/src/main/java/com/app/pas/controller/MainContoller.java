@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.app.pas.commons.Paging;
 import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
@@ -37,10 +38,14 @@ import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.InviteService;
+import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
-import com.sun.mail.iap.Response;
+import com.app.pas.service.board.QnaBoardService;
 
 @Controller
 @RequestMapping("/main")
@@ -62,6 +67,12 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
+	@Autowired
+	MainService mainService;
+	
+	@Autowired
+	QnaBoardService qnaBoardService; 
+	
 
 	//공지팝업
 	@RequestMapping(value="/tempNotice")
@@ -70,13 +81,50 @@ public class MainContoller {
 	return url;
 		
 	}
-	
+	//내가 쓴 글 보기
+	@RequestMapping(value ="/myPostBoard")
+	public String myPostBoard(HttpSession session, Model model,
+			QnaBoardVo qnaBoardVo,FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, String page) throws SQLException {
+		String url = "main/myPostBoard";
+		if (session.getAttribute("proj_Num") != null) {
+			session.removeAttribute("proj_Num");
+		}
+		if (session.getAttribute("joinProj") != null
+				|| session.getAttribute("joinProj") != "null") {
+			session.removeAttribute("joinProj");
+		}
+		if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+			session.removeAttribute("joinProjectVo");
+		}
+		List<QnaBoardVo> myPostQnaList = new ArrayList<QnaBoardVo>();
+		List<FreeBoardVo> myPostFrbList = new ArrayList<FreeBoardVo>();
+		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		String sessionMem_Name = memberVo.getMem_Name();
+		model.addAttribute("sessionMem_Name", sessionMem_Name);
+		
+		qnaBoardVo.setMem_Email(mem_Email);
+		freeBoardVo.setMem_Email(mem_Email);
+		skillSharingBoardVo.setMem_Email(mem_Email);
+		
+		myPostQnaList= mainService.myPostBoard_Qna(qnaBoardVo);
+		myPostFrbList = mainService.myPostBoard_frb(freeBoardVo);
+		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
+		
+		model.addAttribute("myPostQnaList", myPostQnaList);
+		model.addAttribute("myPostFrbList", myPostFrbList);
+		model.addAttribute("myPostSkillList", myPostSkillList);
 
-	/**
-	 * @param session
-	 * @param model
-	 * @return
-	 */
+		
+		
+		return url;
+	}
+	
+	
+	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
@@ -217,9 +265,7 @@ public class MainContoller {
 	
 		projectVo.setMem_Email(mem_Email);
 		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
-		
-		if (proj_Search == "" || proj_Search.equals(null)) {
-			if (session.getAttribute("proj_Num") != null) {
+		if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
 			}
 
@@ -231,25 +277,16 @@ public class MainContoller {
 				|| session.getAttribute("joinProjectVo") != "null") {
 				session.removeAttribute("joinProjectVo");
 			}
-		}else{
-			if (session.getAttribute("proj_Num") != null) {
-				session.removeAttribute("proj_Num");
-				}
-
-				if (session.getAttribute("joinProj") != null
-				|| session.getAttribute("joinProj") != "null") {
-					session.removeAttribute("joinProj");
-				}
-				if (session.getAttribute("joinProjectVo") != null
-				|| session.getAttribute("joinProjectVo") != "null") {
-					session.removeAttribute("joinProjectVo");
-				}
+		
+		if (proj_Search == "" || proj_Search.equals(null)) {
+		
+			}else{
 				projectVo.setProj_Search(proj_Search);
 				
-			}
-			model.addAttribute("myProjectList", list);
-			return url;
-	}
+				}
+				model.addAttribute("myProjectList", list);
+				return url;
+		}
 //---------------------------------------------------------------------------------
 //외부 프로젝트
 	@RequestMapping("/otherProject")

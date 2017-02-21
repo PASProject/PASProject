@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Main">
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	
+	<select id="myPostBoard_Qna" resultClass="QnaBoard" parameterClass="QnaBoard">
+		SELECT * FROM QNA_BOARD
+		WHERE 
+		MEM_EMAIL LIKE '%'||#mem_Email#||'%'
+	</select>
+	
+	<select id="myPostBoard_frb" resultClass="FreeBoard" parameterClass="FreeBoard">
+		SELECT * FROM Free_Like_Count_View
+		WHERE
+		MEM_EMAIL like '%'||#mem_Email#||'%'
+	</select>
+	
+	<select id="myPostBoard_Skill" resultClass="SkillSharingBoard" parameterClass="SkillSharingBoard">
+		SELECT * FROM Skill_Like_Count_View
+		WHERE
+		MEM_EMAIL like '%'||#mem_Email#||'%'
+	</select>
+	
+	
+</sqlMap>
+
+
