@@ -67,12 +67,22 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
+
 	@Autowired
 	MainService mainService;
 	
 	@Autowired
 	QnaBoardService qnaBoardService; 
 	
+
+
+	//연습용
+		@RequestMapping(value="/temp")
+		public String temp(HttpSession session, Model model){
+		String url = "/main/temp";
+		return url;
+			
+		}
 
 	//공지팝업
 	@RequestMapping(value="/tempNotice")
@@ -672,5 +682,7 @@ public class MainContoller {
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
+	
+	
 	
 }

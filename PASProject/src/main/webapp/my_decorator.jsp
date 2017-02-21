@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="overflow:scroll;">
 
 
 <head>
@@ -156,6 +156,22 @@ $(function(){
 
 <!--  -->
 <style>
+#submenu{
+ -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#content{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}  
+  
+body.modal-open{
+  margin-left:18px;
+  }
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
@@ -163,6 +179,7 @@ $(function(){
 }
 </style>
 <style>
+
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
@@ -300,7 +317,6 @@ $(function(){
 <title>최종!</title>
 <body >
 	<header>
-
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
 
@@ -466,6 +482,8 @@ $(function(){
 				</div>
 			</div>
 		</div>
+	
+	
 		
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">

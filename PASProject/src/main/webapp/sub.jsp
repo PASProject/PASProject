@@ -39,6 +39,7 @@ font-weight:bold;
 <!-- <div class="container">
 	<div class="row"> -->
 <!-- 		<div class="col-sm-3 col-md-3"> -->
+
 <div class="panel-group" id="accordion">
 
 
@@ -270,6 +271,7 @@ font-weight:bold;
 		</div>
 	</div>
 </div>
+<hr style="border: 1px solid; border-color: #ddd">
 <!-- 		</div> -->
 <div class="panel-group" id="accordion">
 	<div class="panel panel-default">
@@ -412,8 +414,53 @@ font-weight:bold;
 			</div>
 		</div>
 	</div>
-</div>
 
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a id="collapseEight" style="text-decoration: none;" href="#collapseEight"><img src="<%=request.getContextPath() %>/resources/img/resize.png"><span>&nbsp;&nbsp;&nbsp;리사이징</span></a>
+			</h4>
+		</div>
+		<!-- <div id="collapseSeven" class="panel-collapse collapse">
+			<div class="panel-body">
+			</div>
+		</div> -->
+	</div>
+</div>
+<script>
+
+
+/* 	$('#collapseEight').toggle(function(){			
+		$('#content').removeClass('col-md-10').addClass('col-md-11');
+		$('#submenu').removeClass('col-md-2').addClass('col-md-1');
+	})
+	
+	 */
+	
+	function decrease(){
+		$('#content').removeClass('col-md-10').addClass('col-md-11');
+		$('#submenu').removeClass('col-md-2').addClass('col-md-1');
+		$('.panel-title>a>span').hide();
+		$('.panel-title').css('text-align','center')
+		$('#collapseEight').one("click",increase);
+	}
+	
+	function increase(){
+		$('#content').removeClass('col-md-11').addClass('col-md-10');
+		$('#submenu').removeClass('col-md-1').addClass('col-md-2');
+		$('.panel-title>a>span').show();
+		$('.panel-title').css({
+			'text-align':'left'
+		})
+		$('#collapseEight').one("click",decrease);
+
+	}
+$(function(){
+	$('#collapseEight').one('click',decrease);
+
+})
+</script>
 
 <!-- 	</div>
 </div> -->
