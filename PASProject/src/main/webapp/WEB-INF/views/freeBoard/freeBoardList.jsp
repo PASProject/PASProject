@@ -58,8 +58,9 @@
                   begin="${paging.beginNo}" end="${paging.endNo}">
                   <tr id="boardContents">
                      <td style="text-align: center">${freeBoardVo.frb_Article_Num }</td>
-                     <td><a
-                        href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
+                     
+                     <td><div>${freeBoardVo.frb_Tag}</div>
+                     <h4><a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></h4></td>
                      <td>${freeBoardVo.mem_Name}</td>
                      <td style="text-align: center"><fmt:formatDate
                            value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
@@ -188,6 +189,9 @@
 
    
    <script>
+   	
+   		
+   
       function freeBoardList(){
          location.href ="freeBoardList";
       }

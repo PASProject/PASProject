@@ -271,11 +271,13 @@ public class FreeBoardController {
    @RequestMapping(value="/freeBoardInsert",method=RequestMethod.POST)
    public String insertFreeBoard(HttpSession session,FreeBoardVo freeBoardVo) throws SQLException{
       String url = "redirect:freeBoardList";
-      
+      System.out.println(freeBoardVo);
       MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
       String mem_Email = memberVo.getMem_Email();
       String mem_Name = memberVo.getMem_Name();
-            
+      if(freeBoardVo.getFrb_Tag()==""){
+    	  freeBoardVo.setFrb_Tag("#");
+      }
       freeBoardVo.setMem_Email(mem_Email);
       freeBoardVo.setMem_Name(mem_Name);
       freeBoardVo.setFrb_Kind("1");

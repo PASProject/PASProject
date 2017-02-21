@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
+
 .glyphicon {
 	margin-right: 10px;
 }
@@ -51,7 +52,7 @@ font-weight:bold;
 	<%--프로젝트 이미지 수정해야함 --%>
 
 	<img class="img-thumbnail" id="proj_Img"
-		style="cursor: pointer; border: 1px solid #ddd; margin-bottom: 15px;"
+		style="width: 180px; height:130px; cursor: pointer; border: 1px solid #ddd; margin-bottom: 15px;"
 		src="<%=request.getContextPath()%>/resources/upload2/${sessionScope.joinProjectVo.proj_Img}"
 		data-toggle="modal" data-target="#imgUploadModal2"
 		data-keyboard="false" data-backdrop="static"

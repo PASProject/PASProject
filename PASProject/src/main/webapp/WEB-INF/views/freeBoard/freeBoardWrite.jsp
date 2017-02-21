@@ -25,7 +25,7 @@
 								<label for="subject" class="col-lg-2 control-label">제목</label>
 								<div class="col-lg-10">
 									<input type="text" name="frb_Title" size="64"
-										class="form-control" id="subject" placeholder="제목">
+										class="form-control" id="frb_Title" placeholder="제목">
 								</div>
 							</div>
 							<div class="form-group">
@@ -38,15 +38,15 @@
 							<div class="form-group">
 								<label for="textArea" class="col-lg-2 control-label">태그</label>
 								<div class="col-lg-10">
-									<textarea class="form-control" rows="1" id="frb_Tag"
-										name="frb_Tag"></textarea>
-									<span class="help-block text-right">새해 복 많이 받으세요</span>
+									<input type="text" class="form-control" rows="1" id="frb_Tag"
+										name="frb_Tag">
+								<span class="help-block text-right">새해 복 많이 받으세요</span>
 								</div>
 							</div>
 
 							<div class="form-group text-right">
 								<div class="col-lg-10 col-lg-offset-2">
-									<button type="submit" class="btn btn-default">등록</button>
+									<input type="button" onclick="insertFrb()" class="btn btn-default" value="등록"/>
 									<button type="button" onclick="location.href='<%=request.getContextPath()%>/freeBoard/freeBoardList'" class="btn btn-default">취소</button>
 
 								</div>
@@ -56,5 +56,22 @@
 				</div>
 			</div>
 		
+<script>
+function insertFrb() {
+	var result = true;
+	if($('#frb_Title').val() == ""){
+		alert('제목을 작성해 주세요.')
+		result = false;
+	}else if($('#frb_Content').val() == ""){
+		alert('내용을 작성해 주세요.')
+		result = false;
+	}
+	if(result == true){
+	document.formm.method="post";
+	document.formm.submit();
+	}
+};
+
+</script>
 </body>
 </html>
