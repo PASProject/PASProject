@@ -35,6 +35,7 @@ public class WorkController {
 
 	@Autowired
 	SpreadSheetService spreadSheetService;
+	
 	@Autowired
 	DocumentService documentService;
 	
@@ -87,8 +88,16 @@ public class WorkController {
 		return url;
 	}
 	
+	@RequestMapping("selectDocument")
 	public String selectDocument(DocumentVo documentVo) throws SQLException{
-		String url = "redirect:";
+		
+		String url = "/work/spreadSheet";
+		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
+		if(selectVo ==null){ return "redirect:workList"; }
+		
+		if(selectVo.getDoc_Kind()==1){
+			
+		}
 		return url;
 	}
 

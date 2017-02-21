@@ -51,4 +51,9 @@ public class DocumentService {
 		}
 		return flag;
 	}
+	
+	public DocumentVo selectDocumentByDocNum(int doc_Num) throws SQLException{
+		DocumentVo documentVo = documentDao.selectDocumentByDocNum(doc_Num);
+		return documentVo;
+	}
 }
