@@ -8,6 +8,8 @@ import lombok.Data;
 
 
 
+
+
 @Alias("SkillSharingBoard")
 @Data
 public class SkillSharingBoardVo implements Serializable{

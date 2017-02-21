@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -59,8 +59,7 @@
 							href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
 								${qnaBoardVo.qb_Title}</a></td>
 						<td>${qnaBoardVo.mem_Name }</td>
-						<td style="text-align: center"><fmt:formatDate
-								value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
+						<td style="text-align: center">${qnaBoardVo.qb_Wt_Date}</td>
 						<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td>
 
 					</tr>
@@ -76,7 +75,7 @@
 
 <!-- if문 -->
 			<c:choose>
-			<c:when test='${!empty qnaBoardVo.mem_Email }'>
+			<c:when test='${!empty qnaBoardVo.mem_Email}'>
 							<script>
 							$(function(){
 								$('#ReadMyPost').hide();
