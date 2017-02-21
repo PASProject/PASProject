@@ -21,5 +21,7 @@ public class ProjectJoinService {
 		projectjoinDao.deleteProjectJoin(projectJoinVo);
 	}
 	
-	
+	public void updateProjectJoinColor(ProjectJoinVo projectJoinVo) throws SQLException{
+		projectjoinDao.updateProjectJoinColor(projectJoinVo);
+	}
 }

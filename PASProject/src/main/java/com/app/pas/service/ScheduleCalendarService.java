@@ -32,4 +32,11 @@ public class ScheduleCalendarService {
 		int flag = scheduleCalendarDao.deleteScheduleCalendar(sc_Num);
 		return flag;
 	}
+	public void updateScheduleCalendarColor(ScheduleCalendarVo scheduleCalendarVo) throws SQLException{
+		scheduleCalendarDao.updateScheduleCalendarColor(scheduleCalendarVo);
+	}
+	
+	public ScheduleCalendarVo selectScheduleCalendarByScNum (int sc_Num)throws SQLException{
+		return (ScheduleCalendarVo)scheduleCalendarDao.selectScheduleCalendarByScNum(sc_Num);
+	}
 }

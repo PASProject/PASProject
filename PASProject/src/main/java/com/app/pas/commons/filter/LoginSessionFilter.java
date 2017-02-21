@@ -64,7 +64,7 @@ public class LoginSessionFilter implements Filter {
        * }
        */
 
-      System.out.println(uri + "유알아이!");
+     
 
       int proj_Num = 1;
       int proj_NumN = 1;
@@ -85,9 +85,7 @@ public class LoginSessionFilter implements Filter {
          proj_Num = Integer.parseInt((String) session
                .getAttribute("joinProj"));
       }
-      System.out.println(proj_NumN+"옵니다!");
-
-      System.out.println(proj_Num + "갑니다!!!");
+      
 
       if (member == null || proj_Num != PROJNUM) {
          res.sendRedirect("/pas/index");
