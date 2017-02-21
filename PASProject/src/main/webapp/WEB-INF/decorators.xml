@@ -19,6 +19,7 @@
 
 
 	<excludes>
+		<pattern>*/messageList*</pattern>
 		<pattern>*/tempNotice*</pattern>
 	    <pattern>*/memberAuth*</pattern>
 	    <pattern>*/myPage*</pattern>
