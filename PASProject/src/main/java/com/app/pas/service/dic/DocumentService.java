@@ -1,6 +1,7 @@
 package com.app.pas.service.dic;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.app.pas.dao.dic.DocumentDao;
 import com.app.pas.dao.dic.SpreadSheetDao;
@@ -9,7 +10,7 @@ import com.app.pas.dto.dic.SpreadSheetVo;
 
 public class DocumentService {
 
-	private DocumentDao dictionaryDao;
+	private DocumentDao documentDao;
 	private SpreadSheetDao spreadSheetDao;
 	
 	
@@ -17,13 +18,17 @@ public class DocumentService {
 		this.spreadSheetDao = spreadSheetDao;
 	}
 
-	public void setDictionaryDao(DocumentDao dictionaryDao) {
-		this.dictionaryDao = dictionaryDao;
-	}
 	
+	
+	public void setDocumentDao(DocumentDao documentDao) {
+		this.documentDao = documentDao;
+	}
+
+
+
 	public boolean insertDictionarySpreadSeet(DocumentVo documentVo,SpreadSheetVo spreadSheetVo) throws SQLException{
-		dictionaryDao.insertDocument(documentVo);
-		DocumentVo selectLastVo = dictionaryDao.selectDocumentLastColumn();
+		documentDao.insertDocument(documentVo);
+		DocumentVo selectLastVo = documentDao.selectDocumentLastColumn();
 		spreadSheetVo.setDic_Num(selectLastVo.getDoc_Num());
 		int result = spreadSheetDao.insertSpreadSheet(spreadSheetVo);
 		boolean flag = false;
@@ -33,4 +38,17 @@ public class DocumentService {
 		return flag;
 	}
 	
+	public List<DocumentVo> selectDocumentListByProjNum(int proj_Num)throws SQLException{
+		List<DocumentVo> list = documentDao.selectDocumentListByProjNum(proj_Num);
+		return list;
+	}
+	
+	public boolean deleteDocumentByDocNum(DocumentVo documentVo) throws SQLException{
+		int result = documentDao.deleteDocumentByDocNum(documentVo.getDoc_Num());
+		boolean flag = false;
+		if(result==1){
+			flag = true;
+		}
+		return flag;
+	}
 }

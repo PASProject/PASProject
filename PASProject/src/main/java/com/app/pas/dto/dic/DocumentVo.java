@@ -17,5 +17,5 @@ public class DocumentVo {
 	private String doc_Name;
 	private Timestamp doc_Wt_Date;
 	private int proj_Num;
-	
+	private String doc_Img;
 }

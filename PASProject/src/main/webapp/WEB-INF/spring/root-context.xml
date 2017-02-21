@@ -75,5 +75,5 @@
 	
 	
 	<bean id="SpreadSheetService" class="com.app.pas.service.dic.SpreadSheetService" p:spreadSheetDao-ref="SpreadSheetDao"/>
-	<bean id="DocumentService" class="com.app.pas.service.dic.DocumentService" p:dictionaryDao-ref="DocumentDao" p:spreadSheetDao-ref="SpreadSheetDao"/>
+	<bean id="DocumentService" class="com.app.pas.service.dic.DocumentService" p:documentDao-ref="DocumentDao" p:spreadSheetDao-ref="SpreadSheetDao"/>
 </beans>

@@ -7,8 +7,8 @@
    <typeAlias alias="int" type="java.lang.Integer" />
    
    <update id="insertDocument" parameterClass="Document">
-      insert into document(DOC_NUM,DOC_KIND,MEM_EMAIL,MEM_NAME,DOC_NAME,PROJ_NUM) 
-	  VALUES(DOCUMENT_SEQ.NEXTVAL,#doc_Kind#,#mem_Email#,#mem_Name#,#doc_Name#,#proj_Num#)
+      insert into document(DOC_NUM,DOC_KIND,MEM_EMAIL,MEM_NAME,DOC_NAME,PROJ_NUM,DOC_IMG) 
+	  VALUES(DOCUMENT_SEQ.NEXTVAL,#doc_Kind#,#mem_Email#,#mem_Name#,#doc_Name#,#proj_Num#,#doc_Img#)
    </update>
    
    <select id="selectDocumentLastColumn" resultClass="Document">
@@ -18,4 +18,7 @@
    <select id="selectDocumentListByProjNum" parameterClass="int" resultClass="Document" >
    		select * from document where proj_Num = #proj_Num#
    </select> 
+   <update id="deleteDocumentByDocNum" parameterClass="int">
+   		delete from document where doc_Num = #doc_Num#
+   </update>
 </sqlMap>

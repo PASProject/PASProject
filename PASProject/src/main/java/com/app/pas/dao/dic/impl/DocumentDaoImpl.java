@@ -28,5 +28,11 @@ public class DocumentDaoImpl implements DocumentDao{
 		List<DocumentVo> list = client.queryForList("selectDocumentListByProjNum",proj_Num);
 		return list;
 	}
+	@Override
+	public int deleteDocumentByDocNum(int doc_Num)
+			throws SQLException {
+		int result = client.update("deleteDocumentByDocNum",doc_Num);
+		return result;
+	}
 
 }

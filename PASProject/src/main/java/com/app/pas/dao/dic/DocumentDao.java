@@ -9,5 +9,6 @@ public interface DocumentDao {
 
 	public void  insertDocument(DocumentVo documentVo) throws SQLException;
 	public DocumentVo selectDocumentLastColumn() throws SQLException;
-	public List<DocumentVo> selectDocumentListByProjNum(int proj_Num)throws SQLException; 
+	public List<DocumentVo> selectDocumentListByProjNum(int proj_Num)throws SQLException;
+	public int deleteDocumentByDocNum(int doc_Num) throws SQLException;
 }

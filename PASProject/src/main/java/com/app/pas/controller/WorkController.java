@@ -1,7 +1,7 @@
 package com.app.pas.controller;
 
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,9 +39,11 @@ public class WorkController {
 	DocumentService documentService;
 	
 	@RequestMapping(value = "/workList", method = RequestMethod.GET)
-	public String loginForm(HttpSession session, Model model) {
+	public String loginForm(HttpSession session, Model model) throws NumberFormatException, SQLException {
 		String url = "/work/workList";
-		
+		String proj_Num = (String) session.getAttribute("joinProj");
+		List<DocumentVo> documentList = documentService.selectDocumentListByProjNum(Integer.parseInt(proj_Num));
+		model.addAttribute("documentList", documentList);
 		return url;
 	}
 	@RequestMapping(value="createWorkForm")
@@ -67,6 +69,7 @@ public class WorkController {
 		documentVo.setMem_Email(memberVo.getMem_Email());
 		documentVo.setMem_Name(memberVo.getMem_Name());
 		documentVo.setProj_Num(Integer.parseInt(proj_Num));
+		documentVo.setDoc_Img("excel.png");
 		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
 		spreadSheetVo.setSp_Content(sp_Content);
 		boolean flag = documentService.insertDictionarySpreadSeet(documentVo,spreadSheetVo);
@@ -74,7 +77,20 @@ public class WorkController {
 		
 	}
 	
+	@RequestMapping("deleteDocument")
+	public String deleteDocument(DocumentVo documentVo)throws SQLException{
+		String url ="redirect:workList";
+		boolean flag = documentService.deleteDocumentByDocNum(documentVo);
+		if(!flag){
+			url = "";
+		}
+		return url;
+	}
 	
+	public String selectDocument(DocumentVo documentVo) throws SQLException{
+		String url = "redirect:";
+		return url;
+	}
 
 
 }
