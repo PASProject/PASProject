@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="overflow:scroll;">
 
 
 <head>
@@ -156,6 +156,22 @@ $(function(){
 
 <!--  -->
 <style>
+#submenu{
+ -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#content{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}  
+  
+body.modal-open{
+  margin-left:18px;
+  }
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
@@ -163,6 +179,7 @@ $(function(){
 }
 </style>
 <style>
+
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
@@ -298,9 +315,8 @@ $(function(){
 
 </head>
 <title>최종!</title>
-<body style="overflow:hidden;">
+<body >
 	<header>
-
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
 
@@ -408,9 +424,10 @@ $(function(){
 									data-backdrop="static">내 정보 수정</a></li>
 								<li><a href="#">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
-								<li><a href="#">내가 작성한 게시물</a></li>
-								<li><a href="#">내가 작성한 댓글</a></li>
-								<li class="divider"></li>
+
+								<li><a href="<%= request.getContextPath()%>/main/myPostBoard">내가 작성한 게시물</a></li>
+
+												<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
 							</ul></li>
@@ -465,6 +482,8 @@ $(function(){
 				</div>
 			</div>
 		</div>
+	
+	
 		
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">
