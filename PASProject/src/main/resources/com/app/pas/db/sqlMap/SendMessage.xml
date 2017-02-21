@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Message">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	
+	
+	<select id="selectSendMessage" resultClass="SendMessage" parameterClass="SendMessage">
+		SELECT * FROM SEND_MESSAGE
+		WHERE 
+		SM_TITLE LIKE '%'||#sm_Title#||'%' and
+		SM_CONTENT LIKE '%'||#sm_Content#||'%' and
+		MEM_EMAIL LIKE '%'||#mem_Email#||'%' and
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		SM_ARTICLE_NUM = #sm_Article_Num#	 
+		ORDER BY QB_ARTICLE_NUM DESC
+	</select>
+	
+	<insert id="insertSendMessage" parameterClass="SendMessage">
+		INSERT INTO
+		SEND_MESSAGE(SM_ARTICLE_NUM,SM_TITLE,SM_CONTENT,MEM_EMAIL,MEM_NAME )
+		VALUES(SEND_MESSAGE_SEQ.NEXTVAL,#sm_Title#,#sm_Content#,#mem_Email#,#mem_Name#)
+	</insert>
+	
+	<update id="updateSendMessageReadYN" parameterClass="int">
+		UPDATE SEND_MESSAGE SET SM_READ_YN=1
+		WHERE SM_ARTICLE_NUM = #sm_Article_Num#
+	</update>
+	
+	<update id="updateSendMessageDelYN" parameterClass="int">
+		UPDATE SEND_MESSAGE SET SM_DEL_YN=1
+		WHERE SM_ARTICLE_NUM = #sm_Article_Num#
+	</update>
+	
+	<delete id="deleteMessage" parameterClass="int">
+		DELETE FROM SEND_MESSAGE
+		WHERE SM_ARTICLE_NUM=#sm_Article_Num#
+	</delete>
+	
+	
+</sqlMap>

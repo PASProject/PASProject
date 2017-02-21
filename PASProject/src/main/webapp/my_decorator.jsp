@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="overflow:scroll;">
 
 
 <head>
@@ -167,6 +167,22 @@ $(function(){
 
 <!--  -->
 <style>
+#submenu{
+ -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#content{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}  
+  
+body.modal-open{
+  margin-left:18px;
+  }
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
@@ -174,6 +190,7 @@ $(function(){
 }
 </style>
 <style>
+
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
@@ -309,9 +326,8 @@ $(function(){
 
 </head>
 <title>최종!</title>
-<body>
+<body >
 	<header>
-
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
 
@@ -324,10 +340,6 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 
-					<ul class="nav navbar-nav navbar-left" id="a">
-						<li>PAS</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" id="a">
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -409,9 +421,9 @@ $(function(){
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
-							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
-								<li><a href="#" onclick="imgUploadModal();"> <img
-										class="img-thumbnail"
+							<ul class="dropdown-menu" role="menu" style="min-width: 144px;" >
+								<li><a href="#" style="text-align:center;"onclick="imgUploadModal();"> <img
+										class="img-thumbnail" 
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
 										data-keyboard="false" data-backdrop="static" id="profileImg"
@@ -424,6 +436,7 @@ $(function(){
 								<li><a href="#">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 								<li><a href="#">내가 작성한 게시물</a></li>
+								<li><a href="#">내가 작성한 댓글</a></li>
 								<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
@@ -479,6 +492,8 @@ $(function(){
 				</div>
 			</div>
 		</div>
+	
+	
 		
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">

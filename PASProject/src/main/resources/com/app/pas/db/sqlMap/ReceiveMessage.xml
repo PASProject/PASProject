@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Message">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	
+	
+	<select id="selectReceiveMessage" resultClass="ReceiveMessage" parameterClass="ReceiveMessage">
+		SELECT * FROM RECEIVE_MESSAGE
+		WHERE 
+		RM_TITLE LIKE '%'||#rm_Title#||'%' and
+		RM_CONTENT LIKE '%'||#rm_Content#||'%' and
+		MEM_EMAIL LIKE '%'||#mem_Email#||'%' and
+		MEM_NAME LIKE '%'||#mem_Name#||'%' and
+		RM_ARTICLE_NUM = #rm_Article_Num#	 
+		ORDER BY QB_ARTICLE_NUM DESC
+	</select>
+	
+	<insert id="insertReceiveMessage" parameterClass="ReceiveMessage">
+		INSERT INTO
+		Receive_MESSAGE(RM_ARTICLE_NUM,RM_TITLE,RM_CONTENT,MEM_EMAIL,MEM_NAME )
+		VALUES(RECEIVE_MESSAGE_SEQ.NEXTVAL,#rm_Title#,#rm_Content#,#mem_Email#,#mem_Name#)
+	</insert>
+	
+	<update id="updateReceiveMessageReadYN" parameterClass="int">
+		UPDATE RECEIVE_MESSAGE SET RM_READ_YN=1
+		WHERE RM_ARTICLE_NUM = #rm_Article_Num#
+	</update>
+	
+	<update id="updateReceiveMessageDelYN" parameterClass="int">
+		UPDATE RECEIVE_MESSAGE SET RM_DEL_YN=1
+		WHERE RM_ARTICLE_NUM = #rm_Article_Num#
+	</update>
+	
+	<delete id="deleteReceiveMessage" parameterClass="int">
+		DELETE FROM RECEIVE_MESSAGE
+		WHERE RM_ARTICLE_NUM=#rm_Article_Num#
+	</delete>
+	
+	
+</sqlMap>

@@ -62,7 +62,13 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
-
+	//연습용
+		@RequestMapping(value="/temp")
+		public String temp(HttpSession session, Model model){
+		String url = "/main/temp";
+		return url;
+			
+		}
 	//공지팝업
 	@RequestMapping(value="/tempNotice")
 	public String tempNotice(HttpSession session, Model model){
@@ -633,5 +639,7 @@ public class MainContoller {
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
+	
+	
 	
 }
