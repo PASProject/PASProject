@@ -16,7 +16,8 @@
 	SELECT * FROM Skill_Like_Count_View
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		SSB_TITLE LIKE '%'||#ssb_Title#||'%' and
-		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and 
+		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and
+		SSB_TAG LIKE '%'||#ssb_Tag#||'%' and
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>
@@ -29,7 +30,7 @@
 		SELECT COUNT(*) FROM Skill_Like_Count_View
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		SSB_TITLE LIKE '%'||#ssb_Title#||'%' and
-		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and 
+		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>
@@ -44,7 +45,8 @@
 		SELECT * FROM Skill_Like_Count_View
 		WHERE MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		SSB_TITLE LIKE '%'||#ssb_Title#||'%' and
-		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and 
+		SSB_CONTENT LIKE '%'||#ssb_Content#||'%' and
+		SSB_TAG LIKE '%'||#ssb_Tag#||'%' and
 		<isGreaterThan prepend="and" property="ssb_Article_Num" compareValue="0">
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 		</isGreaterThan>
@@ -109,13 +111,13 @@
 
 	<insert id="insertSkillSharingBoard" parameterClass="SkillSharingBoard">
 		INSERT INTO
-		SKILL_SHARING_BOARD(SSB_ARTICLE_NUM,SSB_CONTENT,SSB_TITLE,MEM_EMAIL,MEM_NAME) 
-		VALUES(SKILL_SHARING_BOARD_SEQ.NEXTVAL,#ssb_Content#,#ssb_Title#,#mem_Email#,#mem_Name#)
+		SKILL_SHARING_BOARD(SSB_ARTICLE_NUM,SSB_CONTENT,SSB_TITLE,MEM_EMAIL,MEM_NAME,SSB_TAG) 
+		VALUES(SKILL_SHARING_BOARD_SEQ.NEXTVAL,#ssb_Content#,#ssb_Title#,#mem_Email#,#mem_Name#,#ssb_Tag#)
 	</insert>
 
 
 	<update id="updateSkillSharingBoard" parameterClass="SkillSharingBoard">
-		UPDATE SKILL_SHARING_BOARD SET SSB_CONTENT=#ssb_Content#, SSB_TITLE=#ssb_Title#, ssb_Inq_Count=ssb_Inq_Count+1
+		UPDATE SKILL_SHARING_BOARD SET SSB_CONTENT=#ssb_Content#, SSB_TITLE=#ssb_Title#, SSB_TAG=#ssb_Tag#, ssb_Inq_Count=ssb_Inq_Count+1
 		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
 	</update>
 	
