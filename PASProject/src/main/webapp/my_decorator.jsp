@@ -341,6 +341,7 @@ $(function(){
 					id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right" id="a">
+
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/myProject"><p>참여
