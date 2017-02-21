@@ -3,20 +3,20 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style>
-</style>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -32,6 +32,7 @@
 
 	<table style="width: 83%">
 		<tr>
+			<th></th>
 			<th>회원이메일</th>
 			<th>회원이름</th>
 			<th>회원전화번호</th>
@@ -41,22 +42,21 @@
 		<c:forEach items="${memberList }" var="memberVo"
 			begin="${paging.beginNo}" end="${paging.endNo}" varStatus="status">
 			<tr>
+				<td><input name= "check" type="checkbox" value='${memberVo.mem_Email}'></td>
 				<td><a href="#" data-toggle="modal"
-					onclick="goModal('${memberVo.mem_Email}','${status.index}')" 
+					onclick="goModal('${memberVo.mem_Email}','${status.index}')"
 					data-target="#${status.index }" data-keyboard="false"
-					data-backdrop="static">${memberVo.mem_Email} </a> 
-					
-					<!-- Modal -->
+					data-backdrop="static">${memberVo.mem_Email} </a> <!-- Modal -->
 					<div class="modal fade" id="${status.index }" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
-								${memberVo.mem_Name } 님의  참여 프로젝트
+									${memberVo.mem_Name } 님의 참여 프로젝트
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"></h4>
 								</div>
-								<div class="modal-body" id="${status.index}body"></div> 
+								<div class="modal-body" id="${status.index}body"></div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default"
 										data-dismiss="modal">Close</button>
@@ -67,16 +67,25 @@
 				<td>${memberVo.mem_Name}</td>
 				<td>${memberVo.mem_Phone }</td>
 				<td>${memberVo.mem_Join_Date }</td>
-				<td>${memberVo.quit_Check }</td>
-				<td><input type="button" value="제명"
-					onclick="go_delete('${memberVo.mem_Email}')"></td>
+				<td><select id="quitCheck" name="quitCheck" 
+				onchange="change_go(this.value,'${memberVo.mem_Email}')">
+						<option value="y"
+							<c:if test="${memberVo.quit_Check=='y'}">selected="selected"</c:if>
+						>YES</option>
+						<option value="n"
+							<c:if test="${memberVo.quit_Check=='n'}">selected="selected"</c:if> 
+						>NO</option>
+				</select></td>
+				
+				
+					
 			</tr>
-
-
+			
+		
 
 
 		</c:forEach>
-
+		
 		<tr>
 			<td colspan="5" align="right"><c:if
 					test="${paging.finalPageNo>0}">
@@ -96,16 +105,49 @@
 				</c:if></td>
 		</tr>
 	</table>
+	<input type="button" value="제명" onclick="go_delete()">
 
 	<script>
+	
+	function check_go(value){
+		location.href = "memberDelete?mem_Email="+value;
+	}
+	
 	function go_Home(){
 			location.href = "<%=request.getContextPath()%>/index";
 
 	}
 	
+	function change_go(value,mem_Email){
+		
+		location.href = "memberQuitCheck?mem_Email="+mem_Email+"&quit_Check="+value;
+	}
+	
 	function go_delete(mem_Email) {		
 // 		$("input[name=mem_Email]").val();
-		location.href = "memberDelete?mem_Email="+mem_Email;
+		var ck = "";
+		$(":checkbox[name='check']:checked").each(function(i,ve){
+			ck +=ve.value+",";
+		});
+		alert('삭제가 완료되었습니다.');
+			 
+		location.href = "memberDelete?mem_Email="+ck;
+	}
+	
+	function go_cart_delete() {
+		var count = 0;
+		for (var i = 0; i < document.formm.cseq.length; i++) {
+			if (document.formm.cseq[i].checked == true) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			alert("삭제할 항목을 선택해 주세요.");
+
+		} else {
+			document.formm.action = "cartDelete.do";
+			document.formm.submit();
+		}
 	}
 	
 	function searchEmail(form) {

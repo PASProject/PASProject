@@ -298,7 +298,7 @@ $(function(){
 
 </head>
 <title>최종!</title>
-<body>
+<body style="overflow:hidden;">
 	<header>
 
 		<!-- Navigation -->
@@ -313,10 +313,6 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 
-					<ul class="nav navbar-nav navbar-left" id="a">
-						<li>PAS</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" id="a">
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -398,9 +394,9 @@ $(function(){
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
-							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
-								<li><a href="#" onclick="imgUploadModal();"> <img
-										class="img-thumbnail"
+							<ul class="dropdown-menu" role="menu" style="min-width: 144px;" >
+								<li><a href="#" style="text-align:center;"onclick="imgUploadModal();"> <img
+										class="img-thumbnail" 
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
 										data-keyboard="false" data-backdrop="static" id="profileImg"
@@ -412,7 +408,12 @@ $(function(){
 									data-backdrop="static">내 정보 수정</a></li>
 								<li><a href="#">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
+
 								<li><a href="<%= request.getContextPath()%>/main/myPostBoard">내가 작성한 게시물</a></li>
+
+								<li><a href="#">내가 작성한 게시물</a></li>
+								<li><a href="#">내가 작성한 댓글</a></li>
+
 								<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
@@ -553,9 +554,43 @@ $(function(){
 						id="submit" style="margin-left: 5px;">정보 수정하기</button>
 					<script>
 							$('#submit').click(function(){
-								var mem_Phone = $('#mem_Phone').val();
+								
+								
+								var Pass_result = true;
+								var Pass_CK = true;
+								var Phone_CK = true;
+								
+								 //전화번호 정규식	
+							    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+								var mem_Phone= $('#mem_Phone').val();
+							    	if(!Phone_Pt.test(mem_Phone)){
+							    		Phone_CK = false;
+									}else{
+										Phone_CK = true;
+									}
+								
+								//비밀번호 정규식
+							    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
+							    var Pass = 	$('#userPw').val();
+							    	if(!Pass_Pt.test(Pass)){
+										Pass_result = false;
+									}else{
+										Pass_result = true;
+									}
+							    	
+							    //비밀번호 확인 정규식
+							   	var Pass = $('#userPw').val();
+							    var Pass_Check= $('#userPw2').val();
+							    	if(Pass != Pass_Check){
+							    		Pass_CK = false;
+									}else{
+										Pass_CK = true;
+									}
+							    	
+							    if(Pass_result == true && Pass_CK == true){
+							    	
 								var mem_Pass = $('#userPw').val();
-								var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
+								var dataList = {'mem_Pass':mem_Pass};
 								$.ajax({
 									url: '<%=request.getContextPath()%>/main/updateMember',
 									type:'post',
@@ -574,6 +609,29 @@ $(function(){
 										alert('update Failed');
 									}
 								})
+								}else if(Phone_CK == true){
+									
+									var mem_Phone = $('#mem_Phone').val();
+									var dataList = {'mem_Phone':mem_Phone};
+									$.ajax({
+										url: '<%=request.getContextPath()%>/main/updateMember',
+										type:'post',
+										dataType:'json',
+										contentType:'application/json',
+										data:JSON.stringify(dataList),
+										success : function(data){
+											var i = data.T;
+											if(i=='1'){
+												location.reload();										
+											}else{
+												alert("실패");
+											}
+										},
+										failure: function(data){
+											alert('update Failed');
+										}
+									})
+									}
 							})
 							
 							

@@ -22,12 +22,19 @@ public class MemberDaoImpl implements MemberDao {
 		List<MemberVo> list = client.queryForList("selectMemberList");
 		return list;
 	}
+	
+	@Override
+	public List<MemberVo> selectMemList(String mem_Email) throws SQLException {
+		List<MemberVo> list = client.queryForList("selectMemberList", mem_Email);
+		return list;
+	}
 
 	@Override
 	public MemberVo selectMember(String mem_Email) throws SQLException {
 		MemberVo memberVo = (MemberVo) client.queryForObject("selectMember",mem_Email);
 		return memberVo;
 	}
+	
 
 	@Override
 	public void insertMember(MemberVo memberVo) throws SQLException {
@@ -138,6 +145,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public void updateMemberQuitCheck(MemberVo memberVo) throws SQLException {
+		client.update("updateMemberQuitCheck", memberVo);
+		
+	}
+
+
 	public String selectMemberPhone(String mem_Email) throws SQLException {
 		String mem_Phone = (String) client.queryForObject("selectMemberPhone", mem_Email);
 		return mem_Phone;
@@ -156,4 +169,5 @@ public class MemberDaoImpl implements MemberDao {
 		return memPositionViewVo;
 	}
 	
+
 }
