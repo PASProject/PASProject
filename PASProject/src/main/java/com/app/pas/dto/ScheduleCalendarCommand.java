@@ -14,11 +14,7 @@ public class ScheduleCalendarCommand {
 	private Date end;
 	private String title;
 	private String color;
-<<<<<<< HEAD
-	
-	
-=======
 	private String description;
 	private String id;
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
 }
