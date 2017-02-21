@@ -70,10 +70,21 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon">
 							<i class="glyphicon glyphicon-envelope"></i></span> 
-							<input name="mem_Email" placeholder="이메일 주소" class="form-control" type="text">
+							<input name="mem_Email" id="mem_Email" placeholder="이메일 주소" class="form-control" type="text">
 						</div>
 					</div>
 				</div>
+				<div class="form-group" style="text-align:right;">
+					<label class="col-md-6 control-label"></label>
+					<div class="col-md-4">
+					<span id="alreayUsed" style="display:none; color:red">중복된 이메일입니다.</span>
+						<button type="button" class="btn btn-warning" onclick="bb(this.form)" id="EamilCheck">
+							이메일 중복 체크 <span class="glyphicon glyphicon-send"></span>
+						</button>
+						
+					</div>
+				</div>
+				
 
 				<!-- Password -->
 				<div class="form-group has-feedback">
@@ -101,7 +112,7 @@ body {
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-repeat"></i></span> <input
 								class="form-control {$borderColor}" id="userPw2" type="password"
-								placeholder="Confirm password" name="mem_Pass_CK"
+								placeholder="비밀번호 확인" name="mem_Pass_CK"
 								data-match="#confirmPassword" data-minLength="5"
 								data-match-error="some error 2" required /> <span
 								class="glyphicon form-control-feedback"></span> <span
@@ -118,7 +129,7 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="mem_Name"
-								placeholder="이름" class="form-control" type="text">
+								id="mem_Name" placeholder="이름" class="form-control" type="text">
 						</div>
 					</div>
 				</div>
@@ -132,25 +143,111 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-earphone"></i></span> <input name="mem_Phone"
-								placeholder="하이픈(-) 포함한 비밀번호를 입력해 주세요" class="form-control" type="text">
+								id="mem_Phone" placeholder="하이픈 제외하고 입력해주세요   ex)01055557777" class="form-control" type="text">
 						</div>
 					</div>
 				</div>
-
+ 
 				<!-- Button -->
 				<div class="form-group" style="text-align:right;">
 					<label class="col-md-6 control-label"></label>
 					<div class="col-md-4">
-						<button type="button" class="btn btn-warning" onclick="aa(this.form)" >
+						<button type="button" class="btn btn-warning" onclick="aa(this.form)" id="joinBtn">
 							확인 <span class="glyphicon glyphicon-send"></span>
 						</button>
 					</div>
 				</div>
 			<script type="text/javascript">
+			/* $(function(){
+				if()
+			}) */
+			var EC_Result = false;
+			
+			function setEmailCheck(result){
+				EC_Result = result;
+			}
+			function bb(form){
+				var result = false;
+				if($('#mem_Email').val() == ""){
+					result = false;
+				}
+				$.ajax({
+					url : "main/EmailCheck",
+					type : 'post',
+					data : $('#reg_form').serialize(),
+					dataType : 'json',
+					success : function(result){
+						if(result){
+							alert('ㅇㅇㅇㅇㅇㅇ');
+							$('#EamilCheck').text('사용할 수 있는 이메일 입니다.');
+							
+						}else{
+							alert('중복');
+							$('#alreayUsed').fadeIn();
+						}
+						setEmailCheck(result);
+					},
+				 error : function(result){
+						alert('망');
+					}
+				})
+				
+			}
 			function aa(form){
-				form.action = "main/join"
-				form.method = "POST"
-				form.submit();
+				
+			//이메일 정규식	
+			var E_Result = true;
+			var Email_Pt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            var Email= $('#mem_Email').val();
+				if(!Email_Pt.test(Email)){
+					E_Result = false;
+				}else{
+					E_Result = true;
+				}
+		    //비밀번호 정규식
+		    var P_Result = true;
+		    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
+		    var Pass = 	$('#userPw').val();
+		    	if(!Pass_Pt.test(Pass)){
+		    		P_Result = false;
+				}else{
+					P_Result = true;
+				}
+		    //비밀번호 확인 정규식
+		    var PC_Result = true;
+		   	var Pass = $('#userPw').val();
+		    var Pass_Check= $('#userPw2').val();
+		    	if(Pass != Pass_Check){
+		    		PC_Result = false;
+				}else{
+					PC_Result = true;
+				}
+			//이름 정규식
+			var N_Result = true;
+		    var name_Pt = /^[가-힝]{2,5}$/;
+		    var mem_name= $('#mem_Name').val();
+		    	if(!name_Pt.test(mem_name)){
+		    		N_Result = false;
+				}else{
+					N_Result = true;
+				}	
+		    //전화번호 정규식	
+		    var PH_Result = true;
+		    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+			var mem_Phone= $('#mem_Phone').val();
+		    	if(!Phone_Pt.test(mem_Phone)){
+		    		PH_Result = false;
+				}else{
+					PH_Result = true;
+				}	
+			
+				if(E_Result == true && EC_Result == true && 
+				   P_Result == true && PC_Result == true &&
+				   N_Result == true && PH_Result == true ){
+					form.action = "main/join"
+					form.method = "POST"
+					form.submit();
+				}
 			}
 			</script>
 		</form>

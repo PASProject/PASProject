@@ -89,10 +89,10 @@
 									비밀번호 <span id="null"
 									style="font-size: 12px; font-weight: normal; padding-left: 15px;">
 										올바른 비밀번호를 입력하세요 </span> <span id="newPwd" style="display: none;"
-									class="alert alert-success"> <strong>비밀번호 일치!</strong>
+									class="alert alert-success"> <strong>새 비밀번호를 작성해주세요.</strong>
 
 								</span> <span id="errPwd" style="display: none;"
-									class="alert alert-danger"> <strong>땡!!!!!!</strong>
+									class="alert alert-danger"> <strong>잘못된 비밀번호입니다.</strong>
 
 								</span>
 
@@ -247,28 +247,89 @@
 										})
 
 								.on($('#submit').click(function(){
-									var mem_Phone = $('#mem_Phone').val();
-									var mem_Pass = $('#userPw').val();
-									alert(mem_Pass);
-									var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
-									$.ajax({
-										url: 'updateMember',
-										type:'post',
-										dataType:'json',
-										contentType:'application/json',
-										data:JSON.stringify(dataList),
-										success : function(data){
-											var i = data.T;
-											if(i=='1'){
-												location.reload();										
-											}else{
-												alert("실패");
-											}
-										},
-										failure: function(data){
-											alert('update Failed');
+									
+									
+									
+									var Pass_result = true;
+									var Pass_CK = true;
+									var Phone_CK = true;
+									
+									 //전화번호 정규식	
+								    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+									var mem_Phone= $('#mem_Phone').val();
+								    	if(!Phone_Pt.test(mem_Phone)){
+								    		Phone_CK = false;
+										}else{
+											Phone_CK = true;
 										}
-									})
+									
+									//비밀번호 정규식
+								    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
+								    var Pass = 	$('#userPw').val();
+								    	if(!Pass_Pt.test(Pass)){
+											Pass_result = false;
+										}else{
+											Pass_result = true;
+										}
+								    	
+								    //비밀번호 확인 정규식
+								   	var Pass = $('#userPw').val();
+								    var Pass_Check= $('#userPw2').val();
+								    	if(Pass != Pass_Check){
+								    		Pass_CK = false;
+										}else{
+											Pass_CK = true;
+										}
+								    	
+								    	if(Pass_result == true && Pass_CK == true){
+								    		
+											var mem_Pass = $('#userPw').val();
+											var dataList = {'mem_Pass':mem_Pass};
+											$.ajax({
+												url: '<%=request.getContextPath()%>/main/updateMember',
+												type:'post',
+												dataType:'json',
+												contentType:'application/json',
+												data:JSON.stringify(dataList),
+												success : function(data){
+													var i = data.T;
+													if(i=='1'){
+														location.reload();										
+													}else{
+														alert("실패");
+													}
+												},
+												failure: function(data){
+													alert('update Failed');
+												}
+											})
+											}else if(Phone_CK == true){
+												
+												var mem_Phone = $('#mem_Phone').val();
+												var dataList = {'mem_Phone':mem_Phone};
+												$.ajax({
+													url: '<%=request.getContextPath()%>/main/updateMember',
+													type:'post',
+													dataType:'json',
+													contentType:'application/json',
+													data:JSON.stringify(dataList),
+													success : function(data){
+														var i = data.T;
+														if(i=='1'){
+															location.reload();										
+														}else{
+															alert("실패");
+														}
+													},
+													failure: function(data){
+														alert('update Failed');
+													}
+												})
+												}
+								    
+								    
+								    
+								    
 								})
 								)
 					});

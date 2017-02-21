@@ -42,7 +42,7 @@
 			<img style="width: 80px"
 				src="<%=request.getContextPath()%>/resources/img/logo.png"><br><br>
 		회원가입이 완료되셨습니다.<br>로그인 진행을 위해서 가입하신 이메일 인증을 확인해주세요.</h3>
-		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/index'";>초기화면</button></div>
+		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/index.jsp'";>초기화면</button></div>
   
 
 </div>

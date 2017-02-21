@@ -6,6 +6,8 @@ import java.util.List;
 import com.app.pas.dao.board.QnaBoardDao;
 import com.app.pas.dto.board.QnaBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
+import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
+import com.sun.security.ntlm.Client;
 
 public class QnaBoardDaoImpl implements QnaBoardDao{
 	
@@ -78,6 +80,18 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 	public void deleteQnaYN(int qb_Article_Num) throws SQLException {
 		client.update("deleteQnaYN",qb_Article_Num);
 		
+	}
+
+	@Override
+	public List<QnaBoardVo> myPostList(QnaBoardVo qnaBoardVo) throws SQLException {
+			List<QnaBoardVo> list = client.queryForList("myPostList",qnaBoardVo);
+		return list;
+	}
+
+	@Override
+	public int myPostListCount(QnaBoardVo qnaBoardVo) throws SQLException {
+		int totalCount = (Integer) client.queryForObject("myPostListCount", qnaBoardVo);
+		return totalCount;
 	}
 
 

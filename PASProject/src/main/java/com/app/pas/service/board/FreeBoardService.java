@@ -109,4 +109,15 @@ public class FreeBoardService {
 		int totalCount =freeboardDao.freeBoardSearchCount(freeBoardVo);
 		return totalCount;
 	}
+	//내가쓴글 리스트 
+	public List<FreeBoardVo> frb_myPost(FreeBoardVo freeBoardVo) throws SQLException{
+		List<FreeBoardVo> list = freeboardDao.frb_myPost(freeBoardVo);
+		return list;
+	}
+	//내가쓴글 리스트 페이징
+	public int frb_myPostCount(FreeBoardVo freeboardVo) throws SQLException{
+		int totalCount = freeboardDao.frb_myPostCount(freeboardVo);
+		return totalCount;
+	}
+	
 }

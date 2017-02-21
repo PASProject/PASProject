@@ -19,6 +19,9 @@
 
 
 	<excludes>
+		<pattern>*/temp*</pattern>
+		<pattern>*/messageList*</pattern>
+		<pattern>*/tempNotice*</pattern>
 	    <pattern>*/memberAuth*</pattern>
 	    <pattern>*/myPage*</pattern>
 		<pattern>*/index.jsp</pattern>

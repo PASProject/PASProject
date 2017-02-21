@@ -34,13 +34,18 @@ import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.InviteService;
+import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
-import com.sun.mail.iap.Response;
+import com.app.pas.service.board.QnaBoardService;
 
 @Controller
 @RequestMapping("/main")
@@ -62,11 +67,76 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
-	/**
-	 * @param session
-	 * @param model
-	 * @return
-	 */
+
+	@Autowired
+	MainService mainService;
+	
+	@Autowired
+	QnaBoardService qnaBoardService; 
+	
+
+
+	//연습용
+		@RequestMapping(value="/temp")
+		public String temp(HttpSession session, Model model){
+		String url = "/main/temp";
+		return url;
+			
+		}
+
+	//공지팝업
+	@RequestMapping(value="/tempNotice")
+	public String tempNotice(HttpSession session, Model model){
+	String url = "/main/tempNotice";
+	return url;
+		
+	}
+	//내가 쓴 글 보기
+	@RequestMapping(value ="/myPostBoard")
+	public String myPostBoard(HttpSession session, Model model,
+			FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, 
+			MyPostBoardVo myPostBoardVo,String page) throws SQLException {
+		String url = "main/myPostBoard";
+		if (session.getAttribute("proj_Num") != null) {
+			session.removeAttribute("proj_Num");
+		}
+		if (session.getAttribute("joinProj") != null
+				|| session.getAttribute("joinProj") != "null") {
+			session.removeAttribute("joinProj");
+		}
+		if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+			session.removeAttribute("joinProjectVo");
+		}
+
+		
+//		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
+		List<MyPostBoardVo> myPostBoardList = new ArrayList<MyPostBoardVo>();
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		String sessionMem_Name = memberVo.getMem_Name();
+		model.addAttribute("sessionMem_Name", sessionMem_Name);
+	
+		myPostBoardVo.setMail(mem_Email);
+		freeBoardVo.setMem_Email(mem_Email);
+//		skillSharingBoardVo.setMem_Email(mem_Email);
+	
+		myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
+//		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
+		
+		model.addAttribute("myPostBoardList", myPostBoardList);
+	
+//		model.addAttribute("myPostSkillList", myPostSkillList);
+		
+
+		
+		
+		return url;
+	}
+	
+	
+	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
@@ -142,17 +212,16 @@ public class MainContoller {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(HttpSession session, MemberVo memberVo,
-			HttpServletRequest request) throws UnsupportedEncodingException,
-			MessagingException {
+			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
+			MessagingException, SQLException {
 		String url = "redirect:/index";
 		request.setCharacterEncoding("utf-8");
-
-		/*
-		 * System.out.println(memberVo);
-		 * System.out.println(memberVo.getMem_Email());
-		 */
-
-		try {
+		
+		 /*System.out.println(memberVo);
+		 System.out.println(memberVo.getMem_Email());*/
+		
+		
+			System.out.println("중복이아닙니다.");
 			memberService.insertMember(memberVo);
 			String content = memberVo.getMem_Email()
 					+ "(님)의 계정 승인 확인 메일입니다. "
@@ -170,13 +239,31 @@ public class MainContoller {
 			mailSender.send(message);
 
 			url = "/main/joinAuthForm";
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
 		return url;
 	}
+	
+	@RequestMapping(value = "/EmailCheck", method = RequestMethod.POST)
+	@ResponseBody 
+	public boolean EmailCheck(HttpSession session, MemberVo memberVo,Model model,
+			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
+			MessagingException, SQLException {
+		
+		boolean result = false;
+		
+		String asd = request.getParameter("mem_Email");
+		System.out.println(asd);
+		
+		System.out.println(memberVo);
+		if(memberService.getMember(memberVo.getMem_Email()) != null ){
+			result = false;
+		}else{
+			System.out.println("중복아님");
+			result = true;
+		}
+		return result;
+	}
+	
 
 	@RequestMapping(value = "/memberAuth", method = RequestMethod.GET)
 	public String MemberAuth(String mem_Email) throws SQLException {
@@ -207,9 +294,7 @@ public class MainContoller {
 	
 		projectVo.setMem_Email(mem_Email);
 		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
-		
-		if (proj_Search == "" || proj_Search.equals(null)) {
-			if (session.getAttribute("proj_Num") != null) {
+		if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
 			}
 
@@ -221,25 +306,16 @@ public class MainContoller {
 				|| session.getAttribute("joinProjectVo") != "null") {
 				session.removeAttribute("joinProjectVo");
 			}
-		}else{
-			if (session.getAttribute("proj_Num") != null) {
-				session.removeAttribute("proj_Num");
-				}
-
-				if (session.getAttribute("joinProj") != null
-				|| session.getAttribute("joinProj") != "null") {
-					session.removeAttribute("joinProj");
-				}
-				if (session.getAttribute("joinProjectVo") != null
-				|| session.getAttribute("joinProjectVo") != "null") {
-					session.removeAttribute("joinProjectVo");
-				}
+		
+		if (proj_Search == "" || proj_Search.equals(null)) {
+		
+			}else{
 				projectVo.setProj_Search(proj_Search);
 				
-			}
-			model.addAttribute("myProjectList", list);
-			return url;
-	}
+				}
+				model.addAttribute("myProjectList", list);
+				return url;
+		}
 //---------------------------------------------------------------------------------
 //외부 프로젝트
 	@RequestMapping("/otherProject")
@@ -312,17 +388,23 @@ public class MainContoller {
 			Model model, @RequestBody Map<String, Object> map)
 			throws SQLException {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		
 		String mem_Pass = (String) map.get("mem_Pass");
+		if(mem_Pass ==""|| mem_Pass==null){
+			memberVo.setMem_Pass(memberVo.getMem_Pass());
+		}else{
+			memberVo.setMem_Pass(mem_Pass);	
+		}
+		
 		String mem_Phone = (String) map.get("mem_Phone");
-		String url = "redirect:myProject";
-		memberVo.setMem_Pass(mem_Pass);
 		memberVo.setMem_Phone(mem_Phone);
+		String url = "redirect:myProject";
+		
+		
 
 		System.out.println(memberVo.toString());
 
-		/*
-		 * memberVo.setMem_Email("mem_Meai
-		 */int a = memberService.updateMember(memberVo);
+		int a = memberService.updateMember(memberVo);
 		System.out.println(a);
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("T", a);
@@ -600,5 +682,7 @@ public class MainContoller {
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
+	
+	
 	
 }

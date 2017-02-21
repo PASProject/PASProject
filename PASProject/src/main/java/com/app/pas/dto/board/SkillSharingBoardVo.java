@@ -8,6 +8,8 @@ import lombok.Data;
 
 
 
+
+
 @Alias("SkillSharingBoard")
 @Data
 public class SkillSharingBoardVo implements Serializable{
@@ -25,7 +27,7 @@ public class SkillSharingBoardVo implements Serializable{
 	private int ssb_Like_Count;
 	private String mem_Name;
 	private String ssb_Title_Content;
-	
+	private String ssb_Tag;
 	
 	
 }

@@ -3,7 +3,9 @@ var msg;
 var loginUserId;
 function connect(loginUserId) {
 			wsocket = new SockJS(
+
 					"http://"+document.domain+":8181/pas/conSocket.sockjs");
+
 			this.loginUserId = loginUserId;
 			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;
@@ -24,7 +26,10 @@ function connect(loginUserId) {
 		var d = JSON.parse(evt.data);
 		alert(d.push);
 		var data = evt.data;
+
+
 		alert('꺼저');
+
 	}
 	function onClose(evt) {
 		appendMessage("연결을 끊었습니다.");

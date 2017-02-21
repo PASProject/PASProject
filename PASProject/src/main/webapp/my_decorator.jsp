@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="overflow:scroll;">
 
 
 <head>
@@ -29,14 +29,26 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>3 Col Portfolio - Start Bootstrap Template</title>
+<title>PAS - Project Automation System</title>
 
 <!-- jQuery -->
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
+
+<!-- kendo spreadSheet -->
+<link href="<%=request.getContextPath()%>/resources/kendo/examples-offline.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.common.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.rtl.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.default.min.css" rel="stylesheet">
+    <script src="<%=request.getContextPath()%>/resources/kendo/jszip.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/kendo//kendo.all.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/kendo/console.js"></script>
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.default.mobile.min.css" rel="stylesheet">
+    
 <!-- Bootstrap Core CSS -->
 
 
@@ -69,7 +81,8 @@
 	src='<%=request.getContextPath()%>/resources/lib/fullcalendar.js'></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/lib/gcal.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/locale/ko.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
@@ -83,12 +96,13 @@
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
-	
+
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
-	
-	<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+
+<link rel="stylesheet"
+	href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 <script src="https://unpkg.com/flatpickr"></script>
 <!-- bootstrap Validator -->
 <script
@@ -153,20 +167,34 @@ $(function(){
 
 <!--  -->
 <style>
+#submenu{
+ -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#content{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}  
+  
+body.modal-open{
+  margin-left:18px;
+  }
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
-
 }
-
 </style>
 <style>
+
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
 }
-
 
 .navbar-default {
 	font-size: 13px;
@@ -205,7 +233,7 @@ body {
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #3c5574;
-	filter: brightness(125%);
+
 	color: white;
 }
 
@@ -258,7 +286,7 @@ body {
 }
 /* flatpickr 인덱스 위치 */
 div.flatpickr-calendar {
-    z-index: 99999;
+	z-index: 99999;
 }
 </style>
 <script>
@@ -287,18 +315,19 @@ $(function(){
 		
 	}
 	})
+	
+</script>
+<script>
 
 </script>
 
 
 
 
-
 </head>
 <title>최종!</title>
-<body>
+<body >
 	<header>
-
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
 
@@ -310,24 +339,8 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-					
-					<ul class="nav navbar-nav navbar-left" id="a">
-					<li>
-					PAS
-					</li>
-					</ul>
+
 					<ul class="nav navbar-nav navbar-right" id="a">
-
-
-
-
-
-
-
-
-
-
-
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/myProject"><p>참여
@@ -336,11 +349,8 @@ $(function(){
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
-
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-
-					</ul>
+					
 
 
 				</div>
@@ -369,37 +379,51 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a id="teamName" class="navbar-brand" href="#" style="font-size: 20px;">
-					
-					<b>
-					
-					<c:choose>
-					<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
+					<a id="teamName" class="navbar-brand" href="#"
+						style="font-size: 20px;"> <b> <c:choose>
+								<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
 					프로젝트 자동화 시스템
 					</c:when>
+
 					<c:otherwise>
-					${sessionScope.joinProjectVo.proj_Name}
+					<p id="tn" >${sessionScope.joinProjectVo.proj_Name}&nbsp;<span class="caret" style="display:none;"></span></p>
 					</c:otherwise>
 					</c:choose>
-					
+					<script>
+					$(function(){
+						$('#tn').mouseover(function(){
+							$('.caret').show();
+						})
+					/* 	$('#tn').click */
+						
+					})
+					</script>
+
 					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
+				
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+
+						<li>
+						<a data-toggle="modal" style="font-size : 28px; margin-top : -4px; cursor:pointer" data-target="#create" data-keyboard="false" data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
 						
+						</li>
+
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
-							style="padding-top: 5px; padding-bottom: 5px;"> <img
+							style="padding-top: 5px; padding-bottom: 5px;background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"> 
+							<img
 								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
-							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
-								<li><a href="#" onclick="imgUploadModal();"> <img
-										class="img-thumbnail"
+							<ul class="dropdown-menu" role="menu" style="min-width: 144px;" >
+								<li><a href="#" style="text-align:center;"onclick="imgUploadModal();"> <img
+										class="img-thumbnail" 
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
 										data-keyboard="false" data-backdrop="static" id="profileImg"
@@ -409,8 +433,12 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
+								<li><a href="#">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
-								<li class="divider"></li>
+
+								<li><a href="<%= request.getContextPath()%>/main/myPostBoard">내가 작성한 게시물</a></li>
+
+												<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
 							</ul></li>
@@ -418,8 +446,8 @@ $(function(){
 						<li><a href="#" id="alarmMenu"
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
-							style="font-size: 25px;"> </a> <span id="alarmCount"
-							style="color: red; display: none;"></span> <span id="alarmZone"></span>
+							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;"> </a> <span id="alarmCount"
+							style="color: red;  display: none;"></span> <span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 
@@ -436,6 +464,38 @@ $(function(){
 		</nav>
 	</header>
 
+			<!-- 프로젝트 생성 모달   -->
+		<div class="modal fade" id="create" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"></h4>
+						프로젝트 생성
+					</div>
+					<div class="modal-body" id="createBody">
+						생성자 : <input type="text" id="mem_Email"
+							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
+						<br> <input type="hidden" id="mem_Img"
+							value="${sessionScope.loginUser.mem_Img }"> 
+							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
+							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
+						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" id="createBtn"
+							value="생성" />
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+		
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">
 		<div class="modal-dialog">
@@ -520,9 +580,43 @@ $(function(){
 						id="submit" style="margin-left: 5px;">정보 수정하기</button>
 					<script>
 							$('#submit').click(function(){
-								var mem_Phone = $('#mem_Phone').val();
+								
+								
+								var Pass_result = true;
+								var Pass_CK = true;
+								var Phone_CK = true;
+								
+								 //전화번호 정규식	
+							    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+								var mem_Phone= $('#mem_Phone').val();
+							    	if(!Phone_Pt.test(mem_Phone)){
+							    		Phone_CK = false;
+									}else{
+										Phone_CK = true;
+									}
+								
+								//비밀번호 정규식
+							    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
+							    var Pass = 	$('#userPw').val();
+							    	if(!Pass_Pt.test(Pass)){
+										Pass_result = false;
+									}else{
+										Pass_result = true;
+									}
+							    	
+							    //비밀번호 확인 정규식
+							   	var Pass = $('#userPw').val();
+							    var Pass_Check= $('#userPw2').val();
+							    	if(Pass != Pass_Check){
+							    		Pass_CK = false;
+									}else{
+										Pass_CK = true;
+									}
+							    	
+							    if(Pass_result == true && Pass_CK == true){
+							    	
 								var mem_Pass = $('#userPw').val();
-								var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
+								var dataList = {'mem_Pass':mem_Pass};
 								$.ajax({
 									url: '<%=request.getContextPath()%>/main/updateMember',
 									type:'post',
@@ -541,6 +635,29 @@ $(function(){
 										alert('update Failed');
 									}
 								})
+								}else if(Phone_CK == true){
+									
+									var mem_Phone = $('#mem_Phone').val();
+									var dataList = {'mem_Phone':mem_Phone};
+									$.ajax({
+										url: '<%=request.getContextPath()%>/main/updateMember',
+										type:'post',
+										dataType:'json',
+										contentType:'application/json',
+										data:JSON.stringify(dataList),
+										success : function(data){
+											var i = data.T;
+											if(i=='1'){
+												location.reload();										
+											}else{
+												alert("실패");
+											}
+										},
+										failure: function(data){
+											alert('update Failed');
+										}
+									})
+									}
 							})
 							
 							
@@ -1001,34 +1118,55 @@ $(function(){
 						},
 						complete:function(){
 							$.ajax({
-								url :'<%=request.getContextPath()%>/main/alarmCount',
-								dataType : 'json',
-								type:'get',
-								success:function(data){
-										$('#alarmCount').text("");
-										$('#alarmCount').text(data);
-									}
-							})
-					}
+								url :'/pas/main/alarmCount',
+																		dataType : 'json',
+																		type : 'get',
+																		success : function(
+																				data) {
+																			$(
+																					'#alarmCount')
+																					.text(
+																							"");
+																			$(
+																					'#alarmCount')
+																					.text(
+																							data);
+																		}
+																	})
+														}
+													});
+										});
+
 					});
-				});
-				
-				
-				
-			});
-
-
 </script>
 <script>
-/* $(function(){
-	var a = location.href;
-	if(a.indexOf("otherProject")==-1){
-		$('#myProjectList').css('background-color','#6093cc');
-	}else if(a.indexOf("otherProject")!=-1){
-		$('#otherProjectList').css('background-color','#6093cc');
-	} 
+
+
+$(document).ready(function(){
+	$('#createBtn').on('click',function(){
+		var mem_Email = $('#mem_Email').val();
+		var proj_Name = $('#proj_Name').val();
+		var proj_Content = $('#proj_Content').val();
+		var proj_Team = $('#proj_Team').val();
+		var mem_Img = $('#mem_Img').val();
+		var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
+				'proj_Team':proj_Team};
+		$.ajax({
+			url:'/pas/main/createProject',
+			contentType:'application/json',
+			data: JSON.stringify(dataList),
+			type:'post',
+			success:function(proj_Num){
+				location.href="../project/pmOverView?proj_Num="+proj_Num;
+			},
+			error : function(){
+				alert("프로젝트 생성 실패");
+			}
+		})
+	})
 })
- */
+
+
 </script>
 
 <script>

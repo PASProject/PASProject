@@ -18,7 +18,7 @@
 		</c:if>
 		<c:if test="${like == 'no' }">
 		<script type="text/javascript">
-			alert("이미 추천 하였습니다.");
+			alert("이미 추천한 게시글 입니다.");
 		</script>
 		</c:if>
 		<c:if test="${delete == 'no' }">
@@ -41,7 +41,7 @@
 			<div class="col-md-10" id="content">
 				<h2 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-					FreeBoard <small>글 쓰기</small>
+					FreeBoard
 				</h2>
 
 				<div style="border: solid 1px black;">
@@ -54,6 +54,8 @@
 									(${freeBoardVo.frb_Wt_Date})</span>
 							</legend>
 							<span>${freeBoardVo.frb_Content}</span>
+							<legend></legend>
+							<span>${freeBoardVo.frb_Tag}</span>
 						</fieldset>
 					</form>
 			<!-- 여기서부터 댓글 -->

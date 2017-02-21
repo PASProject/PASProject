@@ -22,6 +22,9 @@ public interface FreeBoardDao {
 	public void updateFreeBoardCount(FreeBoardVo freeBoardVo)throws SQLException;
 	public void updateFreeBoardCountM(FreeBoardVo freeBoardVo)throws SQLException;
 	public List<FreeBoardVo> selectFreeLikeCountViewList()throws SQLException;
-	
 	public int freeBoardSearchCount (FreeBoardVo freeBoardVo) throws SQLException;
+	
+	public List<FreeBoardVo>frb_myPost(FreeBoardVo freeBoardVo) throws SQLException;
+	public int frb_myPostCount(FreeBoardVo freeBoardVo) throws SQLException;
+	
 }
