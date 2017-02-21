@@ -20,7 +20,7 @@
             $('#positionSelect').change(function() {
                 // 드롭다운리스트에서 선택된 값을 텍스트박스에 출력
                 var selectedText =
-                	
+                   
                    /*   $("option:selected").text();
                     //$("option:selected").text();
  */                  $(":selected").text(); 
@@ -39,110 +39,110 @@
             var mem_Email =$("#mem_Email").val();
             
             var dataList={
-            		'position_Name':position_Name,'mem_Email':mem_Email};
+                  'position_Name':position_Name,'mem_Email':mem_Email};
             $.ajax({
-            	
-            	type:'POST',
-            	url:'TeamMemberUpdate',
-            	dataType:'JSON',
-            	contentType : 'application/json; charset=UTF-8',
-				data : JSON.stringify(dataList),
-				success : function() {
-					
-				}
-            	
-            	
+               
+               type:'POST',
+               url:'TeamMemberUpdate',
+               dataType:'JSON',
+               contentType : 'application/json; charset=UTF-8',
+            data : JSON.stringify(dataList),
+            success : function() {
+               
+            }
+               
+               
             });
             })
             
         });
          
          function show(mem_Email){
-        	 
-        	 
-        	 $(function(){
-        		 var dataList = {'mem_Email': mem_Email};
-        		 
-        		 $.ajax({
-        			
-        			 type:'POST',
-        			 url:'activeMemberModal',
-        			 dataType:'JSON',
-        			 data:JSON.stringify(dataList),
-        			 contentType: 'application/json; charset=UTF-8',
-        			 success:function(data){
-        				 alert(data.mem_Phone);
-        				 $('#mem_Img').attr('src','<%=request.getContextPath()%>/resources/upload/data.mem_Img');
-        				 $('#position_Name').val(data.position_Name);
-        				 $('#mem_Email').val(data.mem_Email);
-        				 $('#mem_Name').val(data.mem_Name);
-        				 $('#mem_Phone').val(data.mem_Phone);
-        				 $('#memList').modal('show');
-        				 
-        				 
-        				 
-        				 
-        				 
-        				 
-        			 }
-        			 
-        			 
-        		 })
-        		 
-        		 
-        		 
-        	 })
-        	 
-        	 
-        	 
+            
+            
+            $(function(){
+               var dataList = {'mem_Email': mem_Email};
+               
+               $.ajax({
+                 
+                  type:'POST',
+                  url:'activeMemberModal',
+                  dataType:'JSON',
+                  data:JSON.stringify(dataList),
+                  contentType: 'application/json; charset=UTF-8',
+                  success:function(data){
+                     alert(data.mem_Phone);
+                     $('#mem_Img').attr('src','<%=request.getContextPath()%>/resources/upload/data.mem_Img');
+                     $('#position_Name').val(data.position_Name);
+                     $('#mem_Email').val(data.mem_Email);
+                     $('#mem_Name').val(data.mem_Name);
+                     $('#mem_Phone').val(data.mem_Phone);
+                     $('#memList').modal('show');
+                     
+                     
+                     
+                     
+                     
+                     
+                  }
+                  
+                  
+               })
+               
+               
+               
+            })
+            
+            
+            
          }
          
          $(function() {
         
-        	 $('#TeamMemberDelete').click(function(){
-        		 
-        		 
-        		 var mem_Email = $('#mem_Email').val();
-        		 
-        		 
-        		 var dataList={'mem_Email':mem_Email};
-        		 
-        		 
-        		 $.ajax({
-        		 type: 'POST',
-        		 url: 'TeamMemberDelete',
-        		 datType:'json',
-        		 data:JSON.stringify(dataList),
-        		 contentType: 'application/json; charset=UTF-8',
-        		 success:function(data){
-        	     
-        			 alert('팀원탈퇴성공');
-        			 location.href="<%= request.getContextPath()%>/project/pmMemberList";
-        			 
-        			 
-        			 
-        			 
-        		 }
-        			 
-        			 
-        			 
-        			 
-        			 
-        		 })
-        		
-        	
-        		 
-        		 
-        	 })
-        	 
-        	 
-        	 
+            $('#TeamMemberDelete').click(function(){
+               
+               
+               var mem_Email = $('#mem_Email').val();
+               
+               
+               var dataList={'mem_Email':mem_Email};
+               
+               
+               $.ajax({
+               type: 'POST',
+               url: 'TeamMemberDelete',
+               datType:'json',
+               data:JSON.stringify(dataList),
+               contentType: 'application/json; charset=UTF-8',
+               success:function(data){
+                
+                  alert('팀원탈퇴성공');
+                  location.href="<%= request.getContextPath()%>/project/pmMemberList";
+                  
+                  
+                  
+                  
+               }
+                  
+                  
+                  
+                  
+                  
+               })
+              
+           
+               
+               
+            })
+            
+            
+            
          })
          
          
-        	 
-        	 
-        	 
+            
+            
+            
          
     </script>
 
@@ -151,32 +151,32 @@
 
 
 <div class="col-md-10" id="content">
-		<h2 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			프로젝트 인원<small> ${memPositionView.proj_Name}</small>
-		</h2>
-		<form>
-			<table class="table" >
-				<tr>
-					<td class="col-md-2 text-center" >직책</td>
-					<td class="col-md-2 text-center">이름</td>
-					<td class="col-md-2 text-center">이메일</td>
-					<td class="col-md-4 text-center">마지막 접속 시간</td>
-			</tr>
-				<c:forEach var="pmMemberList" items="${pmMemberList }">
-					<tr class="text-center">
-					<td class="text-center">${pmMemberList.position_Name }</td>
-					<td class="text-center"><input type="button" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/> </td>
-					<td>${pmMemberList.mem_Email }</td>
-					<td>${pmMemberList.proj_Log_Time}</td>
-					</tr>
-				</c:forEach>
-			</table>
-			
-			
-			
-			
-			<!-- Modal -->
+      <h2 class="page-header"
+         style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+         프로젝트 인원<small> ${memPositionView.proj_Name}</small>
+      </h2>
+      <form>
+         <table class="table" >
+            <tr>
+               <td class="col-md-2 text-center" >직책</td>
+               <td class="col-md-2 text-center">이름</td>
+               <td class="col-md-2 text-center">이메일</td>
+               <td class="col-md-4 text-center">마지막 접속 시간</td>
+         </tr>
+            <c:forEach var="pmMemberList" items="${pmMemberList }">
+               <tr class="text-center">
+               <td class="text-center">${pmMemberList.position_Name }</td>
+               <td class="text-center"><input type="button" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/> </td>
+               <td>${pmMemberList.mem_Email }</td>
+               <td>${pmMemberList.proj_Log_Time}</td>
+               </tr>
+            </c:forEach>
+         </table>
+         
+         
+         
+         
+         <!-- Modal -->
   <div class="modal fade" id="memList" role="dialog">
     <div class="modal-dialog">
     
@@ -189,10 +189,10 @@
         <div class="modal-body">
           <p>Some text in the modal.</p>
          <img class="img-thumbnail"
-				src="#"
-				id="mem_Img" alt="your image" style="border-radius: 50%;
-	width: 160px;
-	height: 160px;"/>
+            src="#"
+            id="mem_Img" alt="your image" style="border-radius: 50%;
+   width: 160px;
+   height: 160px;"/>
            <br>
             <c:choose>
             <c:when test="${memPositionView.position_Name eq 'PL' }">
@@ -228,19 +228,19 @@
       
     </div>
   </div>
-			
-			
-			
-			
-			
-			
-		<!--         모달 구분선                                -->	
-		
+         
+         
+         
+         
+         
+         
+      <!--         모달 구분선                                -->   
+      
 
 
 
-		</form>
-	</div>
+      </form>
+   </div>
 
 </body>
 </html>

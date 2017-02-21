@@ -46,8 +46,15 @@
 							<div class="form-group">
 								<label for="textArea" class="col-lg-2 control-label">내용</label>
 								<div class="col-lg-10">
-									<textarea class="form-control" rows="18" id="textArea"
+									<textarea class="form-control" rows="18" id="frb_Content"
 										name="frb_Content"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="textArea" class="col-lg-2 control-label">태그</label>
+								<div class="col-lg-10">
+									<textarea class="form-control" rows="1" id="frb_Tag"
+										name="frb_Tag"></textarea>
 									<span class="help-block text-right">새해 복 많이 받으세요</span>
 								</div>
 							</div>
@@ -55,8 +62,7 @@
 							<div class="form-group text-right">
 								<div class="col-lg-10 col-lg-offset-2">
 									<button type="submit" class="btn btn-default">등록</button>
-									<button type="reset" class="btn btn-default">취소</button>
-									<button type="button" onclick="location.href='<%=request.getContextPath()%>/freeBoard/freeBoardList'" class="btn btn-default">목록</button>
+									<button type="button" onclick="location.href='<%=request.getContextPath()%>/freeBoard/freeBoardList'" class="btn btn-default">취소</button>
 
 								</div>
 							</div>
