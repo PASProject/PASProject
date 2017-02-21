@@ -41,7 +41,7 @@
 			<div class="col-md-10" id="content">
 				<h2 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-					FreeBoard <small>글 쓰기</small>
+					FreeBoard
 				</h2>
 
 				<div style="border: solid 1px black;">

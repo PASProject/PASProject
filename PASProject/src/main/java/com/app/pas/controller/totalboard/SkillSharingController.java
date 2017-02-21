@@ -48,7 +48,9 @@ public class SkillSharingController {
 			@RequestParam(defaultValue = "") String title,
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
-			@RequestParam(defaultValue = "") String title_content, HttpSession session,
+			@RequestParam(defaultValue = "") String title_content,
+			@RequestParam(defaultValue = "") String tag,
+			HttpSession session,
 			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
 		int totalCount = 0;
@@ -100,6 +102,10 @@ public class SkillSharingController {
 			
 				skillSharingBoardVo.setSsb_Title_Content(keyword);
 			
+			}else if(keyField == ("tag")|| keyField.equals("tag")) {
+			
+				skillSharingBoardVo.setSsb_Tag(keyword);
+			
 			}
 			skillSharingBoardList = skillSharingBoardService
 					.skill_myPostList(skillSharingBoardVo);
@@ -141,6 +147,7 @@ public class SkillSharingController {
 			@RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content,
 			@RequestParam(defaultValue = "") String title_content,
+			@RequestParam(defaultValue = "") String tag,
 			SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
 		int totalCount = 0;
@@ -184,6 +191,13 @@ public class SkillSharingController {
 				System.out.println("존트짜증 ㅡㅡ");
 				skillSharingBoardVo.setSsb_Title_Content(keyword);
 				System.out.println("타이틀+컨텐츠  : " + skillSharingBoardVo.getSsb_Title_Content());
+		 
+			} else if(keyField == ("tag")|| keyField.equals("tag")) {
+				
+				if(skillSharingBoardVo.getSsb_Tag() != null){
+				skillSharingBoardVo.setSsb_Title_Content(keyword);
+				}
+				System.out.println("tag  : " + skillSharingBoardVo.getSsb_Tag());
 		 
 			}
 			skillSharingBoardList = skillSharingBoardService

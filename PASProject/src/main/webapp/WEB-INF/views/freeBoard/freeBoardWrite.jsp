@@ -15,21 +15,6 @@
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					FreeBoard <small>글 쓰기</small>
 				</h2>
-				<!-- Title
-				<form name="formm" method="post" action="freeBoardInsert">
-					<fieldset>
-						<label>Title</label> <input type="text" name="frb_Title" size="64"><br>
-						<label>Content</label>
-						<textarea rows="8" cols="65" name="frb_Content"></textarea>
-						<br>
-					</fieldset>
-					<div class="clear"></div>
-					<div id="buttons" style="float: right">
-						<input type="submit" value="글쓰기" class="submit"> <input
-							type="reset" value="취소" class="cancel">
-					</div>
-				</form>
- -->
 
 				<div class="col-md-10">
 					<form class="form-horizontal" name="formm" method="post"
