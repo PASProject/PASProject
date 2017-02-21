@@ -45,14 +45,16 @@
 			<tbody>
 		<c:forEach items="${myPostBoardList}" var="MyPostBoardVo">
 			<tr id="boardContents">
-				<td>	<c:choose> 
+				<td><c:choose> 
  						<c:when test='${MyPostBoardVo.yn eq "0" }'>QnA게시판</c:when>
  						<c:when test='${MyPostBoardVo.yn eq "1" }'>QnA게시판</c:when>
-						</c:choose>
+ 						<c:when test='${MyPostBoardVo.ssb_y_n eq skill }'>기술공유</c:when>
+						<c:otherwise>커뮤니티</c:otherwise>
+					</c:choose>
 				</td>
 				<td>${MyPostBoardVo.num }</td>
-				<td><a
-					href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${MyPostBoardVo.num }">${MyPostBoardVo.title}</a></td>
+				<td> <c:when test='${MyPostBoardVo.yn eq "0" }'>QnA게시판
+				<a href="<%=request.getContextPath()%>/main/myPostDetail_qna?num=${MyPostBoardVo.num }">${MyPostBoardVo.title}</a></c:when></td>
 				<td>${MyPostBoardVo.dt }</td>
 				<td>${MyPostBoardVo.cnt}</td>
 				

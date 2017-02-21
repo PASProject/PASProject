@@ -84,7 +84,7 @@ public class MainContoller {
 	//내가 쓴 글 보기
 	@RequestMapping(value ="/myPostBoard")
 	public String myPostBoard(HttpSession session, Model model,
-			QnaBoardVo qnaBoardVo,FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, 
+			FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, 
 			MyPostBoardVo myPostBoardVo,String page) throws SQLException {
 		String url = "main/myPostBoard";
 		if (session.getAttribute("proj_Num") != null) {
@@ -98,8 +98,8 @@ public class MainContoller {
 				|| session.getAttribute("joinProjectVo") != "null") {
 			session.removeAttribute("joinProjectVo");
 		}
-//		List<QnaBoardVo> myPostQnaList = new ArrayList<QnaBoardVo>();
-//		List<FreeBoardVo> myPostFrbList = new ArrayList<FreeBoardVo>();
+
+		
 //		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
 		List<MyPostBoardVo> myPostBoardList = new ArrayList<MyPostBoardVo>();
 		
@@ -107,21 +107,16 @@ public class MainContoller {
 		String mem_Email = memberVo.getMem_Email();
 		String sessionMem_Name = memberVo.getMem_Name();
 		model.addAttribute("sessionMem_Name", sessionMem_Name);
-		
-		
+	
 		myPostBoardVo.setMail(mem_Email);
-//		qnaBoardVo.setMem_Email(mem_Email);
-//		freeBoardVo.setMem_Email(mem_Email);
+		freeBoardVo.setMem_Email(mem_Email);
 //		skillSharingBoardVo.setMem_Email(mem_Email);
-//		
+	
 		myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
-
-//		myPostFrbList = mainService.myPostBoard_frb(freeBoardVo);
 //		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
-//		
+		
 		model.addAttribute("myPostBoardList", myPostBoardList);
-//		model.addAttribute("myPostQnaList", myPostQnaList);
-//		model.addAttribute("myPostFrbList", myPostFrbList);
+	
 //		model.addAttribute("myPostSkillList", myPostSkillList);
 		
 

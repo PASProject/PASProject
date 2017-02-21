@@ -18,6 +18,7 @@ public class MyPostBoardVo {
 	private String mail;
 	private String yn;
 	private String tag;
+	private String ssb_y_n;
 	
 	
 //	private Timestamp ssb_wt_date;
