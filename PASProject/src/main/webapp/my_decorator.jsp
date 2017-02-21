@@ -298,7 +298,7 @@ $(function(){
 
 </head>
 <title>최종!</title>
-<body>
+<body style="overflow:hidden;">
 	<header>
 
 		<!-- Navigation -->
@@ -312,6 +312,7 @@ $(function(){
 				<!-- 	<a class="navbar-brand" href="#" style="color:white;"><b>프로젝트 자동화 시스템</b></a> -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
+
 
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
@@ -393,9 +394,9 @@ $(function(){
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
-							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
-								<li><a href="#" onclick="imgUploadModal();"> <img
-										class="img-thumbnail"
+							<ul class="dropdown-menu" role="menu" style="min-width: 144px;" >
+								<li><a href="#" style="text-align:center;"onclick="imgUploadModal();"> <img
+										class="img-thumbnail" 
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
 										data-keyboard="false" data-backdrop="static" id="profileImg"
@@ -408,6 +409,7 @@ $(function(){
 								<li><a href="#">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 								<li><a href="#">내가 작성한 게시물</a></li>
+								<li><a href="#">내가 작성한 댓글</a></li>
 								<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 

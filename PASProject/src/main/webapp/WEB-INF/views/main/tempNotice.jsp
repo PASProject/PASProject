@@ -52,14 +52,14 @@ $(function(){
 		</tr>
 		<tr>
 			<td>이경희</td>
-			<td>주간체크리스트, 댓글검색, 내가쓴글 (+내가쓴 댓글까지), 검색타겟 형광펜</td>
+			<td>주간체크리스트, 댓글검색, 내가쓴 댓글까지, 검색타겟 형광펜, 발표</td>
 			<td>김형기</td>
 			<Td>2/24</Td>
 			<td>?</td>
 		</tr>
 		<tr>
 			<td>여준영</td>
-			<td>overview, admin dash보드 만들기</td>
+			<td>overview, admin dash보드 만들기, 쪽지함</td>
 			<td>혼자</td>
 			<Td>2/24</Td>
 			<td>0%</td>
