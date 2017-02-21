@@ -37,61 +37,70 @@
 					<th>제목</th>
 					<th>작성일</th>
 					<th>조회수</th>
-					<th>추천수</th>
+					
 					<th>답변여부</th>
 					
 				</tr>
 			</thead>
 			<tbody>
-		<c:forEach items="${myPostSkillList}" var="SkillSharingBoardVo">
+		<c:forEach items="${myPostBoardList}" var="MyPostBoardVo">
 			<tr id="boardContents">
-				<td>기술공유</td>
-				<td>${SkillSharingBoardVo.ssb_Article_Num }</td>
+				<td>	<c:choose> 
+ 						<c:when test='${MyPostBoardVo.yn eq "0" }'>QnA게시판</c:when>
+ 						<c:when test='${MyPostBoardVo.yn eq "1" }'>QnA게시판</c:when>
+						</c:choose>
+				</td>
+				<td>${MyPostBoardVo.num }</td>
 				<td><a
-					href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${SkillSharingBoardVo.ssb_Article_Num }">${SkillSharingBoardVo.ssb_Title}</a></td>
-				<td>${SkillSharingBoardVo.ssb_wt_date }</td>
-				<td>${SkillSharingBoardVo.ssb_Inq_Count }</td>
-				<td>${SkillSharingBoardVo.ssb_Like_Count }</td>
-				<td></td>
+					href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${MyPostBoardVo.num }">${MyPostBoardVo.title}</a></td>
+				<td>${MyPostBoardVo.dt }</td>
+				<td>${MyPostBoardVo.cnt}</td>
+				
+				<td>
+						<c:choose> 
+ 						<c:when test='${MyPostBoardVo.yn eq "0" }'>답변미처리</c:when>
+ 						<c:when test='${MyPostBoardVo.yn eq "1" }'>답변완료</c:when>
+						</c:choose>
+				</td>
 				
 				
 			
 		</c:forEach>
 				</tbody>
-					<c:forEach items="${myPostFrbList}" var="freeBoardVo">
+<%-- 					<c:forEach items="${myPostFrbList}" var="freeBoardVo"> --%>
 						
-							<td>커뮤니티</td>
-							<td>${freeBoardVo.frb_Article_Num }</td>
-							<td><a
-								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
-							<td>${freeBoardVo.frb_Wt_Date}</td>
-							<td>${freeBoardVo.frb_Inq_Count }</td>
-							<td>${freeBoardVo.frb_Like_Count }</td>
-							<td></td>
+<!-- 							<td>커뮤니티</td> -->
+<%-- 							<td>${freeBoardVo.frb_Article_Num }</td> --%>
+<!-- 							<td><a -->
+<%-- 								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td> --%>
+<%-- 							<td>${freeBoardVo.frb_Wt_Date}</td> --%>
+<%-- 							<td>${freeBoardVo.frb_Inq_Count }</td> --%>
+<%-- 							<td>${freeBoardVo.frb_Like_Count }</td> --%>
+<!-- 							<td></td> -->
 							
-						</tr>
+<!-- 						</tr> -->
 
-					</c:forEach>
-				</tbody>
-			<c:forEach items="${myPostQnaList}" var="qnaBoardVo">
-							<tr id="boardContents">
-							<td>QnA게시판</td>
+<%-- 					</c:forEach> --%>
+<!-- 				</tbody> -->
+<%-- 			<c:forEach items="${myPostQnaList}" var="qnaBoardVo"> --%>
+<!-- 							<tr id="boardContents"> -->
+<!-- 							<td>QnA게시판</td> -->
 							
-							<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>
-							<td><a
-								href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
-									${qnaBoardVo.qb_Title}</a></td>
+<%-- 							<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td> --%>
+<!-- 							<td><a -->
+<%-- 								href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }"> --%>
+<%-- 									${qnaBoardVo.qb_Title}</a></td> --%>
 							
-							<td style="text-align: center">${qnaBoardVo.qb_Wt_Date}</td>
-							<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td>
-							<td></td>
-							<td><c:choose>
-									<c:when test='${qnaBoardVo.qb_yn=="0" }'>답변미처리</c:when>
-									<c:otherwise>답변완료</c:otherwise>
-								</c:choose></td>
-						</tr>
-					</c:forEach>
-				</tbody>
+<%-- 							<td style="text-align: center">${qnaBoardVo.qb_Wt_Date}</td> --%>
+<%-- 							<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td> --%>
+<!-- 							<td></td> -->
+<%-- 							<td><c:choose> --%>
+<%-- 									<c:when test='${qnaBoardVo.qb_yn=="0" }'>답변미처리</c:when> --%>
+<%-- 									<c:otherwise>답변완료</c:otherwise> --%>
+<%-- 								</c:choose></td> --%>
+<!-- 						</tr> -->
+<%-- 					</c:forEach> --%>
+<!-- 				</tbody> -->
 			</table>
 		</div>
 

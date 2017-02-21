@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.MainDao;
+import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.QnaBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
@@ -31,6 +32,11 @@ public class MainService {
 		List<SkillSharingBoardVo> list = mainDao.myPostBoard_Skill(skillSharingBoardVo); 
 		return list;
 		
+	}
+	
+	public List<MyPostBoardVo>MyPostBoard(MyPostBoardVo myPostBoardVo)throws SQLException{
+		List<MyPostBoardVo>list = mainDao.MyPostBoard(myPostBoardVo);
+		return list;
 	}
 	
 

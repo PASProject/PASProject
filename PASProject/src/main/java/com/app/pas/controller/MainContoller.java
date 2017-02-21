@@ -30,11 +30,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.app.pas.commons.Paging;
 import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
@@ -84,7 +84,8 @@ public class MainContoller {
 	//내가 쓴 글 보기
 	@RequestMapping(value ="/myPostBoard")
 	public String myPostBoard(HttpSession session, Model model,
-			QnaBoardVo qnaBoardVo,FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, String page) throws SQLException {
+			QnaBoardVo qnaBoardVo,FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, 
+			MyPostBoardVo myPostBoardVo,String page) throws SQLException {
 		String url = "main/myPostBoard";
 		if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
@@ -97,26 +98,32 @@ public class MainContoller {
 				|| session.getAttribute("joinProjectVo") != "null") {
 			session.removeAttribute("joinProjectVo");
 		}
-		List<QnaBoardVo> myPostQnaList = new ArrayList<QnaBoardVo>();
-		List<FreeBoardVo> myPostFrbList = new ArrayList<FreeBoardVo>();
-		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
+//		List<QnaBoardVo> myPostQnaList = new ArrayList<QnaBoardVo>();
+//		List<FreeBoardVo> myPostFrbList = new ArrayList<FreeBoardVo>();
+//		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
+		List<MyPostBoardVo> myPostBoardList = new ArrayList<MyPostBoardVo>();
 		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		String sessionMem_Name = memberVo.getMem_Name();
 		model.addAttribute("sessionMem_Name", sessionMem_Name);
 		
-		qnaBoardVo.setMem_Email(mem_Email);
-		freeBoardVo.setMem_Email(mem_Email);
-		skillSharingBoardVo.setMem_Email(mem_Email);
 		
-		myPostQnaList= mainService.myPostBoard_Qna(qnaBoardVo);
-		myPostFrbList = mainService.myPostBoard_frb(freeBoardVo);
-		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
+		myPostBoardVo.setMail(mem_Email);
+//		qnaBoardVo.setMem_Email(mem_Email);
+//		freeBoardVo.setMem_Email(mem_Email);
+//		skillSharingBoardVo.setMem_Email(mem_Email);
+//		
+		myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
+
+//		myPostFrbList = mainService.myPostBoard_frb(freeBoardVo);
+//		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
+//		
+		model.addAttribute("myPostBoardList", myPostBoardList);
+//		model.addAttribute("myPostQnaList", myPostQnaList);
+//		model.addAttribute("myPostFrbList", myPostFrbList);
+//		model.addAttribute("myPostSkillList", myPostSkillList);
 		
-		model.addAttribute("myPostQnaList", myPostQnaList);
-		model.addAttribute("myPostFrbList", myPostFrbList);
-		model.addAttribute("myPostSkillList", myPostSkillList);
 
 		
 		
