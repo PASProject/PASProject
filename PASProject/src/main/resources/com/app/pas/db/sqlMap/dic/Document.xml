@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Document">
+ <typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   
+   <update id="insertDocument" parameterClass="Document">
+      insert into document(DOC_NUM,DOC_KIND,MEM_EMAIL,MEM_NAME,DOC_NAME,PROJ_NUM) 
+	  VALUES(DOCUMENT_SEQ.NEXTVAL,#doc_Kind#,#mem_Email#,#mem_Name#,#doc_Name#,#proj_Num#)
+   </update>
+   
+   <select id="selectDocumentLastColumn" resultClass="Document">
+   		select * from (select * from document order by  doc_num desc) where rownum=1
+   </select>
+   
+   <select id="selectDocumentListByProjNum" parameterClass="int" resultClass="Document" >
+   		select * from document where proj_Num = #proj_Num#
+   </select> 
+</sqlMap>

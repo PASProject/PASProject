@@ -140,11 +140,14 @@ font-weight:bold;
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/work/workList">파일리스트</a>
+						<td><a href="<%=request.getContextPath()%>/project/work/workList">파일리스트</a>
 							<span class="label label-success">New</span></td>
 					</tr>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/work/loadFile">들어가기</a></td>
+						<td><a href="<%=request.getContextPath()%>/project/work/createWorkForm">파일 생성</a></td>
+					</tr>
+					<tr>
+						<td><a href="<%=request.getContextPath()%>/project/work/loadFile">들어가기</a></td>
 					</tr>
 					<tr>
 						<td><a href="<%=request.getContextPath()%>/work/"></a></td>
