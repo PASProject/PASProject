@@ -1,6 +1,7 @@
 package com.app.pas.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
@@ -22,8 +23,8 @@ public class MemPositionViewVo implements Serializable{
 	private String position_Name;
 	private int proj_Num;
 	private String proj_Name;
-	
-
+	private Timestamp proj_Log_Time;
+	private String pjj_Color;
 	
 
 }

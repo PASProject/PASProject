@@ -28,4 +28,9 @@ public interface SkillSharingBoardDao {
 	public List<SkillSharingBoardVo>selectSkillSharingBoardList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
 	public int skillSharingSearchCount(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
 	public List<SkillSharingBoardVo> skillSharingSearch_Content_Title(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
+	//내가쓴글
+	public List<SkillSharingBoardVo> skill_myPostList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
+	public int skill_myPostCount(SkillSharingBoardVo skillSharingBoardVo)throws SQLException;
+	
+
 }

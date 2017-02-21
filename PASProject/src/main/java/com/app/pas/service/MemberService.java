@@ -71,10 +71,8 @@ public class MemberService {
 		return list;
 	}
 	
-	// 媛��엯珥덈� �닔�씫 -> 議곗씤�뀒�씠釉� �뾽�뜲�씠�듃
 	public List<MemApplyViewVo> updateApplyAgree(int apply_Num) throws SQLException{
 		
-		// check 1濡� �뾽�뜲�씠�듃 apply_commit_check
 		memberDao.updateApplyCommitCheck(apply_Num);
 		
 		MemApplyViewVo memApplyViewVo = memberDao.selectMemApplyViewByApplyNum(apply_Num);
@@ -84,10 +82,8 @@ public class MemberService {
 		projectJoinVo.setPjj_Per_Num(1);
 		projectJoinVo.setPosition_Num(9);
 		
-		// 議곗씤 pjj_per_num �뾽�뜲�씠�듃
 		projectJoinDao.updateProjectJoin(projectJoinVo);
 		
-		// 理쒖떊 �븣由� 由ъ뒪�듃 由ы꽩
 		List<MemApplyViewVo> list = memberDao.selectMemApplyViewByEmail(memApplyViewVo.getP_Mem_Email());
 		return list;
 	}
@@ -99,11 +95,11 @@ public class MemberService {
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		projectJoinVo.setMem_Email(memApplyViewVo.getMem_Email());
 		projectJoinVo.setProj_Num(memApplyViewVo.getProj_Num());
-		// �봽濡쒖젥�듃議곗씤 �뀒�씠釉붿뿉�꽌 �궘�젣 
+		
 		projectJoinDao.deleteProjectJoin(projectJoinVo);
-		// 珥덈� 硫붿꽭吏� �궘�젣
+		
 		memberDao.deleteApplyViewByApplyNum(apply_Num);
-		// 理쒖떊 由ъ뒪�듃 由ы꽩
+		
 		List<MemApplyViewVo> list = memberDao.selectMemApplyViewByEmail(memApplyViewVo.getP_Mem_Email());
 		return list;
 		
@@ -169,7 +165,10 @@ public class MemberService {
 		     return result;
 		}
 	
-
+		public MemPositionViewVo selectMemberPositionByEmail(MemPositionViewVo memPositionViewVo)throws SQLException{
+			memPositionViewVo = memberDao.selectMemberPositionByEmail(memPositionViewVo);
+			return memPositionViewVo;
+		}
 
 
 }

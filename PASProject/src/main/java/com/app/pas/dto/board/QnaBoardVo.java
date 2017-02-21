@@ -23,6 +23,7 @@ public class QnaBoardVo implements Serializable{
 	private Timestamp qb_Wt_Date;
 	private String qb_yn;
 	private String mem_Name;
+	private String qb_Title_Content;
 	
 	
 	

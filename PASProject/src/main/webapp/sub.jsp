@@ -23,6 +23,17 @@
 .panel-body .table {
 	margin-bottom: 0px;
 }
+
+#colors>div {
+	float: left;
+	border-radius: 10px;
+	width: 20px;
+	height: 20px;
+	margin: 5px;
+}
+.panel-title>a{
+font-weight:bold;
+}
 </style>
 </head>
 <!-- <div class="container">
@@ -31,19 +42,19 @@
 <div class="panel-group" id="accordion">
 
 
-	
-	
+
+
 
 
 
 	<%--프로젝트 이미지 수정해야함 --%>
 
-	<img class="img-thumbnail" id="proj_Img" 
-		style="cursor: pointer; border: 1px solid #ddd; margin-bottom:15px;"
+	<img class="img-thumbnail" id="proj_Img"
+		style="cursor: pointer; border: 1px solid #ddd; margin-bottom: 15px;"
 		src="<%=request.getContextPath()%>/resources/upload2/${sessionScope.joinProjectVo.proj_Img}"
 		data-toggle="modal" data-target="#imgUploadModal2"
 		data-keyboard="false" data-backdrop="static"
-		 onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" /> 
+		onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" />
 
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal2" role="dialog">
@@ -70,7 +81,7 @@
 					</script>
 					<button class="btn btn-default pull-right" id="btn-upload2">사진
 						등록하기</button>
-					
+
 
 				</div>
 			</div>
@@ -86,10 +97,8 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion"
-					href="#collapseOne" style="text-decoration: none;"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/manager.png">&nbsp;&nbsp;프로젝트
-					관리</a>
+					href="#collapseOne" style="text-decoration: none;"><img src="<%=request.getContextPath() %>/resources/img/controls.png"><span>&nbsp;&nbsp;&nbsp;프로젝트
+					관리</span></a>
 			</h4>
 		</div>
 		<div id="collapseOne" class="panel-collapse collapse">
@@ -124,9 +133,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseTwo"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/file.png">&nbsp;작업공간</a>
+					data-parent="#accordion" href="#collapseTwo"><img src="<%=request.getContextPath() %>/resources/img/work.png"><span>&nbsp;&nbsp;&nbsp;작업 공간</span></a>
 			</h4>
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse">
@@ -154,10 +161,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseThree"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/calendar.png">&nbsp;일정
-					관리</a>
+					data-parent="#accordion" href="#collapseThree"><img src="<%=request.getContextPath() %>/resources/img/calendar.png"><span>&nbsp;&nbsp;&nbsp;일정 관리</span></a>
 			</h4>
 		</div>
 		<div id="collapseThree" class="panel-collapse collapse">
@@ -165,7 +169,7 @@
 				<table class="table" style="margin-bottom: 0px; border-top: 0px;">
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="http://www.jquery2dotnet.com">월별 일정 관리</a></td>
+							href="<%=request.getContextPath()%>/project/pmCalendar">월별 일정 관리</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
@@ -179,10 +183,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseFour"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/users.png">&nbsp;팀원
-					관리</a>
+					data-parent="#accordion" href="#collapseFour"><img src="<%=request.getContextPath() %>/resources/img/users.png"><span>&nbsp;&nbsp;&nbsp;팀원 관리</span></a>
 			</h4>
 		</div>
 		<div id="collapseFour" class="panel-collapse collapse">
@@ -207,10 +208,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;"
-					href="<%=request.getContextPath()%>/project/AccountBoardList"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/won.png">&nbsp;프로젝트
-					회계</a>
+					href="<%=request.getContextPath()%>/project/AccountBoardList"><img src="<%=request.getContextPath() %>/resources/img/cash.png"><span>&nbsp;&nbsp;&nbsp;프로젝트 회계</span></a>
 			</h4>
 		</div>
 		<!-- <div id="collapseFour" class="panel-collapse collapse">
@@ -243,10 +241,7 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a style="text-decoration: none;" data-toggle="collapse"
-					data-parent="#accordion" href="#collapseSix"><img
-					style="width: 15%"
-					src="<%=request.getContextPath()%>/resources/img/chat.png">&nbsp;전체
-					게시판</a>
+					data-parent="#accordion" href="#collapseSix"><img src="<%=request.getContextPath() %>/resources/img/comments.png"><span>&nbsp;&nbsp;&nbsp;전체 게시판</span></a>
 			</h4>
 		</div>
 		<div id="collapseSix" class="panel-collapse collapse">
@@ -276,10 +271,149 @@
 	</div>
 </div>
 <!-- 		</div> -->
-<div>
-	<div class="well">
-		<h3>여기다가는 뭐 쓸까요?</h3>
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a style="text-decoration: none;" data-toggle="collapse"
+					data-parent="#accordion" href="#collapseSeven"><img src="<%=request.getContextPath() %>/resources/img/color.png"><span>&nbsp;&nbsp;&nbsp;색깔 바꾸기</span></a>
+			</h4>
+		</div>
+		<div id="collapseSeven" class="panel-collapse collapse">
+			<div class="panel-body">
+				<table class="table" style="margin-bottom: 0px;">
+					<tr>
+						<td>
+							<div class="row" id="colors" style="margin: auto;">
+								<div class="cc"  style="background-color:#3c5574 "></div>
+								<div class="cc"  style="background-color:#303030 "></div>
+								<div class="cc"  style="background-color:#717171 "></div>
+								<div class="cc"  style="background-color:#786153 "></div>
+								<div class="cc"  style="background-color:#ad9f84 "></div>
+								<div class="cc"  style="background-color:#d55c53 "></div>
+								<div class="cc"  style="background-color:#974140 "></div>
+								<div class="cc"  style="background-color:#98b45d "></div>
+								<div class="cc"  style="background-color:#58aa48 "></div>
+								<div class="cc"  style="background-color:#24945a "></div>
+								<div class="cc"  style="background-color:#2b9e99 "></div>
+								<div class="cc"  style="background-color:#38716b "></div>
+								<div class="cc"  style="background-color:#58adcc "></div>
+								<div class="cc"  style="background-color:#6093cc "></div>
+								<div class="cc"  style="background-color:#3978bf "></div>
+								<div class="cc"  style="background-color:#39699a "></div>
+								<div class="cc"  style="background-color:#21497d "></div>
+								<div class="cc"  style="background-color:#7278b2 "></div>
+								<div class="cc"  style="background-color:#675d91 "></div>
+								<div class="cc"  style="background-color:#a36bac "></div>
+								<div class="cc"  style="background-color:#ce7da6 "></div>
+								<div class="cc"  style="background-color:#720001 "></div>
+								<div class="cc"  style="background-color:#297000 "></div>
+								<div class="cc"  style="background-color:#4a1059 "></div>
+							</div>
+					<script>
+					$(function(){
+						$('.cc').click(function(){
+							var $color = $(this).css('background-color');
+							var a = location.href;
+							if(a.indexOf("otherProject")==-1){
+								$('#myProjectList').animate({
+									backgroundColor:$color
+								},'slow');
+							}/* else if(a.indexOf("otherProject")!=-1){
+								$('#otherProjectList').css({
+									backgroundColor : $color,
+									'color':'white'
+								});
+							} */
+						
+						$('#navbar').animate({
+							backgroundColor: $color
+						},'slow');
+						$('#navbar2').animate({
+							backgroundColor: $color
+						},'slow');
+						$('#myProjectList').animate({
+							backgroundColor: $color
+						},'slow');
+						$('#otherProjectList').animate({
+							backgroundColor: $color,
+							'filter':'brightness(125%)'
+						},'slow');
+						$('#navbar2').animate({
+							boderBottomColor : $color
+						},'slow');
+		
+						$('#droptoggle').click(function(){
+							$(this).css({
+								backgroundColor:$color
+							})
+						})
+						$('#droptoggle').animate({
+							backgroundColor:$color
+						},'slow');
+						
+						$('#alarmMenu').animate({
+							backgroundColor : $color
+						},'slow');
+						$('#alarmMenu').click(function(){
+							$(this).css({
+								backgroundColor:$color
+							})
+						})
+						
+						
+						
+						
+						
+						
+						var b = $color.split("(")[1].split(")")[0];
+						b = b.split(",");
+						
+						var hex = b.map(function(x){
+							x = parseInt(x).toString(16);
+							return(x.length==1)?"0"+x:x;
+						})
+						hex = hex.join("");
+						
+							$.ajax({
+								url : 'color',
+								type: 'post',
+								data : hex,
+								datatype : 'json',
+								success : function(result){
+									
+								},
+								error : function(result){
+									alert('실패');
+								}
+							})
+							
+							
+						})
+					})
+					</script>
+						</td>
+
+					</tr>
+					<%-- <tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/SkillSharing/SkillSharingBoardList">기술공유
+								게시판</a></td>
+					</tr>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/freeBoard/freeBoardList">커뮤니티</a></td>
+					</tr>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/qna/QnAList">QnA 게시판</a></td>
+					</tr> --%>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
+
+
 <!-- 	</div>
 </div> -->

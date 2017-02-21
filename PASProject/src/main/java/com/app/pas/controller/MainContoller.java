@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,10 +34,13 @@ import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
+import com.sun.mail.iap.Response;
 
 @Controller
 @RequestMapping("/main")
@@ -54,6 +59,24 @@ public class MainContoller {
 	@Autowired
 	ProjectService projectService;
 
+	@Autowired
+	InviteService inviteService;
+	
+
+	//공지팝업
+	@RequestMapping(value="/tempNotice")
+	public String tempNotice(HttpSession session, Model model){
+	String url = "/main/tempNotice";
+	return url;
+		
+	}
+	
+
+	/**
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
@@ -188,65 +211,113 @@ public class MainContoller {
 		memberService.AuthMember(mem_Email);
 		return url;
 	}
+	
 
+	/**
+	 * 내가 참여한 프로젝트 리스트와 프로젝트를 검색한 결과의 리스트를 뿌려주는 메소드
+	 * 
+	 * @param session : 로그인한 회원의 기본키인 Email을 받음
+	 * @param model :  내가 참여한 프로젝트의 리스트를 뿌려주는 기능을 model에 넣음
+	 * @param proj_Search : jsp파일로부터 입력받은 검색어를 가져옴 
+	 * @param projectVo : 회원의email과 검색어를 projectVo 에 넣음
+	 * @return : myProject.jsp 파일로 return
+	 * @throws SQLException
+	 */
 	@RequestMapping("/myProject")
-	public String MyProject(HttpSession session, Model model)
-			throws SQLException {
+	public String MyProject(HttpSession session, Model model,
+			@RequestParam(defaultValue = "")String proj_Search,
+			ProjectVo projectVo) throws SQLException {
 		String url = "main/myProject";
+		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		System.out.println(memberVo.getMem_Email() + "@@@@@@@@@@@@@@@@로그인이메일");
-		List<ProjectVo> list = projectService.selectMyProjectListById(memberVo
-				.getMem_Email());
-		model.addAttribute("myProjectList", list);
-		if (session.getAttribute("proj_Num") != null) {
+		String mem_Email = memberVo.getMem_Email();
+	
+		projectVo.setMem_Email(mem_Email);
+		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
+		
+		if (proj_Search == "" || proj_Search.equals(null)) {
+			if (session.getAttribute("proj_Num") != null) {
 			session.removeAttribute("proj_Num");
-		}
+			}
 
-		if (session.getAttribute("joinProj") != null
+			if (session.getAttribute("joinProj") != null
 				|| session.getAttribute("joinProj") != "null") {
-			session.removeAttribute("joinProj");
-		}
-		if (session.getAttribute("joinProjectVo") != null
+				session.removeAttribute("joinProj");
+			}
+			if (session.getAttribute("joinProjectVo") != null
 				|| session.getAttribute("joinProjectVo") != "null") {
-			session.removeAttribute("joinProjectVo");
-		}
+				session.removeAttribute("joinProjectVo");
+			}
+		}else{
+			if (session.getAttribute("proj_Num") != null) {
+				session.removeAttribute("proj_Num");
+				}
 
-
-		
-		return url;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				if (session.getAttribute("joinProj") != null
+				|| session.getAttribute("joinProj") != "null") {
+					session.removeAttribute("joinProj");
+				}
+				if (session.getAttribute("joinProjectVo") != null
+				|| session.getAttribute("joinProjectVo") != "null") {
+					session.removeAttribute("joinProjectVo");
+				}
+				projectVo.setProj_Search(proj_Search);
+				
+			}
+			model.addAttribute("myProjectList", list);
+			return url;
 	}
-
+//---------------------------------------------------------------------------------
+//외부 프로젝트
 	@RequestMapping("/otherProject")
-	public String OtherProject(HttpSession session, Model model)
+	public String OtherProject(HttpSession session, Model model,
+			@RequestParam(defaultValue = "")String proj_Search,ProjectVo projectVo,
+			HttpServletResponse response)
 			throws SQLException {
-		String url = "/main/otherProject";
 
-		List<ProjectVo> list;
+		
+		String url = "/main/otherProject";
+		List<ProjectVo> list = new ArrayList<ProjectVo>();
+		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		list = projectService.selectOtherProjectListById(memberVo
-				.getMem_Email());
+		String mem_Email = memberVo.getMem_Email();
+		projectVo.setMem_Email(mem_Email);
+		
+		if(proj_Search == "" || proj_Search.equals(null)){
+			if (session.getAttribute("proj_Num") != null) {
+				session.removeAttribute("proj_Num");
+			}
+			if (session.getAttribute("joinProj") != null
+					|| session.getAttribute("joinProj") != "null") {
+				session.removeAttribute("joinProj");
+			}
+			if (session.getAttribute("joinProjectVo") != null
+					|| session.getAttribute("joinProjectVo") != "null") {
+				session.removeAttribute("joinProjectVo");
+			}
+
+		}else{
+			
+			if (session.getAttribute("proj_Num") != null) {
+				session.removeAttribute("proj_Num");
+			}
+			if (session.getAttribute("joinProj") != null
+					|| session.getAttribute("joinProj") != "null") {
+				session.removeAttribute("joinProj");
+			}
+			if (session.getAttribute("joinProjectVo") != null
+					|| session.getAttribute("joinProjectVo") != "null") {
+				session.removeAttribute("joinProjectVo");
+			}
+			
+			projectVo.setProj_Search(proj_Search);
+			
+		}
+		
+		list = projectService.selectOtherProjectListById(projectVo);
+		List<Integer> list2= projectService.selectInviteProjNumByMemEmail(memberVo.getMem_Email());
 		model.addAttribute("otherProjectList", list);
-		if (session.getAttribute("proj_Num") != null) {
-			session.removeAttribute("proj_Num");
-		}
-		if (session.getAttribute("joinProj") != null
-				|| session.getAttribute("joinProj") != "null") {
-			session.removeAttribute("joinProj");
-		}
-		if (session.getAttribute("joinProjectVo") != null
-				|| session.getAttribute("joinProjectVo") != "null") {
-			session.removeAttribute("joinProjectVo");
-		}
+		model.addAttribute("inviteList",list2);
 		return url;
 		
 	}
@@ -353,6 +424,7 @@ public class MainContoller {
 				memApplyViewVo);
 		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
 		map.put("p_Mem_Email", p_Mem_Email);
+		
 		return map;
 	}
 
@@ -440,13 +512,20 @@ public class MainContoller {
 	}
 
 	@RequestMapping(value = "/alramView", method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> selectAlarmView(
+	public @ResponseBody Map<String,Object> selectAlarmView(
 			HttpSession session) throws SQLException {
 		MemberVo member = (MemberVo) session.getAttribute("loginUser");
 		String p_Mem_Email = member.getMem_Email();
+		String mem_Email = member.getMem_Email();
 		List<MemApplyViewVo> memApplyViewList = memberService
 				.selectMemApplyViewByEmail(p_Mem_Email);
-		return memApplyViewList;
+		List<ProjInviteViewVo> projInviteViewList = inviteService.selectInviteListByMemEmail(mem_Email);
+		
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		
+		return alarmMap;
 	}
 
 	
@@ -469,35 +548,79 @@ public class MainContoller {
 		memberVo.setMem_Phone(map.get("sendPhone").toString());
 
 		MemberVo memberVo1 = memberService.searchEmail(memberVo);
-		System.out.println(memberVo1 + "이건 멤멤!!");
 		if (memberVo1 != null) {
 
 			Id = memberVo1.getMem_Email();
 		}
-		System.out.println(Id + "이건아이디!!!!!");
 
 		map.put("id", Id);
 		return map;
 	}
 
-	@RequestMapping(value = "/agree", method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> agreeAlarm(
-			@RequestBody Map<String, Object> map) throws SQLException {
+	@RequestMapping(value = "/agreeApply", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> agreeApplyAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		
 		String apply_Num = (String) map.get("apply_Num");
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = member.getMem_Email();
+		
 		List<MemApplyViewVo> memApplyViewList = memberService
 				.updateApplyAgree(Integer.parseInt(apply_Num));
-		return memApplyViewList;
+		List<ProjInviteViewVo> projInviteViewList = inviteService.selectInviteListByMemEmail(mem_Email);
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		
+		return alarmMap;
 	}
-
-	@RequestMapping(value = "/reject", method = RequestMethod.POST)
-	public @ResponseBody List<MemApplyViewVo> rejectAlarm(
-			@RequestBody Map<String, Object> map) throws SQLException {
+	
+	
+	@RequestMapping(value = "/rejectApply", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> rejectApplyAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
 		String apply_Num = (String) map.get("apply_Num");
-		List<MemApplyViewVo> memApplyViewList = memberService
-				.updateApplyReject(Integer.parseInt(apply_Num));
-		return memApplyViewList;
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = member.getMem_Email();
+		List<MemApplyViewVo> memApplyViewList = memberService.updateApplyReject(Integer.parseInt(apply_Num));
+		List<ProjInviteViewVo> projInviteViewList = inviteService.selectInviteListByMemEmail(mem_Email);
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		return alarmMap;
+	}
+	
+	@RequestMapping(value = "/agreeInvite", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> agreeInviteAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		String invite_Num = (String) map.get("invite_Num");
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String p_mem_Email = member.getMem_Email();
+		
+		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_mem_Email);
+		List<ProjInviteViewVo> projInviteViewList = inviteService.updataInviteAgree(Integer.parseInt(invite_Num));
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		return alarmMap;
 	}
 
+	@RequestMapping(value = "/rejectInvite", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> rejectInviteAlarm(
+			@RequestBody Map<String, Object> map,HttpSession session) throws SQLException {
+		Map<String,Object> alarmMap = new HashMap<String, Object>();
+		String invite_Num = (String) map.get("invite_Num");
+		MemberVo member = (MemberVo) session.getAttribute("loginUser");
+		String p_Mem_Email = member.getMem_Email();
+		List<MemApplyViewVo> memApplyViewList = memberService.selectMemApplyViewByEmail(p_Mem_Email);
+		List<ProjInviteViewVo> projInviteViewList = inviteService.updataInviteReject(Integer.parseInt(invite_Num));
+		
+		alarmMap.put("memApplyViewList", memApplyViewList);
+		alarmMap.put("projInviteViewList", projInviteViewList);
+		return alarmMap;
+	}
+	
+	
 	@RequestMapping(value = "/createProject", method = RequestMethod.POST)
 	public @ResponseBody int createProject(@RequestBody ProjectVo projectVo)
 			throws SQLException {
@@ -510,5 +633,5 @@ public class MainContoller {
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
-
+	
 }

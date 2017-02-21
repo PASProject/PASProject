@@ -1,7 +1,7 @@
 package com.app.pas.dto;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
@@ -10,54 +10,46 @@ import lombok.Data;
 @Alias("ScheduleCalendar")
 @Data
 public class ScheduleCalendarVo implements Serializable {
-
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1962789608836030585L;
-	private int gt_Num;
-	private Timestamp sc_Start_Date;
-	private Timestamp sc_End_Date;
+	private int sc_Num;
+	private Date sc_Start_Date;
+	private Date sc_End_Date;
 	private String sc_Wk_Name;
+	private String sc_Wk_Mem_Email;
+	private String sc_Title;
+	private int sc_Proj_Num;
 	private String sc_Color;
-	private String sc_Charge_Mem;
+	private String sc_Description;
 	
-	public int getGt_Num() {
-		return gt_Num;
+	public ScheduleCalendarCommand toCommand(){
+		ScheduleCalendarCommand scheduleCalendarCommand = new ScheduleCalendarCommand();
+		
+		scheduleCalendarCommand.setStart(this.getSc_Start_Date());
+		scheduleCalendarCommand.setEnd(this.getSc_End_Date());
+		scheduleCalendarCommand.setTitle(this.getSc_Title());
+		scheduleCalendarCommand.setColor(this.getSc_Color());
+		scheduleCalendarCommand.setDescription(this.sc_Description);
+		scheduleCalendarCommand.setId(this.sc_Wk_Mem_Email+this.sc_Num);
+		return scheduleCalendarCommand;
 	}
-	public void setGt_Num(int gt_Num) {
-		this.gt_Num = gt_Num;
-	}
-	public Timestamp getSc_Start_Date() {
-		return sc_Start_Date;
-	}
-	public void setSc_Start_Date(Timestamp sc_Start_Date) {
-		this.sc_Start_Date = sc_Start_Date;
-	}
-	public Timestamp getSc_End_Date() {
-		return sc_End_Date;
-	}
-	public void setSc_End_Date(Timestamp sc_End_Date) {
-		this.sc_End_Date = sc_End_Date;
-	}
-	public String getSc_Wk_Name() {
-		return sc_Wk_Name;
-	}
-	public void setSc_Wk_Name(String sc_Wk_Name) {
-		this.sc_Wk_Name = sc_Wk_Name;
-	}
-	public String getSc_Color() {
-		return sc_Color;
-	}
-	public void setSc_Color(String sc_Color) {
-		this.sc_Color = sc_Color;
-	}
-	public String getSc_Charge_Mem() {
-		return sc_Charge_Mem;
-	}
-	public void setSc_Charge_Mem(String sc_Charge_Mem) {
-		this.sc_Charge_Mem = sc_Charge_Mem;
+	
+	
+	public ScheduleCalendarVo fromCommand(ScheduleCalendarCommand scheduleCalendarCommand){
+		ScheduleCalendarVo scheduleCalendarVo = new ScheduleCalendarVo();
+		if(scheduleCalendarCommand.getId()!=null){
+			scheduleCalendarVo.setSc_Num(Integer.parseInt(scheduleCalendarCommand.getId()));
+		}
+		
+		scheduleCalendarVo.setSc_Start_Date(scheduleCalendarCommand.getStart());
+		scheduleCalendarVo.setSc_End_Date(scheduleCalendarCommand.getEnd()) ;
+		scheduleCalendarVo.setSc_Title( scheduleCalendarCommand.getTitle());
+		scheduleCalendarVo.setSc_Color(scheduleCalendarCommand.getColor()) ;
+		scheduleCalendarVo.setSc_Description(scheduleCalendarCommand.getDescription());
+		return scheduleCalendarVo;
 	}
 	
 }

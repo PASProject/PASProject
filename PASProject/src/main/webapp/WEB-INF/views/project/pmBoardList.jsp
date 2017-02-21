@@ -92,8 +92,7 @@
 														data-target="#${pbList.pb_Article_Num }modal"
 														data-keyboard="false" data-backdrop="static">글 수정하기</a></li>
 													<li><a
-														href="deleteProjectBoard?pb_Article_Num=${pbList.pb_Article_Num}">글
-															삭제하기</a></li>
+														href="deleteProjectBoard?pb_Article_Num=${pbList.pb_Article_Num}">글삭제하기</a></li>
 												</ul>
 											</c:if>
 										</div></td>
@@ -258,7 +257,7 @@
 							$.each(data,function(i){
 								if(login_Email==data[i].pb_Reply_Mem){
 									dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
-									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'<span><a href="#" >수정</a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i].pb_Reply_Num+'" >삭제</a> </span></td></tr><table>';
+									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'<span ><a href="#" >수정</a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i].pb_Reply_Num+'" >삭제</a> </span></td></tr><table>';
 								}else{
 									dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
 									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table>';

@@ -161,6 +161,13 @@ public class MemberDaoImpl implements MemberDao {
 	  int result=(Integer) client.queryForObject("selectOtherProjectCount", mem_Email);
 		return result;
 	}
+
+	@Override
+	public MemPositionViewVo selectMemberPositionByEmail(
+			MemPositionViewVo memPositionViewVo) throws SQLException {
+		memPositionViewVo = (MemPositionViewVo) client.queryForObject("selectMemberPositionByEmail",memPositionViewVo);
+		return memPositionViewVo;
+	}
 	
 
 }

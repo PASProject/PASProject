@@ -70,7 +70,11 @@ public class AdminQnaController {
 				qnaBoarVo.setQb_Article_Num(Integer.parseInt(keyword));
 
 			System.out.println("-----------------number 키워드 : " + keyword);
+		}else if (keyField == ("title_content") || keyField.equals("title_content")){
+			if (!(keyword.isEmpty() || keyword == null))
+				qnaBoarVo.setQb_Title_Content(keyword);
 		}
+
 
 		qnaList = qnaBoardService.selectQnaBoardList(qnaBoarVo);
 		model.addAttribute("qnaList", qnaList);

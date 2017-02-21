@@ -7,20 +7,54 @@
 
 <head>
 
-
 </head>
 
 <body>
+
+	<script>
+$(function(){
+	
+		var popUrl = 'tempNotice';  
+		var popOption = 'width=1152, height=495, resizable=no, scrollbars=no, status=no;';   
+		    window.open(popUrl,"",popOption);
+	
+})
+
+</script>
+	<script>
+$(function(){
+	$('#navbar').css('background-color','#3c5574');
+	$('#navbar2').css('background-color','#3c5574');
+})
+</script>
+
 	<!-- Page Content -->
-	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
+	<div class="container" id="content"
+		style="padding-left: 14px; padding-right: 14px;">
 
 		<!-- Page Header -->
 		<div class="row">
-			<div class="col-lg-12" >
+			<div class="col-lg-12">
 				<h2 class="page-header">
 					참여 프로젝트 목록
-					<button class="btn pull-right createProject" id="createProject" data-toggle="modal"
-						data-target="#create" data-keyboard="false"  data-backdrop="static">프로젝트 생성하기</button>
+
+					<form style="float: right; margin-top: -5px;" class="navbar-form"
+						action="myProject" name="myProject" method="post">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="프로젝트 검색"
+								name="proj_Search">
+							<div class="input-group-btn">
+								<button style="width: 40px;" class="btn btn-default"
+									type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+
+
+
+
 				</h2>
 
 			</div>
@@ -36,9 +70,9 @@
 					<br> <br>
 					<div class="text-center">
 						<img src="<%=request.getContextPath()%>/resources/img/plus1.png"
-						id="createProject" value="생성하기" data-toggle="modal"
-						data-target="#create" data-keyboard="false" style="cursor:
-						pointer; width: 430px;" data-backdrop="static" />
+							id="createProject" value="생성하기" data-toggle="modal"
+							data-target="#create" data-keyboard="false"
+							style="cursor: pointer; width: 430px;" data-backdrop="static" />
 
 					</div>
 				</div>
@@ -52,7 +86,7 @@
 					varStatus="status">
 
 					<div class="col-md-3" id="box"
-						style="margin-bottom:30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
+						style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
 						<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->
@@ -107,24 +141,56 @@
 			</c:otherwise>
 		</c:choose>
 
+
 		<!-- 프로젝트 생성 모달   -->
 		<div class="modal fade" id="create" role="dialog">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header"
+						style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title"></h4>
-						프로젝트 생성
+						<h3 class="modal-title">프로젝트 생성</h3>
 					</div>
 					<div class="modal-body" id="createBody">
-						생성자 : <input type="text" id="mem_Email"
-							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
-						<br> <input type="hidden" id="mem_Img"
-							value="${sessionScope.loginUser.mem_Img }"> 
-							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
-							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
-						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
+						<div class="form-group">
+							<label class="col-md-4 control-label">생성자 이메일 주소</label>
+							<div class="col-md-6  inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"> <i	class="glyphicon glyphicon-envelope"></i></span> <input
+										name="mem_Email" id="mem_Email" value="${sessionScope.loginUser.mem_Email}" class="form-control"
+										type="text" readonly>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-4 control-label">프로젝트 이름</label>
+							<div class="col-md-6  inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"> <i	class="glyphicon glyphicon-envelope"></i></span> 
+										<input type="hidden" id="mem_Img" value="${sessionScope.loginUser.mem_Img }"> 
+									<input
+										name="proj_Name" id="proj_Name" placeholder="프로젝트 이름" class="form-control"
+										type="text" readonly>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+								<input type="hidden" id="mem_Img"
+							value="${sessionScope.loginUser.mem_Img }"> 프로젝트 이름 : <input
+							type="text" id="proj_Name" name="proj_Name"><br> <br>
+						프로젝트 팀명 : <input type="text" id="proj_Team" name="proj_Team"><br>
+						<br> 프로젝트 내용 :
+						<textarea rows="15" cols="30" name="proj_Content"
+							id="proj_Content"></textarea>
 						<br>
 					</div>
 					<div class="modal-footer">
@@ -139,7 +205,7 @@
 
 
 
-<%-- 
+		<%-- 
 		<!-- Pagination -->
 
 
@@ -176,30 +242,6 @@
 	</div>
 
 	<script>
-			
-	$(document).ready(function(){
-		$('#createBtn').on('click',function(){
-			var mem_Email = $('#mem_Email').val();
-			var proj_Name = $('#proj_Name').val();
-			var proj_Content = $('#proj_Content').val();
-			var proj_Team = $('#proj_Team').val();
-			var mem_Img = $('#mem_Img').val();
-			var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
-					'proj_Team':proj_Team};
-			$.ajax({
-				url:'createProject',
-				contentType:'application/json',
-				data: JSON.stringify(dataList),
-				type:'post',
-				success:function(proj_Num){
-					location.href="../project/pmOverView?proj_Num="+proj_Num;
-				},
-				error : function(){
-					alert("프로젝트 생성 실패");
-				}
-			})
-		})
-	})
 
 /* 	function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
@@ -223,6 +265,26 @@
 		})
 	}
 	 */
+	 
+	 
+	 
+	 
+	 
+
+	 
+	<%--  
+	
+	
+	 <img src="<%=request.getContextPath()%>/resources/img/sun1.png"
+			style="position: relative; width: 68px; height: 68px"/>
+			<div style="position:relative; top: -3.84em; left:1.03em; width:80px;">
+			<img src="<%=request.getContextPath() %>/resources/img/yeo.png" style="width:40px; height:40px; border-radius:50%"/>
+			</div>
+	  --%>
+	 
+	 
+	 
+
 	function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
@@ -235,7 +297,7 @@
 				var tt="";
 				$.each(data,function(i){
 					if(data[i].position_Num==1){
-						tt+= '<img style="border-radius:50%;  border: 3px solid cyan; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+						tt+= '<img style="border-radius:50%; border-width: 4px; border-style: dotted;border-color: #f16a70 #b1d877 #8cdcda #4d4d4d;width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
 					}else{
 						tt+= '<img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
 					}

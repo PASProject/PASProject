@@ -25,6 +25,7 @@
 			<option value="title" selected>제목</option>
 			<option value = "name" selected>작성자</option>
 			<option value ="number" selected>글번호</option>
+			<option value ="title_content" selected>제목+내용</option>
 		</select>
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >
@@ -62,7 +63,7 @@
 						<td><a 
 							href="<%=request.getContextPath()%>/admin/AdminQnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
 								${qnaBoardVo.qb_Title}</a></td>
-						<td>${qnaBoardVo.mem_Email }</td>
+						<td>${qnaBoardVo.mem_Name }</td>
 						<td style="text-align: center">
 						<fmt:formatDate	value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
 						<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td>

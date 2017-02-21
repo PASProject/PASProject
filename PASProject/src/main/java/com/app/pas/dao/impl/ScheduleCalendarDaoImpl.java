@@ -13,10 +13,11 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
+	
 	@Override
-	public List<ScheduleCalendarVo> selectScheduleCalendarList()
+	public List<ScheduleCalendarVo> selectScheduleCalendarList(int sc_Proj_Num)
 			throws SQLException {
-		List<ScheduleCalendarVo> list = client.queryForList("selectScheduleCalendarList");
+		List<ScheduleCalendarVo> list = client.queryForList("selectScheduleCalendarList",sc_Proj_Num);
 		return list;
 	}
 
@@ -27,15 +28,32 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		
 	}
 
+	
+	@Override
+	public int deleteScheduleCalendar(int sc_Num) throws SQLException {
+		int flag = client.update("deleteScheduleCalendar",sc_Num);
+		return flag;
+	}
+
 	@Override
 	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo)
 			throws SQLException {
 		client.update("updateScheduleCalendar",scheduleCalendarVo);
+		
 	}
 
 	@Override
-	public void deleteScheduleCalendar(int gt_Num) throws SQLException {
-		client.update("deleteScheduleCalendar",gt_Num);
+	public void updateScheduleCalendarColor(
+			ScheduleCalendarVo scheduleCalendarVo) throws SQLException {
+		client.update("updateScheduleCalendarColor",scheduleCalendarVo);
+		
+	}
+
+	@Override
+	public ScheduleCalendarVo selectScheduleCalendarByScNum(int sc_Num)
+			throws SQLException {
+		ScheduleCalendarVo scheduleCalendarVo = (ScheduleCalendarVo) client.queryForObject("selectScheduleCalendarByScNum",sc_Num);
+		return scheduleCalendarVo;
 	}
 
 }

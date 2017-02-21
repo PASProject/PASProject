@@ -25,12 +25,11 @@ font-size:12px;
 
 
 
-
 	<table>
 		<tr>
-			<td style="padding-left:20px;"><img class="img-thumbnail"
-				src="<%=request.getContextPath() %>/resources/upload2/${projectVo.proj_Img}"
-				id="asdf" alt="your image" /></td>
+			<td style="padding-left:20px;"><img style="width:150px; height:150px;"
+				src="<%=request.getContextPath() %>/resources/upload2/${sessionScope.joinProjectVo.proj_Img}"
+				id="asdf" alt="your image" onerror="this.src='<%=request.getContextPath()%>/resources/upload2/no.png'" /></td>
 			<td style="padding-left: 75px;">
 			프로젝트 사진을 업로드 해주세요.<br>사진 크기는 1mb이하만 가능합니다.<br><br><br>
 				<form id="projImg" enctype="multipart/form-data">

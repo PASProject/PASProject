@@ -3,6 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 
@@ -11,24 +12,50 @@
 </head>
 
 <body>
+	<script>
+$(function(){
+	$('#otherProjectList').css({
+		'filter':'brightness(125%)'
+	});
+	})
+</script>
 	<!-- Page Content -->
-	<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
+	<div class="container" id="content"
+		style="padding-left: 14px; padding-right: 14px;">
 
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">
 					외부 프로젝트 목록
-					<button class="btn pull-right createProject" id="createProject"
-						data-toggle="modal" data-target="#create" data-keyboard="false"
-						data-backdrop="static">프로젝트 생성하기</button>
+					<form style="float: right; margin-top: -5px;" class="navbar-form"
+						action="otherProject" method="post">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="프로젝트 검색"
+								name="proj_Search" />
+							<div class="input-group-btn inline">
+								<button style="width: 40px;" class="btn btn-default"
+									type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+
+
+
+
+
+
 					<!-- <small>Secondary Text</small> -->
+
 				</h2>
 			</div>
 		</div>
 		<!-- /.row -->
 		<!-- Projects Row -->
-		<c:forEach items="${otherProjectList}" var="projectVo" varStatus="status">
+		<c:forEach items="${otherProjectList}" var="projectVo"
+			varStatus="status">
 			<div class="col-md-3" id="box"
 				style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
 				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h4>
@@ -46,14 +73,32 @@
 				
 				</script>
 				<div id="${projectVo.proj_Num}body"></div>
-				<div id="warning" style="display:none;">
-				<h4 style="color:red">그만 좀 쳐 누르고 기다려 좀 기다려라</h4>
+				<div id="warning" style="display: none;">
+					<h4 style="color: red">그만 좀 쳐 누르고 기다려 좀 기다려라</h4>
 				</div>
-				<div id="${projectVo.proj_Num}btnZone">
-					<input class="btn btn-block btn-default" type="button"
-						onclick="javascript:goApply(${projectVo.proj_Num})" id="applyBtn"
-						value="참가 신청하기" />
-				</div>
+				<c:forEach var="inviteList" items="${inviteList }"
+					varStatus="status">
+					<c:choose>
+						<c:when test="${projectVo.proj_Num == inviteList }">
+							<div id="${projectVo.proj_Num}btnZone">
+								<input class="btn btn-block btn-default" type="text"
+									value="초대 요청이 전달 된 프로젝트 입니다." readonly />
+							</div>
+						</c:when>
+
+						<c:otherwise>
+
+							<div id="${projectVo.proj_Num}btnZone">
+								<input class="btn btn-block btn-default" type="button"
+									onclick="javascript:goApply(${projectVo.proj_Num})"
+									id="applyBtn" value="참가 신청하기" />
+							</div>
+
+
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
 
 				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 					class="img-responsive" src="http://placehold.it/700x400"
@@ -68,7 +113,7 @@
 				<br>
 
 			</div>
-		
+
 		</c:forEach>
 		<!-- /.row -->
 
@@ -105,10 +150,13 @@
 			success:function(data){
 				var tt="";
 				$.each(data,function(i){
-					tt += '<div> 아이디 : '+data[i].mem_Email+'<br> 이름 : '+data[i].mem_Name+'<br> 직책 :'+data[i].position_Name+'<hr color=\'red\'></div>'
+					if(data[i].position_Num==1){
+					tt += '<table><tr><td rowspan="2"><img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" ></td><td>팀장 : '+data[i].mem_Name+'</td></tr><tr><td> 이메일 : '+data[i].mem_Email+'</td></tr></table><div>'
+					}
 				})
 				$('#'+proj_Num+'body').empty();
 				$('#'+proj_Num+'body').append(tt);
+				
 			},
 			complete:function(){
 				$.ajax({

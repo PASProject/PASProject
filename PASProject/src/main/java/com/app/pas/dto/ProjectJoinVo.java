@@ -21,7 +21,7 @@ public class ProjectJoinVo implements Serializable{
 	private int position_Num;
 	private String mem_Name;
 	private String mem_Img;
-	
+	private String pjj_Color;
 	
 	
 	
