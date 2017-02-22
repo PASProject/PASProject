@@ -34,7 +34,9 @@ $(function() {
         pdf: {                
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
         },
-        sheets: [JSON.parse(initData)]
+        sheets: [JSON.parse(initData)],
+        sheetsbar:false,
+        toolbar:true
     });
 });
     
