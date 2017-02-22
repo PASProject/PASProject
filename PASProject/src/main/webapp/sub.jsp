@@ -116,7 +116,9 @@ font-weight:bold;
 								공지사항</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="#">채팅하기</a></td>
+						<td><a style="text-decoration: none;"
+						 href="#" onClick="window.open('http://localhost:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=800,height=400,top=700,left=1200')">채팅하기</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
@@ -142,11 +144,14 @@ font-weight:bold;
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/work/workList">파일리스트</a>
+						<td><a href="<%=request.getContextPath()%>/project/work/workList">파일리스트</a>
 							<span class="label label-success">New</span></td>
 					</tr>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/work/loadFile">들어가기</a></td>
+						<td><a href="<%=request.getContextPath()%>/project/work/createWorkForm">파일 생성</a></td>
+					</tr>
+					<tr>
+						<td><a href="<%=request.getContextPath()%>/project/work/loadFile">들어가기</a></td>
 					</tr>
 					<tr>
 						<td><a href="<%=request.getContextPath()%>/work/"></a></td>

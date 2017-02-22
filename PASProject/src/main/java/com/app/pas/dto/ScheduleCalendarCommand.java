@@ -16,4 +16,5 @@ public class ScheduleCalendarCommand {
 	private String color;
 	private String description;
 	private String id;
+
 }

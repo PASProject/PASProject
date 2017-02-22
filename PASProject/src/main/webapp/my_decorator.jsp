@@ -38,6 +38,17 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
+
+<!-- kendo spreadSheet -->
+<link href="<%=request.getContextPath()%>/resources/kendo/examples-offline.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.common.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.rtl.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.default.min.css" rel="stylesheet">
+    <script src="<%=request.getContextPath()%>/resources/kendo/jszip.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/kendo//kendo.all.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/kendo/console.js"></script>
+    <link href="<%=request.getContextPath()%>/resources/kendo/kendo.default.mobile.min.css" rel="stylesheet">
+    
 <!-- Bootstrap Core CSS -->
 
 
@@ -85,7 +96,6 @@
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
-
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
@@ -333,6 +343,7 @@ $(function(){
 					id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right" id="a">
+
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/myProject"><p>참여

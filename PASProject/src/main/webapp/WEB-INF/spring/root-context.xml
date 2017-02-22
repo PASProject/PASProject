@@ -31,8 +31,8 @@
 	<bean id="MemberLogDao" class="com.app.pas.dao.impl.MemberLogDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="ProjectLogDao" class="com.app.pas.dao.impl.ProjectLogDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="MainDao" class="com.app.pas.dao.impl.MainDaoImpl" p:client-ref="SqlMapClient"/>
-	<bean id="CalendarDao" class="com.app.pas.dao.impl.CalendarDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="MessageDao" class="com.app.pas.dao.impl.MessageDaoImpl" p:client-ref="SqlMapClient" />
+
 
 	
 	<bean id="AccountBoardDao" class="com.app.pas.dao.board.impl.AccountBoardDaoImpl" p:client-ref="SqlMapClient"/>
@@ -50,6 +50,9 @@
 
 
 	
+	
+	<bean id = "SpreadSheetDao" class="com.app.pas.dao.dic.impl.SpreadSheetDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id = "DocumentDao" class="com.app.pas.dao.dic.impl.DocumentDaoImpl" p:client-ref="SqlMapClient"/>
 	<!-- ////////////////////////////////////////// service  //////////////////////////////////////////////////////////// -->
 	
 	<bean id="AdminService" class="com.app.pas.service.AdminService" p:adminDao-ref="AdminDao"/>
@@ -63,8 +66,9 @@
 	<bean id="ScheduleCalendarService" class="com.app.pas.service.ScheduleCalendarService" p:scheduleCalendarDao-ref="ScheduleCalendarDao"/>
 	<bean id="MemberLogService" class="com.app.pas.service.MemberLogService" p:memberLogDao-ref="MemberLogDao"/>
 	<bean id="ProjectLogService" class="com.app.pas.service.ProjectLogService" p:projectLogDao-ref="ProjectLogDao"/>
+	
+	
 	<bean id="MainService" class="com.app.pas.service.MainService" p:mainDao-ref="MainDao"/>
-	<bean id="CalendarService" class="com.app.pas.service.CalendarService" p:calendarDao-ref="CalendarDao"/>
 	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>
 	<bean id="FreeBoardService" class="com.app.pas.service.board.FreeBoardService" p:freeboardDao-ref="FreeBoardDao"/>
 	<bean id="FreeBoardReplyService" class="com.app.pas.service.board.FreeBoardReplyService" p:freeboardReplyDao-ref="FreeBoardReplyDao"/>
@@ -77,4 +81,7 @@
 	<bean id="SkillSharingBoardReplyService" class="com.app.pas.service.board.SkillSharingBoardReplyService" p:skillSharingBoardReplyDao-ref="SkillSharingBoardReplyDao"/>
 	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
 	<bean id="MessageService" class="com.app.pas.service.MessageService" p:messageDao-ref="MessageDao" />
+	<bean id="SpreadSheetService" class="com.app.pas.service.dic.SpreadSheetService" p:spreadSheetDao-ref="SpreadSheetDao"/>
+	<bean id="DocumentService" class="com.app.pas.service.dic.DocumentService" p:documentDao-ref="DocumentDao" p:spreadSheetDao-ref="SpreadSheetDao"/>
+
 </beans>

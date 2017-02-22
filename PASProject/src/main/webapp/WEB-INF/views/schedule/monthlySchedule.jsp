@@ -8,7 +8,6 @@
 <meta charset='utf-8' />
 </head>
 <body>
-
 	<div class="col-md-10" id="content">
 
 		<h2 class="page-header"
