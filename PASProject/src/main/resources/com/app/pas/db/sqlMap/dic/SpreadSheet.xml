@@ -22,4 +22,8 @@
 	<select id="selectSpreadSheetByDocNum" parameterClass="int" resultMap="spreadSheetClob">
 		select * from spread_sheet where doc_num = #doc_Num#
 	</select>
+	
+	<update id="updateSpreadSheet" parameterClass="SpreadSheet">
+		update spread_Sheet set sp_content = #sp_Content# where doc_Num = #doc_Num#
+	</update>
 </sqlMap>

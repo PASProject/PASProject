@@ -30,4 +30,13 @@ public class SpreadSheetService {
 		SpreadSheetVo spreadSheetVo =spreadSheetDao.selectSpreadSheetByDocNum(doc_Num);
 		return spreadSheetVo;
 	}
+	
+	public boolean updateSpreadSheet(SpreadSheetVo spreadSheetVo) throws SQLException{
+		int result = spreadSheetDao.updateSpreadSheet(spreadSheetVo);
+		boolean flag = false;
+		if(result ==1){
+			flag = true;
+		}
+		return flag;
+	}
 }
