@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.MyPostBoardVo;
@@ -26,6 +27,7 @@ import com.app.pas.service.board.FreeBoardService;
 import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
 import com.app.pas.service.board.SkillSharingBoardReplyService;
+import com.app.pas.service.board.SkillSharingBoardService;
 
 @Controller
 @RequestMapping("/main")
@@ -45,6 +47,9 @@ public class MyPostController {
 	
 	@Autowired
 	FreeBoardReplyService freeBoardReplyService;
+	
+	@Autowired
+	SkillSharingBoardService skillSharingBoardService;
 	
 	@Autowired
 	FreeBoardService freeBoardService;
@@ -105,13 +110,46 @@ public class MyPostController {
 			ssb_replyList = skillSharingBoardReplyService.selectSkillSharingBoardReply(skillDetailNum);
 			model.addAttribute("ssb_replyList",ssb_replyList);
 		
-			
 			String url = "/main/myPostDetail_skill";
-			
-
-			return url;
 		
+			return url;
+	
 		}
+		//기술공유 수정폼
+				@RequestMapping(value = "/myPostUpdateForm_Skill")
+				public String myPostUpdateForm_Skill(HttpSession session, Model model,
+						MyPostBoardVo myPostBoardVo,SkillSharingBoardVo skillSharingBoardVo,
+						SkillSharingBoardReplyVo skillSharingBoardReplyVo) throws SQLException {
+				
+					int skillDetailNum = myPostBoardVo.getNum();
+					skillSharingBoardVo.setSsb_Article_Num(skillDetailNum);
+					
+					skillSharingBoardVo = (SkillSharingBoardVo)mainService.myPostBoard_Skill(skillSharingBoardVo);
+					model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
+					model.addAttribute("myPostBoardVo", myPostBoardVo);
+		
+					String url = "/main/myPostUpdate_skill";
+				
+					return url;
+			
+				}
+				
+//				//기술공유 수정  
+//				@RequestMapping(value ="/myPostUpdate_frb")
+//				   public String myPostUpdate_Skill(String frb_Article_Num,MyPostBoardVo myPostBoardVo,
+//						  SkillSharingBoardVo skillSharingBoardVo,String num
+//							) throws NumberFormatException, SQLException{
+//					
+//				
+//					skillSharingBoardVo.setSsb_Article_Num(Integer.parseInt(num));
+//				   
+//						String url = "/main/myPostDetail_frb";
+//						skillSharingBoardService.updateSkillSharingBoard(skillSharingBoardVo);
+//
+//			      return url;
+//				   }
+				   
+		
 		
 		//qna디테일
 		@RequestMapping(value = "/myPostDetail_qna")

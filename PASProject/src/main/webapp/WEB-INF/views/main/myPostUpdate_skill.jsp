@@ -15,14 +15,16 @@
 <div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			기술공유<small>내가쓴글읽기</small>
+			기술공유 <small>수정하기!</small>
 		</h2>
+					<form action="myPostUpdateForm_Skill" method="post" >
+					<input type="hidden" name="num" value="${myPostBoardVo.num}" >
 		
 					<table class="table" style="border-top: 2px;">
 					<tr style="border-top: 2px solid #ddd">
 						<td class="col-md-9"><h3
 								style="margin-top: 10px; margin-bottom: 10px">
-								<b>${skillSharingBoardVo.ssb_Title}</b>
+						<input type="text" name="frb_Title" value="${skillSharingBoardVo.ssb_Title}">
 							</h3></td>
 						<td class="col-md-1"
 							style="vertical-align: middle; text-align: right"><span
@@ -33,11 +35,11 @@
 							style="font-size: 11px"><fmt:formatDate
 									value="${skillSharingBoardVo.ssb_wt_date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
 					</tr>
+				
 					<tr>
-						<td colspan="3">${skillSharingBoardVo.mem_Email }</td>
-					</tr>
-					<tr>
-						<td colspan="3">${skillSharingBoardVo.ssb_Content}<br>
+						<td>
+						<textarea name="frb_Content">${skillSharingBoardVo.ssb_Content}</textarea>
+						
 						</td>
 					</tr>
 					
@@ -46,43 +48,25 @@
 							style="border-top: 0px solid blue;">
 						
 						<button class="btn btn-default text-right" type="button"onclick="myPostBoard()">목록</button>
-						<button class="btn btn-default text-right" type="button" onClick="myPostUpdateForm_Skill()">수정</button> 
-						<button class="btn btn-default text-right" type="button" onClick="go_delete1()">삭제</button>
+						<button class="btn btn-default text-right" type="submit" >수정</button> 
+						
 						</td>	
 					</tr>
-					
-					
-					<tr>
-						<td>
-						<c:forEach items="${ssb_replyList}" var="ssb_replyList" varStatus="status">
-							${status.index+1} 번째리플 ><br>
-							작성자 이름 : ${ssb_replyList.ssb_Reply_Mem_Name } <br>
-							내용 : ${ssb_replyList.ssb_Reply_Content} <br><br>
-							</c:forEach>
-						
-						</td>
-					</tr>
-					
-						
+	
 				</table>
-
+</form>
 
 
 			<script>
 				function myPostBoard() {
 					location.href = "myPostBoard"
-	
+
 				}
 				function myPostUpdateForm_Skill() {
 					location.href = "myPostUpdateForm_Skill?num=${myPostBoardVo.num}";
 				}
 
-				function go_delete() {
-					frm.method = "post"
-					frm.action = "QnADelete";
-					frm.submit();
-				}
-			
+				
 			</script>
 
 
@@ -93,39 +77,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

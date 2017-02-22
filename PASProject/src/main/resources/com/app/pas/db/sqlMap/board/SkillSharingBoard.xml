@@ -117,7 +117,7 @@
 
 
 	<update id="updateSkillSharingBoard" parameterClass="SkillSharingBoard">
-		UPDATE SKILL_SHARING_BOARD SET SSB_CONTENT=#ssb_Content#, SSB_TITLE=#ssb_Title#, SSB_TAG=#ssb_Tag#, ssb_Inq_Count=ssb_Inq_Count+1
+		UPDATE SKILL_SHARING_BOARD SET SSB_CONTENT=#ssb_Content#, SSB_TITLE=#ssb_Title#, SSB_TAG='%'||#ssb_Tag#||'%', ssb_Inq_Count=ssb_Inq_Count+1
 		WHERE SSB_ARTICLE_NUM = #ssb_Article_Num#
 	</update>
 	
