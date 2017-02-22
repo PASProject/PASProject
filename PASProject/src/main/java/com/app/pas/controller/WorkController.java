@@ -47,17 +47,20 @@ public class WorkController {
 		model.addAttribute("documentList", documentList);
 		return url;
 	}
+	
 	@RequestMapping(value="createWorkForm")
 	public String createWorkForm(HttpSession session){
 		String url = "";
 		url = "/work/createWorkForm";
 		return url;
 	}
+	
 	@RequestMapping(value="spreadSheetForm",method = RequestMethod.GET)
 	public String createSheet(HttpSession session) throws SQLException{
 		String url = "/work/spreadSheetForm";
 		return url;
 	}
+	
 	
 	@RequestMapping(value="createSpreadSheet",method=RequestMethod.POST)
 	public @ResponseBody boolean createSpreadSheet(@RequestBody String sp_Content,HttpSession session) throws SQLException{
@@ -89,19 +92,17 @@ public class WorkController {
 	}
 	
 	@RequestMapping("selectDocument")
-	public String selectDocument(DocumentVo documentVo,HttpSession session,Model model) throws SQLException{
+	public String selectDocument(DocumentVo documentVo,Model model) throws SQLException{
 		
 		String url = "";
-		String proj_Num = (String) session.getAttribute("joinProj");
 		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
-		if(selectVo ==null || selectVo.getProj_Num()!=Integer.parseInt(proj_Num)){ return "redirect:workList"; }
-		
+		if(selectVo ==null){ return "redirect:workList"; }
+			
 		if(selectVo.getDoc_Kind()==1){
 			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
-			model.addAttribute("spreadSheetVo",spreadSheetVo);
+			model.addAttribute("spreadSheetVo", spreadSheetVo);
 			url = "/work/viewSpreadSheet";
 		}
-		
 		return url;
 	}
 

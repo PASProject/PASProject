@@ -7,13 +7,19 @@
    <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
    
+    <resultMap class="SpreadSheet" id="spreadSheetClob">
+   <result column="doc_Num" property="doc_Num" />
+   <result column="sp_Wt_Date" property="sp_Wt_Date" />
+   <result column="sp_Content" property="sp_Content" jdbcType="CLOB" javaType="java.lang.String"/>
+   </resultMap>
+   
 	 <update id="insertSpreadSheet" parameterClass="SpreadSheet">
       INSERT INTO
-      SPREAD_SHEET(SP_CONTENT,DIC_NUM)
-      VALUES(#sp_Content#,#dic_Num#)
+      SPREAD_SHEET(SP_CONTENT,DoC_NUM)
+      VALUES(#sp_Content#,#doc_Num#)
    </update>
 
-	<select id="selectSpreadSheetByDocNum" parameterClass="int" resultClass="SpreadSheet">
-		select * from spread_sheet where dic_num = #doc_Num#
+	<select id="selectSpreadSheetByDocNum" parameterClass="int" resultMap="spreadSheetClob">
+		select * from spread_sheet where doc_num = #doc_Num#
 	</select>
 </sqlMap>

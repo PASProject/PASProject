@@ -16,13 +16,15 @@
       p:driverClassName="${jdbc.driverClassName}" 
       p:url="${jdbc.url}"
       p:username="${jdbc.username}"
-      p:password="${jdbc.password}" /> <!-- jdbc.properties의 값 -->
+      p:password="${jdbc.password}"
+      
+      /> <!-- jdbc.properties의 값 -->
+      
       
    <bean id="SqlMapClient" class="kr.or.ddit.commons.ibatis.CustomSqlMapClientFactoryBean"
       p:configLocation="classpath:com/app/pas/db/sqlConfig/SqlMapConfig.xml"
       p:dataSource-ref="dataSource"
       p:typeAliasPackages="com.app.pas.**"
-      
       > <!-- iBatis 완성.... -->
       <property name="mappingLocations">
       <list>

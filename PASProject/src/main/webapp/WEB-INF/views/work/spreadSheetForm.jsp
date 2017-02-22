@@ -33,10 +33,15 @@ $(function() {
         pdf: {                
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
         },
+        columns:50,
+        rows:100,
+        sheetsbar:true,
+        toolbar:true
        
     });
     $('#createSpreadSheetBtn').on('click',function(){
     	var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
+    	
     	var sheet = spreadsheet.sheetByIndex(0);
         var dataList = sheet.toJSON();
         $.ajax({

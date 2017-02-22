@@ -25,6 +25,7 @@
 </div>
 <script>
 $(function() {
+	var initData = '${spreadSheetVo.sp_Content}';
     $("#spreadsheet").kendoSpreadsheet({
         excel: {                
             // Required to enable saving files in older browsers
@@ -32,7 +33,8 @@ $(function() {
         },
         pdf: {                
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
-        }
+        },
+        sheets: [JSON.parse(initData)]
     });
 });
     
