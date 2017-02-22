@@ -35,4 +35,8 @@
    <update id="updateProjectJoinColor" parameterClass="ProjectJoin"> 
    	update project_join set pjj_Color = #pjj_Color# where MEM_EMAIL=#mem_Email# and proj_num = #proj_Num#
    </update>
+   
+   <update id="updatePositionNum" parameterClass="ProjectJoin">
+    update project_join set position_Num = #position_Num# where MEM_EMAIL=#mem_Email# and proj_num = #proj_Num#
+   </update>
 </sqlMap>

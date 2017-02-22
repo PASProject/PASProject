@@ -83,6 +83,8 @@
                         <br />
                         <strong>접속된 유저:</strong>
                         <div id="otherClients"></div>
+                        <input type="text" name="roomName" >
+                        <button id="connectButton" onclick="joinRoom()">방만들기</button>
                     </div>
 
                     <!-- Note... this demo should be updated to remove video references -->
