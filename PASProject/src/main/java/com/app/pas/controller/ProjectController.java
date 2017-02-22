@@ -646,25 +646,23 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "deleteInvite", method = RequestMethod.POST)
-	public String DeleteInvite(String inviteMem_Email, HttpSession session)
-			throws SQLException {
-		String url = "redirect:pmMemberInvite";
-		InviteVo inviteVo = new InviteVo();
-		System.out.println(inviteMem_Email + "이건 인바이메일!");
-		int proj_Num = Integer.parseInt((String) session
-				.getAttribute("joinProj"));
-		inviteVo.setMem_Email(inviteMem_Email);
-		inviteVo.setProj_Num(proj_Num);
-		ProjectJoinVo projectJoinvo = new ProjectJoinVo();
-		projectJoinvo.setMem_Email(inviteVo.getMem_Email());
-		projectJoinvo.setProj_Num(proj_Num);
-		projectJoinService.deleteProjectJoin(projectJoinvo);
-		inviteService.deleteInvite(inviteVo);
+	   public @ResponseBody int DeleteInvite(String mem_Email, HttpSession session)
+	         throws SQLException {
+	      int result=1;
+	      InviteVo inviteVo = new InviteVo();
+	      System.out.println(mem_Email + "이건 인바이메일!");
+	      int proj_Num = Integer.parseInt((String) session
+	            .getAttribute("joinProj"));
+	      inviteVo.setMem_Email(mem_Email);
+	      inviteVo.setProj_Num(proj_Num);
+	      ProjectJoinVo projectJoinvo = new ProjectJoinVo();
+	      projectJoinvo.setMem_Email(inviteVo.getMem_Email());
+	      projectJoinvo.setProj_Num(proj_Num);
+	      projectJoinService.deleteProjectJoin(projectJoinvo);
+	      inviteService.deleteInvite(inviteVo);
 
-		return url;
-
-	}
-
+	        return result;
+	   }
 	@RequestMapping(value = "/c9", method = RequestMethod.GET)
 	public String profileImgForm(HttpSession session, Model model) throws SQLException {
 		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));

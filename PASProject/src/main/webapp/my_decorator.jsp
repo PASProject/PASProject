@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html style="overflow: scroll;">
+<html style="background-color:white;">
 
 
 <head>
@@ -442,7 +442,7 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
-								<li><a href="#">쪽지함 보기</a></li>
+								<li><a href="<%=request.getContextPath()%>/main/sendMessage">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 
 								<li><a
@@ -593,8 +593,6 @@ $(function(){
 						id="submit" style="margin-left: 5px;">정보 수정하기</button>
 					<script>
 							$('#submit').click(function(){
-								
-								
 								var Pass_result = true;
 								var Pass_CK = true;
 								var Phone_CK = true;

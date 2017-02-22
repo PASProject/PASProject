@@ -454,7 +454,7 @@ font-weight:bold;
 		$('#collapseEight').one("click",increase);
 		
 	}
-	
+	/* k-spreadsheet-pane k-top k-left */
 	function increase(){
 		$('#content').removeClass('col-md-11').addClass('col-md-10');
 		$('#submenu').removeClass('col-md-1').addClass('col-md-2');

@@ -10,16 +10,7 @@
 	<select id="selectMessageList" resultClass="Message"
 		parameterClass="Message">
 		SELECT * FROM Message
-		WHERE
-		MSG_TITLE LIKE '%'||#msg_Title#||'%' and
-		MSG_CONTENT LIKE
-		'%'||#msg_Content#||'%' and
-		MSG_SM_EMAIL LIKE '%'||#msg_sm_Email#||'%'
-		and
-		MSG_RM_EMAIL LIKE '%'||#msg_rm_Email#||'%' and
-		MSG_ARTICLE_NUM =
-		#msg_Article_Num#
-		ORDER BY MSG_ARTICLE_NUM DESC
+
 	</select>
 
 	<!-- <select id="selectReceiveMessageList" resultClass="ReceiveMessage" 

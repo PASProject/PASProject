@@ -4,25 +4,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
+<body style="paddring-right:0 !important;">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/jquery/jquery.autocomplete.css" />
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+ -->
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<%-- 	<script src="<%=request.getContextPath()%>/resources/jquery/lib/jquery.bgiframe.min.js"></script>
+	<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/jquery/lib/jquery.js"></script>
-<script type='text/javascript'
-	src="<%=request.getContextPath()%>/resources/jquery/lib/jquery.bgiframe.min.js"></script>
 <script type='text/javascript'
 	src="<%=request.getContextPath()%>/resources/jquery/lib/jquery.ajaxQueue.js"></script>
 <script type='text/javascript'
 	src="<%=request.getContextPath()%>/resources/jquery/jquery.autocomplete.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/jquery/jquery.autocomplete.css" />
 
+
+<form>
+	<div class="col-md-10" id="content">
+		<h2 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			프로젝트 팀원 초대<small>dfef </small>
+		</h2>
+		
+		
 	<script>
 		var data = "";
 		
@@ -92,7 +102,7 @@
 
 							})
 							
-							$("#chuga").    click(function(){
+							$("#chuga").click(function(){
 								
 								var email = $('#searchbox').val();
 								var data="";
@@ -113,6 +123,61 @@
 	<span class="glyphicon glyphicon-user"></span>
 	<input type="text" id="searchbox"><input type="button" id="chuga" value="추가"><br><br>
 	<div id = "zone" style="border: 1px solid black"></div>
+		
+		
+			<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="inviteInsert">초대</button>
+		
+		
+		
+		
+		
+		<table class="table table-hover">
+			<tr>
+				<td>프로필 사진</td>
+				<td>이메일</td>
+				<td>이름</td>
+				<td>시각</td>
+				<td>상태여부</td>
+			</tr>
+			<c:forEach var="InviteList" items="${InviteList }">
+				<tr>
+					<td><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}"></td>
+					<td>${InviteList.mem_Email }</td>
+					<td>${InviteList.mem_Name }</td>
+					<td>${InviteList.invite_Time }</td>
+					<td>미수락중 / <input type="button" value="초대취소" onclick="deleteBtn(this.form)"></td>
+				</tr>
+				<input type="hidden" name="inviteMem_Email" value="${InviteList.mem_Email }">
+			</c:forEach>
+		</table>
+
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#invite">초대</button>
+		
+		
+	</div>
+	</form>
+	
+	<script>
+	$("#close").click(function(){
+		
+	    $('#zone').text("");
+
+	})
+	
+	
+	function deleteBtn(form){
+		
+		form.action="deleteInvite";
+		form.method="post";
+		form.submit();
+		
+	}
+	</script>
+</body>
+
+
+
 	
 	
 	

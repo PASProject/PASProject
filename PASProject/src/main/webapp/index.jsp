@@ -463,6 +463,9 @@ $(document).ready(function() {$('#reg_form')
                                  emailAddress : {
                                     message : '형식에 맞는 이메일 주소를 입력해 주세요.'
                                  }
+                              }, 
+                              custom : {
+                            	  
                               }
                            },
 
@@ -481,7 +484,7 @@ $(document).ready(function() {$('#reg_form')
                                     message : '비밀번호를 입력해 주세요.'
                                  },
                                  identical : {
-                                    
+                      
                                     message : 'Confirm your password below - type same password please'
                                  }
                                  
