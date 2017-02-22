@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.MainDao;
 import com.app.pas.dto.MyPostBoardVo;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.QnaBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
@@ -24,23 +25,24 @@ public class MainService {
 		
 	}
 	//커뮤니티
-	public List<FreeBoardVo>myPostBoard_frb(FreeBoardVo freeBoardVo) throws SQLException{
-		List<FreeBoardVo> list = mainDao.myPostBoard_frb(freeBoardVo);
-		return list;
+	public FreeBoardVo myPostBoard_frb(FreeBoardVo freeBoardVo) throws SQLException{
+		FreeBoardVo freeBoardVO = mainDao.myPostBoard_frb(freeBoardVo);
+		return freeBoardVO;
 	}
+	
+	public void myPostUpdate_frb (FreeBoardVo freeBoardVo) throws SQLException{
+		mainDao.myPostUpdate_frb(freeBoardVo);
+	}
+
+	
+	
 	//내가쓴 기술공유게시물 보기
 	public SkillSharingBoardVo myPostBoard_Skill(SkillSharingBoardVo skillSharingBoardVo) throws SQLException{
 		SkillSharingBoardVo skillSharingBoardVO = (SkillSharingBoardVo)mainDao.myPostBoard_Skill(skillSharingBoardVo); 
 		return skillSharingBoardVO;
 		
 	}
-	//내가쓴 기술 리플
-	public SkillSharingBoardReplyVo selectSkillSharingBoardReply(int ssb_Article_Num)
-	throws SQLException{
-		SkillSharingBoardReplyVo skillSharingBoardReplyVO = (SkillSharingBoardReplyVo)mainDao.selectSkillSharingBoardReply(ssb_Article_Num);
-	return skillSharingBoardReplyVO;
-	
-	}
+
 	
 	public List<MyPostBoardVo>MyPostBoard(MyPostBoardVo myPostBoardVo)throws SQLException{
 		List<MyPostBoardVo>list = mainDao.MyPostBoard(myPostBoardVo);

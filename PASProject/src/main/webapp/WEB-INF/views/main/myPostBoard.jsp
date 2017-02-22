@@ -16,7 +16,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
 </head>
 <body>
 	<br>
@@ -48,8 +47,9 @@
 				<td><c:choose> 
  						<c:when test='${MyPostBoardVo.yn eq "0" }'>QnA게시판</c:when>
  						<c:when test='${MyPostBoardVo.yn eq "1" }'>QnA게시판</c:when>
- 						<c:when test='${MyPostBoardVo.ssb_y_n eq skill }'>기술공유</c:when>
-						<c:otherwise>커뮤니티</c:otherwise>
+						<c:when test='${MyPostBoardVo.bd_check eq "free" }'>커뮤니티</c:when>
+						<c:when test='${MyPostBoardVo.bd_check eq "skill" }'>기술공유</c:when>
+					
 					</c:choose>
 				</td>
 				<!--qna?num=${MyPostBoardVo.num } -->
@@ -62,13 +62,12 @@
 					<c:when test='${MyPostBoardVo.yn eq "1" }'>
 					<a href="<%=request.getContextPath()%>/main/myPostDetail_qna?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
 					</c:when>
-					<c:when test='${MyPostBoardVo.ssb_y_n eq skill }'>
+					<c:when test='${MyPostBoardVo.bd_check eq "free" }'>
+					<a href="<%=request.getContextPath()%>/main/myPostDetail_frb?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
+					</c:when>
+					<c:when test='${MyPostBoardVo.bd_check eq "skill" }'>
 					<a href="<%=request.getContextPath()%>/main/myPostDetail_skill?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
 					</c:when>
-					
-					<c:otherwise>
-					<a href="<%=request.getContextPath()%>/main/myPostDetail_frb?num=${MyPostBoardVo.num}">${MyPostBoardVo.title}</a>
-					</c:otherwise>
 					
 				</c:choose>
 				</td>
@@ -81,45 +80,10 @@
  						<c:when test='${MyPostBoardVo.yn eq "1" }'>답변완료</c:when>
 						</c:choose>
 				</td>
-				
-				
-			
+					
 		</c:forEach>
 				</tbody>
-<%-- 					<c:forEach items="${myPostFrbList}" var="freeBoardVo"> --%>
-						
-<!-- 							<td>커뮤니티</td> -->
-<%-- 							<td>${freeBoardVo.frb_Article_Num }</td> --%>
-<!-- 							<td><a -->
-<%-- 								href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td> --%>
-<%-- 							<td>${freeBoardVo.frb_Wt_Date}</td> --%>
-<%-- 							<td>${freeBoardVo.frb_Inq_Count }</td> --%>
-<%-- 							<td>${freeBoardVo.frb_Like_Count }</td> --%>
-<!-- 							<td></td> -->
-							
-<!-- 						</tr> -->
 
-<%-- 					</c:forEach> --%>
-<!-- 				</tbody> -->
-<%-- 			<c:forEach items="${myPostQnaList}" var="qnaBoardVo"> --%>
-<!-- 							<tr id="boardContents"> -->
-<!-- 							<td>QnA게시판</td> -->
-							
-<%-- 							<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td> --%>
-<!-- 							<td><a -->
-<%-- 								href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }"> --%>
-<%-- 									${qnaBoardVo.qb_Title}</a></td> --%>
-							
-<%-- 							<td style="text-align: center">${qnaBoardVo.qb_Wt_Date}</td> --%>
-<%-- 							<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td> --%>
-<!-- 							<td></td> -->
-<%-- 							<td><c:choose> --%>
-<%-- 									<c:when test='${qnaBoardVo.qb_yn=="0" }'>답변미처리</c:when> --%>
-<%-- 									<c:otherwise>답변완료</c:otherwise> --%>
-<%-- 								</c:choose></td> --%>
-<!-- 						</tr> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</tbody> -->
 			</table>
 		</div>
 

@@ -38,6 +38,7 @@ import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.QnaBoardReplyVo;
 import com.app.pas.dto.board.QnaBoardVo;
@@ -47,6 +48,8 @@ import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
+import com.app.pas.service.board.FreeBoardReplyService;
+import com.app.pas.service.board.FreeBoardService;
 import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
 import com.app.pas.service.board.SkillSharingBoardReplyService;
@@ -71,18 +74,6 @@ public class MainContoller {
 	@Autowired
 	InviteService inviteService;
 	
-	@Autowired
-	MainService mainService;
-	
-	@Autowired
-	QnaBoardService qnaBoardService; 
-	
-	@Autowired
-	QnaBoardReplyService qnaBoardReplyService;
-	
-	@Autowired
-	SkillSharingBoardReplyService skillSharingBoardReplyService;
-	
 
 
 	//연습용
@@ -100,97 +91,8 @@ public class MainContoller {
 	return url;
 		
 	}
-	//내가 쓴 글 보기
-	@RequestMapping(value ="/myPostBoard")
-	public String myPostBoard(HttpSession session, Model model,
-			FreeBoardVo freeBoardVo,
-			MyPostBoardVo myPostBoardVo,String page) throws SQLException {
-		String url = "main/myPostBoard";
-		if (session.getAttribute("proj_Num") != null) {
-			session.removeAttribute("proj_Num");
-		}
-		if (session.getAttribute("joinProj") != null
-				|| session.getAttribute("joinProj") != "null") {
-			session.removeAttribute("joinProj");
-		}
-		if (session.getAttribute("joinProjectVo") != null
-				|| session.getAttribute("joinProjectVo") != "null") {
-			session.removeAttribute("joinProjectVo");
-		}
+	
 
-		
-//		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
-		List<MyPostBoardVo> myPostBoardList = new ArrayList<MyPostBoardVo>();
-		
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		String mem_Email = memberVo.getMem_Email();
-		String sessionMem_Name = memberVo.getMem_Name();
-		model.addAttribute("sessionMem_Name", sessionMem_Name);
-	
-		myPostBoardVo.setMail(mem_Email);
-//		freeBoardVo.setMem_Email(mem_Email);
-//		skillSharingBoardVo.setMem_Email(mem_Email);
-	
-		myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
-//		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
-		
-		model.addAttribute("myPostBoardList", myPostBoardList);
-	
-//		model.addAttribute("myPostSkillList", myPostSkillList);
-	return url;
-	}
-	
-	//기술공유 내가쓴글 보기
-	@RequestMapping(value = "/myPostDetail_skill")
-	public String myPostBoard_Skill(HttpSession session, Model model,
-			MyPostBoardVo myPostBoardVo,SkillSharingBoardVo skillSharingBoardVo,
-			SkillSharingBoardReplyVo skillSharingBoardReplyVo) throws SQLException {
-	
-		int skillDetailNum = myPostBoardVo.getNum();
-		skillSharingBoardVo.setSsb_Article_Num(skillDetailNum);
-		
-		skillSharingBoardVo = (SkillSharingBoardVo)mainService.myPostBoard_Skill(skillSharingBoardVo);
-		model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
-		
-		//답글보여주기
-		skillSharingBoardReplyVo = mainService.selectSkillSharingBoardReply(skillDetailNum);
-		model.addAttribute("skillSharingBoardReplyVo",skillSharingBoardReplyVo);
-		
-		String url = "/main/myPostDetail_skill";
-		
-
-		return url;
-	
-	}
-	
-	
-	
-	//qna디테일
-	@RequestMapping(value = "/myPostDetail_qna")
-	public String myPostDetail_qna(HttpSession session, Model model,QnaBoardVo qnaBoardVo,
-			MyPostBoardVo myPostBoardVo,QnaBoardReplyVo qnaBoardReplyVo) throws SQLException {
-	
-		int qnaDetailNum = myPostBoardVo.getNum();
-		qnaBoardVo.setQb_Article_Num(qnaDetailNum);
-		
-		qnaBoardVo = (QnaBoardVo)mainService.myPostBoard_Qna(qnaBoardVo);
-		model.addAttribute("qnaBoardVo", qnaBoardVo);
-		
-		//답글보여주기
-		//qnaBoardReplyVo.setQb_Article_Num(qnaDetailNum);
-		qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(qnaDetailNum);
-		model.addAttribute("qnaBoardReplyVo",qnaBoardReplyVo);
-		
-		String url = "/main/myPostDetail_qna";
-		
-
-		return url;
-	
-	}
-	
-	
-	
-	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 

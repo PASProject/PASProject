@@ -12,7 +12,7 @@
 <title></title>
 </head>
 <body>
-<div class="col-md-10" id="content">
+<div class="container" id="content" style="padding-left:14px; padding-right:14px;">
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			기술공유<small>내가쓴글읽기</small>
@@ -51,12 +51,14 @@
 						</td>	
 					</tr>
 					
+					
 					<tr>
 						<td>
-							댓글 ><br>
-							작성자 :${skillSharingBoardReplyVo.ssb_Reply_Mem_Name}
-							<br>
-							내용: ${skillSharingBoardReplyVo.ssb_Reply_Content}
+						<c:forEach items="${ssb_replyList}" var="ssb_replyList" varStatus="status">
+							${status.index+1} 번째리플 ><br>
+							작성자 이름 : ${ssb_replyList.ssb_Reply_Mem_Name } <br>
+							내용 : ${ssb_replyList.ssb_Reply_Content} <br><br>
+							</c:forEach>
 						
 						</td>
 					</tr>

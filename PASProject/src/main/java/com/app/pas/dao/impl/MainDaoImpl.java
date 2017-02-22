@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.MainDao;
 import com.app.pas.dto.MyPostBoardVo;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.QnaBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
@@ -26,10 +27,10 @@ public class MainDaoImpl implements MainDao{
 	}
 //커뮤니티
 	@Override
-	public List<FreeBoardVo> myPostBoard_frb(FreeBoardVo freeBoardVo)
+	public FreeBoardVo myPostBoard_frb(FreeBoardVo freeBoardVo)
 			throws SQLException {
-		List<FreeBoardVo> list = client.queryForList("myPostBoard_frb",freeBoardVo);
-		return list;
+		FreeBoardVo freeBoardVO = (FreeBoardVo) client.queryForObject("myPostBoard_frb",freeBoardVo);
+		return freeBoardVO;
 	}
 //기술공유
 	@Override
@@ -47,12 +48,10 @@ public class MainDaoImpl implements MainDao{
 		return list;
 	}
 	@Override
-	public SkillSharingBoardReplyVo selectSkillSharingBoardReply(
-			int ssb_Article_Num)
-			throws SQLException {
-		SkillSharingBoardReplyVo skillSharingBoardReplyVO = (SkillSharingBoardReplyVo)
-				client.queryForObject("selectSkillSharingBoardReply", ssb_Article_Num);
-		return skillSharingBoardReplyVO;
+	public void myPostUpdate_frb(FreeBoardVo freeBoardVo) throws SQLException {
+		client.update("myPostUpdate_frb",freeBoardVo);
+		
 	}
+
 
 }

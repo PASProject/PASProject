@@ -18,22 +18,24 @@
 		WHERE
 		SSB_ARTICLE_NUM = #ssb_Article_Num#
 	</select>
-	
-	
-	
+
 	<select id="myPostBoard_frb" resultClass="FreeBoard" parameterClass="FreeBoard">
-		SELECT * FROM Free_Like_Count_View
+		SELECT * FROM FREE_BOARD
 		WHERE
-		MEM_EMAIL like '%'||#mem_Email#||'%'
+		FRB_ARTICLE_NUM like '%'||#frb_Article_Num#||'%'
 	</select>
-	
-	
 	
 	<select id="MyPostBoard" resultClass="MyPostBoardVo" parameterClass="MyPostBoardVo">
 		SELECT * FROM VW_MYPOST
 		WHERE MAIL like '%'||#mail#||'%'
 		ORDER BY DT DESC
 	</select>
+	
+	<update id="myPostUpdate_frb" parameterClass="FreeBoard">
+	  UPDATE FREE_BOARD SET FRB_CONTENT=#frb_Content#,
+      FRB_TITLE=#frb_Title# WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
+	</update>
+
 	
 </sqlMap>
 
