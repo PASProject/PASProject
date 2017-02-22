@@ -13,4 +13,5 @@ public interface ProjectJoinDao {
 	public void updateProjectJoin(ProjectJoinVo projectJoinVo)throws SQLException;
 	public void deleteProjectJoin(ProjectJoinVo projectJoinVo)throws SQLException;
 	public void updateProjectJoinColor(ProjectJoinVo projectJoinVo) throws SQLException;
+	public void updatePosition(ProjectJoinVo projectJoinVo) throws SQLException;
 }

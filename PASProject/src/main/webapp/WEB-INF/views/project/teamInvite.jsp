@@ -17,7 +17,7 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 팀원 초대<small>dfef </small>
 		</h2>
-		<table class="table table-hover">
+		<table class="table table-hover align-middle">
 			<tr>
 				<td>프로필 사진</td>
 				<td>이메일</td>
@@ -27,13 +27,13 @@
 			</tr>
 			<c:forEach var="InviteList" items="${InviteList }">
 				<tr>
-					<td><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}"></td>
-					<td>${InviteList.mem_Email }</td>
-					<td>${InviteList.mem_Name }</td>
-					<td>${InviteList.invite_Time }</td>
-					<td>미수락중 / <input type="button" value="초대취소" onclick="deleteBtn(this.form)"></td>
+					<td style="vertical-align:middle"><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}" style="width:80px"></td>
+					<td style="vertical-align:middle">${InviteList.mem_Email }</td>
+					<td style="vertical-align:middle">${InviteList.mem_Name }</td>
+					<td style="vertical-align:middle">${InviteList.invite_Time }</td>
+					<td style="vertical-align:middle">미수락중 / <input type="button" value="초대취소" onclick="deleteBtn(this.form)"></td>
 				</tr>
-				<input type="hidden" name="inviteMem_Email" value="${InviteList.mem_Email }">
+			
 			</c:forEach>
 		</table>
 

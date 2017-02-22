@@ -53,5 +53,11 @@ public class ProjectJoinDaoImpl implements ProjectJoinDao {
 		client.update("updateProjectJoinColor",projectJoinVo);
 		
 	}
+
+	@Override
+	public void updatePosition(ProjectJoinVo projectJoinVo) throws SQLException {
+		client.update("updatePositionNum",projectJoinVo);
+		
+	}
 	
 }
