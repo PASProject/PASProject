@@ -1,7 +1,9 @@
 package com.app.pas.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -105,6 +107,40 @@ public class WorkController {
 		}
 		return url;
 	}
-
+	
+	
+	
+	@RequestMapping(value="downloadFile",method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> downloadFile(@RequestBody DocumentVo documentVo) throws SQLException{
+		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
+		
+		Map<String,Object> downloadFileMap = new HashMap<String, Object>();
+		
+		if(selectVo.getDoc_Kind()==1){
+			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+			downloadFileMap.put("data", spreadSheetVo.getSp_Content());
+		}
+		
+		
+		return downloadFileMap;
+	}
+	@RequestMapping(value="saveFile",method = RequestMethod.POST)
+	public @ResponseBody boolean saveFile(@RequestBody Map<String,Object> map ) throws SQLException{
+		String sp_Content = (String) map.get("sheet");
+		String doc_Num = (String) map.get("doc_Num");
+		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
+		spreadSheetVo.setDoc_Num(Integer.parseInt(doc_Num));
+		spreadSheetVo.setSp_Content(sp_Content);
+		boolean flag = spreadSheetService.updateSpreadSheet(spreadSheetVo);
+		return flag;
+	}
+	
+	@RequestMapping(value="preViewFile",method = RequestMethod.POST)
+	public @ResponseBody SpreadSheetVo preViewFile(@RequestBody DocumentVo documentVo, HttpSession session) throws SQLException{
+		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
+		spreadSheetVo.setDoc_Num(documentVo.getDoc_Num());
+		spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+		return spreadSheetVo;
+	}
 
 }

@@ -25,5 +25,10 @@ public class SpreadSheetDaoImpl implements SpreadSheetDao {
 		SpreadSheetVo spreadSheetVo = (SpreadSheetVo) client.queryForObject("selectSpreadSheetByDocNum", doc_Num);
 		return spreadSheetVo;
 	}
+	@Override
+	public int updateSpreadSheet(SpreadSheetVo spreadSheetVo)
+			throws SQLException {
+		return client.update("updateSpreadSheet",spreadSheetVo);
+	}
 
 }

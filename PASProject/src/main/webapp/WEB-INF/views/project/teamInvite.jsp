@@ -105,6 +105,7 @@
       })
       
      function deleteBtn(mem_Email){
+
          $(function(){
             var Email = mem_Email;
             alert(Email);
@@ -124,7 +125,7 @@
             
          });
          })
-      }
+
    </script>
    <a href="#" onclick="" id=""></a>
    <span class="glyphicon glyphicon-user"></span>

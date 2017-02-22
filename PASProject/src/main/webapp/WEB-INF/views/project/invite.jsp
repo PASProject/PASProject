@@ -78,8 +78,9 @@
 			$("#inviteInsert")
 					.click(
 							function() {
-								var mem_Email = $("input[type=hidden]").val();
+								/* var mem_Email = $("input[type=hidden]").val(); */
 								var d = "";
+								var mem_Email = $("#searchbox").val();
 								
 								$('#zone').text("");
 								 $.ajax({
@@ -101,26 +102,11 @@
 								
 
 							})
-							
-							$("#chuga").click(function(){
-								
-								var email = $('#searchbox').val();
-								var data="";
-								data=$('#zone').html();
-								data +='<a href="#">'+email+' </a> <input type="hidden" id="'+email+'" value="'+email+'"/><br>'; 	
-								if(email!=null){
-									$('#zone').html(data);	
-								}else{
-									alert("빈값은 등록할 수 없습니다");
-								}
-							    
-							    
-	
-							})
-		})
+
 	</script>
 	<a href="#" onclick="" id=""></a>
 	<span class="glyphicon glyphicon-user"></span>
+
 	<input type="text" id="searchbox"><input type="button" id="chuga" value="추가"><br><br>
 	<div id = "zone" style="border: 1px solid black"></div>
 		
@@ -176,9 +162,6 @@
 	</script>
 </body>
 
-
-
-	
 	
 	
 

@@ -33,9 +33,9 @@ $(function() {
         pdf: {                
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
         },
-        columns:50,
+        columns:100,
         rows:100,
-        sheetsbar:true,
+        sheetsbar:false,
         toolbar:true
        
     });

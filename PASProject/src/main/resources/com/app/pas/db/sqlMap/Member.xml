@@ -86,7 +86,7 @@
 	<select id="selectMemberListByProj" parameterClass="MemPositionView" resultClass="MemPositionView">
 	 select * 
 	 from Mem_Position_View 
-	 where proj_num = #proj_Num# and pjj_per_num = #pjj_Per_Num#
+	 where proj_num = #proj_Num# and pjj_per_num = #pjj_Per_Num# order by position_Num asc
 	</select>
 	
 	<select id="selectMemberPositionByEmail" parameterClass="MemPositionView" resultClass="MemPositionView">
