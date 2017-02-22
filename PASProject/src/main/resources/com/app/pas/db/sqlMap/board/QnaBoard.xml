@@ -12,11 +12,11 @@
 		WHERE 
 		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
-		QB_TITLE LIKE '%'||#qb_Title#||'%' and
+		QB_TITLE LIKE '%'||#qb_Title#||'%' 
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
 		</isGreaterThan>	
-		QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%' and
+		and QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%' and
 		MEM_EMAIL like '%'||#mem_Email#||'%'	 
 		
 		ORDER BY QB_ARTICLE_NUM DESC
@@ -28,11 +28,11 @@
 		WHERE 
 		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
-		QB_TITLE LIKE '%'||#qb_Title#||'%' and
+		QB_TITLE LIKE '%'||#qb_Title#||'%' 
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
 		</isGreaterThan>	
-		QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%' and
+		and QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%' and
 		MEM_EMAIL like '%'||#mem_Email#||'%'	 
 		
 		ORDER BY QB_ARTICLE_NUM DESC
@@ -45,11 +45,11 @@
 		WHERE 
 		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
-		QB_TITLE LIKE '%'||#qb_Title#||'%' and
+		QB_TITLE LIKE '%'||#qb_Title#||'%'
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
 		</isGreaterThan>	
-		QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%'	 
+		and QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%'	 
 		ORDER BY QB_ARTICLE_NUM DESC
 	</select>
 	
@@ -64,11 +64,11 @@
 		WHERE 
 		MEM_NAME LIKE '%'||#mem_Name#||'%' and
 		QB_CONTENT LIKE '%'||#qb_Content#||'%' and
-		QB_TITLE LIKE '%'||#qb_Title#||'%' and
+		QB_TITLE LIKE '%'||#qb_Title#||'%'
 		<isGreaterThan  prepend="and" property="qb_Article_Num" compareValue="0">
 		QB_ARTICLE_NUM = #qb_Article_Num# 
 		</isGreaterThan>		 
-		QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%'	 
+		 and QB_TITLE || QB_CONTENT LIKE '%'||#qb_Title_Content#||'%'	 
 	</select>
 	
 	<select id="selectAllQna" resultClass="QnaBoard">
