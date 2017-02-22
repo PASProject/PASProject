@@ -660,7 +660,7 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "deleteInvite", method = RequestMethod.POST)
-<<<<<<< HEAD
+
 	   public @ResponseBody int DeleteInvite(String mem_Email, HttpSession session)
 	         throws SQLException {
 	      int result=1;
@@ -675,31 +675,10 @@ public class ProjectController {
 	      projectJoinvo.setProj_Num(proj_Num);
 	      projectJoinService.deleteProjectJoin(projectJoinvo);
 	      inviteService.deleteInvite(inviteVo);
-=======
-	public @ResponseBody int DeleteInvite(String mem_Email, HttpSession session)
-			throws SQLException {
-		int result=1;
-		InviteVo inviteVo = new InviteVo();
-		System.out.println(mem_Email + "이건 인바이메일!");
-		int proj_Num = Integer.parseInt((String) session
-				.getAttribute("joinProj"));
-		inviteVo.setMem_Email(mem_Email);
-		inviteVo.setProj_Num(proj_Num);
-		ProjectJoinVo projectJoinvo = new ProjectJoinVo();
-		projectJoinvo.setMem_Email(inviteVo.getMem_Email());
-		projectJoinvo.setProj_Num(proj_Num);
-		projectJoinService.deleteProjectJoin(projectJoinvo);
-		inviteService.deleteInvite(inviteVo);
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 
-<<<<<<< HEAD
-	        return result;
-	   }
-=======
         return result;
 	}
 
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 	@RequestMapping(value = "/c9", method = RequestMethod.GET)
 	public String profileImgForm(HttpSession session, Model model)
 			throws SQLException {
