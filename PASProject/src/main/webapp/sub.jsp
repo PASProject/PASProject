@@ -438,13 +438,16 @@ font-weight:bold;
 	})
 	
 	 */
-	
+
+
 	function decrease(){
 		$('#content').removeClass('col-md-10').addClass('col-md-11');
 		$('#submenu').removeClass('col-md-2').addClass('col-md-1');
 		$('.panel-title>a>span').hide();
-		$('.panel-title').css('text-align','center')
+		$('.panel-title').css('text-align','center');
+		$('#proj_Img').css('height','80px');
 		$('#collapseEight').one("click",increase);
+		
 	}
 	
 	function increase(){
@@ -454,11 +457,13 @@ font-weight:bold;
 		$('.panel-title').css({
 			'text-align':'left'
 		})
+		$('#proj_Img').css('height','130px');
 		$('#collapseEight').one("click",decrease);
 
 	}
 $(function(){
 	$('#collapseEight').one('click',decrease);
+	
 
 })
 </script>

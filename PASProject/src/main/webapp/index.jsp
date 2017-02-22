@@ -407,9 +407,7 @@ body.modal-open .background-container {
    
     </script>
 <script>
-$(document).ready(
-      function() {
-         $('#reg_form')
+$(document).ready(function() {$('#reg_form')
                .bootstrapValidator(
                      {
                         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
