@@ -533,8 +533,7 @@ public class ProjectController {
 	@RequestMapping(value = "/pmMemberInvite", method = RequestMethod.GET)
 	public String pmMemberInvite(HttpSession session) throws SQLException {
 		String url = "/project/teamInvite";
-		int proj_Num = Integer.parseInt((String) session
-				.getAttribute("joinProj"));
+		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));
 		String mem_Email = "";
 		/* int proj_Num= (Integer) session.getAttribute("joinProj"); */
 		ProjInviteViewVo projInviteViewVo = new ProjInviteViewVo();
@@ -568,7 +567,7 @@ public class ProjectController {
 		ProjectVo projectVo = projectService.selectProject(proj_Num);
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		MemberVo memberVo1 = memberService.getMember(mem_Email);
-		System.out.println(memberVo1.toString()+"멤버보 ");
+
 
 		InviteVo inviteVo = new InviteVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
@@ -661,14 +660,14 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "deleteInvite", method = RequestMethod.POST)
-	public String DeleteInvite(String inviteMem_Email, HttpSession session)
+	public @ResponseBody int DeleteInvite(String mem_Email, HttpSession session)
 			throws SQLException {
-		String url = "redirect:pmMemberInvite";
+		int result=1;
 		InviteVo inviteVo = new InviteVo();
-		System.out.println(inviteMem_Email + "이건 인바이메일!");
+		System.out.println(mem_Email + "이건 인바이메일!");
 		int proj_Num = Integer.parseInt((String) session
 				.getAttribute("joinProj"));
-		inviteVo.setMem_Email(inviteMem_Email);
+		inviteVo.setMem_Email(mem_Email);
 		inviteVo.setProj_Num(proj_Num);
 		ProjectJoinVo projectJoinvo = new ProjectJoinVo();
 		projectJoinvo.setMem_Email(inviteVo.getMem_Email());
@@ -676,8 +675,7 @@ public class ProjectController {
 		projectJoinService.deleteProjectJoin(projectJoinvo);
 		inviteService.deleteInvite(inviteVo);
 
-		return url;
-
+        return result;
 	}
 
 	@RequestMapping(value = "/c9", method = RequestMethod.GET)
