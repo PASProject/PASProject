@@ -11,6 +11,23 @@
 
 </head>
 <body>
+<!-- <script language="javascript">
+		var i = 0
+		window.document.onkeydown = protectKey;
+
+		function protectKey() {
+			//새로고침을 막는 스크립트.. F5 번키..
+			if (event.keyCode == 116) {
+				event.keyCode = 0;
+				return false;
+			}
+			//CTRL + N 즉 새로 고침을 막는 스크립트....
+			else if ((event.keyCode == 78) && (event.ctrlKey == true)) {
+				event.keyCode = 0;
+				return false;
+			}
+		}
+	</script> -->
 	<c:if test="${like == 'yes' }">
 		<script type="text/javascript">
 			alert("추천완료!");
@@ -120,22 +137,15 @@
 								success : function(data) {
 									$.each(data, function(i) {
 
-										var date = new Date(
-												data[i].frb_Reply_Time)
+										var date = new Date(data[i].frb_Reply_Time)
 										var year = date.getFullYear();
-
 										var month = (1 + date.getMonth());
-										month = month >= 10 ? month : '0'
-												+ month;
-
+										month = month >= 10 ? month : '0'+ month;
 										var day = date.getDate();
 										day = day >= 10 ? day : '0' + day;
-
-										var fullD = year + '.' + month + '.'
-												+ day;
-										var rfd = '<a href="javascript:void(0);" onclick="go_rfd()"><span style=" font-weight: bold; color: red;">×</span></a>'
-/* 										var rfd = '<input style="font-size:13px; padding: 0px 5px 0px 5px;" type="button" class="btn btn-danger btn-sm" value="x" onclick="go_rfd()">'
- */										var tt = '<div><hr>'
+										var fullD = year + '.' + month + '.'+ day;
+										var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+')"><span style=" font-weight: bold; color: red;">×</span></a>'
+										var tt = '<div><hr>'
 												+ data[i].frb_Reply_Mem_Name
 												+ '( ' + data[i].frb_Reply_Mem+ ' )'
 												+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'<div>'
@@ -145,74 +155,37 @@
 								}
 							});
 
-							$('#replyBtn')
-									.on(
-											'click',
+							$('#replyBtn').on('click',
 											function() {
-												var frb_Article_Num = $(
-														'#frb_Article_Num')
-														.val();
-												var frb_Reply_Content = $(
-														'#frb_Reply_Content')
-														.val();
+												var frb_Article_Num = $('#frb_Article_Num').val();
+												var frb_Reply_Content = $('#frb_Reply_Content').val();
 												var dataWrite = {
 													'frb_Article_Num' : frb_Article_Num,
 													'frb_Reply_Content' : frb_Reply_Content
 												};
-												$
-														.ajax({
+												$.ajax({
 															url : 'freeBoardReplyWrite',
-															data : JSON
-																	.stringify(dataWrite),
+															data : JSON.stringify(dataWrite),
 															type : 'post',
 															contentType : 'application/json',
-															success : function(
-																	data) {
-																$(
-																		'#frb_Reply_Content')
-																		.val('');
-																$('div #reply')
-																		.empty();
-																$
-																		.each(
-																				data,
-																				function(
-																						i) {
-																					var date = new Date(
-																							data[i].frb_Reply_Time)
-																					var year = date
-																							.getFullYear();
-																					var month = (1 + date
-																							.getMonth());
-																					month = month >= 10 ? month
-																							: '0'
-																									+ month;
-																					var day = date
-																							.getDate();
-																					day = day >= 10 ? day
-																							: '0'
-																									+ day;
-																					var fullD = year
-																							+ '년'
-																							+ month
-																							+ '월'
-																							+ day
-																							+ '일';
-																					var tt = '<div >아이디 : '
-																							+ data[i].frb_Reply_Mem_Name
-																							+ '( '
-																							+ data[i].frb_Reply_Mem
-																							+ ' )'
-																							+ '  /  '
-																							+ '작성 날짜 : '
-																							+ fullD
-																							+ '<div>  ->'
-																							+ data[i].frb_Reply_Content
-																							+ '</div></div><br><br>';
-																					$(
-																							'div #reply')
-																							.append(
-																									tt);
+															success : function(data) {
+																$('#frb_Reply_Content').val('');
+																$('div #reply').empty();
+																$.each(data,function(i) {
+																	var date = new Date(data[i].frb_Reply_Time)
+																	var year = date.getFullYear();
+																	var month = (1 + date.getMonth());
+																	month = month >= 10 ? month : '0'+ month;
+																	var day = date.getDate();
+																	day = day >= 10 ? day : '0' + day;
+																	var fullD = year + '.' + month + '.'+ day;
+																	var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+')"><span style=" font-weight: bold; color: red;">×</span></a>'
+																	var tt = '<div><hr>'
+																			+ data[i].frb_Reply_Mem_Name
+																			+ '( ' + data[i].frb_Reply_Mem+ ' )'
+																			+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'<div>'
+																			+ data[i].frb_Reply_Content;
+																	$('div #reply').append(tt);
 																				})
 																send('push:def@naver.com');
 															},
@@ -222,10 +195,11 @@
 														});
 											});
 						});
-		function go_rfd(){
-			alert('ㅇㅇ');
-		}
 		
+		function go_rfd(frb_Reply_Num){
+			alert('ㅇㅇ');
+			alert(frb_Reply_Num);
+		}
 		
 		function go_list() {
 			location.href = "freeBoardList"
@@ -243,8 +217,8 @@
 		function go_like() {
 			location.href = "FreeBoardLike?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
 		}
-	</script>
-
+	</script>          
+             
 </body>
 
 </html>
