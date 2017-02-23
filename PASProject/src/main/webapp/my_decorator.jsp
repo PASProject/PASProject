@@ -156,11 +156,25 @@ $(function(){
 
 <!--  -->
 <style>
+
+td{
+word-break:break-all;
+}
+div {
+word-break:break-all;
+}
+#submenu{
+ -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
 .col-md-1 {
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
+
 }
 
 .col-md-11 {
