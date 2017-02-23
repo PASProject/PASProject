@@ -38,6 +38,11 @@
 			alert("이미 추천한 게시글 입니다.");
 		</script>
 	</c:if>
+	<c:if test="${delete == 'yes' }">
+         <script type="text/javascript">
+            alert("댓글이 삭제 되었습니다.");
+         </script>
+      </c:if>
 	<c:if test="${delete == 'no' }">
 		<script type="text/javascript">
 			alert("작성자만 삭제할 수 있습니다.");
@@ -55,6 +60,7 @@
 	</c:if>
 
 	<!-- 본문! -->
+	<form name="frm" method="post">
 	<div class="col-md-10" id="content">
 	<input type="hidden" name="frb_Article_Num" id="frb_Article_Num"
 							value="${freeBoardVo.frb_Article_Num}">
@@ -117,7 +123,7 @@
 		<input type="button" class="btn btn-default" value="등록" id="replyBtn">
 		</div>
 	</div>
-
+</form>
 
 
 	<script type="text/javascript">
@@ -179,7 +185,7 @@
 																	var day = date.getDate();
 																	day = day >= 10 ? day : '0' + day;
 																	var fullD = year + '.' + month + '.'+ day;
-																	var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+')"><span style=" font-weight: bold; color: red;">×</span></a>'
+																	var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+','+data[i].frb_Reply_Mem+')"><span style=" font-weight: bold; color: red;">×</span></a>'
 																	var tt = '<div><hr>'
 																			+ data[i].frb_Reply_Mem_Name
 																			+ '( ' + data[i].frb_Reply_Mem+ ' )'
@@ -196,9 +202,10 @@
 											});
 						});
 		
-		function go_rfd(frb_Reply_Num){
-			alert('ㅇㅇ');
-			alert(frb_Reply_Num);
+		function go_rfd(data){
+			frm.method = "post";
+			frm.action = "freeBoardReplyDelete?frb_Reply_Num="+data;
+			frm.submit();
 		}
 		
 		function go_list() {

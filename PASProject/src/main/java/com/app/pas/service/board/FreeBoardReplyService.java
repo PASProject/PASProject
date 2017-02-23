@@ -23,6 +23,11 @@ public class FreeBoardReplyService {
 		List<FreeBoardReplyVo> list = freeBoardReplyDao.selectFreeBoardReply(frb_Article_Num);
 		return list;
 	}
+	public FreeBoardReplyVo selectFRBR(int frb_Reply_Num) throws SQLException {
+		FreeBoardReplyVo freeBoardReplyVo = freeBoardReplyDao.selectFRBR(frb_Reply_Num);
+		return freeBoardReplyVo;
+	}
+	
 	public void updateFreeBoardReply(FreeBoardReplyVo freeBoardReplyVo)
 			throws SQLException {
 		freeBoardReplyDao.updateFreeBoardReply(freeBoardReplyVo);
@@ -30,5 +35,6 @@ public class FreeBoardReplyService {
 	public void deleteFreeBoradReply(int frb_Reply_Num) throws SQLException {
 		freeBoardReplyDao.deleteFreeBoradReply(frb_Reply_Num);
 	}
+	
 	
 }

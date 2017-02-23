@@ -15,6 +15,13 @@
 		FROM FREE_BOARD_REPLY
 		WHERE FRB_ARTICLE_NUM =#frb_Article_Num#
 	</select>
+	
+	<select id="selectFRBR" parameterClass="int"
+		resultClass="FreeBoardReply">
+		SELECT *
+		FROM FREE_BOARD_REPLY
+		WHERE frb_Reply_Num =#frb_Reply_Num#
+	</select>
 
 	<insert id="insertFreeBoardReply" parameterClass="FreeBoardReply">
 		INSERT INTO

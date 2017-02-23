@@ -40,4 +40,10 @@ public class FreeBoardReplyDaoImpl implements FreeBoardReplyDao {
 		client.update("deleteFreeBoradReply",frb_Reply_Num);
 	}
 
+	@Override
+	public FreeBoardReplyVo selectFRBR(int frb_Reply_Num) throws SQLException {
+		FreeBoardReplyVo freeBoardReplyVo = (FreeBoardReplyVo) client.queryForObject("selectFRBR", frb_Reply_Num);
+		return freeBoardReplyVo;
+	}
+
 }
