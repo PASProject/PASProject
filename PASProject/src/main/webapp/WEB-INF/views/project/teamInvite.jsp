@@ -46,6 +46,111 @@
                setData(JSON.parse(d));
             }
 
+    })
+   			function setData(d) {
+            $("#searchbox").autocomplete(
+                  d,
+                  {
+                     matchContains : true,
+                     minChars : 1,
+                     width : 310,
+                     max : 10,
+                     multiple : false,
+                     scroll : true,
+                     scrollHeight : 300,
+                     formatItem : function(d, i, max) { // suggest 목록에 보여줄 글자
+                        return i + "/" + max + ": \""
+                              + d.mem_Email + "\" ["
+                              + d.mem_Name + "]";
+                     },
+                     formatMatch : function(d, i, max) { // suggest 검색 대상 필드
+                        return d.mem_Email + " "
+                              + d.mem_Name;
+                     },
+                     formatResult : function(d) {
+                        return d.mem_Email;
+                     }
+                  });
+         }
+         
+         $("#inviteInsert")
+               .click(
+                     function() {
+                        var mem_Email = $('#searchbox').val();
+                        var d = "";
+                        
+                        $('#zone').text("");
+                         $.ajax({
+                                 type : 'POST',
+                                 url : 'pmInviteInsert',
+                                 dataType : 'JSON',
+                                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                                 data : {
+                                    'mem_Email' : mem_Email
+                                 },
+                                 success : function(data) {
+                                    alert('초대완료!');
+                                    location.href="<%=request.getContextPath()%>/project/pmMemberInvite"
+                                 }
+                              });
+                         
+                        
+                        
+                     })
+                     
+      })
+      
+     function deleteBtn(mem_Email){
+         $(function(){
+            var Email = mem_Email;
+            alert(Email);
+         $.ajax({
+            
+            type:'POST',
+              url:'deleteInvite',
+              dataType:'JSON',
+              data:{'mem_Email':Email},
+              contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+              success:function(data){
+                 alert('초대취소완료!');
+                  location.href="<%=request.getContextPath()%>/project/pmMemberInvite"
+              }
+            
+            
+            
+         });
+         })
+      }
+   </script>
+   <a href="#" onclick="" id=""></a>
+   <span class="glyphicon glyphicon-user"></span>
+   <input type="text" id="searchbox">
+         <button type="button" class="btn btn-default" data-dismiss="modal"
+                     id="inviteInsert">초대</button>
+      
+      
+      
+      
+      
+      <table class="table table-hover">
+         <tr>
+            <td>프로필 사진</td>
+            <td>이메일</td>
+            <td>이름</td>
+            <td>시각</td>
+            <td>상태여부</td>
+         </tr>
+         
+         <c:forEach var="InviteList" items="${InviteList }">
+            <tr>
+               <td style="vertical-align:middle"><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}" style="width:80px"></td>
+               <td style="vertical-align:middle">${InviteList.mem_Email }</td>
+               <td style="vertical-align:middle">${InviteList.mem_Name }</td>
+               <td style="vertical-align:middle">${InviteList.invite_Time }</td>
+               <td style="vertical-align:middle">미수락중 / <input type="button" value="초대취소" onclick="deleteBtn('${InviteList.mem_Email}')"></td>
+            </tr>
+         </c:forEach>
+      </table>
          })
 
          function setData(d) {
@@ -157,8 +262,6 @@
          </c:forEach>
       </table>
 
-     
-      
    </div>
 </body>
 </html>
