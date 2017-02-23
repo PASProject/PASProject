@@ -39,4 +39,23 @@ public class ScheduleCalendarService {
 	public ScheduleCalendarVo selectScheduleCalendarByScNum (int sc_Num)throws SQLException{
 		return (ScheduleCalendarVo)scheduleCalendarDao.selectScheduleCalendarByScNum(sc_Num);
 	}
+	
+	public List<ScheduleCalendarVo> selectWeeklylist (ScheduleCalendarVo scheduleCalendarVo) throws SQLException{
+		List<ScheduleCalendarVo> list = scheduleCalendarDao.selectWeeklylist(scheduleCalendarVo);
+	return list;
+	}
+
+
 }
+	
+	
+
+
+
+
+
+
+
+
+
+

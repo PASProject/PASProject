@@ -180,7 +180,7 @@ font-weight:bold;
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="http://www.jquery2dotnet.com">주간 체크 리스트</a></td>
+							href="<%=request.getContextPath()%>/schedule/weeklyChecklist">주간 체크 리스트</a></td>
 					</tr>
 				</table>
 			</div>

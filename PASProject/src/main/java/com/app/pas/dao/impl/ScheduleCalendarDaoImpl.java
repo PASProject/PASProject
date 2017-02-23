@@ -55,5 +55,12 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		ScheduleCalendarVo scheduleCalendarVo = (ScheduleCalendarVo) client.queryForObject("selectScheduleCalendarByScNum",sc_Num);
 		return scheduleCalendarVo;
 	}
+	@Override
+	public List<ScheduleCalendarVo> selectWeeklylist(
+			ScheduleCalendarVo scheduleCalendarVo) throws SQLException {
+		List<ScheduleCalendarVo> list  = client.queryForList("selectWeeklylist", scheduleCalendarVo);
+		System.out.println("임플 :"+list);
+		return list;
+	}
 
 }

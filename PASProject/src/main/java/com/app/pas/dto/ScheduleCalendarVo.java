@@ -3,6 +3,8 @@ package com.app.pas.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
 
@@ -24,6 +26,8 @@ public class ScheduleCalendarVo implements Serializable {
 	private int sc_Proj_Num;
 	private String sc_Color;
 	private String sc_Description;
+	private String start_Day;
+	private String end_Day;
 	
 	public ScheduleCalendarCommand toCommand(){
 		ScheduleCalendarCommand scheduleCalendarCommand = new ScheduleCalendarCommand();
