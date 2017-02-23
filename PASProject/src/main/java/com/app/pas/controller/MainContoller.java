@@ -247,23 +247,23 @@ public class MainContoller {
 	
 	@RequestMapping(value = "/EmailCheck", method = RequestMethod.POST)
 	@ResponseBody 
-	public boolean EmailCheck(HttpSession session, MemberVo memberVo,Model model,
+	public Map<String,Boolean> EmailCheck(HttpSession session, @RequestBody String mem_Email,Model model,
 			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
 			MessagingException, SQLException {
 		
 		boolean result = false;
-		
-		String asd = request.getParameter("mem_Email");
-		System.out.println(asd);
-		
-		System.out.println(memberVo);
-		if(memberService.getMember(memberVo.getMem_Email()) != null ){
+		String check = mem_Email.replace("%40", "@");
+		if(memberService.getMember(check.substring(check.indexOf("=")+1)) != null ){
 			result = false;
+			System.out.println("중복");
 		}else{
 			System.out.println("중복아님");
 			result = true;
 		}
-		return result;
+		Map<String,Boolean> reMap = new HashMap<String, Boolean>();
+		reMap.put("valid", result);
+		System.out.println(result);
+		return reMap;
 	}
 	
 

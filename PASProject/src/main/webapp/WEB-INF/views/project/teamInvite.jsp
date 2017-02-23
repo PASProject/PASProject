@@ -45,9 +45,7 @@
                alert(d);
                setData(JSON.parse(d));
             }
-
          })
-
          function setData(d) {
             $("#searchbox").autocomplete(
                   d,
@@ -71,7 +69,6 @@
                      formatResult : function(d) {
                         return d.mem_Email;
                      }
-
                   });
          }
          
@@ -93,19 +90,16 @@
                                  success : function(data) {
                                     alert('초대완료!');
                                     location.href="<%=request.getContextPath()%>/project/pmMemberInvite"
-
                                  }
                               });
                          
                         
                         
-
                      })
                      
       })
       
      function deleteBtn(mem_Email){
-
          $(function(){
             var Email = mem_Email;
             alert(Email);
@@ -125,7 +119,7 @@
             
          });
          })
-
+      }
    </script>
    <a href="#" onclick="" id=""></a>
    <span class="glyphicon glyphicon-user"></span>
