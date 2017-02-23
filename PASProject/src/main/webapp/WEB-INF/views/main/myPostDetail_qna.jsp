@@ -12,87 +12,84 @@
 <title></title>
 </head>
 <body>
-<div class="col-md-10" id="content">
+	<div class="container" id="content"
+		style="padding-left: 14px; padding-right: 14px;">
+
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>내가쓴글읽기</small>
 		</h2>
-		
-					<table class="table" style="border-top: 2px;">
-					<tr style="border-top: 2px solid #ddd">
-						<td class="col-md-9"><h3
-								style="margin-top: 10px; margin-bottom: 10px">
-								<b>${qnaBoardVo.qb_Title}</b>
-							</h3></td>
-						<td class="col-md-1"
-							style="vertical-align: middle; text-align: right"><span
-							style="font-size: 13px">조회수</span>&nbsp; <span
-							style="font-size: 11px;"> ${qnaBoardVo.qb_Inq_Count }</span></td>
-						<td class="col-md-2"
-							style="vertical-align: middle; text-align: right"><span
-							style="font-size: 11px"><fmt:formatDate
-									value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
-					</tr>
-					<tr>
-						<td colspan="3">${qnaBoardVo.mem_Email }</td>
-					</tr>
-					<tr>
-						<td colspan="3">${qnaBoardVo.qb_Content}<br>
-						</td>
-					</tr>
-					
-					<tr style="border-bottom: 2px solid #ddd">
-						<td class="text-right" colspan="3"
-							style="border-top: 0px solid blue;">
-						
-						<button class="btn btn-default text-right" type="button"onclick="go_qnalist1()">목록</button>
-						<button class="btn btn-default text-right" type="button" onClick="go_qnaupdate1()">수정</button> 
-						<button class="btn btn-default text-right" type="button" onClick="go_delete1()">삭제</button>
-						</td>	
-					</tr>
-					
-					<tr>
-						<td>
-							관리자 답변 ><br>
-							<c:if test ='${qnaBoardVo.qb_yn eq "1"}'>
+
+		<table class="table" style="border-top: 2px;">
+			<tr style="border-top: 2px solid #ddd">
+				<td class="col-md-9"><h3
+						style="margin-top: 10px; margin-bottom: 10px">
+						<b>${qnaBoardVo.qb_Title}</b>
+					</h3></td>
+				<td class="col-md-1"
+					style="vertical-align: middle; text-align: right"><span
+					style="font-size: 13px">조회수</span>&nbsp; <span
+					style="font-size: 11px;"> ${qnaBoardVo.qb_Inq_Count }</span></td>
+				<td class="col-md-2"
+					style="vertical-align: middle; text-align: right"><span
+					style="font-size: 11px"><fmt:formatDate
+							value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
+			</tr>
+			<tr>
+				<td colspan="3">${qnaBoardVo.mem_Email }</td>
+			</tr>
+			<tr>
+				<td colspan="3">${qnaBoardVo.qb_Content}<br>
+				</td>
+			</tr>
+
+			<tr style="border-bottom: 2px solid #ddd">
+				<td class="text-right" colspan="3"
+					style="border-top: 0px solid blue;">
+
+				<form action ="myPostDelete_qna" method="post">
+				<input type="hidden" name="num" value="${myPostBoardVo.num}" >
+				
+					<button class="btn btn-default text-right" type="button"
+						onclick="myPostBoard()">목록</button>
+					<button class="btn btn-default text-right" type="button"
+						onClick="go_qnaupdate1()">수정</button>
+					<button class="btn btn-default text-right" type="submit" >삭제</button>
+				</form>
+			
+				</td>
+			</tr>
+
+			<tr>
+				<td>관리자 답변 ><br> <c:if test='${qnaBoardVo.qb_yn eq "1"}'>
 								${qnaBoardReplyVo.qb_Reply_Content}
 							</c:if>
-						</td>
-					</tr>
-					
-						
-				</table>
+				</td>
+			</tr>
+		</table>
 
+		<script>
+			function myPostBoard() {
+				location.href = "myPostBoard"
 
+			}
+			function go_qnaupdate() {
+				location.href = "QnAUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
+			}
 
-			<script>
-				function go_qnalist() {
-					location.href = "QnAList"
+			function go_delete() {
+				frm.method = "post"
+				frm.action = "QnADelete";
+				frm.submit();
+			}
+			function InsertQnAReply() {
+				form.method = "post"
+				form.action = "InsertQnAReply";
+				form.submit();
 
-				}
-				function go_qnaupdate() {
-					location.href = "QnAUpdate?qb_Article_Num=${qnaBoardVo.qb_Article_Num}";
-				}
-
-				function go_delete() {
-					frm.method = "post"
-					frm.action = "QnADelete";
-					frm.submit();
-				}
-				function InsertQnAReply() {
-					form.method = "post"
-					form.action = "InsertQnAReply";
-					form.submit();
-
-				}
-			</script>
-
-
-
-
-
+			}
+		</script>
 	</div>
-
 </body>
 </html>
 

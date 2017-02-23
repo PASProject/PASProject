@@ -45,9 +45,15 @@
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">
 						
+						<form action ="myPostDelete_skill" method="post">
+						
 						<button class="btn btn-default text-right" type="button"onclick="myPostBoard()">목록</button>
 						<button class="btn btn-default text-right" type="button" onClick="myPostUpdateForm_Skill()">수정</button> 
-						<button class="btn btn-default text-right" type="button" onClick="go_delete1()">삭제</button>
+						<input type="hidden" name="num" value="${myPostBoardVo.num}" >
+						<button class="btn btn-default text-right" type="submit" >삭제</button>
+						
+						</form>
+						
 						</td>	
 					</tr>
 					
@@ -77,9 +83,9 @@
 					location.href = "myPostUpdateForm_Skill?num=${myPostBoardVo.num}";
 				}
 
-				function go_delete() {
+				function myPostDelete_skill() {
 					frm.method = "post"
-					frm.action = "QnADelete";
+					frm.action = "myPostDelete_skill";
 					frm.submit();
 				}
 			

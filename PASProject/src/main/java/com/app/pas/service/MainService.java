@@ -42,6 +42,11 @@ public class MainService {
 		return skillSharingBoardVO;
 		
 	}
+	
+//	//수정
+//	public void myPostUpdate_skill(SkillSharingBoardVo skillSharingBoardVo)throws SQLException{
+//		mainDao.myPostUpdate_skill(skillSharingBoardVo);
+//	}
 
 	
 	public List<MyPostBoardVo>MyPostBoard(MyPostBoardVo myPostBoardVo)throws SQLException{

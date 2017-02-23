@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.pas.dao.board.SkillSharingBoardDao;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.board.FreeBoardReplyVo;
@@ -71,7 +72,7 @@ public class MyPostController {
 					|| session.getAttribute("joinProjectVo") != "null") {
 				session.removeAttribute("joinProjectVo");
 			}
-
+			
 			List<MyPostBoardVo> myPostBoardList = new ArrayList<MyPostBoardVo>();
 			
 			MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -80,20 +81,16 @@ public class MyPostController {
 			model.addAttribute("sessionMem_Name", sessionMem_Name);
 		
 			myPostBoardVo.setMail(mem_Email);
-//			freeBoardVo.setMem_Email(mem_Email);
-//			skillSharingBoardVo.setMem_Email(mem_Email);
-		
+
 			myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
-//			myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
-			
+		
 			model.addAttribute("myPostBoardList", myPostBoardList);
 			System.out.println("리스트가 대체어떻길래;");
 		
-//			model.addAttribute("myPostSkillList", myPostSkillList);
 		return url;
 		}
-		
-		//기술공유 내가쓴글 보기 dtail
+//기술공유----------------------------------------------------------------------------------------------------
+		//dtail
 		@RequestMapping(value = "/myPostDetail_skill")
 		public String myPostBoard_Skill(HttpSession session, Model model,
 				MyPostBoardVo myPostBoardVo,SkillSharingBoardVo skillSharingBoardVo,
@@ -113,8 +110,17 @@ public class MyPostController {
 			String url = "/main/myPostDetail_skill";
 		
 			return url;
-	
 		}
+		//기술공유 삭제
+		@RequestMapping(value = "/myPostDelete_skill")
+		public String deleteSkillSharingBoard(MyPostBoardVo myPostBoardVo,SkillSharingBoardVo skillSharingBoardVo,
+				String num) throws SQLException {
+				skillSharingBoardService.deleteSkillSharingBoard(Integer.parseInt(num));
+				String url = "redirect:myPostBoard";
+			return url;
+		
+		}
+	
 		//기술공유 수정폼
 				@RequestMapping(value = "/myPostUpdateForm_Skill")
 				public String myPostUpdateForm_Skill(HttpSession session, Model model,
@@ -128,13 +134,11 @@ public class MyPostController {
 					model.addAttribute("skillSharingBoardVo", skillSharingBoardVo);
 					model.addAttribute("myPostBoardVo", myPostBoardVo);
 		
-					String url = "/main/myPostUpdate_skill";
-				
+					String url = "/main/myPostUpdate_skill";			
 					return url;
 			
 				}
-				
-//				//기술공유 수정  
+//기술공유 수정  
 //				@RequestMapping(value ="/myPostUpdate_frb")
 //				   public String myPostUpdate_Skill(String frb_Article_Num,MyPostBoardVo myPostBoardVo,
 //						  SkillSharingBoardVo skillSharingBoardVo,String num
@@ -144,14 +148,13 @@ public class MyPostController {
 //					skillSharingBoardVo.setSsb_Article_Num(Integer.parseInt(num));
 //				   
 //						String url = "/main/myPostDetail_frb";
-//						skillSharingBoardService.updateSkillSharingBoard(skillSharingBoardVo);
+//						mainService.myPostUpdate_skill(skillSharingBoardVo);
 //
 //			      return url;
 //				   }
-				   
-		
-		
-		//qna디테일
+//				   
+// QnA ----------------------------------------------------------------------------------------------------		
+		//디테일
 		@RequestMapping(value = "/myPostDetail_qna")
 		public String myPostDetail_qna(HttpSession session, Model model,QnaBoardVo qnaBoardVo,
 				MyPostBoardVo myPostBoardVo,QnaBoardReplyVo qnaBoardReplyVo) throws SQLException {
@@ -171,7 +174,18 @@ public class MyPostController {
 			return url;
 		}
 		
-		//freeboard 디테일
+		//삭제
+		@RequestMapping(value = "/myPostDelete_qna")
+		public String myPostDelete_qna(String num) throws SQLException {
+			String url = "redirect:myPostBoard";
+			qnaBoardService.deleteQnaBoard(Integer.parseInt(num));
+			return url;
+		}
+		
+		
+//freeboard(커뮤니티)-----------------------------------------------------------------------------------------------		
+		
+		//디테일
 		@RequestMapping(value = "/myPostDetail_frb")
 		public String myPostBoard_frb(HttpSession session, Model model,MyPostBoardVo myPostBoardVo,
 				FreeBoardVo freeBoardVo, FreeBoardReplyVo freeBoardReplyVo) throws SQLException {
@@ -192,9 +206,9 @@ public class MyPostController {
 			
 			System.out.println("#######" + frb_replylist.size());
 
-			
 			return url;
 		}
+		
 		//freeBoard 수정폼
 		   @RequestMapping(value ="/myPostUpdateForm_frb")
 		   public String myPostUpdate_frbForm(String frb_Article_Num, Model model,MyPostBoardVo myPostBoardVo,HttpSession session

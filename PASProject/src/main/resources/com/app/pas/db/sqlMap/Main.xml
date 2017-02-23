@@ -35,6 +35,12 @@
 	  UPDATE FREE_BOARD SET FRB_CONTENT=#frb_Content#,
       FRB_TITLE=#frb_Title# WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
 	</update>
+	
+<!-- 	<update id="myPostUpdate_skill" parameterClass="FreeBoard"> -->
+<!-- 	  UPDATE SKILL_SHARING_BOARD  -->
+<!-- 	  SET FRB_CONTENT=#ssb_Content#, -->
+<!--       FRB_TITLE=#ssb_Title# WHERE FRB_ARTICLE_NUM=#ssb_Article_Num# -->
+<!-- 	</update> -->
 
 	
 </sqlMap>

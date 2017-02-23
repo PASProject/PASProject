@@ -20,6 +20,8 @@ public interface MainDao {
 	public FreeBoardVo myPostBoard_frb(FreeBoardVo freeBoardVo) throws SQLException;
 	public void myPostUpdate_frb(FreeBoardVo freeBoardVo)throws SQLException;
 	
+//	public void myPostUpdate_skill(SkillSharingBoardVo skillSharingBoardVo) throws SQLException;
+	
 	
 	
 }

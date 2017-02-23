@@ -44,15 +44,14 @@
 						<td class="text-right" colspan="3"
 							style="border-top: 0px solid blue;">
 						
+						<form action ="myPostDelete_frb" method="post">
 						<button class="btn btn-default text-right" type="button"onclick="myPostBoard()">목록</button>
 						
 			<!-- <button class="btn btn-default text-right" type="button" onClick="myPostUpdate_frb()">수정</button>  -->
 						
 						<a class="btn btn-default text-right" type="button"
 						 href="<%=request.getContextPath()%>/main/myPostUpdateForm_frb?num=${myPostBoardVo.num}">수정</a>
-						<form action ="myPostDelete_frb" method="post">
 						<input type="hidden" name="num" value="${myPostBoardVo.num}" >
-						<input type="hidden" name=mem_Email value = "${myPostBoardVo.mail}">
 						<button class="btn btn-default text-right" type="submit" >삭제</button>
 						</form>
 						</td>	

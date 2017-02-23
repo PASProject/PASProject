@@ -52,6 +52,12 @@ public class MainDaoImpl implements MainDao{
 		client.update("myPostUpdate_frb",freeBoardVo);
 		
 	}
+//	@Override
+//	public void myPostUpdate_skill(SkillSharingBoardVo skillSharingBoardVo)
+//			throws SQLException {
+//		client.update("myPostUpdate_skill",skillSharingBoardVo);
+//		
+//	}
 
 
 }

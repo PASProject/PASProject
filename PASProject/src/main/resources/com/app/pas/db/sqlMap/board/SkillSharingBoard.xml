@@ -134,6 +134,7 @@
 	<delete id="deleteSkillSharingBoard" parameterClass="int">
 		DELETE FROM SKILL_SHARING_BOARD WHERE SSB_ARTICLE_NUM=#ssb_Article_Num#
 	</delete>
+	
 	<select id="selectTotalCountSharingBoard" resultClass="int">
 		select count(*) from SKILL_SHARING_BOARD
 	</select>
