@@ -21,7 +21,7 @@
   
 
 <head>
-
+<script src="/pas/resources/canvas/literallycanvas-core.js"> </script>
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
