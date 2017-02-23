@@ -376,4 +376,11 @@ public class FreeBoardController {
       }
       return freeBoardReplyList;
    }
+   @RequestMapping(value="freeBoardReplyDelete", method=RequestMethod.POST)
+   public  @ResponseBody List<FreeBoardReplyVo> deleteFreeBoardReply(@RequestBody FreeBoardReplyVo freeBoardReplyVo, HttpSession session){
+	   System.out.println("@@@@@@@@@@@@@@@@@@@"+freeBoardReplyVo.getFrb_Reply_Num());
+	   
+	   return null;
+   }
+   
 }

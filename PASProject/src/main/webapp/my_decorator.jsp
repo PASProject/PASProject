@@ -167,6 +167,13 @@ $(function(){
 
 <!--  -->
 <style>
+
+td{
+word-break:break-all;
+}
+div {
+word-break:break-all;
+}
 #submenu{
  -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
