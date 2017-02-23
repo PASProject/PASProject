@@ -407,9 +407,7 @@ body.modal-open .background-container {
    
     </script>
 <script>
-$(document).ready(
-      function() {
-         $('#reg_form')
+$(document).ready(function() {$('#reg_form')
                .bootstrapValidator(
                      {
                         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -465,6 +463,9 @@ $(document).ready(
                                  emailAddress : {
                                     message : '형식에 맞는 이메일 주소를 입력해 주세요.'
                                  }
+                              }, 
+                              custom : {
+                            	  
                               }
                            },
 
@@ -483,7 +484,7 @@ $(document).ready(
                                     message : '비밀번호를 입력해 주세요.'
                                  },
                                  identical : {
-                                    
+                      
                                     message : 'Confirm your password below - type same password please'
                                  }
                                  

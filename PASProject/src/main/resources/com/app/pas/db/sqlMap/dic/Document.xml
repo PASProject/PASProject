@@ -21,4 +21,8 @@
    <update id="deleteDocumentByDocNum" parameterClass="int">
    		delete from document where doc_Num = #doc_Num#
    </update>
+   
+   <select id = "selectDocumentByDocNum" parameterClass="int" resultClass="Document" >
+   		select * from document where doc_Num = #doc_Num#
+   </select>
 </sqlMap>

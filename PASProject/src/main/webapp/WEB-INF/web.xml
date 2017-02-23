@@ -54,8 +54,8 @@
 		
 	</filter-mapping>
 	
-	 
-	<!--  	 login filter --> 
+	<!--  
+	 	 login filter 
 	<filter>
 	  <filter-name>loginSessionFilter</filter-name>
 	  <filter-class>com.app.pas.commons.filter.LoginSessionFilter</filter-class>
@@ -67,7 +67,7 @@
 	<filter-mapping>
 	  <filter-name>loginSessionFilter</filter-name>
       <url-pattern>/project/*</url-pattern>
-	</filter-mapping> 
+	</filter-mapping> -->
 	
 	
 	<!-- encoding filter -->

@@ -70,6 +70,7 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon">
 							<i class="glyphicon glyphicon-envelope"></i></span> 
+							<input type="hidden" id="check_Email" value="n">
 							<input name="mem_Email" id="mem_Email" placeholder="이메일 주소" class="form-control" type="text">
 						</div>
 					</div>
@@ -184,6 +185,7 @@ body {
 						}else{
 							alert('중복');
 							$('#alreayUsed').fadeIn();
+							
 						}
 						setEmailCheck(result);
 					},

@@ -34,16 +34,17 @@ import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.MessageVo;
 import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.board.FreeBoardVo;
-import com.app.pas.dto.board.QnaBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
+import com.app.pas.service.MessageService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.board.QnaBoardService;
 
@@ -74,7 +75,8 @@ public class MainContoller {
 	@Autowired
 	QnaBoardService qnaBoardService; 
 	
-
+	@Autowired
+	MessageService messageService;
 
 	//연습용
 		@RequestMapping(value="/temp")
@@ -681,6 +683,19 @@ public class MainContoller {
 		projectJoinVo.setPosition_Num(1);
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
+	}
+	
+	@RequestMapping(value="/sendMessage", method=RequestMethod.GET)
+	public String SendMessage(MessageVo messageVo, Model model) throws SQLException{
+		String url = "main/sendMessage";
+		
+		List<MessageVo> messageList = new ArrayList<MessageVo>();
+			messageList=messageService.selectMessageList(messageVo);
+		model.addAttribute("MessageList",messageList);	
+		return url;
+		
+		
+		
 	}
 	
 	

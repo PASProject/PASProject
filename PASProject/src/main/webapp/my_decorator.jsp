@@ -17,8 +17,8 @@
 
 <!DOCTYPE html>
 
-<html style="overflow:scroll;">
-
+<html style="background-color:white;">
+  
 
 <head>
 
@@ -96,7 +96,6 @@
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
-
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.print.min.css'
 	rel='stylesheet' media='print' />
@@ -155,16 +154,6 @@ $(function(){
 <!--  For modal -->
 
 
-
-
-
-
-
-
-
-
-
-
 <!--  -->
 <style>
 
@@ -179,17 +168,26 @@ word-break:break-all;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+
+.col-md-1 {
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+
 }
-#content{
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}  
-  
-body.modal-open{
-  margin-left:18px;
-  }
+
+.col-md-11 {
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+body.modal-open {
+	margin-left: 18px;
+}
+
 @font-face {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
@@ -197,7 +195,6 @@ body.modal-open{
 }
 </style>
 <style>
-
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
@@ -240,7 +237,6 @@ body {
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #3c5574;
-
 	color: white;
 }
 
@@ -283,7 +279,7 @@ body {
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	margin-top: 25px;
-	min-height: 800px;
+	min-height: 700px;
 	margin-bottom: 5%;
 }
 
@@ -333,8 +329,21 @@ $(function(){
 
 </head>
 <title>최종!</title>
-<body >
+<body>
 	<header>
+
+		<!-- 나중에 지우세요(디데이) -->
+		<div class="navbar-fixed-top" >
+			<script>
+		   var now = new Date();
+		   var then = new Date('March 2,2017');
+		   var gap = now.getTime() - then.getTime();
+		   gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+		   document.write('<div id="dday" style="margin-left: 7%; font-weight:bold; font-size:79px; color:#f94f4c; letter-spacing:0px; font-family:arial;">D-<span style=color: "#f94f4c; font-size:70px;">' + gap + '</span></div>');
+		</script>
+		</div>
+
+
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
 
@@ -348,6 +357,7 @@ $(function(){
 					id="bs-example-navbar-collapse-1">
 
 					<ul class="nav navbar-nav navbar-right" id="a">
+
 						<li><a id="myProjectList"
 							style="background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"
 							href="<%=request.getContextPath()%>/main/myProject"><p>참여
@@ -357,7 +367,7 @@ $(function(){
 							href="<%=request.getContextPath()%>/main/otherProject">외부
 								프로젝트 보기</a></li>
 					</ul>
-					
+
 
 
 				</div>
@@ -392,15 +402,19 @@ $(function(){
 					프로젝트 자동화 시스템
 					</c:when>
 
-					<c:otherwise>
-					<p id="tn" >${sessionScope.joinProjectVo.proj_Name}&nbsp;<span class="caret" style="display:none;"></span></p>
-					</c:otherwise>
-					</c:choose>
-					<script>
+								<c:otherwise>
+									<p id="tn">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
+											class="caret" id="caret" style="display: none;"></span>
+									</p>
+								</c:otherwise>
+							</c:choose> <script>
 					$(function(){
-						$('#tn').mouseover(function(){
-							$('.caret').show();
+						$('#navbar2').mouseenter(function(){
+						$('#caret').show();
 						})
+						$('#navbar2').mouseleave(function(){
+						$('#caret').hide();	
+					})
 					/* 	$('#tn').click */
 						
 					})
@@ -409,28 +423,30 @@ $(function(){
 					</b></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				
+
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 
-						<li>
-						<a data-toggle="modal" style="font-size : 28px; margin-top : -4px; cursor:pointer" data-target="#create" data-keyboard="false" data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
-						
+						<li><a data-toggle="modal"
+							style="font-size: 28px; margin-top: -4px; cursor: pointer"
+							data-target="#create" data-keyboard="false"
+							data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
+
 						</li>
 
 						<li class="dropdown"><a id="droptoggle" href="#"
 							class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-expanded="false"
-							style="padding-top: 5px; padding-bottom: 5px;background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>"> 
-							<img
+							style="padding-top: 5px; padding-bottom: 5px;background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>">
+								<img
 								src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 								onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 								id="thumbnail" alt="my image" /> <span class="caret"></span>
 						</a>
-							<ul class="dropdown-menu" role="menu" style="min-width: 144px;" >
-								<li><a href="#" style="text-align:center;"onclick="imgUploadModal();"> <img
-										class="img-thumbnail" 
+							<ul class="dropdown-menu" role="menu" style="min-width: 144px;">
+								<li><a href="#" style="text-align: center;"
+									onclick="imgUploadModal();"> <img class="img-thumbnail"
 										src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 										data-toggle="modal" data-target="#imgUploadModal"
 										data-keyboard="false" data-backdrop="static" id="profileImg"
@@ -440,12 +456,14 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
-								<li><a href="#">쪽지함 보기</a></li>
+								<li><a href="<%=request.getContextPath()%>/main/sendMessage">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 
-								<li><a href="<%= request.getContextPath()%>/main/myPostBoard">내가 작성한 게시물</a></li>
+								<li><a
+									href="<%=request.getContextPath()%>/main/myPostBoard">내가
+										작성한 게시물</a></li>
 
-												<li class="divider"></li>
+								<li class="divider"></li>
 								<li><a href="javascript:void(0);" onclick="logOut();">로그아웃</a></li>
 
 							</ul></li>
@@ -453,8 +471,9 @@ $(function(){
 						<li><a href="#" id="alarmMenu"
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
-							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;"> </a> <span id="alarmCount"
-							style="color: red;  display: none;"></span> <span id="alarmZone"></span>
+							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;">
+						</a> <span id="alarmCount" style="color: red; display: none;"></span>
+							<span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
 
@@ -471,38 +490,39 @@ $(function(){
 		</nav>
 	</header>
 
-			<!-- 프로젝트 생성 모달   -->
-		<div class="modal fade" id="create" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title"></h4>
-						프로젝트 생성
-					</div>
-					<div class="modal-body" id="createBody">
-						생성자 : <input type="text" id="mem_Email"
-							value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
-						<br> <input type="hidden" id="mem_Img"
-							value="${sessionScope.loginUser.mem_Img }"> 
-							프로젝트 이름 : <input type="text" id="proj_Name" name="proj_Name"><br> <br>
-							프로젝트 팀명 : <input type="text" id="proj_Team" name ="proj_Team"><br><br>
-						프로젝트 내용 : <textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
-						<br>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" id="createBtn"
-							value="생성" />
+	<!-- 프로젝트 생성 모달   -->
+	<div class="modal fade" id="create" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"></h4>
+					프로젝트 생성
+				</div>
+				<div class="modal-body" id="createBody">
+					생성자 : <input type="text" id="mem_Email"
+						value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
+					<br> <input type="hidden" id="mem_Img"
+						value="${sessionScope.loginUser.mem_Img }"> 프로젝트 이름 : <input
+						type="text" id="proj_Name" name="proj_Name"><br> <br>
+					프로젝트 팀명 : <input type="text" id="proj_Team" name="proj_Team"><br>
+					<br> 프로젝트 내용 :
+					<textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
+					<br>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" id="createBtn"
+						value="생성" />
 
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	
-	
-		
+	</div>
+
+
+
 	<!-- imgUpModal -->
 	<div class="modal fade" id="imgUploadModal" role="dialog">
 		<div class="modal-dialog">
@@ -587,8 +607,6 @@ $(function(){
 						id="submit" style="margin-left: 5px;">정보 수정하기</button>
 					<script>
 							$('#submit').click(function(){
-								
-								
 								var Pass_result = true;
 								var Pass_CK = true;
 								var Phone_CK = true;
@@ -1051,81 +1069,148 @@ $(function(){
 						complete:function(){
 							$.ajax({
 								url :'<%=request.getContextPath()%>/main/alarmCount',
-								dataType : 'json',
-								type:'get',
-								success:function(data){
-										$('#alarmCount').text("");
-										$('#alarmCount').text(data);
-									}
-							})
-					}
-					});
-				});
-				
-				
-				
-				$(document).on('click','.go_rejectInvite',function(){
-					var invite_Num =$(this).attr('id');
-					dataList = {'invite_Num' : invite_Num};
-					$.ajax({
-						url:'agreeInvite',
-						dataType:'json',
-						contentType:'application/json',
-						data: JSON.stringify(dataList),
-						type:'post',
-						success:function(data){
-							alert('초대 거절');
-							var dataListApply="";
-							var dataListInvite="";
-							var memApplyViewList="";
-							var projInviteViewList = "";
-							memApplyViewList = data.memApplyViewList;
-							projInviteViewList = data.projInviteViewList;
-							
-							$.each(memApplyViewList,function(i){
-								var date = new Date(memApplyViewList[i].apply_Time);
-								var year = date.getFullYear();
-								var month = (1 + date.getMonth());
-								month = month >= 10 ? month : '0'
-										+ month;
-								var day = date.getDate();
-								day = day >= 10 ? day : '0' + day;
-								var fullD = year + '년' + month
-										+ '월' + day + '일';
-								dataListApply += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+memApplyViewList[i].proj_Num+'] '+ memApplyViewList[i].proj_Name+
-								' 보낸사람 : '+memApplyViewList[i].mem_Email+' 분류 : [ '+memApplyViewList[i].alarm_Clsfct_Name+"] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
-								+" / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
-								if(i==2){
-									return false;
-								}
-							});
-							
-							$.each(projInviteViewList,function(i){
-								var date = new Date(projInviteViewList[i].invite_Time);
-								var year = date.getFullYear();
-								var month = (1 + date.getMonth());
-								month = month >= 10 ? month : '0'
-										+ month;
-								var day = date.getDate();
-								day = day >= 10 ? day : '0' + day;
-								var fullD = year + '년' + month
-										+ '월' + day + '일';
-								dataListInvite += '<li><a href="#">알림시각 : '+fullD+' 프로젝트이름 : ['+projInviteViewList[i].proj_Num+'] '+ projInviteViewList[i].proj_Name+
-								' 보낸사람 : '+projInviteViewList[i].mem_Email+' 분류 : [ '+projInviteViewList[i].alarm_Clsfct_Name+" ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
-								+" / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
-								if(i==2){
-									return false;
-								}
-							});
-							
-							var fullDataList = dataListApply + "<hr color='red'/>"+ dataListInvite
-							$('#dropMenu').empty();
-							$('#dropMenu').append(fullDataList);
-							
-						},
-						complete:function(){
-							$.ajax({
-								url :'/pas/main/alarmCount',
+																		dataType : 'json',
+																		type : 'get',
+																		success : function(
+																				data) {
+																			$(
+																					'#alarmCount')
+																					.text(
+																							"");
+																			$(
+																					'#alarmCount')
+																					.text(
+																							data);
+																		}
+																	})
+														}
+													});
+										});
+
+						$(document)
+								.on(
+										'click',
+										'.go_rejectInvite',
+										function() {
+											var invite_Num = $(this).attr('id');
+											dataList = {
+												'invite_Num' : invite_Num
+											};
+											$
+													.ajax({
+														url : 'agreeInvite',
+														dataType : 'json',
+														contentType : 'application/json',
+														data : JSON
+																.stringify(dataList),
+														type : 'post',
+														success : function(data) {
+															alert('초대 거절');
+															var dataListApply = "";
+															var dataListInvite = "";
+															var memApplyViewList = "";
+															var projInviteViewList = "";
+															memApplyViewList = data.memApplyViewList;
+															projInviteViewList = data.projInviteViewList;
+
+															$
+																	.each(
+																			memApplyViewList,
+																			function(
+																					i) {
+																				var date = new Date(
+																						memApplyViewList[i].apply_Time);
+																				var year = date
+																						.getFullYear();
+																				var month = (1 + date
+																						.getMonth());
+																				month = month >= 10 ? month
+																						: '0'
+																								+ month;
+																				var day = date
+																						.getDate();
+																				day = day >= 10 ? day
+																						: '0'
+																								+ day;
+																				var fullD = year
+																						+ '년'
+																						+ month
+																						+ '월'
+																						+ day
+																						+ '일';
+																				dataListApply += '<li><a href="#">알림시각 : '
+																						+ fullD
+																						+ ' 프로젝트이름 : ['
+																						+ memApplyViewList[i].proj_Num
+																						+ '] '
+																						+ memApplyViewList[i].proj_Name
+																						+ ' 보낸사람 : '
+																						+ memApplyViewList[i].mem_Email
+																						+ ' 분류 : [ '
+																						+ memApplyViewList[i].alarm_Clsfct_Name
+																						+ "] <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_agreeApply btn btn-default' value='수락'>"
+																						+ " / <input type='button' id="+memApplyViewList[i].apply_Num+" class='go_rejectApply btn btn-default' value='거절'></a></li><br>";
+																				if (i == 2) {
+																					return false;
+																				}
+																			});
+
+															$
+																	.each(
+																			projInviteViewList,
+																			function(
+																					i) {
+																				var date = new Date(
+																						projInviteViewList[i].invite_Time);
+																				var year = date
+																						.getFullYear();
+																				var month = (1 + date
+																						.getMonth());
+																				month = month >= 10 ? month
+																						: '0'
+																								+ month;
+																				var day = date
+																						.getDate();
+																				day = day >= 10 ? day
+																						: '0'
+																								+ day;
+																				var fullD = year
+																						+ '년'
+																						+ month
+																						+ '월'
+																						+ day
+																						+ '일';
+																				dataListInvite += '<li><a href="#">알림시각 : '
+																						+ fullD
+																						+ ' 프로젝트이름 : ['
+																						+ projInviteViewList[i].proj_Num
+																						+ '] '
+																						+ projInviteViewList[i].proj_Name
+																						+ ' 보낸사람 : '
+																						+ projInviteViewList[i].mem_Email
+																						+ ' 분류 : [ '
+																						+ projInviteViewList[i].alarm_Clsfct_Name
+																						+ " ]<input type='button' id="+projInviteViewList[i].invite_Num+" class='go_agreeInvite btn btn-default' value='수락'>"
+																						+ " / <input type='button' id="+projInviteViewList[i].invite_Num+" class='go_rejectInvite btn btn-default' value='거절'></a></li><br>";
+																				if (i == 2) {
+																					return false;
+																				}
+																			});
+
+															var fullDataList = dataListApply
+																	+ "<hr color='red'/>"
+																	+ dataListInvite
+															$('#dropMenu')
+																	.empty();
+															$('#dropMenu')
+																	.append(
+																			fullDataList);
+
+														},
+														complete : function() {
+															$
+																	.ajax({
+																		url : '/pas/main/alarmCount',
 																		dataType : 'json',
 																		type : 'get',
 																		success : function(
@@ -1147,33 +1232,47 @@ $(function(){
 					});
 </script>
 <script>
-
-
-$(document).ready(function(){
-	$('#createBtn').on('click',function(){
-		var mem_Email = $('#mem_Email').val();
-		var proj_Name = $('#proj_Name').val();
-		var proj_Content = $('#proj_Content').val();
-		var proj_Team = $('#proj_Team').val();
-		var mem_Img = $('#mem_Img').val();
-		var dataList = {'mem_Email':mem_Email,'proj_Name':proj_Name,'proj_Content':proj_Content,'mem_Img':mem_Img,
-				'proj_Team':proj_Team};
-		$.ajax({
-			url:'/pas/main/createProject',
-			contentType:'application/json',
-			data: JSON.stringify(dataList),
-			type:'post',
-			success:function(proj_Num){
-				location.href="../project/pmOverView?proj_Num="+proj_Num;
-			},
-			error : function(){
-				alert("프로젝트 생성 실패");
-			}
-		})
-	})
-})
-
-
+	$(document)
+			.ready(
+					function() {
+						$('#createBtn')
+								.on(
+										'click',
+										function() {
+											var mem_Email = $('#mem_Email')
+													.val();
+											var proj_Name = $('#proj_Name')
+													.val();
+											var proj_Content = $(
+													'#proj_Content').val();
+											var proj_Team = $('#proj_Team')
+													.val();
+											var mem_Img = $('#mem_Img').val();
+											var dataList = {
+												'mem_Email' : mem_Email,
+												'proj_Name' : proj_Name,
+												'proj_Content' : proj_Content,
+												'mem_Img' : mem_Img,
+												'proj_Team' : proj_Team
+											};
+											$
+													.ajax({
+														url : '/pas/main/createProject',
+														contentType : 'application/json',
+														data : JSON
+																.stringify(dataList),
+														type : 'post',
+														success : function(
+																proj_Num) {
+															location.href = "../project/pmOverView?proj_Num="
+																	+ proj_Num;
+														},
+														error : function() {
+															alert("프로젝트 생성 실패");
+														}
+													})
+										})
+					})
 </script>
 
 <script>

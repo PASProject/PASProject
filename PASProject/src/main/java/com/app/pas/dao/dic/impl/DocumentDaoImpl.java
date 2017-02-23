@@ -34,5 +34,10 @@ public class DocumentDaoImpl implements DocumentDao{
 		int result = client.update("deleteDocumentByDocNum",doc_Num);
 		return result;
 	}
+	@Override
+	public DocumentVo selectDocumentByDocNum(int doc_Num) throws SQLException {
+		DocumentVo documentVo = (DocumentVo) client.queryForObject("selectDocumentByDocNum", doc_Num);
+		return documentVo;
+	}
 
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Message">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+
+	<!-- 발신함, 수신함에 모두 적용 -->
+	<select id="selectMessageList" resultClass="Message"
+		parameterClass="Message">
+		SELECT * FROM Message
+
+	</select>
+
+	<!-- <select id="selectReceiveMessageList" resultClass="ReceiveMessage" 
+		parameterClass="ReceiveMessage"> SELECT * FROM Message WHERE MSG_TITLE LIKE 
+		'%'||#msg_Title#||'%' and MSG_CONTENT LIKE '%'||#msg_Content#||'%' and MSG_SM_EMAIL 
+		LIKE '%'||#msg_sm_Email#||'%' and MSG_RM_EMAIL LIKE '%'||#msg_rm_Email#||'%' 
+		and MSG_ARTICLE_NUM = #msg_Article_Num# ORDER BY MSG_ARTICLE_NUM DESC </select> -->
+
+		<!-- 발신함 디테일 = 수신함 디테일 -->
+	<select id="selectMessage" resultClass="Message"
+		parameterClass="int">
+		SELECT * FROM Message
+		WHERE
+		MSG_ARTICLE_NUM LIKE '%'||#msg_Article_Num#||'%'
+	</select>
+
+
+	<insert id="insertSendMessage" parameterClass="Message">
+		INSERT INTO MESSAGE(MSG_ARTICLE_NUM,MSG_TITLE,MSG_CONTENT,MSG_RM_EMAIL)
+		VALUES(MESSAGE_SEQ.NEXTVAL,#msg_Title#,#msg_Content#,#msg_rm_Email#)
+	</insert>
+	
+	
+
+
+	<update id="updateReceiveMessageReadYN" parameterClass="str">
+		UPDATE MESSAGE SET MSG_RM_READ_YN='y'
+		WHERE MSG_ARTICLE_NUM =
+		#msg_Article_Num#
+	</update>
+
+	<update id="updateSendMessageDelYN" parameterClass="str">
+		UPDATE MESSAGE SET MSG_SM_DEL_YN='y'
+		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
+	</update>
+	
+	<update id="updateReceiveMessageDelYN" parameterClass="str">
+		UPDATE MESSAGE SET MSG_RM_DEL_YN='y'
+		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
+	</update>
+
+	<delete id="deleteMessage" parameterClass="int">
+		DELETE FROM MESSAGE
+		WHERE RM_ARTICLE_NUM=#rm_Article_Num#
+	</delete>
+
+
+</sqlMap>

@@ -31,7 +31,7 @@ public class SockjsHandshakeHandler extends DefaultHandshakeHandler {
 	@Override
 	protected Principal determineUser(ServerHttpRequest request,
 			WebSocketHandler wsHandler, Map<String, Object> attributes) {
-		System.out.println("tetHandshakeHandler 호출");
+		System.out.println("textHandshakeHandler 호출");
 		WebSocketHttpHeaders headers = new WebSocketHttpHeaders(request.getHeaders());
 		for (String key : headers.keySet()) {
 			System.out.println("header key " + key + " " + headers.get(key));

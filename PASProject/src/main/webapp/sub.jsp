@@ -116,7 +116,9 @@ font-weight:bold;
 								공지사항</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="#">채팅하기</a></td>
+						<td><a style="text-decoration: none;"
+						 href="#" onClick="window.open('http://localhost:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=800,height=400,top=700,left=1200')">채팅하기</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
@@ -441,15 +443,18 @@ font-weight:bold;
 	})
 	
 	 */
-	
+
+
 	function decrease(){
 		$('#content').removeClass('col-md-10').addClass('col-md-11');
 		$('#submenu').removeClass('col-md-2').addClass('col-md-1');
 		$('.panel-title>a>span').hide();
-		$('.panel-title').css('text-align','center')
+		$('.panel-title').css('text-align','center');
+		$('#proj_Img').css('height','80px');
 		$('#collapseEight').one("click",increase);
+		
 	}
-	
+	/* k-spreadsheet-pane k-top k-left */
 	function increase(){
 		$('#content').removeClass('col-md-11').addClass('col-md-10');
 		$('#submenu').removeClass('col-md-1').addClass('col-md-2');
@@ -457,11 +462,13 @@ font-weight:bold;
 		$('.panel-title').css({
 			'text-align':'left'
 		})
+		$('#proj_Img').css('height','130px');
 		$('#collapseEight').one("click",decrease);
 
 	}
 $(function(){
 	$('#collapseEight').one('click',decrease);
+	
 
 })
 </script>

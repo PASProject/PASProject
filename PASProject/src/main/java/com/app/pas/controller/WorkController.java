@@ -1,7 +1,9 @@
 package com.app.pas.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,6 +37,7 @@ public class WorkController {
 
 	@Autowired
 	SpreadSheetService spreadSheetService;
+	
 	@Autowired
 	DocumentService documentService;
 	
@@ -46,17 +49,20 @@ public class WorkController {
 		model.addAttribute("documentList", documentList);
 		return url;
 	}
+	
 	@RequestMapping(value="createWorkForm")
 	public String createWorkForm(HttpSession session){
 		String url = "";
 		url = "/work/createWorkForm";
 		return url;
 	}
-	@RequestMapping(value="viewSpreadSheet",method = RequestMethod.GET)
+	
+	@RequestMapping(value="spreadSheetForm",method = RequestMethod.GET)
 	public String createSheet(HttpSession session) throws SQLException{
-		String url = "/work/viewSpreadSheet";
+		String url = "/work/spreadSheetForm";
 		return url;
 	}
+	
 	
 	@RequestMapping(value="createSpreadSheet",method=RequestMethod.POST)
 	public @ResponseBody boolean createSpreadSheet(@RequestBody String sp_Content,HttpSession session) throws SQLException{
@@ -87,10 +93,54 @@ public class WorkController {
 		return url;
 	}
 	
-	public String selectDocument(DocumentVo documentVo) throws SQLException{
-		String url = "redirect:";
+	@RequestMapping("selectDocument")
+	public String selectDocument(DocumentVo documentVo,Model model) throws SQLException{
+		
+		String url = "";
+		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
+		if(selectVo ==null){ return "redirect:workList"; }
+			
+		if(selectVo.getDoc_Kind()==1){
+			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+			model.addAttribute("spreadSheetVo", spreadSheetVo);
+			url = "/work/viewSpreadSheet";
+		}
 		return url;
 	}
-
+	
+	
+	
+	@RequestMapping(value="downloadFile",method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> downloadFile(@RequestBody DocumentVo documentVo) throws SQLException{
+		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
+		
+		Map<String,Object> downloadFileMap = new HashMap<String, Object>();
+		
+		if(selectVo.getDoc_Kind()==1){
+			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+			downloadFileMap.put("data", spreadSheetVo.getSp_Content());
+		}
+		
+		
+		return downloadFileMap;
+	}
+	@RequestMapping(value="saveFile",method = RequestMethod.POST)
+	public @ResponseBody boolean saveFile(@RequestBody Map<String,Object> map ) throws SQLException{
+		String sp_Content = (String) map.get("sheet");
+		String doc_Num = (String) map.get("doc_Num");
+		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
+		spreadSheetVo.setDoc_Num(Integer.parseInt(doc_Num));
+		spreadSheetVo.setSp_Content(sp_Content);
+		boolean flag = spreadSheetService.updateSpreadSheet(spreadSheetVo);
+		return flag;
+	}
+	
+	@RequestMapping(value="preViewFile",method = RequestMethod.POST)
+	public @ResponseBody SpreadSheetVo preViewFile(@RequestBody DocumentVo documentVo, HttpSession session) throws SQLException{
+		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
+		spreadSheetVo.setDoc_Num(documentVo.getDoc_Num());
+		spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+		return spreadSheetVo;
+	}
 
 }

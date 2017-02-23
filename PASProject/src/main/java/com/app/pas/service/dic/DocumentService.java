@@ -29,7 +29,7 @@ public class DocumentService {
 	public boolean insertDictionarySpreadSeet(DocumentVo documentVo,SpreadSheetVo spreadSheetVo) throws SQLException{
 		documentDao.insertDocument(documentVo);
 		DocumentVo selectLastVo = documentDao.selectDocumentLastColumn();
-		spreadSheetVo.setDic_Num(selectLastVo.getDoc_Num());
+		spreadSheetVo.setDoc_Num(selectLastVo.getDoc_Num());
 		int result = spreadSheetDao.insertSpreadSheet(spreadSheetVo);
 		boolean flag = false;
 		if(result==1){
@@ -50,5 +50,10 @@ public class DocumentService {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public DocumentVo selectDocumentByDocNum(int doc_Num) throws SQLException{
+		DocumentVo documentVo = documentDao.selectDocumentByDocNum(doc_Num);
+		return documentVo;
 	}
 }

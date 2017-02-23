@@ -24,4 +24,8 @@ public class ProjectJoinService {
 	public void updateProjectJoinColor(ProjectJoinVo projectJoinVo) throws SQLException{
 		projectjoinDao.updateProjectJoinColor(projectJoinVo);
 	}
+	
+	public void updatePosition(ProjectJoinVo projectJoinVo) throws SQLException{
+		projectjoinDao.updatePosition(projectJoinVo);
+	}
 }
