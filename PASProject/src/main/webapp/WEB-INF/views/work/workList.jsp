@@ -257,6 +257,9 @@
 		     	var spreadsheet = $("#preViewZone").data("kendoSpreadsheet");
 		        var sheet = spreadsheet.sheetByIndex(0);
 		        var range = sheet.range("A1:XY999");  
+ 		        $('.k-spreadsheet-toolbar').hide();
+				$('ul.k-tabstrip-items.k-reset').hide();
+				$('div.k-tabstrip-wrapper').hide();
 		        range.enable(false);    
 		        },2000);     
 			
@@ -265,11 +268,11 @@
 		};
 		          
 		    
-	</script>  
-</body>                    
+	</script> 
+</body>       
 </html>      
 <%-- <tr>     
-				<td class="col-md-1"><img
+				<td class="col-md-1"><img 
 					src="<%=request.getContextPath()%>/resources/img/excel.png"></td>
 				<td class="col-md-4" style="padding:4px;"><a href="#">동석이와 형기의 즐거운 엑셀채팅</a>
 				

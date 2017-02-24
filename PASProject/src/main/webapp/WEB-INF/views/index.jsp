@@ -361,9 +361,7 @@ body.modal-open .background-container {
    
     </script>
 <script>
-$(document)
-.ready(
-		function() {
+$(document).ready(function() {
 			$('#reg_form')
 					.bootstrapValidator(
 							{
@@ -407,14 +405,31 @@ $(document)
 
 
 									mem_Email : {
-										validators : {
+										
+										validators:{
 											notEmpty : {
 												message : '이메일란을 입력해 주세요.'
 											},
 											emailAddress : {
 												message : '형식에 맞는 이메일 주소를 입력해 주세요.'
-											}
-										}
+											},
+			                        		remote : {
+			                        			  url : 'main/EmailCheck',
+			                        			  dataType:'json',
+			                        			  contentType:'application/json',
+			                        			  data:function(validator,$field,value){
+			                        				  return {
+			                        					  mem_Email : JSON.stringify(validator.getFieldElements('mem_Email').val())
+			                        				  };
+			                        			  },
+			                        			  type:'post',
+			                        			  message:'이메일 주소가 존재합니다.  다른 이메일 주소를 입력해주세요',
+			                        			  delay:1000
+			                        		  }
+			                        	  }
+										/* validators : {
+											
+										} */
 									},
 
 									mem_Pass : {
@@ -432,7 +447,6 @@ $(document)
 												message : '공란입니다.'
 											},
 											identical : {
-												
 												message : 'Confirm your password below - type same password please'
 											}
 											
@@ -448,36 +462,36 @@ $(document)
 									},
 
 								}
-							})
+							}) .on('err.field.fv', function(e, data) {
+					            if (data.fv.getSubmitButton()) {
+					                data.fv.disableSubmitButtons(false);
+					            }
+					        })
+					        .on('success.field.fv', function(e, data) {
+					            if (data.fv.getSubmitButton()) {
+					                data.fv.disableSubmitButtons(false);
+					            }
+					        });
+								
+								
+								/* $('#success_message').slideDown({opacity : "show"}, "slow") // Do something ... */
+					/* 			$('#reg_form').data('bootstrapValidator').resetForm();
+						e.preventDefault();
+						alert(e.target.nodeName);
+						var $form = $(e.target);
 
-					.on(
-							'success.form.bv',
-							function(e) {
-								$('#success_message').slideDown({
-									opacity : "show"
-								}, "slow") // Do something ...
-								$('#reg_form').data(
-										'bootstrapValidator')
-										.resetForm();
+						// Get the BootstrapValidator instance
+						var bv = $form
+								.data('bootstrapValidator');
 
-								// Prevent form submission
-								e.preventDefault();
-
-								// Get the form instance
-								var $form = $(e.target);
-
-								// Get the BootstrapValidator instance
-								var bv = $form
-										.data('bootstrapValidator');
-
-								// Use Ajax to submit form data
-								$.post($form.attr('action'), $form
-										.serialize(), function(
-										result) {
-									console.log(result);
-								}, 'json');
-							});
-		});
-</script>
+						// Use Ajax to submit form data
+						$.post($form.attr('action'), $form.serialize(), 
+								function(result) {
+							console.log(result);
+						}, 'json'); 
+					});*/
+					
+		})
+</script>      
 
 </html>

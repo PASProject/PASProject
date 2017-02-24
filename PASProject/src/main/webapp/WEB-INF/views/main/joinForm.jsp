@@ -57,9 +57,7 @@ body {
 	<div class="container container-fluid">
 
 
-		<form class="form-horizontal" action=" " method="post" id="reg_form">
-
-
+		<form class="form-horizontal" action="main/join" method="post" name="reg_form" id="reg_form">
 				<!-- Form Name -->
 				<legend> 회원가입 </legend>
 
@@ -71,7 +69,8 @@ body {
 							<span class="input-group-addon">
 							<i class="glyphicon glyphicon-envelope"></i></span> 
 							<input type="hidden" id="check_Email" value="n">
-							<input name="mem_Email" id="mem_Email" placeholder="이메일 주소" class="form-control" type="text">
+							<input name="mem_Email" id="mem_Email" placeholder="이메일 주소" class="form-control" type="text" 
+							 required="required">
 						</div>
 					</div>
 				</div>
@@ -79,10 +78,6 @@ body {
 					<label class="col-md-6 control-label"></label>
 					<div class="col-md-4">
 					<span id="alreayUsed" style="display:none; color:red">중복된 이메일입니다.</span>
-						<button type="button" class="btn btn-warning" onclick="bb(this.form)" id="EamilCheck">
-							이메일 중복 체크 <span class="glyphicon glyphicon-send"></span>
-						</button>
-						
 					</div>
 				</div>
 				
@@ -153,7 +148,8 @@ body {
 				<div class="form-group" style="text-align:right;">
 					<label class="col-md-6 control-label"></label>
 					<div class="col-md-4">
-						<button type="button" class="btn btn-warning" onclick="aa(this.form)" id="joinBtn">
+<!-- 						<button type="button" class="btn btn-warning" onclick="aa(this.form)" id="joinBtn"> -->
+						<button type="submit" class="btn btn-warning" id="joinBtn">
 							확인 <span class="glyphicon glyphicon-send"></span>
 						</button>
 					</div>
@@ -167,34 +163,7 @@ body {
 			function setEmailCheck(result){
 				EC_Result = result;
 			}
-			function bb(form){
-				var result = false;
-				if($('#mem_Email').val() == ""){
-					result = false;
-				}
-				$.ajax({
-					url : "main/EmailCheck",
-					type : 'post',
-					data : $('#reg_form').serialize(),
-					dataType : 'json',
-					success : function(result){
-						if(result){
-							alert('ㅇㅇㅇㅇㅇㅇ');
-							$('#EamilCheck').text('사용할 수 있는 이메일 입니다.');
-							
-						}else{
-							alert('중복');
-							$('#alreayUsed').fadeIn();
-							
-						}
-						setEmailCheck(result);
-					},
-				 error : function(result){
-						alert('망');
-					}
-				})
-				
-			}
+			
 			function aa(form){
 				
 			//이메일 정규식	

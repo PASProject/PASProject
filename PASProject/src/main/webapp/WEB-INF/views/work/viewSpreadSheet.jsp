@@ -34,6 +34,7 @@
 <script>
 $(function() {
 	var initData = '${spreadSheetVo.sp_Content}';
+	var ds = initData;
     $("#spreadsheet").kendoSpreadsheet({
         excel: {                
             // Required to enable saving files in older browsers
@@ -42,7 +43,7 @@ $(function() {
         pdf: {                
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
         },
-        sheets: [JSON.parse(initData)],
+        sheets:[JSON.parse(ds)],
         sheetsbar:false,
         toolbar:true
         
@@ -52,7 +53,7 @@ $(function() {
     	var sheet = spreadsheet.sheetByIndex(0);
     	var doc_Num = '${spreadSheetVo.doc_Num}';
         var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
-    	$.ajax({
+    	$.ajax({  
         	type : "POST",
 			url : "saveFile",
 			dataType : "json", 
@@ -63,7 +64,7 @@ $(function() {
 				 alert('저장되었습니다.');
 				}else{
 					alert("실패하였습니다.");
-				}
+				}  
 			}
         });
     });
@@ -72,7 +73,7 @@ $(function() {
     	location.href="/pas/project/work/workList";
     })
 });
-    
-    </script>   
-</body>
+      
+    </script>        
+</body>    
 </html>

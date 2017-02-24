@@ -68,14 +68,14 @@
          style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">FreeBoard</h2>
       <table class="table" style="border-top: 2px;">
          <tr style="border-top: 2px solid #ddd">
-            <td class="col-md-7"><h4
+            <td class="col-md-6"><h4
                   style="margin-top: 5px; margin-bottom: 5px">
                   <b>${freeBoardVo.frb_Title}</b>
                </h4></td>
-            <td class="col-md-1"
+            <td class="col-md-2"
                style="vertical-align: middle; "> <span
                style="font-size: 11px;">${freeBoardVo.mem_Email }</span></td>
-            <td class="col-md-1"
+            <td class="col-md-2"
                style="vertical-align: middle; "><span
                style="font-size: 13px">조회수</span>&nbsp; <span
                style="font-size: 11px;"> ${freeBoardVo.frb_Inq_Count }</span></td>
@@ -117,7 +117,7 @@
          <legend></legend>
          <!-- 여기서부터 댓글 -->
          
-         <textarea rows="5" cols="124" id="frb_Reply_Content"></textarea>
+         <textarea rows="5" cols="100%" id="frb_Reply_Content"></textarea>
       </div>
       <div align="right">
       <input type="button" class="btn btn-default" value="등록" id="replyBtn">
