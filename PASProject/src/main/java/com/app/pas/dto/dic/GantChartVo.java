@@ -26,6 +26,7 @@ public class GantChartVo {
 		gantChartCommand.setEnd(this.getGt_End_Date());
 		gantChartCommand.setPercentComplete(this.getGt_Compl_Rate());
 		gantChartCommand.setTitle(this.getGt_Title());
+		gantChartCommand.setId(this.gt_Num+"");
 		return gantChartCommand;
 	}
 	

@@ -6,7 +6,7 @@
 <typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
    
-   <select id="selectGantChart">
-   
+   <select id="selectGantChart" resultClass="GantChart" parameterClass="int">
+   	select * from gant_chart where proj_Num = #proj_Num#
    </select>
 </sqlMap>

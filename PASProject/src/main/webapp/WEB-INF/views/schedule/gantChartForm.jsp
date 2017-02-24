@@ -21,7 +21,7 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			간트 차트
 		</h2>
-		<input type="button" id = "a1234"  value="ㅋㅋ">
+		<!-- <input type="button" id = "a1234"  value="ㅋㅋ"> -->
         <div id="gantt"></div>
 </div>
 
@@ -39,7 +39,7 @@ $(function(){
 	});
 	function go(data){
           $("#gantt").kendoGantt({
-            dataSource: [data],
+            dataSource: data,
             columns: [
                       { field: "title", title: "Title", width:100 },
                       { field: "start", title: "Start Time", width: 200 },
@@ -52,10 +52,10 @@ $(function(){
           alert(JSON.stringify(task));
           });
 	}
-})  
-</script>    
-</body>            
-</html>
+})      
+</script>          
+</body>
+</html>  
 
 
 

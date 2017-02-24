@@ -52,6 +52,7 @@ import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
+import com.app.pas.service.dic.GantChartService;
 
 @Controller
 @RequestMapping("/project")
@@ -80,6 +81,8 @@ public class ProjectController {
 	@Autowired
 	PositionService positionService;
 
+	@Autowired
+	GantChartService gantChartService;
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
@@ -931,15 +934,18 @@ public class ProjectController {
 		return url;
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping("setGant")
-	public GantChartCommand setGant(){
-	GantChartVo vo = new GantChartVo();
-	vo.setGt_Compl_Rate(0.2);
-	vo.setGt_End_Date(new Date());
-	vo.setGt_Start_Date(new Date());
-	vo.setGt_Title("ㅋㅋ");
-		return vo.toCommand();
+	public List<GantChartCommand> setGant(HttpSession session) throws NumberFormatException, SQLException{
+		String proj_Num = (String) session.getAttribute("joinProj");
+		List<GantChartVo> vo = (List<GantChartVo>) gantChartService.selectGantChart(Integer.parseInt(proj_Num));
+		List<GantChartCommand> gantChartCommandList = new ArrayList<GantChartCommand>();
+		for(GantChartVo x : vo){
+			gantChartCommandList.add(x.toCommand());
+		}
+		
+		return gantChartCommandList;
 	}
 }
 /*
