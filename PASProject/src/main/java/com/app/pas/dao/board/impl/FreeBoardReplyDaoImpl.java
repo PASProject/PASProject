@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.app.pas.dao.board.FreeBoardReplyDao;
 import com.app.pas.dto.board.FreeBoardReplyVo;
-import com.app.pas.dto.board.FreeBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class FreeBoardReplyDaoImpl implements FreeBoardReplyDao {

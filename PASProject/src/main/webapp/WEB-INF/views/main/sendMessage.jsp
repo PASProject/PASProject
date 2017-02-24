@@ -9,12 +9,7 @@
 <title></title>
 </head>
 <body>
-<style>
-#messageBtn .notActive{
-    color: #3276b1;
-    background-color: #fff;
-}
-</style>
+
 	<script>
 		$(function() {
 			var input = document.getElementsByName('joinProj');
@@ -28,33 +23,49 @@
 	</script>
 
 	<div class="container sendMessage" id="content">
-	
-		
+
+
+
+		<h2 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			쪽지 보관함 <small></small>
+		</h2>
+
+
+
 		<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
-		
-		
+
+		<div class="pull-right">
+			받은 메세지함 <label class="rb-switcher"><input
+				type="radio" name="radio" id="receive" value="receive" checked> <i></i> </label>
+		 	수신 메세지함 <label
+				class="rb-switcher red"> <input type="radio"
+				name="radio" id="send" value="send"> <i></i>
+			</label>
+		</div>
+
 		<script>
-		$(function(){
-			$('#send').on('click',function(){
-				$('#send').removeClass('notActive'),addClass('notActvie');
-				$('#recieve').
-			})
-			$('#recieve').on('click',function(){
-				$('#send').removeClass')
-			})
-		})
+		$(document).ready(function() {
+			   $('input[type="radio"]').click(function() {
+			       if($(this).attr('id') == 'watch-me') {
+			            $('#sendMessageList').show();           
+			       }
+
+			       else {
+			            $('#show-me').hide();   
+			       }
+			   });
+			});
 		</script>
-		 <div class="form-group">
-    		<div class="col-sm-7 col-md-7">
-    			<div class="input-group">
-    				<div id="messageBtn" class="btn-group">
-    					<a class="btn btn-primary btn-sm active" id="receive">받은 메세지</a>
-    					<a class="btn btn-primary btn-sm notActive" id="send">보낸 메세지</a>
-    				</div>
-    				<input type="hidden" name="happy" id="happy">
-    			</div>
-    		</div>
-    	</div>
+
+
+
+
+
+
+
+
+
 		<c:forEach items="${messageList }" var="messageVo">
 			<table id="sendMessageList" class="table table-hover">
 				<tr>
@@ -62,20 +73,20 @@
 					<th>보낸이</th>
 					<th>등록일</th>
 					<th>읽은 시간</th>
-					<th><input type="checkbox"/></th>
+					<th><input type="checkbox" /></th>
 				</tr>
 				<tr>
 					<td>${messageVo.msg_Title }</td>
 					<td>${messageVo.msg_sm_Email }</td>
 					<td>${messageVo.msg_Wt_Date }</td>
 					<td>${messageVo.msg_Rd_Date }</td>
-					<td><input type="checkbox"/></td>
+					<td><input type="checkbox" /></td>
 				</tr>
 			</table>
 		</c:forEach>
-	
-		
-		
+
+
+
 		<c:forEach items="${messageList }" var="messageVo">
 			<table id="receiveMessageList" class="table table-hover">
 				<tr>
@@ -83,14 +94,14 @@
 					<th>보낸이</th>
 					<th>등록일</th>
 					<th>읽은 시간</th>
-					<th><input type="checkbox"/></th>
+					<th><input type="checkbox" /></th>
 				</tr>
 				<tr>
 					<td>${messageVo.msg_Title }</td>
 					<td>${messageVo.msg_sm_Email }</td>
 					<td>${messageVo.msg_Wt_Date }</td>
 					<td>${messageVo.msg_Rd_Date }</td>
-					<td><input type="checkbox"/></td>
+					<td><input type="checkbox" /></td>
 				</tr>
 			</table>
 		</c:forEach>
