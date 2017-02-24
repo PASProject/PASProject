@@ -3,5 +3,10 @@
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="GantChart">
-
+<typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   
+   <select id="selectGantChart">
+   
+   </select>
 </sqlMap>
