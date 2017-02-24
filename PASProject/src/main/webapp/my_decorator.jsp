@@ -163,7 +163,16 @@ word-break:break-all;
 div {
 word-break:break-all;
 }
+<<<<<<< HEAD
+#submenu{
+ -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+ }   
+=======
 
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 .col-md-1 {
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
