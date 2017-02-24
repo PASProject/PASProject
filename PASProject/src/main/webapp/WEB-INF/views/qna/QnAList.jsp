@@ -79,7 +79,7 @@
 							<script>
 							$(function(){
 								$('#ReadMyPost').hide();
-							})
+						})
 							</script>
 				<input class="btn btn-default inline" name = "qnaTotalList" type="button" onclick="QnAList()" value="목록">						
 				

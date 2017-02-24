@@ -35,18 +35,16 @@ public class ScheduleController {
 	@RequestMapping("/weeklyChecklist")
 	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo, Model model) throws SQLException{
 		String url="schedule/weeklyChecklist";
-		List<ScheduleCalendarVo> weelyList = new ArrayList<ScheduleCalendarVo>();
+		List<ScheduleCalendarVo> weelyList_start = new ArrayList<ScheduleCalendarVo>();
 		scheduleCalendarVo.setSc_Wk_Mem_Email("3@naver.com");
-		weelyList = schdulCalendarService.selectWeeklylist(scheduleCalendarVo);
+		weelyList_start = schdulCalendarService.selectWeeklylist_Start(scheduleCalendarVo);
+		model.addAttribute("weelyList_start", weelyList_start);
 		
-//		ScheduleCalendarCommand command = scheduleCalendarVo.toCommand();
-//		model.addAttribute("command",command);
-		model.addAttribute("weelyList", weelyList);
-		System.out.println("날짜 : " + scheduleCalendarVo.getSc_End_Date());
-		System.out.println(weelyList);
+		//마감
+		List<ScheduleCalendarVo> weelyList_end = new ArrayList<ScheduleCalendarVo>();
+		weelyList_end = schdulCalendarService.selectWeeklylist_End(scheduleCalendarVo);
+		model.addAttribute("weelyList_end", weelyList_end);	
 		return url;
 	}
-	
-	
 	
 }
