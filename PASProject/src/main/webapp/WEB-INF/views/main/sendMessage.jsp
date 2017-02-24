@@ -51,12 +51,16 @@
 			function showSend(){
 				$('#sendMessageList').show();
 				$('#receiveMessageList').hide();
-				$('#sendSpan').css({
-					'font-weight':'normal'
-				})
+				
 				$('#receiveSpan').css({
 					'font-weight':'bold'
 				})
+				$('#sendSpan').css({
+					'font-weight':'normal'
+				})
+				
+				
+			
 				
 				$('#send').one("click",showReceive);
 				
@@ -65,13 +69,15 @@
 			function showReceive(){
 				$('#sendMessageList').hide();
 				$('#receiveMessageList').show();
-			
+				
 				$('#sendSpan').css({
 					'font-weight':'bold'
 				})
 				$('#receiveSpan').css({
 					'font-weight':'normal'
 				})
+				
+				
 				
 				$('#receive').one("click",showSend);
 
