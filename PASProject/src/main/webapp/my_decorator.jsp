@@ -18,10 +18,10 @@
 <!DOCTYPE html>
 
 <html style="background-color:white;">
-  
+
 
 <head>
-<script src="/pas/resources/canvas/literallycanvas-core.js"> </script>
+
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -156,7 +156,6 @@ $(function(){
 
 <!--  -->
 <style>
-
 td{
 word-break:break-all;
 }
@@ -168,13 +167,12 @@ word-break:break-all;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-
+ }   
 .col-md-1 {
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-
 }
 
 .col-md-11 {
@@ -1281,4 +1279,3 @@ $(function(){
 	}
 </script>
 </html>
-

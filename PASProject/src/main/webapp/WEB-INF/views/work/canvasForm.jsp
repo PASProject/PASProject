@@ -8,15 +8,14 @@
 </head>
 <body>
 <div class="col-md-10" id="content">
-	<div class="literally watermark"></div>
+	<div class="my-drawing"></div>
 </div>
 	<script>
   $(document).ready(function() {
     var watermarkImage = new Image();
     watermarkImage.src = '/pas/resources/img/logo.png';
-    LC.init(document.getElementsByClassName('literally watermark')[0],
-    		{ watermarkImage: watermarkImage, watermarkScale: 0.5  // you can scale it
-      });
+    document.getElementsByClassName('my-drawing')[0],
+    {imageURLPrefix: '/pas/resources/img/ppt.png'}
   });
 </script>
 </body>

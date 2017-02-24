@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,8 @@ import com.app.pas.dto.board.AccountBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
+import com.app.pas.dto.dic.GantChartCommand;
+import com.app.pas.dto.dic.GantChartVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.PositionService;
@@ -920,6 +923,24 @@ public class ProjectController {
 		return result;
 	}
 
+	
+	
+	@RequestMapping("pmGantChart")
+	public String pmGantChartForm(){
+		String url ="schedule/gantChartForm";
+		return url;
+	}
+	
+	@ResponseBody
+	@RequestMapping("setGant")
+	public GantChartCommand setGant(){
+	GantChartVo vo = new GantChartVo();
+	vo.setGt_Compl_Rate(0.2);
+	vo.setGt_End_Date(new Date());
+	vo.setGt_Start_Date(new Date("2017-02/"));
+	vo.setGt_Title("ㅋㅋ");
+		return vo.toCommand();
+	}
 }
 /*
  * @RequestMapping("/projectBoardReplyList")

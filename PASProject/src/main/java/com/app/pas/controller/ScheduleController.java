@@ -19,10 +19,6 @@ public class ScheduleController {
 	public String CalendarList(){
 		String url="schedule/monthlySchedule";
 		
-		
-		
-		
-		
 		return url;
 	}
 	
