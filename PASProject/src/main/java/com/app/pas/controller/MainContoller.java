@@ -690,8 +690,9 @@ public class MainContoller {
 		String url = "main/sendMessage";
 		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
-			messageList=messageService.selectMessageList(messageVo);
-		model.addAttribute("MessageList",messageList);	
+		messageList=messageService.selectMessageList(messageVo);
+		System.out.println(messageList);
+		model.addAttribute("messageList",messageList);	
 		return url;
 		
 		

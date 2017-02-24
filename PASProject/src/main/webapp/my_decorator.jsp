@@ -92,7 +92,8 @@
 <link
 	href="<%=request.getContextPath()%>/resources/css/3-col-portfolio.css"
 	rel="stylesheet">
-
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/rb-switcher.min.css">
 <link
 	href='<%=request.getContextPath()%>/resources/css/fullcalendar.min.css'
 	rel='stylesheet' />
@@ -162,12 +163,16 @@ word-break:break-all;
 div {
 word-break:break-all;
 }
+<<<<<<< HEAD
 #submenu{
  -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
  }   
+=======
+
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 .col-md-1 {
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;

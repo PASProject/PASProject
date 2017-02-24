@@ -937,7 +937,7 @@ public class ProjectController {
 	GantChartVo vo = new GantChartVo();
 	vo.setGt_Compl_Rate(0.2);
 	vo.setGt_End_Date(new Date());
-	vo.setGt_Start_Date(new Date("2017-02/"));
+	vo.setGt_Start_Date(new Date());
 	vo.setGt_Title("ㅋㅋ");
 		return vo.toCommand();
 	}

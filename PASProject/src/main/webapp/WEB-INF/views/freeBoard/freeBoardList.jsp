@@ -71,11 +71,11 @@
             </TABLE>
          </form>
 
-		 <form name="form" method="post" action="frb_myPost">
+       <form name="form" method="post" action="frb_myPost">
          <input type="button" class="btn btn-default" value="글쓰기"
             onclick="wrtie_form()">
             <button id = "ReadFrbPost" class="btn btn-default" type="submit">내가 쓴 글보기</button>
- 		</form>
+       </form>
 
 
             <c:choose>
@@ -184,8 +184,8 @@
 
    
    <script>
-   	
-   		
+      
+         
    
       function freeBoardList(){
          location.href ="freeBoardList";
