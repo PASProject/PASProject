@@ -615,11 +615,11 @@ color:red;
 
   
   
-<!----------------------------------------------------------------------------------------------- 화요일 -->
+<!----------------------------------------------------------------------------------------------- 월요일 -->
 <table class="table table-strip">
   <tr style="background-color: white">
     <th class="col-md-1" style="  border: 1px solid #dddddd; text-align: center; padding: 30px;">
-    	화</th>
+    	월</th>
    <th class="col-md-7" style="  border: 1px solid #dddddd; text-align: left; padding: 30px;">
  
 <!--    내용버튼 -->
@@ -635,29 +635,6 @@ color:red;
  	<tr>
  	</tr>
 </table>
-<!-- 화요일 모달 -->
-  <div class="modal fade" id="thusday" role="dialog">
-    <div class="modal-dialog">
-    
-      Thuseday
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Thuseday</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-  
-
 
 
 
