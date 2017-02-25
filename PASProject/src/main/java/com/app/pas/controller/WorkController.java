@@ -42,7 +42,7 @@ public class WorkController {
 	DocumentService documentService;
 	
 	@RequestMapping(value = "/workList", method = RequestMethod.GET)
-	public String loginForm(HttpSession session, Model model) throws NumberFormatException, SQLException {
+	public String workList(HttpSession session, Model model) throws NumberFormatException, SQLException {
 		String url = "/work/workList";
 		String proj_Num = (String) session.getAttribute("joinProj");
 		List<DocumentVo> documentList = documentService.selectDocumentListByProjNum(Integer.parseInt(proj_Num));
@@ -143,4 +143,14 @@ public class WorkController {
 		return spreadSheetVo;
 	}
 
+	////////////////////////////////// Spread Sheet ///////////////////////////////////////////////////
+	
+	
+	@RequestMapping("canvasForm")
+	public String canvasForm(){
+		String url = "/work/canvasForm";
+		return url;
+	}
+	
+	
 }

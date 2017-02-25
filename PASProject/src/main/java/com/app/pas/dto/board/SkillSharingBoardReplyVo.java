@@ -1,6 +1,7 @@
 package com.app.pas.dto.board;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class SkillSharingBoardReplyVo implements Serializable{
 	private String ssb_Reply_Mem;
 	private String ssb_Reply_Content;
 	private String ssb_Reply_Mem_Name;
-	
+	private Timestamp ssb_Reply_Time;
 	
 
 }

@@ -1,6 +1,7 @@
 package com.app.pas.controller.totalboard;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +36,7 @@ public class FreeBoardController {
    FreeBoardService freeBoardService;
    @Autowired
    FreeBoardReplyService freeBoardReplyService;
-   
-   
+  
    //내가쓴글 보기 
    @RequestMapping("/frb_myPost")
    public String frb_myPost(Model model,@RequestParam(value="page",defaultValue="1")String page
@@ -345,8 +345,10 @@ public class FreeBoardController {
    
    
    @RequestMapping(value="/freeBoardReplyList")
-   public @ResponseBody List<FreeBoardReplyVo> selectFreeBoardReplyList(@RequestBody Map<String,Object> jsonMap,Model model){
-      
+   public @ResponseBody List<FreeBoardReplyVo> selectFreeBoardReplyList(
+		   @RequestParam(value="page",defaultValue="1")String page,
+		   @RequestBody Map<String,Object> jsonMap,Model model) throws SQLException{
+	  int totalCount = 0 ;
       List<FreeBoardReplyVo> freeBoardReplyList = new ArrayList<FreeBoardReplyVo>();
       String frb_Article_Num = (String) jsonMap.get("frb_Article_Num");
       System.out.println(frb_Article_Num);
@@ -357,6 +359,9 @@ public class FreeBoardController {
       } catch (SQLException e) {
          e.printStackTrace();
       }
+      
+
+      
       model.addAttribute("freeBoardReplyList",freeBoardReplyList);
       return freeBoardReplyList;
    }
@@ -376,4 +381,48 @@ public class FreeBoardController {
       }
       return freeBoardReplyList;
    }
+   
+   @RequestMapping(value="freeBoardReplyUpdate", method=RequestMethod.POST,produces="application/text;charset=utf8")
+   public String updateFreeBoardReply(int frb_Reply_Num,String content, FreeBoardReplyVo freeBoardReplyVo, HttpSession session,HttpServletRequest request) throws SQLException{
+	   String url="redirect:freeBoardDetail";
+	  
+	   System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@"+content+"@@@@@@@@@@@@@@@@@@@@@@@@@");
+	   System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@"+frb_Reply_Num+"@@@@@@@@@@@@@@@@@@@@@@@@@");
+	   MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+	   FreeBoardReplyVo freeBoardReplyVo1 =freeBoardReplyService.selectFRBR(frb_Reply_Num);
+	   String loginEmail = memberVo.getMem_Email();
+	   System.out.println(frb_Reply_Num);
+	   System.out.println("freeBoardReplyVo1" + freeBoardReplyVo1);
+	   String writeEmail = freeBoardReplyVo1.getFrb_Reply_Mem();
+	   
+	   if(loginEmail.equals(writeEmail)){
+		     freeBoardReplyVo1.setFrb_Reply_Content(content);
+		     freeBoardReplyService.updateFreeBoardReply(freeBoardReplyVo1);
+	         url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&modify=yes&message=1";
+	        }else{
+	         url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&modify=no&message=1";
+	        }
+	   return url;
+	   
+   }
+   @RequestMapping(value="freeBoardReplyDelete", method=RequestMethod.POST)
+   public String deleteFreeBoardReply(int frb_Reply_Num, FreeBoardReplyVo freeBoardReplyVo, HttpSession session) throws SQLException{
+	   
+	   String url="redirect:freeBoardDetail";
+	   MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+	   FreeBoardReplyVo freeBoardReplyVo1 =freeBoardReplyService.selectFRBR(frb_Reply_Num);
+	   String loginEmail = memberVo.getMem_Email();
+	   System.out.println(frb_Reply_Num);
+	   System.out.println("freeBoardReplyVo1" + freeBoardReplyVo1);
+	   String writeEmail = freeBoardReplyVo1.getFrb_Reply_Mem();
+	   
+	   if(loginEmail.equals(writeEmail)){
+		     freeBoardReplyService.deleteFreeBoradReply(frb_Reply_Num);
+	         url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&delete=yes&message=1";
+	        }else{
+	         url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&delete=no&message=1";
+	        }
+	   return url;
+   }
+   
 }
