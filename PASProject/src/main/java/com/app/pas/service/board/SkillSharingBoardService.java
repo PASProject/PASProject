@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.app.pas.dao.board.SkillSharingBoardDao;
+import com.app.pas.dto.board.FreeBoardLikeVo;
 import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 
@@ -32,15 +33,12 @@ public class SkillSharingBoardService {
 	public List<SkillSharingBoardVo> selectSkillLikeCountViewList(String ssb_Title)
 			throws SQLException {
 		List<SkillSharingBoardVo> list = new ArrayList<SkillSharingBoardVo>();
-
 		list = skillsharingboardDao.selectSkillLikeCountViewList(ssb_Title);
-
 		return list;
 	}
-	//��ü ����Ʈ ��� 
+
 	public List<SkillSharingBoardVo> selectSkillSharingBoardList(SkillSharingBoardVo skillSharingBoardVo)throws SQLException{
 		List<SkillSharingBoardVo> list = new ArrayList<SkillSharingBoardVo>();
-		System.out.println("5555555555555555555555555555"+skillSharingBoardVo.toString());
 		list = skillsharingboardDao.selectSkillSharingBoardList(skillSharingBoardVo);
 		return list;
 	}
@@ -56,23 +54,18 @@ public class SkillSharingBoardService {
 	public SkillSharingBoardVo selectSkillSharingBoardDetail(int ssb_Article_Num)
 			throws SQLException {
 		SkillSharingBoardVo skillSharingBoardVo = null;
-
-		skillSharingBoardVo = skillsharingboardDao
-				.selectSkillSharingBoard(ssb_Article_Num);
-
+		skillSharingBoardVo = skillsharingboardDao.selectSkillSharingBoard(ssb_Article_Num);
 		return skillSharingBoardVo;
 	}
 
 	public List<SkillSharingBoardVo> selectSearchSsbTitle(String ssb_title)
 			throws SQLException {
-		List<SkillSharingBoardVo> SsbList = skillsharingboardDao
-				.selectSearchSsbTitle(ssb_title);
+		List<SkillSharingBoardVo> SsbList = skillsharingboardDao.selectSearchSsbTitle(ssb_title);
 		return SsbList;
 	}
 
 	public List<SkillSharingBoardVo> selectSearchSsbTitle() throws SQLException {
-		List<SkillSharingBoardVo> SsbList = skillsharingboardDao
-				.selectSearchSsbTitle();
+		List<SkillSharingBoardVo> SsbList = skillsharingboardDao.selectSearchSsbTitle();
 		return SsbList;
 	}
 
@@ -122,21 +115,16 @@ public class SkillSharingBoardService {
 		return totalCount;
 	}
 	
-	public int insertSkillSharingBoardLike(
-			SkillSharingBoardVo skillSharingBoardVo, SkillSharingBoardLikeVo skillSharingBoardLikeVo,int ssb_Article_NumL)
+	public void insertSkillSharingBoardLike(SkillSharingBoardLikeVo skillSharingBoardLikeVo)
 			throws SQLException {
-
 		skillsharingboardDao.insertSkillSharingBoardLike(skillSharingBoardLikeVo);
-		skillsharingboardDao.updateSkillSharingBoardCountM(skillSharingBoardVo);
-		int likeCount = skillsharingboardDao.selectCountSharingBoardLike(ssb_Article_NumL);
-		return likeCount;
+		
 	}
 	
-	public int deleteSkillSharingBoardLike(SkillSharingBoardLikeVo skillSharingBoardLikeVo,int ssb_Article_NumL)
+	public void deleteSkillSharingBoardLike(SkillSharingBoardLikeVo skillSharingBoardLikeVo)
 			throws SQLException {
 		skillsharingboardDao.deleteSkillSharingBoardLike(skillSharingBoardLikeVo);
-		int likeCount = skillsharingboardDao.selectCountSharingBoardLike(ssb_Article_NumL);
-		return likeCount;
+		
 	}
 	public int selectCountSharingBoardLike(int ssb_Article_Num) throws SQLException {
 		int likeCount = skillsharingboardDao.selectCountSharingBoardLike(ssb_Article_Num);
@@ -145,15 +133,12 @@ public class SkillSharingBoardService {
 	
 	public SkillSharingBoardLikeVo selectSkillSharingBoardLikeList(SkillSharingBoardLikeVo skillSharingBoardLikeVo)
 			throws SQLException {
-		SkillSharingBoardLikeVo skillSharingBoardLike = 
-				skillsharingboardDao.selectSkillSharingBoardLikeList(skillSharingBoardLikeVo);
-
+		SkillSharingBoardLikeVo skillSharingBoardLike = skillsharingboardDao.selectSkillSharingBoardLikeList(skillSharingBoardLikeVo);
 		return skillSharingBoardLike;
 	}
 	public List<SkillSharingBoardVo> skillSharingSearch_Content_Title(SkillSharingBoardVo skillSharingBoardVo)
 	throws SQLException{
-		List<SkillSharingBoardVo> list = 
-				skillsharingboardDao.skillSharingSearch_Content_Title(skillSharingBoardVo);
-	return list;
+		List<SkillSharingBoardVo> list = skillsharingboardDao.skillSharingSearch_Content_Title(skillSharingBoardVo);
+		return list;
 	}
 }

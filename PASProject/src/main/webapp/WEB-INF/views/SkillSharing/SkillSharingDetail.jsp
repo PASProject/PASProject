@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-</head>
 
+</head>
 <body>
-	<script language="javascript">
+<!-- <script language="javascript">
 		var i = 0
 		window.document.onkeydown = protectKey;
 
@@ -27,184 +27,172 @@
 				return false;
 			}
 		}
-	</script>
-	<h1>SkillSharingDetail</h1>
-	<c:if test="${like != null }">
+	</script> -->
+	<c:if test="${like == 'yes' }">
+		<script type="text/javascript">
+			alert("추천완료!");
+		</script>
+	</c:if>
+	<c:if test="${like == 'no' }">
 		<script type="text/javascript">
 			alert("이미 추천한 게시글 입니다.");
 		</script>
 	</c:if>
-	<c:if test="${modi != null }">
-		<script type="text/javascript">
-			alert("작성자만 수정할 수 있습니다.");
-		</script>
-	</c:if>
-	<c:if test="${delete != null }">
+	<c:if test="${delete == 'yes' }">
+         <script type="text/javascript">
+            alert("댓글이 삭제 되었습니다.");
+         </script>
+      </c:if>
+	<c:if test="${delete == 'no' }">
 		<script type="text/javascript">
 			alert("작성자만 삭제할 수 있습니다.");
 		</script>
 	</c:if>
-	<c:if test="${likee != null }">
+	<c:if test="${modify == 'yes' }">
 		<script type="text/javascript">
-			alert("추천 되었습니다.");
+			alert("수정이 완료 되었습니다.");
+			document.frm.ttt.focus();
+		</script>
+	</c:if>
+	<c:if test="${modify == 'no' }">
+		<script type="text/javascript">
+			alert("작성자만 수정할 수 있습니다.");
 		</script>
 	</c:if>
 
+	<!-- 본문! -->
 	<form name="frm" method="post">
-		<!--전 controller에서 보내준것 가져온다  -->
-		<input type="hidden" name="ssb_Inq_Count"
-			value="${skillSharingBoardVo.ssb_Inq_Count}">
-		<div style="border: solid 1px black;">
-			
-				
-				<fieldset>
-					<legend>${skillSharingBoardVo.ssb_Title}
-						<span>(${skillSharingBoardVo.ssb_Article_Num})
-							(${skillSharingBoardVo.ssb_wt_date})</span>
-					</legend>
-					<span>${skillSharingBoardVo.ssb_Content}</span>
-					<legend></legend>
-					<span>${skillSharingBoardVo.ssb_Tag}</span>
-				</fieldset>
-			
-		</div>
-		<input type="button" value="수정" onclick="go_update()"> <input
-			type="button" value="삭제" onclick="go_delete()"> <input
-			type="button" value="목록" onClick="go_list()"> <input
-			type="button" value="추천!" onClick="go_like()">
-
-	
-	<div class="col-md-10">
+	<div class="col-md-10" id="content">
+	<input type="hidden" name="ssb_Article_Num" id="ssb_Article_Num"
+							value="${skillSharingBoardVo.ssb_Article_Num}">
 		<h2 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			<small>댓글</small>
-		</h2>
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><span class="glyphicon glyphicon-qrcode"></span>skillSharingBoard</h2>
+		<table class="table" style="border-top: 2px;">
+			<tr style="border-top: 2px solid #ddd">
+				<td class="col-md-8"><h4
+						style="margin-top: 5px; margin-bottom: 5px">
+						<b>${skillSharingBoardVo.ssb_Title}</b>
+					</h4></td>
+				<td 
+					style="vertical-align: middle; "
+				> <span	style="font-size: 11px;">${skillSharingBoardVo.mem_Email }</span></td>
+				<td 
+					style="vertical-align: middle; "><span
+					style="font-size: 13px">조회수</span>&nbsp; <span
+					style="font-size: 11px;"> ${skillSharingBoardVo.ssb_Inq_Count }</span></td>
+				<td 
+					style="vertical-align: middle; "><span
+					style="font-size: 11px"><fmt:formatDate
+							value="${skillSharingBoardVo.ssb_wt_date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
 
-		<div style="border: solid 1px black;">
-			<form name="reply" method="post">
-				<input type="hidden" name="ssb_Article_Num" id="ssb_Article_Num"
-					value="${skillSharingBoardVo.ssb_Article_Num}">
+			</tr>
 
-			</form>
-			<div style="background: gray">
 
-				<textarea rows="5" cols="50" id="ssb_Reply_Content"></textarea>
-				<input type="button" value="등록" id="replyBtn">
-			</div>
-			<div id="reply" style="border: solid 1px black;"></div>
-		</div>
+			<tr>
+				<td colspan="10" style="padding: 40px 0px 50px 0px; ">${skillSharingBoardVo.ssb_Content}<br></td>
+				
+			</tr>
+		</table>
+
 		<div>
-			<input type="button" value="수정" onclick="go_replyUpdate()"> <input
-				type="button" value="삭제" onclick="go_replyDelete()">
+					<span style="text-align: left;">${skillSharingBoardVo.ssb_Tag}</span>
+			<div align="right">
+				<input type="button" class="btn btn-default" value="수정" onclick="go_update()"> 
+				<input type="button" class="btn btn-default" value="삭제" onclick="go_delete()"> 
+				<input type="button" class="btn btn-default" value="목록" onClick="go_list()"> 
+				<input type="button" class="btn btn-default" value="추천!" onClick="go_like()">
+			</div>
+			<br>
+			<legend></legend>
+			<!-- 여기서부터 댓글 -->
+			   
+			<textarea rows="5" cols="128%" id="ssb_Reply_Content"></textarea>
+			  
 		</div>
+		
+		<div align="right">
+			<input type="button" class="btn btn-default" value="등록" id="replyBtn">
+			</div>
+		
+		<div id="reply" style="overflow:hidden;"></div>
+		
 	</div>
-    </form>
+	
+</form>
+
 	<script type="text/javascript">
 		$(document)
 				.ready(
-						function() {//페이지가 켜졌을때 준비 된다.
-							var ssb_Article_Num = $('#ssb_Article_Num').val();//#ssb_Article_Num jquery 선택자
+						function() {
+							var ssb_Article_Num = $('#ssb_Article_Num').val();
 							var data = {
 								'ssb_Article_Num' : ssb_Article_Num
-							}; // json 형태로 바꾸어준다.
+							};
 							$.ajax({
-								url : 'SkillSharingReplyList', //어느 컨트롤러로 보낼거냐
+								url : 'SkillSharingReplyList',
 								contentType : 'application/json',
 								dataType : 'json',
-								data : JSON.stringify(data), //json 형태 data 를 String 화 시킨다.
+								data : JSON.stringify(data),
 								type : 'post',
-								success : function(data) { //성공했을때 기능
-									$.each(data, function(i) { // $.each = for문
-										var date = new Date(
-												data[i].ssb_Reply_Time)
+								success : function(data) {
+									$.each(data, function(i) {
+
+										var date = new Date(data[i].ssb_Reply_Time)
 										var year = date.getFullYear();
 										var month = (1 + date.getMonth());
-										month = month >= 10 ? month : '0'
-												+ month;
+										month = month >= 10 ? month : '0'+ month;
 										var day = date.getDate();
 										day = day >= 10 ? day : '0' + day;
-										var fullD = year + '년' + month + '월'
-												+ day + '일';
-										var tt = '<div>아이디 : '
+										var fullD = year + '.' + month + '.'+ day;
+										var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].ssb_Reply_Num+')"><span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span></a>'
+												 +'<a href="javascript:void(0);" onclick="go_rfm('+data[i].ssb_Reply_Num+')"><span class="glyphicon glyphicon-pencil" style="font-size:12px;"></span></a>'
+										var tt = '<div><hr>'
 												+ data[i].ssb_Reply_Mem_Name
-												+ '( ' + data[i].ssb_Reply_Mem
-												+ ' )' + '  /  ' + '작성 날짜 : '
-												+ fullD + '<div>  ->'
-												+ data[i].ssb_Reply_Content
-												+ '</div></div><br><br>';
+												+ '( ' + data[i].ssb_Reply_Mem+ ' )'
+												+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'</div>'
+												+'<span id="'+data[i].ssb_Reply_Num+'">'+ data[i].ssb_Reply_Content+'</span>'
 										$('div #reply').append(tt);
 									})
 								}
 							});
 
-							$('#replyBtn')
-									.on(
-											'click',
+							$('#replyBtn').on('click',
 											function() {
-												var ssb_Article_Num = $(
-														'#ssb_Article_Num')
-														.val();
-												var ssb_Reply_Content = $(
-														'#ssb_Reply_Content')
-														.val();
+												var ssb_Article_Num = $('#ssb_Article_Num').val();
+												var ssb_Reply_Content = $('#ssb_Reply_Content').val();
+												if(ssb_Reply_Content==null || ssb_Reply_Content==""){
+													alert('내용을 입력해 주세요!');
+													return;
+												}
 												var dataWrite = {
 													'ssb_Article_Num' : ssb_Article_Num,
 													'ssb_Reply_Content' : ssb_Reply_Content
 												};
-												$
-														.ajax({
+												
+												$.ajax({
 															url : 'SkillSharingReplyWrite',
-															data : JSON
-																	.stringify(dataWrite),
+															data : JSON.stringify(dataWrite),
 															type : 'post',
 															contentType : 'application/json',
-															success : function(
-																	data) {
-																$(
-																		'#ssb_Reply_Content')
-																		.val('');
-																$('div #reply')
-																		.empty();
-																$
-																		.each(
-																				data,
-																				function(
-																						i) {
-																					var date = new Date(
-																							data[i].ssb_Reply_Time)
-																					var year = date
-																							.getFullYear();
-																					var month = (1 + date
-																							.getMonth());
-																					month = month >= 10 ? month
-																							: '0'
-																									+ month;
-																					var day = date
-																							.getDate();
-																					day = day >= 10 ? day
-																							: '0'
-																									+ day;
-																					var fullD = year
-																							+ '년'
-																							+ month
-																							+ '월'
-																							+ day
-																							+ '일';
-																					var tt = '<div >아이디 : '
-																							+ data[i].ssb_Reply_Mem_Name
-																							+ '( '
-																							+ data[i].ssb_Reply_Mem
-																							+ ' )'
-																							+ '  /  '
-																							+ '작성 날짜 : '
-																							+ fullD
-																							+ '<div>  ->'
-																							+ data[i].ssb_Reply_Content
-																							+ '</div></div><br><br>';
-																					$(
-																							'div #reply')
-																							.append(
-																									tt);
+															success : function(data) {
+																$('#ssb_Reply_Content').val('');
+																$('div #reply').empty();
+																$.each(data,function(i) {
+																	var date = new Date(data[i].ssb_Reply_Time)
+																	var year = date.getFullYear();
+																	var month = (1 + date.getMonth());
+																	month = month >= 10 ? month : '0'+ month;
+																	var day = date.getDate();
+																	day = day >= 10 ? day : '0' + day;
+																	var fullD = year + '.' + month + '.'+ day;
+																	var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].ssb_Reply_Num+')"><span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span></a>'
+																			 +'<a href="javascript:void(0);" onclick="go_rfm('+data[i].ssb_Reply_Num+')"><span class="glyphicon glyphicon-pencil" style="font-size:12px;"></span></a>'
+																	var tt = '<div><hr>'
+																			+ data[i].ssb_Reply_Mem_Name
+																			+ '( ' + data[i].ssb_Reply_Mem+ ' )'
+																			+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'</div>'
+																			+'<span id="'+data[i].ssb_Reply_Num+'">'+ data[i].ssb_Reply_Content+'</span>'
+																	$('div #reply').append(tt);
 																				})
 																send('push:def@naver.com');
 															},
@@ -214,22 +202,40 @@
 														});
 											});
 						});
-
-		function go_replyUpdate() {
-			location.href = "skillSharingBoardUpdate?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}";
+		
+		function go_rfd(data){
+			frm.method = "post";
+			frm.action = "SkillSharingReplyDelete?ssb_Reply_Num="+data;
+			frm.submit();
 		}
-
-		function go_replydelete() {
-			reply.method = "post";
-			reply.action = "skillSharingBoardDelete";
-			reply.submit();
+		function go_rfm(data){
+			var content = $('#'+data).text();
+			$('#'+data).empty();
+			$('#'+data).html('<textarea cols="100" rows="3" id="ttt" name="ttt">'+content+'</textarea>'
+					+'<div align="right"><input class="btn btn-default" type="button" value="수정" id="rfmbtn" onclick="go_rfmm('+data+')">'
+					+'<input class="btn btn-default" type="button" value="취소" id="rfcbtn" onclick="go_rfc('+data+')"></div>');
 		}
+		function go_rfmm(data){
+			var content = $('#ttt').val();
+			frm.method = "post";
+			frm.action = "SkillSharingBoardReplyUpdate?ssb_Reply_Num="+data+"&content="+content;
+			frm.submit();
+		}
+		function go_rfc(data){
+			var content = $('#'+data).text();
+			$('span#'+data).empty();
+ 			$('span#'+data).text(content);  
+			
+		}
+		
 		function go_list() {
 			location.href = "SkillSharingBoardList"
 		}
+
 		function go_update() {
 			location.href = "SkillSharingUpdate?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}";
 		}
+
 		function go_delete() {
 			frm.method = "post";
 			frm.action = "SkillSharingDelete";
@@ -238,6 +244,8 @@
 		function go_like() {
 			location.href = "SkillSharingLike?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}";
 		}
-	</script>
-</body>
+	</script>                     
+                    
+</body>  
+  
 </html>

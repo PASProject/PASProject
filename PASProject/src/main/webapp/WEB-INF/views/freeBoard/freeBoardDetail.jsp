@@ -51,6 +51,7 @@
 	<c:if test="${modify == 'yes' }">
 		<script type="text/javascript">
 			alert("수정이 완료 되었습니다.");
+			document.frm.ttt.focus();
 		</script>
 	</c:if>
 	<c:if test="${modify == 'no' }">
@@ -64,22 +65,23 @@
 	<div class="col-md-10" id="content">
 	<input type="hidden" name="frb_Article_Num" id="frb_Article_Num"
 							value="${freeBoardVo.frb_Article_Num}">
+					
 		<h2 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">FreeBoard</h2>
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><span class="glyphicon glyphicon-globe"></span>FreeBoard</h2>
 		<table class="table" style="border-top: 2px;">
 			<tr style="border-top: 2px solid #ddd">
-				<td class="col-md-6"><h4
+				<td class="col-md-8"><h4
 						style="margin-top: 5px; margin-bottom: 5px">
 						<b>${freeBoardVo.frb_Title}</b>
 					</h4></td>
-				<td class="col-md-2"
-					style="vertical-align: middle; "> <span
-					style="font-size: 11px;">${freeBoardVo.mem_Email }</span></td>
-				<td class="col-md-2"
+				<td 
+					style="vertical-align: middle; "
+				> <span	style="font-size: 11px;">${freeBoardVo.mem_Email }</span></td>
+				<td 
 					style="vertical-align: middle; "><span
 					style="font-size: 13px">조회수</span>&nbsp; <span
 					style="font-size: 11px;"> ${freeBoardVo.frb_Inq_Count }</span></td>
-				<td class="col-md-2"
+				<td 
 					style="vertical-align: middle; "><span
 					style="font-size: 11px"><fmt:formatDate
 							value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
@@ -116,21 +118,23 @@
 			<br>
 			<legend></legend>
 			<!-- 여기서부터 댓글 -->
-			
-			<textarea rows="5" cols="100%" id="frb_Reply_Content"></textarea>
+			   
+			<textarea rows="5" cols="128%" id="frb_Reply_Content"></textarea>
+			  
 		</div>
+		
 		<div align="right">
-		<input type="button" class="btn btn-default" value="등록" id="replyBtn">
-		</div>
+			<input type="button" class="btn btn-default" value="등록" id="replyBtn">
+			</div>
+		
 		<div id="reply" style="overflow:hidden;"></div>
+		
 	</div>
+	
 </form>
- 
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							var frb_Article_Num = $('#frb_Article_Num').val();
 							var data = {
 								'frb_Article_Num' : frb_Article_Num
@@ -151,12 +155,13 @@
 										var day = date.getDate();
 										day = day >= 10 ? day : '0' + day;
 										var fullD = year + '.' + month + '.'+ day;
-										var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+')"><span style=" font-weight: bold; color: red;">×</span></a>'
+										var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+')"><span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span></a>'
+												 +'<a href="javascript:void(0);" onclick="go_rfm('+data[i].frb_Reply_Num+')"><span class="glyphicon glyphicon-pencil" style="font-size:12px;"></span></a>'
 										var tt = '<div><hr>'
 												+ data[i].frb_Reply_Mem_Name
 												+ '( ' + data[i].frb_Reply_Mem+ ' )'
-												+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'<div>'
-												+ data[i].frb_Reply_Content;
+												+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'</div>'
+												+'<span id="'+data[i].frb_Reply_Num+'">'+ data[i].frb_Reply_Content+'</span>'
 										$('div #reply').append(tt);
 									})
 								}
@@ -166,10 +171,15 @@
 											function() {
 												var frb_Article_Num = $('#frb_Article_Num').val();
 												var frb_Reply_Content = $('#frb_Reply_Content').val();
+												if(frb_Reply_Content==null || frb_Reply_Content==""){
+													alert('내용을 입력해 주세요!');
+													return;
+												}
 												var dataWrite = {
 													'frb_Article_Num' : frb_Article_Num,
 													'frb_Reply_Content' : frb_Reply_Content
 												};
+												
 												$.ajax({
 															url : 'freeBoardReplyWrite',
 															data : JSON.stringify(dataWrite),
@@ -186,12 +196,13 @@
 																	var day = date.getDate();
 																	day = day >= 10 ? day : '0' + day;
 																	var fullD = year + '.' + month + '.'+ day;
-																	var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+','+data[i].frb_Reply_Mem+')"><span style=" font-weight: bold; color: red;">×</span></a>'
+																	var rfd = '<a href="javascript:void(0);" onclick="go_rfd('+data[i].frb_Reply_Num+')"><span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span></a>'
+																			 +'<a href="javascript:void(0);" onclick="go_rfm('+data[i].frb_Reply_Num+')"><span class="glyphicon glyphicon-pencil" style="font-size:12px;"></span></a>'
 																	var tt = '<div><hr>'
 																			+ data[i].frb_Reply_Mem_Name
 																			+ '( ' + data[i].frb_Reply_Mem+ ' )'
-																			+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'<div>'
-																			+ data[i].frb_Reply_Content;
+																			+'<span style="font-size: 11px">'+ fullD+'</span>'+rfd+'</div>'
+																			+'<span id="'+data[i].frb_Reply_Num+'">'+ data[i].frb_Reply_Content+'</span>'
 																	$('div #reply').append(tt);
 																				})
 																send('push:def@naver.com');
@@ -207,6 +218,25 @@
 			frm.method = "post";
 			frm.action = "freeBoardReplyDelete?frb_Reply_Num="+data;
 			frm.submit();
+		}
+		function go_rfm(data){
+			var content = $('#'+data).text();
+			$('#'+data).empty();
+			$('#'+data).html('<textarea cols="100" rows="3" id="ttt" name="ttt">'+content+'</textarea>'
+					+'<div align="right"><input class="btn btn-default" type="button" value="수정" id="rfmbtn" onclick="go_rfmm('+data+')">'
+					+'<input class="btn btn-default" type="button" value="취소" id="rfcbtn" onclick="go_rfc('+data+')"></div>');
+		}
+		function go_rfmm(data){
+			var content = $('#ttt').val();
+			frm.method = "post";
+			frm.action = "freeBoardReplyUpdate?frb_Reply_Num="+data+"&content="+content;
+			frm.submit();
+		}
+		function go_rfc(data){
+			var content = $('#'+data).text();
+			$('span#'+data).empty();
+ 			$('span#'+data).text(content);  
+			
 		}
 		
 		function go_list() {
@@ -225,8 +255,8 @@
 		function go_like() {
 			location.href = "FreeBoardLike?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
 		}
-	</script>          
-             
-</body>
-
+	</script>                     
+                    
+</body>  
+  
 </html>

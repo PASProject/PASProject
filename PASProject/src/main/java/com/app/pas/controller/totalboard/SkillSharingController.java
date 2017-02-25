@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.MemberVo;
-import com.app.pas.dto.board.FreeBoardReplyVo;
-import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardLikeVo;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
@@ -269,11 +267,11 @@ public class SkillSharingController {
 		return url;
 	}
 
-	@RequestMapping("/SkillSharingLike")
+	/*@RequestMapping("/SkillSharingLike")
 	public String detailskillSharingBoardLike(
 			@RequestParam String ssb_Article_Num, Model model,
 			HttpSession session, HttpServletRequest request,
-			HttpServletResponse response) throws SQLException, IOException {
+			HttpServletResponse response, SkillSharingBoardVo skillSharingBoardVo ) throws SQLException, IOException {
 
 		System.out.println("SkillSharingLike 로 들어왔당!");
 
@@ -309,10 +307,10 @@ public class SkillSharingController {
 			return "redirect:SkillSharingDetail?ssb_Article_Num="
 					+ ssb_Article_Num + "& message=2&like=ok";
 		}
-		/* return url; */
+		 return url; 
 
 	}
-
+*/
 	@RequestMapping("/SkillSharingInsert")
 	public String insertskillSharingBoardForm(HttpSession session, Model model) {
 		String url = "skillSharing/SkillSharingWrite";
@@ -481,5 +479,48 @@ public class SkillSharingController {
 		}
 		return skillSharingBoardReplyList;
 	}
+	
+	@RequestMapping(value="SkillSharingBoardReplyUpdate", method=RequestMethod.POST,produces="application/text;charset=utf8")
+	   public String updateSkillSharingBoardReply(int ssb_Reply_Num,String content, SkillSharingBoardReplyVo skillSharingBoardReplyVo, HttpSession session,HttpServletRequest request) throws SQLException{
+		   String url="redirect:SkillSharingDetail";
+		  
+		   System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@"+content+"@@@@@@@@@@@@@@@@@@@@@@@@@");
+		   System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@"+ssb_Reply_Num+"@@@@@@@@@@@@@@@@@@@@@@@@@");
+		   MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		   SkillSharingBoardReplyVo skillSharingBoardReplyVo1 =skillSharingBoardReplyService.selectSSBR(ssb_Reply_Num);
+		   String loginEmail = memberVo.getMem_Email();
+		   System.out.println(ssb_Reply_Num);
+		   System.out.println("skillSharingBoardReplyVo1" + skillSharingBoardReplyVo1);
+		   String writeEmail = skillSharingBoardReplyVo1.getSsb_Reply_Mem();
+		   if(loginEmail.equals(writeEmail)){
+			   skillSharingBoardReplyVo1.setSsb_Reply_Content(content);
+			   skillSharingBoardReplyService.updateSkillSharingBoardReply(skillSharingBoardReplyVo1);
+		         url = "redirect:SkillSharingDetail?ssb_Article_Num="+ skillSharingBoardReplyVo.getSsb_Article_Num()+"&modify=yes&message=1";
+		        }else{
+		         url = "redirect:SkillSharingDetail?ssb_Article_Num="+ skillSharingBoardReplyVo.getSsb_Article_Num()+"&modify=no&message=1";
+		        }
+		   return url;
+		   
+	   }
+	
+	@RequestMapping(value="SkillSharingReplyDelete", method=RequestMethod.POST)
+	   public String deleteSkillSharingBoardReply(int ssb_Reply_Num, SkillSharingBoardReplyVo skillSharingBoardReplyVo, HttpSession session) throws SQLException{
+		   
+		   String url="redirect:SkillSharingDetail";
+		   MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		   SkillSharingBoardReplyVo skillSharingBoardReplyVo1 = skillSharingBoardReplyService.selectSSBR(ssb_Reply_Num);
+		   String loginEmail = memberVo.getMem_Email();
+		   System.out.println(ssb_Reply_Num);
+		   System.out.println("skillSharingBoardReplyVo1" + skillSharingBoardReplyVo1);
+		   String writeEmail = skillSharingBoardReplyVo1.getSsb_Reply_Mem();
+		   
+		   if(loginEmail.equals(writeEmail)){
+			   skillSharingBoardReplyService.deleteSkillSharingBoardReply(ssb_Reply_Num);
+		         url = "redirect:SkillSharingDetail?ssb_Article_Num="+ skillSharingBoardReplyVo.getSsb_Article_Num()+"&delete=yes&message=1";
+		        }else{
+		         url = "redirect:SkillSharingDetail?ssb_Article_Num="+ skillSharingBoardReplyVo.getSsb_Article_Num()+"&delete=no&message=1";
+		        }
+		   return url;
+	   }
 
 }

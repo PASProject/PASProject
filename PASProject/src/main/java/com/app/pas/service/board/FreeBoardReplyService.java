@@ -35,6 +35,10 @@ public class FreeBoardReplyService {
 	public void deleteFreeBoradReply(int frb_Reply_Num) throws SQLException {
 		freeBoardReplyDao.deleteFreeBoradReply(frb_Reply_Num);
 	}
+	public int selectFRBReplyTotalCount() throws SQLException {
+		int totalCount = freeBoardReplyDao.selectFRBReplyTotalCount();
+		return totalCount;
+	}
 	
 	
 }

@@ -12,4 +12,6 @@ public interface FreeBoardReplyDao {
 	public void insertFreeBoardReply(FreeBoardReplyVo freeBoardReplyVo)throws SQLException;
 	public void updateFreeBoardReply(FreeBoardReplyVo freeBoardReplyVo)throws SQLException;
 	public void deleteFreeBoradReply(int frb_Reply_Num)throws SQLException;
+	public int selectFRBReplyTotalCount() throws SQLException;
+
 }
