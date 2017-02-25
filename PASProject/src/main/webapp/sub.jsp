@@ -373,12 +373,7 @@ font-weight:bold;
 								backgroundColor:$color
 							})
 						})
-						
-						
-						
-						
-						
-						
+				
 						var b = $color.split("(")[1].split(")")[0];
 						b = b.split(",");
 						
@@ -389,7 +384,7 @@ font-weight:bold;
 						hex = hex.join("");
 						
 							$.ajax({
-								url : 'color',
+								url : '/pas/project/color',
 								type: 'post',
 								data : hex,
 								datatype : 'json',

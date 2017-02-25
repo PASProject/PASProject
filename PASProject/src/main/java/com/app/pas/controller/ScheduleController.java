@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.app.pas.dto.ScheduleCalendarCommand;
 import com.app.pas.dto.ScheduleCalendarVo;
 import com.app.pas.service.ScheduleCalendarService;
 
@@ -46,5 +45,7 @@ public class ScheduleController {
 		model.addAttribute("weelyList_end", weelyList_end);	
 		return url;
 	}
+
+	
 	
 }
