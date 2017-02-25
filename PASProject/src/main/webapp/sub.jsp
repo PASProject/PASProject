@@ -180,11 +180,12 @@ font-weight:bold;
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
+
 							href="<%=request.getContextPath()%>/project/pmGantChart">간트 차트</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;"
-							href="http://www.jquery2dotnet.com">주간 체크 리스트</a></td>
+						<td><a style="text-decoration: none;"	href="<%=request.getContextPath()%>/schedule/weeklyChecklist">주간 체크 리스트</a></td>
+
 					</tr>
 				</table>
 			</div>

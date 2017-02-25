@@ -29,6 +29,8 @@ public class FreeBoardVo implements Serializable{
 	
 
 	
+
+	
 	
 	
 	

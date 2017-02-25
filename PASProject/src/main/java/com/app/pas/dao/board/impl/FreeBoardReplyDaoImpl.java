@@ -45,4 +45,11 @@ public class FreeBoardReplyDaoImpl implements FreeBoardReplyDao {
       return freeBoardReplyVo;
    }
 
+	@Override
+	public int selectFRBReplyTotalCount() throws SQLException {
+		int totalCount = (Integer) client.queryForObject("selectFRBReplyTotalCount");
+		return totalCount;
+	}
+
 }
+

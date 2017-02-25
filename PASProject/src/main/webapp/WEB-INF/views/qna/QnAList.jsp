@@ -16,7 +16,7 @@
 
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			QnA <small>게시판</small>
+			<span class="glyphicon glyphicon-question-sign"></span>QnA <small>게시판</small>
 		</h2>
 
 
@@ -79,7 +79,7 @@
 							<script>
 							$(function(){
 								$('#ReadMyPost').hide();
-							})
+						})
 							</script>
 				<input class="btn btn-default inline" name = "qnaTotalList" type="button" onclick="QnAList()" value="목록">						
 				

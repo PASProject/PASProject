@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.board.SkillSharingBoardReplyDao;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -51,6 +52,12 @@ public class SkillSharingBoardReplyDaoImpl implements SkillSharingBoardReplyDao{
 			throws SQLException {
 		client.delete("deleteSkillSharingBoardReply",ssb_Article_Num);
 
+	}
+
+	@Override
+	public SkillSharingBoardReplyVo selectSSBR(int ssb_Reply_Num) throws SQLException {
+		SkillSharingBoardReplyVo skillSharingBoardReplyVo = (SkillSharingBoardReplyVo) client.queryForObject("selectSSBR", ssb_Reply_Num);
+		return skillSharingBoardReplyVo;
 	}
 	
 }
