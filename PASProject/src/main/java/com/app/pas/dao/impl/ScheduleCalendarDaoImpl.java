@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.ScheduleCalendarDao;
 import com.app.pas.dto.ScheduleCalendarVo;
+import com.app.pas.dto.Weekly_dateVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
@@ -69,5 +70,13 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		List<ScheduleCalendarVo> list = client.queryForList("selectWeeklylist_End",scheduleCalendarVo);
 		return list;
 	}
+
+	@Override
+	public List<Weekly_dateVo> weekly_date() throws SQLException {
+		List<Weekly_dateVo> list = client.queryForList("weekly_date");
+		return list;
+	}
+
+
 
 }
