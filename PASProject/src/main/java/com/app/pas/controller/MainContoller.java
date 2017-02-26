@@ -661,14 +661,38 @@ public class MainContoller {
 		
 	
 	}
-	@RequestMapping(value="/messsageDetail", method=RequestMethod.GET)
-	public String MessageDeatil(String msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
-		String url = "main/messageDeatil";
-		MessageVo messageVo = messageService.selectMessage(Integer.parseInt(msg_Article_Num));
+	//받은 쪽지 디테일
+	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
+	public String MessageReceiveDetail(String msg_rm_Read_yn, int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+		String url = "main/messageReceiveDetail";
+		System.out.println(msg_Article_Num);
+
+		MessageVo messageVo = messageService.selectReceiveMessage(msg_Article_Num);
+		msg_rm_Read_yn = messageVo.getMsg_rm_del_yn();
+		
+		System.out.println(msg_rm_Read_yn);
+		/*messageService.updateReceiveMessageReadYN(msg_Article_Num);*/
+		
+		System.out.println("ReceiveDeatil"+messageVo);
 		model.addAttribute("messageVo", messageVo);
-		System.out.println("detail"+ messageVo);
+		
+		
 		return url;
+		
 	}
 	
+	//보낸 쪽지 디테일
+	@RequestMapping(value="/messageSendDetail", method=RequestMethod.GET)
+	public String MessageSendDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+		String url = "main/messageSendDetail";
+		System.out.println(msg_Article_Num);
+		MessageVo messageVo = messageService.selectSendMessage(msg_Article_Num);
+		model.addAttribute("messageVo", messageVo);
+		System.out.println(msg_Article_Num);
+		System.out.println("detail"+ messageVo);
+		
+		return url;
+		
+	}
 	
 }

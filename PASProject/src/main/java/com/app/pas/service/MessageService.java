@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.app.pas.dao.MessageDao;
 import com.app.pas.dto.MessageVo;
-import com.app.pas.dto.board.QnaBoardVo;
 
 public class MessageService {
 
@@ -25,10 +24,19 @@ public class MessageService {
 		
 	}
 	
-	public MessageVo selectMessage(int msg_Article_Num) throws SQLException {
+	public MessageVo selectSendMessage(int msg_Article_Num) throws SQLException {
 		MessageVo messageVo = null;
 		messageVo = messageDao.selectMessage(msg_Article_Num);
 		return messageVo;
 	}
-
+	
+	public MessageVo selectReceiveMessage(int msg_Article_Num) throws SQLException{
+		MessageVo messageVo = null;
+		messageVo = messageDao.selectMessage(msg_Article_Num);
+		return messageVo;
+	}
+	public void updateReceiveMessageReadYN(int msg_Article_Num) throws SQLException{
+		messageDao.updateReceiveMessageReadYN(msg_Article_Num);
+	}
+	
 }

@@ -16,13 +16,13 @@
 			var joinProj = input[0].value;
 
 			if (joinProj != '') {
-				$('.sendMessage').removeClass('container')
+				$('.Message').removeClass('container')
 						.addClass('col-md-10');
 			}
 		})
 	</script>
 
-	<div class="container sendMessage" id="content">
+	<div class="container Message" id="content">
 
 
 
@@ -97,7 +97,7 @@
 					<th><input type="checkbox" /></th>
 				</tr>
 				<tr>
-					<td><a href="messageDetail">${messageVo.msg_Title }</a></td>
+					<td><a href="<%=request.getContextPath() %>/main/messageReceiveDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_sm_Email }</td>
 					<td>${messageVo.msg_Wt_Date }</td>
 					<td>${messageVo.msg_Rd_Date }</td>
@@ -119,7 +119,7 @@
 					<th><input type="checkbox" /></th>
 				</tr>
 				<tr>
-					<td><a href="messageDetail">${messageVo.msg_Title }</a></td>
+					<td><a href="<%=request.getContextPath() %>/main/messageSendDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_rm_Email }</td>
 					<td>${messageVo.msg_Wt_Date }</td>
 					<td>${messageVo.msg_Rd_Date }</td>

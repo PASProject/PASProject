@@ -190,9 +190,22 @@ body.modal-open {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
+		
+		
+}
+
+@font-face {
+	font-family: 'bombing';
+	src: url(<%=request.getContextPath()%>/resources/fonts/BOMGBING.TTF)
+		format('truetype');
+		
+		
 }
 </style>
 <style>
+#teamName{
+font-family : 'bombing';
+}
 body {
 	font-family: 'NanumGothic';
 	background-color: white;
