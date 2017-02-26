@@ -168,8 +168,6 @@ div {
 word-break:break-all;
 }
 
-
-
 .col-md-1 {
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
@@ -275,6 +273,7 @@ body {
 }
 
 #content {
+
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	border-radius: 5px;
@@ -332,17 +331,6 @@ $(function(){
 <body>
 	<header>
 
-		<!-- 나중에 지우세요(디데이) -->
-		<div class="navbar-fixed-top" >
-			<script>
-		   var now = new Date();
-		   var then = new Date('March 2,2017');
-		   var gap = now.getTime() - then.getTime();
-		   gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
-		   document.write('<div id="dday" style="margin-left: 7%; font-weight:bold; font-size:79px; color:#f94f4c; letter-spacing:0px; font-family:arial;">D-<span style=color: "#f94f4c; font-size:70px;">' + gap + '</span></div>');
-		</script>
-		</div>
-
 
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
@@ -399,7 +387,7 @@ $(function(){
 					<a id="teamName" class="navbar-brand" href="#"
 						style="font-size: 20px;"> <b> <c:choose>
 								<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
-					프로젝트 자동화 시스템
+					BLUEMINE
 					</c:when>
 
 								<c:otherwise>
@@ -432,7 +420,6 @@ $(function(){
 							style="font-size: 28px; margin-top: -4px; cursor: pointer"
 							data-target="#create" data-keyboard="false"
 							data-backdrop="static"><span class="glyphicon glyphicon-plus"></span></a>
-
 						</li>
 
 						<li class="dropdown"><a id="droptoggle" href="#"
@@ -456,7 +443,7 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
-								<li><a href="<%=request.getContextPath()%>/main/sendMessage">쪽지함 보기</a></li>
+								<li><a href="<%=request.getContextPath()%>/main/messageList">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 
 								<li><a

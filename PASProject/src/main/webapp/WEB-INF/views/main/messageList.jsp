@@ -40,29 +40,25 @@
 				class="rb-switcher red"> <input type="radio"
 				name="radio" id="receive" value="receive" checked> <i></i>
 			</label><br>
-			<span id="sendSpan" >보낸 쪽지함</span> <label class="rb-switcher"><input
+			<span id="sendSpan">보낸 쪽지함</span> <label class="rb-switcher"><input
 				type="radio" name="radio" id="send" value="send" > <i></i> </label>
 		 	
 		</div>
 
 		<script>
-		
-
 			function showSend(){
-				$('#sendMessageList').show();
 				$('#receiveMessageList').hide();
+				$('#sendMessageList').show();
 				
-				$('#receiveSpan').css({
+				
+				$('#sendSpan').css({
 					'font-weight':'bold'
 				})
-				$('#sendSpan').css({
+				$('#receiveSpan').css({
 					'font-weight':'normal'
 				})
-				
-				
-			
-				
-				$('#send').one("click",showReceive);
+	
+				$('#receive').one("click",showReceive);
 				
 			}
 
@@ -71,15 +67,15 @@
 				$('#receiveMessageList').show();
 				
 				$('#sendSpan').css({
-					'font-weight':'bold'
-				})
-				$('#receiveSpan').css({
 					'font-weight':'normal'
 				})
+				$('#receiveSpan').css({
+					'font-weight':'bold'
+				})
 				
 				
 				
-				$('#receive').one("click",showSend);
+				$('#send').one("click",showSend);
 
 			}
 		$(function(){
@@ -92,7 +88,7 @@
 		<c:forEach items="${messageList }" var="messageVo">
 			
 			<table id="receiveMessageList" class="table table-hover">
-			<caption>받은 쪽지함</caption>
+			<caption><b>받은 쪽지함</b></caption>
 				<tr>
 					<th>제목</th>
 					<th>보낸이</th>
@@ -101,7 +97,7 @@
 					<th><input type="checkbox" /></th>
 				</tr>
 				<tr>
-					<td>${messageVo.msg_Title }</td>
+					<td><a href="messageDetail">${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_sm_Email }</td>
 					<td>${messageVo.msg_Wt_Date }</td>
 					<td>${messageVo.msg_Rd_Date }</td>
@@ -114,7 +110,7 @@
 		<c:forEach items="${messageList }" var="messageVo">
 			
 			<table style="display:none;" id="sendMessageList" class="table table-hover">
-			<caption>보낸 쪽지함 </caption>
+			<caption><b>보낸 쪽지함</b> </caption>
 				<tr>
 					<th>제목</th>
 					<th>받은이</th>
@@ -123,7 +119,7 @@
 					<th><input type="checkbox" /></th>
 				</tr>
 				<tr>
-					<td>${messageVo.msg_Title }</td>
+					<td><a href="messageDetail">${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_rm_Email }</td>
 					<td>${messageVo.msg_Wt_Date }</td>
 					<td>${messageVo.msg_Rd_Date }</td>

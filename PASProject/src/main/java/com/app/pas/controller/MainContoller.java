@@ -41,11 +41,9 @@ import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
-
 import com.app.pas.dto.board.QnaBoardReplyVo;
 import com.app.pas.dto.board.QnaBoardVo;
 import com.app.pas.dto.board.SkillSharingBoardReplyVo;
-
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
@@ -651,9 +649,9 @@ public class MainContoller {
 		return proj_Num;
 	}
 	
-	@RequestMapping(value="/sendMessage", method=RequestMethod.GET)
-	public String SendMessage(MessageVo messageVo, Model model) throws SQLException{
-		String url = "main/sendMessage";
+	@RequestMapping(value="/messageList", method=RequestMethod.GET)
+	public String MessageList(MessageVo messageVo, Model model) throws SQLException{
+		String url = "main/messageList";
 		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
 		messageList=messageService.selectMessageList(messageVo);
@@ -661,10 +659,16 @@ public class MainContoller {
 		model.addAttribute("messageList",messageList);	
 		return url;
 		
-		
-		
-	}
 	
+	}
+	@RequestMapping(value="/messsageDetail", method=RequestMethod.GET)
+	public String MessageDeatil(String msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+		String url = "main/messageDeatil";
+		MessageVo messageVo = messageService.selectMessage(Integer.parseInt(msg_Article_Num));
+		model.addAttribute("messageVo", messageVo);
+		System.out.println("detail"+ messageVo);
+		return url;
+	}
 	
 	
 }

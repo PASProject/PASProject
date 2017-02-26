@@ -7,8 +7,8 @@
 
 
 <body>
-	<script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-	<style>
+<!-- 	<script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> -->
+<style>
 .tableContents {
 	text-overflow: ellipsis;
 }
@@ -22,7 +22,7 @@ li {
 	display: block;
 }
 </style>
-	<script>
+<!-- 	<script>
 	moment.lang('ko', {
 	    weekdays: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"], 
 	    weekdaysShort: ["일","월","화","수","목","금","토"],
@@ -36,7 +36,7 @@ li {
 			var a = $('.day').text();
 			alert(a);
 		})
-	</script>
+	</script> -->
 	<div class="col-md-10" id="content">
 
 		<h2 class="page-header"
@@ -56,8 +56,8 @@ li {
 					<th class="col-md-1 day">수</th>
 					<th class="col-md-1 day">목</th>
 					<th class="col-md-1 day">금</th>
-					<th class="col-md-1 day">토</th>
-					<th class="col-md-1 day">일</th>
+					<!-- <th class="col-md-1 day">토</th>
+					<th class="col-md-1 day">일</th> -->
 				</tr>
 			</thead>
 			<tbody>
@@ -79,7 +79,7 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Monday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
@@ -94,7 +94,7 @@ li {
 									<li><span style="color: #425bd6; font-weight: bold;">시작&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title }</a>
+										data-target="#Tuesday_Start">${scheduleCalendarVo.sc_Title }</a>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -104,7 +104,7 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Tuesday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
@@ -119,7 +119,7 @@ li {
 									<li><span style="color: #425bd6; font-weight: bold;">시작&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title }</a>
+										data-target="#Wednesday_Start">${scheduleCalendarVo.sc_Title }</a>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -129,7 +129,7 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Wednesday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
@@ -144,7 +144,7 @@ li {
 									<li><span style="color: #425bd6; font-weight: bold;">시작&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title }</a>
+										data-target="#Thursday_Start">${scheduleCalendarVo.sc_Title }</a>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -154,7 +154,7 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Thursday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
@@ -169,7 +169,7 @@ li {
 									<li><span style="color: #425bd6; font-weight: bold;">시작&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title }</a>
+										data-target="#Friday_Start">${scheduleCalendarVo.sc_Title }</a>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -179,14 +179,14 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Friday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
 							</c:forEach>
 						</ul>
 
-					</td>
+					<%-- </td>
 					<td class="tableContents">
 						<ul style="font-size: 12px;">
 							<c:forEach items="${weelyList_start}" var="scheduleCalendarVo">
@@ -194,7 +194,7 @@ li {
 									<li><span style="color: #425bd6; font-weight: bold;">시작&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title }</a>
+										data-target="#Thursday_Start">${scheduleCalendarVo.sc_Title }</a>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -204,7 +204,7 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Thursday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
@@ -219,7 +219,7 @@ li {
 									<li><span style="color: #425bd6; font-weight: bold;">시작&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title }</a>
+										data-target="#Friday_Start">${scheduleCalendarVo.sc_Title }</a>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -229,14 +229,14 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_Start">${scheduleCalendarVo.sc_Title}</a>
+										data-target="#Friday_End">${scheduleCalendarVo.sc_Title}</a>
 									</li>
 								</c:if>
 
 							</c:forEach>
 						</ul>
 
-					</td>
+					</td> --%>
 				</tr>
 			</tbody>
 		</table>
@@ -277,7 +277,7 @@ li {
 			</div>
 		</div>
 		<!-- 화요일 시작일감 모달 -->
-		<div class="modal fade" id="tuesday_Start" role="dialog">
+		<div class="modal fade" id="Tuesday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -307,7 +307,7 @@ li {
 			</div>
 		</div>
 		<!-- 수요일 시작일감 모달 -->
-		<div class="modal fade" id="wednesday_Start" role="dialog">
+		<div class="modal fade" id="Wednesday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -337,7 +337,7 @@ li {
 			</div>
 		</div>
 		<!-- 목요일 시작일감 모달 -->
-		<div class="modal fade" id="thursday_Start" role="dialog">
+		<div class="modal fade" id="Thursday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -367,7 +367,7 @@ li {
 			</div>
 		</div>
 		<!-- 금요일 시작일감 모달 -->
-		<div class="modal fade" id="friday_Start" role="dialog">
+		<div class="modal fade" id="Friday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -396,7 +396,7 @@ li {
 
 			</div>
 		</div>
-		<!-- 토요일 시작일감 모달 -->
+<%-- 		<!-- 토요일 시작일감 모달 -->
 		<div class="modal fade" id="saturday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -455,7 +455,7 @@ li {
 				</div>
 
 			</div>
-		</div>
+		</div> --%>
 
 		<!-- 월요일 마감일감 모달 --------------------------------------------------------------------------------------------->
 		<div class="modal fade" id="Monday_End" role="dialog">
@@ -487,7 +487,7 @@ li {
 		</div>
 
 		<!-- 화요일 마감일감 모달 -->
-		<div class="modal fade" id="tuesday_End" role="dialog">
+		<div class="modal fade" id="Tuesday_End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -516,7 +516,7 @@ li {
 		</div>
 
 		<!-- 수요일 마감일감 모달 -->
-		<div class="modal fade" id="wednesday_End" role="dialog">
+		<div class="modal fade" id="Wednesday_End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -546,7 +546,7 @@ li {
 		</div>
 
 		<!-- 목요일 마감일감 모달 -->
-		<div class="modal fade" id="#thursday_End" role="dialog">
+		<div class="modal fade" id="Thursday_End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -576,7 +576,7 @@ li {
 		</div>
 
 		<!-- 금요일 마감일감 모달 -->
-		<div class="modal fade" id="friday_End" role="dialog">
+		<div class="modal fade" id="Friday_End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -605,7 +605,7 @@ li {
 			</div>
 		</div>
 
-		<!-- 토요일 마감일감 모달 -->
+		<%-- <!-- 토요일 마감일감 모달 -->
 		<div class="modal fade" id="saturday__End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -633,9 +633,9 @@ li {
 				</div>
 
 			</div>
-		</div>
+		</div> --%>
 
-		<!-- 일요일 마감일감 모달 -->
+		<%-- <!-- 일요일 마감일감 모달 -->
 		<div class="modal fade" id="sunday_End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -662,7 +662,7 @@ li {
 				</div>
 
 			</div>
-		</div>
+		</div> --%>
 
 
 
