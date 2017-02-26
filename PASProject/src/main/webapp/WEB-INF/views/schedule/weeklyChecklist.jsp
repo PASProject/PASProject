@@ -52,7 +52,7 @@ li {
 			<thead>
 				<tr>
 				
-					<th class="col-md-1 day">월 ${ }</th>
+					<th class="col-md-1 day">월 ${mon}</th>
 					<th class="col-md-1 day">화</th>
 					<th class="col-md-1 day">수</th>
 					<th class="col-md-1 day">목</th>

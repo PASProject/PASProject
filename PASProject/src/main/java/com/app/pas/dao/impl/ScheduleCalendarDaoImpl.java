@@ -71,11 +71,11 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		return list;
 	}
 
-	@Override
-	public List<Weekly_dateVo> weekly_date() throws SQLException {
-		List<Weekly_dateVo> list = client.queryForList("weekly_date");
-		return list;
-	}
+@Override
+public ScheduleCalendarVo weekly_date() throws SQLException {
+	ScheduleCalendarVo schedulCalendarVo = (ScheduleCalendarVo) client.queryForObject("weekly_date");
+	return schedulCalendarVo;
+}
 
 
 

@@ -30,6 +30,9 @@ public class ScheduleCalendarVo implements Serializable {
 	private String sc_Description;
 	private String start_Day;
 	private String end_Day;
+	private String dt;
+	private String dy; 
+
 	
 	public ScheduleCalendarCommand toCommand(){
 		ScheduleCalendarCommand scheduleCalendarCommand = new ScheduleCalendarCommand();

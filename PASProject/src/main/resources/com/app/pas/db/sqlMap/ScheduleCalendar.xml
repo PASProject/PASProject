@@ -52,8 +52,8 @@
 	where sc_wk_mem_email = #sc_Wk_Mem_Email#	
 	</select>
 	
-	<select id="weekly_date" resultClass="Weekly_dateVo">
-	select * from weekly_checklist;
+	<select id="weekly_date" resultClass="ScheduleCalendar">
+	select * from weekly_checklist
 	</select>
 
 

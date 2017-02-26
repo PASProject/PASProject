@@ -64,8 +64,9 @@ public class ScheduleCalendarService {
 		return list;
 	}
 
-	public List<Weekly_dateVo> weekly_date() throws SQLException {
-		List<Weekly_dateVo> list = scheduleCalendarDao.weekly_date();
-		return list;
+	public ScheduleCalendarVo weekly_date() throws SQLException {
+		ScheduleCalendarVo schedulCalendarVo = scheduleCalendarDao.weekly_date();
+		return schedulCalendarVo;
+		
 	}
 }

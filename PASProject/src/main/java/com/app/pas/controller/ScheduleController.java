@@ -54,21 +54,16 @@ public class ScheduleController {
 		model.addAttribute("weelyList_end", weelyList_end);	
 		
 		//마감,시작 포함일정
-		List<Weekly_dateVo>weeklyList = new ArrayList<Weekly_dateVo>();
-		weeklyList = schdulCalendarService.weekly_date();
 		
-		Weekly_dateVo weekly_dateVo = new Weekly_dateVo();
-		weekly_dateVo = (Weekly_dateVo) schdulCalendarService.weekly_date();
-		
-//			if( weekly_dateVo.getDy() equals("월요일")){
-//				String mon = dateList.getDt();
-//				model.addAttribute("mon", mon);
-//			
-//		}
-		
-		
-		model.addAttribute("weeklyList", weeklyList);	
-		
+		ScheduleCalendarVo weekly_dateVo = new ScheduleCalendarVo();
+		weekly_dateVo = (ScheduleCalendarVo) schdulCalendarService.weekly_date();
+			
+			String monDate =weekly_dateVo.getDy();
+			if( monDate.equals("월요일")){
+				String mon = weekly_dateVo.getDt();
+				model.addAttribute("mon", mon);
+				}
+
 		
 		
 		return url;
