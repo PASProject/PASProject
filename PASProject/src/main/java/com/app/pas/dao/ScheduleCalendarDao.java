@@ -16,4 +16,6 @@ public interface ScheduleCalendarDao {
 	
 	public List<ScheduleCalendarVo> selectWeeklylist_Start(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
 	public List<ScheduleCalendarVo> selectWeeklylist_End(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
+	public List<ScheduleCalendarVo> weekly_date()throws SQLException;
+
 }
