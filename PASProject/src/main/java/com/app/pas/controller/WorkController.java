@@ -145,27 +145,25 @@ public class WorkController {
 	}
 	
 	@RequestMapping(value="preViewFile",method = RequestMethod.POST)
-	public @ResponseBody int preViewFile(@RequestBody Map<String,Object> map, HttpSession session,Model model) throws SQLException{
-		int result =-1;
-		System.out.println(map.get("doc_Num")+"이것ㅇ느 디오씨!");
+	public @ResponseBody Map<String,Object> preViewFile(@RequestBody Map<String,Object> map, HttpSession session,Model model) throws SQLException{
 		DocumentVo documentVo= documentService.selectDocumentByDocNum(Integer.parseInt(map.get("doc_Num").toString()));		
+		Map<String,Object> resultMap = new HashMap<String, Object>();
 		
 		if(documentVo.getDoc_Kind()==1){
 		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
 		spreadSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
 		spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(Integer.parseInt(map.get("doc_Num").toString()));
-		session.setAttribute("spreadSheetVo", spreadSheetVo);
-		result=1;
-		
+		resultMap.put("type", 1);
+		resultMap.put("content", spreadSheetVo.getSp_Content());
 		}else if(documentVo.getDoc_Kind()==2){
 		WordSheetVo wordSheetVo = new WordSheetVo();
 		wordSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
 		wordSheetVo = wordSheetService.selectWordSheetByDocNum(Integer.parseInt(map.get("doc_Num").toString()));
-		session.setAttribute("wordSheetVo",wordSheetVo);
-		result=2;
+		resultMap.put("type", 2);
+		resultMap.put("content", wordSheetVo.getWd_Content());
 		}
 		
-		return result;
+		return resultMap;
 		
 	}
 
