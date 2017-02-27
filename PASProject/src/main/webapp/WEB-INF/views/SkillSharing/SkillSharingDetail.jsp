@@ -103,7 +103,7 @@
 				<input type="button" class="btn btn-default" value="추천!" onClick="go_like()">
 			</div>
 			<br>
-			<legend></legend>
+			
 			<!-- 여기서부터 댓글 -->
 			   
 			<textarea rows="5" cols="128%" id="ssb_Reply_Content"></textarea>

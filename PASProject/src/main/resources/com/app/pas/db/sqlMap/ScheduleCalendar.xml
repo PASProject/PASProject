@@ -55,6 +55,7 @@
 	<select id="weekly_date" resultClass="ScheduleCalendar">
 	select * from weekly_checklist
 	</select>
-
+	
+	
 
 </sqlMap>

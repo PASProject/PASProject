@@ -68,7 +68,6 @@
 	<c:if test="${modify == 'yes' }">
 		<script type="text/javascript">
 			alert("수정이 완료 되었습니다.");
-			document.frm.ttt.focus();
 		</script>
 	</c:if>
 	<c:if test="${modify == 'no' }">

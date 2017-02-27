@@ -142,6 +142,8 @@ body {
 				</div>
 				<input type="button" id="login" class="btn btn-default btn-block"
 					value="LOGIN" name="login1">
+				<input type="button" id="home" class="btn btn-default btn-block"
+					value="HOME" name="home" onclick="go_Home()">
 				
 
 			</form>
@@ -154,7 +156,12 @@ body {
 	
 </body>
 <script>
+	
+function go_Home(){
+	location.href = "<%=request.getContextPath()%>/index";
 
+}
+	
 	$(document).ready(function() {
 		$('#forget').click(function() {
 			$("#hiddenEmail").hide();
@@ -189,7 +196,7 @@ body {
 				
 				success : function(result) {
 					if (result == 1) {
-                        location.href="<%=request.getContextPath()%>/admin/memberList"
+                        location.href="<%=request.getContextPath()%>/admin/adminMain";
 											} else if (result == 0) {
 												alert("아이디가 틀렸습니다");
 												

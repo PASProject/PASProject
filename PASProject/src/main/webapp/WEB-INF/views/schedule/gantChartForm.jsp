@@ -137,7 +137,6 @@ $(function(){
                     ],
                     showWorkHours: false,
                     showWorkDays: false,
-
                     snap: false
           });
           
@@ -173,7 +172,6 @@ $(function(){
             	                    ],
             	                    showWorkHours: false,
             	                    showWorkDays: false,
-
             	                    snap: false
             	          });
         	        },2000);

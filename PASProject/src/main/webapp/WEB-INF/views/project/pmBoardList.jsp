@@ -142,6 +142,7 @@
 									<td class="col-md-12"
 										style="padding-top:5px; padding-left: 0px; padding-right: 0px;">
 										<div class="form-inline">
+											
 											<input class="form-control" style="min-width: 100%;"
 												placeholder="댓글을 입력하세요" name="pb_Reply_Content"
 												id="${pbList.pb_Article_Num}pb_Reply_Content" />
