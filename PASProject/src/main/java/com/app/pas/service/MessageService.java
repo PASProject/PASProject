@@ -17,26 +17,34 @@ public class MessageService {
 	
 	
 	public List<MessageVo> selectMessageList(MessageVo messageVo) throws SQLException{
+
 		List<MessageVo> list = new ArrayList<MessageVo>();
 		list = messageDao.selectMessageList(messageVo);
 			
 		return list;
 		
 	}
-	
+
+
 	public MessageVo selectSendMessage(int msg_Article_Num) throws SQLException {
 		MessageVo messageVo = null;
 		messageVo = messageDao.selectMessage(msg_Article_Num);
 		return messageVo;
 	}
+
 	
 	public MessageVo selectReceiveMessage(int msg_Article_Num) throws SQLException{
 		MessageVo messageVo = null;
 		messageVo = messageDao.selectMessage(msg_Article_Num);
 		return messageVo;
 	}
+	
+	public void insertMessage(MessageVo messageVo) throws SQLException{
+		messageDao.insertMessage(messageVo);
+	}
 	public void updateReceiveMessageReadYN(int msg_Article_Num) throws SQLException{
 		messageDao.updateReceiveMessageReadYN(msg_Article_Num);
 	}
+
 	
 }

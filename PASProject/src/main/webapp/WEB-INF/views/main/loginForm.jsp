@@ -263,7 +263,7 @@ body {
 		</div>
 		<div class="container" style="padding: 20px;">
 			<span style="text-align: center">PAS에 처음 방문하셨다면 <a
-				href="<%=request.getContextPath()%>/index.jsp">새 계정을 만드세요.</a></span> <br>
+				href="<%=request.getContextPath()%>/index#about">새 계정을 만드세요.</a></span> <br>
 			<br> <a href="javscript:void(0);"><span
 				style="text-align: center" id="forget1">이메일 계정을 잊으셨습니까?</span></a><br>
 			<br> <a href="javscript:void(0);"><span

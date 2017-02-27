@@ -11,8 +11,8 @@
 </head>
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">파일 리스트</h2>
+		<h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">파일 리스트</h3>
 		
 		<div>
 		
@@ -57,6 +57,27 @@
 		</div>
 		
 		
+		<div id="preWordViewModal" class="modal fade" >
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span> <span class="sr-only">close</span>
+						</button>
+						<h4 id="modalTitle" class="modal-title">미리보기</h4>
+					</div>
+					<div id="modalBody" class="modal-body">
+						<textarea name="editor1"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="exportWordBtn">다운로드</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 	<script>
 		$(function(){
 			
@@ -70,18 +91,24 @@
 				var doc_Num = $(this).attr('class');
 				var dataList = {'doc_Num':doc_Num};
 				$.ajax({
-					dataType:'json',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 					dataType:'json',
 					contentType:'application/json',
 					type:'post',
 					url:'preViewFile',
 					data: JSON.stringify(dataList),
 					success:function(data){
-						ds = data.sp_Content;
 						
-					},
-					complete : function(){
+					    alert('${wordSheetVo.wd_Content}');
+						if(data=="1"){					
+						ds = '${spreadSheetVo.sp_Content}';
 						view(ds);
+						}else if(data=="2"){
+						ds='${wordSheetVo.wd_Content}';
+						viewWord(ds);
+						}
+						
 					}
+					
 				});
 				
 			})
@@ -91,17 +118,27 @@
 			$("#preViewZone").empty();
 			setTimeout(function(){
 			    $("#preViewZone").kendoSpreadsheet({
+			    	 excel: {                
+			             // Required to enable saving files in older browsers
+			             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+			         },
 			        sheets:[JSON.parse(ds)],
 			        columns:100,
 			        rows:100,
 			        sheetsbar:false,
-			        toolbar:false,
-			        editable:false,
-			        enable:false
+			        toolbar:true,
 			    })
-			},2000);
+		     	var spreadsheet = $("#preViewZone").data("kendoSpreadsheet");
+		        var sheet = spreadsheet.sheetByIndex(0);
+		        var range = sheet.range("A1:XY999");  
+ 		        $('.k-spreadsheet-toolbar').hide();
+				$('ul.k-tabstrip-items.k-reset').hide();
+				$('div.k-tabstrip-wrapper').hide();
+		        range.enable(false);    
+		        },2000);     
 			
 		    $('#preViewModal').modal();
+
 		    /* $('#preViewModal').data('kendoSpreadsheet').dataSource.read(); */
 		     var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet"); // the widget instance
 
@@ -109,8 +146,31 @@
 		     range = range.enable(false);
    		    
 		};
-		   
 		
+		function viewWord(ds){
+			$('#preWordViewModal').modal();
+			 CKEDITOR.replace('editor1');
+			 CKEDITOR.instances['editor1'].setData(ds); 
+			
+		};
+		
+		$('#exportWordBtn').on('click',function(){
+			
+			var Wordsheet = CKEDITOR.instances.editor1.getData(); 
+			alert(Wordsheet);
+			 $.ajax({
+             	type : "POST",
+     			url : "exportWord",
+     			dataType : "json", 
+     			data : {"wd_Content":Wordsheet},
+     			contentType : "application/json",
+     			success:function(){
+     				
+     			}
+             })
+         });
+
+	
 	</script>    
 </body>        
 </html>       

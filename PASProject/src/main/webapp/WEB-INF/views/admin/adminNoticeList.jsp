@@ -13,10 +13,10 @@
 </head>
 <body>
 	<!-- <div class="col-md-10"> -->
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			Admin<small>_Notice</small>
-		</h2>
+		</h3>
 		
 		<form name="form" method="post" action="AdminTotalNoticeList">
 		

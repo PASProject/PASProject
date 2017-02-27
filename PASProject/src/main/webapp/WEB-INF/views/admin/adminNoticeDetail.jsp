@@ -12,10 +12,10 @@
 </head>
 <body>
 
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			QnA <small>글 읽기</small>
-		</h2>
+		</h3>
 
 
 

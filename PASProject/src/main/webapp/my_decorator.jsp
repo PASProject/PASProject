@@ -62,6 +62,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
+	
+	
+<!-- Ck Editor -->
+<script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>	
 
 
 <!-- JS -->
@@ -190,21 +194,18 @@ body.modal-open {
 	font-family: 'NanumGothic';
 	src: url(<%=request.getContextPath()%>/resources/fonts/NANUMGOTHIC.TTF)
 		format('truetype');
-		
-		
+	
 }
 
 @font-face {
-	font-family: 'bombing';
-	src: url(<%=request.getContextPath()%>/resources/fonts/BOMGBING.TTF)
-		format('truetype');
+	font-family: 'FEDERALESCORTHALFITAL';
+	src: url(<%=request.getContextPath()%>/resources/fonts/FEDERALESCORTHALFITAL.TTF);
 		
-		
-}
+} 
 </style>
 <style>
 #teamName{
-font-family : 'bombing';
+font-family : 'FEDERALESCORTHALFITAL';
 }
 body {
 	font-family: 'NanumGothic';
@@ -296,6 +297,7 @@ body {
 }
 
 .page-header {
+	font-weight:bold;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -397,14 +399,13 @@ $(function(){
 
 						</c:otherwise>
 					</c:choose>
-					<a id="teamName" class="navbar-brand" href="#"
-						style="font-size: 20px;"> <b> <c:choose>
+					<a class="navbar-brand" href="#"
+						style="font-size: 30px;"> <c:choose>
 								<c:when test="${empty sessionScope.joinProjectVo.proj_Name }">
-					BLUEMINE
+					<p id="teamName">BLUEMINE</p>
 					</c:when>
-
 								<c:otherwise>
-									<p id="tn">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
+									<p id="tn" style="font-size:20px">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
 											class="caret" id="caret" style="display: none;"></span>
 									</p>
 								</c:otherwise>
@@ -421,7 +422,7 @@ $(function(){
 					})
 					</script>
 
-					</b></a>
+					</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 

@@ -13,10 +13,10 @@
 </head>
 <body>
 <div class="container" id="content" style="padding-left:14px; padding-right:14px;">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			기술공유 <small>수정하기!</small>
-		</h2>
+		</h3>
 					<form action="myPostUpdateForm_Skill" method="post" >
 					<input type="hidden" name="num" value="${myPostBoardVo.num}" >
 		
