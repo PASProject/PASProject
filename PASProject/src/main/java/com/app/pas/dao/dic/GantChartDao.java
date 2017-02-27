@@ -7,4 +7,6 @@ import com.app.pas.dto.dic.GantChartVo;
 
 public interface GantChartDao {
 	public List<GantChartVo> selectGantChart(int proj_Num) throws SQLException;
+	public int insertGantChart(GantChartVo gantChartVo) throws SQLException;
+	public int deleteGantChart(int proj_Num) throws SQLException;
 }

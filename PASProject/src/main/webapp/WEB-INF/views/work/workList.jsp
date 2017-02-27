@@ -91,25 +91,28 @@
 			$("#preViewZone").empty();
 			setTimeout(function(){
 			    $("#preViewZone").kendoSpreadsheet({
+			    	 excel: {                
+			             // Required to enable saving files in older browsers
+			             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+			         },
 			        sheets:[JSON.parse(ds)],
 			        columns:100,
 			        rows:100,
 			        sheetsbar:false,
-			        toolbar:false,
-			        editable:false,
-			        enable:false
+			        toolbar:true,
 			    })
-			},2000);
+		     	var spreadsheet = $("#preViewZone").data("kendoSpreadsheet");
+		        var sheet = spreadsheet.sheetByIndex(0);
+		        var range = sheet.range("A1:XY999");  
+ 		        $('.k-spreadsheet-toolbar').hide();
+				$('ul.k-tabstrip-items.k-reset').hide();
+				$('div.k-tabstrip-wrapper').hide();
+		        range.enable(false);    
+		        },2000);     
 			
 		    $('#preViewModal').modal();
-		    /* $('#preViewModal').data('kendoSpreadsheet').dataSource.read(); */
-		     var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet"); // the widget instance
-
-        	var range = spreadsheet.activeSheet();
-		     range = range.enable(false);
-   		    
-		};
 		   
+		};
 		
 	</script>    
 </body>        

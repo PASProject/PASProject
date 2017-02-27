@@ -18,5 +18,15 @@ public class GantChartDaoImpl implements GantChartDao{
 		List<GantChartVo> list = (List<GantChartVo>) client.queryForList("selectGantChart",proj_Num);
 		return list;
 	}
+	@Override
+	public int insertGantChart(GantChartVo gantChartVo) throws SQLException {
+		int result = client.update("insertGantChart",gantChartVo);
+		return result;
+	}
+	@Override
+	public int deleteGantChart(int proj_Num) throws SQLException {
+		int result = client.update("deleteGantChart",proj_Num);
+		return result;
+	}
 
 }

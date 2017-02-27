@@ -1,6 +1,5 @@
 package com.app.pas.dto.dic;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import kr.or.ddit.commons.ibatis.Alias;
@@ -17,7 +16,7 @@ public class GantChartVo {
 	private double gt_Compl_Rate;
 	private int proj_Num;
 	private String gt_Title;
-	
+	private String gt_Parent_Id;
 	
 	
 	public GantChartCommand toCommand(){
@@ -27,15 +26,17 @@ public class GantChartVo {
 		gantChartCommand.setPercentComplete(this.getGt_Compl_Rate());
 		gantChartCommand.setTitle(this.getGt_Title());
 		gantChartCommand.setId(this.gt_Num+"");
+		gantChartCommand.setParentId(this.gt_Parent_Id);
 		return gantChartCommand;
 	}
 	
 	public GantChartVo fromCommand(GantChartCommand gantChartCommand){
 		GantChartVo gantChartVo = new GantChartVo();
-		gantChartVo.setGt_Start_Date(gt_Start_Date);
-		gantChartVo.setGt_End_Date(gt_End_Date);
-		gantChartVo.setGt_Title(gt_Title);
-		gantChartVo.setGt_Compl_Rate(gt_Compl_Rate);
+		gantChartVo.setGt_Start_Date(gantChartCommand.getStart());
+		gantChartVo.setGt_End_Date(gantChartCommand.getEnd());
+		gantChartVo.setGt_Title(gantChartCommand.getTitle());
+		gantChartVo.setGt_Compl_Rate(gantChartCommand.getPercentComplete());
+		gantChartVo.setGt_Parent_Id(gantChartCommand.getParentId());
 		return gantChartVo;
 	}
 	

@@ -15,5 +15,7 @@ public class GantChartCommand {
 	private Date end;
 	private String title;
 	private Double percentComplete;
+	private String parentId;
+	private String orderId;
 	
 }

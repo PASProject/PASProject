@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +56,7 @@ import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
 import com.app.pas.service.dic.GantChartService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/project")
@@ -934,7 +938,6 @@ public class ProjectController {
 		return url;
 	}
 	
-	
 	@ResponseBody
 	@RequestMapping("setGant")
 	public List<GantChartCommand> setGant(HttpSession session) throws NumberFormatException, SQLException{
@@ -947,6 +950,18 @@ public class ProjectController {
 		
 		return gantChartCommandList;
 	}
+	
+	@RequestMapping(value="updateGant",method = RequestMethod.POST)
+	public @ResponseBody boolean updateGant(@RequestBody Map<String,Object> map,HttpSession session) throws NumberFormatException, SQLException, ParseException{
+		 Map<String,Object> m = new HashMap<String, Object>();
+		 String proj_Num = (String) session.getAttribute("joinProj");
+		 List<LinkedHashMap<String, Object>> list = (List<LinkedHashMap<String, Object>>) map.get("_data");
+		 
+	     boolean result  =  gantChartService.updateGantChart(list, Integer.parseInt(proj_Num));
+	     
+	     return true;
+	}
+	
 }
 /*
  * @RequestMapping("/projectBoardReplyList")
