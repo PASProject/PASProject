@@ -20,7 +20,7 @@ public class ScheduleCalendarVo implements Serializable {
 	private int sc_Num;
 	//@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm")
 	private Date sc_Start_Date;
-	//@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm")
+	
 	private Date sc_End_Date;
 	private String sc_Wk_Name;
 	private String sc_Wk_Mem_Email;
@@ -30,7 +30,10 @@ public class ScheduleCalendarVo implements Serializable {
 	private String sc_Description;
 	private String start_Day;
 	private String end_Day;
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private String dt; //이번주 날짜 
+	
 	private String dy;  //이번주 요일 
 
 	

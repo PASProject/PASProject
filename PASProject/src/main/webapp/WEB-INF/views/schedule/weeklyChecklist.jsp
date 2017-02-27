@@ -672,11 +672,7 @@ li {
 					월</th>
 				<th class="col-md-7"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-
-					<!--    내용버튼 --> <input type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#thusday"
-					style="border-width: 0px; box-shadow: none; outline: none; background-color: white; font-color: black;"
-					value="여기에 내용을 넣을것임">
+					<div id="zozo"> <span id="mon_textZone"> 여기다 내용 넣을 것</span></div>					
 				</th>
 
 
@@ -687,10 +683,63 @@ li {
 			<tr>
 			</tr>
 		</table>
+<script>  
 
+// value=\'입력\'
+	$('#mon_textZone').on('click',function(){
+ 		var a ="";
+		var content = $('#mon_textZone').text();
+		$('#zozo').empty();
+		a = "<textarea  cols=\'80\' rows=\'3\' style=\"outline: none;border-style: none; border-color: Transparent; \" >"
+		+content+"</textarea><input type=\'button\' class= \'btn btn-default\' >"
+		$('#zozo').html(a);
+	})
+</script>           
 
+	<!----------------------------------------------------------------------------------------------- 화요일 -->
+		<table class="table table-strip">
+			<tr style="background-color: white">
+				<th class="col-md-1"
+					style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
+					화</th>
+				<th class="col-md-7"
+					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
+					<div id="zozo">
+					
+					<br><Br><Br>
+					<input type="text" name="" size="100"  style="border: 0px;" onKeyDown="onKeyDown();"
+					 placeholder='이 곳을 클릭하여 일정을 적어주세요' >
+				
+									
+			</div>
+				</th>
+			
 
-
-	</div>
-</body>
+				<th class="col-md-2"
+					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
+					Country</th>
+			</tr>
+			<tr>
+			</tr>
+		</table>
+         
+       
+         
+	</div>       
+	<script>
+	function onKeyDown()
+	{
+	     if(event.keyCode == 13)
+	     {
+	        alert("ㅜㅜㅜㅜㅜ");
+	     }
+	}
+	
+	
+	
+	
+	</script>
+	
+	   
+</body>           
 </html>
