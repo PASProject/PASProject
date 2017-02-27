@@ -96,9 +96,10 @@
 					url:'preViewFile',
 					data: JSON.stringify(dataList),
 					success:function(resultMap){
+						alert(resultMap.type);
 						if(resultMap.type==1){
 							view(resultMap.content);
-						}else{
+						}else if(resultMap.type==2){
 							viewWord(resultMap.content);
 						}
 						

@@ -22,13 +22,14 @@
     <body>
     <div class="col-md-10" id="content">
         <input type="button" value="저장하기" id="saveDataBtn" class="btn btn-default">
-        <input type="hidden" value="${param.doc_Num }" id="doc_Num">
+        <input type="hidden" value="${param.doc_Num }" id="doc_Num">      	
         <textarea name="editor1" id="editor1"></textarea>
-        <script>
-        
+        <script>  
            
+        var a=  "${wordSheetVo.wd_Content}";
+        alert(a);
             CKEDITOR.replace( 'editor1' );
-            CKEDITOR.instances['editor1'].setData('${wordSheetVo.wd_Content}');  
+            CKEDITOR.instances['editor1'].setData(a);   
             
             
             $('#saveDataBtn').on('click',function(){
