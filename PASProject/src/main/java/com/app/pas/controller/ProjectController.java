@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +55,8 @@ import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
+import com.app.pas.service.dic.GantChartService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/project")
@@ -80,6 +85,8 @@ public class ProjectController {
 	@Autowired
 	PositionService positionService;
 
+	@Autowired
+	GantChartService gantChartService;
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
@@ -933,14 +940,28 @@ public class ProjectController {
 	
 	@ResponseBody
 	@RequestMapping("setGant")
-	public GantChartCommand setGant(){
-	GantChartVo vo = new GantChartVo();
-	vo.setGt_Compl_Rate(0.2);
-	vo.setGt_End_Date(new Date());
-	vo.setGt_Start_Date(new Date());
-	vo.setGt_Title("ㅋㅋ");
-		return vo.toCommand();
+	public List<GantChartCommand> setGant(HttpSession session) throws NumberFormatException, SQLException{
+		String proj_Num = (String) session.getAttribute("joinProj");
+		List<GantChartVo> vo = (List<GantChartVo>) gantChartService.selectGantChart(Integer.parseInt(proj_Num));
+		List<GantChartCommand> gantChartCommandList = new ArrayList<GantChartCommand>();
+		for(GantChartVo x : vo){
+			gantChartCommandList.add(x.toCommand());
+		}
+		
+		return gantChartCommandList;
 	}
+	
+	@RequestMapping(value="updateGant",method = RequestMethod.POST)
+	public @ResponseBody boolean updateGant(@RequestBody Map<String,Object> map,HttpSession session) throws NumberFormatException, SQLException, ParseException{
+		 Map<String,Object> m = new HashMap<String, Object>();
+		 String proj_Num = (String) session.getAttribute("joinProj");
+		 List<LinkedHashMap<String, Object>> list = (List<LinkedHashMap<String, Object>>) map.get("_data");
+		 
+	     boolean result  =  gantChartService.updateGantChart(list, Integer.parseInt(proj_Num));
+	     
+	     return true;
+	}
+	
 }
 /*
  * @RequestMapping("/projectBoardReplyList")

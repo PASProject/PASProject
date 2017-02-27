@@ -16,11 +16,10 @@
 				data-popover-content="#myPopover">참여인원 보기</a></small>
 		</h3>
 
-		<div id="myPopover" class="hide">
-			<ul>
-				<c:forEach items="${memPositionViewVo}" var="memPositionView"
-					varStatus="status">
-					<li style="list-style: none; margin-left: -20%; margin-bottom: 8%"><img
+		<div id="myPopover" class="hide" style="width:170px">         
+			<ul> 
+				<c:forEach items="${memPositionViewVo}" var="memPositionView" varStatus="status">
+					<li style="list-style: none; margin-left: -5%; margin-bottom: 8%"><img
 						src="<%=request.getContextPath() %>/resources/upload/${memPositionView.mem_Img}"
 						onerror="this.src='<%=request.getContextPath()%>/resources/upload/no.png'"
 						id="thumbnail" alt="my image" /> ${memPositionView.mem_Name}

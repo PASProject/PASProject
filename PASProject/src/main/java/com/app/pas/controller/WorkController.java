@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.dic.DocumentVo;
 import com.app.pas.dto.dic.SpreadSheetVo;
+import com.app.pas.dto.dic.WordSheetVo;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.dic.DocumentService;
 import com.app.pas.service.dic.SpreadSheetService;
+import com.app.pas.service.dic.WordSheetService;
 
 @Controller
 @RequestMapping("/project/work")
@@ -40,6 +42,9 @@ public class WorkController {
 	
 	@Autowired
 	DocumentService documentService;
+	
+	@Autowired
+	WordSheetService wordSheetService;
 	
 	@RequestMapping(value = "/workList", method = RequestMethod.GET)
 	public String workList(HttpSession session, Model model) throws NumberFormatException, SQLException {
@@ -104,6 +109,10 @@ public class WorkController {
 			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
 			model.addAttribute("spreadSheetVo", spreadSheetVo);
 			url = "/work/viewSpreadSheet";
+		}else if(selectVo.getDoc_Kind()==2){
+			WordSheetVo wordSheetVo = wordSheetService.selectWordSheetByDocNum(documentVo.getDoc_Num());
+			model.addAttribute("wordSheetVo", wordSheetVo);
+			url = "/work/viewWordSheet";
 		}
 		return url;
 	}
@@ -136,11 +145,28 @@ public class WorkController {
 	}
 	
 	@RequestMapping(value="preViewFile",method = RequestMethod.POST)
-	public @ResponseBody SpreadSheetVo preViewFile(@RequestBody DocumentVo documentVo, HttpSession session) throws SQLException{
+	public @ResponseBody int preViewFile(@RequestBody Map<String,Object> map, HttpSession session,Model model) throws SQLException{
+		int result =-1;
+		System.out.println(map.get("doc_Num")+"이것ㅇ느 디오씨!");
+		DocumentVo documentVo= documentService.selectDocumentByDocNum(Integer.parseInt(map.get("doc_Num").toString()));		
+		
+		if(documentVo.getDoc_Kind()==1){
 		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
-		spreadSheetVo.setDoc_Num(documentVo.getDoc_Num());
-		spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
-		return spreadSheetVo;
+		spreadSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
+		spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(Integer.parseInt(map.get("doc_Num").toString()));
+		session.setAttribute("spreadSheetVo", spreadSheetVo);
+		result=1;
+		
+		}else if(documentVo.getDoc_Kind()==2){
+		WordSheetVo wordSheetVo = new WordSheetVo();
+		wordSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
+		wordSheetVo = wordSheetService.selectWordSheetByDocNum(Integer.parseInt(map.get("doc_Num").toString()));
+		session.setAttribute("wordSheetVo",wordSheetVo);
+		result=2;
+		}
+		
+		return result;
+		
 	}
 
 	////////////////////////////////// Spread Sheet ///////////////////////////////////////////////////
@@ -151,6 +177,55 @@ public class WorkController {
 		String url = "/work/canvasForm";
 		return url;
 	}
+	
+	@RequestMapping(value="createWordSheet",method=RequestMethod.POST)
+	public @ResponseBody boolean createWordSheet(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
+		
+		
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String proj_Num = (String) session.getAttribute("joinProj");
+		DocumentVo documentVo = new DocumentVo();
+		documentVo.setDoc_Kind(2);
+		documentVo.setDoc_Name("WordSheet");
+		documentVo.setMem_Email(memberVo.getMem_Email());
+		documentVo.setMem_Name(memberVo.getMem_Name());
+		documentVo.setProj_Num(Integer.parseInt(proj_Num));
+		documentVo.setDoc_Img("doc.png");
+		WordSheetVo wordSheetVo = new WordSheetVo();
+		wordSheetVo.setWd_Content(map.get("wd_Content").toString());
+		boolean flag = documentService.insertDictionaryWordSeet(documentVo,wordSheetVo);
+		return flag;
+		
+	}
+	
+	@RequestMapping(value="spreadWordForm",method = RequestMethod.GET)
+	public String WordSheet(HttpSession session) throws SQLException{
+		String url = "/work/wordSheetForm";
+		return url;
+	}
+	
+	@RequestMapping(value="saveWord",method=RequestMethod.POST)
+	public @ResponseBody int SaveWord(@RequestBody Map<String,Object> map) throws SQLException{
+		int result=1;
+		WordSheetVo wordSheetVo = new WordSheetVo();
+		wordSheetVo.setWd_Content(map.get("wd_Content").toString());
+		wordSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
+		
+		wordSheetService.updateWordSheet(wordSheetVo);
+		
+		return result;
+		
+		
+		
+	}
+	
+	@RequestMapping(value="exportWord",method=RequestMethod.POST)
+	public void ExportWord(@RequestBody String wd_Content){
+		System.out.println(wd_Content+"이것은 내용!!");
+		
+	}
+	
 	
 	
 }

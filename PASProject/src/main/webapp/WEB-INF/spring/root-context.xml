@@ -50,9 +50,10 @@
 
 
 	
-	
+	<bean id ="WordSheetDao" class="com.app.pas.dao.dic.impl.WordSheetDaoImpl" p:client-ref="SqlMapClient"/> 
 	<bean id = "SpreadSheetDao" class="com.app.pas.dao.dic.impl.SpreadSheetDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id = "DocumentDao" class="com.app.pas.dao.dic.impl.DocumentDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id = "GantChartDao" class="com.app.pas.dao.dic.impl.GantChartDaoImpl" p:client-ref="SqlMapClient"></bean>
 	<!-- ////////////////////////////////////////// service  //////////////////////////////////////////////////////////// -->
 	
 	<bean id="AdminService" class="com.app.pas.service.AdminService" p:adminDao-ref="AdminDao"/>
@@ -82,6 +83,8 @@
 	<bean id="TotalNoticeService" class="com.app.pas.service.board.TotalNoticeService" p:totalnoticeDao-ref="TotalNoticeDao" />
 	<bean id="MessageService" class="com.app.pas.service.MessageService" p:messageDao-ref="MessageDao" />
 	<bean id="SpreadSheetService" class="com.app.pas.service.dic.SpreadSheetService" p:spreadSheetDao-ref="SpreadSheetDao"/>
-	<bean id="DocumentService" class="com.app.pas.service.dic.DocumentService" p:documentDao-ref="DocumentDao" p:spreadSheetDao-ref="SpreadSheetDao"/>
+	<bean id="GantChartService" class="com.app.pas.service.dic.GantChartService" p:gantChartDao-ref="GantChartDao"/>
+	<bean id="DocumentService" class="com.app.pas.service.dic.DocumentService" p:documentDao-ref="DocumentDao" p:spreadSheetDao-ref="SpreadSheetDao" p:wordSheetDao-ref="WordSheetDao"/>
+    <bean id="WordSheetService" class="com.app.pas.service.dic.WordSheetService" p:wordSheetDao-ref="WordSheetDao"/>
 
 </beans>

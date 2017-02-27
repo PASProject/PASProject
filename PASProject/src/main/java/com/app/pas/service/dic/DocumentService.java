@@ -5,15 +5,27 @@ import java.util.List;
 
 import com.app.pas.dao.dic.DocumentDao;
 import com.app.pas.dao.dic.SpreadSheetDao;
+import com.app.pas.dao.dic.WordSheetDao;
 import com.app.pas.dto.dic.DocumentVo;
 import com.app.pas.dto.dic.SpreadSheetVo;
+import com.app.pas.dto.dic.WordSheetVo;
 
 public class DocumentService {
 
 	private DocumentDao documentDao;
 	private SpreadSheetDao spreadSheetDao;
+	private WordSheetDao wordSheetDao;
 	
 	
+	
+	
+	
+	public void setWordSheetDao(WordSheetDao wordSheetDao) {
+		this.wordSheetDao = wordSheetDao;
+	}
+
+
+
 	public void setSpreadSheetDao(SpreadSheetDao spreadSheetDao) {
 		this.spreadSheetDao = spreadSheetDao;
 	}
@@ -56,4 +68,19 @@ public class DocumentService {
 		DocumentVo documentVo = documentDao.selectDocumentByDocNum(doc_Num);
 		return documentVo;
 	}
+
+	
+	public boolean insertDictionaryWordSeet(DocumentVo documentVo,WordSheetVo wordSheetVo) throws SQLException{
+		documentDao.insertDocument(documentVo);
+		DocumentVo selectLastVo = documentDao.selectDocumentLastColumn();
+		wordSheetVo.setDoc_Num(selectLastVo.getDoc_Num());
+		System.out.println(wordSheetVo+"ㅁㅇㄹㄷ");
+		wordSheetDao.insertWordSheet(wordSheetVo);
+		boolean flag = true;
+		/*if(result==1){
+			flag = true;
+		}*/
+		return flag;
+	}
+	
 }
