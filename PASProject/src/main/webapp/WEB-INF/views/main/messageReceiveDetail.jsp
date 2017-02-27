@@ -34,10 +34,15 @@
 				<td><a href="#">${messageVo.msg_sm_Email }</a>&nbsp;&nbsp;${messageVo.msg_Wt_Date }</td>
 			</tr>
 			<tr>
-				<td>${messageVo.msg_Content }</td>
+				<td style="border-bottom: 1px solid #ddd;">${messageVo.msg_Content }</td>
 			</tr>
 		</table>
-	
+		<button type="button" class="btn btn-default">삭제</button>
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-default">답장</button>
+			<button type="button" class="btn btn-default">목록</button>
+		</div>
+
 	</div>
 </body>
 </html>

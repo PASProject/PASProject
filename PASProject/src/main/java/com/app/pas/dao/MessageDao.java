@@ -12,6 +12,7 @@ public interface MessageDao {
 	  public MessageVo selectMessage(int msg_Article_Num)throws SQLException;
 	  public void insertMessage(MessageVo messageVo)throws SQLException;
 	  
+		  
 	  public void updateSendMessageDelYN(int msg_Article_Num) throws SQLException;
 	  
 	  public void deleteMessage(int msg_Article_Num)throws SQLException;

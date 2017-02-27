@@ -14,10 +14,10 @@
 
 <body>
 	<div class="col-md-8"  id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 게시판 <small>자유롭게 이야기하세요</small>
-		</h2>
+		</h3>
 		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
 
 

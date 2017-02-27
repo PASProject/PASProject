@@ -21,9 +21,12 @@ public class MessageVo implements Serializable{
 	private String msg_Content;
 	private String msg_sm_Email;
 	private String msg_rm_Email;
+	private String msg_sm_Name;
+	private String msg_rm_Name;
 	private String msg_rm_Read_yn;
 	private String msg_sm_del_yn;
 	private String msg_rm_del_yn;
+	
 	
 
 	

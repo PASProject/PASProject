@@ -650,12 +650,19 @@ public class MainContoller {
 	}
 	
 	@RequestMapping(value="/messageList", method=RequestMethod.GET)
-	public String MessageList(MessageVo messageVo, Model model) throws SQLException{
+	public String MessageList( MessageVo messageVo, MemberVo memberVo, Model model) throws SQLException{
 		String url = "main/messageList";
 		
+		
+		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
+		
 		messageList=messageService.selectMessageList(messageVo);
-		System.out.println(messageList);
+		System.out.println("%%messageList%%" + messageList);
+
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+messageVo);
+		
+		
 		model.addAttribute("messageList",messageList);	
 		return url;
 		
@@ -693,6 +700,30 @@ public class MainContoller {
 		
 		return url;
 		
+	}
+	@RequestMapping(value="/messageWrite", method=RequestMethod.GET)
+	public String MessageWrite(HttpSession session, Model model){
+		String url = "main/messageWrite";
+		return url;
+	}
+	//쪽지 보내기
+	@RequestMapping(value="/messageInsert", method=RequestMethod.POST)
+	public String MessageInsert(MessageVo messageVo, HttpSession session) throws SQLException{
+		String url = "redirect:";
+		System.out.println(messageVo);
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_sm_Email = memberVo.getMem_Email();
+		String mem_sm_Name = memberVo.getMem_Name();
+		
+		MemberVo memberVo1 = memberService.getMember(messageVo.getMsg_rm_Email());
+		
+		messageVo.setMsg_sm_Email(mem_sm_Email);
+		messageVo.setMsg_sm_Name(mem_sm_Name);
+		messageVo.setMsg_rm_Name(memberVo1.getMem_Name());
+		System.out.println("나는 거침?");
+		messageService.insertMessage(messageVo);
+		/*messageVo.setMsg_rm_Email(msg_rm_Email);*/
+		return url;
 	}
 	
 }

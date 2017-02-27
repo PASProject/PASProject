@@ -28,7 +28,7 @@
 
 		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			쪽지 보관함 <small></small>
+			쪽지 보관함 <small><a href="<%=request.getContextPath() %>/main/messageWrite">쪽지 보내기</a></small>
 		</h3>
 
 
@@ -85,7 +85,7 @@
 		
 		</script>
 
-		<c:forEach items="${messageList }" var="messageVo">
+		
 			
 			<table id="receiveMessageList" class="table table-hover">
 			<caption><b>받은 쪽지함</b></caption>
@@ -96,6 +96,7 @@
 					<th>읽은 시간</th>
 					<th><input type="checkbox" /></th>
 				</tr>
+				<c:forEach items="${messageList }" var="messageVo">
 				<tr>
 					<td><a href="<%=request.getContextPath() %>/main/messageReceiveDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_sm_Email }</td>
@@ -103,11 +104,12 @@
 					<td>${messageVo.msg_Rd_Date }</td>
 					<td><input type="checkbox" /></td>
 				</tr>
+						</c:forEach>
 			</table>
-		</c:forEach>
+
 		
 		
-		<c:forEach items="${messageList }" var="messageVo">
+		
 			
 			<table style="display:none;" id="sendMessageList" class="table table-hover">
 			<caption><b>보낸 쪽지함</b> </caption>
@@ -118,6 +120,7 @@
 					<th>읽은 시간</th>
 					<th><input type="checkbox" /></th>
 				</tr>
+				<c:forEach items="${messageList }" var="messageVo">
 				<tr>
 					<td><a href="<%=request.getContextPath() %>/main/messageSendDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_rm_Email }</td>
@@ -125,8 +128,9 @@
 					<td>${messageVo.msg_Rd_Date }</td>
 					<td><input type="checkbox" /></td>
 				</tr>
+						</c:forEach>
 			</table>
-		</c:forEach>
+
 
 		
 

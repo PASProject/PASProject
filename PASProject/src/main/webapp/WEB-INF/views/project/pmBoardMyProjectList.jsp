@@ -19,10 +19,10 @@ padding: 10px;
 
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			My Project List <small> &nbsp; 내가 쓴 글</small>
-		</h2>
+		</h3>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
