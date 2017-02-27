@@ -25,10 +25,10 @@
       <!-- Page Header -->
 
       
-         <h2 class="page-header"
+         <h3 class="page-header"
             style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
             <span class="glyphicon glyphicon-globe"></span>FreeBoard <small>자유롭게 이야기하세요</small>
-         </h2>
+         </h3>
 
          <form name="form" method="post" action="freeBoardList">
             <!--    <form action="QnaBoardSearch" method="post">    -->

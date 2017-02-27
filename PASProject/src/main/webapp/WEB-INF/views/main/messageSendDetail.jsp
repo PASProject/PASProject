@@ -22,10 +22,10 @@
 	<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
 
 	<div class="container Message" id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			쪽지 읽기<small></small>
-		</h2>
+		</h3>
 		${messageVo.msg_Title}
 	</div>
 </body>

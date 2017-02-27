@@ -18,10 +18,10 @@
 <body>
 <div class="col-md-10" id="content">
 
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			파일 생성<small>&nbsp;&nbsp;&nbsp; 새로운 파일 생성하기</small>
-		</h2>
+		</h3>
 		<div style="width:200px; height:200px; border:1px solid black; text-align: center" ><a href = "#" id="spreadSheetView">엑셀</a></div>
 		<div style="width:200px; height:200px; border:1px solid black; text-align: center" ><a href = "#" id="canvasView">그림판</a></div> 
 		<div id = "spreadSheetDemo" style="width:500px; height:500px; border:1px solid black; background-color: lightgray">

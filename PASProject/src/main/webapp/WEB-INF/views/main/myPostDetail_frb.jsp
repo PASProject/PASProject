@@ -13,10 +13,10 @@
 </head>
 <body>
 <div class="container" id="content" style="padding-left:14px; padding-right:14px;">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			커뮤니티 <small>내가쓴글읽기</small>
-		</h2>
+		</h3>
 		
 					<table class="table" style="border-top: 2px;">
 					<tr style="border-top: 2px solid #ddd">

@@ -23,7 +23,7 @@
 	<form action="myPostBoard" method="post">
 	<div class="container">
 
-		<h2>${sessionMem_Name} 님의 게시글 목록</h2>
+		<h3>${sessionMem_Name} 님의 게시글 목록</h3>
 
 		<br>
 		<br>
