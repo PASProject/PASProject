@@ -2,7 +2,6 @@ package com.app.pas.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ScheduleCalendarVo;
+import com.app.pas.dto.WeeklyCheckVo;
 import com.app.pas.service.ScheduleCalendarService;
+import com.app.pas.service.WeeklyCheckService;
 
 @Controller
 @RequestMapping("/schedule")
@@ -25,6 +26,8 @@ public class ScheduleController {
 	ScheduleCalendarService scheduleService;
 	@Autowired
 	ScheduleCalendarService schdulCalendarService;
+	@Autowired
+	WeeklyCheckService weeklyCheckService;
 	
 	
 	@RequestMapping("/calendar")
@@ -36,7 +39,8 @@ public class ScheduleController {
 	
 	
 	@RequestMapping("/weeklyChecklist")
-	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo, Model model, HttpSession session) throws SQLException{
+	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo, Model model, HttpSession session,
+			WeeklyCheckVo weeklyCheckVo) throws SQLException{
 		String url="schedule/weeklyChecklist";
 		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -57,20 +61,22 @@ public class ScheduleController {
 		ScheduleCalendarVo schedulCalendarVo = new ScheduleCalendarVo();
 		List<ScheduleCalendarVo> weekly_dateList = new ArrayList<ScheduleCalendarVo>();
 		weekly_dateList = schdulCalendarService.weekly_date();
-		
-//		  for(Object date : weekly_dateList) {
-//	           System.out.println("리스트 ㅣ " + date);
-//	          System.out.println();
-//			  
-//	        }
-		
 
+		model.addAttribute("weekly_dateList", weekly_dateList);
 		
-//			String monDate =schedulCalendarVo.getDy();
-//			if( monDate.equals("월")){
-//				String mon = schedulCalendarVo.getDt();
-				model.addAttribute("weekly_dateList", weekly_dateList);
-//				}
+		
+		
+		List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
+		weekCheckList = weeklyCheckService.day_check();
+	
+		System.out.println("일주일일정 : " + weekCheckList);
+		model.addAttribute("weekCheckList", weekCheckList);
+		
+		//업데이트-----------------------------------------------------------------
+		weeklyCheckVo.setMon("월");
+		weeklyCheckVo.setThu("들어가나 실험중");
+		weeklyCheckService.dayCheckUpdate(weeklyCheckVo);
+		
 
 	
 		return url;

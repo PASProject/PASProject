@@ -697,6 +697,8 @@ li {
 </script>           
 
 	<!----------------------------------------------------------------------------------------------- 화요일 -->
+		
+		<form action ="weeklyChecklist" name ="dayInsert">
 		<table class="table table-strip">
 			<tr style="background-color: white">
 				<th class="col-md-1"
@@ -704,16 +706,21 @@ li {
 					화</th>
 				<th class="col-md-7"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-					<div id="zozo">
+				
+					
+					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
+					${WeeklyCheckVo.tue}
+					</c:forEach>
+					
 					
 					<br><Br><Br>
-					<input type="text" name="" size="100"  style="border: 0px;" onKeyDown="onKeyDown();"
+					<input type="text" name="tue" size="100"  style="border: 0px;" onKeyDown="onKeyDown();"
 					 placeholder='이 곳을 클릭하여 일정을 적어주세요' >
 				
 									
-			</div>
-				</th>
 			
+				</th>
+					
 
 				<th class="col-md-2"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
@@ -722,7 +729,7 @@ li {
 			<tr>
 			</tr>
 		</table>
-         
+         </form>
        
          
 	</div>       
@@ -731,7 +738,7 @@ li {
 	{
 	     if(event.keyCode == 13)
 	     {
-	        alert("ㅜㅜㅜㅜㅜ");
+	       location.href="weeklyChecklist";
 	     }
 	}
 	
