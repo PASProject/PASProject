@@ -956,9 +956,7 @@ public class ProjectController {
 		 Map<String,Object> m = new HashMap<String, Object>();
 		 String proj_Num = (String) session.getAttribute("joinProj");
 		 List<LinkedHashMap<String, Object>> list = (List<LinkedHashMap<String, Object>>) map.get("_data");
-		 
 	     boolean result  =  gantChartService.updateGantChart(list, Integer.parseInt(proj_Num));
-	     
 	     return true;
 	}
 	
