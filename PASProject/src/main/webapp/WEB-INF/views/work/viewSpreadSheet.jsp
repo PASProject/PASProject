@@ -31,7 +31,7 @@
 		
     <div id="spreadsheet" style="width:auto;"></div>
 </div>
-<script>
+<script>  
 $(function() {
 	var initData = '${spreadSheetVo.sp_Content}';
 	var ds = initData;

@@ -62,6 +62,10 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
+	
+	
+<!-- Ck Editor -->
+<script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>	
 
 
 <!-- JS -->
