@@ -14,10 +14,10 @@
 		<div class="row">
 
 			<div class="col-md-10">
-			<h2 class="page-header"
+			<h3 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					FreeBoard <small>글 쓰기</small>
-				</h2>
+				</h3>
 		
 			<form>
 				제목: <input type="text" name="notice_Title" /><br> 내용: <input

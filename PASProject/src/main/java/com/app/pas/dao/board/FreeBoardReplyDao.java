@@ -6,7 +6,7 @@ import java.util.List;
 import com.app.pas.dto.board.FreeBoardReplyVo;
 
 public interface FreeBoardReplyDao {
-	
+
 	public List<FreeBoardReplyVo> selectFreeBoardReply(int frb_Article_Num)throws SQLException;
 	public FreeBoardReplyVo selectFRBR(int frb_Reply_Num)throws SQLException;
 	public void insertFreeBoardReply(FreeBoardReplyVo freeBoardReplyVo)throws SQLException;
@@ -15,3 +15,4 @@ public interface FreeBoardReplyDao {
 	public int selectFRBReplyTotalCount() throws SQLException;
 
 }
+

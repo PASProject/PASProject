@@ -39,14 +39,22 @@ import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.dto.board.FreeBoardReplyVo;
 import com.app.pas.dto.board.FreeBoardVo;
+import com.app.pas.dto.board.QnaBoardReplyVo;
+import com.app.pas.dto.board.QnaBoardVo;
+import com.app.pas.dto.board.SkillSharingBoardReplyVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.MessageService;
 import com.app.pas.service.ProjectService;
+import com.app.pas.service.board.FreeBoardReplyService;
+import com.app.pas.service.board.FreeBoardService;
+import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
+import com.app.pas.service.board.SkillSharingBoardReplyService;
 
 @Controller
 @RequestMapping("/main")
@@ -67,7 +75,6 @@ public class MainContoller {
 
 	@Autowired
 	InviteService inviteService;
-	
 
 	@Autowired
 	MainService mainService;
@@ -77,6 +84,7 @@ public class MainContoller {
 	
 	@Autowired
 	MessageService messageService;
+
 
 	//연습용
 		@RequestMapping(value="/temp")
@@ -93,52 +101,8 @@ public class MainContoller {
 	return url;
 		
 	}
-	//내가 쓴 글 보기
-	@RequestMapping(value ="/myPostBoard")
-	public String myPostBoard(HttpSession session, Model model,
-			FreeBoardVo freeBoardVo,SkillSharingBoardVo skillSharingBoardVo, 
-			MyPostBoardVo myPostBoardVo,String page) throws SQLException {
-		String url = "main/myPostBoard";
-		if (session.getAttribute("proj_Num") != null) {
-			session.removeAttribute("proj_Num");
-		}
-		if (session.getAttribute("joinProj") != null
-				|| session.getAttribute("joinProj") != "null") {
-			session.removeAttribute("joinProj");
-		}
-		if (session.getAttribute("joinProjectVo") != null
-				|| session.getAttribute("joinProjectVo") != "null") {
-			session.removeAttribute("joinProjectVo");
-		}
+	
 
-		
-//		List<SkillSharingBoardVo> myPostSkillList = new ArrayList<SkillSharingBoardVo>();
-		List<MyPostBoardVo> myPostBoardList = new ArrayList<MyPostBoardVo>();
-		
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		String mem_Email = memberVo.getMem_Email();
-		String sessionMem_Name = memberVo.getMem_Name();
-		model.addAttribute("sessionMem_Name", sessionMem_Name);
-	
-		myPostBoardVo.setMail(mem_Email);
-		freeBoardVo.setMem_Email(mem_Email);
-//		skillSharingBoardVo.setMem_Email(mem_Email);
-	
-		myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
-//		myPostSkillList = mainService.myPostBoard_Skill(skillSharingBoardVo);
-		
-		model.addAttribute("myPostBoardList", myPostBoardList);
-	
-//		model.addAttribute("myPostSkillList", myPostSkillList);
-		
-
-		
-		
-		return url;
-	}
-	
-	
-	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 
@@ -685,19 +649,81 @@ public class MainContoller {
 		return proj_Num;
 	}
 	
-	@RequestMapping(value="/sendMessage", method=RequestMethod.GET)
-	public String SendMessage(MessageVo messageVo, Model model) throws SQLException{
-		String url = "main/sendMessage";
+	@RequestMapping(value="/messageList", method=RequestMethod.GET)
+	public String MessageList( MessageVo messageVo, MemberVo memberVo, Model model) throws SQLException{
+		String url = "main/messageList";
+		
+		
 		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
-			messageList=messageService.selectMessageList(messageVo);
-		model.addAttribute("MessageList",messageList);	
+		
+		messageList=messageService.selectMessageList(messageVo);
+		System.out.println("%%messageList%%" + messageList);
+
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+messageVo);
+		
+		
+		model.addAttribute("messageList",messageList);	
 		return url;
 		
+	
+	}
+	//받은 쪽지 디테일
+	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
+	public String MessageReceiveDetail(String msg_rm_Read_yn, int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+		String url = "main/messageReceiveDetail";
+		System.out.println(msg_Article_Num);
+
+		MessageVo messageVo = messageService.selectReceiveMessage(msg_Article_Num);
+		msg_rm_Read_yn = messageVo.getMsg_rm_del_yn();
 		
+		System.out.println(msg_rm_Read_yn);
+		/*messageService.updateReceiveMessageReadYN(msg_Article_Num);*/
+		
+		System.out.println("ReceiveDeatil"+messageVo);
+		model.addAttribute("messageVo", messageVo);
+		
+		
+		return url;
 		
 	}
 	
-	
+	//보낸 쪽지 디테일
+	@RequestMapping(value="/messageSendDetail", method=RequestMethod.GET)
+	public String MessageSendDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+		String url = "main/messageSendDetail";
+		System.out.println(msg_Article_Num);
+		MessageVo messageVo = messageService.selectSendMessage(msg_Article_Num);
+		model.addAttribute("messageVo", messageVo);
+		System.out.println(msg_Article_Num);
+		System.out.println("detail"+ messageVo);
+		
+		return url;
+		
+	}
+	@RequestMapping(value="/messageWrite", method=RequestMethod.GET)
+	public String MessageWrite(HttpSession session, Model model){
+		String url = "main/messageWrite";
+		return url;
+	}
+	//쪽지 보내기
+	@RequestMapping(value="/messageInsert", method=RequestMethod.POST)
+	public String MessageInsert(MessageVo messageVo, HttpSession session) throws SQLException{
+		String url = "redirect:";
+		System.out.println(messageVo);
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_sm_Email = memberVo.getMem_Email();
+		String mem_sm_Name = memberVo.getMem_Name();
+		
+		MemberVo memberVo1 = memberService.getMember(messageVo.getMsg_rm_Email());
+		
+		messageVo.setMsg_sm_Email(mem_sm_Email);
+		messageVo.setMsg_sm_Name(mem_sm_Name);
+		messageVo.setMsg_rm_Name(memberVo1.getMem_Name());
+		System.out.println("나는 거침?");
+		messageService.insertMessage(messageVo);
+		/*messageVo.setMsg_rm_Email(msg_rm_Email);*/
+		return url;
+	}
 	
 }

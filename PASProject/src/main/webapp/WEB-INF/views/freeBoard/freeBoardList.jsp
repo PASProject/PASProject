@@ -25,10 +25,10 @@
       <!-- Page Header -->
 
       
-         <h2 class="page-header"
+         <h3 class="page-header"
             style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
             <span class="glyphicon glyphicon-globe"></span>FreeBoard <small>자유롭게 이야기하세요</small>
-         </h2>
+         </h3>
 
          <form name="form" method="post" action="freeBoardList">
             <!--    <form action="QnaBoardSearch" method="post">    -->
@@ -71,11 +71,11 @@
             </TABLE>
          </form>
 
-		 <form name="form" method="post" action="frb_myPost">
+       <form name="form" method="post" action="frb_myPost">
          <input type="button" class="btn btn-default" value="글쓰기"
             onclick="wrtie_form()">
             <button id = "ReadFrbPost" class="btn btn-default" type="submit">내가 쓴 글보기</button>
- 		</form>
+       </form>
 
 
             <c:choose>
@@ -184,8 +184,8 @@
 
    
    <script>
-   	
-   		
+      
+         
    
       function freeBoardList(){
          location.href ="freeBoardList";

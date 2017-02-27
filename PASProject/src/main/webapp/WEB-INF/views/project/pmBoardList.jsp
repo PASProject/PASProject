@@ -14,10 +14,10 @@
 
 <body>
 	<div class="col-md-8"  id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 게시판 <small>자유롭게 이야기하세요</small>
-		</h2>
+		</h3>
 		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
 
 
@@ -142,6 +142,7 @@
 									<td class="col-md-12"
 										style="padding-top:5px; padding-left: 0px; padding-right: 0px;">
 										<div class="form-inline">
+											
 											<input class="form-control" style="min-width: 100%;"
 												placeholder="댓글을 입력하세요" name="pb_Reply_Content"
 												id="${pbList.pb_Article_Num}pb_Reply_Content" />

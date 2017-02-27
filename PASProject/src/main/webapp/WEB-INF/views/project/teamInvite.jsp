@@ -27,10 +27,10 @@
 
 
    <div class="col-md-10" id="content">
-      <h2 class="page-header"
+      <h3 class="page-header"
          style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
          프로젝트 팀원 초대<small>dfef </small>
-      </h2>
+      </h3>
       
       
    <script>

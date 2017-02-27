@@ -276,7 +276,7 @@ public class FreeBoardController {
       String mem_Email = memberVo.getMem_Email();
       String mem_Name = memberVo.getMem_Name();
       if(freeBoardVo.getFrb_Tag()==""){
-    	  freeBoardVo.setFrb_Tag("#");
+         freeBoardVo.setFrb_Tag("#");
       }
       freeBoardVo.setMem_Email(mem_Email);
       freeBoardVo.setMem_Name(mem_Name);
@@ -407,22 +407,22 @@ public class FreeBoardController {
    }
    @RequestMapping(value="freeBoardReplyDelete", method=RequestMethod.POST)
    public String deleteFreeBoardReply(int frb_Reply_Num, FreeBoardReplyVo freeBoardReplyVo, HttpSession session) throws SQLException{
-	   
-	   String url="redirect:freeBoardDetail";
-	   MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-	   FreeBoardReplyVo freeBoardReplyVo1 =freeBoardReplyService.selectFRBR(frb_Reply_Num);
-	   String loginEmail = memberVo.getMem_Email();
-	   System.out.println(frb_Reply_Num);
-	   System.out.println("freeBoardReplyVo1" + freeBoardReplyVo1);
-	   String writeEmail = freeBoardReplyVo1.getFrb_Reply_Mem();
-	   
-	   if(loginEmail.equals(writeEmail)){
-		     freeBoardReplyService.deleteFreeBoradReply(frb_Reply_Num);
-	         url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&delete=yes&message=1";
-	        }else{
-	         url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&delete=no&message=1";
-	        }
-	   return url;
+      
+      String url="redirect:freeBoardDetail";
+      MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+      FreeBoardReplyVo freeBoardReplyVo1 =freeBoardReplyService.selectFRBR(frb_Reply_Num);
+      String loginEmail = memberVo.getMem_Email();
+      System.out.println(frb_Reply_Num);
+      System.out.println("freeBoardReplyVo1" + freeBoardReplyVo1);
+      String writeEmail = freeBoardReplyVo1.getFrb_Reply_Mem();
+      
+      if(loginEmail.equals(writeEmail)){
+           freeBoardReplyService.deleteFreeBoradReply(frb_Reply_Num);
+            url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&delete=yes&message=1";
+           }else{
+            url = "redirect:freeBoardDetail?frb_Article_Num="+ freeBoardReplyVo.getFrb_Article_Num()+"&delete=no&message=1";
+           }
+      return url;
    }
    
 }

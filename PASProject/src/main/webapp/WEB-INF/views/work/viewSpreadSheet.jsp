@@ -25,13 +25,39 @@
 			SpreadSheet
 			<small>&nbsp;&nbsp;&nbsp;
 				<input type="button" value="저장하기" id="saveDataBtn" class="btn btn-default">
+				<input type="button" value="전체화면" id="fullScreenBtn" class=" btn btn-default">
 				<input type="button" value="돌아가기" id="goBackBtn" class="btn btn-default">
 			</small>
 		</h2><br>
 		
     <div id="spreadsheet" style="width:auto;"></div>
 </div>
+
+
+
+
+
+<!-- Modal fullscreen -->    
+<div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:auto;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">전체화면</h4>
+      </div>
+      <div class="modal-body" >
+      	<div id="fullBody" style="width:1800px; height: 800px"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
 <script>
+
 $(function() {
 	var initData = '${spreadSheetVo.sp_Content}';
 	var ds = initData;
@@ -72,8 +98,47 @@ $(function() {
     $('#goBackBtn').on('click',function(){
     	location.href="/pas/project/work/workList";
     })
+    
+    $('#fullScreenBtn').on('click',function(){
+    	$("#fullBody").empty();
+    	setTimeout(function(){
+		    $("#fullBody").kendoSpreadsheet({
+		    	 excel: {                
+		             // Required to enable saving files in older browsers
+		             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+		         },
+		        sheets:[JSON.parse(ds)],
+		        sheetsbar:false,
+		        toolbar:true,
+		        column:100,
+		        rows:120
+		    })
+	        },2000);
+    	$('#modal-fullscreen').modal();
+    })
+    $('button[class="close"]').on('click',function(){
+    	var spreadsheet = $("#fullBody").data("kendoSpreadsheet");
+    	var sheet = spreadsheet.sheetByIndex(0);
+    	var doc_Num = '${spreadSheetVo.doc_Num}';
+        var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
+    	$.ajax({  
+        	type : "POST",
+			url : "saveFile",
+			dataType : "json", 
+			data : JSON.stringify(dataList),
+			contentType : "application/json",
+			success:function(result){
+				if(result){
+				 location.reload();
+				}else{
+					alert("실패하였습니다.");
+					location.reload();
+				}  
+			}
+        });
+    })
 });
       
-    </script>        
+    </script>          
 </body>    
 </html>

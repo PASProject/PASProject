@@ -65,8 +65,8 @@
 	<div class="col-md-10" id="content">
 	<input type="hidden" name="ssb_Article_Num" id="ssb_Article_Num"
 							value="${skillSharingBoardVo.ssb_Article_Num}">
-		<h2 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><span class="glyphicon glyphicon-qrcode"></span>skillSharingBoard</h2>
+		<h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><span class="glyphicon glyphicon-qrcode"></span>skillSharingBoard</h3>
 		<table class="table" style="border-top: 2px;">
 			<tr style="border-top: 2px solid #ddd">
 				<td class="col-md-8"><h4
@@ -103,7 +103,7 @@
 				<input type="button" class="btn btn-default" value="추천!" onClick="go_like()">
 			</div>
 			<br>
-			<legend></legend>
+			
 			<!-- 여기서부터 댓글 -->
 			   
 			<textarea rows="5" cols="128%" id="ssb_Reply_Content"></textarea>

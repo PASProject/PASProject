@@ -55,5 +55,27 @@ public class ScheduleCalendarDaoImpl implements ScheduleCalendarDao{
 		ScheduleCalendarVo scheduleCalendarVo = (ScheduleCalendarVo) client.queryForObject("selectScheduleCalendarByScNum",sc_Num);
 		return scheduleCalendarVo;
 	}
+	@Override
+	public List<ScheduleCalendarVo> selectWeeklylist_Start(
+			ScheduleCalendarVo scheduleCalendarVo) throws SQLException {
+		List<ScheduleCalendarVo> list  = client.queryForList("selectWeeklylist_Start", scheduleCalendarVo);
+		System.out.println("임플 :"+list);
+		return list;
+	}
+//주간체크리스트 마감하는 일감보기
+	@Override
+	public List<ScheduleCalendarVo> selectWeeklylist_End(
+			ScheduleCalendarVo scheduleCalendarVo) throws SQLException {
+		List<ScheduleCalendarVo> list = client.queryForList("selectWeeklylist_End",scheduleCalendarVo);
+		return list;
+	}
+
+@Override
+public List<ScheduleCalendarVo> weekly_date() throws SQLException {
+	List<ScheduleCalendarVo> list  =  client.queryForList("weekly_date");
+	return list;
+}
+
+
 
 }

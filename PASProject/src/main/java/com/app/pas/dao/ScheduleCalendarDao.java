@@ -13,4 +13,9 @@ public interface ScheduleCalendarDao {
 	public void updateScheduleCalendar(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
 	public void updateScheduleCalendarColor(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
 	public ScheduleCalendarVo selectScheduleCalendarByScNum(int sc_Num)throws SQLException;
+	
+	public List<ScheduleCalendarVo> selectWeeklylist_Start(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
+	public List<ScheduleCalendarVo> selectWeeklylist_End(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
+	public List<ScheduleCalendarVo> weekly_date()throws SQLException;
+
 }

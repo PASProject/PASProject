@@ -8,7 +8,7 @@ import com.app.pas.dto.board.FreeBoardReplyVo;
 
 public class FreeBoardReplyService {
 
-	private FreeBoardReplyDao freeBoardReplyDao;
+   private FreeBoardReplyDao freeBoardReplyDao;
 
 	public void setFreeboardReplyDao(FreeBoardReplyDao freeBoardReplyDao) {
 		this.freeBoardReplyDao = freeBoardReplyDao;
@@ -42,3 +42,4 @@ public class FreeBoardReplyService {
 	
 	
 }
+

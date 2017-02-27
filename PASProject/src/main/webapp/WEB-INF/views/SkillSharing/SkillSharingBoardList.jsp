@@ -31,10 +31,10 @@
       <!-- Page Header -->
 
       
-         <h2 class="page-header"
+         <h3 class="page-header"
             style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
             <span class="glyphicon glyphicon-qrcode"></span>SkillSharingBoard <small>신기술 공유 게시판</small>
-         </h2>
+         </h3>
 
          <form name="form" method="post" action="skillSharingBoardList">
             <!--    <form action="QnaBoardSearch" method="post">    -->

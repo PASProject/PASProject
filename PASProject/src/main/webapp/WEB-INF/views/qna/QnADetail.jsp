@@ -12,10 +12,10 @@
 </head>
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			<span class="glyphicon glyphicon-question-sign"></span>QnA <small>글 읽기</small>
-		</h2>
+		</h3>
 
 		<fieldset>
 
@@ -59,10 +59,13 @@
 					
 					<tr>
 						<td>
-							관리자 답변 ><br>
-							<c:if test ='${qnaBoardVo.qb_yn eq "1"}'>
-								${qnaBoardReplyVo.qb_Reply_Content}
-							</c:if>
+					<c:if test='${qnaBoardVo.qb_yn eq "1"}'>
+						관리자 답변 ><br> 
+									${qnaBoardReplyVo.qb_Reply_Content}
+						</c:if>
+					<c:if test='${qnaBoardVo.qb_yn eq "0"}'>
+					질문에 대한 답변이 없습니다. 
+					</c:if>
 						</td>
 					</tr>
 					
