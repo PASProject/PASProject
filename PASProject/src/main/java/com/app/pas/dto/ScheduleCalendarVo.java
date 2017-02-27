@@ -30,6 +30,8 @@ public class ScheduleCalendarVo implements Serializable {
 	private String sc_Description;
 	private String start_Day;
 	private String end_Day;
+	private String week_Day;
+	private String week_Content;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private String dt; //이번주 날짜 
