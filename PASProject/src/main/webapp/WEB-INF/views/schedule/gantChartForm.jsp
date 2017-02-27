@@ -84,12 +84,13 @@
         </style>
   
 <div class="col-md-10" id="content">  
-<h2 class="page-header"
+<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			간트 차트
-		</h2>
+		</h3>
 		<input type="button" id = "updateGant"  value="저장" class="btn btn-default">
 		<input type="button" id = "fullGantBtn" value="전체화면" class="btn btn-default">
+
         <div id="gantt"></div>
 </div>
 

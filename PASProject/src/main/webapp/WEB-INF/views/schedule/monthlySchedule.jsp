@@ -10,11 +10,11 @@
 <body>
 	<div class="col-md-10" id="content">
 
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			월별 일정 관리<small>&nbsp;&nbsp;&nbsp;<a href="#" rel="popover"
 				data-popover-content="#myPopover">참여인원 보기</a></small>
-		</h2>
+		</h3>
 
 		<div id="myPopover" class="hide" style="width:170px">         
 			<ul> 

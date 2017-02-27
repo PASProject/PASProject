@@ -39,11 +39,11 @@ li {
 	</script> -->
 	<div class="col-md-10" id="content">
 
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			주간 일정 체크
 			<!-- <small>자유롭게 이야기하세요</small> -->
-		</h2>
+		</h3>
 		<script>
 			
 		</script>
@@ -51,13 +51,9 @@ li {
 			style="table-layout: fixed;">
 			<thead>
 				<tr>
-					<th class="col-md-1 day">월</th>
-					<th class="col-md-1 day">화</th>
-					<th class="col-md-1 day">수</th>
-					<th class="col-md-1 day">목</th>
-					<th class="col-md-1 day">금</th>
-					<!-- <th class="col-md-1 day">토</th>
-					<th class="col-md-1 day">일</th> -->
+				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
+					<th class="col-md-1 day">${ScheduleCalendarVo.dy} ${ScheduleCalendarVo.dt}</th>
+					</c:forEach>
 				</tr>
 			</thead>
 			<tbody>
@@ -186,7 +182,7 @@ li {
 							</c:forEach>
 						</ul>
 
-					<%-- </td>
+					 </td>
 					<td class="tableContents">
 						<ul style="font-size: 12px;">
 							<c:forEach items="${weelyList_start}" var="scheduleCalendarVo">
@@ -236,7 +232,7 @@ li {
 							</c:forEach>
 						</ul>
 
-					</td> --%>
+					</td> 
 				</tr>
 			</tbody>
 		</table>

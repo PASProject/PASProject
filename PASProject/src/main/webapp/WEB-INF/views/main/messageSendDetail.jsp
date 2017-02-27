@@ -22,10 +22,17 @@
 	<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
 
 	<div class="container Message" id="content">
+<<<<<<< HEAD
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			쪽지 읽기<small></small>
 		</h2>
+=======
+		<h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			쪽지 읽기<small></small>
+		</h3>
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 		${messageVo.msg_Title}
 	</div>
 </body>

@@ -26,7 +26,7 @@ $(function(){
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">
+				<h3 class="page-header">
 					외부 프로젝트 목록
 					<form style="float: right; margin-top: -5px;" class="navbar-form"
 						action="otherProject" method="post">
@@ -49,7 +49,7 @@ $(function(){
 
 					<!-- <small>Secondary Text</small> -->
 
-				</h2>
+				</h3>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -117,9 +117,7 @@ $(function(){
 		</c:forEach>
 		<!-- /.row -->
 
-		<hr>
-
-		<hr>
+		
 		<footer>
 			<!-- Footer -->
 

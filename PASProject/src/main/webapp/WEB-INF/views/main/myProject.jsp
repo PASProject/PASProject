@@ -35,7 +35,7 @@ $(function(){
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">
+				<h3 class="page-header">
 					참여 프로젝트 목록
 
 					<form style="float: right; margin-top: -5px;" class="navbar-form"
@@ -55,7 +55,7 @@ $(function(){
 
 
 
-				</h2>
+				</h3>
 
 			</div>
 		</div>

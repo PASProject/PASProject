@@ -22,11 +22,30 @@
 	<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
 
 	<div class="container Message" id="content">
+<<<<<<< HEAD
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			쪽지 읽기<small></small>
 		</h2>
 		${messageVo.msg_Title}
+=======
+		<h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			쪽지 읽기<small></small>
+		</h3>
+		<table class="table table-hover">
+			<tr>
+				<td><b>${messageVo.msg_Title}</b></td>
+			</tr>
+			<tr>
+				<td><a href="#">${messageVo.msg_sm_Email }</a>&nbsp;&nbsp;${messageVo.msg_Wt_Date }</td>
+			</tr>
+			<tr>
+				<td>${messageVo.msg_Content }</td>
+			</tr>
+		</table>
+	
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 	</div>
 </body>
 </html>

@@ -13,11 +13,11 @@
 </head>
 <body>
 	<div class="col-md-10" id="content">
-		<h2 class="page-header"
+		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			<span class="glyphicon glyphicon-volume-up"></span>
 			TotalNotice<small>전체 공지사항</small>
-		</h2>
+		</h3>
 		
 	<form name="form" method="post" action="totalNoticeList">
 <!-- 	<form action="QnaBoardSearch" method="post">	 -->

@@ -10,5 +10,9 @@
 </head>
 <body>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 </body>
 </html>

@@ -11,10 +11,10 @@
 </head>
 <body>
 			<div class="col-md-10" id="content">
-				<h2 class="page-header"
+				<h3 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 					FreeBoard <small>글 쓰기</small>
-				</h2>
+				</h3>
 
 				<div class="col-md-10">
 					<form class="form-horizontal" name="formm" method="post"

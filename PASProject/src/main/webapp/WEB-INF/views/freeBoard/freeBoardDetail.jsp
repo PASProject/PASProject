@@ -43,7 +43,7 @@
             alert("댓글이 삭제 되었습니다.");
          </script>
       </c:if>
-<<<<<<< HEAD
+
    <c:if test="${delete == 'no' }">
       <script type="text/javascript">
          alert("작성자만 삭제할 수 있습니다.");
@@ -59,7 +59,7 @@
          alert("작성자만 수정할 수 있습니다.");
       </script>
    </c:if>
-=======
+
 	<c:if test="${delete == 'no' }">
 		<script type="text/javascript">
 			alert("작성자만 삭제할 수 있습니다.");
@@ -76,16 +76,14 @@
 			alert("작성자만 수정할 수 있습니다.");
 		</script>
 	</c:if>
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
 
-<<<<<<< HEAD
    <!-- 본문! -->
    <form name="frm" method="post">
    <div class="col-md-10" id="content">
    <input type="hidden" name="frb_Article_Num" id="frb_Article_Num"
                      value="${freeBoardVo.frb_Article_Num}">
-      <h2 class="page-header"
-         style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">FreeBoard</h2>
+      <h3 class="page-header"
+         style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">FreeBoard</32>
       <table class="table" style="border-top: 2px;">
          <tr style="border-top: 2px solid #ddd">
             <td class="col-md-6"><h4
@@ -103,7 +101,7 @@
                style="vertical-align: middle; "><span
                style="font-size: 11px"><fmt:formatDate
                      value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
-=======
+
 	<!-- 본문! -->
 	<form name="frm" method="post">
 	<div class="col-md-10" id="content">
@@ -129,7 +127,7 @@
 					style="vertical-align: middle; "><span
 					style="font-size: 11px"><fmt:formatDate
 							value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy.MM.dd hh:mm:ss" /></span></td>
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
 
          </tr>
 
@@ -140,7 +138,6 @@
          </tr>
       </table>
 
-<<<<<<< HEAD
       <div>
          <%-- <form name="frm" method="post">
                   
@@ -172,7 +169,7 @@
       </div>
       <div id="reply" style="overflow:hidden;"></div>
    </div>
-=======
+
 		<div>
 			<%-- <form name="frm" method="post">
 						
@@ -209,10 +206,10 @@
 		
 	</div>
 	
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
 </form>
 
-<<<<<<< HEAD
+
    <script type="text/javascript">
       $(document)
             .ready(
@@ -229,7 +226,7 @@
                         type : 'post',
                         success : function(data) {
                            $.each(data, function(i) {
-=======
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 							var frb_Article_Num = $('#frb_Article_Num').val();
@@ -446,4 +443,4 @@
 </body>  
   
 </html>
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
+
