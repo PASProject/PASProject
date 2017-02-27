@@ -36,6 +36,7 @@
 
 
 
+
 <!-- Modal fullscreen -->    
 <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width:auto;">
@@ -56,6 +57,7 @@
   
   
 <script>
+
 $(function() {
 	var initData = '${spreadSheetVo.sp_Content}';
 	var ds = initData;
