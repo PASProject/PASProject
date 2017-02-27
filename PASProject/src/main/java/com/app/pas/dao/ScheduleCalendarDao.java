@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ScheduleCalendarVo;
-import com.app.pas.dto.Weekly_dateVo;
 
 public interface ScheduleCalendarDao {
 	public List<ScheduleCalendarVo> selectScheduleCalendarList(int sc_Proj_Num)throws SQLException;
@@ -17,6 +16,6 @@ public interface ScheduleCalendarDao {
 	
 	public List<ScheduleCalendarVo> selectWeeklylist_Start(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
 	public List<ScheduleCalendarVo> selectWeeklylist_End(ScheduleCalendarVo scheduleCalendarVo) throws SQLException;
-
+	public List<ScheduleCalendarVo> weekly_date()throws SQLException;
 
 }

@@ -51,14 +51,9 @@ li {
 			style="table-layout: fixed;">
 			<thead>
 				<tr>
-				
-					<th class="col-md-1 day">월 ${mon}</th>
-					<th class="col-md-1 day">화</th>
-					<th class="col-md-1 day">수</th>
-					<th class="col-md-1 day">목</th>
-					<th class="col-md-1 day">금</th>
-					<!-- <th class="col-md-1 day">토</th>
-					<th class="col-md-1 day">일</th> -->
+				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
+					<th class="col-md-1 day">${ScheduleCalendarVo.dy} ${ScheduleCalendarVo.dt}</th>
+					</c:forEach>
 				</tr>
 			</thead>
 			<tbody>
@@ -187,7 +182,7 @@ li {
 							</c:forEach>
 						</ul>
 
-					<%-- </td>
+					 </td>
 					<td class="tableContents">
 						<ul style="font-size: 12px;">
 							<c:forEach items="${weelyList_start}" var="scheduleCalendarVo">
@@ -237,7 +232,7 @@ li {
 							</c:forEach>
 						</ul>
 
-					</td> --%>
+					</td> 
 				</tr>
 			</tbody>
 		</table>

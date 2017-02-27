@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ScheduleCalendarVo;
-import com.app.pas.dto.Weekly_dateVo;
 import com.app.pas.service.ScheduleCalendarService;
 
 @Controller
@@ -55,17 +54,25 @@ public class ScheduleController {
 		
 		//마감,시작 포함일정
 		
-		ScheduleCalendarVo weekly_dateVo = new ScheduleCalendarVo();
-		weekly_dateVo = (ScheduleCalendarVo) schdulCalendarService.weekly_date();
-			
-			String monDate =weekly_dateVo.getDy();
-			if( monDate.equals("월요일")){
-				String mon = weekly_dateVo.getDt();
-				model.addAttribute("mon", mon);
-				}
+		ScheduleCalendarVo schedulCalendarVo = new ScheduleCalendarVo();
+		List<ScheduleCalendarVo> weekly_dateList = new ArrayList<ScheduleCalendarVo>();
+		weekly_dateList = schdulCalendarService.weekly_date();
+		
+//		  for(Object date : weekly_dateList) {
+//	           System.out.println("리스트 ㅣ " + date);
+//	          System.out.println();
+//			  
+//	        }
+		
 
 		
-		
+//			String monDate =schedulCalendarVo.getDy();
+//			if( monDate.equals("월")){
+//				String mon = schedulCalendarVo.getDt();
+				model.addAttribute("weekly_dateList", weekly_dateList);
+//				}
+
+	
 		return url;
 	}
 

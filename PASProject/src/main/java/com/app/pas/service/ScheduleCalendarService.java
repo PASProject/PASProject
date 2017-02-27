@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.ScheduleCalendarDao;
 import com.app.pas.dto.ScheduleCalendarVo;
-import com.app.pas.dto.Weekly_dateVo;
+
 
 public class ScheduleCalendarService {
 
@@ -64,9 +64,9 @@ public class ScheduleCalendarService {
 		return list;
 	}
 
-	public ScheduleCalendarVo weekly_date() throws SQLException {
-		ScheduleCalendarVo schedulCalendarVo = scheduleCalendarDao.weekly_date();
-		return schedulCalendarVo;
+	public  List<ScheduleCalendarVo> weekly_date() throws SQLException {
+		List<ScheduleCalendarVo> list  = scheduleCalendarDao.weekly_date();
+		return list;
 		
 	}
 }
