@@ -16,12 +16,18 @@
 
 </head>
 <body>
-   <div class="col-md-10" id="content">
-      <c:if test="${delete == 'yes' }">
+	<c:if test="${delete == 'yes' }">
          <script type="text/javascript">
-            alert("삭제 되었습니다.");
+            alert("댓글이 삭제 되었습니다.");
          </script>
       </c:if>
+     <c:if test="${modify == 'yes' }">
+		<script type="text/javascript">
+			alert("수정이 완료 되었습니다.");
+		</script>
+	</c:if>
+   <div class="col-md-10" id="content">
+      
       <!-- Page Header -->
 
       

@@ -49,6 +49,20 @@ public class ProjectService {
 
 	}
 	
+	public List<ProjectVo> selectProjectList2(int proj_Num) throws SQLException {
+		List<ProjectVo> list = projectDao.selectProjectList2(proj_Num);
+		return list;
+	}
+	
+	public List<ProjectVo> selectProjectList() throws SQLException{
+		List<ProjectVo> list = projectDao.selectProjectList();
+		return list;
+	}
+	public int selectProjectTotalCount() throws SQLException {
+		int totalCount = projectDao.selectProjectTotalCount();
+		return totalCount;
+	}
+	
 	public List<MemPositionViewVo> selectMemPositionViewListByProjNum(int proj_Num) throws SQLException{
 		List<MemPositionViewVo> list = projectDao.selectMemPositionViewListByProjNum(proj_Num);
 		return list;
@@ -92,6 +106,9 @@ public class ProjectService {
 		 
 	List<Integer> list =	projectDao.selectInviteProjNumByMemEmail(mem_Email);
 		return list;
-
+	}
+	public List<ProjectJoinVo> selectMemberToProjNum(int proj_Num) throws SQLException {
+		List<ProjectJoinVo> list = projectDao.selectMemberToProjNum(proj_Num);
+		return list;
 	}
 }

@@ -93,14 +93,14 @@
 					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
 
 					<c:if test="${paging.pageNo>prevPageNo}">
-						<a href="SkillSharingList?page=${prevPageNo}">[이전]</a>
+						<a href="memberList?page=${prevPageNo}">[이전]</a>
 					</c:if>
 					<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
 						varStatus="status">
-						<a href="SkillSharingList?page=${i}">[${i}]</a>
+						<a href="memberList?page=${i}">[${i}]</a>
 					</c:forEach>
 					<c:if test="${paging.pageNo<finalPageNo}">
-						<a href="SkillSharingList?page=${finalPageNo}">[다음]</a>
+						<a href="memberList?page=${finalPageNo}">[다음]</a>
 					</c:if>
 				</c:if></td>
 		</tr>

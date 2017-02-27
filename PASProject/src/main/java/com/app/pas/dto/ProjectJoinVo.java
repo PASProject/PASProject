@@ -1,6 +1,7 @@
 package com.app.pas.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class ProjectJoinVo implements Serializable{
 	private String mem_Name;
 	private String mem_Img;
 	private String pjj_Color;
+	private Timestamp pjj_Final_In_Time;
 	
 	
 	
