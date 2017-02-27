@@ -36,8 +36,13 @@
       WHERE FRB_REPLY_NUM = #frb_Reply_Num#
    </update>
 
-   <delete id="deleteFreeBoradReply" parameterClass="int">
-      DELETE FROM FREE_BOARD_REPLY WHERE FRB_REPLY_NUM=#frb_Reply_Num#
-   </delete>
+
+	<delete id="deleteFreeBoradReply" parameterClass="int">
+		DELETE FROM FREE_BOARD_REPLY WHERE FRB_REPLY_NUM=#frb_Reply_Num#
+	</delete>
+	
+	<select id="selectFRBReplyTotalCount" resultClass="int">
+      select count(*) from FREE_BOARD_REPLY
+   </select>
 
 </sqlMap>

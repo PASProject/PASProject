@@ -6,31 +6,42 @@
 
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	
+
 	<select id="myPostBoard_Qna" resultClass="QnaBoard" parameterClass="QnaBoard">
 		SELECT * FROM QNA_BOARD
 		WHERE 
-		MEM_EMAIL LIKE '%'||#mem_Email#||'%'
-	</select>
-	
-	<select id="myPostBoard_frb" resultClass="FreeBoard" parameterClass="FreeBoard">
-		SELECT * FROM Free_Like_Count_View
-		WHERE
-		MEM_EMAIL like '%'||#mem_Email#||'%'
+		QB_ARTICLE_NUM = #qb_Article_Num#
 	</select>
 	
 	<select id="myPostBoard_Skill" resultClass="SkillSharingBoard" parameterClass="SkillSharingBoard">
-		SELECT * FROM Skill_Like_Count_View
+		SELECT * FROM SKILL_SHARING_BOARD
 		WHERE
-		MEM_EMAIL like '%'||#mem_Email#||'%'
+		SSB_ARTICLE_NUM = #ssb_Article_Num#
 	</select>
-	
+
+	<select id="myPostBoard_frb" resultClass="FreeBoard" parameterClass="FreeBoard">
+		SELECT * FROM FREE_BOARD
+		WHERE
+		FRB_ARTICLE_NUM like '%'||#frb_Article_Num#||'%'
+	</select>
 	
 	<select id="MyPostBoard" resultClass="MyPostBoardVo" parameterClass="MyPostBoardVo">
 		SELECT * FROM VW_MYPOST
 		WHERE MAIL like '%'||#mail#||'%'
 		ORDER BY DT DESC
 	</select>
+	
+	<update id="myPostUpdate_frb" parameterClass="FreeBoard">
+	  UPDATE FREE_BOARD SET FRB_CONTENT=#frb_Content#,
+      FRB_TITLE=#frb_Title# WHERE FRB_ARTICLE_NUM=#frb_Article_Num#
+	</update>
+	
+<!-- 	<update id="myPostUpdate_skill" parameterClass="FreeBoard"> -->
+<!-- 	  UPDATE SKILL_SHARING_BOARD  -->
+<!-- 	  SET FRB_CONTENT=#ssb_Content#, -->
+<!--       FRB_TITLE=#ssb_Title# WHERE FRB_ARTICLE_NUM=#ssb_Article_Num# -->
+<!-- 	</update> -->
+
 	
 </sqlMap>
 

@@ -33,13 +33,10 @@
 		VALUES(MESSAGE_SEQ.NEXTVAL,#msg_Title#,#msg_Content#,#msg_rm_Email#)
 	</insert>
 	
-	
-
 
 	<update id="updateReceiveMessageReadYN" parameterClass="str">
 		UPDATE MESSAGE SET MSG_RM_READ_YN='y'
-		WHERE MSG_ARTICLE_NUM =
-		#msg_Article_Num#
+		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
 	</update>
 
 	<update id="updateSendMessageDelYN" parameterClass="str">
@@ -47,7 +44,7 @@
 		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
 	</update>
 	
-	<update id="updateReceiveMessageDelYN" parameterClass="str">
+	<update id="updateReceiveMessageDelYN" parameterClass="int">
 		UPDATE MESSAGE SET MSG_RM_DEL_YN='y'
 		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
 	</update>

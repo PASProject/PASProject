@@ -27,7 +27,7 @@
       
          <h2 class="page-header"
             style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-            FreeBoard <small>자유롭게 이야기하세요</small>
+            <span class="glyphicon glyphicon-globe"></span>FreeBoard <small>자유롭게 이야기하세요</small>
          </h2>
 
          <form name="form" method="post" action="freeBoardList">
@@ -41,7 +41,7 @@
                <option value="title_Content" selected>제목+내용</option>
                <option value="tag" selected>태그</option>
             </select> <input type="text" size="20" name="keyword" value="${keyword}">
-            <input type="submit" value="검색"> <br>
+            <input class="btn btn-default" type="submit" value="검색"> <br>
 
 
 
@@ -179,7 +179,7 @@
                   </div>
 </c:otherwise>
 </c:choose>
-   
+ </div> 
 
 
    

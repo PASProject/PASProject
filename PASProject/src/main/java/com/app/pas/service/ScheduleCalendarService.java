@@ -39,4 +39,27 @@ public class ScheduleCalendarService {
 	public ScheduleCalendarVo selectScheduleCalendarByScNum (int sc_Num)throws SQLException{
 		return (ScheduleCalendarVo)scheduleCalendarDao.selectScheduleCalendarByScNum(sc_Num);
 	}
+	
+	public List<ScheduleCalendarVo> selectWeeklylist_Start (ScheduleCalendarVo scheduleCalendarVo) throws SQLException{
+		List<ScheduleCalendarVo> list = scheduleCalendarDao.selectWeeklylist_Start(scheduleCalendarVo);
+	return list;
+	}
+
+	//마감하는 일감보기
+	public List<ScheduleCalendarVo>selectWeeklylist_End (ScheduleCalendarVo scheduleCalendarVo) throws SQLException{
+			List<ScheduleCalendarVo> list = scheduleCalendarDao.selectWeeklylist_End(scheduleCalendarVo);	
+		return list; 
+	}
 }
+	
+	
+
+
+
+
+
+
+
+
+
+

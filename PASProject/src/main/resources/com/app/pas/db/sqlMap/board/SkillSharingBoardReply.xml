@@ -23,6 +23,13 @@
 
 
 	</select>
+	
+	<select id="selectSSBR" parameterClass="int"
+		resultClass="SkillSharingBoardReply">
+		SELECT *
+		FROM SKILL_SHARING_BOARD_REPLY
+		WHERE ssb_Reply_Num =#ssb_Reply_Num#
+	</select>
 
 	<insert id="insertSkillSharingBoardReply" parameterClass="SkillSharingBoardReply">
 		INSERT INTO
@@ -42,4 +49,5 @@
 
 	</delete>
 
+	
 </sqlMap>
