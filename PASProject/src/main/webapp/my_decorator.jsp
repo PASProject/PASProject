@@ -457,7 +457,7 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
-								<li><a href="<%=request.getContextPath()%>/main/messageList">쪽지함 보기</a></li>
+								<li><a href="<%=request.getContextPath()%>/main/messageReceiveList">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 
 								<li><a

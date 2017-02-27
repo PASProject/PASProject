@@ -6,11 +6,17 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 
-	<!-- 발신함, 수신함에 모두 적용 -->
-	<select id="selectMessageList" resultClass="Message"
-		parameterClass="Message">
-		SELECT * FROM Message
-
+	<!-- 받은 쪽지함 -->
+	<select id="selectReceiveMessageList" resultClass="Message" parameterClass="Message">
+		SELECT * FROM Message 
+		where msg_rm_Email = #msg_rm_Email#	order by msg_Article_Num desc 
+	</select>
+	
+	<!-- 보낸 쪽지함 -->
+	<select id="selectSendMessageList" resultClass="Message" parameterClass="Message">
+		SELECT * FROM Message 
+		where msg_sm_Email = #msg_sm_Email#	order by msg_Article_Num desc 
+	
 	</select>
 
 	<!-- <select id="selectReceiveMessageList" resultClass="ReceiveMessage" 
@@ -37,28 +43,35 @@
 	</insert>
 
 
-	<update id="updateReceiveMessageReadYN" parameterClass="str">
+	<update id="updateReceiveMessageReadYN" parameterClass="int">
 		UPDATE
 		MESSAGE SET MSG_RM_READ_YN='y'
-		WHERE MSG_ARTICLE_NUM =
-		#msg_Article_Num#
+		WHERE
+		MSG_ARTICLE_NUM LIKE
+		'%'||#msg_Article_Num#||'%'
 	</update>
 
-	<update id="updateSendMessageDelYN" parameterClass="str">
+	<update id="updateSendMessageDelYN" parameterClass="int">
 		UPDATE
 		MESSAGE SET MSG_SM_DEL_YN='y'
-		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
+		WHERE
+		MSG_ARTICLE_NUM LIKE
+		'%'||#msg_Article_Num#||'%'
 	</update>
 
 	<update id="updateReceiveMessageDelYN" parameterClass="int">
 		UPDATE
 		MESSAGE SET MSG_RM_DEL_YN='y'
-		WHERE MSG_ARTICLE_NUM = #msg_Article_Num#
+		WHERE
+		MSG_ARTICLE_NUM LIKE
+		'%'||#msg_Article_Num#||'%'
 	</update>
 
 	<delete id="deleteMessage" parameterClass="int">
 		DELETE FROM MESSAGE
-		WHERE RM_ARTICLE_NUM=#rm_Article_Num#
+		WHERE
+		MSG_ARTICLE_NUM LIKE
+		'%'||#msg_Article_Num#||'%'
 	</delete>
 
 
