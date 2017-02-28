@@ -20,9 +20,6 @@
 
 
 
-
-
-
 	<excludes>
 
 		<pattern>*/adminLogin</pattern>
