@@ -52,7 +52,11 @@ li {
 			<thead>
 				<tr>
 				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
-					<th class="col-md-1 day">${ScheduleCalendarVo.dy} ${ScheduleCalendarVo.dt}</th>
+					<th class="col-md-1 day">${ScheduleCalendarVo.dy} 
+					
+					${ScheduleCalendarVo.dt}
+<%-- 					<fmt:formatDate value="" pattern="yyyy-MM-dd"/> --%>
+				</th>
 					</c:forEach>
 				</tr>
 			</thead>
@@ -661,64 +665,39 @@ li {
 		</div> --%>
 
 
-
-
-
-		<!----------------------------------------------------------------------------------------------- 월요일 -->
-<!-- 		<table class="table table-strip"> -->
-<!-- 			<tr style="background-color: white"> -->
-<!-- 				<th class="col-md-1" -->
-<!-- 					style="border: 1px solid #dddddd; text-align: center; padding: 30px;"> -->
-<!-- 					월</th> -->
-<!-- 				<th class="col-md-7" -->
-<!-- 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
-<!-- 					<div id="zozo"> <span id="mon_textZone"> 여기다 내용 넣을 것</span></div>					 -->
-<!-- 				</th> -->
-
-
-<!-- 				<th class="col-md-2" -->
-<!-- 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
-<!-- 					Country</th> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 			</tr> -->
-<!-- 		</table> -->
-<!-- <script>   -->
- 
- 
- 
-<!--   value=\'입력\' -->
-<!--  	$('#mon_textZone').on('click',function(){ -->
-<!--  		var content = $('#mon_textZone').text(); -->
-<!--  		$('#zozo').empty(); -->
-<!-- 		a = "<textarea  cols=\'80\' rows=\'3\' style=\"outline: none;border-style: none; border-color: Transparent; \" >" -->
-<!-- 		+content+"</textarea><input type=\'button\' class= \'btn btn-default\' >" -->
-<!--  		$('#zozo').html(a); -->
-<!--  	}) -->
-<!-- </script>            -->
-
-	<!----------------------------------------------------------------------------------------------- 화요일 -->
+	<!----------------------------------------------------------------------------------------요일일정 체크 -->
 		
 		<form action ="weeklyChecklist" name ="dayInsert">
+		
 		<table class="table table-strip">
 			
-			<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
+			<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo" varStatus="status">
 			<tr style="background-color: white">
 				<th class="col-md-1"
 					style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
 					${ScheduleCalendarVo.dy}
-					<input type="hidden" value=" ${ScheduleCalendarVo.dt}">
+					<input type="hidden" value=" ${ScheduleCalendarVo.dt}" id = "${status.count}date" >
 				</th>
 				<th class="col-md-7"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-				<br><Br><Br>
-					<input type="text" name="tue" size="100"  style="border: 0px;" onKeyDown="onKeyDown();"
-					 placeholder='이 곳을 클릭하여 일정을 적어주세요' >
+						<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
+						
+						<c:set var="dateF">
+						<fmt:formatDate value="${WeeklyCheckVo.wk_Date}" pattern="yyyyMMdd" /></c:set>
+						<c:if test="${dateF ==ScheduleCalendarVo.dt}">
+							${ WeeklyCheckVo.wk_Content}
+							</c:if>
+	
+				</c:forEach>
+			<input type="text" name="wk_Content" id ="wk_Content" size="100"  style="border: 0px;" onKeyDown="onKeyDown(${status.count});"
+			placeholder='이 곳을 클릭하여 일정을 적어주세요' >
+
 			<th class="col-md-2"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
 					Country
 			</th>
 			</tr>
+			
 			</c:forEach>
 			
 		</table>
@@ -727,15 +706,17 @@ li {
          
 	</div>       
 	<script>
-	function onKeyDown()
+	function onKeyDown(countNum)
 	{
 	     if(event.keyCode == 13)
 	     {
-	       location.href="weeklyChecklist";
+	    	 var wk_Content = $('#wk_Content').val();
+	    	 alert(wk_Content)
+	    	 var d = $('#'+countNum+'date').val();  
+	    	 
+	       location.href="weeklyChecklist?wk_Content="+wk_Content+"&d="+d;
 	     }
 	}
-	
-	
 	
 	
 	</script>

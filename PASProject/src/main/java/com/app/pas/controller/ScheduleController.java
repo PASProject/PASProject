@@ -1,7 +1,10 @@
 package com.app.pas.controller;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.dto.MemberVo;
@@ -39,10 +43,12 @@ public class ScheduleController {
 	}
 	
 	
-	@RequestMapping(value = "/weeklyChecklist")
-	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo, Model model, HttpSession session,
-			@RequestParam(defaultValue = "")String tue,
-			WeeklyCheckVo weeklyCheckVo) throws SQLException{
+	@RequestMapping(value = "/weeklyChecklist" )
+	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo,
+			Model model, HttpSession session,
+			@RequestParam(defaultValue = "")String d,	
+			@RequestParam(defaultValue = "")String wk_Content,
+			WeeklyCheckVo weeklyCheckVo) throws SQLException, ParseException{
 		String url="schedule/weeklyChecklist";
 		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -66,20 +72,52 @@ public class ScheduleController {
 
 		model.addAttribute("weekly_dateList", weekly_dateList);
 		
+		
+		
+		
+		// select ------------------------------------------------------------
+		List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
+		weekCheckList = weeklyCheckService.weeklyCheck();
+		
+		
+		
+		
+//		for(ScheduleCalendarVo a :  weekly_dateList){
+//			System.out.println("반복문 1 : " + a.getDt());
+//			
+//		}
 //		
-//		// select ------------------------------------------------------------
-//		List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
-//		weekCheckList = weeklyCheckService.weeklyCheck();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//		for(WeeklyCheckVo object : weekCheckList) {
+//			System.out.println("반복문 안에 : " + object.getWk_Date());
+//			System.out.println(sdf.format(object.getWk_Date())); 
+//		}
 //	
-//		System.out.println("일주일일정 : " + weekCheckList);
-//		model.addAttribute("weekCheckList", weekCheckList);
+		System.out.println("일주일일정 : " + weekCheckList);
+		model.addAttribute("weekCheckList", weekCheckList);                                     
+		
+		System.out.println("jsp에서 넘어옴 : " + d );
+		
+		//업데이트-----------------------------------------------------------------
+	
+		
+		System.out.println("내용 : " + wk_Content );
+		if ((d.equals(""))) {
+		}else{
+			
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date to = transFormat.parse(d);
+			System.out.println("날자자자자: "+to);
+			weeklyCheckVo.setWk_Content(wk_Content);
+			weeklyCheckVo.setWk_Date(to);
+			weeklyCheckVo.setWk_Mem_Email(mem_Email);
+		
 //		
-//		//업데이트-----------------------------------------------------------------
-//	
-////		weeklyCheckVo.setTue(tue);
-//		weeklyCheckService.weeklyCheck_Update(weeklyCheckVo);
-//		
+			weeklyCheckService.weeklyCheck_Update(weeklyCheckVo);
 
+		}
+//		String from = "20130408";
+			////		
 	
 		return url;
 	}

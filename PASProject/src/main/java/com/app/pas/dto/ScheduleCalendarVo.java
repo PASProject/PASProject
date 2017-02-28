@@ -18,7 +18,6 @@ public class ScheduleCalendarVo implements Serializable {
 	 */
 	private static final long serialVersionUID = 1962789608836030585L;
 	private int sc_Num;
-	//@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm")
 	private Date sc_Start_Date;
 	
 	private Date sc_End_Date;
