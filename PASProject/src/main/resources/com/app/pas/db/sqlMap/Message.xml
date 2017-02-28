@@ -47,26 +47,30 @@
 		UPDATE
 		MESSAGE SET MSG_RM_READ_YN='y'
 		WHERE
-		MSG_ARTICLE_NUM LIKE
-		'%'||#msg_Article_Num#||'%'
+		MSG_ARTICLE_NUM =
+		#msg_Article_Num#
 	</update>
 
 	<update id="updateSendMessageDelYN" parameterClass="int">
 		UPDATE
 		MESSAGE SET MSG_SM_DEL_YN='y'
 		WHERE
-		MSG_ARTICLE_NUM LIKE
-		'%'||#msg_Article_Num#||'%'
+		MSG_ARTICLE_NUM =
+		#msg_Article_Num#
 	</update>
 
 	<update id="updateReceiveMessageDelYN" parameterClass="int">
 		UPDATE
 		MESSAGE SET MSG_RM_DEL_YN='y'
 		WHERE
-		MSG_ARTICLE_NUM LIKE
-		'%'||#msg_Article_Num#||'%'
+		MSG_ARTICLE_NUM =
+		#msg_Article_Num#
 	</update>
-
+	<update id="updateReceiveMessageReadTime" parameterClass="int">
+		update
+		message set msg_rd_date = SYSDATE where MSG_ARTICLE_NUM = #msg_Article_Num#
+	
+	</update>
 	<delete id="deleteMessage" parameterClass="int">
 		DELETE FROM MESSAGE
 		WHERE

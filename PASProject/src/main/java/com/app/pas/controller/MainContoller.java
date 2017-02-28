@@ -672,12 +672,22 @@ public class MainContoller {
 	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
 	public String MessageReceiveDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageReceiveDetail";
-
-		messageService.updateReceiveMessageReadYN(msg_Article_Num);
 		
-		System.out.println("나도안됨?");
-		System.out.println(msg_Article_Num);
 		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
+		messageService.updateReceiveMessageReadYN(msg_Article_Num);
+
+		
+		System.out.println(messageVo.getMsg_rm_Read_yn().toString());
+		if((messageVo.getMsg_rm_Read_yn().toString().equals('n'))){
+			messageService.updateReceiveMessageReadTime(msg_Article_Num);	
+		}
+		messageVo=messageService.selectMessage(msg_Article_Num);
+		
+		
+		
+
+	
+		
 		
 		System.out.println("ReceiveDeatil"+messageVo);
 		model.addAttribute("messageVo", messageVo);

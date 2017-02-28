@@ -53,6 +53,8 @@ public class MessageService {
 	public void updateReceiveMessageReadYN(int msg_Article_Num) throws SQLException{
 		messageDao.updateReceiveMessageReadYN(msg_Article_Num);
 	}
-
+	public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException{
+		messageDao.updateReceiveMessageReadTime(msg_Article_Num);
+	}
 	
 }

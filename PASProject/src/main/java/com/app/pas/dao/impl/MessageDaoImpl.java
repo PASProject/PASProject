@@ -69,5 +69,13 @@ public class MessageDaoImpl implements MessageDao{
 		
 	}
 
+	@Override
+	public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException {
+		client.update("updateReceiveMessageReadTime",msg_Article_Num);
+		
+	}
+	
+	
+
 
 }

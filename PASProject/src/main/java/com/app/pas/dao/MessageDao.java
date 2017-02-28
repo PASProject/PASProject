@@ -20,5 +20,5 @@ public interface MessageDao {
 	  public void deleteMessage(int msg_Article_Num)throws SQLException;
 	  public void updateReceiveMessageReadYN(int msg_Article_Num)throws SQLException;
 	  public void updateReceiveMessageDelYN(int msg_Article_Num )throws SQLException;
-	  
+	  public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException;
 }
