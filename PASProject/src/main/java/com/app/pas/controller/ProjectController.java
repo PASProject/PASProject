@@ -567,18 +567,13 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/pmInviteInsert", method = RequestMethod.POST)
-	public @ResponseBody int pmInviteInsert(String mem_Email,
+	public @ResponseBody MemberVo  pmInviteInsert(String mem_Email,
 			HttpSession session) throws SQLException,
 			UnsupportedEncodingException {
-		System.out.println(mem_Email+"멤~~!");
-		int result = 1;
+		
 		int proj_Num = Integer.parseInt((String) session
 				.getAttribute("joinProj"));
-		ProjectVo projectVo = projectService.selectProject(proj_Num);
-		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		MemberVo memberVo1 = memberService.getMember(mem_Email);
-
-
 		InviteVo inviteVo = new InviteVo();
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 
@@ -591,7 +586,7 @@ public class ProjectController {
 		projectJoinVo.setMem_Img(memberVo1.getMem_Img());
 		projectJoinService.insertProject(projectJoinVo);
 		inviteService.insertInvite(inviteVo);
-		return result;
+		return memberVo1;
 
 	}
 
@@ -616,15 +611,12 @@ public class ProjectController {
 			@RequestBody Map<String, Object> map, HttpSession session)
 			throws SQLException {
 		AccountBoardVo accountBoardVo = new AccountBoardVo();
-		System.out.println(map.get("acc_Num") + "�씠寃껋�!!!!!!!!!acc_Num");
 		accountBoardVo.setAcc_Num(Integer.parseInt(map.get("acc_Num")
 				.toString()));
 		accountBoardVo.setProj_Num(Integer.parseInt((String) session
 				.getAttribute("joinProj")));
 
 		accountBoardVo = accountService.selectAccountBoardByAcc(accountBoardVo);
-		System.out.println(accountBoardVo.getAcc_Content()
-				+ "�씠寃껋�!!!!!!!boardVo");
 		return accountBoardVo;
 	}
 
@@ -645,7 +637,6 @@ public class ProjectController {
 				.selectMemberPosition(memPositionViewVo);
 		String mem_Phone = memberService.selectMemberPhone(map.get("mem_Email")
 				.toString());
-		System.out.println(mem_Phone + "이건 전화번호~!");
 		memPositionViewVo.setMem_Phone(mem_Phone);
 
 		return memPositionViewVo;

@@ -36,13 +36,14 @@
 		<button class="btn btn-info" id="trigger">이거누르면</button>
 		<div id="square" ><span style="padding-right:10px;"class="glyphicon glyphicon-ok "></span>새로운 알림이 도착하였습니다</div>
 		<script>
-			$(function() {
-				$('#trigger').on('click', function() {
+		$('#trigger').on('click',function(){
+			pushMessage();
+		})
+				function pushMessage(){
 					$('#square').fadeIn('slow').delay(3000).fadeOut('slow');
-				})
-
-			})
-		</script>
+					
+				}
+		</script>  
 
 
 	</div>

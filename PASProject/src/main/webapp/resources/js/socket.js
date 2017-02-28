@@ -19,14 +19,12 @@ function connect() {
 	}
 	
 	function onMessage(evt) {
-		alert(evt);
+		/*alert(evt);
 		alert(evt.data);
 		var d = JSON.parse(evt.data);
 		alert(d.push);
-		var data = evt.data;
-
-
-		alert('꺼저');
+		var data = evt.data;*/
+		pushMessage();
 
 	}
 	function onClose(evt) {
@@ -35,7 +33,6 @@ function connect() {
 	
 	function send(msg) {
 		wsocket.send(msg);
-		onMessage(evt);
 	}
 
 	function appendMessage(msg) {
