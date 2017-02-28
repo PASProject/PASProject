@@ -83,8 +83,6 @@ public class SockjsHandler extends TextWebSocketHandler{
 		
 	}
 
-	private void pushMessage(WebSocketSession session) throws IOException{
-	}
 	@Override
 	public void handleTransportError(WebSocketSession session,
 			Throwable exception) throws Exception {

@@ -69,16 +69,10 @@
 
 
 <!-- JS -->
+ 
+<script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
+<script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 
-<%-- 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-<<<<<<< HEAD
-
-=======
-	 --%>
 <script src='<%=request.getContextPath()%>/resources/lib/moment.min.js'></script>
 
 <script
@@ -761,8 +755,7 @@ $(function(){
 <script>
 	$(document).ready(
 			function() {
-				/* connect(); */
-				
+				connect(); 
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
 					dataType : 'json',

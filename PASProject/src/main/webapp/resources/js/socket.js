@@ -1,12 +1,10 @@
 var wsocket;
 var msg;
 var loginUserId;
-function connect(loginUserId) {
+function connect() {
 			wsocket = new SockJS(
 
 					"http://"+document.domain+":8181/pas/conSocket.sockjs");
-
-			this.loginUserId = loginUserId;
 			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;
 			wsocket.onclose = onClose;
