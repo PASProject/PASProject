@@ -113,7 +113,7 @@ $(function() {
 		        column:100,
 		        rows:120
 		    })
-	        },2000);
+	        },630000);
     	$('#modal-fullscreen').modal();
     })
     $('button[class="close"]').on('click',function(){
@@ -133,12 +133,12 @@ $(function() {
 				}else{
 					alert("실패하였습니다.");
 					location.reload();
-				}  
-			}
+				}         
+			}    
         });
     });
 });
       
-    </script> 
-</body>        
-</html>      
+    </script>              
+</body>                   
+</html>        
