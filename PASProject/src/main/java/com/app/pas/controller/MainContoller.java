@@ -680,10 +680,13 @@ public class MainContoller {
 	
 	//받은 쪽지 디테일
 	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
-	public String MessageReceiveDetail(String msg_rm_Read_yn, int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+	public String MessageReceiveDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageReceiveDetail";
 
 		messageService.updateReceiveMessageReadYN(msg_Article_Num);
+		
+		System.out.println("나도안됨?");
+		System.out.println(msg_Article_Num);
 		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
 		
 		System.out.println("ReceiveDeatil"+messageVo);
