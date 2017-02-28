@@ -23,7 +23,6 @@
 	<excludes>
 
 		<pattern>*/adminLogin</pattern>
-		<pattern>*/temp*</pattern>
 		<pattern>*/tempNotice*</pattern>
 	    <pattern>*/pmChat*</pattern>
 	    <pattern>*/memberAuth*</pattern>
