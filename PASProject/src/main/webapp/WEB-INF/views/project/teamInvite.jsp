@@ -91,7 +91,7 @@
                                  }
                               });
                          
-                        
+                         
                         
                      })
                      
@@ -111,7 +111,6 @@
                  alert('초대취소완료!');
                   location.href="<%=request.getContextPath()%>/project/pmMemberInvite"
               }
-            
             
             
          });

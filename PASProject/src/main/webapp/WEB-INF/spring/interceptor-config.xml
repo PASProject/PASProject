@@ -17,7 +17,12 @@
 		<mvc:mapping path="/project/pmOverView"/>
 		<bean class="com.app.pas.commons.interceptor.ProjectInterceptor" p:projectLogService-ref="ProjectLogService"/>
 	</mvc:interceptor>
-
+	
+	<mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<mvc:exclude-mapping path="/project/work/selectDocument"/>
+		<bean class="com.app.pas.commons.interceptor.WorkListInterceptor"/>
+	</mvc:interceptor>
 </mvc:interceptors>
 
 </beans>
