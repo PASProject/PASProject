@@ -8,37 +8,11 @@
 <html>
 <head>
 
-<!-- Bootstrap Core CSS -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+<meta charset="UTF-8">
+<title></title>
 
-<!-- Custom CSS -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/stylish-portfolio.css"
-	rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link
-	href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
-	rel="stylesheet" type="text/css">
-
-
-<!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<%--  --%>
-
-
-
-
-<!-- Bootstrap Core JavaScript -->
-<script
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-
-
+</head>
+<body style="height: 90%">
 
 <style>
 
@@ -105,17 +79,33 @@ body {
 </style>
 
 
-<meta charset="UTF-8">
-<title></title>
 
-</head>
-<body style="height: 90%">
+<!-- Bootstrap Core CSS -->
+<link
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<!-- jQuery -->
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<%--  --%>
+
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+
+
 
 	<script type="text/javascript">
 	$(function() {
 		$("#login").click(function() {
-			var email = $('#mem_Email').val();
-			var pwd = $('#mem_Pass').val();
+			var email = $("#login_mem_Email").val();
+			alert(email);
+			var pwd = $('#login_mem_Pass').val();
+			alert(pwd);
 		
 			$.ajax({
 				
@@ -145,14 +135,6 @@ body {
                         		});
 						});
 
-		$('#login').keypress(function(e) {
-			var key = e.which;
-			if (key == 13) // the enter key code
-			{
-				$('input[name = login1]').click();
-				return false;
-			}
-		});
 
 		$(function() {
 			$("#searchPwd").click(function() {
@@ -214,7 +196,7 @@ body {
 
 
 
-	<div class="container2">
+	<div class="container2" style="margin-bottom:5%;">
 
 		<h3 style="text-align: right; margin-right: 46px;">
 			<img style="width: 80px"
@@ -223,7 +205,7 @@ body {
 		<div class="title">
 
 
-			<h2>로그인</h2>
+			<h2 style="margin-top:-15px;">로그인</h2>
 			<hr style="color: rgb(216, 222, 226); margin-top: 5px;">
 		</div>
 
@@ -239,20 +221,20 @@ body {
 				<form>
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"
-							class="form-control" id="mem_Email" name="mem_Email"
+							class="form-control" id="login_mem_Email" name="login_mem_Email"
 							placeholder="Enter email">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label> <input type="password"
-							class="form-control" id="mem_Pass" name="mem_Pass"
+							class="form-control" id="login_mem_Pass" name="login_mem_Pass"
 							placeholder="Enter password">
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>
 					</div>
 					<input type="button" id="login" class="btn btn-default btn-block"
-						value="들어가기" name="login1"> <input type="button"
-						class="btn btn-default btn-block" value="ADMIN"
+						value="들어가기" name="login1"> <input type="button" style="display:none;"
+						class="btn btn-default btn-block" id="adminBtn" value="ADMIN"
 						onclick="admin_go()">
 				</form>
 

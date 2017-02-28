@@ -72,8 +72,8 @@ body.modal-open .background-container {
 				class="fa fa-times"></i></a>
 			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
 			</li>
-			<li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
-			<li><a href="#about" onclick=$("#menu-close").click();>로그인</a></li>
+			<li><a href="#top" onclick=$("#menu-close").click();>BlueMine</a></li>
+			<li><a href="#about" onclick=$("#menu-close").click();>회원 가입</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>Services</a>
 			</li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
@@ -86,7 +86,7 @@ body.modal-open .background-container {
 	<!-- Header -->
 	<header id="top" class="header">
 		<div class="text-vertical-center">
-			<h1>Project Automation System</h1>
+			<h1>Blue Mine</h1>
 			<h3>Begin with us</h3>
 			<br> <a href="<%=request.getContextPath() %>/main/loginForm" class="btn btn-dark btn-lg">들어가기</a>
 		</div>
