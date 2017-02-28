@@ -17,25 +17,44 @@
 
 </head>
 <body>
-<h1>노티스게시판입니다 pm아니면 작성 ㄲㅈ</h1>
-<table border="1">
-<tr>
-<td>글 번호</td>
-<td>글 제목</td>
-<td>날짜</td>
-<td>조회수</td>
+ <div class="col-md-10" id="content">
+   <h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			<span class="glyphicon glyphicon-volume-up"></span>
+			ProjectNotice<small>프로젝트 공지사항</small>
+		</h3>
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+<table class="table table-hover">
+<tr class="text-center">
+<th class="col-md-1" style="text-align: center">글 번호</th>
+<th class="col-md-4" style="text-align: center">글 제목</th>
+<th class="col-md-2" style="text-align: center">작성자</th>
+<th class="col-md-1" style="text-align: center">날짜</th>
+<th class="col-md-1" style="text-align: center">조회수</th>
 
 </tr>
 <c:forEach var="NoticeList" items="${NoticeList }" begin="${paging.beginNo}" end="${paging.endNo}">
 <tr>
-<td>${NoticeList.notice_Num }</td>
+<td style="text-align: center">${NoticeList.notice_Num }</td>
 
-<td><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></td>
+<td style="text-align: center"><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></td>
 
-<td>${NoticeList.notice_Date }</td>
+<td style="text-align: center">${NoticeList.mem_Name }</td>
+
+<td style="text-align: center">${NoticeList.notice_Date }</td>
 
 
-<td>${NoticeList.notice_Inq_Count }</td>
+<td style="text-align: center">${NoticeList.notice_Inq_Count }</td>
 </tr>
 
 </c:forEach>
@@ -43,7 +62,7 @@
 			<td colspan="5" align="center"><c:if test="${paging.finalPageNo>0}">
 					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
 					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
-
+  
 					<c:if test="${paging.pageNo>prevPageNo}">
 						<a href="noticeList?page=${prevPageNo}">[이전]</a>
 					</c:if>
@@ -59,13 +78,15 @@
 </table>
 <c:if test="${memPositionView.position_Name eq 'PL' }">
 
-<input type="button" value="글쓰기" onclick="writeBtn()"/>
+<input type="button" value="글쓰기" onclick="writeBtn()" class="btn btn-default" />
 </c:if>
+</div>
 <script>
 function writeBtn(){
 	location.href="<%=request.getContextPath()%>/project/pmNoticeWrite";
 }
 </script>
+
 </body>
 
 

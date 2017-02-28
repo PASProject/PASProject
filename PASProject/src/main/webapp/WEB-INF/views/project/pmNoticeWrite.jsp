@@ -10,22 +10,51 @@
 <title></title>
 </head>
 <body>
-	<div class="container" >
-		<div class="row">
-
-			<div class="col-md-10">
-			<h3 class="page-header"
-					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-					FreeBoard <small>글 쓰기</small>
-				</h3>
+	<div class="col-md-10" id="content">
 		
-			<form>
-				제목: <input type="text" name="notice_Title" /><br> 내용: <input
-					type="text" name="notice_Content" /><br>
-					작성자: <input type="text" name="notice_Title" value="${loginUser.mem_Name }"/>
-					 <input type="button"
+
+			<h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			프로젝트 공지사항 <small>글 쓰기</small>
+		</h3>
+		<div class="col-md-10">
+		
+			<form class="form-horizontal">
+			 <fieldset>
+				<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">제목</label>
+						<div class="col-lg-10">
+							<input type="text" name="notice_Title" size="64"
+								class="form-control" id="notice_Title" placeholder="제목">
+						</div>
+					</div>
+					
+							<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">작성자</label>
+						<div class="col-lg-10">
+							<input type="text" name="mem_Name" size="64"
+								class="form-control" id="mem_Name" value="${loginUser.mem_Name }" readonly>
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label for="textArea" class="col-lg-2 control-label">내용</label>
+						<div class="col-lg-10">
+							<textarea class="form-control" rows="18" id="notice_Content"
+								name="notice_Content"></textarea>
+						</div>
+					</div>
+				
+				
+				
+				
+				
+					 <input type="button" class="btn btn-default"
 					value="글쓰기" onClick="noticeBtn(this.form)" />
+			</fieldset>
 			</form>
+			
 
 			<script>
  function noticeBtn(form){
@@ -35,7 +64,7 @@
 				}
 			</script>
 				</div>
-		</div>
+		
 	</div>
 </body>
 </html>

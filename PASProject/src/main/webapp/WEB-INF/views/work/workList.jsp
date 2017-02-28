@@ -96,7 +96,6 @@
 					url:'preViewFile',
 					data: JSON.stringify(dataList),
 					success:function(resultMap){
-						alert(resultMap.type);
 						if(resultMap.type==1){
 							view(resultMap.content);
 						}else if(resultMap.type==2){
@@ -159,7 +158,6 @@
 		$('#exportWordBtn').on('click',function(){
 			
 			var Wordsheet = CKEDITOR.instances.editor1.getData(); 
-			alert(Wordsheet);
 			 $.ajax({
              	type : "POST",
      			url : "exportWord",

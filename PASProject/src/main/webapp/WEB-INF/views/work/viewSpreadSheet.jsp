@@ -16,6 +16,7 @@
 <title></title>
 </head>
 <body>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/spreadSheetSocket.js"></script>
 <div class="col-md-10" id="content" style=" padding-left: 0px;
     padding-right: 0px;
     background-color: white;
@@ -59,21 +60,34 @@
 <script>
 
 $(function() {
-	var initData = '${spreadSheetVo.sp_Content}';
-	var ds = initData;
-    $("#spreadsheet").kendoSpreadsheet({
-        excel: {                
-            // Required to enable saving files in older browsers
-            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
-        },
-        pdf: {                
-            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
-        },
-        sheets:[JSON.parse(ds)],
-        sheetsbar:false,
-        toolbar:true
-        
-    });
+	connectSpreadSheet();
+	var ds = "";
+	var doc_Num = '${spreadSheetVo.doc_Num}';
+	$.ajax({
+		dataType:'json',
+		contentType:'application/json',
+		url:'initContent',
+		type:'post',
+		data:JSON.stringify({"doc_Num":doc_Num}),
+		success:function(result){
+			$("#spreadsheet").kendoSpreadsheet({
+		        excel: {                
+		            // Required to enable saving files in older browsers
+		            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+		        },
+		        pdf: {                
+		            proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+		        },
+		        change:onChange,
+		        sheets:[JSON.parse(result.sp_Content)],
+		        sheetsbar:false,
+		        toolbar:true
+		        
+		    });
+		}
+	})
+	
+	
     $('#saveDataBtn').on('click',function(){
 		var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
     	var sheet = spreadsheet.sheetByIndex(0);
@@ -102,20 +116,32 @@ $(function() {
     $('#fullScreenBtn').on('click',function(){
     	$("#fullBody").empty();
     	setTimeout(function(){
-		    $("#fullBody").kendoSpreadsheet({
-		    	 excel: {                
-		             // Required to enable saving files in older browsers
-		             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
-		         },
-		        sheets:[JSON.parse(ds)],
-		        sheetsbar:false,
-		        toolbar:true,
-		        column:100,
-		        rows:120
-		    })
+    		$.ajax({
+    			dataType:'json',
+    			contentType:'application/json',
+    			url:'initContent',
+    			type:'post',
+    			data:JSON.stringify({"doc_Num":doc_Num}),
+    			success:function(result){
+    				$("#fullBody").kendoSpreadsheet({
+    			    	 excel: {                
+    			             // Required to enable saving files in older browsers
+    			             proxyURL: "https://demos.telerik.com/kendo-ui/service/export"
+    			         },
+    			        change:onChangeModal,
+    			        sheets:[JSON.parse(result.sp_Content)],
+    			        sheetsbar:false,
+    			        toolbar:true,
+    			        column:100,
+    			        rows:120
+    			    })
+    			}
+    		})
 	        },2000);
     	$('#modal-fullscreen').modal();
     })
+    
+    
     $('button[class="close"]').on('click',function(){
     	var spreadsheet = $("#fullBody").data("kendoSpreadsheet");
     	var sheet = spreadsheet.sheetByIndex(0);
@@ -137,6 +163,44 @@ $(function() {
 			}    
         });
     });
+    
+    function onChangeModal(arg){
+    	var spreadsheet = $("#fullBody").data("kendoSpreadsheet");
+    	var sheet = spreadsheet.sheetByIndex(0);
+        var data2 = sheet.toJSON();
+        var doc_Num = '${spreadSheetVo.doc_Num}';
+        var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
+   	 $.ajax({  
+        	type : "POST",
+			url : "saveFile",
+			dataType : "json", 
+			data : JSON.stringify(dataList),
+			contentType : "application/json",
+			success:function(result){
+				sendSpreadSheet(JSON.stringify(data2));		
+			}    
+        });
+    }
+    
+    function onChange(arg){
+    	 var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
+    	 var sheet = spreadsheet.sheetByIndex(0);
+         var data2 = sheet.toJSON();
+    	 
+    	 var doc_Num = '${spreadSheetVo.doc_Num}';
+         var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
+    	 $.ajax({  
+         	type : "POST",
+ 			url : "saveFile",
+ 			dataType : "json", 
+ 			data : JSON.stringify(dataList),
+ 			contentType : "application/json",
+ 			success:function(result){
+ 				sendSpreadSheet(JSON.stringify(data2));		
+ 			}    
+         });
+     }
+    
 });
       
     </script>              

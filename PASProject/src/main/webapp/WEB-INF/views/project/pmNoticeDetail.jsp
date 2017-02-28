@@ -10,37 +10,55 @@
 <title></title>
 </head>
 <body>
+   <div class="col-md-10" id="content">
+   <h3 class="page-header"
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			<span class="glyphicon glyphicon-volume-up"></span>
+			프로젝트 공지사항 <small>글 읽기</small>
+		</h3>
 <form>
 세부정보 
-<table border="1">
-<tr>
-<td>프로젝트번호</td>
-<td>게시물번호</td>
-<td>작성일</td>
-<td>제목</td>
-<td>내용</td>
-<td>조회수</td>
-<tr>
-
-
-<tr>
-<td><input type="text" name="proj_Num" value="${NoticeVo.proj_Num }"></td>
-<td><input type="text" name="notice_Num" value="${NoticeVo.notice_Num }"></td>
-<td><input type="text" name="notice_Date" value="${NoticeVo.notice_Date }"></td>
-<td><input type="text" name="notice_Title" value="${NoticeVo.notice_Title }"></td>
-<td><input type="text" name="notice_Content" value="${NoticeVo.notice_Content }"></td>
-<td><input type="text" name="notice_Inq_Count" value="${NoticeVo.notice_Inq_Count }"></td>
-<tr>
-
-
-
+<table class="table" style="border-top: 2px;">
+<tr style="border-top: 2px solid #add">
+<td class="col-md-9">
+						<h3 style="margin-top: 10px; margin-bottom: 10px">
+							<b>${NoticeVo.notice_Title }</b>
+						</h3>
+					</td>
+					
+					<td class="col-md-2"
+						style="vertical-align: middle; text-align: right">날짜:
+						${NoticeVo.notice_Date }</td>
+						</tr>
+						
+						<tr>
+					<td colspan="3">작성자 : ${NoticeVo.mem_Name }</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3">공지글 내용 : ${NoticeVo.notice_Content }"<br>
+					</td>
+				</tr>
+				
+				<tr style="border-bottom: 2px solid #ddd">
+					<td class="text-right" colspan="3"
+						style="border-top: 0px solid blue;">
+						
+						<button class="btn btn-default text-right" type="button"
+							onclick="go_NoticeList()">목록</button>
+							<input type="hidden" name="notice_Num" id="notice_Num" value="${NoticeVo.notice_Num }">
+			                <input type="hidden" id="proj_Num" id="proj_Num" value="${NoticeVo.proj_Num }">
+					</td>
+				</tr>
+				
 
 </table>
 <c:if test="${memPositionView.position_Name eq 'PL' }">
-<input type="button" value="수정" onclick="location.href='<%=request.getContextPath()%>/project/pmNoticeUpdate?proj_Num=${NoticeVo.proj_Num}&notice_Num=${NoticeVo.notice_Num}'"/>
-<input type="button" value="삭제" onclick="deleteBtn(this.form)">
+<input type="button" class="btn btn-default" value="수정" onclick="location.href='<%=request.getContextPath()%>/project/pmNoticeUpdate?proj_Num=${NoticeVo.proj_Num}&notice_Num=${NoticeVo.notice_Num}'"/>
+<input type="button" class="btn btn-default" value="삭제" onclick="deleteBtn(this.form)">
 </c:if>
 </form>
+</div>
 
 <script>
 function deleteBtn(form){
