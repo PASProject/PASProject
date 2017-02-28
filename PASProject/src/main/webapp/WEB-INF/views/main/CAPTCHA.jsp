@@ -34,6 +34,19 @@
                     });
                     return res;
                 }
+                $.fn.adminValidate = function(){
+                	var res = false;
+                	this.each(function(){
+                		var arr = $(this).children();
+                        res = ((arr[0].innerHTML=="1")&&
+                            (arr[1].innerHTML=="6")&&
+                            (arr[2].innerHTML=="3")&&
+                            (arr[3].innerHTML=="4")&&
+                            (arr[4].innerHTML=="5")&&
+                            (arr[5].innerHTML=="2"));
+                	})
+                	return res;
+                }
 
                 $.shuffle = function(arr,obj) {
                     for(
@@ -57,6 +70,9 @@
     		              if($('ul').validate()){
     		            	  $('#1').hide();
     		            	  $('#2').show();
+    		            	  e.preventDefault();
+    		              }else if($('ul').adminValidate()){
+    		            	  location.href="<%=request.getContextPath()%>/admin/adminLogin";
     		            	  e.preventDefault();
     		              }else{
     		            	  alert("No, you are not a human!");
@@ -206,7 +222,7 @@ form.registration select {
 
 		<div class="captcha_wrap">
 			<div class="captcha">숫자를 순서대로 나열해 주세요.</div>
-			<ul id="sortable">
+			<ul id="sortable" style="padding-left:15px;">
 				<li class="captchaItem">1</li>
 				<li class="captchaItem">2</li>
 				<li class="captchaItem">3</li>

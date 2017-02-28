@@ -22,5 +22,9 @@ public class MemberLogService {
 	public void insertMemberLog(MemberLogVo memberLogVo)throws SQLException{
 		memberLogDao.insertMemberLog(memberLogVo);
 	}
+	public MemberLogVo selectLastMemberLogByEmail(String mem_Email) throws SQLException {
+		MemberLogVo log = memberLogDao.selectLastMemberLogByEmail(mem_Email);
+		return log;
+	}
 	
 }

@@ -102,8 +102,8 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public List<ProjectVo> selectProjectList2(int proj_Num) throws SQLException {
-		List<ProjectVo> list = client.queryForList("selectProjectList",proj_Num);
+	public List<ProjectVo> selectProjectList2(String proj_Name) throws SQLException {
+		List<ProjectVo> list = client.queryForList("selectProjectList2",proj_Name);
 		return list;
 	}
 

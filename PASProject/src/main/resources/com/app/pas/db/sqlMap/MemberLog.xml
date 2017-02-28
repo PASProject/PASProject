@@ -20,7 +20,7 @@
 	<select id="selectLastMemberLogByEmail" parameterClass = "str" resultClass="MemberLog">
 		SELECT * 
 		FROM (SELECT * FROM MEMBER_LOG ORDER BY MEM_LOG_NUM DESC )
-		WHERE  ROWNUM =1 AND MEM_EMAIL = #mem_Email#;	
+		WHERE  ROWNUM =1 AND MEM_EMAIL = #mem_Email#	
 	</select>
 	
 </sqlMap>

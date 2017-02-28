@@ -24,6 +24,16 @@
 //POSSIBILITY OF SUCH DAMAGE.
 //
 var selfEasyrtcid = "";
+//웨이팅포룸리스트는 트루
+var waitingForRoomList = true;
+//isConnected는 펄스
+var isConnected = false;
+
+ 
+
+
+
+
 
 function disable(domId) {
 	document.getElementById(domId).disabled = "disabled";
@@ -49,6 +59,7 @@ function connect() {
 }
 
 
+
 function terminatePage() {
 	easyrtc.disconnect();
 }
@@ -58,6 +69,8 @@ function hangup() {
 	disable('hangupButton');
 }
 
+
+
 function clearConnectList() {
 	otherClientDiv = document.getElementById('otherClients');
 	while (otherClientDiv.hasChildNodes()) {
@@ -65,6 +78,67 @@ function clearConnectList() {
 	}
 
 }
+
+function genRoomDivName(roomName) {
+    return "roomblock_" + roomName;
+}
+//방이름 리턴!
+function genRoomOccupantName(roomName) {
+    return "roomOccupant_" + roomName;
+}
+
+
+function addRoom(roomName, parmString, userAdded) {
+    //룸네임이 없으면
+		if (!roomName) {
+			//room to add 값을 roomname 에 너는다
+        roomName = document.getElementById("roomToAdd").value;
+				//paramString 에 optroomparams값을 넣는다.
+        parmString = null;
+    }
+		//룸id 에 "roomblock"+roomName
+    var roomid = genRoomDivName(roomName);
+    if (document.getElementById(roomid)) {
+        return;
+    }
+		//addRommButton function
+				
+
+    var roomParms = null;
+    if (parmString && parmString !== "") {
+        try {
+            roomParms = JSON.parse(parmString);
+        } catch (error) {
+            roomParms = null;
+            easyrtc.showError(easyrtc.errCodes.DEVELOPER_ERR, "Room Parameters must be an object containing key/value pairs. eg: {\"fruit\":\"banana\",\"color\":\"yellow\"}");
+            return;
+        }
+    }
+    if (!isConnected || !userAdded) {
+        console.log("adding gui for room " + roomName);
+    }
+    else {
+        console.log("not adding gui for room " + roomName + " because already connected and it's a user action");
+    }
+    if (userAdded) {
+        console.log("calling joinRoom(" + roomName + ") because it was a user action ");
+
+        easyrtc.joinRoom(roomName, roomParms,
+                function() { 
+                 	document.getElementById("iam").innerHTML = roomName+"방에 입장하였습니다.";    	 	
+                },
+                function(errorCode, errorText, roomName) {
+                    easyrtc.showError(errorCode, errorText + ": room name was(" + roomName + ")");
+                });
+    }
+}
+
+
+
+
+
+
+
 
 function convertListToButtons(roomName, occupants, isPrimary) {
 	clearConnectList();
@@ -88,8 +162,7 @@ function performCall(otherEasyrtcid) {
 	easyrtc.hangupAll();
 	var acceptedCB = function(accepted, caller) {
 		if (!accepted) {
-			easyrtc.showError("CALL-REJECTED", "Sorry, your call to "
-					+ easyrtc.idToName(caller) + " was rejected");
+			easyrtc.showError("CALL-REJECTED", "상대방이 요청을 거절하였습니다. ");
 			enable('otherClients');
 		}
 	};
@@ -103,12 +176,13 @@ function performCall(otherEasyrtcid) {
 }
 
 function loginSuccess(easyrtcid) {
-
+	easyrtcid =document.getElementById("username").value;
+	console.log(easyrtcid+"이것은 큐야!");
 	disable("connectButton");
 	// enable("disconnectButton");
 	enable('otherClients');
 	selfEasyrtcid = easyrtcid;
-	document.getElementById("iam").innerHTML = "마요네즈";
+	document.getElementById("iam").innerHTML = easyrtcid+"님! 접속하셨습니다.";
 }
 
 function loginFailure(errorCode, message) {
@@ -136,13 +210,14 @@ easyrtc.setOnStreamClosed(function(easyrtcid) {
 });
 
 easyrtc.setAcceptChecker(function(easyrtcid, callback) {
+        	easyrtcid =document.getElementById("username").value;
 			document.getElementById('acceptCallBox').style.display = "block";
 			if (easyrtc.getConnectionCount() > 0) {
 				document.getElementById('acceptCallLabel').textContent = "Drop current call and accept new from "
 						+ easyrtcid + " ?";
 			} else {
-				document.getElementById('acceptCallLabel').textContent = "Accept incoming call from "
-						+ easyrtcid + " ?";
+				document.getElementById('acceptCallLabel').textContent = 
+						"/'"+ easyrtcid + "/'님에게 보이스채팅 요청이 왔습니다.";
 			}
 			var acceptTheCall = function(wasAccepted) {
 				document.getElementById('acceptCallBox').style.display = "none";

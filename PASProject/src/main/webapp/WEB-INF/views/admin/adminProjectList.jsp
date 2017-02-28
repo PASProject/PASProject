@@ -21,11 +21,11 @@
 </head>
 <body>
 	<h1>
-		프로젝트 관리<input type="button" value="EXIT" onclick="go_Home()">
+		프로젝트 관리
 	</h1>
 	<a></a>
-	<form>
-		프로젝트명 : <input type="text" name="Proj_Name" />&nbsp; <input
+	<form>  
+		프로젝트명 : <input type="text" name="proj_Name" />&nbsp; <input
 			type="button" onclick="searchProj(this.form);" value="검색">
 	</form>
 
@@ -136,12 +136,15 @@
 		}
 	}
 	
-	function searchEmail(form) {
-		form.action="searchMemEmail";
+	function searchProj(form) {
+		form.action="searchProj";
 		form.method="get";
 		form.target="_self";
 		form.submit();
 	};
+	
+	
+	
 	function goModal(proj_Num,index){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
@@ -156,7 +159,25 @@
 					tt+='<div> 참여 프로젝트가 없습니다.</div>'
 				}
 				$.each(data,function(i){
-					tt += '<div> 멤버 이메일 : '+data[i].mem_Email+'&nbsp&nbsp&nbsp&nbsp프로젝트이름 : '+data[i].pjj_Final_In_Time+'<hr color=\'red\'></div>'
+					var date = new Date(data[i].pjj_Final_In_Time)
+					var year = date.getFullYear();
+					var month = (1 + date.getMonth());
+					month = month >= 10 ? month : '0'+ month;
+					var day = date.getDate();
+					day = day >= 10 ? day : '0' + day;
+					var fullD = year + '.' + month + '.'+ day;
+					if(data[i].position_Num=="1"){var position = "PL";}
+					else if(data[i].position_Num=="2"){var position = "PM";}
+					else if(data[i].position_Num=="3"){var position = "TA";}
+					else if(data[i].position_Num=="4"){var position = "AA";}
+					else if(data[i].position_Num=="5"){var position = "DA";}
+					else if(data[i].position_Num=="6"){var position = "BA";}
+					else if(data[i].position_Num=="7"){var position = "UA";}
+					else if(data[i].position_Num=="8"){var position = "PE";}
+					else if(data[i].position_Num=="9"){var position = "NotRole";}
+					else{var position = "NotMember";}
+					tt += '<div> 멤버 이메일 : '+data[i].mem_Email+'&nbsp;&nbsp;&nbsp;&nbsp;직책: '
+					+position+'&nbsp;&nbsp;&nbsp;&nbsp;마지막 접속 시간 : '+fullD+'<hr color=\'red\'></div>'
 				})
 				$("#"+index+"body").empty();
 				$("#"+index+"body").append(tt);

@@ -64,7 +64,7 @@ body {
 	margin: auto;
 }
 
- @font-face {
+@font-face {
 	font-family: 'NanumGothic';
 	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
 }
@@ -72,7 +72,7 @@ body {
 body {
 	font-family: NanumGothic;
 }
- 
+
 .divider {
 	position: relative;
 	width: 100%;
@@ -141,19 +141,16 @@ body {
 						placeholder="Enter password">
 				</div>
 				<input type="button" id="login" class="btn btn-default btn-block"
-					value="LOGIN" name="login1">
-				<input type="button" id="home" class="btn btn-default btn-block"
-					value="HOME" name="home" onclick="go_Home()">
-				
+					value="LOGIN" name="login1"> <input type="button" id="home"
+					class="btn btn-default btn-block" value="HOME" name="home"
+					onclick="go_Home()">
+
 
 			</form>
 		</div>
-		<div class="dividercontainer">
-			<div class="divider"></div>
-		</div>
-		
+
 	</div>
-	
+
 </body>
 <script>
 	
@@ -199,10 +196,10 @@ function go_Home(){
                         location.href="<%=request.getContextPath()%>/admin/adminMain";
 											} else if (result == 0) {
 												alert("아이디가 틀렸습니다");
-												
+
 											} else if (result == 2) {
 												alert("비밀번호 오류입니다.");
-												
+
 											} else if (result == 3) {
 												alert("아이디가 틀렸습니다.");
 											}
@@ -210,16 +207,16 @@ function go_Home(){
 										}
 
 									});
-                        		});
 						});
+	});
 
-		$('#login').keypress(function(e) {
-			var key = e.which;
-			if (key == 13) // the enter key code
-			{
-				$('input[name = login1]').click();
-				return false;
-			}
-		});
+	$('#login').keypress(function(e) {
+		var key = e.which;
+		if (key == 13) // the enter key code
+		{
+			$('input[name = login1]').click();
+			return false;
+		}
+	});
 </script>
 </html>

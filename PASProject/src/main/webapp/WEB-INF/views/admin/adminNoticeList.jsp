@@ -15,7 +15,7 @@
 	<!-- <div class="col-md-10"> -->
 		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			Admin<small>_Notice</small>
+			전체공지사항
 		</h3>
 		
 		<form name="form" method="post" action="AdminTotalNoticeList">
