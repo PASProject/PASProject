@@ -31,8 +31,8 @@
 	<select id="selectMessage" resultClass="Message" parameterClass="int">
 		SELECT * FROM Message
 		WHERE
-		MSG_ARTICLE_NUM LIKE
-		'%'||#msg_Article_Num#||'%'
+		MSG_ARTICLE_NUM =
+		#msg_Article_Num#
 	</select>
 
 
