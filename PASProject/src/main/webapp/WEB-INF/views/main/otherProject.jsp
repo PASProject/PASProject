@@ -61,7 +61,7 @@ $(function(){
 				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h4>
 				<h5>${projectVo.proj_Team}</h5>
 				<div
-					style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
+					style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #fff5f5; margin-bottom: 10px;">
 					<p>${projectVo.proj_Content}</p>
 				</div>
 

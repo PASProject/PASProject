@@ -133,12 +133,12 @@ $(function() {
 				}else{
 					alert("실패하였습니다.");
 					location.reload();
-				}  
-			}
+				}         
+			}    
         });
-    })
+    });
 });
       
-    </script>          
-</body>    
-</html>
+    </script>              
+</body>                   
+</html>        

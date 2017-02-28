@@ -69,16 +69,10 @@
 
 
 <!-- JS -->
+ 
+<script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
+<script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 
-<%-- 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-<<<<<<< HEAD
-
-=======
-	 --%>
 <script src='<%=request.getContextPath()%>/resources/lib/moment.min.js'></script>
 
 <script
@@ -161,6 +155,23 @@ $(function(){
 
 <!--  -->
 <style>
+
+#square {
+	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	font-size:16px;
+	text-align:center;
+	line-height	:50px;
+	color: white;
+	background-color: #51a351;
+	border: 1px solid #51a351;
+	border-radius:5px;
+	position: absolute;
+	left: 72%;
+	top: 85%;
+	display: none;
+	width: 300px;
+	height: 50px;
+}
 
 th{
 text-align:center;
@@ -457,7 +468,7 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
-								<li><a href="<%=request.getContextPath()%>/main/messageList">쪽지함 보기</a></li>
+								<li><a href="<%=request.getContextPath()%>/main/messageReceiveList">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 
 								<li><a
@@ -490,7 +501,7 @@ $(function(){
 			<!-- /.container -->
 		</nav>
 	</header>
-
+<div id="square" ><span style="padding-right:10px;"class="glyphicon glyphicon-ok "></span>새로운 알림이 도착하였습니다</div>
 	<!-- 프로젝트 생성 모달   -->
 	<div class="modal fade" id="create" role="dialog">
 		<div class="modal-dialog modal-lg">
@@ -502,6 +513,16 @@ $(function(){
 					프로젝트 생성
 				</div>
 				<div class="modal-body" id="createBody">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 					생성자 : <input type="text" id="mem_Email"
 						value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
 					<br> <input type="hidden" id="mem_Img"
@@ -512,6 +533,24 @@ $(function(){
 					<textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
 					<br>
 				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" id="createBtn"
 						value="생성" />
@@ -761,7 +800,7 @@ $(function(){
 <script>
 	$(document).ready(
 			function() {
-				/* connect(); */
+				connect();
 				
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
@@ -1277,6 +1316,10 @@ $(function(){
 </script>
 
 <script>
+function pushMessage(){
+	$('#square').fadeIn('slow').delay(3000).fadeOut('slow');
+	
+}
 	function logOut() {
 		location.href = "/pas/main/logOut";
 	}

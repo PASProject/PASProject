@@ -1,12 +1,10 @@
 var wsocket;
 var msg;
 var loginUserId;
-function connect(loginUserId) {
+function connect() {
 			wsocket = new SockJS(
 
 					"http://"+document.domain+":8181/pas/conSocket.sockjs");
-
-			this.loginUserId = loginUserId;
 			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;
 			wsocket.onclose = onClose;
@@ -21,14 +19,12 @@ function connect(loginUserId) {
 	}
 	
 	function onMessage(evt) {
-		alert(evt);
+		/*alert(evt);
 		alert(evt.data);
 		var d = JSON.parse(evt.data);
 		alert(d.push);
-		var data = evt.data;
-
-
-		alert('꺼저');
+		var data = evt.data;*/
+		pushMessage();
 
 	}
 	function onClose(evt) {
@@ -37,7 +33,6 @@ function connect(loginUserId) {
 	
 	function send(msg) {
 		wsocket.send(msg);
-		onMessage(evt);
 	}
 
 	function appendMessage(msg) {
