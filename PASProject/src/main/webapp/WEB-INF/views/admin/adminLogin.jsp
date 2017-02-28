@@ -148,9 +148,7 @@ body {
 
 			</form>
 		</div>
-		<div class="dividercontainer">
-			<div class="divider"></div>
-		</div>
+	
 		
 	</div>
 	

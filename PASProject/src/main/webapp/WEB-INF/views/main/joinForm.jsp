@@ -74,13 +74,7 @@ body {
 						</div>
 					</div>
 				</div>
-				<div class="form-group" style="text-align:right;">
-					<label class="col-md-6 control-label"></label>
-					<div class="col-md-4">
-					<span id="alreayUsed" style="display:none; color:red">중복된 이메일입니다.</span>
-					</div>
-				</div>
-				
+			
 
 				<!-- Password -->
 				<div class="form-group has-feedback">

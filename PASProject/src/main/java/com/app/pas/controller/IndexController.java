@@ -13,6 +13,18 @@ public class IndexController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String loginForm(HttpSession session, Model model) {
 		String url = "index";
+		
+		if (session != null) {
+			session.removeAttribute("loginUser");
+			if (session.getAttribute("joinProj") != null
+					|| session.getAttribute("joinProj") != "null") {
+				session.removeAttribute("joinProj");
+			}
+			if(session.getAttribute("joinProjectVo")!=null || session.getAttribute("joinProjectVo") !="null" ){
+				session.removeAttribute("joinProjectVo");
+			}
+		}
+		
 		return url;
 	}
 

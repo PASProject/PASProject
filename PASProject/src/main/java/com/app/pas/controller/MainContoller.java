@@ -35,26 +35,15 @@ import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.MessageVo;
-import com.app.pas.dto.MyPostBoardVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
-import com.app.pas.dto.board.FreeBoardReplyVo;
-import com.app.pas.dto.board.FreeBoardVo;
-import com.app.pas.dto.board.QnaBoardReplyVo;
-import com.app.pas.dto.board.QnaBoardVo;
-import com.app.pas.dto.board.SkillSharingBoardReplyVo;
-import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.MessageService;
 import com.app.pas.service.ProjectService;
-import com.app.pas.service.board.FreeBoardReplyService;
-import com.app.pas.service.board.FreeBoardService;
-import com.app.pas.service.board.QnaBoardReplyService;
 import com.app.pas.service.board.QnaBoardService;
-import com.app.pas.service.board.SkillSharingBoardReplyService;
 
 @Controller
 @RequestMapping("/main")
@@ -124,12 +113,13 @@ public class MainContoller {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody int loginMember(HttpSession session, String email,
 			String pwd) {
-
+		
 		int result = 0;
 		MemberVo memberVo = null;
 
 		memberVo = memberService.getMember(email);
-
+		System.out.println(memberVo.getMem_Email());
+		System.out.println(memberVo.getMem_Pass());
 		// 아이디 검증
 		if (memberVo == null) {
 			result = 0;
@@ -685,14 +675,12 @@ public class MainContoller {
 
 		messageService.updateReceiveMessageReadYN(msg_Article_Num);
 		
-		/*messageService.updateRe
-		
+		System.out.println("나도안됨?");
+		System.out.println(msg_Article_Num);
 		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
-	
-		
 		
 		System.out.println("ReceiveDeatil"+messageVo);
-		model.addAttribute("messageVo", messageVo);*/
+		model.addAttribute("messageVo", messageVo);
 		
 		
 		return url;
@@ -703,8 +691,8 @@ public class MainContoller {
 	@RequestMapping(value="/messageSendDetail", method=RequestMethod.GET)
 	public String MessageSendDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageSendDetail";
-	
-		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
+		System.out.println(msg_Article_Num);
+		MessageVo messageVo = messageService.selectSendMessage(msg_Article_Num);
 		model.addAttribute("messageVo", messageVo);
 		System.out.println(msg_Article_Num);
 		System.out.println("detail"+ messageVo);
