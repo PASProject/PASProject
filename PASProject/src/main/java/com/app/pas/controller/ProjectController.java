@@ -290,9 +290,10 @@ public class ProjectController {
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
 		String url = "redirect:/project/pmNoticeList";
-		int proj_Num = (Integer) session.getAttribute("joinProj");
+		int proj_Num =  Integer.parseInt((String)session.getAttribute("joinProj"));
 
 		noticeVo.setProj_Num(proj_Num);
+		
 
 		try {
 			noticeService.insertNotice(noticeVo);
@@ -373,9 +374,12 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/pmNoticeDelete")
-	public String deleteNotice(HttpSession session, NoticeVo noticeVo) {
-		String url = "redirect:/notice/pmNoticeList";
-		System.out.println(noticeVo.getProj_Num() + "�씠嫄댄봽濡쒖젥�듃�꽆踰�@@@@");
+	public String deleteNotice(HttpSession session, String notice_Num) {
+		NoticeVo noticeVo = new NoticeVo();
+		noticeVo.setNotice_Num(Integer.parseInt(notice_Num));
+		noticeVo.setProj_Num(Integer.parseInt((String)session.getAttribute("joinProj")));
+		
+		String url = "redirect:/project/pmNoticeList";
 		try {
 			noticeService.deleteNotice(noticeVo);
 		} catch (SQLException e) {

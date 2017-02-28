@@ -24,9 +24,11 @@
         <!-- Prettify Code -->
         <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/prettify.js"></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/loadAndFilter.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+        <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script> --%>
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/prettify.css" />
-
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+        <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
         <!--show-->
         <!-- Assumes global locations for socket.io.js and easyrtc.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
@@ -55,18 +57,18 @@
                 display:none;
                 z-index:2;
                 position:absolute;
-                top:100px;
-                left:400px;
+                top:50px;
+                left:30px;
                 border:red solid 2px;
-                background-color:pink;
-                padding:15px;
+                background-color:white;
+                padding:10px;
             }
         </style>
         <!--show-->
     </head>
     <body>
         <div id="container">
-        <input type="text" name="username" value="${param.name }">
+        <input type="hidden" id="username" value="${param.name }">
         
          
            
@@ -77,14 +79,14 @@
                 <!--show-->
                 <div id="demoContainer">
                     <div id="connectControls">
-                        <button id="connectButton" onclick="connect()">접속</button>
-                        <button id="hangupButton" disabled="disabled" onclick="hangup()">해제</button>
+                        <button class="btn btn-default" id="connectButton" onclick="connect()" >접속</button>
+                        <button class="btn btn-default" id="hangupButton" disabled="disabled" onclick="hangup()">해제</button>
                         <div id="iam">아직 연결이 되지 않았습니다.</div>
                         <br />
                         <strong>접속된 유저:</strong>
                         <div id="otherClients"></div>
-                        <input type="text" name="roomName" >
-                        <button id="connectButton" onclick="joinRoom()">방만들기</button>
+                        <input type="text" id="roomToAdd" placeholder="방 이름을 입력해주세요.">
+                        <button id="connectButton" onclick="addRoom(null, null, true);" class="btn btn-default">Join</button>
                     </div>
 
                     <!-- Note... this demo should be updated to remove video references -->
