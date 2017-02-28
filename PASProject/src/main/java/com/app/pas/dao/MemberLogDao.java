@@ -6,4 +6,5 @@ import com.app.pas.dto.MemberLogVo;
 
 public interface MemberLogDao {
 	public void insertMemberLog(MemberLogVo memberLogVo) throws SQLException;
+	public MemberLogVo selectLastMemberLogByEmail(String mem_Email) throws SQLException;
 }

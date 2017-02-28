@@ -24,6 +24,7 @@ import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.AdminService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.IntArrayData;
 
 @Controller
 @RequestMapping("/admin")
@@ -39,12 +40,14 @@ public class AdminProjectController {
 	@RequestMapping("/projectList")
 	public String MemberList(Model model,
 			@RequestParam(value = "page", defaultValue = "1") String page,
-			@RequestParam(defaultValue = "") String proj_Num)
+			@RequestParam(defaultValue = "") String proj_Name)
 			throws SQLException {
 		String url = "admin/adminProjectList";
 		int totalCount = 0;
 		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
-		projectList = projectService.selectProjectList();
+			
+		projectList = projectService.selectProjectList2(proj_Name);	
+				
 		totalCount = projectService.selectProjectTotalCount();
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@"+totalCount);
 		if (page.equals(null) || page == "") {
@@ -69,8 +72,21 @@ public class AdminProjectController {
 		System.out.println("#######################"+proj_Num);
 		projectJoinVo.setProj_Num(Integer.parseInt(proj_Num));
 		List<ProjectJoinVo> list = projectService.selectMemberToProjNum(Integer.parseInt(proj_Num));
-		System.out.println("@@@@@@@@@@@"+list);
+		System.out.println("@#@#@#@#@#@#@#@#@#@"+list);
 		return list;
+	}
+	
+	@RequestMapping("/searchProj")
+	public String searchProj(@RequestParam String proj_Name, Model model)
+			throws SQLException {
+		System.out.println("*$*$*$*$**$*$*$*$**$*$**$*$*$"+proj_Name);
+		String url = "redirect:projectList?proj_Name="+proj_Name;
+		/*
+		 * List<MemberVo> memberList = null; memberList =
+		 * memberService.selectMemberEmail(mem_Email);
+		 * model.addAttribute("memberList", memberList);
+		 */
+		return url;
 	}
 	
 	@RequestMapping("/projectDelete")
@@ -81,7 +97,7 @@ public class AdminProjectController {
 		System.out.println("@@@@@@@[          "+proj_Num+"         }@@@@@@@@@@@");
 		StringTokenizer st = new StringTokenizer(proj_Num, ",");
 		while(st.hasMoreTokens()){
-			memberService.deleteMember(st.nextElement().toString());
+			projectService.deleteProject(Integer.parseInt(st.nextElement().toString()));
 		}
 		
 		

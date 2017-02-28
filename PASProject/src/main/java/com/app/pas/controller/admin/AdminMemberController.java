@@ -2,6 +2,7 @@ package com.app.pas.controller.admin;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.app.pas.commons.Paging;
 import com.app.pas.dto.AdminVo;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberLogVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.AdminService;
+import com.app.pas.service.MemberLogService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
 
@@ -38,6 +41,8 @@ public class AdminMemberController {
 	AdminService adminService;
 	@Autowired
 	ProjectService projectService;
+	@Autowired
+	MemberLogService memberLogService; 
 
 	@RequestMapping("/memberList")
 	public String MemberList(Model model,
@@ -74,6 +79,10 @@ public class AdminMemberController {
 			@RequestBody Map<String, Object> map,ProjectVo projectVo) throws SQLException {
 		String mem_Email = (String) map.get("mem_Email");
 		projectVo.setMem_Email(mem_Email);
+		MemberLogVo memberLastLog = new MemberLogVo();
+		memberLastLog = memberLogService.selectLastMemberLogByEmail(mem_Email);
+		Timestamp log = memberLastLog.getMem_Log_Time();
+		System.out.println("$$$$$$$$$$$$$$$$$$"+log);
 		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
 		
 		return list;

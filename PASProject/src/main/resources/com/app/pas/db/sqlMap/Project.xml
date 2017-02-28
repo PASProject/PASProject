@@ -11,6 +11,9 @@
    <select id="selectProjectList" parameterClass="int" resultClass="Project">
       select * from PROJECT where PROJ_NUM LIKE '%'||#proj_Num#||'%'
    </select>
+   <select id="selectProjectList2" parameterClass="str" resultClass="Project">
+      select * from PROJECT where proj_Name LIKE '%'||#proj_Name#||'%'
+   </select>
    <select id="selectProject" parameterClass="int" resultClass="Project">
       select * from project where proj_num = #proj_Num#
    </select>
