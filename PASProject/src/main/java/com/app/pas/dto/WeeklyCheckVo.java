@@ -11,14 +11,11 @@ import lombok.Data;
 @Data
 public class WeeklyCheckVo {
 
-	private String mon;
-	private String tue;
-	private String wed;
-	private String thu;
-	private String fri;
-	private String sat;
-	private String sun;
-	private String day;
-	
+	private int wk_Num;
+	private Date wk_Date;
+	private String wk_Content;
+	private String wk_Mem_Email;
+	private String wk_Yn;
+
 
 }

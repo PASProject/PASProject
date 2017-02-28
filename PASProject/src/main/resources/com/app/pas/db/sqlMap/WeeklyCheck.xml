@@ -7,14 +7,14 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 
-	<select id="day_check" resultClass="WeeklyCheck">
-		SELECT * FROM DAY_CHECK
+	<select id="weeklyCheck" resultClass="WeeklyCheck">
+		SELECT * FROM WEEKLY_CHECK
 	</select>
 	
-	<update id="dayCheckUpdate" parameterClass="WeeklyCheck">
+	<update id="weeklyCheck_Update" parameterClass="WeeklyCheck">
 		INSERT INTO
-		DAY_CHECK(MON,TUE,WED,THU,FRI,SAT,SUN)
-		VALUES(#mon#,#tue#,#wed#,#thu#,#fri#,#sat#,#sun#)
+		WEEKLY_CHECK(WK_NUM,WK_DATE,WK_CONTENT,WK_MEM_EMAIL,WK_YN)
+		VALUES(#wk_Num#,#wk_Date#,#wk_Content#,#wk_Mem_Email#,#wk_Yn#)
 	</update>
 
 

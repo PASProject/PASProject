@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ScheduleCalendarVo;
@@ -38,8 +39,9 @@ public class ScheduleController {
 	}
 	
 	
-	@RequestMapping("/weeklyChecklist")
+	@RequestMapping(value = "/weeklyChecklist")
 	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo, Model model, HttpSession session,
+			@RequestParam(defaultValue = "")String tue,
 			WeeklyCheckVo weeklyCheckVo) throws SQLException{
 		String url="schedule/weeklyChecklist";
 		
@@ -64,19 +66,19 @@ public class ScheduleController {
 
 		model.addAttribute("weekly_dateList", weekly_dateList);
 		
-		
-		
-		List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
-		weekCheckList = weeklyCheckService.day_check();
-	
-		System.out.println("일주일일정 : " + weekCheckList);
-		model.addAttribute("weekCheckList", weekCheckList);
-		
-		//업데이트-----------------------------------------------------------------
-		weeklyCheckVo.setMon("월");
-		weeklyCheckVo.setThu("들어가나 실험중");
-		weeklyCheckService.dayCheckUpdate(weeklyCheckVo);
-		
+//		
+//		// select ------------------------------------------------------------
+//		List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
+//		weekCheckList = weeklyCheckService.weeklyCheck();
+//	
+//		System.out.println("일주일일정 : " + weekCheckList);
+//		model.addAttribute("weekCheckList", weekCheckList);
+//		
+//		//업데이트-----------------------------------------------------------------
+//	
+////		weeklyCheckVo.setTue(tue);
+//		weeklyCheckService.weeklyCheck_Update(weeklyCheckVo);
+//		
 
 	
 		return url;

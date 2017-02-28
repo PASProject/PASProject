@@ -15,14 +15,14 @@ public class WeeklyCheckDaoImpl implements WeeklyCheckDao{
 	}
 
 	@Override
-	public List<WeeklyCheckVo> day_check()
+	public List<WeeklyCheckVo> weeklyCheck()
 			throws SQLException {
 		List<WeeklyCheckVo> list = client.queryForList("day_check");
 		return list;
 	}
 
 	@Override
-	public void dayCheckUpdate(WeeklyCheckVo weeklyCheckVo) throws SQLException {
+	public void weeklyCheck_Update(WeeklyCheckVo weeklyCheckVo) throws SQLException {
 		client.update("dayCheckUpdate", weeklyCheckVo);
 		
 	}

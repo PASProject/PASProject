@@ -665,69 +665,62 @@ li {
 
 
 		<!----------------------------------------------------------------------------------------------- 월요일 -->
-		<table class="table table-strip">
-			<tr style="background-color: white">
-				<th class="col-md-1"
-					style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
-					월</th>
-				<th class="col-md-7"
-					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-					<div id="zozo"> <span id="mon_textZone"> 여기다 내용 넣을 것</span></div>					
-				</th>
+<!-- 		<table class="table table-strip"> -->
+<!-- 			<tr style="background-color: white"> -->
+<!-- 				<th class="col-md-1" -->
+<!-- 					style="border: 1px solid #dddddd; text-align: center; padding: 30px;"> -->
+<!-- 					월</th> -->
+<!-- 				<th class="col-md-7" -->
+<!-- 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
+<!-- 					<div id="zozo"> <span id="mon_textZone"> 여기다 내용 넣을 것</span></div>					 -->
+<!-- 				</th> -->
 
 
-				<th class="col-md-2"
-					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-					Country</th>
-			</tr>
-			<tr>
-			</tr>
-		</table>
-<script>  
-
-// value=\'입력\'
-	$('#mon_textZone').on('click',function(){
- 		var a ="";
-		var content = $('#mon_textZone').text();
-		$('#zozo').empty();
-		a = "<textarea  cols=\'80\' rows=\'3\' style=\"outline: none;border-style: none; border-color: Transparent; \" >"
-		+content+"</textarea><input type=\'button\' class= \'btn btn-default\' >"
-		$('#zozo').html(a);
-	})
-</script>           
+<!-- 				<th class="col-md-2" -->
+<!-- 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
+<!-- 					Country</th> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
+<!-- <script>   -->
+ 
+ 
+ 
+<!--   value=\'입력\' -->
+<!--  	$('#mon_textZone').on('click',function(){ -->
+<!--  		var content = $('#mon_textZone').text(); -->
+<!--  		$('#zozo').empty(); -->
+<!-- 		a = "<textarea  cols=\'80\' rows=\'3\' style=\"outline: none;border-style: none; border-color: Transparent; \" >" -->
+<!-- 		+content+"</textarea><input type=\'button\' class= \'btn btn-default\' >" -->
+<!--  		$('#zozo').html(a); -->
+<!--  	}) -->
+<!-- </script>            -->
 
 	<!----------------------------------------------------------------------------------------------- 화요일 -->
 		
 		<form action ="weeklyChecklist" name ="dayInsert">
 		<table class="table table-strip">
+			
+			<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
 			<tr style="background-color: white">
 				<th class="col-md-1"
 					style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
-					화</th>
+					${ScheduleCalendarVo.dy}
+					<input type="hidden" value=" ${ScheduleCalendarVo.dt}">
+				</th>
 				<th class="col-md-7"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-				
-					
-					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
-					${WeeklyCheckVo.tue}
-					</c:forEach>
-					
-					
-					<br><Br><Br>
+				<br><Br><Br>
 					<input type="text" name="tue" size="100"  style="border: 0px;" onKeyDown="onKeyDown();"
 					 placeholder='이 곳을 클릭하여 일정을 적어주세요' >
-				
-									
-			
-				</th>
-					
-
-				<th class="col-md-2"
+			<th class="col-md-2"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-					Country</th>
+					Country
+			</th>
 			</tr>
-			<tr>
-			</tr>
+			</c:forEach>
+			
 		</table>
          </form>
        
@@ -750,3 +743,7 @@ li {
 	   
 </body>           
 </html>
+
+<%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%> --%>
+<%--  					${WeeklyCheckVo.tue}<span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span><br>  --%> --%>
+<%--  					</c:forEach> --%>

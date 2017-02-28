@@ -14,15 +14,15 @@ public class WeeklyCheckService {
 		this.weeklyCheckDao = weeklyCheckDao;
 	}
 	
-	public List<WeeklyCheckVo> day_check () throws SQLException{
+	public List<WeeklyCheckVo> weeklyCheck () throws SQLException{
 		
-		List<WeeklyCheckVo> list = weeklyCheckDao.day_check();
+		List<WeeklyCheckVo> list = weeklyCheckDao.weeklyCheck();
 		return list;
 	
 	}
 	
-	public void dayCheckUpdate(WeeklyCheckVo weeklyCheckVo) throws SQLException{
-		weeklyCheckDao.dayCheckUpdate(weeklyCheckVo);
+	public void weeklyCheck_Update(WeeklyCheckVo weeklyCheckVo) throws SQLException{
+		weeklyCheckDao.weeklyCheck_Update(weeklyCheckVo);
 	}
 
 }
