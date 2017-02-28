@@ -113,7 +113,7 @@ $(function() {
 		        column:100,
 		        rows:120
 		    })
-	        },630000);
+	        },2000);
     	$('#modal-fullscreen').modal();
     })
     $('button[class="close"]').on('click',function(){

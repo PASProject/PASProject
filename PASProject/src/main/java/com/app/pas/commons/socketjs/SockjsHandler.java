@@ -20,27 +20,20 @@ public class SockjsHandler extends TextWebSocketHandler{
 	private Map<String,WebSocketSession> users= new ConcurrentHashMap<String, WebSocketSession>();
 	
 	
-	   
-	@Override
-	protected void handlePongMessage(WebSocketSession session,
-			PongMessage message) throws Exception {
-		System.out.println("PongMessage 호출");
-	}
-	
-	
 	//클라이언트가 웹소켓서버로  메세지를 전송했을 때 실행되는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session,
-			@RequestBody TextMessage message) throws Exception {
-		System.out.println(message.getPayload());
+			TextMessage message) throws Exception {
 	     Gson gson = new Gson();
 	      Map<String,Object> map = new HashMap<String,Object>();
 	      map = (Map<String,Object>) gson.fromJson(message.getPayload().toString(), map.getClass());
 	      String msg= (String) map.get("push");
-	      String user = (String) map.get("user");
-	      session = users.get(user);
-	      session.sendMessage(message);
-	
+	      System.out.println();
+	      if(!users.containsKey(msg)){
+	    	  session = users.get(msg);
+	    	  session.sendMessage(message);
+	      }
+	      
 	  }
 
 	@Override
@@ -83,8 +76,6 @@ public class SockjsHandler extends TextWebSocketHandler{
 		
 	}
 
-	private void pushMessage(WebSocketSession session) throws IOException{
-	}
 	@Override
 	public void handleTransportError(WebSocketSession session,
 			Throwable exception) throws Exception {

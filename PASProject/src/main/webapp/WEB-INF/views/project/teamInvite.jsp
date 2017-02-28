@@ -42,14 +42,11 @@
             url : 'pmMemberInvite',
             dataType : 'JSON',
             success : function(d) {
-               alert(d);
                setData(JSON.parse(d));
             }
          })
          function setData(d) {
-            $("#searchbox").autocomplete(
-                  d,
-                  {
+            $("#searchbox").autocomplete(d,{
                      matchContains : true,
                      minChars : 1,
                      width : 310,
@@ -82,14 +79,15 @@
                          $.ajax({
                                  type : 'POST',
                                  url : 'pmInviteInsert',
-                                 dataType : 'JSON',
+                                 dataType : 'json',
                                  contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                                  data : {
                                     'mem_Email' : mem_Email
                                  },
-                                 success : function(data) {
-                                    alert('초대완료!');
-                                    location.href="<%=request.getContextPath()%>/project/pmMemberInvite"
+                                 success : function(result) {
+                                    var pushData = {'push':result.mem_Email};
+                   					 send(JSON.stringify(pushData)); 
+                                    location.href="<%=request.getContextPath()%>/project/pmMemberInvite";
                                  }
                               });
                          
@@ -99,10 +97,9 @@
                      
       })
       
-     function deleteBtn(mem_Email){
+     function deleteBtn(mem_Email){  
          $(function(){
             var Email = mem_Email;
-            alert(Email);
          $.ajax({
             
             type:'POST',
