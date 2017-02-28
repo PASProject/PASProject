@@ -685,12 +685,14 @@ public class MainContoller {
 
 		messageService.updateReceiveMessageReadYN(msg_Article_Num);
 		
-		System.out.println("나도안됨?");
-		System.out.println(msg_Article_Num);
+		/*messageService.updateRe
+		
 		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
+	
+		
 		
 		System.out.println("ReceiveDeatil"+messageVo);
-		model.addAttribute("messageVo", messageVo);
+		model.addAttribute("messageVo", messageVo);*/
 		
 		
 		return url;
@@ -701,8 +703,8 @@ public class MainContoller {
 	@RequestMapping(value="/messageSendDetail", method=RequestMethod.GET)
 	public String MessageSendDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageSendDetail";
-		System.out.println(msg_Article_Num);
-		MessageVo messageVo = messageService.selectSendMessage(msg_Article_Num);
+	
+		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
 		model.addAttribute("messageVo", messageVo);
 		System.out.println(msg_Article_Num);
 		System.out.println("detail"+ messageVo);

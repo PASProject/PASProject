@@ -61,7 +61,7 @@
 				<tr>
 				
 					<td><a href="<%=request.getContextPath() %>/main/messageSendDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
-					<td>${messageVo.msg_rm_Email }</td>
+					<td>${messageVo.msg_rm_Name }</td>
 					<td> <fmt:formatDate value="${messageVo.msg_Wt_Date }" pattern="yyyy-MM-dd"/></td>
 					<td>${messageVo.msg_Rd_Date }</td>
 					<td><input type="checkbox" /></td>

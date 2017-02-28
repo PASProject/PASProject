@@ -502,6 +502,16 @@ $(function(){
 					프로젝트 생성
 				</div>
 				<div class="modal-body" id="createBody">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 					생성자 : <input type="text" id="mem_Email"
 						value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
 					<br> <input type="hidden" id="mem_Img"
@@ -512,6 +522,24 @@ $(function(){
 					<textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
 					<br>
 				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" id="createBtn"
 						value="생성" />
