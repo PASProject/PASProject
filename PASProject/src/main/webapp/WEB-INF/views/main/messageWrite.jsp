@@ -9,7 +9,24 @@
 <title></title>
 </head>
 <body>
-   <div class="col-md-10" id="content">
+
+	<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
+   
+	<script>
+		$(function() {
+			var input = document.getElementsByName('joinProj');
+			var joinProj = input[0].value;
+
+			if (joinProj != '') {
+				$('.Message').removeClass('container')
+						.addClass('col-md-10');
+			}
+		})
+	</script>
+
+	<div class="container Message" id="content">
+
+   
       <h3 class="page-header"
          style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
          쪽지 보내기 <small></small>

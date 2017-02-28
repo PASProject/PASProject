@@ -648,37 +648,43 @@ public class MainContoller {
 		int proj_Num = projectService.insertProject(projectVo, projectJoinVo);
 		return proj_Num;
 	}
-	
-	@RequestMapping(value="/messageList", method=RequestMethod.GET)
-	public String MessageList( MessageVo messageVo, MemberVo memberVo, Model model) throws SQLException{
-		String url = "main/messageList";
+	@RequestMapping(value="/messageReceiveList", method=RequestMethod.GET)
+	public String MessageReceiveList( MessageVo messageVo, Model model, HttpSession session) throws SQLException{
+		String url = "main/messageReceiveList";
 		
-		
+		MemberVo memberVo=(MemberVo) session.getAttribute("loginUser");
+		messageVo.setMsg_rm_Email(memberVo.getMem_Email());
 		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
-		
-		messageList=messageService.selectMessageList(messageVo);
-		System.out.println("%%messageList%%" + messageList);
-
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"+messageVo);
-		
+		messageList=messageService.selectReceiveMessageList(messageVo);
 		
 		model.addAttribute("messageList",messageList);	
 		return url;
-		
 	
 	}
+	@RequestMapping(value="/messageSendList", method=RequestMethod.GET)
+	public String MessageSendList( MessageVo messageVo,Model model, HttpSession session) throws SQLException{
+		String url = "main/messageSendList";
+		
+		MemberVo memberVo=(MemberVo) session.getAttribute("loginUser");
+		messageVo.setMsg_sm_Email(memberVo.getMem_Email());
+		
+		List<MessageVo> messageList = new ArrayList<MessageVo>();
+		messageList=messageService.selectSendMessageList(messageVo);
+
+		model.addAttribute("messageList",messageList);	
+		return url;
+	
+	}
+	
+	
 	//받은 쪽지 디테일
 	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
 	public String MessageReceiveDetail(String msg_rm_Read_yn, int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageReceiveDetail";
-		System.out.println(msg_Article_Num);
 
-		MessageVo messageVo = messageService.selectReceiveMessage(msg_Article_Num);
-		msg_rm_Read_yn = messageVo.getMsg_rm_del_yn();
-		
-		System.out.println(msg_rm_Read_yn);
-		/*messageService.updateReceiveMessageReadYN(msg_Article_Num);*/
+		messageService.updateReceiveMessageReadYN(msg_Article_Num);
+		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
 		
 		System.out.println("ReceiveDeatil"+messageVo);
 		model.addAttribute("messageVo", messageVo);
@@ -709,7 +715,7 @@ public class MainContoller {
 	//쪽지 보내기
 	@RequestMapping(value="/messageInsert", method=RequestMethod.POST)
 	public String MessageInsert(MessageVo messageVo, HttpSession session) throws SQLException{
-		String url = "redirect:";
+		String url = "redirect:messageSendList";
 		System.out.println(messageVo);
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_sm_Email = memberVo.getMem_Email();
