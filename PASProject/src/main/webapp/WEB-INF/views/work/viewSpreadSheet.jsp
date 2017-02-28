@@ -189,6 +189,7 @@ $(function() {
     	 
     	 var doc_Num = '${spreadSheetVo.doc_Num}';
          var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
+         
     	 $.ajax({  
          	type : "POST",
  			url : "saveFile",

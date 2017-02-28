@@ -61,7 +61,7 @@ $(function() {
     });
     
     $('#goBackBtn').on('click',function(){
-    	
+    	location.href="/pas/project/work/createWorkForm";
     })
 });
 </script>
