@@ -10,5 +10,7 @@ public interface WeeklyCheckDao {
 	
 	public List<WeeklyCheckVo> weeklyCheck_Select(WeeklyCheckVo weeklyCheckVo) throws SQLException;
 	public void weeklyCheck_Update(WeeklyCheckVo weeklyCheckVo) throws SQLException;
+	public void weeklyCheck_Delete(WeeklyCheckVo weeklyCheckVo) throws SQLException;
+	public void weeklyCheck_YN(WeeklyCheckVo weeklyCheckVo) throws SQLException; 
 
 }

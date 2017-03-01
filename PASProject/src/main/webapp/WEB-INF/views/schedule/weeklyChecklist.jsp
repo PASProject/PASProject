@@ -5,10 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-
 <body>
-<!-- 	<script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> -->
-<style>
+	<!-- 	<script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> -->
+	<style>
 .tableContents {
 	text-overflow: ellipsis;
 }
@@ -22,7 +21,7 @@ li {
 	display: block;
 }
 </style>
-<!-- 	<script>
+	<!-- 	<script>
 	moment.lang('ko', {
 	    weekdays: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"], 
 	    weekdaysShort: ["일","월","화","수","목","금","토"],
@@ -51,12 +50,11 @@ li {
 			style="table-layout: fixed;">
 			<thead>
 				<tr>
-				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
-					<th class="col-md-1 day">${ScheduleCalendarVo.dy} 
-					
-					${ScheduleCalendarVo.dt}
-<%-- 					<fmt:formatDate value="" pattern="yyyy-MM-dd"/> --%>
-				</th>
+					<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
+						<th class="col-md-1 day">${ScheduleCalendarVo.dy}
+
+							${ScheduleCalendarVo.dt} <%-- 					<fmt:formatDate value="" pattern="yyyy-MM-dd"/> --%>
+						</th>
 					</c:forEach>
 				</tr>
 			</thead>
@@ -79,8 +77,7 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Monday_End">${scheduleCalendarVo.sc_Title}</a>
-									</li>
+										data-target="#Monday_End">${scheduleCalendarVo.sc_Title}</a></li>
 								</c:if>
 
 							</c:forEach>
@@ -179,14 +176,13 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Friday_End">${scheduleCalendarVo.sc_Title}</a>
-									</li>
+										data-target="#Friday_End">${scheduleCalendarVo.sc_Title}</a></li>
 								</c:if>
 
 							</c:forEach>
 						</ul>
 
-					 </td>
+					</td>
 					<td class="tableContents">
 						<ul style="font-size: 12px;">
 							<c:forEach items="${weelyList_start}" var="scheduleCalendarVo">
@@ -229,14 +225,13 @@ li {
 									<li><span style="color: #fd7037; font-weight: bold;">마감&nbsp;</span><a
 										style="color: black; text-decoration: none;"
 										href="javascript:void(0);" data-toggle="modal"
-										data-target="#Friday_End">${scheduleCalendarVo.sc_Title}</a>
-									</li>
+										data-target="#Friday_End">${scheduleCalendarVo.sc_Title}</a></li>
 								</c:if>
 
 							</c:forEach>
 						</ul>
 
-					</td> 
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -396,7 +391,7 @@ li {
 
 			</div>
 		</div>
-<%-- 		<!-- 토요일 시작일감 모달 -->
+		<%-- 		<!-- 토요일 시작일감 모달 -->
 		<div class="modal fade" id="saturday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -665,53 +660,82 @@ li {
 		</div> --%>
 
 
-	<!----------------------------------------------------------------------------------------요일일정 체크 -->
-		
-		<form action ="weeklyChecklist" name ="dayInsert">
-		
-		<table class="table table-strip">
-			
-			<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo" varStatus="status">
-			<tr style="background-color: white">
-				<th class="col-md-1"
-					style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
-					${ScheduleCalendarVo.dy}
-					<input type="hidden" value=" ${ScheduleCalendarVo.dt}" id = "${status.count}date" >
-				</th>
-				<th class="col-md-7"
-					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-				<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
-					
-						
-						<c:set var="dateF">
-						<fmt:formatDate value="${WeeklyCheckVo.wk_Date}" pattern="yyyyMMdd" /></c:set>
-						<c:if test="${dateF ==ScheduleCalendarVo.dt}">
-							<li>
-								<ul> -  ${ WeeklyCheckVo.wk_Content}
-									<a href="abc?wk_Num=${WeeklyCheckVo.wk_Num}"><span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span></a>
-									<a href="#"><span class="glyphicon glyphicon-pencil" style="font-size:12px;"></span></a>
-								</ul>
-							</li>
-						</c:if>
-							
-				
-				</c:forEach>
-			<input type="text" name="wk_Content" id ="${status.count}content" size="100"  style="border: 0px;" onKeyDown="onKeyDown(${status.count});"
-			placeholder='이 곳을 클릭하여 일정을 적어주세요' >
+		<!----------------------------------------------------------------------------------------요일일정 체크 -->
 
-			<th class="col-md-2"
-					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-					Country
-			</th>
-			</tr>
+		<form action="weeklyChecklist" name="dayInsert">
+
+			<table class="table table-strip">
+
+				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo"
+					varStatus="status">
+					<tr style="background-color: white">
+						<th class="col-md-1"
+							style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
+							${ScheduleCalendarVo.dy} <input type="hidden"
+							value=" ${ScheduleCalendarVo.dt}" id="${status.count}date">
+						</th>
+						<th class="col-md-7"
+							style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
+							<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
+
+
+								<c:set var="dateF">
+									<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
+										pattern="yyyyMMdd" />
+								</c:set>
+								
+								<c:if test="${dateF ==ScheduleCalendarVo.dt}">
+							
+						
+								
+									<ul>
+										<li><span class="doList"> - ${ WeeklyCheckVo.wk_Content}</span>
+											<a href="weeklyCheck_Delete?wk_Num=${WeeklyCheckVo.wk_Num}">
+											<span class="glyphicon glyphicon-remove"
+												style="font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;">
+											</span>
+										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
+												style="font-size: 12px;"></span></a> <span
+											class="glyphicon glyphicon-heart"></span>
+											<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" type="button" class="btn btn-info" id="finish">완료</a>
+											</li>
+									</ul>
+									
+								</c:if>
+
+
+							</c:forEach> 
+							
+							
+							
+							<input type="text" name="wk_Content" id="${status.count}content"
+							size="100" style="border: 0px;"
+							onKeyDown="onKeyDown(${status.count});"
+							placeholder='이 곳을 클릭하여 일정을 적어주세요'> 
+							
+						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
+					
+						<c:choose>
+								실험1
+								<c:when test='${WeeklyCheckVo.wk_Yn eq Y }'>
+									${WeeklyCheckVo.wk_Content}
+								</c:when>
+
+								
+						</c:choose>
+					
+						</th>
+					
+					</tr>
+
+				</c:forEach>
+
+			</table>
+		</form>
+
+
+	</div>
 			
-			</c:forEach>
-			
-		</table>
-         </form>
-       
-           
-	</div>             
 	<script>        
 	function onKeyDown(countNum)
 	{
@@ -725,12 +749,12 @@ li {
 	}
 	
 	  
-	</script>                  
 	
-	   
-</body>                    
+</script></body>
 </html>
 
-<%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%> --%>
-<%--  					${WeeklyCheckVo.tue}<span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span><br>  --%> --%>
+<%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%>
+--%>
+<%--  					${WeeklyCheckVo.tue}<span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span><br>  --%>
+--%>
 <%--  					</c:forEach> --%>

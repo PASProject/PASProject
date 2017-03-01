@@ -16,6 +16,18 @@
 		WEEKLY_CHECK(WK_NUM,WK_DATE,WK_CONTENT,WK_MEM_EMAIL,WK_YN,wk_proj_num)
 		VALUES(WEEKLY_CHECK_SEQ.NEXTVAL,#wk_Date#,#wk_Content#,#wk_Mem_Email#,#wk_Yn#,#wk_Proj_Num#)
 	</update>
+	
+	<delete id="weeklyCheck_Delete" parameterClass="WeeklyCheck">
+		 DELETE FROM WEEKLY_CHECK
+		WHERE WK_NUM=#wk_Num#
+	</delete>
+	
+	<update id="weeklyCheck_YN" parameterClass="WeeklyCheck">
+		UPDATE WEEKLY_CHECK SET
+		WK_YN='Y'
+		WHERE
+		WK_NUM = #wk_Num#
+	</update>
 
 
 </sqlMap>
