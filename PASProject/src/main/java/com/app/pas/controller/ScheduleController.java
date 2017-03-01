@@ -1,5 +1,6 @@
 package com.app.pas.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,9 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,9 +47,11 @@ public class ScheduleController {
 			Model model, HttpSession session,
 			@RequestParam(defaultValue = "") String d,
 			@RequestParam(defaultValue = "") String wk_Content,
-			WeeklyCheckVo weeklyCheckVo) throws SQLException, ParseException {
+			HttpServletRequest request,
+			WeeklyCheckVo weeklyCheckVo) throws SQLException, ParseException, UnsupportedEncodingException {
+	
 		String url = "schedule/weeklyChecklist";
-
+		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		String wk_Proj_Num = (String) session.getAttribute("joinProj");
@@ -60,7 +65,7 @@ public class ScheduleController {
 			StringBuffer sb = new StringBuffer(d);
 			sb.insert(5, "-");
 			sb.insert(8, "-");
-
+			request.setCharacterEncoding("UTF-8");
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date to = transFormat.parse(sb.toString());
 			weeklyCheckVo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
