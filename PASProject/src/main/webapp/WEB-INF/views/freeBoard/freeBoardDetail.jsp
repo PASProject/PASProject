@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<!-- <script language="javascript">
+<script language="javascript">
       var i = 0
       window.document.onkeydown = protectKey;
 
@@ -27,7 +27,7 @@
             return false;
          }
       }
-   </script> -->
+   </script> 
    <c:if test="${like == 'yes' }">
       <script type="text/javascript">
          alert("추천완료!");

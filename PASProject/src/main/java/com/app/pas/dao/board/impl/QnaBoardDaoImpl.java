@@ -94,6 +94,12 @@ public class QnaBoardDaoImpl implements QnaBoardDao{
 		return totalCount;
 	}
 
+	@Override
+	public int selectNCount() throws SQLException {
+		int NCount = (Integer) client.queryForObject("selectNCount");
+		return NCount;
+	}
+
 
 
 	

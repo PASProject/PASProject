@@ -23,19 +23,19 @@
 <body>
 	<form>
 	<strong><font size="5" style="margin-left: 8%">회원 관리</font></strong>
-		<font style="margin-left:50%;">이메일 : <input type="text" name="mem_Email" style="width:15%;"/>&nbsp; <input
-			type="button" onclick="searchEmail(this.form);" value="이메일검색" style="width:5%;"></font>
+			<font style="margin-left:50%;">이메일 : <input type="text" name="mem_Email" style="width:15%;"/>&nbsp; 
+			<input type="button" onclick="searchEmail(this.form);" value="이메일검색" style="width:5%;"></font>
 	</form>
 
 
 	<table style="width: 83%; margin-left: 7%" class="table table-hover" style="text-align:center;">
-		<tr style="text-align:right;">
-			<th style="text-align:center;"><input type="button" value="제명" onclick="go_delete()"></th>
-			<th style="text-align:center;">회원이메일</th>
-			<th style="text-align:center;">회원이름</th>
-			<th style="text-align:center;">회원전화번호</th>
-			<th style="text-align:center;">가입일자</th>
-			<th style="text-align:center;">회원탈퇴여부</th>
+		<tr>
+			<th style="text-align:center;vertical-align:middle !important;"><input type="button" value="제명" onclick="go_delete()" style="margin-top: 0px; margin-bottom: 0px;"></th>
+			<th style="text-align:center;vertical-align:middle !important;">회원이메일</th>
+			<th style="text-align:center;vertical-align:middle !important;">회원이름</th>
+			<th style="text-align:center;vertical-align:middle !important;">회원전화번호</th>
+			<th style="text-align:center;vertical-align:middle !important;">가입일자</th>
+			<th style="text-align:center;vertical-align:middle !important;">회원탈퇴여부</th>
 		</tr>
 		<c:forEach items="${memberList }" var="memberVo"
 			begin="${paging.beginNo}" end="${paging.endNo}" varStatus="status">
@@ -66,7 +66,7 @@
 				<td style="text-align: center;">${memberVo.mem_Phone }</td>
 				<td style="text-align: center;">${memberVo.mem_Join_Date }</td>
 				<td style="text-align: center;"><select id="quitCheck" name="quitCheck" 
-				 style="width:70px;" onchange="change_go(this.value,'${memberVo.mem_Email}')">
+				 style="width:70px; margin-top: 0px; margin-bottom: 0px;" onchange="change_go(this.value,'${memberVo.mem_Email}')">
 						<option value="y"
 							<c:if test="${memberVo.quit_Check=='y'}">selected="selected"</c:if>
 						>&nbsp;&nbsp;&nbsp;YES</option>

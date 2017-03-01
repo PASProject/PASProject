@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.pas.service.AdminService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.ProjectService;
+import com.app.pas.service.board.QnaBoardService;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,6 +23,8 @@ public class AdminMemberMain {
 	AdminService adminService;
 	@Autowired
 	ProjectService projectService;
+	@Autowired
+	QnaBoardService qnaBoardService; 
 
 	@RequestMapping("/adminMain")
 	public String MemberList(Model model,
@@ -31,6 +34,8 @@ public class AdminMemberMain {
 		
 		int total_Mem = memberService.selectMemberTotalCount();
 		int total_proj = projectService.selectProjectTotalCount();
+		int total_QnaN = qnaBoardService.selectNCount();
+		model.addAttribute("total_QnaN",total_QnaN);
 		model.addAttribute("total_Mem",total_Mem);
 		model.addAttribute("total_proj",total_proj);
 		String url = "admin/adminMain";

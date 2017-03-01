@@ -19,31 +19,35 @@
 
 
 </head>
+<style>
+input[type=button]{
+vertical-align:middle;
+}
+</style>
 <body>
-	<h1>
-		프로젝트 관리
-	</h1>
-	<a></a>
-	<form>  
-		프로젝트명 : <input type="text" name="proj_Name" />&nbsp; <input
-			type="button" onclick="searchProj(this.form);" value="검색">
+	 
+	<form>
+	<strong><font size="5" style="margin-left: 8%">프로젝트 관리</font></strong>
+			<font style="margin-left:45%;">프로젝트명 : <input type="text" name="proj_Name" style="width:15%;"/>&nbsp; 
+			<input type="button" onclick="searchProj(this.form);" value="검색" 
+			style="width:5%;"></font>
 	</form>
 
 
-	<table style="width: 83%">
+	<table style="width: 83%; margin-left: 7%; text-align:center;" class="table table-hover">
 		<tr>
-			<th></th>
-			<th>프로젝트이름</th>
-			<th>프로젝트팀이름</th>
-			<th>프로젝트내용</th>
-			<th>생성자이메일</th>
+			<th style="text-align:center; vertical-align:middle !important;"><input type="button" value="삭제" onclick="go_delete()"style="margin-top: 0px; margin-bottom: 0px;"></th>
+			<th style="text-align:center; vertical-align:middle !important;">프로젝트이름</th>
+			<th style="text-align:center; vertical-align:middle !important;">프로젝트팀이름</th>
+			<th style="text-align:center; vertical-align:middle !important;">프로젝트내용</th>
+			<th style="text-align:center; vertical-align:middle !important;">생성자이메일</th>
 			
 		</tr>
 		<c:forEach items="${projectList }" var="projectVo"
 			begin="${paging.beginNo}" end="${paging.endNo}" varStatus="status">
 			<tr>
-				<td><input name= "check" type="checkbox" value='${projectVo.proj_Num}'></td>
-				<td><a href="#" data-toggle="modal"
+				<td style="text-align: center;"><input name= "check" type="checkbox" value='${projectVo.proj_Num}'></td>
+				<td style="text-align: center;"><a href="#" data-toggle="modal"
 					onclick="goModal('${projectVo.proj_Num}','${status.index}')"
 					data-target="#${status.index }" data-keyboard="false"
 					data-backdrop="static">${projectVo.proj_Name} </a> <!-- Modal -->
@@ -64,39 +68,43 @@
 							</div>
 						</div>
 					</div></td>
-				<td>${projectVo.proj_Team}</td>
-				<td>${projectVo.proj_Content}</td>
-				<td>${projectVo.mem_Email }</td>
-				
-					
+				<td style="text-align: center;">${projectVo.proj_Team}</td>
+				<td style="text-align: center;">${projectVo.proj_Content}</td>
+				<td style="text-align: center;">${projectVo.mem_Email }</td>	
 			</tr>
-			
-		
-
-
 		</c:forEach>
-		
-		<tr>
-			<td colspan="5" align="right"><c:if
-					test="${paging.finalPageNo>0}">
-					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
-
-					<c:if test="${paging.pageNo>prevPageNo}">
-						<a href="projectList?page=${prevPageNo}">[이전]</a>
-					</c:if>
-					<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-						varStatus="status">
-						<a href="projectList?page=${i}">[${i}]</a>
-					</c:forEach>
-					<c:if test="${paging.pageNo<finalPageNo}">
-						<a href="projectList?page=${finalPageNo}">[다음]</a>
-					</c:if>
-				</c:if></td>
-		</tr>
 	</table>
-	<input type="button" value="제명" onclick="go_delete()">
+		<div class="col-md-12 text-center">
+				<c:if test="${paging.finalPageNo>0 }">
+					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center" style="margin-left: 40%">
 
+							<li class="page-item"><a class="page-link"
+								href="projectList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+
+
+							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
+								varStatus="status">
+										<li class="page-item" id="number"><a
+											class="page-link" href="projectList?page=${i}">${i}</a></li>
+										<script>
+										$('li').each(function(){
+										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+										    {
+										    $(this).addClass('active').siblings().removeClass('active');
+										    }
+										});
+										</script>
+							</c:forEach>
+							<li class="page-item"><a class="page-link"
+								href="projectList?page=${finalPageNo}">끝 페이지</a></li>
+						</ul>
+					</nav>
+				</c:if>
+		</div>
+		<br><br>
 	<script>
 	
 	function check_go(value){

@@ -76,6 +76,11 @@ public class QnaBoardService {
 		qnaBoardDao.QnaBoardCount(qb_Article_Num);
 	}
 	
+	public int selectNCount() throws SQLException {
+		int NCount = qnaBoardDao.selectNCount();
+		return NCount;
+	}
+	
 	
 
 

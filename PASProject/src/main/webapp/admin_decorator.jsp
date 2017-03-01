@@ -52,7 +52,7 @@ margin-bottom:10px;
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                             class="icon-user"></i> admin <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:;">Logout</a></li>
+              <li><a href="<%request.getContextPath();%>/pas/index">Logout</a></li>
             </ul>
           </li>
         </ul>
