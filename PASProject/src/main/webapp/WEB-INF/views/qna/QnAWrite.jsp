@@ -15,7 +15,7 @@
 			<form name="form" method="post" action="insertQnABoard">
 				<h3 class="page-header"
 					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-					SkillSharingBoard <small>글 쓰기</small>
+					QnA<small> 글 쓰기</small>
 				</h3>
 				<fieldset>
 
