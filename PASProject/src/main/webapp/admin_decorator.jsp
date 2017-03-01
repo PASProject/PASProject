@@ -150,16 +150,8 @@ margin-bottom:10px;
 		  selectable: true,
 		  selectHelper: true,
 		  select: function(start, end, allDay) {
-		    var title = prompt('Event Title:');
+		    var title = prompt('Insert your event title ');
 		    if (title) {
-		    	var dataList ={'title':title,'start':start,'end':end,'allDay':allDay};
-		    	$.ajax({
-		    		contentType:'application/json',
-		    		type:'post',
-		    		url:'adminInsertCal',
-		    		data:JSON.stringify(dataList)
-		    	})
-		    	
 		      calendar.fullCalendar('renderEvent',
 		        {
 		          title: title,
@@ -169,6 +161,13 @@ margin-bottom:10px;
 		        },
 		        true // make the event "stick"
 		      );
+		      var dataList ={'title':title,'start':start.setDate(start.getDate()+1),'end':end.setDate(end.getDate()+1),'allDay':allDay};
+		    	$.ajax({ 
+		    		contentType:'application/json',
+		    		type:'post',  
+		    		url:'adminInsertCal',
+		    		data:JSON.stringify(dataList)
+		    	}) 
 		    }
 		    calendar.fullCalendar('unselect');
 		  },
@@ -176,9 +175,10 @@ margin-bottom:10px;
 		  eventSources:[{
 			  url : "adminCalendarList",
 			  type:"post"
-		  }]
+		  }]  
+		  
 		});
-	});
+	});  
 </script><!-- /Calendar -->
 
 </html>
