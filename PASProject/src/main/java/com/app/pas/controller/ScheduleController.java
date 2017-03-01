@@ -104,9 +104,16 @@ public class ScheduleController {
 		System.out.println("내용 : " + wk_Content );
 		if ((d.equals(""))) {
 		}else{
+			 StringBuffer sb = new StringBuffer(d);
+			 sb.insert(5, "-");
+			 sb.insert(8, "-");
 			
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date to = transFormat.parse(d);
+			System.out.println("이거슨 d : " + d);
+			System.out.println("이거슨 sb : " + sb);
+			
+			
+			SimpleDateFormat transFormat =  new SimpleDateFormat("yyyy-MM-dd");
+			Date to = transFormat.parse(sb.toString());
 			System.out.println("날자자자자: "+to);
 			weeklyCheckVo.setWk_Content(wk_Content);
 			weeklyCheckVo.setWk_Date(to);
