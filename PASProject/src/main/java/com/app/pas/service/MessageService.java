@@ -56,5 +56,24 @@ public class MessageService {
 	public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException{
 		messageDao.updateReceiveMessageReadTime(msg_Article_Num);
 	}
+	public MessageVo selectReceiveMessageDetail(int msg_Article_Num) throws SQLException{
+		MessageVo messageVo = null;
+		messageVo = messageDao.selectMessage(msg_Article_Num);
+		messageDao.updateReceiveMessageReadYN(msg_Article_Num);
+		if((messageVo.getMsg_rm_Read_yn().toString().equals("n"))){
+			messageDao.updateReceiveMessageReadTime(msg_Article_Num);	
+		}else{
+			System.out.println("업데이트 안되고 있는거?");
+		}
+		messageDao.selectMessage(msg_Article_Num);
+		return messageVo;
+	}
+	public void updateSendMessageDelYN(int msg_Article_Num) throws SQLException{
+		messageDao.updateSendMessageDelYN(msg_Article_Num);
+	}
+	public void updateReceiveMessageDelYN(int msg_Article_Num) throws SQLException{
+		messageDao.updateReceiveMessageDelYN(msg_Article_Num);
+	}
+	
 	
 }

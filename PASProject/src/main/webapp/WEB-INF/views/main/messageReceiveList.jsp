@@ -10,8 +10,7 @@
 <title></title>
 </head>
 <body>
-
-	<script>
+<script>
 		$(function() {
 			var input = document.getElementsByName('joinProj');
 			var joinProj = input[0].value;
@@ -47,27 +46,44 @@
 			<table id="receiveMessageList" class="table table-hover">
 			<caption><b>받은 쪽지함</b></caption>
 				<tr>
-				
-					<th class="col-md-4">제목</th>
-					<th class="col-md-1">보낸이</th>
-					<th class="col-md-1">등록일</th>
-					<th class="col-md-1">읽은 시간</th>
-					<th class="col-md-1"><input type="checkbox" /></th>
+					<th style="width:2%"></th>
+					<th style="width:46%">제목</th>
+					<th  style="width:15%">보낸이</th>
+					<th  style="width:15%">등록일</th>
+					<th style="width:17%" >읽은 시간</th>
+					<th  style="width:5%"><input type="checkbox" /></th>
 				</tr>
 				<c:forEach items="${messageList }" var="messageVo" >
 				<tr>
+					<td></td>
+					<td>
 					
-					<td><a href="<%=request.getContextPath() %>/main/messageReceiveDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
+					<c:choose>
+					<c:when test="${messageVo.msg_rm_Read_yn=='n' }">
+					<a href="<%=request.getContextPath() %>/main/messageReceiveDetail?msg_Article_Num=${messageVo.msg_Article_Num }" ><b>${messageVo.msg_Title }</b></a>
+					</c:when>
+					<c:otherwise>
+					<a href="<%=request.getContextPath() %>/main/messageReceiveDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					
+					
+					</td>
 					<td>${messageVo.msg_sm_Name }</td>
 					<td> <fmt:formatDate value="${messageVo.msg_Wt_Date }" pattern="yyyy-MM-dd"/></td>
 					
-					<td>${messageVo.msg_Rd_Date }</td>
+					<td>
+					<fmt:parseDate value="${messageVo.msg_Rd_Date }" var="readDate" pattern="yyyy/MM/dd HH:mm:ss"/>
+					<fmt:formatDate value="${readDate }" pattern="yyyy-MM-dd HH:mm"/>
+					</td>
 					<td><input type="checkbox" /></td>
 				</tr>
 						</c:forEach>
 			</table>
 
-		
+		<button class="btn btn-danger pull-right">삭제</button>
 
 	</div>
 

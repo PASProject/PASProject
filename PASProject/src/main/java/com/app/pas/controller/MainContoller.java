@@ -667,26 +667,38 @@ public class MainContoller {
 	
 	}
 	
-	
-	//받은 쪽지 디테일
+	//받은쪽지 디테일
 	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
 	public String MessageReceiveDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageReceiveDetail";
+	
+		MessageVo asdf = messageService.selectReceiveMessageDetail(msg_Article_Num);
 		
-		MessageVo messageVo = messageService.selectMessage(msg_Article_Num);
+		model.addAttribute("messageVo", asdf);
+		System.out.println("controller MessageVo"+asdf);
+		return url;
+		
+	}
+	/*//받은 쪽지 디테일
+	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
+	public String MessageReceiveDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
+		String url = "main/messageReceiveDetail";
+		MessageVo messageVo = new MessageVo();
+		
+		messageVo = messageService.selectMessage(msg_Article_Num);
+		System.out.println(messageVo);
 		messageService.updateReceiveMessageReadYN(msg_Article_Num);
 
 		
 		System.out.println(messageVo.getMsg_rm_Read_yn().toString());
-		if((messageVo.getMsg_rm_Read_yn().toString().equals('n'))){
+		
+		
+		if((messageVo.getMsg_rm_Read_yn().toString().equals("n"))){
 			messageService.updateReceiveMessageReadTime(msg_Article_Num);	
+		}else{
+			System.out.println("업데이트 안되고 있는거?");
 		}
 		messageVo=messageService.selectMessage(msg_Article_Num);
-		
-		
-		
-
-	
 		
 		
 		System.out.println("ReceiveDeatil"+messageVo);
@@ -695,7 +707,7 @@ public class MainContoller {
 		
 		return url;
 		
-	}
+	}*/
 	
 	//보낸 쪽지 디테일
 	@RequestMapping(value="/messageSendDetail", method=RequestMethod.GET)
@@ -732,6 +744,16 @@ public class MainContoller {
 		System.out.println("나는 거침?");
 		messageService.insertMessage(messageVo);
 		/*messageVo.setMsg_rm_Email(msg_rm_Email);*/
+		return url;
+	}
+	
+	//쪽지 삭제하기
+	@RequestMapping(value="/messageDelete")
+	public String DeleteSendMessage(int msg_Article_Num, HttpSession session, Model model) throws SQLException{
+		String url = "redirect:" ;
+		
+		messageService.updateSendMessageDelYN(msg_Article_Num);
+		
 		return url;
 	}
 	

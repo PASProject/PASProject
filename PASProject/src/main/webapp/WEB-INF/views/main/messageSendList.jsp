@@ -35,7 +35,7 @@
 		<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
 
 		
-		<button class="btn btn-default pull-right" id="receive">받은 편지함 가기</button>
+		<button class="btn btn-default pull-right" id="receive">받은 쪽지함 가기</button>
 	
 		<script>
 		$(function(){
@@ -50,27 +50,41 @@
 			<table  id="sendMessageList" class="table table-hover">
 			<caption><b>보낸 쪽지함</b> </caption>
 				<tr>
-				
-					<th class="col-md-4">제목</th>
-					<th class="col-md-1">받은이</th>
-					<th class="col-md-1">등록일</th>
-					<th class="col-md-1">읽은 시간</th>
-					<th class="col-md-1"><input type="checkbox" /></th>
+					<th style="width:2%"></th>
+					<th style="width:46%">제목</th>
+					<th  style="width:15%">받는이</th>
+					<th  style="width:15%">등록일</th>
+					<th style="width:17%" >읽은 시간</th>
+					<th  style="width:5%"><input type="checkbox" id="checkAll" /></th>
 				</tr>
 				<c:forEach items="${messageList }" var="messageVo" >
-				<tr>
 				
+				<tr>
+					<td></td>
 					<td><a href="<%=request.getContextPath() %>/main/messageSendDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_rm_Name }</td>
 					<td> <fmt:formatDate value="${messageVo.msg_Wt_Date }" pattern="yyyy-MM-dd"/></td>
-					<td>${messageVo.msg_Rd_Date }</td>
-					<td><input type="checkbox" /></td>
+					
+				<td>
+					<fmt:parseDate value="${messageVo.msg_Rd_Date }" var="readDate" pattern="yyyy/MM/dd HH:mm:ss"/>
+					<fmt:formatDate value="${readDate }" pattern="yyyy-MM-dd HH:mm"/>
+					</td>
+					<td><input type="checkbox" id="check" /></td>
 				</tr>
+						
 						</c:forEach>
 			</table>
 
-
-		
+			<button id="deleteMessage" class="btn btn-danger pull-right">삭제</button>
+			<script>
+			$(function(){
+				$('#checkAll').click(function(){
+					if($('#checkall').prop("checked")){
+						$('#check').prop
+					}
+				})
+			})
+			</script>
 
 	</div>
 

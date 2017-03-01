@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,9 @@
          if (joinProj != '') {
             $('.Message').removeClass('container').addClass('col-md-10');
          }
+         $('#goList').on('click',function(){
+        	 location.href="/pas/main/messageReceiveList";
+         })
       })
    </script>
    <input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
@@ -28,20 +32,25 @@
       </h3>
       <table class="table table-hover">
          <tr>
-            <td><b>${messageVo.msg_Title}</b></td>
+         	<th style="width:1%"></th>
+            <th style="width:99%">${messageVo.msg_Title}</th>
          </tr>
          <tr>
-            <td><a href="#">${messageVo.msg_sm_Name }</a>&nbsp;&nbsp;${messageVo.msg_Wt_Date }</td>
+         	<td></td>
+            <td><a href="#">${messageVo.msg_sm_Name }</a>&nbsp;&nbsp;<span style="color:#888888;">
+            <fmt:formatDate value="${messageVo.msg_Wt_Date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+            </span></td>
          </tr>
          <tr>
-            <td style="border-bottom: 1px solid #ddd;">${messageVo.msg_Content }</td>
+         	<td></td>
+            <td >${messageVo.msg_Content }</td>
          </tr>
       </table>
       <button type="button" class="btn btn-default">삭제</button>
-      <div class="btn-group pull-right">
-         <button type="button" class="btn btn-default">답장</button>
-         <button type="button" class="btn btn-default">목록</button>
-      </div>
+      
+     	<button type="button" id="goList" class="btn btn-default pull-right">목록</button>
+         <button type="button" class="btn btn-default pull-right" style="margin-right:5px;">답장</button>
+         
 
    </div>
 </body>

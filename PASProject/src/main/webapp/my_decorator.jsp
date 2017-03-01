@@ -155,6 +155,12 @@ $(function(){
 
 <!--  -->
 <style>
+a{
+color:black;
+}
+a:hover{
+text-decoration:none !important;
+}
 .modal-header{
 border-bottom: 1px solid rgba(0, 0, 0, 0.27) !important;
 }
@@ -178,9 +184,7 @@ font-family: 'NanumGothic';
 	height: 50px;
 }
 
-th{
-text-align:center;
-}
+
 td{
 word-break:break-all;
 }
@@ -286,6 +290,16 @@ body {
 </style>
 
 <style>
+.table>tbody>tr>th{
+background-color:white;
+border-top: 1px solid #888888;
+}
+
+table.table-hover{
+margin-left:20px;
+width:96%;
+border-bottom : 1px solid #888888;
+}
 .createProject {
 	color: #fff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
