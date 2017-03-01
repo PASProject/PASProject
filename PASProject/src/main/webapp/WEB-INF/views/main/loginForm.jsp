@@ -97,6 +97,35 @@ body {
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 
+<style>
+#mloader{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: #000;
+  opacity: 0.7;
+  display:none;
+}
+
+#mloader .masterkey_blink {
+	font-size:20px;
+	font-weight:bold;
+	margin: 10% 45%;
+    -webkit-animation: masterkey_blink 3s linear infinite;
+} 
+@-webkit-keyframes masterkey_blink {
+    15% { color: white; }
+    40% { color: black; }
+    75% { color: white; }
+}
+
+</style>
+
+<div id="mloader"><div class="masterkey_blink">LOADING...</div></div>
+
 
 
 	<script type="text/javascript">
@@ -111,6 +140,9 @@ body {
 				
 				type : 'POST',
 				url : '/pas/main/login',
+				beforeSend:function(){
+					$('#mloader').show();
+				},
 				dataType : 'json',
 				data : {
 					'email' : email,

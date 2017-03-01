@@ -18,7 +18,7 @@
 }
 
 .panel-body table tr td {
-	padding-left: 15px
+	padding-left: 30px
 }
 
 .panel-body .table {

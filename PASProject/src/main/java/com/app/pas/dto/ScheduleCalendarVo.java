@@ -19,7 +19,6 @@ public class ScheduleCalendarVo implements Serializable {
 	private static final long serialVersionUID = 1962789608836030585L;
 	private int sc_Num;
 	private Date sc_Start_Date;
-	
 	private Date sc_End_Date;
 	private String sc_Wk_Name;
 	private String sc_Wk_Mem_Email;

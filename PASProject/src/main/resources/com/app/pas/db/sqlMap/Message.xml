@@ -66,10 +66,11 @@
 		MSG_ARTICLE_NUM =
 		#msg_Article_Num#
 	</update>
+	
 	<update id="updateReceiveMessageReadTime" parameterClass="int">
 		update
-		message set msg_rd_date = SYSDATE where MSG_ARTICLE_NUM = #msg_Article_Num#
-	
+		message set msg_rd_date = to_char(sysdate, 'yyyy/mm/dd HH24:MI:SS') 
+		where MSG_ARTICLE_NUM = #msg_Article_Num#
 	</update>
 	<delete id="deleteMessage" parameterClass="int">
 		DELETE FROM MESSAGE
@@ -78,5 +79,5 @@
 		'%'||#msg_Article_Num#||'%'
 	</delete>
 
-
+	
 </sqlMap>
