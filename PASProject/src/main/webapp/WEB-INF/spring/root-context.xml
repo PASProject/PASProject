@@ -33,7 +33,7 @@
 	<bean id="MainDao" class="com.app.pas.dao.impl.MainDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="MessageDao" class="com.app.pas.dao.impl.MessageDaoImpl" p:client-ref="SqlMapClient" />
 	<bean id="WeeklyCheckDao" class="com.app.pas.dao.board.impl.WeeklyCheckDaoImpl" p:client-ref="SqlMapClient" />
-
+	<bean id="AdminCalendarDao" class="com.app.pas.dao.impl.AdminCalendarDaoImpl" p:client-ref="SqlMapClient" />
 
 	
 	<bean id="AccountBoardDao" class="com.app.pas.dao.board.impl.AccountBoardDaoImpl" p:client-ref="SqlMapClient"/>
@@ -69,7 +69,7 @@
 	<bean id="MemberLogService" class="com.app.pas.service.MemberLogService" p:memberLogDao-ref="MemberLogDao"/>
 	<bean id="ProjectLogService" class="com.app.pas.service.ProjectLogService" p:projectLogDao-ref="ProjectLogDao"/>
 	<bean id="WeeklyCheckService" class="com.app.pas.service.WeeklyCheckService" p:weeklyCheckDao-ref="WeeklyCheckDao"/>
-	
+	<bean id="AdminCalendarService" class="com.app.pas.service.AdminCalendarService" p:adminCalendarDao-ref="AdminCalendarDao"/>
 	
 	<bean id="MainService" class="com.app.pas.service.MainService" p:mainDao-ref="MainDao"/>
 	<bean id="AccountBoardService" class="com.app.pas.service.board.AccountBoardService" p:accountboardDao-ref="AccountBoardDao"/>

@@ -45,8 +45,6 @@ $(function(){
 
 
 
-
-
 					<!-- <small>Secondary Text</small> -->
 
 				</h3>
@@ -66,17 +64,11 @@ $(function(){
 				</div>
 
 				<hr style="margin-top: 10px; margin-bottom: 10px;">
-				<script>
-				$(function(){
-					goModal(${projectVo.proj_Num});
-				})
-				
-				</script>
 				<div id="${projectVo.proj_Num}body"></div>
 				<div id="warning" style="display: none;">
-					<h4 style="color: red">그만 좀 쳐 누르고 기다려 좀 기다려라</h4>
+					<h4 style="color: red">...</h4>
 				</div>
-				<c:forEach var="inviteList" items="${inviteList }"
+				<%-- <c:forEach var="inviteList" items="${inviteList }"
 					varStatus="status">
 					<c:choose>
 						<c:when test="${projectVo.proj_Num == inviteList }">
@@ -87,7 +79,7 @@ $(function(){
 						</c:when>
 
 						<c:otherwise>
-
+ --%>
 							<div id="${projectVo.proj_Num}btnZone">
 								<input class="btn btn-block btn-default" type="button"
 									onclick="javascript:goApply(${projectVo.proj_Num})"
@@ -95,9 +87,9 @@ $(function(){
 							</div>
 
 
-						</c:otherwise>
+				<%-- 		</c:otherwise>
 					</c:choose>
-				</c:forEach>
+				</c:forEach> --%>
 
 
 				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
