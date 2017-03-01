@@ -118,8 +118,6 @@ public class MainContoller {
 		MemberVo memberVo = null;
 
 		memberVo = memberService.getMember(email);
-		System.out.println(memberVo.getMem_Email());
-		System.out.println(memberVo.getMem_Pass());
 		// 아이디 검증
 		if (memberVo == null) {
 			result = 0;

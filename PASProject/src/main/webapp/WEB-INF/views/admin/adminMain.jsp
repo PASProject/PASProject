@@ -63,7 +63,7 @@
           <!-- /widget -->
           <div class="widget">
             <div class="widget-header"> <i class="icon-signal"></i>
-              <h3>가입자수 그래프</h3>
+              <h3>방문자수 그래프</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">

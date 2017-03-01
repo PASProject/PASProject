@@ -28,8 +28,9 @@ public class SockjsHandler extends TextWebSocketHandler{
 	      Map<String,Object> map = new HashMap<String,Object>();
 	      map = (Map<String,Object>) gson.fromJson(message.getPayload().toString(), map.getClass());
 	      String msg= (String) map.get("push");
+	      System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@데이터"+msg);
 	      System.out.println();
-	      if(!users.containsKey(msg)){
+	      if(users.containsKey(msg)){
 	    	  session = users.get(msg);
 	    	  session.sendMessage(message);
 	      }

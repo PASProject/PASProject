@@ -1,12 +1,11 @@
 package com.app.pas.service;
 
 import java.sql.SQLException;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
 import com.app.pas.dao.MemberLogDao;
+import com.app.pas.dto.MemberLogCommand;
 import com.app.pas.dto.MemberLogVo;
-import com.app.pas.dto.ProjectVo;
 
 public class MemberLogService {
 
@@ -26,5 +25,8 @@ public class MemberLogService {
 		MemberLogVo log = memberLogDao.selectLastMemberLogByEmail(mem_Email);
 		return log;
 	}
-	
+	public List<MemberLogCommand> selectWeeklyLogCount () throws SQLException{
+		List<MemberLogCommand> list = memberLogDao.selectWeeklyLogCount();
+		return list;
+	}
 }

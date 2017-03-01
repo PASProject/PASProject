@@ -23,4 +23,15 @@
 		WHERE  ROWNUM =1 AND MEM_EMAIL = #mem_Email#	
 	</select>
 	
+	
+	
+	<select id="selectWeeklyLogCount" resultClass="MemberLogCommand">
+		select * from 
+		(select count(*) as mem_Log_Count , to_char(mem_log_time) as log_Date
+		from member_log
+		group by to_char(mem_log_time)
+		order by to_char(mem_log_time) desc) where rownum between 1 and 7
+		order by 2 asc
+	</select>
+	
 </sqlMap>
