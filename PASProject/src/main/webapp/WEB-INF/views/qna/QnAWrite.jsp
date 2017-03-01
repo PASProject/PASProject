@@ -10,32 +10,60 @@
 <title></title>
 </head>
 <body>
-	<div style="margin: auto; width: 1300px">
+	<div class="col-md-10" id="content">
+		<div class="col-md-10">
+			<form name="form" method="post" action="insertQnABoard">
+				<h3 class="page-header"
+					style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+					QnA<small> 글 쓰기</small>
+				</h3>
+				<fieldset>
 
-		<form name="form" method="post" action="insertQnABoard">
-			<!-- fieldset태그는 form양식에서 관계된 요소끼리 묶어주며 관계요소 주위에 박스를 그립니다.
-주로 legend태그와 함께 쓰임
- -->
-			<fieldset>
-				<legend>Qna</legend>
-				<label>Title</label> <input type="text" name="qb_Title" size="64"><br>
-				<label>Content</label>
-				<textarea rows="8" cols="65" name="qb_Content"></textarea>
-				<br>
-			</fieldset>
-			<div class="clear"></div>
+					<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">제목</label>
+						<div class="col-lg-10">
+							<input type="text" name="qb_Title" size="64" class="form-control"
+								id="ssb_Title" placeholder="제목"><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textArea" class="col-lg-2 control-label">내용</label>
+						<div class="col-lg-10">
+							<textarea class="form-control" rows="18" id="ssb_Content"
+								name="qb_Content"></textarea><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="textArea" class="col-lg-2 control-label">태그</label>
+						<div class="col-lg-10">
+							<textarea class="form-control" rows="1" id="ssb_Tag"
+								name="ssb_Tag"></textarea>
+							<span class="help-block text-right">새해 복 많이 받으세요</span>
+						</div>
+					</div>
 
-			<input type="submit" value="글쓰기" class="submit"> 	
-			<input type="reset" value="취소" class="cancel"> 
-			<input type="button" value="목록" onClick="go_list()">
+					<div class="form-group text-right">
+						<div class="col-lg-10 col-lg-offset-2">
+							<button type="submit" class="btn btn-default">등록</button>
+							<button type="button"
+								onclick="location.href='<%=request.getContextPath()%>/SkillSharing/SkillSharingBoardList'"
+								class="btn btn-default">취소</button>
+							<input type="button" value="목록" class="btn btn-default" onClick="go_list()">
+						</div>
+					</div>
+				</fieldset>
+			</form>
 
-		</form>
-		<script>
-			function go_list() {
-				location.href = "QnAList"
+			<script>
+				function go_list() {
+					location.href = "QnAList"
 
-			}
-		</script>
+				}
+			</script>
+
+
+
+		</div>
 	</div>
 </body>
 </html>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -40,12 +41,12 @@
 			<table class="table table-hover">
 				<tr class="text-center">
 
-					<th class="col-md-1" style="text-align: center">답변여부</th>
-					<th class="col-md-1" style="text-align: center">번호</th>
-					<th class="col-md-4" style="text-align: center">제목</th>
-					<th class="col-md-2" style="text-align: center">작성자</th>
-					<th class="col-md-1" style="text-align: center">작성일</th>
-					<th class="col-md-1" style="text-align: center">조회수</th>
+					<th  style="width:10%">답변여부</th>
+					<th style="width:10%">번호</th>
+					<th  style="width:45%">제목</th>
+					<th  style="width:8%">작성자</th>
+					<th  style="width:20%">작성일</th>
+					<th style="width:7%">조회수</th>
 				</tr>
 				<c:forEach items="${qnaList}" var="qnaBoardVo"
 					begin="${paging.beginNo}" end="${paging.endNo}">
@@ -54,13 +55,13 @@
 								<c:when test='${qnaBoardVo.qb_yn=="0" }'>답변미처리</c:when>
 								<c:otherwise>답변완료</c:otherwise>
 							</c:choose></td>
-						<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>
+						<td >${qnaBoardVo.qb_Article_Num}</td>
 						<td><a
 							href="<%=request.getContextPath()%>/qna/QnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
 								${qnaBoardVo.qb_Title}</a></td>
 						<td>${qnaBoardVo.mem_Name }</td>
-						<td style="text-align: center">${qnaBoardVo.qb_Wt_Date}</td>
-						<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td>
+						<td><fmt:formatDate value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy/MM/dd"/></td>
+						<td >${qnaBoardVo.qb_Inq_Count }</td>
 
 					</tr>
 				</c:forEach>
@@ -68,9 +69,9 @@
 		</form>
 
 		<div class="col-md-12 text-right">
+			<form name="form" method="post" action="myPostList">
 			<button class="btn btn-default" type="button" onclick="QnaWrite();">글쓰기</button>
 
-			<form name="form" method="post" action="myPostList">
 				<button id="ReadMyPost" class="btn btn-default" name="myPost" type="submit"> 내가 쓴 글보기</button>
 
 <!-- if문 -->
