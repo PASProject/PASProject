@@ -30,4 +30,9 @@
       delete from apply where apply_num=#apply_Num#
    </update>
    
+   
+   <select id="selectApplyById" parameterClass="str" resultClass="int">
+     select proj_Num from Apply where mem_Email=#mem_Email# and Apply_Commit_Check='0'
+   </select>
+   
 </sqlMap>

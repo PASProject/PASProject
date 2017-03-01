@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -148,10 +149,12 @@
 			contentType : 'application/json; charset=UTF-8',
 			data : JSON.stringify(datalist),
 			success : function(data){
+				var d = new Date(data.acc_Date);
 				alert(data.acc_Content);
+				alert(d);
 				$('#upproj_Num').val(data.proj_Num);
 				$("#upacc_Num").val(data.acc_Num);
-				$("#upacc_Date").val(data.acc_Date);
+				$("#upacc_Date").val(d);
 				$("#upacc_Imp").val(data.acc_Imp);
 				$("#upacc_Exp").val(data.acc_Exp);
 				$("#upacc_Content").val(data.acc_Content); 
@@ -183,9 +186,9 @@
 		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			프로젝트 회계<small>총 수입: ${sumImp}원 / 총 지출:${sumExp}원
-				[total.val();원 ] </small>
+				</small>
 		</h3>
-		<form>
+		
 			<table class="table">
 				<tr>
 					<td class="col-md-4">날짜</td>
@@ -198,8 +201,9 @@
 				<c:forEach var="AccountBoardList" items="${AccountBoardList }">
 					<tr>
 						<td>
-						<button type="button"  onclick="show(${AccountBoardList.acc_Num})">
-                        ${AccountBoardList.acc_Date}</button></td>
+						<button type="button"  class="btn btn-default" onclick="show(${AccountBoardList.acc_Num})">
+                        <fmt:formatDate pattern="yyyy-MM-dd" 
+            value="${AccountBoardList.acc_Date}" /></button></td>
 						<td>${AccountBoardList.acc_Imp }</td>
 						<td>${AccountBoardList.acc_Exp }</td>
 						<td class="col-md-4 text-center">${AccountBoardList.acc_Content }</td>
@@ -239,22 +243,83 @@
 											<h4 class="modal-title">상세 정보</h4>
 										</div>
 										<div class="modal-body">
-											<p>Some text in the modal.</p>
-											게시물 번호:<input type="text" id="upacc_Num"><br>
-											프로젝트 번호:<input type="text" id="upproj_Num"> <br>
-											날짜:<input type="text" id="upacc_Date"><br>
-											수입:<input type="text" id="upacc_Imp"><br>
-											지출:<input type="text" id="upacc_Exp"><br>
-											내용:<input type="text" id="upacc_Content"><br>									
+										<div class="row">
+										<div class="col-md-12">
+										<div id="bubble" style="height: auto; padding-left: 30px;">
+				                       <div class="row">
+				                       <div id="1">
+						              <form class="form-horizontal" id="update_form" >
+											<input type="hidden" id="upacc_Num"><br>
+										    <input type="hidden" id="upproj_Num"> <br>
+											
+											<div class="form-group">
+								<label class="col-md-4 control-label">날짜</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <input type="Date" 
+											id ="upacc_Date" class="form-control" type="text" >
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label">수입</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <input
+											id="upacc_Imp"
+											class="form-control" type="text" >
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label">지출</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <input
+											id="upacc_Exp"
+											class="form-control" type="text" >
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label">내용</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <textarea
+											id="upacc_Content" 
+											readonly></textarea>
+									</div>
+								</div>
+							</div>
+											
+										
 
 										</div>
 										<div class="modal-footer">
-											<input type="button" class="btn btn-default"
+											<input type="button"  class="btn btn-default pull-right"  style="margin-left: 5px;"
 												data-dismiss="modal" id="AccountUpdate" value="회계 수정">
-											<input type="button" class="btn btn-default"
-												data-dismiss="modal" id="AccountDelete" value="회계삭제">
-											<button type="button" class="btn btn-default"
+											<input type="button" 
+												data-dismiss="modal"  class="btn btn-danger" id="AccountDelete" value="회계삭제">
+											<button type="button" class="btn btn-default pull-right"
 												data-dismiss="modal">Close</button>
+										</div>
+										
+										
+										</form>
+										</div>
+										
+										</div>
+										</div>
+										</div>
 										</div>
 									</div>
 
@@ -278,11 +343,66 @@
 							<h4 class="modal-title">회계 등록</h4>
 						</div>
 						<div class="modal-body">
-							<p>Some text in the modal.</p>
-							프로젝트번호 <input type="text" id="proj_Num" value="${joinProj }"
-								readonly> 날짜:<input type="date" id="acc_Date">
-							수입:<input type="text" id="acc_Imp"> 비용:<input type="text"
-								id="acc_Exp"> 내용:<input type="text" id="acc_Content">
+						
+						<div class="row">
+										<div class="col-md-12">
+										<div id="bubble" style="height: auto; padding-left: 30px;">
+				                       <div class="row">
+				                       <div id="1">
+						              <form class="form-horizontal" id="update_form" >
+						
+						
+						
+						
+							
+							 <input type="hidden" id="proj_Num" value="${joinProj }" readonly><br>
+							 
+							 <div class="form-group">
+								<label class="col-md-4 control-label">날짜</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <input
+											id ="acc_Date" class="form-control" type="date" >
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label">수입</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <input
+											id="acc_Imp"
+											class="form-control" type="text"  value=0>
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label">지출</label>
+								<div class="col-md-6  inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"> <i
+											class="glyphicon glyphicon-envelope"></i></span> <input
+											id="acc_Exp"
+											class="form-control" type="text"  value=0>
+									</div>
+								</div>
+							</div>
+						
+							  내용:<textarea id="acc_Content"></textarea>
+							  
+							  </form>
+							  </div>
+							  </div>
+							  </div>
+							  </div>
+							  </div>
+							  
 
 						</div>
 						<div class="modal-footer">
@@ -302,7 +422,7 @@
 
 
 
-		</form>
+		
 	</div>
 
 
