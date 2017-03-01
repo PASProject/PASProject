@@ -43,13 +43,13 @@
 	<select id="selectWeeklylist_Start" parameterClass="ScheduleCalendar"
 		resultClass="ScheduleCalendar">
 	select * from WEEKLY_CHCKLIST_START
-	where sc_wk_mem_email = #sc_Wk_Mem_Email#
+	where sc_wk_mem_email = #sc_Wk_Mem_Email# and sc_proj_num = #sc_Proj_Num#
 	</select>
 	
 	<select id="selectWeeklylist_End" parameterClass="ScheduleCalendar"
 		resultClass="ScheduleCalendar">
 	select * from WEEKLY_CHCKLIST_END
-	where sc_wk_mem_email = #sc_Wk_Mem_Email#	
+	where sc_wk_mem_email = #sc_Wk_Mem_Email# and sc_proj_num = #sc_Proj_Num#
 	</select>
 	
 	<select id="weekly_date" resultClass="ScheduleCalendar">

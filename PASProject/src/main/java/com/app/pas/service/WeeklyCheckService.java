@@ -14,8 +14,8 @@ public class WeeklyCheckService {
 		this.weeklyCheckDao = weeklyCheckDao;
 	}
 	
-	public List<WeeklyCheckVo> weeklyCheck () throws SQLException{
-		List<WeeklyCheckVo> list = weeklyCheckDao.weeklyCheck_Select();
+	public List<WeeklyCheckVo> weeklyCheck (WeeklyCheckVo weeklyCheckVo) throws SQLException{
+		List<WeeklyCheckVo> list = weeklyCheckDao.weeklyCheck_Select(weeklyCheckVo);
 		return list;
 	}
 //------------------------------------------------------------------------------------------	

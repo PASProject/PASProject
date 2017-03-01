@@ -680,16 +680,23 @@ li {
 				</th>
 				<th class="col-md-7"
 					style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-						<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
+				<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
+					
 						
 						<c:set var="dateF">
 						<fmt:formatDate value="${WeeklyCheckVo.wk_Date}" pattern="yyyyMMdd" /></c:set>
 						<c:if test="${dateF ==ScheduleCalendarVo.dt}">
-							${ WeeklyCheckVo.wk_Content}
-							</c:if>
-	
+							<li>
+								<ul> -  ${ WeeklyCheckVo.wk_Content}
+									<a href="abc?wk_Num=${WeeklyCheckVo.wk_Num}"><span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span></a>
+									<a href="#"><span class="glyphicon glyphicon-pencil" style="font-size:12px;"></span></a>
+								</ul>
+							</li>
+						</c:if>
+							
+				
 				</c:forEach>
-			<input type="text" name="wk_Content" id ="wk_Content" size="100"  style="border: 0px;" onKeyDown="onKeyDown(${status.count});"
+			<input type="text" name="wk_Content" id ="${status.count}content" size="100"  style="border: 0px;" onKeyDown="onKeyDown(${status.count});"
 			placeholder='이 곳을 클릭하여 일정을 적어주세요' >
 
 			<th class="col-md-2"
@@ -703,26 +710,25 @@ li {
 		</table>
          </form>
        
-         
-	</div>       
-	<script>
+           
+	</div>             
+	<script>        
 	function onKeyDown(countNum)
 	{
-	     if(event.keyCode == 13)
-	     {
-	    	 var wk_Content = $('#wk_Content').val();
-	    	 alert(wk_Content)
+	     if(event.keyCode == 13) {
+	    	 var wk_Content = "";
+	    	 wk_Content = $('#'+countNum+'content').val();
 	    	 var d = $('#'+countNum+'date').val();  
 	    	 
 	       location.href="weeklyChecklist?wk_Content="+wk_Content+"&d="+d;
 	     }
 	}
 	
-	
-	</script>
+	  
+	</script>                  
 	
 	   
-</body>           
+</body>                    
 </html>
 
 <%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%> --%>
