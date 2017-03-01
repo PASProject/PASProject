@@ -16,12 +16,20 @@ public class MessageDaoImpl implements MessageDao{
 	}
 
 	@Override
-	public List<MessageVo> selectMessageList(MessageVo messageVo)
+	public List<MessageVo> selectReceiveMessageList(MessageVo messageVo)
 			throws SQLException {
-		List<MessageVo> list = client.queryForList("selectMessageList", messageVo);
+		List<MessageVo> list = client.queryForList("selectReceiveMessageList", messageVo);
 		
 		return list;
 	}
+	@Override
+	public List<MessageVo> selectSendMessageList(MessageVo messageVo)
+			throws SQLException {
+		List<MessageVo> list = client.queryForList("selectSendMessageList", messageVo);
+		
+		return list;
+	}
+
 
 	@Override
 	public MessageVo selectMessage(int msg_Article_Num) throws SQLException {
@@ -60,6 +68,14 @@ public class MessageDaoImpl implements MessageDao{
 		client.update("updateReceiveMessageDelYN", msg_Article_Num);
 		
 	}
+
+	@Override
+	public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException {
+		client.update("updateReceiveMessageReadTime",msg_Article_Num);
+		
+	}
+	
+	
 
 
 }

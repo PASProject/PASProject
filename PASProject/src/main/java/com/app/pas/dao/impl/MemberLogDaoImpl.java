@@ -18,4 +18,10 @@ public class MemberLogDaoImpl implements MemberLogDao{
 		client.insert("insertMemberLog",memberLogVo);
 	}
 
+	@Override
+	public MemberLogVo selectLastMemberLogByEmail(String mem_Email) throws SQLException {
+		MemberLogVo log = (MemberLogVo) client.queryForObject("selectLastMemberLogByEmail", mem_Email);
+		return log;
+	}
+
 }

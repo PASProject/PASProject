@@ -19,31 +19,29 @@
 
 
 </head>
+
 <body>
-	<h1>
-		운영자 회원 관리<input type="button" value="EXIT" onclick="go_Home()">
-	</h1>
-	<a></a>
 	<form>
-		이메일 : <input type="text" name="mem_Email" />&nbsp; <input
-			type="button" onclick="searchEmail(this.form);" value="이메일검색">
+	<strong><font size="5" style="margin-left: 8%">회원 관리</font></strong>
+		<font style="margin-left:50%;">이메일 : <input type="text" name="mem_Email" style="width:15%;"/>&nbsp; <input
+			type="button" onclick="searchEmail(this.form);" value="이메일검색" style="width:5%;"></font>
 	</form>
 
 
-	<table style="width: 83%">
-		<tr>
-			<th></th>
-			<th>회원이메일</th>
-			<th>회원이름</th>
-			<th>회원전화번호</th>
-			<th>가입일자</th>
-			<th>회원탈퇴여부</th>
+	<table style="width: 83%; margin-left: 7%" class="table table-hover" style="text-align:center;">
+		<tr style="text-align:right;">
+			<th style="text-align:center;"><input type="button" value="제명" onclick="go_delete()"></th>
+			<th style="text-align:center;">회원이메일</th>
+			<th style="text-align:center;">회원이름</th>
+			<th style="text-align:center;">회원전화번호</th>
+			<th style="text-align:center;">가입일자</th>
+			<th style="text-align:center;">회원탈퇴여부</th>
 		</tr>
 		<c:forEach items="${memberList }" var="memberVo"
 			begin="${paging.beginNo}" end="${paging.endNo}" varStatus="status">
 			<tr>
-				<td><input name= "check" type="checkbox" value='${memberVo.mem_Email}'></td>
-				<td><a href="#" data-toggle="modal"
+				<td style="text-align: center;"><input name= "check" type="checkbox" value='${memberVo.mem_Email}'></td>
+				<td style="text-align: center;"><a href="#" data-toggle="modal"
 					onclick="goModal('${memberVo.mem_Email}','${status.index}')"
 					data-target="#${status.index }" data-keyboard="false"
 					data-backdrop="static">${memberVo.mem_Email} </a> <!-- Modal -->
@@ -63,50 +61,55 @@
 								</div>
 							</div>
 						</div>
-					</div></td>
-				<td>${memberVo.mem_Name}</td>
-				<td>${memberVo.mem_Phone }</td>
-				<td>${memberVo.mem_Join_Date }</td>
-				<td><select id="quitCheck" name="quitCheck" 
-				onchange="change_go(this.value,'${memberVo.mem_Email}')">
+					</div></td> 
+				<td style="text-align: center;">${memberVo.mem_Name}</td>
+				<td style="text-align: center;">${memberVo.mem_Phone }</td>
+				<td style="text-align: center;">${memberVo.mem_Join_Date }</td>
+				<td style="text-align: center;"><select id="quitCheck" name="quitCheck" 
+				 style="width:70px;" onchange="change_go(this.value,'${memberVo.mem_Email}')">
 						<option value="y"
 							<c:if test="${memberVo.quit_Check=='y'}">selected="selected"</c:if>
-						>YES</option>
+						>&nbsp;&nbsp;&nbsp;YES</option>
 						<option value="n"
 							<c:if test="${memberVo.quit_Check=='n'}">selected="selected"</c:if> 
-						>NO</option>
+						>&nbsp;&nbsp;&nbsp;NO</option>
 				</select></td>
-				
-				
-					
+	
 			</tr>
 			
-		
-
-
 		</c:forEach>
-		
-		<tr>
-			<td colspan="5" align="right"><c:if
-					test="${paging.finalPageNo>0}">
-					<c:set value="${paging.prevPageNo}" var="prevPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
-
-					<c:if test="${paging.pageNo>prevPageNo}">
-						<a href="SkillSharingList?page=${prevPageNo}">[이전]</a>
-					</c:if>
-					<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-						varStatus="status">
-						<a href="SkillSharingList?page=${i}">[${i}]</a>
-					</c:forEach>
-					<c:if test="${paging.pageNo<finalPageNo}">
-						<a href="SkillSharingList?page=${finalPageNo}">[다음]</a>
-					</c:if>
-				</c:if></td>
-		</tr>
 	</table>
-	<input type="button" value="제명" onclick="go_delete()">
+	<div class="col-md-12 text-center">
+				<c:if test="${paging.finalPageNo>0 }">
+					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
+					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center" style="margin-left: 40%">
 
+							<li class="page-item"><a class="page-link"
+								href="memberList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+
+
+							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
+								varStatus="status">
+										<li class="page-item" id="number"><a
+											class="page-link" href="memberList?page=${i}">${i}</a></li>
+										<script>
+										$('li').each(function(){
+										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+										    {
+										    $(this).addClass('active').siblings().removeClass('active');
+										    }
+										});
+										</script>
+							</c:forEach>
+							<li class="page-item"><a class="page-link"
+								href="memberList?page=${finalPageNo}">끝 페이지</a></li>
+						</ul>
+					</nav>
+				</c:if>
+			</div>
+			<br><br>
 	<script>
 	
 	function check_go(value){

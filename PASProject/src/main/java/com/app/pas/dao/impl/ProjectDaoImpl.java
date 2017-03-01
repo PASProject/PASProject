@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.app.pas.dao.ProjectDao;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -90,6 +92,24 @@ public class ProjectDaoImpl implements ProjectDao {
 	public List<Integer> selectInviteProjNumByMemEmail(String mem_Email)
 			throws SQLException {
    List<Integer> list =client.queryForList("selectInviteProjNumByMemEmail", mem_Email);
+		return list;
+	}
+
+	@Override
+	public int selectProjectTotalCount() throws SQLException {
+		int totalCount = (Integer) client.queryForObject("selectProjectTotalCount");
+		return totalCount;
+	}
+
+	@Override
+	public List<ProjectVo> selectProjectList2(String proj_Name) throws SQLException {
+		List<ProjectVo> list = client.queryForList("selectProjectList2",proj_Name);
+		return list;
+	}
+
+	@Override
+	public List<ProjectJoinVo> selectMemberToProjNum(int proj_Num) throws SQLException {
+		List<ProjectJoinVo> list = client.queryForList("selectMemberToProjNum",proj_Num);
 		return list;
 	}
 

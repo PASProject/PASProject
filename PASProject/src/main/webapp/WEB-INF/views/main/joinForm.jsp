@@ -28,7 +28,7 @@ body {
 	font-family: NanumGothic;
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
 	
 <!-- Bootstrap Core CSS -->
 <link href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -42,8 +42,7 @@ body {
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
-<!-- jQuery -->
-<script src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 <body id="body">
@@ -74,13 +73,7 @@ body {
 						</div>
 					</div>
 				</div>
-				<div class="form-group" style="text-align:right;">
-					<label class="col-md-6 control-label"></label>
-					<div class="col-md-4">
-					<span id="alreayUsed" style="display:none; color:red">중복된 이메일입니다.</span>
-					</div>
-				</div>
-				
+			
 
 				<!-- Password -->
 				<div class="form-group has-feedback">

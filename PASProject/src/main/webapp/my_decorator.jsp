@@ -69,16 +69,10 @@
 
 
 <!-- JS -->
+ 
+<script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
+<script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 
-<%-- 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-<<<<<<< HEAD
-
-=======
-	 --%>
 <script src='<%=request.getContextPath()%>/resources/lib/moment.min.js'></script>
 
 <script
@@ -161,6 +155,28 @@ $(function(){
 
 <!--  -->
 <style>
+.modal-header{
+border-bottom: 1px solid rgba(0, 0, 0, 0.27) !important;
+}
+h1, h2, h3, h4, h5, h6{
+font-family: 'NanumGothic';
+}
+#square {
+	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	font-size:16px;
+	text-align:center;
+	line-height	:50px;
+	color: white;
+	background-color: #51a351;
+	border: 1px solid #51a351;
+	border-radius:5px;
+	position: absolute;
+	left: 72%;
+	top: 85%;
+	display: none;
+	width: 300px;
+	height: 50px;
+}
 
 th{
 text-align:center;
@@ -292,7 +308,7 @@ body {
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	margin-top: 25px;
-	min-height: 700px;
+	min-height: 776px;
 	margin-bottom: 5%;
 }
 
@@ -457,7 +473,7 @@ $(function(){
 								<li><a href="#" data-toggle="modal"
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
-								<li><a href="<%=request.getContextPath()%>/main/messageList">쪽지함 보기</a></li>
+								<li><a href="<%=request.getContextPath()%>/main/messageReceiveList">쪽지함 보기</a></li>
 								<li><a href="#">내 업무</a></li>
 
 								<li><a
@@ -490,33 +506,87 @@ $(function(){
 			<!-- /.container -->
 		</nav>
 	</header>
-
+<div id="square" ><span style="padding-right:10px;"class="glyphicon glyphicon-ok "></span>새로운 알림이 도착하였습니다</div>
 	<!-- 프로젝트 생성 모달   -->
 	<div class="modal fade" id="create" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
+					<div class="modal-header"
+					style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"></h4>
-					프로젝트 생성
+					<h3 class="modal-title">프로젝트 생성</h3>
 				</div>
-				<div class="modal-body" id="createBody">
-					생성자 : <input type="text" id="mem_Email"
-						value="${sessionScope.loginUser.mem_Email}" readonly="readonly"><br>
-					<br> <input type="hidden" id="mem_Img"
-						value="${sessionScope.loginUser.mem_Img }"> 프로젝트 이름 : <input
-						type="text" id="proj_Name" name="proj_Name"><br> <br>
-					프로젝트 팀명 : <input type="text" id="proj_Team" name="proj_Team"><br>
-					<br> 프로젝트 내용 :
-					<textarea rows="15" cols="30" name="proj_Content" id="proj_Content"></textarea>
-					<br>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" id="createBtn"
-						value="생성" />
+				
+				
+				
+				
+				
+				<div class="modal-body" id="createBody" style="padding-right: 50px;">
+				
+				
+				
+			<form class="form-horizontal">
+				<fieldset>
+					<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">생성자</label>
+						<div class="col-lg-10">
+							<input type="text" name="mem_Email" size="64"
+								class="form-control" id="mem_Email" value="${sessionScope.loginUser.mem_Email}" readonly="readonly">
+							<input type="hidden" id="mem_Img" value="${sessionScope.loginUser.mem_Img }">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">프로젝트 이름</label>
+						<div class="col-lg-10">
+							<input type="text" name="proj_Name" size="64"
+								class="form-control" id="proj_Name" placeholder="생성될 프로젝트 이름을 써주세요.">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">프로젝트 팀명</label>
+						<div class="col-lg-10">
+							<input type="text" name="proj_Team" size="64"
+								class="form-control" id="proj_Team" placeholder="팀명을 입력해 주세요.">
+						</div>
+					</div>
+									
+					<div class="form-group">
+						<label for="textArea" class="col-lg-2 control-label">내용</label>
+						<div class="col-lg-10">
+							<textarea class="form-control"  placeholder="간단한 소개를 해주세요." id="proj_Content" size="64" style="overflow:hidden; resize:none; height:160px;"
+								name="proj_Content"></textarea>
+						</div>
+					</div>
 
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</fieldset>
+			</form>
+		</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+					
+					<input type="button" class="btn btn-default pull-right" id="createBtn"
+						value="생성" />
+				
 				</div>
 			</div>
 		</div>
@@ -761,7 +831,7 @@ $(function(){
 <script>
 	$(document).ready(
 			function() {
-				/* connect(); */
+				connect();
 				
 				$.ajax({
 					url :'<%=request.getContextPath()%>/main/alarmCount',
@@ -1277,6 +1347,10 @@ $(function(){
 </script>
 
 <script>
+function pushMessage(){
+	$('#square').fadeIn('slow').delay(3000).fadeOut('slow');
+	
+}
 	function logOut() {
 		location.href = "/pas/main/logOut";
 	}

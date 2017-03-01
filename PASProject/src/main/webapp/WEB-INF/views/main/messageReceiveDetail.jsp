@@ -31,7 +31,7 @@
             <td><b>${messageVo.msg_Title}</b></td>
          </tr>
          <tr>
-            <td><a href="#">${messageVo.msg_sm_Email }</a>&nbsp;&nbsp;${messageVo.msg_Wt_Date }</td>
+            <td><a href="#">${messageVo.msg_sm_Name }</a>&nbsp;&nbsp;${messageVo.msg_Wt_Date }</td>
          </tr>
          <tr>
             <td style="border-bottom: 1px solid #ddd;">${messageVo.msg_Content }</td>

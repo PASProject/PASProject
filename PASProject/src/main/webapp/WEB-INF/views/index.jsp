@@ -18,7 +18,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <!-- CSS -->
 <!-- Bootstrap Core CSS -->
 <link
@@ -36,9 +37,9 @@
 	rel="stylesheet" type="text/css">
 
 
-<!-- JS -->
+
 <!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
@@ -46,9 +47,48 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 
-
+	<script src="<%=request.getContextPath() %>/resources/js/typed.js"></script>
+	<script>
+  $(function(){
+      $("#headTitle").typed({
+    	  
+        strings: ["your project with us. ^2000 ","and <b>Finish</b> your project with us. ^5000"],
+        contentType: 'html',
+        typeSpeed : 10,
+        backSpeed : 10,
+		loop : true,
+		loopCount : 50
+      });
+  });
+</script>
 </head>
+
 <style>
+
+.typed-cursor{
+	font-size:24px;
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+
 body.modal-open .background-container {
 	-webkit-filter: blur(4px);
 	-moz-filter: blur(4px);
@@ -72,8 +112,8 @@ body.modal-open .background-container {
 				class="fa fa-times"></i></a>
 			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
 			</li>
-			<li><a href="#top" onclick=$("#menu-close").click();>Home</a></li>
-			<li><a href="#about" onclick=$("#menu-close").click();>로그인</a></li>
+			<li><a href="#top" onclick=$("#menu-close").click();>BlueMine</a></li>
+			<li><a href="#about" onclick=$("#menu-close").click();>회원 가입</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>Services</a>
 			</li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
@@ -86,8 +126,11 @@ body.modal-open .background-container {
 	<!-- Header -->
 	<header id="top" class="header">
 		<div class="text-vertical-center">
-			<h1>Project Automation System</h1>
-			<h3>Begin with us</h3>
+			<h1>Blue Mine</h1>
+			<Br>
+			<!-- <h3>Begin and Finish with us</h3> -->
+			<h3 id="a" style="display:inline">Begin&nbsp;</h3><h3 id="headTitle" style="display:inline"></h3>
+			<BR>
 			<br> <a href="<%=request.getContextPath() %>/main/loginForm" class="btn btn-dark btn-lg">들어가기</a>
 		</div>
 
@@ -98,7 +141,7 @@ body.modal-open .background-container {
 	<!-- joinForm -->
 	<section id="about" class="about" style="padding-top:20px;">
 		<div class="include">
-			<jsp:include page="main/joinForm.jsp" />
+	 	<jsp:include page="main/joinForm.jsp" /> 
 		</div>
 	</section>
 

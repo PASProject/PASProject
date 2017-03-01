@@ -12,15 +12,17 @@
 		<pattern>/project/*</pattern>
 		<pattern>/work/*</pattern>
 	</decorator>
-
-
-
+	
+	<decorator name="admin" page="admin_decorator.jsp">
+		<pattern>/admin/*</pattern>
+	
+	</decorator>
 
 
 
 	<excludes>
 
-		<pattern>*/temp*</pattern>
+		<pattern>*/adminLogin</pattern>
 		<pattern>*/tempNotice*</pattern>
 	    <pattern>*/pmChat*</pattern>
 	    <pattern>*/memberAuth*</pattern>
@@ -29,7 +31,6 @@
 		<pattern>*/index*</pattern>
 		<pattern>*/joinForm*</pattern>
 		<pattern>*/loginForm*</pattern>
-		<pattern>*/admin*</pattern>
 		<pattern>*/aaa*</pattern>
 		<pattern>*/join*</pattern>
 	</excludes>

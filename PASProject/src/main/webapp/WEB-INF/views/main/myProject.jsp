@@ -69,10 +69,10 @@ $(function(){
 					</h3>
 					<br> <br>
 					<div class="text-center">
-						<img src="<%=request.getContextPath()%>/resources/img/plus1.png"
+						<img src="<%=request.getContextPath()%>/resources/img/f.png"
 							id="createProject" value="생성하기" data-toggle="modal"
 							data-target="#create" data-keyboard="false"
-							style="cursor: pointer; width: 430px;" data-backdrop="static" />
+							style="cursor: pointer; width: 400px; margin-top: 65px;margin-bottom: 65px;" data-backdrop="static" />
 
 					</div>
 				</div>
@@ -94,7 +94,7 @@ $(function(){
 						<h5>${projectVo.proj_Team}</h5>
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
-							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f0ffea; margin-bottom: 10px;">
+							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f6faff; margin-bottom: 10px;">
 							<p>${projectVo.proj_Content}</p>
 						</div>
 						<script>

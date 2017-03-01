@@ -16,10 +16,18 @@ public class MessageService {
 	}
 	
 	
-	public List<MessageVo> selectMessageList(MessageVo messageVo) throws SQLException{
+	public List<MessageVo> selectReceiveMessageList(MessageVo messageVo) throws SQLException{
 
 		List<MessageVo> list = new ArrayList<MessageVo>();
-		list = messageDao.selectMessageList(messageVo);
+		list = messageDao.selectReceiveMessageList(messageVo);
+			
+		return list;
+		
+	}
+	public List<MessageVo> selectSendMessageList(MessageVo messageVo) throws SQLException{
+
+		List<MessageVo> list = new ArrayList<MessageVo>();
+		list = messageDao.selectSendMessageList(messageVo);
 			
 		return list;
 		
@@ -33,7 +41,7 @@ public class MessageService {
 	}
 
 	
-	public MessageVo selectReceiveMessage(int msg_Article_Num) throws SQLException{
+	public MessageVo selectMessage(int msg_Article_Num) throws SQLException{
 		MessageVo messageVo = null;
 		messageVo = messageDao.selectMessage(msg_Article_Num);
 		return messageVo;
@@ -45,6 +53,8 @@ public class MessageService {
 	public void updateReceiveMessageReadYN(int msg_Article_Num) throws SQLException{
 		messageDao.updateReceiveMessageReadYN(msg_Article_Num);
 	}
-
+	public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException{
+		messageDao.updateReceiveMessageReadTime(msg_Article_Num);
+	}
 	
 }

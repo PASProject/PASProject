@@ -117,8 +117,8 @@ font-weight:bold;
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-						 href="#" onClick="window.open('http://localhost:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
-						 'resizable=no,width=800,height=400,top=700,left=1200')">채팅하기</a></td>
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=350,height=450,top=400,left=1400')">채팅하기</a></td>
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"

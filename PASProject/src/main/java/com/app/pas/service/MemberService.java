@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dao.MemberDao;
+import com.app.pas.dao.MemberLogDao;
 import com.app.pas.dao.ProjectJoinDao;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
@@ -15,7 +16,6 @@ public class MemberService {
 
 	private MemberDao memberDao;
 	private ProjectJoinDao projectJoinDao;
-	
 	
 	public void setProjectJoinDao(ProjectJoinDao projectJoinDao) {
 		this.projectJoinDao = projectJoinDao;
@@ -169,6 +169,5 @@ public class MemberService {
 			memPositionViewVo = memberDao.selectMemberPositionByEmail(memPositionViewVo);
 			return memPositionViewVo;
 		}
-
 
 }

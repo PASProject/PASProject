@@ -42,7 +42,7 @@ public class SockjsHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 		ServletServerHttpRequest serverRequest = (ServletServerHttpRequest) request;
 		HttpSession session = serverRequest.getServletRequest().getSession();
 		
-		System.out.println("befor"+attributes);
+		System.out.println("befor");
         System.out.println("URI:"+request.getURI());
         MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		attributes.put("loginUserEmail",memberVo.getMem_Email());

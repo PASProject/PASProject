@@ -99,7 +99,7 @@ public class WorkController {
 	}
 	
 	@RequestMapping("selectDocument")
-	public String selectDocument(DocumentVo documentVo,Model model) throws SQLException{
+	public String selectDocument(DocumentVo documentVo,Model model,HttpSession session) throws SQLException{
 		
 		String url = "";
 		DocumentVo selectVo = documentService.selectDocumentByDocNum(documentVo.getDoc_Num());
@@ -108,12 +108,17 @@ public class WorkController {
 		if(selectVo.getDoc_Kind()==1){
 			SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
 			model.addAttribute("spreadSheetVo", spreadSheetVo);
+			
 			url = "/work/viewSpreadSheet";
 		}else if(selectVo.getDoc_Kind()==2){
 			WordSheetVo wordSheetVo = wordSheetService.selectWordSheetByDocNum(documentVo.getDoc_Num());
+			wordSheetVo.setWd_Content(((wordSheetVo.getWd_Content().trim()).replace("\n", " ")).replace("\"", "\'"));
 			model.addAttribute("wordSheetVo", wordSheetVo);
+			System.out.println(wordSheetVo.getWd_Content()+"겟겟~!");
 			url = "/work/viewWordSheet";
 		}
+		
+		session.setAttribute("joinDocNum", documentVo.getDoc_Num());
 		return url;
 	}
 	
@@ -133,6 +138,14 @@ public class WorkController {
 		
 		return downloadFileMap;
 	}
+	
+	@RequestMapping(value="initContent",method = RequestMethod.POST)
+	public @ResponseBody SpreadSheetVo initContent(@RequestBody DocumentVo documentVo) throws SQLException{
+		SpreadSheetVo spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(documentVo.getDoc_Num());
+		return spreadSheetVo;
+	}
+	
+	
 	@RequestMapping(value="saveFile",method = RequestMethod.POST)
 	public @ResponseBody boolean saveFile(@RequestBody Map<String,Object> map ) throws SQLException{
 		String sp_Content = (String) map.get("sheet");
@@ -144,28 +157,27 @@ public class WorkController {
 		return flag;
 	}
 	
+	
 	@RequestMapping(value="preViewFile",method = RequestMethod.POST)
-	public @ResponseBody int preViewFile(@RequestBody Map<String,Object> map, HttpSession session,Model model) throws SQLException{
-		int result =-1;
-		System.out.println(map.get("doc_Num")+"이것ㅇ느 디오씨!");
+	public @ResponseBody Map<String,Object> preViewFile(@RequestBody Map<String,Object> map, HttpSession session,Model model) throws SQLException{
 		DocumentVo documentVo= documentService.selectDocumentByDocNum(Integer.parseInt(map.get("doc_Num").toString()));		
+		Map<String,Object> resultMap = new HashMap<String, Object>();
 		
 		if(documentVo.getDoc_Kind()==1){
 		SpreadSheetVo spreadSheetVo = new SpreadSheetVo();
 		spreadSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
 		spreadSheetVo = spreadSheetService.selectSpreadSheetByDocNum(Integer.parseInt(map.get("doc_Num").toString()));
-		session.setAttribute("spreadSheetVo", spreadSheetVo);
-		result=1;
-		
+		resultMap.put("type", 1);
+		resultMap.put("content", spreadSheetVo.getSp_Content());
 		}else if(documentVo.getDoc_Kind()==2){
 		WordSheetVo wordSheetVo = new WordSheetVo();
 		wordSheetVo.setDoc_Num(Integer.parseInt(map.get("doc_Num").toString()));
 		wordSheetVo = wordSheetService.selectWordSheetByDocNum(Integer.parseInt(map.get("doc_Num").toString()));
-		session.setAttribute("wordSheetVo",wordSheetVo);
-		result=2;
+		resultMap.put("type", 2);
+		resultMap.put("content", wordSheetVo.getWd_Content());
 		}
 		
-		return result;
+		return resultMap;
 		
 	}
 

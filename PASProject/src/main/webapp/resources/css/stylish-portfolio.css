@@ -8,12 +8,18 @@
 
 html,
 body {
+	font-family:'NanumGothic';
     width: 100%;
     height: 100%;
 }
-
-body {
-    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+h1,h2,h3,h4,h5,h6{
+	font-family:'NanumGothic';
+}
+@font-face {
+	font-family: 'NanumGothic';
+	src: url(resources/fonts/NANUMGOTHIC.TTF)
+		format('truetype');
+	
 }
 
 .text-vertical-center {
@@ -167,6 +173,11 @@ hr.small {
 /* About */
 
 .about {
+    padding: 50px 0;
+}
+/* login */
+
+.login {
     padding: 50px 0;
 }
 

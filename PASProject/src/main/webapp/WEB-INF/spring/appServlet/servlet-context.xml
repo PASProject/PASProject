@@ -22,6 +22,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/upload/**" location="/resources/upload/" />
 	<resources mapping="/jquery/**" location="/resources/jquery/" />
+	<resources mapping="/admin/**" location="/resources/admin/"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -64,6 +65,20 @@
 			<beans:bean id="interceptor" class="com.app.pas.commons.socketjs.SockjsHandshakeInterceptor"/>
 		</websocket:handshake-interceptors>
 		<websocket:sockjs/>
+	</websocket:handlers>
+	
+	
+	
+	
+	<beans:bean id="roomList" class="java.util.HashMap"/>
+	<beans:bean id="spreadSheetHandler" class="com.app.pas.commons.socketjs.SpreadSheetHandler" p:roomList-ref="roomList"/>
+	
+	<websocket:handlers allowed-origins="*">
+	 <websocket:mapping handler="spreadSheetHandler" path="/spreadSheetSocket.sockjs"/>
+	 <websocket:handshake-interceptors>
+	 	<beans:bean id="spreadSheetInterceptor"  class="com.app.pas.commons.socketjs.SpreadSheetHandshakeInterceptor"/>
+	 </websocket:handshake-interceptors>
+	 <websocket:sockjs/>
 	</websocket:handlers>
 	
 </beans:beans>
