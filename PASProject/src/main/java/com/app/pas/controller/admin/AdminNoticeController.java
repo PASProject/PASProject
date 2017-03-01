@@ -106,7 +106,9 @@ public class AdminNoticeController {
 	@RequestMapping(value = "/adminNoticeInsert", method=RequestMethod.POST)
 	public String insertTotalNotice(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
 		//String url = "redirect:adminNoticeList";
-		String url = "redirect:totalNoticeList";
+		
+		System.out.println("어드민 디버깅");
+		String url = "redirect:AdminTotalNoticeList";
 		totalNoticeVo.setAdmin_Email("admin");
 		totalNoticeService.insertTotalNotice(totalNoticeVo);
 	
@@ -134,7 +136,7 @@ public class AdminNoticeController {
 //진짜 수정	
 	@RequestMapping(value = "/adminNoticeUpdate", method=RequestMethod.POST)
 	public String updateTotalNotice(HttpSession session, Model model, TotalNoticeVo totalNoticeVo) throws SQLException {
-		String url = "redirect:totalNoticeList";
+		String url = "redirect:AdminTotalNoticeList";
 		totalNoticeService.updateTotaTotalNotice(totalNoticeVo);
 		
 		return url;

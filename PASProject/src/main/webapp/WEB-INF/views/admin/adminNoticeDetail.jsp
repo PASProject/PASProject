@@ -60,7 +60,7 @@
  </form> 
  <script>
  	function go_tt_NoticeList(){
- 		location.href = "totalNoticeList"
+ 		location.href = "AdminTotalNoticeList"
 	 
  	}
  	
