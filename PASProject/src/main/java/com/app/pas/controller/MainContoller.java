@@ -38,6 +38,7 @@ import com.app.pas.dto.MessageVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.service.ApplyService;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
@@ -73,6 +74,9 @@ public class MainContoller {
 	
 	@Autowired
 	MessageService messageService;
+	
+	@Autowired
+	ApplyService applyService;
 
 
 	//연습용
@@ -319,8 +323,11 @@ public class MainContoller {
 		
 		list = projectService.selectOtherProjectListById(projectVo);
 		List<Integer> list2= projectService.selectInviteProjNumByMemEmail(memberVo.getMem_Email());
+		List<Integer> list3= applyService.selectApplyById(memberVo.getMem_Email());
+		System.out.println(list2.toString()+"인바이트"+list3.toString());
 		model.addAttribute("otherProjectList", list);
 		model.addAttribute("inviteList",list2);
+		model.addAttribute("applyList", list3);
 		return url;
 		
 	}

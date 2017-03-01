@@ -621,6 +621,7 @@ public class ProjectController {
 				.getAttribute("joinProj")));
 
 		accountBoardVo = accountService.selectAccountBoardByAcc(accountBoardVo);
+		System.out.println(accountBoardVo.getAcc_Date()+"날짜");
 		return accountBoardVo;
 	}
 
