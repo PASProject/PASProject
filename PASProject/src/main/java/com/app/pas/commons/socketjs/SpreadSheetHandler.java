@@ -71,7 +71,6 @@ public class SpreadSheetHandler extends TextWebSocketHandler{
 					ArrayList<WebSocketSession> list = (ArrayList<WebSocketSession>) roomList.get(join_Doc_Num+"");
 					list.add(session);
 				}
-				
 		   }
 		
 		
