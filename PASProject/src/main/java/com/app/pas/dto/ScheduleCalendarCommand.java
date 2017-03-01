@@ -2,6 +2,8 @@ package com.app.pas.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
