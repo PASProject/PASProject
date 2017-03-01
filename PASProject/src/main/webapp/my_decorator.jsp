@@ -857,7 +857,7 @@ $(function(){
 						
 				$('#alarmMenu').on('click',function(){
 					$.ajax({
-						url:'alramView',
+						url:'/pas/main/alramView',
 						contentType:'application/json',
 						dataType:'json',
 						type:'post',
@@ -932,7 +932,7 @@ $(function(){
 					dataList = {'apply_Num' : apply_Num};
 					
 					$.ajax({
-						url:'rejectApply',
+						url:'/pas/main/rejectApply',
 						dataType:'json',
 						contentType:'application/json',
 						data: JSON.stringify(dataList),
@@ -1007,7 +1007,7 @@ $(function(){
 					var apply_Num =$(this).attr('id');
 					dataList = {'apply_Num' : apply_Num};
 					$.ajax({
-						url:'agreeApply',
+						url:'/pas/main/agreeApply',
 						dataType:'json',
 						contentType:'application/json',
 						data: JSON.stringify(dataList),
@@ -1082,7 +1082,7 @@ $(function(){
 					var invite_Num =$(this).attr('id');
 					dataList = {'invite_Num' : invite_Num};
 					$.ajax({
-						url:'agreeInvite',
+						url:'/pas/main/agreeInvite',
 						dataType:'json',
 						contentType:'application/json',
 						data: JSON.stringify(dataList),
@@ -1169,7 +1169,7 @@ $(function(){
 											};
 											$
 													.ajax({
-														url : 'agreeInvite',
+														url : '/pas/main/agreeInvite',
 														dataType : 'json',
 														contentType : 'application/json',
 														data : JSON

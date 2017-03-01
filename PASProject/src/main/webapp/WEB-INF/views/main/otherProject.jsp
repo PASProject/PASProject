@@ -129,7 +129,7 @@ $(function(){
 			$('#warning').show();
 		});
 	})
-	function goModal(proj_Num){
+	/* function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
 			url:'mdlOtherValue',
@@ -165,7 +165,7 @@ $(function(){
 				});
 			}
 		});
-	}
+	} */
 	
  	function goApply(proj_Num){
 		var data = {'proj_Num':proj_Num};
@@ -180,6 +180,7 @@ $(function(){
 				$('#'+proj_Num+'btnZone #applyBtn').css('color','red');
 				$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 				var pushData = {'push':data.p_Mem_Email};
+				alert(data.p_Mem_Email);
 				 send(JSON.stringify(pushData)); 
 			},error:function(data){
 				alert("에러");
