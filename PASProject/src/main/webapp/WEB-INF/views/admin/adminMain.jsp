@@ -30,12 +30,12 @@
                      
                    <div class="stat"><h2>회원 수</h2><span class="value" style="margin-top:10px;">${total_Mem }</span> </div>
                     <!-- .stat -->
-                    
                     <div class="stat"><h2>프로젝트 수</h2><span class="value">${total_proj }</span> </div>
                     <!-- .stat -->
                     
                     <div class="stat"><h2>미답변 수</h2><span class="value">${total_QnaN }</span> </div>
                     <!-- .stat -->
+                   
                   </div>
                 </div>
                 <!-- /widget-content --> 

@@ -30,7 +30,7 @@
 				<input type="button" value="돌아가기" id="goBackBtn" class="btn btn-default">
 			</small>
 		</h2><br>
-		
+		<div style="text-align: right" id="joinMemberZone"></div>
     <div id="spreadsheet" style="width:auto;"></div>
 </div>
 

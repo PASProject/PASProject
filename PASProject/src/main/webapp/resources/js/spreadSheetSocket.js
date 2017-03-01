@@ -2,11 +2,11 @@ var wsocket;
 var msg;
 var loginUserId;
 function connectSpreadSheet() {
-			sheatWsocket = new SockJS(
+			sheetWsocket = new SockJS(
 					"http://"+document.domain+":8181/pas/spreadSheetSocket.sockjs");
-			sheatWsocket.onopen = onOpenSpreadSheet;
-			sheatWsocket.onmessage = onMessageSpreadSheet;
-			sheatWsocket.onclose = onCloseSpreadSheet;
+			sheetWsocket.onopen = onOpenSpreadSheet;
+			sheetWsocket.onmessage = onMessageSpreadSheet;
+			sheetWsocket.onclose = onCloseSpreadSheet;
 	}
 	
 	function disconnect() {
@@ -14,8 +14,9 @@ function connectSpreadSheet() {
 	}
 	
 	function onOpenSpreadSheet(evt) {
-		/*var initData = {'doc_Num':}*/
-		/*send()*/
+		/*var a = $('sessionScope.loginUser.mem_Name');*/
+		/*alert("ㅋ");*/
+		/*$('#joinMemberZone').html("<a>ㅇㅇㅇ</a>");*/
 	}
 	
 	function onMessageSpreadSheet(evt) {
