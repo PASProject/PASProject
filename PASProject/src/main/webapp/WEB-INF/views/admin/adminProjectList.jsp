@@ -28,9 +28,8 @@ vertical-align:middle;
 	 
 	<form>
 	<strong><font size="5" style="margin-left: 8%">프로젝트 관리</font></strong>
-			<font style="margin-left:45%;">프로젝트명 : <input type="text" name="proj_Name" style="width:15%;"/>&nbsp; 
-			<input type="button" onclick="searchProj(this.form);" value="검색" 
-			style="width:5%;"></font>
+			<font style="margin-left:47%;">프로젝트명 : <input type="text" name="proj_Name" style="width:15%;"/>&nbsp; 
+			<input type="button" onclick="searchProj(this.form);" value="검색" ></font>
 	</form>
 
 

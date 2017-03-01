@@ -13,15 +13,10 @@
 </head>
 <body>
 	<div class="col-md-10">
-		<h3 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			관리자 페이지 <small>_QnA 게시판</small>
-		</h3>
-				<form name="form" method="post" action="AdminQnAList">
-<!-- 	<form action="QnaBoardSearch" method="post">	 -->
-
-<br> 
-		<select name = "keyField" size = "1">
+		
+	<form name="form" method="post" action="AdminQnAList">
+	<strong><font size="5" style="margin-left: 8%">Q&A관리</font></strong>
+		<select name = "keyField" size = "1" style="width: 100px; margin-left:50% ">
 			<option value="title" selected>제목</option>
 			<option value = "name" selected>작성자</option>
 			<option value ="number" selected>글번호</option>
@@ -29,30 +24,22 @@
 		</select>
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >
-		
 <br>	
-		
-		
-
-		
-		
-		
-	
-			<table class="table table-hover">
+<br>	
+			<table style="width: 83%; margin-left: 7%; text-align:center;" class="table table-hover">
 				<tr class="text-center">
-					<th class="col-md-1" style="text-align: center">답변여부</th>
-					<th class="col-md-1" style="text-align: center">번호</th>
-					<th class="col-md-4" style="text-align: center">제목</th>
-					<th class="col-md-2" style="text-align: center">작성자</th>
-					<th class="col-md-1" style="text-align: center">작성일</th>
-					<th class="col-md-1" style="text-align: center">조회수</th>
+					<th style="text-align: center;vertical-align:middle !important;">답변여부</th>
+					<th style="text-align: center;vertical-align:middle !important;">번호</th>
+					<th style="text-align: center;vertical-align:middle !important;">제목</th>
+					<th style="text-align: center;vertical-align:middle !important;">작성자</th>
+					<th style="text-align: center;vertical-align:middle !important;">작성일</th>
+					<th style="text-align: center;vertical-align:middle !important;">조회수</th>
 				</tr>
-				
 				
 				<c:forEach items="${qnaList}" var="qnaBoardVo"
 					begin="${paging.beginNo}" end="${paging.endNo}">
 					<tr id="boardContents">
-					<td> 
+					<td style="text-align: center;"> 
 				<c:choose>
 							<c:when test='${qnaBoardVo.qb_yn=="0"}'>답변미처리</c:when>
 							<c:otherwise>답변완료</c:otherwise>
@@ -60,10 +47,10 @@
 					</td>
 					
 						<td style="text-align: center">${qnaBoardVo.qb_Article_Num}</td>
-						<td><a 
+						<td style="text-align: center;"><a 
 							href="<%=request.getContextPath()%>/admin/AdminQnADetail?qb_Article_Num=${qnaBoardVo.qb_Article_Num }">
 								${qnaBoardVo.qb_Title}</a></td>
-						<td>${qnaBoardVo.mem_Name }</td>
+						<td style="text-align: center;">${qnaBoardVo.mem_Name }</td>
 						<td style="text-align: center">
 						<fmt:formatDate	value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
 						<td style="text-align: center">${qnaBoardVo.qb_Inq_Count }</td>
@@ -86,7 +73,7 @@
 					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
 					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
 					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
+						<ul class="pagination justify-content-center" style="margin-left: 40%">
 
 							<li class="page-item"><a class="page-link"
 								href="QnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
@@ -113,8 +100,7 @@
 					</nav>
 				</c:if>
 			</div>
-
-
-	</div>
+			<br><br>
+		</div>
 </body>
 </html>

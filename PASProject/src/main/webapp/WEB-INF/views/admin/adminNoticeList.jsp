@@ -11,47 +11,37 @@
 <title></title>
 
 </head>
-<body>
-	<!-- <div class="col-md-10"> -->
-		<h3 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			전체공지사항
-		</h3>
-		
+<body>	
 		<form name="form" method="post" action="AdminTotalNoticeList">
-		
-		<br> 
-		<select name = "keyField" size = "1">
+		<strong><font size="5" style="margin-left: 8%">전체공지사항</font></strong>
+		<select name = "keyField" size = "1" style="width: 100px; margin-left:48% ">
 			<option value="title" selected>제목</option>
 			<option value ="number" selected>글번호</option>
 			<option value ="title_Content" selected>제목_내용</option>
 		</select>
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >
-		
 		<br>	
-
-		<table class="table table-hover">
+		<br>
+		<table style="width: 83%; margin-left: 7%; text-align:center;" class="table table-hover">
 			<tr class="text-center">
-
-			
-				<th class="col-md-1" style="text-align: center">번호</th>
-				<th class="col-md-4" style="text-align: center">제목</th>
-				<th class="col-md-2" style="text-align: center">작성자</th>
-				<th class="col-md-1" style="text-align: center">작성일</th>
-				<th class="col-md-1" style="text-align: center">조회수</th>
+				<th  style="text-align: center;vertical-align:middle !important;">번호</th>
+				<th  style="text-align: center;vertical-align:middle !important;">제목</th>
+				<th  style="text-align: center;vertical-align:middle !important;">작성자</th>
+				<th  style="text-align: center;vertical-align:middle !important;">작성일</th>
+				<th  style="text-align: center;vertical-align:middle !important;">조회수</th>
 			</tr>
 	
 	<c:forEach var="noticeList" items="${noticeList}">
 			<tr>
 				
 				<td style="text-align: center">${noticeList.ttnotice_Num}</td>
-				<td>
+				<td style="text-align: center">
 				<a href = "<%=request.getContextPath()%>
 					/admin/adminNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
 						${noticeList.ttnotice_Title}</a></td>
-				<td>이경희</td>
-				<td>${noticeList.ttnotice_Date}</td>
+				<td style="text-align: center">이경희</td>
+				<td style="text-align: center">${noticeList.ttnotice_Date}</td>
 				<td style="text-align: center"></td>
 
 			</tr>
@@ -64,16 +54,16 @@
 					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
 					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
 					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
+						<ul class="pagination justify-content-center" style="margin-left: 40%">
 
 							<li class="page-item"><a class="page-link"
-								href="totalNoticeList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+								href="AdminTotalNoticeList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
 
 
 							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
 								varStatus="status">
 										<li class="page-item" id="number"><a
-											class="page-link" href="totalNoticeList?page=${i}">${i}</a></li>
+											class="page-link" href="AdminTotalNoticeList?page=${i}">${i}</a></li>
 										<script>
 										$('li').each(function(){
 										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
@@ -84,7 +74,9 @@
 										</script>
 							</c:forEach>
 							<li class="page-item"><a class="page-link"
-								href="totalNoticeList?page=${finalPageNo}">끝 페이지</a></li>
+								href="AdminTotalNoticeList?page=${finalPageNo}">끝 페이지</a></li>
+
+
 						</ul>
 					</nav>
 				</c:if>
@@ -92,8 +84,6 @@
 
 </form>
 
-
-	<!-- </div> -->
 	<script>
 		function tt_NoticeInsert(){
 			location.href = "adminNoticeForm";
