@@ -22,6 +22,10 @@
 		ORDER BY QB_ARTICLE_NUM DESC
 	</select>
 	
+	<select id="selectNCount" resultClass="int" parameterClass="int">
+	 select count(*) from QNA_BOARD where QB_YN = 0
+	</select>
+	
 	<select id="myPostListCount" resultClass="int" parameterClass="QnaBoard">
 		SELECT COUNT(*)
 		FROM QNA_BOARD
@@ -117,6 +121,6 @@
 		UPDATE QNA_BOARD SET QB_INQ_COUNT =QB_INQ_COUNT+1
 		WHERE QB_ARTICLE_NUM=#qb_Article_Num#
 	</update>
-
+	
 
 </sqlMap>

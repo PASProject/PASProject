@@ -27,14 +27,14 @@
               <div class="widget big-stats-container">
                 <div class="widget-content">
                   <div id="big_stats" class="cf">
-                    
-                   <div class="stat"><h2>회원수</h2><span class="value">${total_Mem }</span> </div>
+                     
+                   <div class="stat"><h2>회원 수</h2><span class="value" style="margin-top:10px;">${total_Mem }</span> </div>
                     <!-- .stat -->
                     
-                    <div class="stat"><h2>프로젝트수</h2><span class="value">${total_proj }</span> </div>
+                    <div class="stat"><h2>프로젝트 수</h2><span class="value">${total_proj }</span> </div>
                     <!-- .stat -->
                     
-                    <div class="stat"><h2>미답변Q&A</h2><span class="value">922</span> </div>
+                    <div class="stat"><h2>미답변 수</h2><span class="value">${total_QnaN }</span> </div>
                     <!-- .stat -->
                   </div>
                 </div>
@@ -75,7 +75,7 @@
           <!-- /widget -->
           <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-th-list"></i>
-              <h3>산천초목 푸른나라 살기 좋은 대한민국</h3>
+              <h3>숫자로 이해하는 블루마인</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">

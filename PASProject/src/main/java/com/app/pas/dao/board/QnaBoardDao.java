@@ -20,6 +20,7 @@ public interface QnaBoardDao {
 	  public int QnaSearchTotalCount(QnaBoardVo qnaBoardVo)throws SQLException;
 	  public List<QnaBoardVo> myPostList(QnaBoardVo qnaBoardVo) throws SQLException;
 	  public int myPostListCount(QnaBoardVo qnaBoardVo)throws SQLException;
+	  public int selectNCount() throws SQLException;
 	  
 
 	  
