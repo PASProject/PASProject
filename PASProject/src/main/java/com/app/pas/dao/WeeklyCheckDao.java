@@ -8,7 +8,7 @@ import com.app.pas.dto.WeeklyCheckVo;
 
 public interface WeeklyCheckDao {
 	
-	public List<WeeklyCheckVo> weeklyCheck_Select() throws SQLException;
+	public List<WeeklyCheckVo> weeklyCheck_Select(WeeklyCheckVo weeklyCheckVo) throws SQLException;
 	public void weeklyCheck_Update(WeeklyCheckVo weeklyCheckVo) throws SQLException;
 
 }

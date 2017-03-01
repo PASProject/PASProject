@@ -15,9 +15,9 @@ public class WeeklyCheckDaoImpl implements WeeklyCheckDao{
 	}
 
 	@Override
-	public List<WeeklyCheckVo> weeklyCheck_Select()
+	public List<WeeklyCheckVo> weeklyCheck_Select(WeeklyCheckVo weeklyCheckVo)
 			throws SQLException {
-		List<WeeklyCheckVo> list = client.queryForList("weeklyCheck_Select");
+		List<WeeklyCheckVo> list = client.queryForList("weeklyCheck_Select",weeklyCheckVo);
 		return list;
 	}
 
