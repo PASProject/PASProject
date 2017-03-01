@@ -76,7 +76,6 @@
                   data:JSON.stringify(dataList),
                   contentType: 'application/json; charset=UTF-8',
                   success:function(data){
-                	  alert(data.position_Name);
                 	 if(data.position_Name=='PL'){
                 		 $('#positionSelect').attr('style','display:none');
                 		 $('#updateBtn').attr('style','display:none');
@@ -88,8 +87,6 @@
                 		 
                 	 } 
                 	  
-                     alert(data.mem_Phone);
-                     alert(data.mem_Email);
                      $('#mem_Img').attr('src','<%=request.getContextPath()%>/resources/upload/data.mem_Img');
                      $('#position_Name').val(data.position_Name);
                      $('#mem_Email').val(data.mem_Email);
