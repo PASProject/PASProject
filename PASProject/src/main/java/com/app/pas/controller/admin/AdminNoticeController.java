@@ -118,7 +118,7 @@ public class AdminNoticeController {
 //삭제 	
 	@RequestMapping(value = "/adminNoticeDelete",method=RequestMethod.POST)
 	public String deleteNotice(HttpSession session, Model model,String ttnotice_Num) throws NumberFormatException, SQLException{
-		String url = "redirect:totalNoticeList";
+		String url = "redirect:AdminTotalNoticeList";
 		totalNoticeService.deleteTotalNotice(Integer.parseInt(ttnotice_Num));
 		
 		return url;

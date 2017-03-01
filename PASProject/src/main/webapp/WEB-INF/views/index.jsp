@@ -100,7 +100,7 @@ body.modal-open .background-container {
 	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 }
 </style>
-<body>
+<body style="overflow:hidden;">
 
 	<!-- Navigation -->
 	<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i
@@ -110,7 +110,7 @@ body.modal-open .background-container {
 			<a id="menu-close" href="#"
 				class="btn btn-light btn-lg pull-right toggle"><i
 				class="fa fa-times"></i></a>
-			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>PAS</a>
+			<li class="sidebar-brand"><a href="#top" onclick=$("#menu-close").click();>BlueMine</a>
 			</li>
 			<li><a href="#top" onclick=$("#menu-close").click();>BlueMine</a></li>
 			<li><a href="#about" onclick=$("#menu-close").click();>회원 가입</a></li>
@@ -131,7 +131,8 @@ body.modal-open .background-container {
 			<!-- <h3>Begin and Finish with us</h3> -->
 			<h3 id="a" style="display:inline">Begin&nbsp;</h3><h3 id="headTitle" style="display:inline"></h3>
 			<BR>
-			<br> <a href="<%=request.getContextPath() %>/main/loginForm" class="btn btn-dark btn-lg">들어가기</a>
+			<br> <a href="<%=request.getContextPath() %>/main/loginForm" class="btn btn-dark btn-lg">로그인</a>
+			<a href="#about" class="btn btn-dark btn-lg">회원가입</a>
 		</div>
 
 	</header>
@@ -139,7 +140,7 @@ body.modal-open .background-container {
 
 
 	<!-- joinForm -->
-	<section id="about" class="about" style="padding-top:20px;">
+	<section id="about" class="about" style="padding-top:20px; height:100%">
 		<div class="include">
 	 	<jsp:include page="main/joinForm.jsp" /> 
 		</div>
