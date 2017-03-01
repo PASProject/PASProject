@@ -715,14 +715,14 @@ li {
 							
 						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
 					
-						<c:choose>
-								실험1
-								<c:when test='${WeeklyCheckVo.wk_Yn eq Y }'>
-									${WeeklyCheckVo.wk_Content}
-								</c:when>
+<%-- 						<c:choose> --%>
+<!-- 								실험1 -->
+<%-- 								<c:when test='${WeeklyCheckVo.wk_Yn eq Y }'> --%>
+<%-- 									${WeeklyCheckVo.wk_Content} --%>
+<%-- 								</c:when> --%>
 
 								
-						</c:choose>
+<%-- 						</c:choose> --%>
 					
 						</th>
 					
