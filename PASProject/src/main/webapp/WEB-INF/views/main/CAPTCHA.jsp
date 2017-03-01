@@ -75,7 +75,7 @@
     		            	  location.href="<%=request.getContextPath()%>/admin/adminLogin";
     		            	  e.preventDefault();
     		              }else{
-    		            	  alert("No, you are not a human!");
+    		            	  alert("비정상적인 방법의 로그인은 금지합니다.");
     		              }
     		            	  
     		            	  
@@ -94,7 +94,6 @@ form.registration {
 
 form.registration fieldset {
 	width: 100%;
-	border: 1px solid #d8dee2;
 	padding: 10px;
 	/* 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); */
@@ -205,9 +204,10 @@ form.registration select {
 }
 
 .captcha {
+	font-weight:bold;
+	font-size:14px;
 	padding-bottom: 5px;
 	margin-bottom: 5px;
-	font-size: 12px;
 	text-align: center;
 	border-bottom: 1px solid #CCC;
 	background-color: #fff;

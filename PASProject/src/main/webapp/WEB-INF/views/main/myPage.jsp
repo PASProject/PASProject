@@ -38,7 +38,7 @@
 				<img class="img-thumbnail"
 					src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 					id="profileImg" style="width: 80px; height: 80px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
-<small>님, 환영합니다.
+<small><b>${loginUser.mem_Name }</b>님, 환영합니다.
 					<button class="btn btn-default btn-lg pull-right" id="projBtn">프로젝트
 						정보</button>
 				</small>

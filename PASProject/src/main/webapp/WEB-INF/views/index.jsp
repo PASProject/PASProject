@@ -99,6 +99,11 @@ body.modal-open .background-container {
 		.svg #blur);
 	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 }
+a.btn.btn-dark{
+font-weight:bold;
+color:#337ab7 !important;
+background-color:transparent !important;
+}
 </style>
 <body style="overflow:hidden;">
 
@@ -421,6 +426,7 @@ $(document).ready(function() {
 										validators : {
 											stringLength : {
 												min : 2,
+												message: '이름은 최소 두글자 이상 입력하셔야 합니다.'
 											},
 											notEmpty : {
 												message : '이름을 기입해 주세요'
@@ -498,6 +504,9 @@ $(document).ready(function() {
 									},
 									mem_Pass_CK : {
 										validators : {
+											notEmpty : {
+												message : '공란입니다.'
+											},
 											identical : {
 												field : 'mem_Pass',
 												message : '위와 동일한 비밀번호를 입력해 주시기 바랍니다.'

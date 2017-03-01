@@ -20,7 +20,7 @@
 border: 1px solid black;
 } */
 body {
-	background-color: rgb(249, 249, 249);
+	background-color: rgb(249, 249, 249) !important;
 }
 
 .title {
@@ -43,11 +43,20 @@ body {
 
 @font-face {
 	font-family: 'NanumGothic';
-	src: url(resources/fonts/NANUMGOTHIC.TTF) format('truetype');
+	src: url(/pas/resources/fonts/NANUMGOTHIC.TTF) format('truetype');
 }
 
+@font-face {
+	font-family: 'FEDERALESCORTHALFITAL';
+	src: url(/pas/resources/fonts/FEDERALESCORTHALFITAL.TTF);
+}
+#titleLogo{
+	font-family : 'FEDERALESCORTHALFITAL';
+	color:#337ab7;
+}
 body {
-	font-family: NanumGothic;
+	font-family: NanumGothic !important;
+	overflow:hidden;
 }
 
 .divider {
@@ -230,14 +239,13 @@ body {
 
 	<div class="container2" style="margin-bottom:5%;">
 
-		<h3 style="text-align: right; margin-right: 46px;">
-			<img style="width: 80px"
-				src="<%=request.getContextPath()%>/resources/img/logo.png">
+		<h3 id="titleLogo" style="font-family : 'FEDERALESCORTHALFITAL' !important; text-align: right; margin-right: 46px;">
+			BLUEMINE
 		</h3>
 		<div class="title">
 
 
-			<h2 style="margin-top:-15px;">로그인</h2>
+			<h2 style="font-weight:bold;">로그인</h2>
 			<hr style="color: rgb(216, 222, 226); margin-top: 5px;">
 		</div>
 

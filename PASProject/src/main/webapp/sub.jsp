@@ -150,7 +150,7 @@ font-weight:bold;
 					<tr>
 						<td><a href="<%=request.getContextPath()%>/project/work/createWorkForm">파일 생성</a></td>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<td><a href="<%=request.getContextPath()%>/project/work/loadFile">들어가기</a></td>
 					</tr>
 					<tr>
@@ -159,7 +159,7 @@ font-weight:bold;
 					<tr>
 						<td><a
 							href="<%=request.getContextPath()%>/work/pmMemberInvite">Tex</a></td>
-					</tr>
+					</tr> --%>
 				</table>
 			</div>
 		</div>

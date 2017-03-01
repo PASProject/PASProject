@@ -37,11 +37,11 @@
 			<tr class="text-center">
 
 				
-				<th class="col-md-1" style="text-align: center">번호</th>
-				<th class="col-md-4" style="text-align: center">제목</th>
-				<th class="col-md-2" style="text-align: center">작성자</th>
-				<th class="col-md-1" style="text-align: center">작성일</th>
-				<th class="col-md-1" style="text-align: center">조회수</th>
+				<th class="col-md-1" >번호</th>
+				<th class="col-md-4" >제목</th>
+				<th class="col-md-2">작성자</th>
+				<th class="col-md-1">작성일</th>
+				<th class="col-md-1" >조회수</th>
 			</tr>
 	
 	<c:forEach var="noticeList" items="${noticeList}"
@@ -54,7 +54,9 @@
 					/notice/totalNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
 						${noticeList.ttnotice_Title}</a></td>
 				<td>이경희</td>
-				<td>${noticeList.ttnotice_Date}</td>
+				<td>
+				
+				${noticeList.ttnotice_Date}</td>
 				<td style="text-align: center">${noticeList.ttnotice_Inq_Count}</td>
 
 			</tr>

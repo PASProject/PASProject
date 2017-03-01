@@ -6,7 +6,7 @@
 border: 1px solid black;
 } */
 #body {
-	background-color: rgb(249, 249, 249);
+	background-color: rgb(249, 249, 249) !important;
 }
 
 .container {
@@ -132,7 +132,7 @@ body {
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-earphone"></i></span> <input name="mem_Phone"
-								id="mem_Phone" placeholder="하이픈 제외하고 입력해주세요   ex)01055557777" class="form-control" type="text">
+								id="mem_Phone" placeholder="하이픈(-)을 제외하고 입력해주세요." class="form-control" type="text">
 						</div>
 					</div>
 				</div>
