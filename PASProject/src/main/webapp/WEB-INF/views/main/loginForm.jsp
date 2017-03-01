@@ -132,9 +132,9 @@ body {
 	$(function() {
 		$("#login").click(function() {
 			var email = $("#login_mem_Email").val();
-			alert(email);
+			
 			var pwd = $('#login_mem_Pass').val();
-			alert(pwd);
+		
 		
 			$.ajax({
 				
@@ -153,10 +153,10 @@ body {
                         location.href="<%=request.getContextPath()%>/main/myProject"
 											} else if (result == 0) {
 												alert("아이디가 틀렸습니다");
-												alert(result);
+												
 											} else if (result == 2) {
 												alert("비밀번호 오류입니다");
-												alert(result);
+												
 											} else if (result == 3) {
 												alert("인증되지않은계정입니다");
 											}
@@ -249,7 +249,7 @@ body {
 				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>
 			</div>
 			<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-			<div id="2" >
+			<div id="2" style="display:none;" >
 				<form>
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"

@@ -503,7 +503,12 @@ $(function(){
 							class="glyphicon glyphicon-bell" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"
 							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;">
-						</a> <span id="alarmCount" style="color: red; display: none;"></span>
+							 
+						</a> <span id="alarmCount" style="margin-bottom: -50px;font-weight: bold;padding-left: 5px;padding-right: 5px;background-color: #ff4400; cursor:pointer; color: white; position: relative;top: -44px;left: 28px;
+    font-size: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: table-caption;"></span>
 							<span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
