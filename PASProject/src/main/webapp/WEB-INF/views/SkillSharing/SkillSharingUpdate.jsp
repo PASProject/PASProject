@@ -56,7 +56,7 @@
 	</div>
 <script>
 		function go_list(){
-			location.href="SkillSharingDetail?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}"
+			location.href="SkillSharingList"
 		}
 </script>
 </body>
