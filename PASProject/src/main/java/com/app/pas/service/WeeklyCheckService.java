@@ -22,5 +22,14 @@ public class WeeklyCheckService {
 	public void weeklyCheck_Update(WeeklyCheckVo weeklyCheckVo) throws SQLException{
 		weeklyCheckDao.weeklyCheck_Update(weeklyCheckVo);
 	}
+	
+//삭제 
+	public void weeklyCheck_Delete(WeeklyCheckVo weeklyCheckVo) throws SQLException{
+		weeklyCheckDao.weeklyCheck_Delete(weeklyCheckVo);
+	}
+//Y or N
+	public void weeklyCheck_YN(WeeklyCheckVo weeklyCheckVo)throws SQLException{
+		weeklyCheckDao.weeklyCheck_YN(weeklyCheckVo);
+	}
 
 }
