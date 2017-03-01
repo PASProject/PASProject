@@ -36,11 +36,11 @@
 			<tr>
 				
 				<td style="text-align: center">${noticeList.ttnotice_Num}</td>
-				<td style="text-align: center">
+				<td style="text-align: center">	
 				<a href = "<%=request.getContextPath()%>
 					/admin/adminNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
 						${noticeList.ttnotice_Title}</a></td>
-				<td style="text-align: center">이경희</td>
+				<td style="text-align: center">관리자</td>
 				<td style="text-align: center">${noticeList.ttnotice_Date}</td>
 				<td style="text-align: center"></td>
 
@@ -48,6 +48,7 @@
 	</c:forEach>
 		</table>
 	<button class="btn btn-default text-right" type="button" onClick="tt_NoticeInsert()">글쓰기</button>
+</form> 
 
 <div class="col-md-12 text-center">
 				<c:if test="${paging.finalPageNo>0 }">
@@ -75,14 +76,13 @@
 							</c:forEach>
 							<li class="page-item"><a class="page-link"
 								href="AdminTotalNoticeList?page=${finalPageNo}">끝 페이지</a></li>
-
-
 						</ul>
 					</nav>
 				</c:if>
 			</div>
+<br>
+<br>
 
-</form>
 
 	<script>
 		function tt_NoticeInsert(){

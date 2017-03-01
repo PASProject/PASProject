@@ -59,15 +59,6 @@
 				</c:forEach>
 			</table>
 		</form>
-			<div class="col-md-12 text-right">
-				
-				<script>
-					function QnaWrite() {
-						location.href = "QnAWrite";
-					}
-				</script>
-			</div>
-
 			<div class="col-md-12 text-center">
 				<c:if test="${paging.finalPageNo>0 }">
 					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
@@ -76,7 +67,7 @@
 						<ul class="pagination justify-content-center" style="margin-left: 40%">
 
 							<li class="page-item"><a class="page-link"
-								href="QnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
+								href="AdminQnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
 
 
 							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
@@ -93,7 +84,7 @@
 										</script>
 							</c:forEach>
 							<li class="page-item"><a class="page-link"
-								href="QnAList?page=${finalPageNo}">끝 페이지</a></li>
+								href="AdminQnAList?page=${finalPageNo}">끝 페이지</a></li>
 
 
 						</ul>
@@ -102,5 +93,10 @@
 			</div>
 			<br><br>
 		</div>
+		<script>
+					function QnaWrite() {
+						location.href = "QnAWrite";
+					} 
+				</script>
 </body>
 </html>

@@ -38,7 +38,6 @@ public class AdminNoticeController {
 		List<TotalNoticeVo> noticeList = new ArrayList<TotalNoticeVo>();
 		int totalCount = 0;
 		
-
 		if (keyField == "" || keyField.equals(null)) {
 			totalCount = totalNoticeService.toTalNoticeTotalCount();
 			if (page.equals(null) || page == "") {
@@ -69,8 +68,9 @@ public class AdminNoticeController {
 			}
 				noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
 				model.addAttribute("noticeList", noticeList);
-				
+				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+noticeList);
 			totalCount = totalNoticeService.toTalNoticeSearchCount(totalNoticeVo);
+			
 			if (page.equals(null) || page == "") {
 				page = "" + 1;
 			}
