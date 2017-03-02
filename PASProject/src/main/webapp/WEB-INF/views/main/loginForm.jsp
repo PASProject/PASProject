@@ -149,9 +149,9 @@ body {
 				
 				type : 'POST',
 				url : '/pas/main/login',
-				beforeSend:function(){
-					$('#mloader').show();
-				},
+				/* beforeSend:function(){
+					 $('#mloader').show(); 
+				}, */
 				dataType : 'json',
 				data : {
 					'email' : email,
@@ -169,9 +169,7 @@ body {
 											} else if (result == 3) {
 												alert("인증되지않은계정입니다");
 											}
-
 										}
-
 									});
                         		});
 						});

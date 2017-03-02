@@ -125,10 +125,6 @@ font-weight:bold;
 							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트
 								게시판</a></td>
 					</tr>
-					<tr>
-						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/billing">돈관리</a></td>
-					</tr>
 				</table>
 			</div>
 		</div>

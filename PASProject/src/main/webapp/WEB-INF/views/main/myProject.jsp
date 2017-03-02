@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+<!-- 
 	<script>
 $(function(){
 	
@@ -20,7 +20,7 @@ $(function(){
 	
 })
 
-</script>
+</script> -->
 	<script>
 $(function(){
 	$('#navbar').css('background-color','#3c5574');
