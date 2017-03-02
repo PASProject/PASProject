@@ -8,13 +8,25 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 
 	<select id="weeklyCheck_Select" resultClass="WeeklyCheck" parameterClass="WeeklyCheck">
-		SELECT * FROM WEEKLY_CHECK where wk_proj_Num = #wk_Proj_Num# and wk_mem_email = #wk_Mem_Email# order by wk_num asc
+		SELECT * FROM WEEKLY_CHECK
+		where wk_proj_Num = #wk_Proj_Num# and 
+		wk_mem_email = #wk_Mem_Email# and
+		wk_yn = 'N'
+		order by wk_num asc
+	</select>
+	
+	<select id="weeklyCheck_Select_Y" resultClass="WeeklyCheck" parameterClass="WeeklyCheck">
+		SELECT * FROM WEEKLY_CHECK
+		where wk_proj_Num = #wk_Proj_Num# and 
+		wk_mem_email = #wk_Mem_Email# and
+		wk_yn = 'Y'
+		order by wk_num asc
 	</select>
 	
 	<update id="weeklyCheck_Update" parameterClass="WeeklyCheck">
 		INSERT INTO
 		WEEKLY_CHECK(WK_NUM,WK_DATE,WK_CONTENT,WK_MEM_EMAIL,WK_YN,wk_proj_num)
-		VALUES(WEEKLY_CHECK_SEQ.NEXTVAL,#wk_Date#,#wk_Content#,#wk_Mem_Email#,#wk_Yn#,#wk_Proj_Num#)
+		VALUES(WEEKLY_CHECK_SEQ.NEXTVAL,#wk_Date#,#wk_Content#,#wk_Mem_Email#,'N',#wk_Proj_Num#)
 	</update>
 	
 	<delete id="weeklyCheck_Delete" parameterClass="WeeklyCheck">
@@ -24,7 +36,7 @@
 	
 	<update id="weeklyCheck_YN" parameterClass="WeeklyCheck">
 		UPDATE WEEKLY_CHECK SET
-		WK_YN='Y'
+		WK_YN= #wk_Yn#
 		WHERE
 		WK_NUM = #wk_Num#
 	</update>

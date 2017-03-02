@@ -685,19 +685,40 @@ li {
 								</c:set>
 								
 								<c:if test="${dateF ==ScheduleCalendarVo.dt}">
-							
+					<!-- 		<script>
+											$(function(){
+												$('#b${ WeeklyCheckVo.wk_Content}').on('click',function(){
+													$('#${ WeeklyCheckVo.wk_Content}').hide();
+													$('#g1${ WeeklyCheckVo.wk_Content}').hide();
+													$('#g2${ WeeklyCheckVo.wk_Content}').hide();
+													$('#b${ WeeklyCheckVo.wk_Content}').hide();
+													
+													
+												})
+											})
+											
+											</script> -->
 						
 								
 									<ul>
-										<li><span class="doList"> - ${ WeeklyCheckVo.wk_Content}</span>
+										<li>
+							
+										
+										<span id="${ WeeklyCheckVo.wk_Content}"> - ${ WeeklyCheckVo.wk_Content}</span>
+										
+										
+										
+										
+										
 											<a href="weeklyCheck_Delete?wk_Num=${WeeklyCheckVo.wk_Num}">
-											<span class="glyphicon glyphicon-remove"
+											<span class="glyphicon glyphicon-remove" id="g1${ WeeklyCheckVo.wk_Content}"
 												style="font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;">
 											</span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
+										</a> <a href="#"> <span class="glyphicon glyphicon-pencil" id="g2${ WeeklyCheckVo.wk_Content}"
 												style="font-size: 12px;"></span></a> 
 											
-											<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" type="button" class="btn btn-info" id="finish">완료</a>
+											<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" type="button" class="btn btn-info" id="b${ WeeklyCheckVo.wk_Content}">완료</a>
+											
 											</li>
 									</ul>
 									
@@ -711,24 +732,19 @@ li {
 							<input type="text" name="wk_Content" id="${status.count}content"
 							size="100" style="border: 0px;"
 							onKeyDown="onKeyDown(${status.count});"
-							placeholder='이 곳을 클릭하여 일정을 적어주세요'> 
+							placeholder='이 곳을 클릭하여 일정을 적어주세요'>
 							
 						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
-					
-<%-- 						<c:choose> --%>
-<!-- 								실험1 -->
-<%-- 								<c:when test='${WeeklyCheckVo.wk_Yn eq Y }'> --%>
-<%-- 									${WeeklyCheckVo.wk_Content} --%>
-<%-- 								</c:when> --%>
-
 								
-<%-- 						</c:choose> --%>
-					
+								<%-- <c:forEach items="${weekCheck_Y_List}" var="WeeklyCheckVo">
+								<span id="${WeeklyCheckVo.wk_Content }"> - ${WeeklyCheckVo.wk_Content}</span><br>
+								</c:forEach> --%>
+										
 						</th>
 					
 					</tr>
-
 				</c:forEach>
+
 
 			</table>
 		</form>
@@ -750,7 +766,9 @@ li {
 	
 	  
 	
-</script></body>
+</script>
+
+</body>
 </html>
 
 <%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%>

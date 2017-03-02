@@ -31,5 +31,11 @@ public class WeeklyCheckService {
 	public void weeklyCheck_YN(WeeklyCheckVo weeklyCheckVo)throws SQLException{
 		weeklyCheckDao.weeklyCheck_YN(weeklyCheckVo);
 	}
+	
+// Y
+	public List<WeeklyCheckVo> weeklyCheck_Select_Y(WeeklyCheckVo weeklyCheckVo )throws SQLException{
+		List<WeeklyCheckVo> list = weeklyCheckDao.weeklyCheck_Select_Y(weeklyCheckVo);
+		return list; 
+	}
 
 }

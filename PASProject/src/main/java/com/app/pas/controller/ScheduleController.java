@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -152,8 +153,7 @@ public class ScheduleController {
 			List<ScheduleCalendarVo> weelyList_start = new ArrayList<ScheduleCalendarVo>();
 			scheduleCalendarVo.setSc_Wk_Mem_Email(mem_Email);
 			scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(wk_Proj_Num));
-
-			
+	
 				weelyList_start = schdulCalendarService.selectWeeklylist_Start(scheduleCalendarVo);
 				model.addAttribute("weelyList_start", weelyList_start);
 
@@ -167,20 +167,31 @@ public class ScheduleController {
 				weekly_dateList = schdulCalendarService.weekly_date();
 				model.addAttribute("weekly_dateList", weekly_dateList);
 
-				//y or n 
-				System.out.println("번호번호  : " + wk_num);
-				weeklyCheckVo.setWk_Num(Integer.parseInt(wk_num));
-				weeklyCheckService.weeklyCheck_YN(weeklyCheckVo);
 				
 				// select------------------------------------------------------------
 				List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
+				List<WeeklyCheckVo> weekCheck_Y_List = new ArrayList<WeeklyCheckVo>();
+				
 				WeeklyCheckVo vo = new WeeklyCheckVo();
 				vo.setWk_Mem_Email(mem_Email);
 				vo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
+				
 				weekCheckList = weeklyCheckService.weeklyCheck(vo);
 				model.addAttribute("weekCheckList",weekCheckList);
+				
+				//완료인것 리스트 뿌려주는거
+				weekCheck_Y_List = weeklyCheckService.weeklyCheck_Select_Y(vo);
+				model.addAttribute("weekCheck_Y_List", weekCheck_Y_List);
+				//------------------------------------------------------------------
+				//y or n 
+				weeklyCheckVo.setWk_Num(Integer.parseInt(wk_num));
+				weeklyCheckVo.setWk_Yn("Y");
+				weeklyCheckService.weeklyCheck_YN(weeklyCheckVo);
+				
+				//----------------------------------------------------------------------
+				
 			
-			return url; 
+				return url; 
 		}
 	
 	
