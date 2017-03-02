@@ -16,7 +16,7 @@
    </select>
    
    <select id="selectDocumentListByProjNum" parameterClass="int" resultClass="Document" >
-   		select * from document where proj_Num = #proj_Num#
+   		select * from document where proj_Num = #proj_Num#  order by doc_wt_date desc
    </select> 
    <update id="deleteDocumentByDocNum" parameterClass="int">
    		delete from document where doc_Num = #doc_Num#
@@ -25,4 +25,8 @@
    <select id = "selectDocumentByDocNum" parameterClass="int" resultClass="Document" >
    		select * from document where doc_Num = #doc_Num#
    </select>
+   
+   <update id="updateDocumentName" parameterClass="Document">
+   		update document set doc_name = #doc_Name# where doc_Num = #doc_Num# 
+   </update>
 </sqlMap>

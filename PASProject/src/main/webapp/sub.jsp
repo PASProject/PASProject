@@ -144,7 +144,10 @@ font-weight:bold;
 							<span class="label label-success">New</span></td>
 					</tr>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/project/work/createWorkForm">파일 생성</a></td>
+						<td><a href="/pas/project/work/spreadSheetForm">스프레드시트 생성</a></td>
+					</tr>
+					<tr>
+						<td><a href="/pas/project/work/spreadWordForm">워드프로세스 생성</a></td>
 					</tr>
 					<%-- <tr>
 						<td><a href="<%=request.getContextPath()%>/project/work/loadFile">들어가기</a></td>
