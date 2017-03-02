@@ -695,8 +695,8 @@ li {
 												style="font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;">
 											</span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
-												style="font-size: 12px;"></span></a> <span
-											class="glyphicon glyphicon-heart"></span>
+												style="font-size: 12px;"></span></a> 
+											
 											<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" type="button" class="btn btn-info" id="finish">완료</a>
 											</li>
 									</ul>
