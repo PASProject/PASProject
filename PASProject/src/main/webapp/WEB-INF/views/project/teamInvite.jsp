@@ -29,7 +29,7 @@
    <div class="col-md-10" id="content">
       <h3 class="page-header"
          style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-         프로젝트 팀원 초대<small>dfef </small>
+         프로젝트 팀원 초대
       </h3>
       
       
@@ -55,7 +55,7 @@
                      scroll : true,
                      scrollHeight : 300,
                      formatItem : function(d, i, max) { // suggest 목록에 보여줄 글자
-                        return i + "/" + max + ": \""
+                        return "\""
                               + d.mem_Email + "\" ["
                               + d.mem_Name + "]";
                      },
@@ -136,11 +136,11 @@
          
          <c:forEach var="InviteList" items="${InviteList }">
             <tr>
-               <td style="vertical-align:middle"><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}" style="width:80px"></td>
-               <td style="vertical-align:middle">${InviteList.mem_Email }</td>
-               <td style="vertical-align:middle">${InviteList.mem_Name }</td>
-               <td style="vertical-align:middle">${InviteList.invite_Time }</td>
-               <td style="vertical-align:middle">미수락중 / <input type="button" value="초대취소" onclick="deleteBtn('${InviteList.mem_Email}')"></td>
+               <td style="vertical-align:middle"><b><img src="<%=request.getContextPath() %>/resources/upload/${InviteList.mem_Img}" style="width:80px"></b></td>
+               <td style="vertical-align:middle"><b>${InviteList.mem_Email }</b></td>
+               <td style="vertical-align:middle"><b>${InviteList.mem_Name }</b></td>
+               <td style="vertical-align:middle"><b>${InviteList.invite_Time }</b></td>
+               <td style="vertical-align:middle"><input type="button" class="btn btn-default" value="초대취소" onclick="deleteBtn('${InviteList.mem_Email}')"></td>
             </tr>
          </c:forEach>
       </table>

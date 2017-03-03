@@ -17,7 +17,7 @@
 			프로젝트 공지사항 <small>글 읽기</small>
 		</h3>
 <form>
-세부정보 
+
 <table class="table" style="border-top: 2px;">
 <tr style="border-top: 2px solid #add">
 <td class="col-md-9">
@@ -26,17 +26,17 @@
 						</h3>
 					</td>
 					
-					<td class="col-md-2"
-						style="vertical-align: middle; text-align: right">날짜:
-						${NoticeVo.notice_Date }</td>
+					<td class="col-md-4"
+						style="vertical-align: middle; text-align: right"><h5>날짜:
+						${NoticeVo.notice_Date }</h5></td>
 						</tr>
 						
 						<tr>
-					<td colspan="3">작성자 : ${NoticeVo.mem_Name }</td>
+					<td colspan="3"><h3><b>작성자 :</b> ${NoticeVo.mem_Name }</h3></td>
 				</tr>
 				
 				<tr>
-					<td colspan="3">공지글 내용 : ${NoticeVo.notice_Content }"<br>
+					<td colspan="3"><h3><b>공지글 내용 :</b> ${NoticeVo.notice_Content }"</h3><br>
 					</td>
 				</tr>
 				
@@ -44,8 +44,7 @@
 					<td class="text-right" colspan="3"
 						style="border-top: 0px solid blue;">
 						
-						<button class="btn btn-default text-right" type="button"
-							onclick="go_NoticeList()">목록</button>
+						
 							<input type="hidden" name="notice_Num" id="notice_Num" value="${NoticeVo.notice_Num }">
 			                <input type="hidden" id="proj_Num" id="proj_Num" value="${NoticeVo.proj_Num }">
 					</td>
@@ -55,8 +54,11 @@
 </table>
 <c:if test="${memPositionView.position_Name eq 'PL' }">
 <input type="button" class="btn btn-default" value="수정" onclick="location.href='<%=request.getContextPath()%>/project/pmNoticeUpdate?proj_Num=${NoticeVo.proj_Num}&notice_Num=${NoticeVo.notice_Num}'"/>
-<input type="button" class="btn btn-default" value="삭제" onclick="deleteBtn(this.form)">
+<input type="button" class="btn btn-danger" value="삭제" onclick="deleteBtn(this.form)">
+
 </c:if>
+<button class="btn btn-default pull-right" type="button"
+							onclick="go_NoticeList()">목록</button>
 </form>
 </div>
 
@@ -65,6 +67,11 @@ function deleteBtn(form){
 	 form.action="<%=request.getContextPath()%>/project/pmNoticeDelete";
 	 form.method="post";
 	 form.submit();
+	
+}
+
+function go_NoticeList(){
+	location.href="<%=request.getContextPath()%>/project/pmNoticeList";
 	
 }
 

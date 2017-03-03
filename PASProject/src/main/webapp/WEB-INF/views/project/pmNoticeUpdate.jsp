@@ -42,7 +42,7 @@
 						</div>
 					</div>
 
-<input type="button" class="btn btn-default" value="수정하기" onclick="updateBtn(this.form)">
+<input type="button" class="btn btn-default pull-right" value="수정하기" onclick="updateBtn(this.form)">
 </fieldset>
 </form>
 </div>

@@ -391,11 +391,12 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/pmOverView")
-	public String PmOverView(HttpSession session, Model model,
+	public String PmOverView(HttpSession session, Model model,HttpServletRequest request,
 			@RequestParam String proj_Num) throws NumberFormatException,
 			SQLException {
 		String url = "project/pmOverView";
 		session.setAttribute("joinProj", proj_Num);
+		request.setAttribute("proj_Num", proj_Num);
 		ProjectVo projectVo = projectService.selectProject(Integer
 				.parseInt(proj_Num));
 		session.setAttribute("joinProjectVo", projectVo);

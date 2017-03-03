@@ -3,6 +3,8 @@ package com.app.pas.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -171,10 +173,13 @@ public class MainContoller {
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(HttpSession session, MemberVo memberVo,
 			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
-			MessagingException, SQLException {
+			MessagingException, SQLException, UnknownHostException {
 		String url = "redirect:/index";
 		request.setCharacterEncoding("utf-8");
 		
+		
+		InetAddress inet = InetAddress.getLocalHost();
+		String svrIP = inet.getHostAddress();
 		 /*System.out.println(memberVo);
 		 System.out.println(memberVo.getMem_Email());*/
 		
@@ -183,7 +188,7 @@ public class MainContoller {
 			memberService.insertMember(memberVo);
 			String content = memberVo.getMem_Email()
 					+ "(님)의 계정 승인 확인 메일입니다. "
-					+ "<a href='http://localhost:8181/pas/main/memberAuth?mem_Email="
+					+ "<a href='http://"+svrIP+":8181/pas/main/memberAuth?mem_Email="
 					+ memberVo.getMem_Email() + "'>승인확인</a>";
 
 			MimeMessage message = mailSender.createMimeMessage();
@@ -442,7 +447,8 @@ public class MainContoller {
 
 		request.setCharacterEncoding("utf-8");
 		int result = -1;
-		String pwd = ((Math.random()+1)*100000)+"";
+		double dpwd = ((Math.random()+1)*10000);
+		String pwd = ((int)(dpwd))+"";
 		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd+ "입니다";
 		SimpleMailMessage message = new SimpleMailMessage();
 

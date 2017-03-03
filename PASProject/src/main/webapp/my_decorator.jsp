@@ -435,9 +435,9 @@ $(function(){
 					<p id="teamName">BLUEMINE</p>
 					</c:when>
 								<c:otherwise>
-									<p id="tn" style="font-size:20px">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
+									<b><p id="tn" style="font-size:20px">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
 											class="caret" id="caret" style="display: none;"></span>
-									</p>
+									</p></b>
 								</c:otherwise>
 							</c:choose> <script>
 					$(function(){
