@@ -38,13 +38,11 @@
             
             $(function() {
             $('#TeamMemberUpdate').click(function() {
-            var position_Name=$("#position_Name").val();
-            var mem_Email =$("#mem_Email").val();
-            
+            var position_Num=$("#positionSelect option:selected").val();   
+            var mem_Email =$("#mem_Email_Modal").val();
             var dataList={
-                  'position_Name':position_Name,'mem_Email':mem_Email};
-            $.ajax({
-               
+                  'position_Num':position_Num,'mem_Email':mem_Email};
+             $.ajax({
                type:'POST',
                url:'TeamMemberUpdate',
                dataType:'JSON',
@@ -53,13 +51,9 @@
             success : function(data) {
             	alert('직책수정완료');
             	location.href="<%= request.getContextPath()%>/project/pmMemberList";
-               
-            }
-               
-               
-            });
+            } 
+            }); 
             })
-            
         });
          
          function show(mem_Email){
@@ -69,7 +63,6 @@
                var dataList = {'mem_Email': mem_Email};
                
                $.ajax({
-                 
                   type:'POST',
                   url:'activeMemberModal',
                   dataType:'JSON',
@@ -87,29 +80,18 @@
                 		 
                 	 } 
                 	  
-                     $('#mem_Img').attr('src','<%=request.getContextPath()%>/resources/upload/data.mem_Img');
+                     $('#mem_Img_Modal').attr('src','/pas/resources/upload/'+data.mem_Img);
                      $('#position_Name').val(data.position_Name);
-                     $('#mem_Email').val(data.mem_Email);
-                     $('#mem_Name').val(data.mem_Name);
-                     $('#mem_Phone').val(data.mem_Phone);
+                     $('#mem_Email_Modal').val(data.mem_Email);
+                     $('#mem_Name_Modal').val(data.mem_Name);
+                     $('#mem_Phone_Modal').val(data.mem_Phone);
+                     $('#positionSelect').val(data.position_Num).attr("selected","selected");
                      $('#memList').modal('show');
-                     
-                     
-                     
-                     
-                     
-                     
                   }
                   
                   
-               })
-               
-               
-               
+               })  
             })
-            
-            
-            
          }
          
          $(function() {
@@ -117,12 +99,8 @@
             $('#TeamMemberDelete').click(function(){
                
                
-               var mem_Email = $('#mem_Email').val();
-               
-               
+               var mem_Email = $('#mem_Email_Modal').val();
                var dataList={'mem_Email':mem_Email};
-               
-               
                $.ajax({
                type: 'POST',
                url: 'TeamMemberDelete',
@@ -133,37 +111,15 @@
                 
                   alert('팀원탈퇴성공');
                   location.href="<%= request.getContextPath()%>/project/pmMemberList";
-                  
-                  
-                  
-                  
                }
-                  
-                  
-                  
-                  
                   
                })
               
-           
-               
-               
             })
-            
-            
             
          })
          
-         
-            
-            
-            
-         
     </script>
-
-
-
-
 
 <div class="col-md-10" id="content">
       <h3 class="page-header"
@@ -210,7 +166,7 @@
 				style="border: 0px; padding-bottom: 0px; margin-top: 0px; margin-left: 10px;">
 				<img class="img-thumbnail"
 					src="#"
-					id="mem_Img" style="width: 80px; height: 80px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
+					id="mem_Img_Modal" style="width: 80px; height: 80px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
 
 			</h2>
 			<div id="bubble" style="height: auto; padding-left: 30px;">
@@ -224,12 +180,15 @@
             <c:when test="${memPositionView.position_Name eq 'PL' }">
             
             <select id="positionSelect">
-            <option></option>
-            <option>PL</option>
-            <option>DA</option>
-            <option>TA</option>
-            <option>AA</option>
-            <option>BA</option>
+            <option value="1">PL</option>
+            <option value="2">PM</option>
+            <option value="3">TA</option>
+            <option value="4">AA</option>
+            <option value="5">DA</option>
+            <option value="6">BA</option>
+            <option value="7">UA</option>
+            <option value="8">PE</option>
+            <option value="9">NotRole</option>
            </select>
          
            <div class="input-group">
@@ -253,7 +212,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"> <i
 											class="glyphicon glyphicon-envelope"></i></span> <input
-											name="mem_Email" id="mem_Email" 
+											name="mem_Email" id="mem_Email_Modal" 
 											class="form-control" type="text" readonly>
 									</div>
 								</div>
@@ -265,7 +224,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-user"></i></span> <input name="mem_Name"
-											 id="mem_Name" class="form-control"
+											 id="mem_Name_Modal" class="form-control"
 											type="text" readonly>
 									</div>
 								</div>
@@ -277,7 +236,7 @@
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-earphone"></i></span> <input
 											name="mem_Phone" 
-											id="mem_Phone" class="form-control" type="text" readonly>
+											id="mem_Phone_Modal" class="form-control" type="text" readonly>
 									</div>
 								</div>
 							</div>
@@ -293,8 +252,8 @@
         <div class="modal-footer">
         
         <c:if test="${memPositionView.position_Name eq 'PL' }">
-         <input type="button" id="updateBtn" class="btn btn-default" data-dismiss="modal" id="TeamMemberUpdate" value="직책 수정">
-         <input type="button" id="deleteBtn" class="btn btn-danger" data-dismiss="modal" id="TeamMemberDelete" value="팀원 탈퇴">
+	         <input type="button" id="TeamMemberUpdate" class="btn btn-default" data-dismiss="modal" id="TeamMemberUpdate" value="직책 수정">
+	         <input type="button" id="TeamMemberDelete" class="btn btn-danger" data-dismiss="modal" id="TeamMemberDelete" value="팀원 탈퇴">
         </c:if>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           
@@ -303,17 +262,7 @@
       
     </div>
   </div>
-         
-         
-         
-         
-         
-         
       <!--         모달 구분선                                -->   
-      
-
-
-
       </form>
    </div>
 

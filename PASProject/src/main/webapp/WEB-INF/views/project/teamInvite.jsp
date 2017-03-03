@@ -69,12 +69,10 @@
                   });
          }
          
-         $("#inviteInsert")
-               .click(
+         $("#inviteInsert").click(
                      function() {
                         var mem_Email = $('#searchbox').val();
                         var d = "";
-                        
                         $('#zone').text("");
                          $.ajax({
                                  type : 'POST',

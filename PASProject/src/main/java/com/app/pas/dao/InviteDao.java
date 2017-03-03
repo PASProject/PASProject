@@ -15,4 +15,5 @@ public interface InviteDao {
 	public List<ProjInviteViewVo> selectInviteListByMemEmail(String mem_Email) throws SQLException;
 	public void updateInviteCommitCheck(InviteVo inviteVo) throws SQLException;
 	public InviteVo selectInvite(int invite_Num) throws SQLException;
+	public int selectInviteCount(String mem_Email) throws SQLException;
 }
