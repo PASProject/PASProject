@@ -10,8 +10,7 @@
 	<select id="weeklyCheck_Select" resultClass="WeeklyCheck" parameterClass="WeeklyCheck">
 		SELECT * FROM WEEKLY_CHECK
 		where wk_proj_Num = #wk_Proj_Num# and 
-		wk_mem_email = #wk_Mem_Email# and
-		wk_yn = 'N'
+		wk_mem_email = #wk_Mem_Email#
 		order by wk_num asc
 	</select>
 	

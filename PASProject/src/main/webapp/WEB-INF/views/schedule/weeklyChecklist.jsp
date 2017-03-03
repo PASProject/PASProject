@@ -600,7 +600,7 @@ li {
 			</div>
 		</div>
 
-		<%-- <!-- 토요일 마감일감 모달 -->
+		 <!-- 토요일 마감일감 모달 -->
 		<div class="modal fade" id="saturday__End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -628,9 +628,9 @@ li {
 				</div>
 
 			</div>
-		</div> --%>
+		</div> 
 
-		<%-- <!-- 일요일 마감일감 모달 -->
+		<!-- 일요일 마감일감 모달 -->
 		<div class="modal fade" id="sunday_End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -657,7 +657,7 @@ li {
 				</div>
 
 			</div>
-		</div> --%>
+		</div> 
 
 
 		<!----------------------------------------------------------------------------------------요일일정 체크 -->
@@ -666,58 +666,78 @@ li {
 
 			<table class="table table-strip">
 
-				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo"
-					varStatus="status">
+				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo" varStatus="status">
+			
 					<tr style="background-color: white">
 						<th class="col-md-1"
 							style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
-							${ScheduleCalendarVo.dy} <input type="hidden"
-							value=" ${ScheduleCalendarVo.dt}" id="${status.count}date">
+							${ScheduleCalendarVo.dy} 
+							<input type="hidden" value=" ${ScheduleCalendarVo.dt}" id="${status.count}date">
 						</th>
+						
 						<th class="col-md-7"
 							style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
 							<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
+								<script>
+								$(function(){
+									var yn = '${WeeklyCheckVo.wk_Yn}';
+									if(yn=='Y'){
+										$('#${ WeeklyCheckVo.wk_Content}').css({
+											'text-decoration':'line-through'
+										})
 
-
+										
+										$('#g1${ WeeklyCheckVo.wk_Content}').hide();
+										$('#g2${ WeeklyCheckVo.wk_Content}').hide();
+										$('#b${ WeeklyCheckVo.wk_Content}').hide();
+										
+										
+									}
+									
+								})
+								
+								
+								</script>
+								
 								<c:set var="dateF">
 									<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
 										pattern="yyyyMMdd" />
 								</c:set>
 								
 								<c:if test="${dateF ==ScheduleCalendarVo.dt}">
-					<!-- 		<script>
+					
+					
+					 		<script>
 											$(function(){
 												$('#b${ WeeklyCheckVo.wk_Content}').on('click',function(){
-													$('#${ WeeklyCheckVo.wk_Content}').hide();
+													$('#${ WeeklyCheckVo.wk_Content}').css({
+														'text-decoration':'line-through'
+													})
+													
+													
 													$('#g1${ WeeklyCheckVo.wk_Content}').hide();
 													$('#g2${ WeeklyCheckVo.wk_Content}').hide();
 													$('#b${ WeeklyCheckVo.wk_Content}').hide();
-													
-													
 												})
+												
 											})
 											
-											</script> -->
-						
-								
+							</script> 
 									<ul>
 										<li>
-							
-										
 										<span id="${ WeeklyCheckVo.wk_Content}"> - ${ WeeklyCheckVo.wk_Content}</span>
-										
-										
-										
-										
-										
-											<a href="weeklyCheck_Delete?wk_Num=${WeeklyCheckVo.wk_Num}">
+															
+										<a href="weeklyCheck_Delete?wk_Num=${WeeklyCheckVo.wk_Num}">
 											<span class="glyphicon glyphicon-remove" id="g1${ WeeklyCheckVo.wk_Content}"
 												style="font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;">
 											</span>
-										</a> <a href="#"> <span class="glyphicon glyphicon-pencil" id="g2${ WeeklyCheckVo.wk_Content}"
+										</a> <a href="#"> 
+										<span class="glyphicon glyphicon-pencil" id="g2${ WeeklyCheckVo.wk_Content}"
 												style="font-size: 12px;"></span></a> 
 											
-											<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" type="button" class="btn btn-info" id="b${ WeeklyCheckVo.wk_Content}">완료</a>
+									<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" 
+									type="button" class="btn btn-info" id="b${ WeeklyCheckVo.wk_Content}">
+									완료</a>
 											
 											</li>
 									</ul>
@@ -727,28 +747,33 @@ li {
 
 							</c:forEach> 
 							
-							
-							
+				
 							<input type="text" name="wk_Content" id="${status.count}content"
-							size="100" style="border: 0px;"
-							onKeyDown="onKeyDown(${status.count});"
+							size="100" style="border: 0px;" onKeyDown="onKeyDown(${status.count});"
 							placeholder='이 곳을 클릭하여 일정을 적어주세요'>
 							
-						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
+							
+							<c:set var="dateF">
+									<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
+										pattern="yyyyMMdd" />
+								</c:set>
 								
-								<%-- <c:forEach items="${weekCheck_Y_List}" var="WeeklyCheckVo">
-								<span id="${WeeklyCheckVo.wk_Content }"> - ${WeeklyCheckVo.wk_Content}</span><br>
-								</c:forEach> --%>
+								
+<!-- 						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
+								
+							
+<%-- 								<c:forEach items="${weekCheck_Y_List}" var="WeeklyCheckVo" varStatus="status"> --%>
+<%-- 								<span id="${WeeklyCheckVo.wk_Content }"> - ${WeeklyCheckVo.wk_Content}</span><br> --%>
+<%-- 								</c:forEach>  --%>
 										
-						</th>
+<!-- 						</th> -->
 					
+							
 					</tr>
 				</c:forEach>
 
-
 			</table>
 		</form>
-
 
 	</div>
 			
@@ -764,15 +789,11 @@ li {
 	     }
 	}
 	
-	  
-	
-</script>
 
+</script>
 </body>
 </html>
 
 <%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%>
---%>
 <%--  					${WeeklyCheckVo.tue}<span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span><br>  --%>
---%>
 <%--  					</c:forEach> --%>
