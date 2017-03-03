@@ -82,8 +82,6 @@ $(function(){
 				 
 				 </c:if>
 				 
-				 
-				 
 				  <c:if test="${projectVo.proj_Num != applyList }">
 				 <div id="${projectVo.proj_Num}btnZone">
 								<input class="btn btn-block btn-default" type="button"
