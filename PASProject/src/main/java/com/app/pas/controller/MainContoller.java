@@ -445,8 +445,8 @@ public class MainContoller {
 
 		request.setCharacterEncoding("utf-8");
 		int result = -1;
-		String pwd = (Math.random() * 100000) + 100000 + "";
-		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd + "입니다";
+		String pwd = ((Math.random()+1)*100000)+"";
+		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd+ "입니다";
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		MemberVo memberVo = (MemberVo) memberService.getMember(sendEmail);
