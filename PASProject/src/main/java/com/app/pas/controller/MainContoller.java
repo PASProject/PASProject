@@ -351,6 +351,7 @@ public class MainContoller {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		
 		String mem_Pass = (String) map.get("mem_Pass");
+		
 		if(mem_Pass ==""|| mem_Pass==null){
 			memberVo.setMem_Pass(memberVo.getMem_Pass());
 		}else{
@@ -359,14 +360,8 @@ public class MainContoller {
 		
 		String mem_Phone = (String) map.get("mem_Phone");
 		memberVo.setMem_Phone(mem_Phone);
-		String url = "redirect:myProject";
-		
-		
-
-		System.out.println(memberVo.toString());
 
 		int a = memberService.updateMember(memberVo);
-		System.out.println(a);
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("T", a);
 		return m;
@@ -427,12 +422,14 @@ public class MainContoller {
 
 		projectJoinVo.setMem_Email(member.getMem_Email());
 		projectJoinVo.setProj_Num(proj_Num);
-
+		projectJoinVo.setMem_Name(member.getMem_Name());
+		projectJoinVo.setMem_Img(member.getMem_Img());
 		memApplyViewVo.setMem_Email(member.getMem_Email());
 		memApplyViewVo.setProj_Num(proj_Num);
 		memApplyViewVo = projectService.insertApply(applyVo, projectJoinVo,
 				memApplyViewVo);
 		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
+		
 		map.put("p_Mem_Email", p_Mem_Email);
 		
 		return map;
@@ -542,9 +539,10 @@ public class MainContoller {
 	@RequestMapping(value = "/alarmCount", method = RequestMethod.GET)
 	public @ResponseBody int selectAlarmCount(HttpSession session) throws SQLException{
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		int memApplyViewCount = memberService
-				.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
-		return memApplyViewCount;
+		int memApplyViewCount = memberService.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
+		int projInviteViewCount = inviteService.selectInviteCount(memberVo.getMem_Email());
+		int totalCount = projInviteViewCount+memApplyViewCount;
+		return totalCount;
 
 	}
 

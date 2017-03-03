@@ -78,7 +78,7 @@
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-earphone"></i></span> <input
 											name="mem_Phone" value="${loginUser.mem_Phone }"
-											id="mem_Phone" class="form-control" type="text">
+											id="mem_Phone_MyPage" class="form-control" type="text">
 									</div>
 								</div>
 							</div>
@@ -178,6 +178,8 @@
 								</div>
 
 							</div>
+							<button class="btn btn-default pull-right" type="submit"
+						id="submit" style="margin-left: 5px;">정보 수정하기</button>
 						</form>
 						<script>
 	$(document)
@@ -200,12 +202,6 @@
 															regexp : /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/,
 															message : '형식에 맞는 휴대폰 번호를 입력해 주세요.'
 														},
-
-														/* 	stringLength : {
-																min : 12,
-																max : 13,
-																message :  '하이픈 붙혀서 전화번호 똑바로 좀 '
-															}, */
 														notEmpty : {
 															message : '휴대폰 번호를 입력해 주세요.'
 														}
@@ -236,6 +232,9 @@
 												},
 												mem_Pass_CK : {
 													validators : {
+														notEmpty : {
+															message : '공란입니다.'
+														},
 														identical : {
 															field : 'mem_Pass',
 															message : '위와 동일한 비밀번호를 입력해 주시기 바랍니다.'
@@ -244,94 +243,20 @@
 												},
 
 											}
-										})
+										}).on('err.field.fv', function(e, data) {
+								             if (data.fv.getSubmitButton()) {
+								                data.fv.disableSubmitButtons(false);
+								            } 
+								        })
+								        .on('success.field.fv', function(e, data) {
+								            if (data.fv.getSubmitButton()) {
+								                data.fv.disableSubmitButtons(false);
+								            }
+								        });
+						$('#userPw').focusout(function(e){
+							$('#userPw2').focus();
+						})
 
-								.on($('#submit').click(function(){
-									
-									
-									
-									var Pass_result = true;
-									var Pass_CK = true;
-									var Phone_CK = true;
-									
-									 //전화번호 정규식	
-								    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-									var mem_Phone= $('#mem_Phone').val();
-								    	if(!Phone_Pt.test(mem_Phone)){
-								    		Phone_CK = false;
-										}else{
-											Phone_CK = true;
-										}
-									
-									//비밀번호 정규식
-								    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
-								    var Pass = 	$('#userPw').val();
-								    	if(!Pass_Pt.test(Pass)){
-											Pass_result = false;
-										}else{
-											Pass_result = true;
-										}
-								    	
-								    //비밀번호 확인 정규식
-								   	var Pass = $('#userPw').val();
-								    var Pass_Check= $('#userPw2').val();
-								    	if(Pass != Pass_Check){
-								    		Pass_CK = false;
-										}else{
-											Pass_CK = true;
-										}
-								    	
-								    	if(Pass_result == true && Pass_CK == true){
-								    		
-											var mem_Pass = $('#userPw').val();
-											var dataList = {'mem_Pass':mem_Pass};
-											$.ajax({
-												url: '<%=request.getContextPath()%>/main/updateMember',
-												type:'post',
-												dataType:'json',
-												contentType:'application/json',
-												data:JSON.stringify(dataList),
-												success : function(data){
-													var i = data.T;
-													if(i=='1'){
-														location.reload();										
-													}else{
-														alert("실패");
-													}
-												},
-												failure: function(data){
-													alert('update Failed');
-												}
-											})
-											}else if(Phone_CK == true){
-												
-												var mem_Phone = $('#mem_Phone').val();
-												var dataList = {'mem_Phone':mem_Phone};
-												$.ajax({
-													url: '<%=request.getContextPath()%>/main/updateMember',
-													type:'post',
-													dataType:'json',
-													contentType:'application/json',
-													data:JSON.stringify(dataList),
-													success : function(data){
-														var i = data.T;
-														if(i=='1'){
-															location.reload();										
-														}else{
-															alert("실패");
-														}
-													},
-													failure: function(data){
-														alert('update Failed');
-													}
-												})
-												}
-								    
-								    
-								    
-								    
-								})
-								)
 					});
 </script>
 					</div>

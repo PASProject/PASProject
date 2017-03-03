@@ -599,14 +599,13 @@ public class ProjectController {
 		
 		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));
 		ProjectJoinVo member = new ProjectJoinVo();
-		int result=PositionNum(map.get("position_Name").toString());
+		String result=(String) map.get("position_Num");
 		
 		member.setMem_Email(map.get("mem_Email").toString());
 		member.setProj_Num(proj_Num);
-		member.setPosition_Num(result);
+		member.setPosition_Num(Integer.parseInt(result));
         
 		projectJoinService.updatePosition(member);
-       
         return proj_Num;
 	}
 
@@ -658,9 +657,9 @@ public class ProjectController {
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		int proj_Num = Integer.parseInt((String) session
 				.getAttribute("joinProj"));
+		
 		projectJoinVo.setMem_Email(map.get("mem_Email").toString());
 		projectJoinVo.setProj_Num(proj_Num);
-
 		projectJoinService.deleteProjectJoin(projectJoinVo);
 		return result;
 	}
@@ -907,25 +906,6 @@ public class ProjectController {
 				.selectMemberPositionByEmail(memPositionViewVo);
 		return memPosition;
 	}
-	
-	
-	public int PositionNum(String position_Name){
-		int result =0;
-		
-		if(position_Name.equals("PM")){
-			result=2;
-		}else if(position_Name.equals("TA")){
-			result=3;
-		}else if(position_Name.equals("AA")){
-			result=4;
-		}else if(position_Name.equals("DA")){
-			result=5;
-		}
-		
-		
-		return result;
-	}
-
 	
 	
 	@RequestMapping("pmGantChart")

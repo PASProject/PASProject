@@ -78,6 +78,7 @@ public class WorkController {
 		DocumentVo documentVo = new DocumentVo();
 		documentVo.setDoc_Kind(1);
 		documentVo.setDoc_Name("SpreadSheet");
+		documentVo.setDoc_File_Name("SpreadSheet");
 		documentVo.setMem_Email(memberVo.getMem_Email());
 		documentVo.setMem_Name(memberVo.getMem_Name());
 		documentVo.setProj_Num(Integer.parseInt(proj_Num));
@@ -200,7 +201,8 @@ public class WorkController {
 		String proj_Num = (String) session.getAttribute("joinProj");
 		DocumentVo documentVo = new DocumentVo();
 		documentVo.setDoc_Kind(2);
-		documentVo.setDoc_Name("WordSheet");
+		documentVo.setDoc_Name("WordProcess");
+		documentVo.setDoc_File_Name("WordProcess");
 		documentVo.setMem_Email(memberVo.getMem_Email());
 		documentVo.setMem_Name(memberVo.getMem_Name());
 		documentVo.setProj_Num(Integer.parseInt(proj_Num));
