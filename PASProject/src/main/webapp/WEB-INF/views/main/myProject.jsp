@@ -312,7 +312,12 @@ $(function(){
 	
 	
 	function gogo(proj_Num){
+		
+		
 		location.href="../project/pmOverView?proj_Num="+proj_Num;
+	
+		
+		
 	}
 	function go_Pb(){
 		location.href="<%=request.getContextPath()%>/SkillSharing/SkillSharingList"

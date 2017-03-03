@@ -23,6 +23,21 @@
 		<mvc:exclude-mapping path="work/selectDocument"/>
 		<bean class="com.app.pas.commons.interceptor.WorkListInterceptor"/>
 	</mvc:interceptor>
+	
+	
+	 <mvc:interceptor>
+	   <mvc:mapping path="/**"/>
+	   <mvc:exclude-mapping path="/index"/>
+	   <mvc:exclude-mapping path="/main/*"/>
+	   <bean class="com.app.pas.commons.interceptor.LoginSessionInterceptor"/>
+	
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	   <mvc:mapping path="/project/*"/>
+	   <bean class="com.app.pas.commons.interceptor.ProjSessionInterceptor"/>
+	
+	</mvc:interceptor>
 </mvc:interceptors>
 
 </beans>

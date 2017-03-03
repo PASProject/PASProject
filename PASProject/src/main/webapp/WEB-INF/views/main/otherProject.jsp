@@ -69,31 +69,8 @@ $(function(){
 					<h4 style="color: red">...</h4>
 				</div>
 				
-				<c:if test="${empty inviteList }">
+				<c:if test="${empty inviteList and empty applyList}">
 				
-				<c:if test="${!empty applyList }">			
-							
-				 <c:forEach var="applyList" items="${applyList }"	varStatus="status">
-				 <c:if test="${projectVo.proj_Num == applyList }">
-				 <div id="${projectVo.proj_Num}btnZone">
-								<input style="color:red" class="btn btn-block btn-default" type="text"
-									value="참가 신청 대기 중 "  readonly />
-							</div>
-				 
-				 </c:if>
-				 
-				  <c:if test="${projectVo.proj_Num != applyList }">
-				 <div id="${projectVo.proj_Num}btnZone">
-								<input class="btn btn-block btn-default" type="button"
-									onclick="javascript:goApply(${projectVo.proj_Num})"
-									id="applyBtn" value="참가 신청하기" />
-							</div>		
-				</c:if>
-				
-				 </c:forEach>
-				</c:if>
-				
-				<c:if test="${empty applyList }">
 				<div id="${projectVo.proj_Num}btnZone">
 								<input class="btn btn-block btn-default" type="button"
 									onclick="javascript:goApply(${projectVo.proj_Num})"
@@ -102,48 +79,133 @@ $(function(){
 				</c:if>
 				
 				
+				<c:if test="${!empty applyList and empty inviteList}">
+				
+				<c:forEach var="applyList" items="${applyList }">
+				<c:if test="${projectVo.proj_Num == applyList}">
+				
+				<div id="${projectVo.proj_Num}btnZone">
+								<input style="color:red" class="btn btn-block btn-default" type="button"
+									 value="참가 신청 대기중" />
+							</div>		
+				
 				
 				</c:if>
+				</c:forEach>
 				
-				<c:if test="${!empty inviteList }">
 				
-				 <c:forEach var="inviteList" items="${inviteList }"
-					varStatus="status">
-					<c:choose>
-						<c:when test="${projectVo.proj_Num == inviteList }">
-							<div id="${projectVo.proj_Num}btnZone">
-								<input style="color:blue" class="btn btn-block btn-default" type="text"
-									value="초대 요청이 전달 된 프로젝트 입니다." readonly />
-							</div>
-						</c:when>
-						
-
-						<c:otherwise>
- 
-							<div id="${projectVo.proj_Num}btnZone">
+				
+				
+				<div id="${projectVo.proj_Num}btnZone">
 								<input class="btn btn-block btn-default" type="button"
 									onclick="javascript:goApply(${projectVo.proj_Num})"
 									id="applyBtn" value="참가 신청하기" />
+				
+				
 							</div>
-
-
-						</c:otherwise>
-					</c:choose>
-				</c:forEach> 
+							</c:if>
+							
+							
+							
+							
+							
+							
+							<c:if test="${!empty inviteList and empty applyList}">
 				
+				<c:forEach var="inviteList" items="${inviteList }">
+				<c:if test="${projectVo.proj_Num == inviteList}">
 				
-				<c:forEach var="applyList" items="${applyList }"	varStatus="status">
-				<c:if test="${projectVo.proj_Num == applyList }">
-				 <div id="${projectVo.proj_Num}btnZone">
-								<input style="color:red" class="btn btn-block btn-default" type="text"
-									value="참가 신청 대기 중 "  readonly />
-							</div>
-				 
-				 </c:if>
+				<div id="${projectVo.proj_Num}btnZone">
+								<input style="color:blue" class="btn btn-block btn-default" type="button"
+									 value="이미 초대 신청이 전달 된 프로젝트" />
+							</div>		
 				
-				</c:forEach>
 				
 				</c:if>
+				</c:forEach>
+				
+				
+				
+				
+				<div id="${projectVo.proj_Num}btnZone">
+								<input class="btn btn-block btn-default" type="button"
+									onclick="javascript:goApply(${projectVo.proj_Num})"
+									id="applyBtn" value="참가 신청하기" />
+				
+				
+							</div>
+							</c:if>
+							
+							
+					<c:if test="${!empty inviteList and !empty applyList}">	
+					
+					<c:forEach var="applyList" items="${applyList }">
+				<c:if test="${projectVo.proj_Num == applyList}">
+				
+				<div id="${projectVo.proj_Num}btnZone">
+								<input style="color:red" class="btn btn-block btn-default" type="button"
+									 value="참가 신청 대기중" />
+							</div>		
+				
+				
+				</c:if>
+				</c:forEach>
+				
+				
+				<c:forEach var="inviteList" items="${inviteList }">
+				<c:if test="${projectVo.proj_Num == inviteList}">
+				
+				<div id="${projectVo.proj_Num}btnZone">
+								<input style="color:blue" class="btn btn-block btn-default" type="button"
+									 value="이미 초대 신청이 전달 된 프로젝트" />
+							</div>		
+				
+				
+				</c:if>
+				</c:forEach>
+				
+			
+				
+				
+				<div id="${projectVo.proj_Num}btnZone">
+								<input class="btn btn-block btn-default" type="button"
+									onclick="javascript:goApply(${projectVo.proj_Num})"
+									id="applyBtn" value="참가 신청하기" />
+				
+				
+							</div>
+					
+					
+				
+				
+					
+					
+					</c:if>	
+							
+							
+									
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+	
+				
+				
+				
+				
+				
+				 
 
 				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 					class="img-responsive" src="http://placehold.it/700x400"

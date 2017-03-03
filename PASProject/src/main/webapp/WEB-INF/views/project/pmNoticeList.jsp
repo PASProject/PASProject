@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,25 +37,27 @@
 
 <table class="table table-hover">
 <tr class="text-center">
-<th class="col-md-1" style="text-align: center">글 번호</th>
-<th class="col-md-4" style="text-align: center">글 제목</th>
+<th class="col-md-2" style="text-align: center">글 번호</th>
+<th class="col-md-2" style="text-align: center">글 제목</th>
 <th class="col-md-2" style="text-align: center">작성자</th>
-<th class="col-md-1" style="text-align: center">날짜</th>
-<th class="col-md-1" style="text-align: center">조회수</th>
+<th class="col-md-2" style="text-align: center">날짜</th>
+
 
 </tr>
 <c:forEach var="NoticeList" items="${NoticeList }" begin="${paging.beginNo}" end="${paging.endNo}">
 <tr>
 <td style="text-align: center">${NoticeList.notice_Num }</td>
 
-<td style="text-align: center"><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></td>
+<td style="text-align: center"><b><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></b></td>
 
 <td style="text-align: center">${NoticeList.mem_Name }</td>
 
-<td style="text-align: center">${NoticeList.notice_Date }</td>
+<td style="text-align: center"><fmt:formatDate pattern="yyyy-MM-dd" 
+            value="${NoticeList.notice_Date }" />
+</td>
 
 
-<td style="text-align: center">${NoticeList.notice_Inq_Count }</td>
+
 </tr>
 
 </c:forEach>
@@ -78,7 +81,7 @@
 </table>
 <c:if test="${memPositionView.position_Name eq 'PL' }">
 
-<input type="button" value="글쓰기" onclick="writeBtn()" class="btn btn-default" />
+<input type="button" value="글쓰기" onclick="writeBtn()" class="btn btn-default pull-right" />
 </c:if>
 </div>
 <script>

@@ -137,10 +137,10 @@
          </tr>
             <c:forEach var="pmMemberList" items="${pmMemberList }">
                <tr class="text-center">
-               <td class="text-center">${pmMemberList.position_Name }</td>
-               <td class="text-center"><input type="button" class="btn btn-default" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/> </td>
-               <td>${pmMemberList.mem_Email }</td>
-               <td>${pmMemberList.proj_Log_Time}</td>
+               <td class="text-center"><b>${pmMemberList.position_Name }</b></td>
+               <td class="text-center"><b><input type="button" class="btn btn-default" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/></b> </td>
+               <td><b>${pmMemberList.mem_Email }</b></td>
+               <td><b>${pmMemberList.proj_Log_Time}</b></td>
                </tr>
             </c:forEach>
          </table>
@@ -165,8 +165,8 @@
 			<h2 class="page-header"
 				style="border: 0px; padding-bottom: 0px; margin-top: 0px; margin-left: 10px;">
 				<img class="img-thumbnail"
-					src="#"
-					id="mem_Img_Modal" style="width: 80px; height: 80px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
+					src="#" 
+					id="mem_Img_Modal" style="width: 200px; height: 200px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
 
 			</h2>
 			<div id="bubble" style="height: auto; padding-left: 30px;">
@@ -194,15 +194,15 @@
            <div class="input-group">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span> 
 			<input name="position_Name" id="position_Name" class="form-control" type="text" readonly>
-									</div>
+									</div><br>
  
             </c:when>
             <c:otherwise>
-                  직책:<input type="text" id="position_Name" readonly><br>
+                  직책:<input type="text" id="position_Name" readonly>
             </c:otherwise>
             </c:choose>
             </div>
-            </div>
+            </div><br>
             
             
 						
@@ -216,7 +216,7 @@
 											class="form-control" type="text" readonly>
 									</div>
 								</div>
-							</div>
+							</div><br>
 
 							<div class="form-group" >
 								<label class="col-md-4 control-label">이름</label>
@@ -228,7 +228,7 @@
 											type="text" readonly>
 									</div>
 								</div>
-							</div>
+							</div><br>
 							<div class="form-group">
 								<label class="col-md-4 control-label">전화번호</label>
 								<div class="col-md-6  inputGroupContainer">
