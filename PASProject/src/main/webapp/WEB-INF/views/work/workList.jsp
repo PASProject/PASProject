@@ -176,7 +176,7 @@
 					return;
 				}
 				var dataList = {"doc_Num":doc_Num,"doc_File_Name":doc_Name};
-				var selectObj = $(this).parent("td").siblings().eq(1).find('#file_Name')
+				var selectObj = $(this).parent("td").siblings().eq(1).find('#file_Name');
 				 $.ajax({
 					dataType:'json',
 					contentType:'application/json',

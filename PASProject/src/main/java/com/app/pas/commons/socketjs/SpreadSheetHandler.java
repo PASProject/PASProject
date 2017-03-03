@@ -71,6 +71,12 @@ public class SpreadSheetHandler extends TextWebSocketHandler{
 					ArrayList<WebSocketSession> list = (ArrayList<WebSocketSession>) roomList.get(join_Doc_Num+"");
 					list.add(session);
 				}
+				
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+				
+				System.out.println(roomList+"룸 리스트");
+				
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		   }
 		
 		
@@ -83,7 +89,11 @@ public class SpreadSheetHandler extends TextWebSocketHandler{
 			int join_Doc_Num = (Integer) attributes.get("joinDocNum");
 			List<WebSocketSession> list = new ArrayList<WebSocketSession>();
 			list = roomList.get(join_Doc_Num+"");
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			System.out.println(list+"리스트");
 			list.remove(session);
+			System.out.println(list + "지운후 리스트");
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			System.out.println("연결 종료호출");
 			
 		}
