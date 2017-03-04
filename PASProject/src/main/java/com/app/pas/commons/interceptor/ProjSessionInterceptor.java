@@ -12,6 +12,7 @@ public class ProjSessionInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,ModelAndView modelAndView) throws Exception {
 		
 		if(request.getSession().getAttribute("joinProj") == null){ 
+			System.out.println(request.getSession().getAttribute("joinProj")+"이건 조인피알오제!");
 		   response.sendRedirect("/pas/index");
 		 
 		     
@@ -21,13 +22,18 @@ public class ProjSessionInterceptor extends HandlerInterceptorAdapter {
 		}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request,
-			HttpServletResponse response, Object handler, Exception ex)
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler)
 			throws Exception {
 		if(request.getAttribute("proj_Num")!=request.getSession().getAttribute("joinProj")){
+			System.out.println(request.getSession().getAttribute("joinProj")+"이건 조인피알오제!");
 			System.out.println(request.getAttribute("proj_Num")+"파파팟!@@@@");
 			response.sendRedirect("/pas/index");
+			return false;
 		}
+		
+		return true;
+		
 	}
 	
 	
