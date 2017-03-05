@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html style="background-color:white;">
+<html style="background-color:#f9f9f9;">
 
 
 <head>
@@ -155,6 +155,19 @@ $(function(){
 
 <!--  -->
 <style>
+#resizingImg{
+max-width:100px;
+width:100%;
+}
+#resizing{
+    position: fixed;
+    top: 300px;
+    left: 20px;
+    opacity:0.05;
+}
+#resizing:hover{
+opacity:1;
+}
 a{
 color:black;
 }
@@ -192,20 +205,20 @@ div {
 word-break:break-all;
 }
 
-.col-md-1 {
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+.col-md-0 {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
 }
 
-.col-md-11 {
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+.col-md-12 {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
 }
-
+.col-md-0 {width: 0 !important;float:left}
 body.modal-open {
 	margin-left: 18px;
 }
@@ -229,7 +242,7 @@ font-family : 'FEDERALESCORTHALFITAL';
 }
 body {
 	font-family: 'NanumGothic';
-	background-color: white;
+	background-color: #f9f9f9;
 }
 
 .navbar-default {
@@ -250,8 +263,7 @@ body {
 }
 
 .navbar-inverse {
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	
 	margin-top: 30px;
 	background-color: #3c5574;
 	border-bottom-color: #6093cc;
@@ -271,7 +283,9 @@ body {
 	background-color: #3c5574;
 	color: white;
 }
-
+.panel-group .panel{
+border-radius:0px;
+}
 .col-md-3 {
 	width: 100%;
 }
@@ -290,6 +304,9 @@ body {
 </style>
 
 <style>
+/* html{
+background-color:#f9f9f9;
+} */
 .table>tbody>tr>th{
 background-color:white;
 border-top: 1px solid #888888;
@@ -317,10 +334,8 @@ border-bottom : 1px solid #888888;
 }
 
 #content {
-
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
-	border-radius: 5px;
+	border:1px solid #ddd;
+	background-color: white;
 	margin-top: 25px;
 	min-height: 776px;
 	margin-bottom: 5%;
@@ -374,6 +389,7 @@ $(function(){
 </head>
 <title>최종!</title>
 <body>
+	<a id="resizing" style="text-decoration: none;" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/sort.png"><span></span></a>
 	<header>
 
 

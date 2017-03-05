@@ -34,7 +34,9 @@
 	<bean id="MessageDao" class="com.app.pas.dao.impl.MessageDaoImpl" p:client-ref="SqlMapClient" />
 	<bean id="WeeklyCheckDao" class="com.app.pas.dao.board.impl.WeeklyCheckDaoImpl" p:client-ref="SqlMapClient" />
 	<bean id="AdminCalendarDao" class="com.app.pas.dao.impl.AdminCalendarDaoImpl" p:client-ref="SqlMapClient" />
-
+	<bean id="BoardManagementDao" class="com.app.pas.dao.impl.BoardManagementDaoImpl" p:client-ref="SqlMapClient"/>
+	<bean id="BoardJoinDao" class="com.app.pas.dao.impl.BoardJoinDaoImpl" p:client-ref="SqlMapClient"></bean>
+	
 	
 	<bean id="AccountBoardDao" class="com.app.pas.dao.board.impl.AccountBoardDaoImpl" p:client-ref="SqlMapClient"/>
 	<bean id="FreeBoardDao" class="com.app.pas.dao.board.impl.FreeBoardDaoImpl" p:client-ref="SqlMapClient"/>
@@ -88,5 +90,7 @@
 	<bean id="GantChartService" class="com.app.pas.service.dic.GantChartService" p:gantChartDao-ref="GantChartDao"/>
 	<bean id="DocumentService" class="com.app.pas.service.dic.DocumentService" p:documentDao-ref="DocumentDao" p:spreadSheetDao-ref="SpreadSheetDao" p:wordSheetDao-ref="WordSheetDao"/>
     <bean id="WordSheetService" class="com.app.pas.service.dic.WordSheetService" p:wordSheetDao-ref="WordSheetDao"/>
-
+	<bean id="BoardManagementService" class="com.app.pas.service.BoardManagementService" p:boardManagementDao-ref="BoardManagementDao"/>
+	<bean id="BoardJoinService" class="com.app.pas.service.BoardJoinService" p:boardJoinDao-ref="BoardJoinDao"></bean>
+	
 </beans>

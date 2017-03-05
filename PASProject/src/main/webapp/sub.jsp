@@ -302,6 +302,17 @@ font-weight:bold;
 			</div>
 		</div> -->
 	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a style="text-decoration: none;"
+					href="<%=request.getContextPath()%>/project/pmBoardManagementList"><img src="<%=request.getContextPath() %>/resources/img/cash.png"><span>&nbsp;&nbsp;&nbsp;게시판 관리</span></a>
+			</h4>
+		</div>
+	</div>
+	
+	
 </div>
 <hr style="border: 1px solid; border-color: #ddd">
 <div class="panel-group" id="accordion">
@@ -478,17 +489,8 @@ font-weight:bold;
 	</div>
 
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4 class="panel-title">
-				<a id="collapseEight" style="text-decoration: none;" href="#collapseEight"><img src="<%=request.getContextPath() %>/resources/img/resize.png"><span>&nbsp;&nbsp;&nbsp;리사이징</span></a>
-			</h4>
-		</div>
-		<!-- <div id="collapseSeven" class="panel-collapse collapse">
-			<div class="panel-body">
-			</div>
-		</div> -->
-	</div>
+			
+			
 </div>
 <script>
 
@@ -502,28 +504,27 @@ font-weight:bold;
 
 
 	function decrease(){
-		$('#content').removeClass('col-md-10').addClass('col-md-11');
-		$('#submenu').removeClass('col-md-2').addClass('col-md-1');
+		$('#content').removeClass('col-md-10').addClass('col-md-12');
+		$('#submenu').removeClass('col-md-2').addClass('col-md-0');
 		$('.panel-title>a>span').hide();
 		$('.panel-title').css('text-align','center');
 		$('#proj_Img').css('height','80px');
-		$('#collapseEight').one("click",increase);
-		
+		$('#resizing').one("click",increase);
 	}
 	/* k-spreadsheet-pane k-top k-left */
 	function increase(){
-		$('#content').removeClass('col-md-11').addClass('col-md-10');
-		$('#submenu').removeClass('col-md-1').addClass('col-md-2');
+		$('#content').removeClass('col-md-12').addClass('col-md-10');
+		$('#submenu').removeClass('col-md-0').addClass('col-md-2');
 		$('.panel-title>a>span').show();
 		$('.panel-title').css({
 			'text-align':'left'
 		})
 		$('#proj_Img').css('height','130px');
-		$('#collapseEight').one("click",decrease);
+		$('#resizing').one("click",decrease);
 
 	}
 $(function(){
-	$('#collapseEight').one('click',decrease);
+	$('#resizing').one('click',decrease);
 	
 
 })
