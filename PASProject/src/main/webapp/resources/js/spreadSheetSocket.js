@@ -19,14 +19,18 @@ function connectSpreadSheet() {
 	}
 	
 	function onMessageSpreadSheet(evt) {
+		var g = JSON.parse(evt.data);
+		var deleteKey = "selection";
+		var gridLinesColor = "gridLinesColor";
+		delete g[deleteKey];
 		var spreadsheetModal = $("#fullBody").data("kendoSpreadsheet");
 		var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
 		if(spreadsheetModal!=null){
 			var sheetModal = spreadsheetModal.activeSheet();
-			sheetModal.fromJSON(JSON.parse(evt.data));
+			sheetModal.fromJSON(g);
 		}else if(spreadsheet!=null){
 			var sheet = spreadsheet.activeSheet();
-			sheet.fromJSON(JSON.parse(evt.data));
+			sheet.fromJSON(g);
 		}
          
 	}

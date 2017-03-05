@@ -199,7 +199,8 @@
 								},
 								eventClick : function(calEvent, jsEvent, view) {
 									var loginUser = '${loginUser.mem_Email}';
-									id = (calEvent.id).substring(loginUser.length);
+									ind = (calEvent.id).lastIndexOf(".")+1;
+									id = (calEvent.id).substring(ind);
 									var dataList={'id':id};
 									$.ajax({
 										dataType : 'json',
@@ -234,12 +235,14 @@
 									}
 									var loginUser = '${loginUser.mem_Email}';
 									var position = '${memPosition.position_Num}';
+									ind = (calEvent.id).lastIndexOf(".")+1;
+									id = (calEvent.id).substring(ind);
 									if ((calEvent.id).indexOf(loginUser) > -1 || position==1) {
 										$('#detailFooter')
 												.html(
 														'<button type="button" class="btn btn-default" id="updateCalendar">수정</button> <button type="button" class="btn btn-default" id="deleteCalendar">삭제</button>'
 																+ '<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>'
-																+ '<input type="hidden" value="'+ (calEvent.id).substring(loginUser.length)+ '" id="sc_Num">'
+																+ '<input type="hidden" value="'+id+ '" id="sc_Num">'
 																+ '<input type="hidden" value="'+calEvent.color+'" id="sc_Color">');
 									} else {
 										$('#detailFooter')
@@ -256,7 +259,7 @@
 									var position = '${memPosition.position_Num}';
 									if ((event.id).indexOf(loginUser) > -1|| position==1) {
 										var id = (event.id)
-												.substring(loginUser.length);
+												.substring(loginUser.length+1);
 										var start = moment(event.start).format(
 												'YYYY-MM-DD HH:mm');
 										var end;
@@ -377,7 +380,7 @@
 								item.end = data.end;
 								item.color = data.color;
 								item.description = data.description;
-								$('#calendar').fullCalendar('refetchEvents');
+								$('#calendar').fullCalendar('refetchEvents');  
 								$('#detailCalendarModal').modal("hide");
 								$('#detailDatePicker1').val("");
 								$('#detailDatePicker2').val("");

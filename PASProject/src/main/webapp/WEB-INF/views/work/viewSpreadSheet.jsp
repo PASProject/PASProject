@@ -32,7 +32,6 @@
 		</h2><br>
 		<div style="text-align: right" id="joinMemberZone"></div>
     <div id="spreadsheet" style="width:auto;"></div>
-    <textarea rows="10" cols="160" id = "zozo"></textarea>
 </div>
 
 <!-- Modal fullscreen -->    
@@ -186,8 +185,6 @@ $(function() {
     	 
     	 var doc_Num = '${spreadSheetVo.doc_Num}';
          var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
-         $('#zozo').val("");
-         $('#zozo').val(JSON.stringify(sheet));
     	 $.ajax({  
          	type : "POST",
  			url : "saveFile",
@@ -199,9 +196,8 @@ $(function() {
  			}    
          });
      }
-    
-});
+}); 
       
-    </script>              
-</body>                   
+    </script>                
+</body>                     
 </html>        
