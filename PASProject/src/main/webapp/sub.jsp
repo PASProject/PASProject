@@ -245,6 +245,17 @@ font-weight:bold;
 			</div>
 		</div> -->
 	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a style="text-decoration: none;"
+					href="<%=request.getContextPath()%>/project/pmBoardManagementList"><img src="<%=request.getContextPath() %>/resources/img/cash.png"><span>&nbsp;&nbsp;&nbsp;게시판 관리</span></a>
+			</h4>
+		</div>
+	</div>
+	
+	
 </div>
 <hr style="border: 1px solid; border-color: #ddd">
 <div class="panel-group" id="accordion">
