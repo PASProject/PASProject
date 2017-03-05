@@ -209,9 +209,66 @@ font-weight:bold;
 								초대</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="#">프로젝트 참가</a></td>
+						<td><a style="text-decoration: none;" href="#" data-toggle="modal" data-target="#outModal">프로젝트 탈퇴</a></td>
+						
+						<div class="modal fade" id="outModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><b>프로젝트 탈퇴</b></h4>
+        </div>
+        <div class="modal-body">
+                      <H2><b>정말로 프로젝트 탈퇴를 하시겠습니까?</b></H2>
+          <button type="button" class="btn btn-default" id="projOut">예</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+        </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+  
+  		
+						
 					</tr>
 				</table>
+				<script>
+  
+  $(function(){
+
+		var proj_Num= ${joinProj};
+	    var mem_Email= '${loginUser.mem_Email}';
+		
+		
+	    var dataList = {"proj_Num":proj_Num,"mem_Email":mem_Email};
+		
+	    
+		
+		$('#projOut').click(function(){
+			
+		$.ajax({
+			type:'POST',
+			url:'projOut',
+			data:{"proj_Num":proj_Num,"mem_Email":mem_Email},
+			dataType:'JSON',
+			 success:function(){
+				 location.href="<%=request.getContextPath()%>/main/myProject";
+			 }
+		})
+			
+			
+			
+			
+		})
+		
+		
+	})
+  </script>
 			</div>
 		</div>
 	</div>
@@ -470,6 +527,10 @@ $(function(){
 	
 
 })
+
+
+
+
 </script>
 
 <!-- 	</div>

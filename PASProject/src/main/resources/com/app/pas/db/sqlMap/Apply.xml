@@ -26,8 +26,8 @@
       update apply set apply_commit_check =#apply_Commit_Check# where apply_num=#apply_Num#
    </update>
    
-   <update id="deleteApply" parameterClass="int">
-      delete from apply where apply_num=#apply_Num#
+   <update id="deleteApply" parameterClass="Apply">
+      delete from apply where apply_num=#apply_Num# and mem_Email=#mem_Email#
    </update>
    
    

@@ -150,9 +150,11 @@
 			data : JSON.stringify(datalist),
 			success : function(data){
 				var d = new Date(data.acc_Date);
+				var today_date =
+				    d.getFullYear()+"-"+("0" + (d.getMonth() + 1)).slice(-2)+"-"+("0" + d.getDate()).slice(-2);
 				$('#upproj_Num').val(data.proj_Num);
 				$("#upacc_Num").val(data.acc_Num);
-				$("#upacc_Date").val(d);
+				$("#upacc_Date").val(today_date);
 				$("#upacc_Imp").val(data.acc_Imp);
 				$("#upacc_Exp").val(data.acc_Exp);
 				$("#upacc_Content").val(data.acc_Content); 
@@ -172,6 +174,19 @@
 	   
 	   
    }
+		
+		$(function(){
+			
+			$('#selectDate').change(function(){
+				
+				var selectedText = $("#selectDate").val();
+				 $('#upacc_Date').val(selectedText);
+				
+				
+			})
+			
+			
+		})
 
 	
 
@@ -255,8 +270,8 @@
 								<div class="col-md-6  inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"> <i
-											class="glyphicon glyphicon-time"></i></span> <input type="Date" 
-											id ="upacc_Date" class="form-control" type="text" >
+											class="glyphicon glyphicon-time"></i></span> <input type="text" 
+											id ="upacc_Date" class="form-control" type="text" ><input type="date" id="selectDate">
 									</div>
 								</div>
 							</div>
