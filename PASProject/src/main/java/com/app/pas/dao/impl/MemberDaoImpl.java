@@ -168,6 +168,12 @@ public class MemberDaoImpl implements MemberDao {
 		memPositionViewVo = (MemPositionViewVo) client.queryForObject("selectMemberPositionByEmail",memPositionViewVo);
 		return memPositionViewVo;
 	}
+
+	@Override
+	public MemberVo selectByMemEmail(String mem_Email) throws SQLException {
+		MemberVo memberVo = (MemberVo) client.queryForObject("selectByMemEmail",mem_Email);
+		return memberVo;
+	}
 	
 
 }

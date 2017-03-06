@@ -39,6 +39,7 @@ import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.MessageVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
+import com.app.pas.dto.ProjectLogVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.ApplyService;
@@ -46,6 +47,7 @@ import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.MessageService;
+import com.app.pas.service.ProjectLogService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.board.QnaBoardService;
 
@@ -80,6 +82,8 @@ public class MainContoller {
 	
 	@Autowired
 	ApplyService applyService;
+	@Autowired
+	ProjectLogService projectLogService;
 	
 	@RequestMapping(value = "/exit", method = RequestMethod.POST)
 	public String exit(HttpSession session,ProjectVo projectVo,MemberVo member)
@@ -793,5 +797,10 @@ public class MainContoller {
 		
 		return url;
 	}
+	@RequestMapping(value="selectMemberInfo", method = RequestMethod.POST)
+	public void selectMemberInfo(@RequestBody ProjectLogVo projectLogVo,HttpSession session)throws SQLException{
+		ProjectLogVo resultVo =projectLogService.selectLastProjectLogList(projectLogVo);
+		MemberVo memberVo = memberService.selectByMemEmail(projectLogVo.getMem_Email());
 	
+	}
 }

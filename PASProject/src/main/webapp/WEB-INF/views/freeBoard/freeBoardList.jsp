@@ -60,30 +60,47 @@
                   <tr id="boardContents">
                      <td>${freeBoardVo.frb_Article_Num }</td>
                      
-                     <td><div><span id="tag${freeBoardVo.frb_Tag}">${freeBoardVo.frb_Tag}</span></div>
-                              <script>
-                     
+                     <td><div><span style="display:none;" id="tag${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Tag}</span></div>
+                       <div class="btnGen${freeBoardVo.frb_Article_Num }"></div>
+                            <script>
+                           $(function(){
+                        	   var tags = $('#tag${freeBoardVo.frb_Article_Num }').text();
+                               var a = tags.split(',');
+                               for (i = 0; i < a.length; i++){
+                            	   var result = a[i];
+                            	   $('.btnGen${freeBoardVo.frb_Article_Num }').append($('<button/>',{
+                            		   class : "btn btn-info btn-xs",
+                            		   text : result
+                            	   } 
+                            	   ))
+                               }
+                               $('#btn${freeBoardVo.frb_Article_Num }').text(result);
+                               $('.btn.btn-info.btn-xs').css({
+                            	   'margin-right':'5px'
+                               })
+                           })
+                   
+                            </script>
+                             <!--  <script>
+                     		
+                              
                      	$(function(){
                     	/*  var a = $('.tag${freeBoardVo.frb_Tag}'); */
                     	
                     		var a = $('#tag${freeBoardVo.frb_Tag}').text(); 
-                   				
+                   			var b = 	
                     	
-                    		var s_data = "2005-03-25";  // 잘라야 되는 값..
-
-                    		var array_data = s_data.split("-");  // split 함수사용..
-
-                    		var s_year = array_data[0];   // 잘라진 값 배열..
-                    		var s_month = array_data[1];
-                    		var s_day = array_data[2];                   	
-                    	
+                    		var asplit = a.split('#');
+                    		for(var i in asplit){
+                    			alert(asplit[i]);
+                    		}
                     	
                     	
                     	
                     	
                      		})
                      
-                     </script>   
+                     </script>   --> 
                      <h4><a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></h4></td>
                      <td >${freeBoardVo.mem_Name}</td>
                      <td ><fmt:formatDate

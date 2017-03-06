@@ -34,10 +34,12 @@ import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
+import com.app.pas.dto.ProjectLogVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.ScheduleCalendarCommand;
 import com.app.pas.dto.ScheduleCalendarVo;
 import com.app.pas.dto.board.AccountBoardVo;
+import com.app.pas.dto.board.FreeBoardVo;
 import com.app.pas.dto.board.NoticeVo;
 import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
@@ -48,9 +50,11 @@ import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.PositionService;
 import com.app.pas.service.ProjectJoinService;
+import com.app.pas.service.ProjectLogService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.ScheduleCalendarService;
 import com.app.pas.service.board.AccountBoardService;
+import com.app.pas.service.board.FreeBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
@@ -84,9 +88,14 @@ public class ProjectController {
 	PositionService positionService;
 	@Autowired
 	ApplyService applyService;
-
+	@Autowired
+	FreeBoardService freeBoardService;
+	
 	@Autowired
 	GantChartService gantChartService;
+	
+	@Autowired
+	ProjectLogService projectLogService;
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
@@ -392,13 +401,40 @@ public class ProjectController {
 
 	@RequestMapping("/pmOverView")
 	public String PmOverView(HttpSession session, Model model,HttpServletRequest request,
-			@RequestParam String proj_Num) throws NumberFormatException,
+			@RequestParam(value="page",defaultValue="1")String page,
+			@RequestParam String proj_Num,FreeBoardVo freeboardVo) throws NumberFormatException,
 			SQLException {
 		String url = "project/pmOverView";
+		int totalCount = 0 ;
+		if(page.equals(null)||page ==""){
+	         totalCount = freeBoardService.selectTotalCount();
+	         }
+	         if (page.equals(null) || page == "") {
+	            page = "" + 1;
+	         }
+		Paging paging = new Paging();
+        paging.setPageNo(Integer.parseInt(page));
+        paging.setPageSize(5);
+        paging.setTotalCount(totalCount);
+        model.addAttribute("paging", paging);
+        
+        
+        
+		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
+		
+		
+		
 		session.setAttribute("joinProj", proj_Num);
 		request.setAttribute("proj_Num", proj_Num);
 		ProjectVo projectVo = projectService.selectProject(Integer
 				.parseInt(proj_Num));
+		
+		
+		
+		freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
+		  model.addAttribute("freeBoardList", freeBoardList);
+		
+		
 		session.setAttribute("joinProjectVo", projectVo);
 		return url;
 	}

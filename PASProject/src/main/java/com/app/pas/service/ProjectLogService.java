@@ -17,4 +17,8 @@ public class ProjectLogService {
 	public void insertProjectLog(ProjectLogVo projectLogVo) throws SQLException{
 		projectLogDao.insertProjectLog(projectLogVo);
 	}
+	public ProjectLogVo selectLastProjectLogList(ProjectLogVo projectLogVo) throws SQLException{
+		ProjectLogVo resultVo = projectLogDao.selectLastProjectLogList(projectLogVo);
+		return resultVo;
+	}
 }

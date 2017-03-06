@@ -26,6 +26,52 @@ $(function(){
 })
 
 </script> -->
+
+<script>$(function(){
+		
+			$(document).on('click','.mp',function(e) {
+				var mem_Email = $(this).siblings('#mem').val();
+				var proj_Num = $(this).siblings('#proj').val();
+				 var dataList = {'mem_Email':mem_Email,'proj_Num':proj_Num};
+			 	$.ajax({
+					dataType:'json',
+					contentType:'application/json',
+					type:'post',
+					url:'selectMemberInfo',
+					data:JSON.stringify(dataList),
+					success:function(result){
+						
+					}
+				})
+				
+				$('.member-info').hide();
+				$('.member-info').css({
+					'z-index':'9999',
+					'top' : e.pageY + 20,
+					'left' : e.pageX + 10,
+					'position' : 'absolute',
+					'padding' : '5px'
+				});
+				$('.member-info').show();
+
+				$('body').mouseup(function(e) {
+					/* e.preventDefault(); */
+					$('.member-info').hide();
+				})
+			});
+			
+
+})
+	</script>
+
+		<div class="member-info" style="display: none;">
+			<a class="selftooltip"
+				href="<%=request.getContextPath()%>/main/myProject" id="open">
+				ASDASDFASDFADFASDF
+				</a>
+		</div>
+
+
 	<script>
 $(function(){
 	$('#navbar').css('background-color','#3c5574');
@@ -302,9 +348,12 @@ $(function(){
 				var tt="";
 				$.each(data,function(i){
 					if(data[i].position_Num==1){
-						tt+= '<img style="border-radius:50%; border-width: 4px; border-style: dotted;border-color: #f16a70 #b1d877 #8cdcda #4d4d4d;width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+						tt+= '<span><input type="hidden" value="'+data[i].mem_Email+'" id="mem"><input type="hidden" value="'+proj_Num+'" id="proj">'					
+						+'<img class="mp" style="cursor:pointer; border-radius:50%; border-width: 4px; border-style: dotted;border-color: #f16a70 #b1d877 #8cdcda #4d4d4d;width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" ></span>'
+								
 					}else{
-						tt+= '<img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" >'
+						tt+=  '<span><input type="hidden" value="'+data[i].mem_Email+'"  id="mem"><input type="hidden" value="'+proj_Num+'" id="proj">'
+							+'<img class="mp" style="cursor:pointer; border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" ></span>'
 					}
 				})
 				$('#'+proj_Num+'body').empty();

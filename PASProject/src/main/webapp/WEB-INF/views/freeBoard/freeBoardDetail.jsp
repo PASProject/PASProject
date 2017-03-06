@@ -61,7 +61,7 @@
    </c:if>
 
    <!-- 본문! -->
-   <form name="frm" method="post">
+   <form name="frm" id="frm" method="post">
    <div class="col-md-10" id="content">
    <input type="hidden" name="frb_Article_Num" id="frb_Article_Num"
                      value="${freeBoardVo.frb_Article_Num}">   
@@ -198,50 +198,52 @@
                                  });
                   });
       
-      function go_rfd(data){
-         frm.method = "post";
-         frm.action = "freeBoardReplyDelete?frb_Reply_Num="+data;
-         frm.submit();
-      }
-      function go_rfm(data){
-         var content = $('#'+data).text();
-         $('#'+data).empty();
-         $('#'+data).html('<textarea cols="100" rows="3" id="ttt" name="ttt">'+content+'</textarea>'
-               +'<div align="right"><input class="btn btn-default" type="button" value="수정" id="rfmbtn" onclick="go_rfmm('+data+')">'
-               +'<input class="btn btn-default" type="button" value="취소" id="rfcbtn" onclick="go_rfc('+data+')"></div>');
-      }
-      function go_rfmm(data){
-         var content = $('#ttt').val();
-         frm.method = "post";
-         frm.action = "freeBoardReplyUpdate?frb_Reply_Num="+data+"&content="+content;
-         frm.submit();
-      }
-      function go_rfc(data){
-         var content = $('#'+data).text();
-         $('span#'+data).empty();
-          $('span#'+data).text(content);  
-         
-      }
-      
-      function go_list() {
-         location.href = "freeBoardList"
-      }
-
-
-      function go_update() {
-         location.href = "freeBoardUpdate?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
-      }
-
-      function go_delete() {
-         frm.method = "post";
-         frm.action = "freeBoardDelete";
-         frm.submit();
-      }
-      function go_like() {
-         location.href = "FreeBoardLike?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
-      }
    </script>          
              
+   <script>
+   function go_rfd(data){
+       frm.method = "post";
+       frm.action = "freeBoardReplyDelete?frb_Reply_Num="+data;
+       frm.submit();
+    }
+    function go_rfm(data){
+       var content = $('#'+data).text();
+       $('#'+data).empty();
+       $('#'+data).html('<textarea cols="100" rows="3" id="ttt" name="ttt">'+content+'</textarea>'
+             +'<div align="right"><input class="btn btn-default" type="button" value="수정" id="rfmbtn" onclick="go_rfmm('+data+')">'
+             +'<input class="btn btn-default" type="button" value="취소" id="rfcbtn" onclick="go_rfc('+data+')"></div>');
+    }
+    function go_rfmm(data){
+       var content = $('#ttt').val();
+       frm.method = "post";
+       frm.action = "freeBoardReplyUpdate?frb_Reply_Num="+data+"&content="+content;
+       frm.submit();
+    }
+    function go_rfc(data){
+       var content = $('#'+data).text();
+       $('span#'+data).empty();
+        $('span#'+data).text(content);  
+       
+    }
+    
+    function go_list() {
+       location.href = "freeBoardList"
+    }
+
+
+    function go_update() {
+       location.href = "freeBoardUpdate?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
+    }
+      
+    function go_delete() {
+  	  frm.method = "post";
+        frm.action = "freeBoardDelete";
+        frm.submit();
+    }
+    function go_like() {
+       location.href = "FreeBoardLike?frb_Article_Num=${freeBoardVo.frb_Article_Num}";
+    }
+   </script>
 </body>
 
 </html>                  

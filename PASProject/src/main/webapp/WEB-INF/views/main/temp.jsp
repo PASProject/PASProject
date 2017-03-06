@@ -12,22 +12,7 @@
 </head>
 <body>
 
-<script>
-$(function(){
-	$('.alink').click(function(e){
-	    $('#questionMarkId').hide();
-	    $('#questionMarkId').css({'top':e.pageY+20,'left':e.pageX+10, 'position':'absolute', 'border':'1px solid black', 'padding':'5px'});
-	    $('#questionMarkId').show();
-	  	
-	    $('body').mouseup(function(e){
-			/* e.preventDefault(); */
-	    	$('#questionMarkId').hide();
-	    })
-	   });
 	
-})
-
-</script>
 	<div class="container Message" id="content">
 
 		<h3 class="page-header"
@@ -35,17 +20,13 @@ $(function(){
 			연습 <small></small>
 		</h3>
 
-		<div class="boxFAQ" id="questionMarkId" style="display: none;">
-  <span id="divTitle"></span>  
-  <a href="<%=request.getContextPath() %>/main/myProject" id="open">HOW ME!</a>
-</div>
 
 
-<br /><br /><br /><br />
-<a href="#" class="alink">Link 1</a>
-<a href="#" class="alink">Link 2</a>
-
-
+		<br />
+		<br />
+		<br />
+		<br /> <a href="#" class="alink">Link 1</a> <a href="#" class="alink">Link
+			2</a>
 
 	</div>
 </body>

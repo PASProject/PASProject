@@ -8,47 +8,256 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
+<%--css --%>
+<link href="<%=request.getContextPath() %>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/admin/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/admin/css/font-awesome.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/admin/css/style.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/admin/css/pages/dashboard.css" rel="stylesheet">
+<link href="<%=request.getContextPath() %>/resources/admin/css/pages/report.css" rel="stylesheet">
+<%--js --%>
+<script src="<%=request.getContextPath() %>/resources/admin/js/jquery-1.7.2.min.js"></script> 
+<script src="<%=request.getContextPath() %>/resources/admin/js/excanvas.min.js"></script> 
+<script src="<%=request.getContextPath() %>/resources/admin/js/chart.min.js" type="text/javascript"></script> 
+<script src="<%=request.getContextPath() %>/resources/admin/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath() %>/resources/admin/js/full-calendar/fullcalendar.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/admin/js/base.js"></script> 
+
 <body>
 <div class="col-md-10" id="content">
- <h1>${sessionScope.joinProj }번프로젝트  오버뷰</h1> 
-</div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <h3 class="card-title">커뮤니티 게시판</h3>
+              <form name="form" method="post" action="freeBoardList">
+   				<table class="table table-condensed">
+               <c:forEach items="${freeBoardList }" var="freeBoardVo">
+                  <tr id="boardContents">
+                  <td><a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
+                  </tr>
+               </c:forEach>
+               </table>
+         </form>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <h3 class="card-title">Striped Table</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-md-6">
+            <div class="card">
+              <h3 class="card-title">Bordered Table</h3>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <h3 class="card-title">Table Hover</h3>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-md-6">
+            <div class="card">
+              <h3 class="card-title">Condensed Table</h3>
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <h3 class="card-title">Responsive Table</h3>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Username</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Larry</td>
+                      <td>the Bird</td>
+                      <td>@twitter</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
 <script>
-history.pushState(null, null, location.href); 
-window.onpopstate = function(event) { 
-history.go(1); 
-}
-
-
-
-
-var i=0
-window.document.onkeydown = protectKey;
-function down() {
-        window.footer_cart.scrollBy(0,31)
-        return;
-}
-function up() {
-        window.footer_cart.scrollBy(0,-31)
-        return;
-}
-function protectKey()
-{
-        //새로고침을 막는 스크립트.. F5 번키..
-        if(event.keyCode == 116)
-        {
-                event.keyCode = 0;
-                return false;
-        }
-        //CTRL + N 즉 새로 고침을 막는 스크립트....
-        else if ((event.keyCode == 78) && (event.ctrlKey == true))
-        {
-                event.keyCode = 0;
-                return false;
-        }
-}
-
-
 </script>
+
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+

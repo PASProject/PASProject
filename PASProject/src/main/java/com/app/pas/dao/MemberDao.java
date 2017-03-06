@@ -34,4 +34,5 @@ public interface MemberDao {
     public String selectMemberPhone(String mem_Email)throws SQLException;
     public int selectOtherProjectCount(String mem_Email) throws SQLException;
     public MemPositionViewVo selectMemberPositionByEmail(MemPositionViewVo memPositionViewVo)throws SQLException;
+    public MemberVo selectByMemEmail(String mem_Email) throws SQLException;
 }

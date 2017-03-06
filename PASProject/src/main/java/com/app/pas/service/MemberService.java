@@ -169,5 +169,10 @@ public class MemberService {
 			memPositionViewVo = memberDao.selectMemberPositionByEmail(memPositionViewVo);
 			return memPositionViewVo;
 		}
+		
+		public MemberVo selectByMemEmail(String mem_Email) throws SQLException{
+			MemberVo memberVo = memberDao.selectByMemEmail(mem_Email);
+			return memberVo;
+		}
 
 }

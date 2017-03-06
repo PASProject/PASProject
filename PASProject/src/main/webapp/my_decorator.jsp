@@ -23,8 +23,7 @@
 <head>
 
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -115,42 +114,19 @@
 
 
 
+<%--tooltip 관련부분 --%>
 
+<style>
+.member-info{
+border-radius:3px;
+border:1px solid #ddd;
+background-color:white;
+}
+.selftooltip{
+color:black;
+}
 
-
-
-
-<%--여준영 모험 --%>
-<!-- <link
-	href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
-	rel="stylesheet" />
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
- -->
-
-<%-- 스크롤바 없애는거 --%>
-<!-- <script>
-$(function(){
-$('html, body').css({'overflow': 'hidden', 'height': '100%'});
-})
-
-</script> -->
-<!-- <script>
-$(function(){
-	$('#myProjectBody').on('scroll touchmove mousewheel', function(e) {
-		   e.preventDefault();
-		   e.stopPropagation(); 
-		   return false;
-	})
-})
-</script> -->
-
-
-
-
-
-
-<!--  For modal -->
+</style>
 
 
 <!--  -->
@@ -162,7 +138,6 @@ width:100%;
     left: -1px;
     padding: 0px;
     text-decoration: none;
-
     position: fixed;
     top: 45%;
 }
@@ -418,6 +393,8 @@ $(function(){
 <title>최종!</title>
 <body>
 
+		
+		
 	<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
 	<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
 	</a>
@@ -781,7 +758,7 @@ $(function(){
 					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-					<form name="frm" method="post">
+					<form name="exit" method="post">
 					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
 					</form>
 					<script>
@@ -1391,9 +1368,9 @@ function exit(){
 	
 	var con_test = confirm("돌이킬 수 없게 됩니다. 정말로 탈퇴하시겠습니까?");
 	if(con_test==true){
-		frm.method = "post";
-		frm.action = "<%=request.getContextPath()%>/main/exit";
-		frm.submit();
+		exit.method = "post";
+		exit.action = "<%=request.getContextPath()%>/main/exit";
+		exit.submit();
 	}
 		
 }
