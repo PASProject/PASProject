@@ -123,7 +123,7 @@ body {
 	font-size:20px;
 	font-weight:bold;
 	margin: 10% 45%;
-    -webkit-animation: masterkey_blink 3s linear infinite;
+    -webkit-animation: masterkey_blink 1s linear infinite;
 } 
 @-webkit-keyframes masterkey_blink {
     15% { color: white; }
@@ -149,19 +149,19 @@ body {
 				
 				type : 'POST',
 				url : '/pas/main/login',
-				/* beforeSend:function(){
-					 $('#mloader').show(); 
-				}, */
 				dataType : 'json',
 				data : {
 					'email' : email,
 					'pwd' : pwd
 				},
 				success : function(result) {
-					if (result == 1) {
+					if (result == 1) { 
                         location.href="<%=request.getContextPath()%>/main/myProject"
+                        	$('#mloader').show();
 											} else if (result == 0) {
+												
 												alert("아이디가 틀렸습니다");
+												
 												
 											} else if (result == 2) {
 												alert("비밀번호 오류입니다");

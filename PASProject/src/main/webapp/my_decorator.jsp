@@ -417,9 +417,11 @@ $(function(){
 </head>
 <title>최종!</title>
 <body>
+
 	<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
 	<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
 	</a>
+
 	<header>
 
 
@@ -505,6 +507,12 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+					   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=350,height=450,top=400,left=1400')"><span class="glyphicon glyphicon-volume-up"></span></a>
+					   
+					   </li>
+					
 
 						<li><a data-toggle="modal"
 							style="font-size: 28px; margin-top: -4px; cursor: pointer"
@@ -770,10 +778,12 @@ $(function(){
 							
 							</script> 
 
-
+					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
+					<form name="frm" method="post">
+					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
+					</form>
 					<script>
 						$(document).ready(function() {
 							$('#closeModal').click(function() {
@@ -1369,13 +1379,23 @@ $(function(){
 					})
 </script>
 
-<script>
+<script>   
 function pushMessage(){
 	$('#square').fadeIn('slow').delay(3000).fadeOut('slow');
 	
 }
 	function logOut() {
 		location.href = "/pas/main/logOut";
+	}                  
+function exit(){
+	
+	var con_test = confirm("돌이킬 수 없게 됩니다. 정말로 탈퇴하시겠습니까?");
+	if(con_test==true){
+		frm.method = "post";
+		frm.action = "<%=request.getContextPath()%>/main/exit";
+		frm.submit();
 	}
+		
+}
 </script>
 </html>

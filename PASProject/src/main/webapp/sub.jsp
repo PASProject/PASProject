@@ -45,10 +45,6 @@
 
 
 
-
-
-
-
 	<%--프로젝트 이미지 수정해야함 --%>
 
 	<img class="img-thumbnail" id="proj_Img"
@@ -127,6 +123,32 @@
 				<a href="#"><img
 					src="<%=request.getContextPath()%>/resources/img/dashboard.png"><span>&nbsp;&nbsp;&nbsp;대시보드</span></a>
 			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse">
+			<div class="panel-body">
+				<table class="table"
+					style="margin-bottom: 0px; border-top: 0px solid blue;">
+					<tr>
+						<td><a style="text-decoration: none;" href="#">개괄</a></td>
+					</tr>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/project/pmNoticeList">프로젝트
+								공지사항</a></td>
+					</tr>
+					<%-- <tr>
+						<td><a style="text-decoration: none;"
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=350,height=450,top=400,left=1400')">채팅하기</a></td>
+					</tr> --%>
+					<tr>
+						<td><a style="text-decoration: none;"
+							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트
+								게시판</a></td>
+					</tr>
+				</table>
+			</div>
+
 		</div>
 	</div>
 	<div class="panel panel-default">

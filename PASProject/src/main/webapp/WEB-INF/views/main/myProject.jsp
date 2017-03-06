@@ -10,6 +10,11 @@
 </head>
 
 <body>
+<c:if test="${exit == 'no'}">
+         <script type="text/javascript">
+            alert("진행 중인 프로젝트가 있습니다. 완료 혹은 나가기 후 탈퇴해 주세요.");
+         </script>
+      </c:if>
 <!-- 
 	<script>
 $(function(){
@@ -95,7 +100,7 @@ $(function(){
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
 							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f6faff; margin-bottom: 10px;">
-							<p>${projectVo.proj_Content}</p>
+							<p style="text-align:center;font-size:12pt;"><b>${projectVo.proj_Content}</b></p>
 						</div>
 						<script>
 							$(function(){
