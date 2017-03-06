@@ -216,7 +216,7 @@ public class QnaController {
 		return url;
 	}
 
-	// 디테일 , 리플
+	// 디테일 
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model,
 			HttpSession session) throws NumberFormatException, SQLException {
@@ -236,7 +236,8 @@ public class QnaController {
 
 			qnaBoardService.QnaBoardCount(Integer.parseInt(qb_Article_Num));
 		}
-
+		
+		model.addAttribute("session_Email", session_Email);
 		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 		model.addAttribute("qnaBoardVo", qnaBoardVo);
 
@@ -312,34 +313,14 @@ public class QnaController {
 		return url;
 	}
 
-	// 댓글작성------------------------------------------------------------
-	/*
-	 * @RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
-	 * >>>>>>> refs/heads/leekhee7 public String
-	 * insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){ <<<<<<<
-	 * HEAD String url = "redirect:QnAList"; =======
-	 * System.out.println("댓글작성중.."); String qb_Article_Num =
-	 * qnaBoardReplyVo.getQb_Article_Num()+""; String url =
-	 * "redirect:QnADetail?qb_Article_Num="+qb_Article_Num;
-	 * qnaBoardReplyVo.setAdmin_Email("admin");
-	 * System.out.println(qnaBoardReplyVo.toString()); >>>>>>>
-	 * refs/heads/leekhee7 try {
-	 * qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo); } catch
-	 * (SQLException e) {
-	 * 
-	 * e.printStackTrace(); } return url; }
-	 */
 
 	// 글 삭제
 	@RequestMapping(value = "/QnADelete", method = RequestMethod.POST)
-	public String deleteQnaBoard(String qb_Article_Num) {
+	public String deleteQnaBoard(String qb_Article_Num) throws NumberFormatException, SQLException {
 		String url = "redirect:QnAList";
-		try {
-			qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
+	
 		return url;
 
 	}
