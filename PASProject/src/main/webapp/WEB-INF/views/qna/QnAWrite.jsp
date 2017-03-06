@@ -34,11 +34,14 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="textArea" class="col-lg-2 control-label">태그</label>
-						<div class="col-lg-10">
-							<textarea class="form-control" rows="1" id="ssb_Tag"
-								name="ssb_Tag"></textarea>
-							<span class="help-block text-right">새해 복 많이 받으세요</span>
+						<label for="textArea" class="col-lg-2 control-label">비밀번호</label>
+					<div class="col-lg-10">
+						
+						
+					<input type="password" name="qb_Password" size="64" class="form-control"
+								id="qb_Password" placeholder="게시물의 비밀번호를 입력해주세요" >
+						
+							<span class="help-block text-right"></span>
 						</div>
 					</div>
 

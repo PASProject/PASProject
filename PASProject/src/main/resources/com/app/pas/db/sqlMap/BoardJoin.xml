@@ -18,6 +18,7 @@
    	select * from board_join where bm_num = #bm_Num#
    </select>
 
+
    <update id="updateBoardJoin" parameterClass="BoardJoin">
    		update board_Join
    		set bj_Write = #bj_Write#, bj_Read = #bj_Read#
@@ -28,3 +29,4 @@
 		select * from board_join where bm_num = #bm_Num# and bj_mem_email = #bj_Mem_Email#
 	</select>
 </sqlMap>
+

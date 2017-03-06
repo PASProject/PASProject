@@ -96,6 +96,7 @@ public class BoardManagementController {
 		return url;
 	}
 
+
 	@RequestMapping(value="updateBoardJoin", method = RequestMethod.POST)
 	public @ResponseBody boolean updateBoardJoin(@RequestBody BoardJoinVo boardJoinVo )throws SQLException{
 		boolean flag = true;

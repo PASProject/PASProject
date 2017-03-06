@@ -2,14 +2,13 @@ package com.app.pas.controller.totalboard;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -216,10 +215,10 @@ public class QnaController {
 		return url;
 	}
 
-	// 디테일 , 리플
+	// 디테일 
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model,
-			HttpSession session) throws NumberFormatException, SQLException {
+			HttpSession session,String pwd, String num) throws NumberFormatException, SQLException {
 		String url = "qna/QnADetail";
 		QnaBoardReplyVo qnaBoardReplyVo = null;
 
@@ -236,7 +235,9 @@ public class QnaController {
 
 			qnaBoardService.QnaBoardCount(Integer.parseInt(qb_Article_Num));
 		}
-
+		System.out.println("패스값  : "+ pwd);
+		
+		model.addAttribute("session_Email", session_Email);
 		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
 		model.addAttribute("qnaBoardVo", qnaBoardVo);
 
@@ -245,7 +246,7 @@ public class QnaController {
 
 	@RequestMapping(value = "/insertQnABoard", method = RequestMethod.POST)
 	public String insertQna(HttpSession session, Model model,
-			QnaBoardVo qnaBoardVo) {
+			QnaBoardVo qnaBoardVo,String qb_Password) throws SQLException {
 		String url = "redirect:QnAList";
 
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -255,13 +256,11 @@ public class QnaController {
 	
 		String mem_Name = memberVo.getMem_Name();
 		qnaBoardVo.setMem_Name(mem_Name);
+		
+		qnaBoardVo.setQb_Password(qb_Password);
 	
-		try {
-			qnaBoardService.insertQnaBoard(qnaBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		qnaBoardService.insertQnaBoard(qnaBoardVo);
+	
 
 		return url;
 
@@ -312,34 +311,14 @@ public class QnaController {
 		return url;
 	}
 
-	// 댓글작성------------------------------------------------------------
-	/*
-	 * @RequestMapping(value="/InsertQnAReply", method=RequestMethod.POST)
-	 * >>>>>>> refs/heads/leekhee7 public String
-	 * insertQnaBoardReply(QnaBoardReplyVo qnaBoardReplyVo,Model model){ <<<<<<<
-	 * HEAD String url = "redirect:QnAList"; =======
-	 * System.out.println("댓글작성중.."); String qb_Article_Num =
-	 * qnaBoardReplyVo.getQb_Article_Num()+""; String url =
-	 * "redirect:QnADetail?qb_Article_Num="+qb_Article_Num;
-	 * qnaBoardReplyVo.setAdmin_Email("admin");
-	 * System.out.println(qnaBoardReplyVo.toString()); >>>>>>>
-	 * refs/heads/leekhee7 try {
-	 * qnaBoardReplyService.insertQnaBoardReply(qnaBoardReplyVo); } catch
-	 * (SQLException e) {
-	 * 
-	 * e.printStackTrace(); } return url; }
-	 */
 
 	// 글 삭제
 	@RequestMapping(value = "/QnADelete", method = RequestMethod.POST)
-	public String deleteQnaBoard(String qb_Article_Num) {
+	public String deleteQnaBoard(String qb_Article_Num) throws NumberFormatException, SQLException {
 		String url = "redirect:QnAList";
-		try {
-			qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		qnaBoardService.deleteQnaBoard(Integer.parseInt(qb_Article_Num));
+	
 		return url;
 
 	}

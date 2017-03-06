@@ -31,8 +31,12 @@ public class BoardJoinService {
 		boardJoinDao.updateBoardJoin(boardJoinVo);
 	}
 
+
 	public BoardJoinVo selectBoardJoinByEmailBmNum(BoardJoinVo boardJoinVo) throws SQLException{
 		BoardJoinVo boardJoin = boardJoinDao.selectBoardJoinByEmailBmNum(boardJoinVo);
 		return boardJoin;
 	}
+
+
+
 }

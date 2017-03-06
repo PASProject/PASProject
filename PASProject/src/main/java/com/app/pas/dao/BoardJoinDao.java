@@ -11,4 +11,5 @@ public interface BoardJoinDao {
 	public void updateBoardJoin(BoardJoinVo boardJoinVo) throws SQLException;
 	public BoardJoinVo selectBoardJoinByEmailBmNum(BoardJoinVo boardJoinVo) throws SQLException;
 
+
 } 
