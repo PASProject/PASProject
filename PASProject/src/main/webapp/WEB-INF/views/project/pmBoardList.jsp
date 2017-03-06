@@ -213,10 +213,10 @@
 									
 									if(login_Email==data[i][j].pb_Reply_Mem){
 										dt ='<table><tr><td><img style="padding-top:5px; padding-right:5px; width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
-										+data[i][j].pb_Reply_Mem_Name +'</td><td>'+ data[i][j].pb_Reply_Content+'<span><a href="#" >수정</a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i][j].pb_Reply_Num+'" >삭제</a> </span></td></tr><table>';
+										+data[i][j].pb_Reply_Mem_Name +'</td><td>'+ data[i][j].pb_Reply_Content+' &nbsp; &nbsp;  <a href="#" > <span  style="color:#545454; font-weight:bold; font-size:12px;">수정</span></a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i][j].pb_Reply_Num+'" > <span style="font-weight:bold; color:#545454; font-size:12px;">삭제 </span></a></td></tr><table>';
 									}else{
 										dt ='<table><tr><td><img style="padding-top:5px; padding-right:5px; width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i][j].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
-										+data[i][j].pb_Reply_Mem_Name +'</td><td>'+ data[i][j].pb_Reply_Content+'</td></tr><table>';
+										+data[i][j].pb_Reply_Mem_Name +'</td><td>'+ data[i][j].pb_Reply_Content+'     </td></tr><table>';
 									}
 									
 									$('#'+data[i][j].pb_Article_Num).append(dt);
@@ -258,7 +258,7 @@
 							$.each(data,function(i){
 								if(login_Email==data[i].pb_Reply_Mem){
 									dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
-									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'<span ><a href="#" >수정</a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i].pb_Reply_Num+'" >삭제</a> </span></td></tr><table>';
+									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'  &nbsp; &nbsp;     <a href="#" ><span  style="color:#545454; font-weight:bold; font-size:12px;">수정</span></a> / <a href="deleteProjectBoardReply?pb_Reply_Num='+data[i].pb_Reply_Num+'" ><span  style="color:#545454; font-weight:bold; font-size:12px;">삭제</span></a> </td></tr><table>';
 								}else{
 									dt +='<table><tr><td style="padding-top:5px; padding-right:5px;"><img style="width: 30px; height: 30px;" src="/pas/resources/upload/'+data[i].pb_Reply_Mem_Img+'" ></td><td style="padding-right:5px; color:#337ab7; font-weight:bold">'
 									+data[i].pb_Reply_Mem_Name +'</td><td>'+ data[i].pb_Reply_Content+'</td></tr><table>';

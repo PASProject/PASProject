@@ -22,7 +22,7 @@
 	<select id="selectNotice" parameterClass="int" resultClass="Notice">
 		SELECT *
 		FROM NOTICE
-		WHERE PROJ_NUM LIKE '%'||#proj_Num#||'%'
+		WHERE PROJ_NUM LIKE '%'||#proj_Num#||'%' order by notice_Num desc
 	</select>
 
 	<select id="selectNoticeDetail" parameterClass="mapp"

@@ -50,7 +50,7 @@
 				
 				
 				
-					 <input type="button" class="btn btn-default"
+					 <input type="button" class="btn btn-default pull-right"
 					value="글쓰기" onClick="noticeBtn(this.form)" />
 			</fieldset>
 			</form>

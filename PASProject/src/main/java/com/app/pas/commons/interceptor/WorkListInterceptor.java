@@ -22,8 +22,8 @@ public class WorkListInterceptor extends HandlerInterceptorAdapter{
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		HttpSession session = request.getSession();
-		/*System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 파월 인터셉터");
+	/*	HttpSession session = request.getSession();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 파월 인터셉터");
 		
 		if(session.getAttribute("joinDocNum")==""||session.getAttribute("joinDocNum")==null){
 			System.out.println("없다");

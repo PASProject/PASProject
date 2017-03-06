@@ -18,4 +18,5 @@ public class DocumentVo {
 	private Timestamp doc_Wt_Date;
 	private int proj_Num;
 	private String doc_Img;
+	private String doc_File_Name;
 }

@@ -5,13 +5,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.pas.commons.Paging;
+import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
@@ -45,6 +43,7 @@ import com.app.pas.dto.board.ProjectBoardReplyVo;
 import com.app.pas.dto.board.ProjectBoardVo;
 import com.app.pas.dto.dic.GantChartCommand;
 import com.app.pas.dto.dic.GantChartVo;
+import com.app.pas.service.ApplyService;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.PositionService;
@@ -56,7 +55,6 @@ import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
 import com.app.pas.service.dic.GantChartService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/project")
@@ -84,6 +82,8 @@ public class ProjectController {
 	ScheduleCalendarService scheduleCalendarService;
 	@Autowired
 	PositionService positionService;
+	@Autowired
+	ApplyService applyService;
 
 	@Autowired
 	GantChartService gantChartService;
@@ -391,11 +391,12 @@ public class ProjectController {
 	}
 
 	@RequestMapping("/pmOverView")
-	public String PmOverView(HttpSession session, Model model,
+	public String PmOverView(HttpSession session, Model model,HttpServletRequest request,
 			@RequestParam String proj_Num) throws NumberFormatException,
 			SQLException {
 		String url = "project/pmOverView";
 		session.setAttribute("joinProj", proj_Num);
+		request.setAttribute("proj_Num", proj_Num);
 		ProjectVo projectVo = projectService.selectProject(Integer
 				.parseInt(proj_Num));
 		session.setAttribute("joinProjectVo", projectVo);
@@ -599,14 +600,13 @@ public class ProjectController {
 		
 		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));
 		ProjectJoinVo member = new ProjectJoinVo();
-		int result=PositionNum(map.get("position_Name").toString());
+		String result=(String) map.get("position_Num");
 		
 		member.setMem_Email(map.get("mem_Email").toString());
 		member.setProj_Num(proj_Num);
-		member.setPosition_Num(result);
+		member.setPosition_Num(Integer.parseInt(result));
         
 		projectJoinService.updatePosition(member);
-       
         return proj_Num;
 	}
 
@@ -658,9 +658,9 @@ public class ProjectController {
 		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
 		int proj_Num = Integer.parseInt((String) session
 				.getAttribute("joinProj"));
+		
 		projectJoinVo.setMem_Email(map.get("mem_Email").toString());
 		projectJoinVo.setProj_Num(proj_Num);
-
 		projectJoinService.deleteProjectJoin(projectJoinVo);
 		return result;
 	}
@@ -909,25 +909,6 @@ public class ProjectController {
 	}
 	
 	
-	public int PositionNum(String position_Name){
-		int result =0;
-		
-		if(position_Name.equals("PM")){
-			result=2;
-		}else if(position_Name.equals("TA")){
-			result=3;
-		}else if(position_Name.equals("AA")){
-			result=4;
-		}else if(position_Name.equals("DA")){
-			result=5;
-		}
-		
-		
-		return result;
-	}
-
-	
-	
 	@RequestMapping("pmGantChart")
 	public String pmGantChartForm(){
 		String url ="schedule/gantChartForm";
@@ -954,6 +935,18 @@ public class ProjectController {
 		 List<LinkedHashMap<String, Object>> list = (List<LinkedHashMap<String, Object>>) map.get("_data");
 	     boolean result  =  gantChartService.updateGantChart(list, Integer.parseInt(proj_Num));
 	     return true;
+	
+	
+	}
+	
+	@RequestMapping(value="projOut", method = RequestMethod.POST)
+	public @ResponseBody int ProjectOut(HttpSession session, ProjectJoinVo projectJoinVo,  InviteVo inviteVo, ApplyVo applyVo) throws SQLException{
+		
+		projectJoinService.deleteProjectJoin(projectJoinVo);
+		inviteService.deleteInvite(inviteVo);
+		applyService.deleteApply(applyVo);
+		
+		return 1;
 	}
 	
 }
