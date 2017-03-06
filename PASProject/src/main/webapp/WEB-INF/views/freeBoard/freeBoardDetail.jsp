@@ -130,7 +130,6 @@
                         data : JSON.stringify(data),
                         type : 'post',
                         success : function(data) {
-                        	alert(data);
                            $.each(data, function(i) {
                               
                               var date = new Date(data[i].frb_Reply_Time)
