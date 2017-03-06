@@ -14,7 +14,7 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			게시판 관리
 		</h3>
-		<div style="border: 1px solid #498eab; float: left; width:50%; height: 450px">&nbsp;&nbsp;
+		<div style="border: 1px solid #498eab; float: left; width:50%; min-height: 450px;">&nbsp;&nbsp;
 			<h3 style="margin:10px">게시판 리스트</h3>
 			<div id="boardListZone">
 				<table class="table table-hover">
@@ -27,7 +27,6 @@
 				      </tr>
 				    </thead>
 				    <tbody id="boardList">
-				     
 				    </tbody>
 				   </table>
 			
@@ -207,6 +206,8 @@
 			var obj = $(this).parent();
 			var optionItem1 ="";
 			var optionItem2="";
+			var firstItem = $(this).parent().siblings('td').eq(3).text();
+			var secondItem = $(this).parent().siblings('td').eq(4).text();
 			if($(this).parent().siblings('td').eq(3).text() =='y'){
 				optionItem1 = "<label class='checkbox-inline'><input type='checkbox' value='"+mem_Email+"' id='1' checked>허용</label>";	
 			}else{
@@ -224,7 +225,8 @@
 			obj.siblings('td').eq(3).append(optionItem1);
 			obj.siblings('td').eq(4).append(optionItem2);
 			obj.empty();
-			obj.append("<input type='button' class='btn btn-default' id = 'goUpdateBtn' value='확인'>  /  <input type='button' class='btn btn-default' value='취소'>");
+			obj.append("<input type='button' class='btn btn-default' id = 'goUpdateBtn' value='확인'>  /  <input type='button' class='btn btn-default' id='cancleBtn' value='취소'>"
+						+"<input type='hidden' value='"+firstItem+"' id='firstItem'><input type='hidden' value='"+secondItem+"' id='secondItem'>");
 		}) 
 		
 		$(document).on('click','#goUpdateBtn',function(){
@@ -258,12 +260,20 @@
 				 } 
 			 })	 
 		
-		})
-		 
+		});
 		
-		
+		$(document).on('click','#cancleBtn',function(){
+			var firstItem  =$(this).siblings('#firstItem').val();
+			var secondItem = $(this).siblings('#secondItem').val();
+			var parentObj = $(this).parent();
+			parentObj.siblings('td').eq(3).empty();
+			parentObj.siblings('td').eq(4).empty();
+			parentObj.siblings('td').eq(3).text(firstItem);
+			parentObj.siblings('td').eq(4).text(secondItem);
+			parentObj.empty();
+			parentObj.append("<input type='button' class='btn btn-default' id='updateJoinMemberBtn' value='수정'>");
+		});
 	})
-	 
 	
 	function delteBoard(bm_Num){   
 			location.href = "/pas/project/deleteBoard?bm_Num="+bm_Num;
@@ -271,4 +281,3 @@
 </script>     
 </body>        
 </html>  
->>>>>>> refs/remotes/origin/master
