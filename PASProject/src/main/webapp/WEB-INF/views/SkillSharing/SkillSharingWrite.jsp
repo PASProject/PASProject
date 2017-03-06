@@ -45,7 +45,7 @@
 
 					<div class="form-group text-right">
 						<div class="col-lg-10 col-lg-offset-2">
-							<button type="submit" class="btn btn-default">등록</button>
+							<input type="button" onclick="insertFrb()" class="btn btn-default" value="등록"/>
 							<button type="button"
 								onclick="location.href='<%=request.getContextPath()%>/SkillSharing/SkillSharingBoardList'"
 								class="btn btn-default">취소</button>
@@ -55,5 +55,21 @@
 			</form>
 		</div>
 	</div>
+	<script>
+function insertFrb() {
+	var result = true;
+	if($('#ssb_Title').val() == ""){
+		alert('제목을 작성해 주세요.')
+		result = false;
+	}else if($('#ssb_Content').val() == ""){
+		alert('내용을 작성해 주세요.')
+		result = false;
+	}
+	if(result == true){
+	document.formm.method="post";
+	document.formm.submit();
+	}
+};
+</script>
 </body>
 </html>

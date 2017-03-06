@@ -13,21 +13,19 @@
    padding: auto;
 }
 </style>
-
 </head>
 <body>
-	<c:if test="${delete == 'yes' }">
+   <div class="col-md-10" id="content">
+      <c:if test="${delete == 'yes' }">
          <script type="text/javascript">
-            alert("댓글이 삭제 되었습니다.");
+            alert("삭제 되었습니다.");
          </script>
       </c:if>
-     <c:if test="${modify == 'yes' }">
-		<script type="text/javascript">
-			alert("수정이 완료 되었습니다.");
-		</script>
-	</c:if>
-   <div class="col-md-10" id="content">
-      
+      <c:if test="${modify == 'yes' }">
+         <script type="text/javascript">
+            alert("수정 되었습니다.");
+         </script>
+      </c:if>
       <!-- Page Header -->
 
       
@@ -193,7 +191,7 @@
    	
    		
    
-      function freeBoardList(){
+      function skillSharingBoardList(){
          location.href ="SkillSharingBoardList";
       }
       function wrtie_form() {

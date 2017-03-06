@@ -60,21 +60,6 @@
       </script>
    </c:if>
 
-   <c:if test="${delete == 'no' }">
-      <script type="text/javascript">
-         alert("작성자만 삭제할 수 있습니다.");
-      </script>
-   </c:if>
-   <c:if test="${modify == 'yes' }">
-      <script type="text/javascript">
-         alert("수정이 완료 되었습니다.");
-      </script>
-   </c:if>
-   <c:if test="${modify == 'no' }">
-      <script type="text/javascript">
-         alert("작성자만 수정할 수 있습니다.");
-      </script>
-   </c:if>
    <!-- 본문! -->
    <form name="frm" method="post">
    <div class="col-md-10" id="content">

@@ -143,6 +143,7 @@ public class FreeBoardController {
       
       String url = "freeBoard/freeBoardList";
       String delete = request.getParameter("delete");
+      String modify = request.getParameter("modify");
       int totalCount = 0 ;
    
       List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
@@ -212,6 +213,7 @@ public class FreeBoardController {
       
       model.addAttribute("paging", paging);
       model.addAttribute("delete", delete);
+      model.addAttribute("modify", modify);
       return url;
    }
 
@@ -271,7 +273,6 @@ public class FreeBoardController {
    @RequestMapping(value="/freeBoardInsert",method=RequestMethod.POST)
    public String insertFreeBoard(HttpSession session,FreeBoardVo freeBoardVo) throws SQLException{
       String url = "redirect:freeBoardList";
-      System.out.println(freeBoardVo);
       MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
       String mem_Email = memberVo.getMem_Email();
       String mem_Name = memberVo.getMem_Name();
@@ -292,7 +293,7 @@ public class FreeBoardController {
       
       String url="freeBoard/freeBoardUpdate";
       MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-      String loginEmail = memberVo.getMem_Email();
+	      String loginEmail = memberVo.getMem_Email();
       FreeBoardVo freeboardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
       String writeEmail = freeboardVo.getMem_Email();
       if(loginEmail.equals(writeEmail)){
@@ -309,10 +310,12 @@ public class FreeBoardController {
    @RequestMapping(value="/freeBoardUpdate",method=RequestMethod.POST)
    public String updateFreeBoard(FreeBoardVo freeBoardVo) throws NumberFormatException, SQLException{
       
-      String url = "redirect:freeBoardList";
-      
+      String url = "redirect:freeBoardList?modify=yes";
+     
       freeBoardVo.setFrb_Kind("1");
-        
+      if(freeBoardVo.getFrb_Tag()==null || freeBoardVo.getFrb_Tag()==""){
+    	  freeBoardVo.setFrb_Tag("#"); 
+      }
       freeBoardService.updateFreeBoard(freeBoardVo);
       
       return url;
