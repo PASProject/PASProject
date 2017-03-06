@@ -331,7 +331,7 @@ public class FreeBoardController {
    @RequestMapping(value="/freeBoardDelete",method = RequestMethod.POST)
    public String deleteFreeBoard(String frb_Article_Num,HttpSession session) throws NumberFormatException, SQLException{
       String url="redirect:freeBoardList";
-      
+      System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@dasdasdasdasdasda@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
       MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
       String loginEmail = memberVo.getMem_Email();
       FreeBoardVo freeboardVo = freeBoardService.selectFreeBoardDetail(Integer.parseInt(frb_Article_Num));
