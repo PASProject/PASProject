@@ -781,7 +781,7 @@ $(function(){
 					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-					<form name="frm" method="post">
+					<form name="exit" method="post">
 					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
 					</form>
 					<script>
@@ -1391,9 +1391,9 @@ function exit(){
 	
 	var con_test = confirm("돌이킬 수 없게 됩니다. 정말로 탈퇴하시겠습니까?");
 	if(con_test==true){
-		frm.method = "post";
-		frm.action = "<%=request.getContextPath()%>/main/exit";
-		frm.submit();
+		exit.method = "post";
+		exit.action = "<%=request.getContextPath()%>/main/exit";
+		exit.submit();
 	}
 		
 }
