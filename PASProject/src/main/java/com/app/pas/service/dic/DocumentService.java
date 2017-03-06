@@ -83,4 +83,13 @@ public class DocumentService {
 		return flag;
 	}
 	
+	public boolean updateDocumentName(DocumentVo documentVo) throws SQLException{
+		boolean flag = false;
+		int result = documentDao.updateDocumentName(documentVo);
+		if(result==1){
+			flag = true;
+		}
+		return flag;
+	}
+	
 }

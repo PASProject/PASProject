@@ -17,7 +17,7 @@
 
 <!DOCTYPE html>
 
-<html style="background-color:white;">
+<html style="background-color:#f9f9f9;">
 
 
 <head>
@@ -155,6 +155,19 @@ $(function(){
 
 <!--  -->
 <style>
+#resizingImg{
+max-width:100px;
+width:100%;
+}
+#resizing{
+    position: fixed;
+    top: 300px;
+    left: 20px;
+    opacity:0.05;
+}
+#resizing:hover{
+opacity:1;
+}
 a{
 color:black;
 }
@@ -192,20 +205,20 @@ div {
 word-break:break-all;
 }
 
-.col-md-1 {
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+.col-md-0 {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
 }
 
-.col-md-11 {
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+.col-md-12 {
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
 }
-
+.col-md-0 {width: 0 !important;float:left}
 body.modal-open {
 	margin-left: 18px;
 }
@@ -229,7 +242,7 @@ font-family : 'FEDERALESCORTHALFITAL';
 }
 body {
 	font-family: 'NanumGothic';
-	background-color: white;
+	background-color: #f9f9f9;
 }
 
 .navbar-default {
@@ -250,8 +263,7 @@ body {
 }
 
 .navbar-inverse {
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	
 	margin-top: 30px;
 	background-color: #3c5574;
 	border-bottom-color: #6093cc;
@@ -271,7 +283,9 @@ body {
 	background-color: #3c5574;
 	color: white;
 }
-
+.panel-group .panel{
+border-radius:0px;
+}
 .col-md-3 {
 	width: 100%;
 }
@@ -290,6 +304,9 @@ body {
 </style>
 
 <style>
+/* html{
+background-color:#f9f9f9;
+} */
 .table>tbody>tr>th{
 background-color:white;
 border-top: 1px solid #888888;
@@ -317,10 +334,8 @@ border-bottom : 1px solid #888888;
 }
 
 #content {
-
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
-	border-radius: 5px;
+	border:1px solid #ddd;
+	background-color: white;
 	margin-top: 25px;
 	min-height: 776px;
 	margin-bottom: 5%;
@@ -374,6 +389,7 @@ $(function(){
 </head>
 <title>최종!</title>
 <body>
+	<a id="resizing" style="text-decoration: none;" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/sort.png"><span></span></a>
 	<header>
 
 
@@ -435,9 +451,9 @@ $(function(){
 					<p id="teamName">BLUEMINE</p>
 					</c:when>
 								<c:otherwise>
-									<p id="tn" style="font-size:20px">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
+									<b><p id="tn" style="font-size:20px">${sessionScope.joinProjectVo.proj_Name}&nbsp;<span
 											class="caret" id="caret" style="display: none;"></span>
-									</p>
+									</p></b>
 								</c:otherwise>
 							</c:choose> <script>
 					$(function(){
@@ -504,11 +520,8 @@ $(function(){
 							data-toggle="dropdown" role="button" aria-expanded="false"
 							style="font-size: 25px; padding-bottom: 14px; background-color:<c:out value='${sessionScope.joinProjectVo.proj_Color}'/>;">
 							 
-						</a> <span id="alarmCount" style="margin-bottom: -50px;font-weight: bold;padding-left: 5px;padding-right: 5px;background-color: #ff4400; cursor:pointer; color: white; position: relative;top: -44px;left: 28px;
-    font-size: 12px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    display: table-caption;"></span>
+						</a> <span id="alarmCount" style="margin-bottom: -50px;font-weight: bold;padding-left: 5px;padding-right: 5px;background-color: #ff4400; 
+						cursor:pointer; color: white; position: relative;top: -44px;left: 28px;  font-size: 12px;   padding-top: 0px;   padding-bottom: 0px;  display: table-caption;"></span>
 							<span id="alarmZone"></span>
 
 							<ul class="dropdown-menu" role="menu" id="dropMenu">
@@ -693,67 +706,18 @@ $(function(){
 				</div>
 				<div class="modal-footer" style="text-align: left">
 
-					<button class="btn btn-default pull-right" type="submit"
-						id="submit" style="margin-left: 5px;">정보 수정하기</button>
-					<script>
+				 	<script>
 							$('#submit').click(function(){
-								var Pass_result = true;
-								var Pass_CK = true;
-								var Phone_CK = true;
-								
-								 //전화번호 정규식	
-							    var Phone_Pt = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-								var mem_Phone= $('#mem_Phone').val();
-							    	if(!Phone_Pt.test(mem_Phone)){
-							    		Phone_CK = false;
-									}else{
-										Phone_CK = true;
-									}
-								
-								//비밀번호 정규식
-							    var Pass_Pt = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/;
-							    var Pass = 	$('#userPw').val();
-							    	if(!Pass_Pt.test(Pass)){
-										Pass_result = false;
-									}else{
-										Pass_result = true;
-									}
-							    	
-							    //비밀번호 확인 정규식
-							   	var Pass = $('#userPw').val();
-							    var Pass_Check= $('#userPw2').val();
-							    	if(Pass != Pass_Check){
-							    		Pass_CK = false;
-									}else{
-										Pass_CK = true;
-									}
-							    	
-							    if(Pass_result == true && Pass_CK == true){
-							    	
+								if($('#userPw2').val()==null || $('#userPw2').val()==""){
+									$('#userPw2').focus();
+									return ;
+								}
 								var mem_Pass = $('#userPw').val();
 								var dataList = {'mem_Pass':mem_Pass};
-								$.ajax({
-									url: '<%=request.getContextPath()%>/main/updateMember',
-									type:'post',
-									dataType:'json',
-									contentType:'application/json',
-									data:JSON.stringify(dataList),
-									success : function(data){
-										var i = data.T;
-										if(i=='1'){
-											location.reload();										
-										}else{
-											alert("실패");
-										}
-									},
-									failure: function(data){
-										alert('update Failed');
-									}
-								})
-								}else if(Phone_CK == true){
-									
-									var mem_Phone = $('#mem_Phone').val();
-									var dataList = {'mem_Phone':mem_Phone};
+								
+									var mem_Phone = $('#mem_Phone_MyPage').val();
+									var mem_Pass = $('#userPw2').val();
+									var dataList = {'mem_Phone':mem_Phone,'mem_Pass':mem_Pass};
 									$.ajax({
 										url: '<%=request.getContextPath()%>/main/updateMember',
 										type:'post',
@@ -771,12 +735,10 @@ $(function(){
 										failure: function(data){
 											alert('update Failed');
 										}
+									});
 									})
-									}
-							})
 							
-							
-							</script>
+							</script> 
 
 
 					<button id="closeModal" type="button"
@@ -857,8 +819,13 @@ $(function(){
 					dataType : 'json',
 					type:'get',
 					success:function(data){
-							$('#alarmCount').text("");
-							$('#alarmCount').text(data);
+							if(data==0){
+								$('#alarmCount').css('display','none');
+							}else{
+								$('#alarmCount').text("");
+								$('#alarmCount').text(data);
+								$('#alarmCount').show();
+							}
 						}
 					});
 				
@@ -935,8 +902,13 @@ $(function(){
 								dataType : 'json',
 								type:'get',
 								success:function(data){
+									if(data==0){
+										$('#alarmCount').css('display','none');
+									}else{
 										$('#alarmCount').text("");
 										$('#alarmCount').text(data);
+										$('#alarmCount').show();
+									}
 									}
 								})
 						}
@@ -1012,8 +984,13 @@ $(function(){
 								dataType : 'json',
 								type:'get',
 								success:function(data){
+									if(data==0){
+										$('#alarmCount').css('display','none');
+									}else{
 										$('#alarmCount').text("");
 										$('#alarmCount').text(data);
+										$('#alarmCount').show();
+									}
 									}
 								})
 						}
@@ -1087,8 +1064,13 @@ $(function(){
 								dataType : 'json',
 								type:'get',
 								success:function(data){
+									if(data==0){
+										$('#alarmCount').css('display','none');
+									}else{
 										$('#alarmCount').text("");
 										$('#alarmCount').text(data);
+										$('#alarmCount').show();
+									}
 									}
 							})
 					}
@@ -1161,16 +1143,14 @@ $(function(){
 								url :'<%=request.getContextPath()%>/main/alarmCount',
 																		dataType : 'json',
 																		type : 'get',
-																		success : function(
-																				data) {
-																			$(
-																					'#alarmCount')
-																					.text(
-																							"");
-																			$(
-																					'#alarmCount')
-																					.text(
-																							data);
+																		success : function(data) {
+																			if(data==0){
+																				$('#alarmCount').css('display','none');
+																			}else{
+																				$('#alarmCount').text("");
+																				$('#alarmCount').text(data);
+																				$('#alarmCount').show();
+																			}
 																		}
 																	})
 														}
@@ -1245,11 +1225,7 @@ $(function(){
 																				}
 																			});
 
-															$
-																	.each(
-																			projInviteViewList,
-																			function(
-																					i) {
+															$.each(projInviteViewList,function(i) {
 																				var date = new Date(
 																						projInviteViewList[i].invite_Time);
 																				var year = date
@@ -1303,16 +1279,14 @@ $(function(){
 																		url : '/pas/main/alarmCount',
 																		dataType : 'json',
 																		type : 'get',
-																		success : function(
-																				data) {
-																			$(
-																					'#alarmCount')
-																					.text(
-																							"");
-																			$(
-																					'#alarmCount')
-																					.text(
-																							data);
+																		success : function(data) {
+																			if(data==0){
+																				$('#alarmCount').css('display','none');
+																			}else{
+																				$('#alarmCount').text("");
+																				$('#alarmCount').text(data);
+																				$('#alarmCount').show();
+																			}
 																		}
 																	})
 														}

@@ -39,5 +39,10 @@ public class DocumentDaoImpl implements DocumentDao{
 		DocumentVo documentVo = (DocumentVo) client.queryForObject("selectDocumentByDocNum", doc_Num);
 		return documentVo;
 	}
+	@Override
+	public int updateDocumentName(DocumentVo documentVo) throws SQLException {
+		int result = client.update("updateDocumentName",documentVo);
+		return result;
+	}
 
 }

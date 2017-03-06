@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+<!-- 
 	<script>
 $(function(){
 	
@@ -20,7 +20,7 @@ $(function(){
 	
 })
 
-</script>
+</script> -->
 	<script>
 $(function(){
 	$('#navbar').css('background-color','#3c5574');
@@ -312,7 +312,14 @@ $(function(){
 	
 	
 	function gogo(proj_Num){
+		
+		
 		location.href="../project/pmOverView?proj_Num="+proj_Num;
+		
+		
+	
+		
+		
 	}
 	function go_Pb(){
 		location.href="<%=request.getContextPath()%>/SkillSharing/SkillSharingList"

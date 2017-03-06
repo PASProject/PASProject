@@ -37,8 +37,8 @@ public class ApplyDaoImpl implements ApplyDao{
 	}
 
 	@Override
-	public void deleteApply(int apply_Num) throws SQLException {
-		client.delete("deleteApply",apply_Num);
+	public void deleteApply(ApplyVo applyVo) throws SQLException {
+		client.delete("deleteApply",applyVo);
 	}
 	@Override
 	public List<Integer> selectApplyById(String mem_Email) throws SQLException {

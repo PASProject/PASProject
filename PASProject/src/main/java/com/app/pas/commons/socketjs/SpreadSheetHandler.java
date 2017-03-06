@@ -71,6 +71,7 @@ public class SpreadSheetHandler extends TextWebSocketHandler{
 					ArrayList<WebSocketSession> list = (ArrayList<WebSocketSession>) roomList.get(join_Doc_Num+"");
 					list.add(session);
 				}
+				
 		   }
 		
 		
@@ -84,7 +85,6 @@ public class SpreadSheetHandler extends TextWebSocketHandler{
 			List<WebSocketSession> list = new ArrayList<WebSocketSession>();
 			list = roomList.get(join_Doc_Num+"");
 			list.remove(session);
-			System.out.println("연결 종료호출");
 			
 		}
 

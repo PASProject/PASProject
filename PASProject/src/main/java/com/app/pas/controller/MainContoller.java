@@ -3,6 +3,8 @@ package com.app.pas.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -171,10 +173,13 @@ public class MainContoller {
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(HttpSession session, MemberVo memberVo,
 			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
-			MessagingException, SQLException {
+			MessagingException, SQLException, UnknownHostException {
 		String url = "redirect:/index";
 		request.setCharacterEncoding("utf-8");
 		
+		
+		InetAddress inet = InetAddress.getLocalHost();
+		String svrIP = inet.getHostAddress();
 		 /*System.out.println(memberVo);
 		 System.out.println(memberVo.getMem_Email());*/
 		
@@ -183,7 +188,7 @@ public class MainContoller {
 			memberService.insertMember(memberVo);
 			String content = memberVo.getMem_Email()
 					+ "(님)의 계정 승인 확인 메일입니다. "
-					+ "<a href='http://localhost:8181/pas/main/memberAuth?mem_Email="
+					+ "<a href='http://"+svrIP+":8181/pas/main/memberAuth?mem_Email="
 					+ memberVo.getMem_Email() + "'>승인확인</a>";
 
 			MimeMessage message = mailSender.createMimeMessage();
@@ -351,6 +356,7 @@ public class MainContoller {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		
 		String mem_Pass = (String) map.get("mem_Pass");
+		
 		if(mem_Pass ==""|| mem_Pass==null){
 			memberVo.setMem_Pass(memberVo.getMem_Pass());
 		}else{
@@ -359,14 +365,8 @@ public class MainContoller {
 		
 		String mem_Phone = (String) map.get("mem_Phone");
 		memberVo.setMem_Phone(mem_Phone);
-		String url = "redirect:myProject";
-		
-		
-
-		System.out.println(memberVo.toString());
 
 		int a = memberService.updateMember(memberVo);
-		System.out.println(a);
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("T", a);
 		return m;
@@ -427,12 +427,14 @@ public class MainContoller {
 
 		projectJoinVo.setMem_Email(member.getMem_Email());
 		projectJoinVo.setProj_Num(proj_Num);
-
+		projectJoinVo.setMem_Name(member.getMem_Name());
+		projectJoinVo.setMem_Img(member.getMem_Img());
 		memApplyViewVo.setMem_Email(member.getMem_Email());
 		memApplyViewVo.setProj_Num(proj_Num);
 		memApplyViewVo = projectService.insertApply(applyVo, projectJoinVo,
 				memApplyViewVo);
 		String p_Mem_Email = memApplyViewVo.getP_Mem_Email();
+		
 		map.put("p_Mem_Email", p_Mem_Email);
 		
 		return map;
@@ -445,8 +447,9 @@ public class MainContoller {
 
 		request.setCharacterEncoding("utf-8");
 		int result = -1;
-		String pwd = (Math.random() * 100000) + 100000 + "";
-		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd + "입니다";
+		double dpwd = ((Math.random()+1)*10000);
+		String pwd = ((int)(dpwd))+"";
+		String content = sendEmail + "님 의 임시 비밀번호는 " + pwd+ "입니다";
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		MemberVo memberVo = (MemberVo) memberService.getMember(sendEmail);
@@ -542,9 +545,10 @@ public class MainContoller {
 	@RequestMapping(value = "/alarmCount", method = RequestMethod.GET)
 	public @ResponseBody int selectAlarmCount(HttpSession session) throws SQLException{
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-		int memApplyViewCount = memberService
-				.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
-		return memApplyViewCount;
+		int memApplyViewCount = memberService.selectCountMemApplyViewByEmail(memberVo.getMem_Email());
+		int projInviteViewCount = inviteService.selectInviteCount(memberVo.getMem_Email());
+		int totalCount = projInviteViewCount+memApplyViewCount;
+		return totalCount;
 
 	}
 

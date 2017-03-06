@@ -34,10 +34,6 @@
     <div id="spreadsheet" style="width:auto;"></div>
 </div>
 
-
-
-
-
 <!-- Modal fullscreen -->    
 <div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width:auto;">
@@ -189,7 +185,6 @@ $(function() {
     	 
     	 var doc_Num = '${spreadSheetVo.doc_Num}';
          var dataList = {'sheet':JSON.stringify(sheet),'doc_Num':doc_Num};
-         
     	 $.ajax({  
          	type : "POST",
  			url : "saveFile",
@@ -197,13 +192,12 @@ $(function() {
  			data : JSON.stringify(dataList),
  			contentType : "application/json",
  			success:function(result){
- 				sendSpreadSheet(JSON.stringify(data2));		
+ 				sendSpreadSheet(JSON.stringify(data2));
  			}    
          });
      }
-    
-});
+}); 
       
-    </script>              
-</body>                   
+    </script>                
+</body>                     
 </html>        

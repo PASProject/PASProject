@@ -45,7 +45,7 @@ public class ScheduleCalendarVo implements Serializable {
 		scheduleCalendarCommand.setTitle(this.getSc_Title());
 		scheduleCalendarCommand.setColor(this.getSc_Color());
 		scheduleCalendarCommand.setDescription(this.sc_Description);
-		scheduleCalendarCommand.setId(this.sc_Wk_Mem_Email+this.sc_Num);
+		scheduleCalendarCommand.setId(this.sc_Wk_Mem_Email+"."+this.sc_Num);
 		return scheduleCalendarCommand;
 	}
 	

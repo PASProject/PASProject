@@ -60,7 +60,7 @@
 							scroll : true,
 							scrollHeight : 300,
 							formatItem : function(d, i, max) { // suggest 목록에 보여줄 글자
-								return i + "/" + max + ": \""
+								return  "\""
 										+ d.mem_Email + "\" ["
 										+ d.mem_Name + "]";
 							},

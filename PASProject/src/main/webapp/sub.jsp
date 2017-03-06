@@ -125,10 +125,6 @@ font-weight:bold;
 							href="<%=request.getContextPath()%>/project/pmBoardList">프로젝트
 								게시판</a></td>
 					</tr>
-					<tr>
-						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/billing">돈관리</a></td>
-					</tr>
 				</table>
 			</div>
 		</div>
@@ -148,7 +144,10 @@ font-weight:bold;
 							<span class="label label-success">New</span></td>
 					</tr>
 					<tr>
-						<td><a href="<%=request.getContextPath()%>/project/work/createWorkForm">파일 생성</a></td>
+						<td><a href="/pas/project/work/spreadSheetForm">스프레드시트 생성</a></td>
+					</tr>
+					<tr>
+						<td><a href="/pas/project/work/spreadWordForm">워드프로세스 생성</a></td>
 					</tr>
 					<%-- <tr>
 						<td><a href="<%=request.getContextPath()%>/project/work/loadFile">들어가기</a></td>
@@ -210,9 +209,66 @@ font-weight:bold;
 								초대</a></td>
 					</tr>
 					<tr>
-						<td><a style="text-decoration: none;" href="#">프로젝트 참가</a></td>
+						<td><a style="text-decoration: none;" href="#" data-toggle="modal" data-target="#outModal">프로젝트 탈퇴</a></td>
+						
+						<div class="modal fade" id="outModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><b>프로젝트 탈퇴</b></h4>
+        </div>
+        <div class="modal-body">
+                      <H2><b>정말로 프로젝트 탈퇴를 하시겠습니까?</b></H2>
+          <button type="button" class="btn btn-default" id="projOut">예</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+        </div>
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+  
+  		
+						
 					</tr>
 				</table>
+				<script>
+  
+  $(function(){
+
+		var proj_Num= ${joinProj};
+	    var mem_Email= '${loginUser.mem_Email}';
+		
+		
+	    var dataList = {"proj_Num":proj_Num,"mem_Email":mem_Email};
+		
+	    
+		
+		$('#projOut').click(function(){
+			
+		$.ajax({
+			type:'POST',
+			url:'projOut',
+			data:{"proj_Num":proj_Num,"mem_Email":mem_Email},
+			dataType:'JSON',
+			 success:function(){
+				 location.href="<%=request.getContextPath()%>/main/myProject";
+			 }
+		})
+			
+			
+			
+			
+		})
+		
+		
+	})
+  </script>
 			</div>
 		</div>
 	</div>
@@ -246,6 +302,17 @@ font-weight:bold;
 			</div>
 		</div> -->
 	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a style="text-decoration: none;"
+					href="<%=request.getContextPath()%>/project/pmBoardManagementList"><img src="<%=request.getContextPath() %>/resources/img/cash.png"><span>&nbsp;&nbsp;&nbsp;게시판 관리</span></a>
+			</h4>
+		</div>
+	</div>
+	
+	
 </div>
 <hr style="border: 1px solid; border-color: #ddd">
 <div class="panel-group" id="accordion">
@@ -422,17 +489,8 @@ font-weight:bold;
 	</div>
 
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4 class="panel-title">
-				<a id="collapseEight" style="text-decoration: none;" href="#collapseEight"><img src="<%=request.getContextPath() %>/resources/img/resize.png"><span>&nbsp;&nbsp;&nbsp;리사이징</span></a>
-			</h4>
-		</div>
-		<!-- <div id="collapseSeven" class="panel-collapse collapse">
-			<div class="panel-body">
-			</div>
-		</div> -->
-	</div>
+			
+			
 </div>
 <script>
 
@@ -446,31 +504,34 @@ font-weight:bold;
 
 
 	function decrease(){
-		$('#content').removeClass('col-md-10').addClass('col-md-11');
-		$('#submenu').removeClass('col-md-2').addClass('col-md-1');
+		$('#content').removeClass('col-md-10').addClass('col-md-12');
+		$('#submenu').removeClass('col-md-2').addClass('col-md-0');
 		$('.panel-title>a>span').hide();
 		$('.panel-title').css('text-align','center');
 		$('#proj_Img').css('height','80px');
-		$('#collapseEight').one("click",increase);
-		
+		$('#resizing').one("click",increase);
 	}
 	/* k-spreadsheet-pane k-top k-left */
 	function increase(){
-		$('#content').removeClass('col-md-11').addClass('col-md-10');
-		$('#submenu').removeClass('col-md-1').addClass('col-md-2');
+		$('#content').removeClass('col-md-12').addClass('col-md-10');
+		$('#submenu').removeClass('col-md-0').addClass('col-md-2');
 		$('.panel-title>a>span').show();
 		$('.panel-title').css({
 			'text-align':'left'
 		})
 		$('#proj_Img').css('height','130px');
-		$('#collapseEight').one("click",decrease);
+		$('#resizing').one("click",decrease);
 
 	}
 $(function(){
-	$('#collapseEight').one('click',decrease);
+	$('#resizing').one('click',decrease);
 	
 
 })
+
+
+
+
 </script>
 
 <!-- 	</div>

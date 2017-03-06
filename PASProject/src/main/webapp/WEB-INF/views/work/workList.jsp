@@ -17,7 +17,6 @@
 		<div>
 		
 		</div>
-		<label for="fileList">30만원을 위하여</label>
 		<table class="table table-hover" id="fileList" style="border-bottom: 1px solid #ddd; ">
 		<c:if test="${empty documentList}">
 			<tr>
@@ -29,8 +28,8 @@
 				<td class="col-md-1"><img
 						src="<%=request.getContextPath()%>/resources/img/${documentVo.doc_Img}">
 				</td>
-				<td class="col-md-4" style="padding:4px;"><a href="<%=request.getContextPath()%>/project/work/selectDocument?doc_Num=${documentVo.doc_Num}&doc_Kind=${documentVo.doc_Kind}" >${documentVo.doc_Name}</a><br>생성 일자 : ${documentVo.doc_Wt_Date}<br> 생성자 : ${documentVo.mem_Name } </td>
-				<td class="col-md-4 text-right"><a href="#" id="downloadFile" class="${documentVo.doc_Num}"> 미리보기 /  추출 </a>  |  <a href="<%=request.getContextPath()%>/project/work/deleteDocument?doc_Num=${documentVo.doc_Num}">삭제</a> </td>
+				<td class="col-md-4" style="padding:4px;"><a href="<%=request.getContextPath()%>/project/work/selectDocument?doc_Num=${documentVo.doc_Num}&doc_Kind=${documentVo.doc_Kind}" >${documentVo.doc_Name}</a><br>파일 명 :<span id="file_Name"> ${documentVo.doc_File_Name}</span> <br>생성 일자 : ${documentVo.doc_Wt_Date}<br> 생성자 : ${documentVo.mem_Name } </td>
+				<td class="col-md-4 text-right"><a href="#" id="downloadFile" class="${documentVo.doc_Num}"> 미리보기 /  추출 </a>  |  <a href="<%=request.getContextPath()%>/project/work/deleteDocument?doc_Num=${documentVo.doc_Num}">삭제</a> |<a href="#" id="${documentVo.doc_Num}" class="updateName"> 변경 </a> </td>
 			</tr>
 		</c:forEach>
 		</table>
@@ -156,7 +155,6 @@
 		});
 		
 		$('#exportWordBtn').on('click',function(){
-			
 			var Wordsheet = CKEDITOR.instances.editor1.getData(); 
 			 $.ajax({
              	type : "POST",
@@ -169,8 +167,34 @@
      			}
              })
          });
-
 	
-	</script>    
-</body>        
+		$(document).on('click','a',function(){
+			if($(this).attr('class')=="updateName"){
+				 var doc_Num = $(this).attr('id');
+				var doc_Name = prompt("이름을 입력하세요");
+				if(doc_Name==null || doc_Name ==""){
+					return;
+				}
+				var dataList = {"doc_Num":doc_Num,"doc_File_Name":doc_Name};
+				var selectObj = $(this).parent("td").siblings().eq(1).find('#file_Name');
+				 $.ajax({
+					dataType:'json',
+					contentType:'application/json',
+					type:'post',
+					data:JSON.stringify(dataList),
+					url:'/pas/project/work/updateDocName',
+					success:function(result){
+						if(result){
+							selectObj.text("");
+							selectObj.text(" "+doc_Name); 
+						}else{
+							alert("변경을 실패하였습니다.");
+						}
+					}
+				}); 
+			}
+		})
+	  
+	</script>      
+</body>          
 </html>       

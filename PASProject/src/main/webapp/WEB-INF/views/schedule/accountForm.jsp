@@ -150,11 +150,11 @@
 			data : JSON.stringify(datalist),
 			success : function(data){
 				var d = new Date(data.acc_Date);
-				alert(data.acc_Content);
-				alert(d);
+				var today_date =
+				    d.getFullYear()+"-"+("0" + (d.getMonth() + 1)).slice(-2)+"-"+("0" + d.getDate()).slice(-2);
 				$('#upproj_Num').val(data.proj_Num);
 				$("#upacc_Num").val(data.acc_Num);
-				$("#upacc_Date").val(d);
+				$("#upacc_Date").val(today_date);
 				$("#upacc_Imp").val(data.acc_Imp);
 				$("#upacc_Exp").val(data.acc_Exp);
 				$("#upacc_Content").val(data.acc_Content); 
@@ -174,6 +174,19 @@
 	   
 	   
    }
+		
+		$(function(){
+			
+			$('#selectDate').change(function(){
+				
+				var selectedText = $("#selectDate").val();
+				 $('#upacc_Date').val(selectedText);
+				
+				
+			})
+			
+			
+		})
 
 	
 
@@ -191,23 +204,23 @@
 		
 			<table class="table">
 				<tr>
-					<td class="col-md-4">날짜</td>
-					<td class="col-md-1">수입</td>
-					<td class="col-md-1">지출</td>
+					<td class="col-md-2 text-center">날짜</td>
+					<td class="col-md-2 text-center">수입</td>
+					<td class="col-md-2 text-center">지출</td>
 					<td class="col-md-2 text-center">내용</td>
-					<td class="col-md-1">총합</td>
+					<td class="col-md-2 text-center">총합</td>
 
 				</tr>
 				<c:forEach var="AccountBoardList" items="${AccountBoardList }">
 					<tr>
-						<td>
+						<td class="text-center">
 						<button type="button"  class="btn btn-default" onclick="show(${AccountBoardList.acc_Num})">
                         <fmt:formatDate pattern="yyyy-MM-dd" 
             value="${AccountBoardList.acc_Date}" /></button></td>
-						<td>${AccountBoardList.acc_Imp }</td>
-						<td>${AccountBoardList.acc_Exp }</td>
-						<td class="col-md-4 text-center">${AccountBoardList.acc_Content }</td>
-						<td>${AccountBoardList.acc_Total }</td>
+						<td class="text-center"><b>${AccountBoardList.acc_Imp }</b></td>
+						<td class="text-center"><b>${AccountBoardList.acc_Exp }</b></td>
+						<td class="text-center"><b>${AccountBoardList.acc_Content }</b></td>
+						<td class="text-center"><b>${AccountBoardList.acc_Total }</b></td>
 
 					</tr>
 				</c:forEach>
@@ -240,7 +253,7 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">상세 정보</h4>
+											<h4 class="modal-title">회계 정보</h4>
 										</div>
 										<div class="modal-body">
 										<div class="row">
@@ -248,7 +261,7 @@
 										<div id="bubble" style="height: auto; padding-left: 30px;">
 				                       <div class="row">
 				                       <div id="1">
-						              <form class="form-horizontal" id="update_form" >
+						              
 											<input type="hidden" id="upacc_Num"><br>
 										    <input type="hidden" id="upproj_Num"> <br>
 											
@@ -257,8 +270,8 @@
 								<div class="col-md-6  inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"> <i
-											class="glyphicon glyphicon-envelope"></i></span> <input type="Date" 
-											id ="upacc_Date" class="form-control" type="text" >
+											class="glyphicon glyphicon-time"></i></span> <input type="text" 
+											id ="upacc_Date" class="form-control" type="text" ><input type="date" id="selectDate">
 									</div>
 								</div>
 							</div>
@@ -269,7 +282,7 @@
 								<div class="col-md-6  inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"> <i
-											class="glyphicon glyphicon-envelope"></i></span> <input
+											class="glyphicon glyphicon-plus"></i></span> <input
 											id="upacc_Imp"
 											class="form-control" type="text" >
 									</div>
@@ -282,24 +295,22 @@
 								<div class="col-md-6  inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"> <i
-											class="glyphicon glyphicon-envelope"></i></span> <input
+											class="glyphicon glyphicon-minus"></i></span> <input
 											id="upacc_Exp"
 											class="form-control" type="text" >
 									</div>
 								</div>
 							</div>
 							
-							<div class="form-group">
-								<label class="col-md-4 control-label">내용</label>
-								<div class="col-md-6  inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"> <i
-											class="glyphicon glyphicon-envelope"></i></span> <textarea
-											id="upacc_Content" 
-											readonly></textarea>
-									</div>
-								</div>
-							</div>
+							<div class="form-group" style=" display: inline-block">
+						<label for="textArea" class="col-lg-2 control-label">내용</label>
+						<div class="col-lg-8">
+							<textarea class="form-control" rows="9" id="upacc_Content"
+								name="upacc_Content" ></textarea>
+						</div>
+					</div><br>
+							
+					
 											
 										
 
@@ -314,7 +325,7 @@
 										</div>
 										
 										
-										</form>
+										
 										</div>
 										
 										</div>

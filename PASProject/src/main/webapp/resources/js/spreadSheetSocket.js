@@ -1,4 +1,4 @@
-var wsocket;
+var sheetWsocket;
 var msg;
 var loginUserId;
 function connectSpreadSheet() {
@@ -10,35 +10,36 @@ function connectSpreadSheet() {
 	}
 	
 	function disconnect() {
-		sheatWsocket.close();
+		sheetWsocket.close();
 	}
 	
 	function onOpenSpreadSheet(evt) {
-		/*var a = $('sessionScope.loginUser.mem_Name');*/
-		/*alert("ㅋ");*/
-		/*$('#joinMemberZone').html("<a>ㅇㅇㅇ</a>");*/
+//		var joinUser = $('sessionScope.loginUser');
+//		$('#joinMemberZone').html("<span id ='"+joinUser.mem_Email+"'><img src = '/pas/resources/upload/'"+joinUser.mem_Img+"'> [ joinUser.mem_Name ] </span>");
 	}
 	
 	function onMessageSpreadSheet(evt) {
-		
-		
+		var g = JSON.parse(evt.data);
+		var deleteKey = "selection";
+		var gridLinesColor = "gridLinesColor";
+		delete g[deleteKey];
 		var spreadsheetModal = $("#fullBody").data("kendoSpreadsheet");
 		var spreadsheet = $("#spreadsheet").data("kendoSpreadsheet");
 		if(spreadsheetModal!=null){
 			var sheetModal = spreadsheetModal.activeSheet();
-			sheetModal.fromJSON(JSON.parse(evt.data));
+			sheetModal.fromJSON(g);
 		}else if(spreadsheet!=null){
 			var sheet = spreadsheet.activeSheet();
-			sheet.fromJSON(JSON.parse(evt.data));
+			sheet.fromJSON(g);
 		}
          
 	}
 	
 	function onCloseSpreadSheet(evt) {
-		
+		var joinUser = $('sessionScope.loginUser.mem_Name');
+		$("span#"+joinUser.mem_Email).remove();
 	}
 	
 	function sendSpreadSheet(msg) {
-		sheatWsocket.send(msg);
+		sheetWsocket.send(msg);
 	}
-

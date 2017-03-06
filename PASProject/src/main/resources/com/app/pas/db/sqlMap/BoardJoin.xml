@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="BoardJoin">
+
+   <typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   
+   <update id="insertBoardJoin" parameterClass="BoardJoin">
+      insert into board_Join(bm_num,bj_Mem_Email,bj_Write,bj_Read,bj_mem_name) 
+      values(#bm_Num#,#bj_Mem_Email#,#bj_Write#,#bj_Read#,#bj_Mem_Name#)
+   </update>
+   
+   <select id="selectBoardJoinList" parameterClass="int" resultClass="BoardJoin">
+   	select * from board_join where bm_num = #bm_Num#
+   </select>
+</sqlMap>

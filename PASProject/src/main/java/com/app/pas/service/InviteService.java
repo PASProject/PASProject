@@ -68,4 +68,9 @@ public class InviteService {
 		
 		return list;
 	}
+	
+	public int selectInviteCount(String mem_Email) throws SQLException{
+		int count = inviteDao.selectInviteCount(mem_Email);
+		return count;
+	}
 }
