@@ -74,9 +74,10 @@
                             	   } 
                             	   ))
                                }
-                               $('#btn${freeBoardVo.frb_Article_Num }').text(result);
+                              
                                $('.btn.btn-info.btn-xs').css({
-                            	   'margin-right':'5px'
+                            	   'margin-right':'5px',
+                            	   'margin-bottom':'2px'
                                })
                            })
                    
@@ -101,7 +102,7 @@
                      		})
                      
                      </script>   --> 
-                     <h4><a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></h4></td>
+                     <a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
                      <td >${freeBoardVo.mem_Name}</td>
                      <td ><fmt:formatDate
                            value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>

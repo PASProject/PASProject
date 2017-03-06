@@ -34,7 +34,7 @@
             <span class="glyphicon glyphicon-qrcode"></span>SkillSharingBoard <small>신기술 공유 게시판</small>
          </h3>
 
-         <form name="form" method="post" action="skillSharingBoardList">
+         <form name="form" method="post" action="SkillSharingBoardList">
             <!--    <form action="QnaBoardSearch" method="post">    -->
 
             <br> <select name="keyField" size="1">
@@ -51,25 +51,106 @@
 
             <table class="table table-hover">
                <tr class="text-center">
-                  <th class="col-md-1" style="text-align: center">번호</th>
-                  <th class="col-md-6" style="text-align: center">제목</th>
-                  <th class="col-md-1" style="text-align: center">작성자</th>
-                  <th class="col-md-2" style="text-align: center">작성일</th>
-                  <th class="col-md-1" style="text-align: center">조회수</th>
-                  <th class="col-md-1" style="text-align: center">추천수</th>
+                  <th class="col-md-1" >번호</th>
+                  <th class="col-md-6">제목</th>
+                  <th class="col-md-1">작성자</th>
+                  <th class="col-md-2" >작성일</th>
+                  <th class="col-md-1" >조회수</th>
+                  <th class="col-md-1" >추천수</th>
                </tr>
                <c:forEach items="${skillSharingBoardList }" var="skillSharingBoardVo"
                   begin="${paging.beginNo}" end="${paging.endNo}">
                   <tr id="boardContents">
-                     <td style="text-align: center;line-height: 60px;">${skillSharingBoardVo.ssb_Article_Num }</td>
+                     <td >${skillSharingBoardVo.ssb_Article_Num }</td>
                      
-                     <td><div>${skillSharingBoardVo.ssb_Tag}</div>
-                     <h4><a href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num }">${skillSharingBoardVo.ssb_Title}</a></h4></td>
-                     <td style="text-align: center; line-height: 60px;">${skillSharingBoardVo.mem_Name}</td>
-                     <td style="text-align: center; line-height: 60px;"><fmt:formatDate
+                     <td><div><span style="display:none;" id="tag${skillSharingBoardVo.ssb_Article_Num}">${skillSharingBoardVo.ssb_Tag}</span></div>
+                     <div class="btnGen${skillSharingBoardVo.ssb_Article_Num}"></div>
+                     <script>
+                     $(function(){
+                  	   var tags = $('#tag${skillSharingBoardVo.ssb_Article_Num}').text();
+                         var a = tags.split(',');
+                         for (i = 0; i < a.length; i++){
+                      	   var result = a[i];
+                      	   $('.btnGen${skillSharingBoardVo.ssb_Article_Num}').append($('<button/>',{
+                      		   class : "btn btn-info btn-xs",
+                      		   text : result
+                      	   } 
+                      	   ))
+                         }
+                        
+                         $('.btn.btn-info.btn-xs').css({
+                      	   'margin-right':'5px',
+                    	   'margin-bottom':'2px'
+                         })
+                     })
+                     </script>
+                     
+                     <a href="<%=request.getContextPath()%>/SkillSharing/SkillSharingDetail?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num }">${skillSharingBoardVo.ssb_Title}</a></td>
+                     
+                     
+                       
+                       <div class="btnGen${freeBoardVo.frb_Article_Num }"></div>
+                            <script>
+                          
+                   
+                            </script>
+                             <!--  <script>
+                     		
+                              
+                     	$(function(){
+                    	/*  var a = $('.tag${freeBoardVo.frb_Tag}'); */
+                    	
+                    		var a = $('#tag${freeBoardVo.frb_Tag}').text(); 
+                   			var b = 	
+                    	
+                    		var asplit = a.split('#');
+                    		for(var i in asplit){
+                    			alert(asplit[i]);
+                    		}
+                    	
+                    	
+                    	
+                    	
+                     		})
+                     
+                     </script>   --> 
+                     <a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></td>
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     <td>${skillSharingBoardVo.mem_Name}</td>
+                     <td ><fmt:formatDate
                            value="${skillSharingBoardVo.ssb_wt_date}" pattern="yyyy-MM-dd" /></td>
-                     <td style="text-align: center; line-height: 60px;">${skillSharingBoardVo.ssb_Inq_Count }</td>
-                     <td style="text-align: center; line-height: 60px;">${skillSharingBoardVo.ssb_Like_Count }</td>
+                     <td>${skillSharingBoardVo.ssb_Inq_Count }</td>
+                     <td>${skillSharingBoardVo.ssb_Like_Count }</td>
                   </tr>
                </c:forEach>
             </TABLE>

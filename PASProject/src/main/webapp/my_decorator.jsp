@@ -177,6 +177,7 @@ font-family: 'NanumGothic';
 
 
 td{
+vertical-align:middle !important;
 word-break:break-all;
 }
 div {
@@ -311,7 +312,7 @@ border-radius:0px;
 background-color:#f9f9f9;
 } */
 .table>tbody>tr>th{
-background-color:white;
+background-color:#f3f3f3;
 border-top: 1px solid #888888;
 }
 

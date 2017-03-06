@@ -477,6 +477,7 @@
 	$(function() {
 		$('.cc').click(function() {
 			var $color = $(this).css('background-color');
+
 			var a = location.href;
 			if (a.indexOf("otherProject") == -1) {
 				$('#myProjectList').animate({
@@ -517,6 +518,10 @@
 					backgroundColor : $color
 				})
 			})
+			$('th').animate({
+				backgroundColor : $color,
+				
+			},'slow');
 
 			var b = $color.split("(")[1].split(")")[0];
 			b = b.split(",");
