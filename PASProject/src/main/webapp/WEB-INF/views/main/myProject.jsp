@@ -10,6 +10,11 @@
 </head>
 
 <body>
+<c:if test="${exit == 'no'}">
+         <script type="text/javascript">
+            alert("진행 중인 프로젝트가 있습니다. 완료 혹은 나가기 후 탈퇴해 주세요.");
+         </script>
+      </c:if>
 <!-- 
 	<script>
 $(function(){
