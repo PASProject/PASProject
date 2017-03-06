@@ -1,5 +1,6 @@
 package com.app.pas.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String loginForm(HttpSession session, Model model) {
+	public String loginForm(HttpSession session, Model model,HttpServletRequest request) {
 		String url = "index";
 		
+		String exit = request.getParameter("exit");
 		if (session != null) {
 			session.removeAttribute("loginUser");
 			if (session.getAttribute("joinProj") != null
@@ -24,7 +26,7 @@ public class IndexController {
 				session.removeAttribute("joinProjectVo");
 			}
 		}
-		
+		model.addAttribute("exit", exit);
 		return url;
 	}
 

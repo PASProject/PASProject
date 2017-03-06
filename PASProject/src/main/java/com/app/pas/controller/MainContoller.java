@@ -40,6 +40,7 @@ import com.app.pas.dto.MessageVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
+import com.app.pas.dto.board.SkillSharingBoardVo;
 import com.app.pas.service.ApplyService;
 import com.app.pas.service.InviteService;
 import com.app.pas.service.MainService;
@@ -79,7 +80,31 @@ public class MainContoller {
 	
 	@Autowired
 	ApplyService applyService;
+	
+	@RequestMapping(value = "/exit", method = RequestMethod.POST)
+	public String exit(HttpSession session,ProjectVo projectVo,MemberVo member)
+			throws NumberFormatException, SQLException {
+		String url = null;
 
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String loginEmail = memberVo.getMem_Email();
+		projectVo.setMem_Email(loginEmail);
+		List<ProjectVo> list = projectService.selectMyProjectListById(projectVo);
+		if(list == null||list.isEmpty()){
+			member = memberService.getMember(loginEmail);
+			member.setQuit_Check("y");
+			memberService.updateMemberQuitCheck(member);
+			/*memberService.deleteMember(loginEmail);*/
+			url = "redirect:/index?exit=yes";
+		}else{
+			url = "redirect:myProject?exit=no";
+		}
+		
+		
+	
+		return url;
+	}
+	
 
 	//연습용
 		@RequestMapping(value="/temp")
@@ -247,10 +272,12 @@ public class MainContoller {
 	 * @throws SQLException
 	 */
 	@RequestMapping("/myProject")
-	public String MyProject(HttpSession session, Model model,
+	public String MyProject(HttpSession session, Model model,HttpServletRequest request,
 			@RequestParam(defaultValue = "")String proj_Search,
 			ProjectVo projectVo) throws SQLException {
 		String url = "main/myProject";
+		
+		String exit = request.getParameter("exit");
 		
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
@@ -276,6 +303,7 @@ public class MainContoller {
 				projectVo.setProj_Search(proj_Search);
 				
 				}
+				model.addAttribute("exit", exit);
 				model.addAttribute("myProjectList", list);
 				return url;
 		}
@@ -391,7 +419,7 @@ public class MainContoller {
 	@RequestMapping(value = "/mdlOtherValue", method = RequestMethod.POST)
 	public @ResponseBody List<MemPositionViewVo> mdlOtherValue(
 			@RequestBody Map<String, Object> map) throws SQLException {
-		int proj_Num = (Integer) map.get("proj_Num");
+		int proj_Num = Integer.parseInt(map.get("proj_Num").toString());
 		List<MemPositionViewVo> list = projectService
 				.selectMemPositionViewListByProjNum(proj_Num);
 		return list;

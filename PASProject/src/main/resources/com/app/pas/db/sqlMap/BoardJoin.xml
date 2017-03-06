@@ -17,4 +17,13 @@
    <select id="selectBoardJoinList" parameterClass="int" resultClass="BoardJoin">
    	select * from board_join where bm_num = #bm_Num#
    </select>
+
+
+   <update id="updateBoardJoin" parameterClass="BoardJoin">
+   		update board_Join
+   		set bj_Write = #bj_Write#, bj_Read = #bj_Read#
+   		where bm_Num = #bm_Num#
+   </update>
+
 </sqlMap>
+

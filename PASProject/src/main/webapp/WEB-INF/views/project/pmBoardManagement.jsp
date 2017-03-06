@@ -42,8 +42,8 @@
 			      <tr>
 			        <th>이름</th>
 			        <th>직책</th>
-			        <th>읽기권한</th>
 			        <th>쓰기권한</th>
+			        <th>읽기권한</th>
 			      </tr>
 			    </thead>
 			<tbody>
@@ -51,7 +51,7 @@
 				<tr id="memItems">
 					<td>${member.mem_Name}</td>
 					<td> ${member.position_Name}</td>
-					<td><label class="checkbox-inline"><input type="checkbox" value="${member.mem_Email}" id="1" >허용</label></td>
+					<td><label class="checkbox-inline"><input type="checkbox" value="${member.mem_Email}" id="1">허용</label></td>
 					<td><label class="checkbox-inline"><input type="checkbox" value="${member.mem_Email}" id="2">허용</label></td>
 				<tr>
 			</c:forEach>
@@ -66,10 +66,12 @@
 			<table class="table table-hover">
 				    <thead>
 				      <tr>
+				      	<th>번호</th>
 				        <th>아이디</th>
 				        <th>이름</th>
-				        <th>읽기권한</th>
 				        <th>쓰기권한</th>
+				        <th>읽기권한</th>
+				        <th>비고</th>
 				      </tr>
 				    </thead>
 				    <tbody id="boardJoinList">
@@ -163,13 +165,14 @@
 				}  
 			})
 		});
+		
 		$(document).on('click','#listItem',function(e){ 
 			e.preventDefault();
 			var bm_Num = $(this).attr('class');
 			var dt ="";
 			var dataList = {'bm_Num':bm_Num};
 			$('#boardName').empty();	
-			$('#boardName').text($(this).find('td').eq(0).text()); 
+			$('#boardName').append($(this).find('td').eq(0).text()+"<input type='hidden' value='"+bm_Num+"' id='bm_NumZone'>"); 
 			$.ajax({
 				contentType:'application/json',
 				dataType:'json',
@@ -179,10 +182,11 @@
 				success:function(result){
 					$('#boardJoinList').empty();
 					$.each(result,function(i){
-						dt += "<tr><td>"+result[i].bj_Mem_Email+"</td><td>"+result[i].bj_Mem_Name+"</td>"
-						+"<td>"+result[i].bj_Write+"</td><td>"+result[i].bj_Read+"</td></tr>";	
+						var idx = i+1;
+						dt += "<tr><td>"+idx+"</td><td>"+result[i].bj_Mem_Email+"</td><td>"+result[i].bj_Mem_Name+"</td>"
+						+"<td>"+result[i].bj_Write+"</td><td>"+result[i].bj_Read+"</td><td><input type='button' class='btn btn-default' id='updateJoinMemberBtn' value='수정'> </td></tr>";	
 					});
-					 dt+="<tr><td colspan='4' style='text-align: center; font-weight: bold;'><a href='#' id='addItem'><span style='color: red'>추가하기</span</a></td></tr>"
+					 dt+="<tr><td colspan='6' style='text-align: center; font-weight: bold;'><a href='#' id='addItem'><span style='color: red'>추가하기</span</a></td></tr>"
 					$('#boardJoinList').append(dt);
 				}
 			});
@@ -190,15 +194,81 @@
 		
 		$(document).on('click','#addItem',function(e){
 			e.preventDefault();
-			var item = "<tr><td><input type='text'></td><td><input type='text'></td><td>n</td><td>n</td></tr>";
+			var num = $(this).parents('tr').siblings().length + 1;
+			var item = "<tr><td>"+num+"</td><td><input type='text' id='bj_Mem_Email' readonly='readonly'></td><td><input type='text' id='bj_Mem_Name' readonly='readonly' ></td>"
+			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='1' >허용</label></td>"
+			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='2' >허용</label></td><td><input type='button' value='확인' class='btn btn-default'><td></tr>";
 			$(this).parents('tr').before(item);
+		});
+		
+		$(document).on('click','#updateJoinMemberBtn',function(){
+			var mem_Email = $(this).parent().siblings('td').eq(1).text();
+			/* var bj_Write =  */
+			var obj = $(this).parent();
+			var optionItem1 ="";
+			var optionItem2="";
+			if($(this).parent().siblings('td').eq(3).text() =='y'){
+				optionItem1 = "<label class='checkbox-inline'><input type='checkbox' value='"+mem_Email+"' id='1' checked>허용</label>";	
+			}else{
+				optionItem1 = "<label class='checkbox-inline'><input type='checkbox' value='"+mem_Email+"' id='1'>허용</label>";
+			}
+			
+			if($(this).parent().siblings('td').eq(4).text() =='y'){
+				optionItem2 = "<label class='checkbox-inline'><input type='checkbox' value='"+mem_Email+"' id='2' checked >허용</label>";
+			}else{
+				optionItem2 = "<label class='checkbox-inline'><input type='checkbox' value='"+mem_Email+"' id='2' >허용</label>";
+			}
+			
+			obj.siblings('td').eq(3).empty();
+			obj.siblings('td').eq(4).empty();
+			obj.siblings('td').eq(3).append(optionItem1);
+			obj.siblings('td').eq(4).append(optionItem2);
+			obj.empty();
+			obj.append("<input type='button' class='btn btn-default' id = 'goUpdateBtn' value='확인'>  /  <input type='button' class='btn btn-default' value='취소'>");
+		}) 
+		
+		$(document).on('click','#goUpdateBtn',function(){
+			var obj = $(this).parent().siblings('td');
+			var parentObj = $(this).parent();
+			var bj_Mem_Email = obj.eq(1).text();
+			var bj_Mem_Name = obj.eq(2).text();
+			var bj_Write = "n"; 
+			var bj_Read = "n";
+			var bm_Num =$('#bm_NumZone').val();
+			  if(obj.eq(3).find('input[type="checkbox"]').is(':checked')){
+				bj_Write = 'y';
+			}
+			 if(obj.eq(4).find('input[type="checkbox"]').is(':checked')){
+				bj_Read = 'y';
+			}
+			 var dataList = {'bj_Mem_Email':bj_Mem_Email,'bm_Num':bm_Num,'bj_Write':bj_Write,'bj_Read':bj_Read};
+			 $.ajax({
+				 dataType:'json',
+				 contentType:'application/json',
+				 data :JSON.stringify(dataList),
+				 url:'updateBoardJoin',
+				 type:'post',
+				 success:function(result){
+					 obj.eq(3).empty();
+					 obj.eq(4).empty();
+					 parentObj.empty(); 
+					 obj.eq(3).append(bj_Write);
+					 obj.eq(4).append(bj_Read);
+					 parentObj.append("<input type='button' class='btn btn-default' id='updateJoinMemberBtn' value='수정'>");
+				 } 
+			 })	 
+		
 		})
+		 
+		
+		
 	})
+	 
 	
-	function delteBoard(bm_Num){
+	function delteBoard(bm_Num){   
 			location.href = "/pas/project/deleteBoard?bm_Num="+bm_Num;
 	}
-</script>    
-  
+</script>     
 </body>        
 </html>  
+>>>>>>> refs/remotes/origin/master

@@ -11,7 +11,7 @@
 <html>
 
 <head>
-
+<title>BLUEMINE</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,7 +106,11 @@ background-color:transparent !important;
 }
 </style>
 <body style="overflow:hidden;">
-
+<c:if test="${exit == 'yes' }">
+         <script type="text/javascript">
+            alert("탈퇴가 완료되었습니다.이용해주셔서 감사합니다.");
+         </script>
+      </c:if>
 	<!-- Navigation -->
 	<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i
 		class="fa fa-bars"></i></a>

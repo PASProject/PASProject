@@ -22,23 +22,26 @@ public class WorkListInterceptor extends HandlerInterceptorAdapter{
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-	/*	HttpSession session = request.getSession();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 파월 인터셉터");
-		
+		HttpSession session = request.getSession();
 		if(session.getAttribute("joinDocNum")==""||session.getAttribute("joinDocNum")==null){
-			System.out.println("없다");
 		}else{
-			System.out.println("있다");
-			System.out.println(session.getAttribute("joinDocNum"));
-		}*/
+			/*session.removeAttribute("joinDocNum");*/
+		}
 		super.afterCompletion(request, response, handler, ex);
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return super.preHandle(request, response, handler);
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		super.postHandle(request, response, handler, modelAndView);
 	}
 
 }

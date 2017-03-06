@@ -131,10 +131,11 @@ public class SkillSharingController {
 			@RequestParam(defaultValue = "") String keyField, @RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") String title, @RequestParam(defaultValue = "") String number,
 			@RequestParam(defaultValue = "") String content, @RequestParam(defaultValue = "") String title_content,
-			@RequestParam(defaultValue = "") String tag, SkillSharingBoardVo skillSharingBoardVo,
-			String modify) throws SQLException {
+			@RequestParam(defaultValue = "") String tag, SkillSharingBoardVo skillSharingBoardVo, HttpServletRequest request
+			) throws SQLException {
 		String url = "SkillSharing/SkillSharingBoardList";
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+modify);
+		String delete = request.getParameter("delete");
+		String modify = request.getParameter("modify");
 		int totalCount = 0;
 		List<SkillSharingBoardVo> skillSharingBoardList = new ArrayList<SkillSharingBoardVo>();
 
@@ -195,7 +196,8 @@ public class SkillSharingController {
 			paging.setPageNo(Integer.parseInt(page));
 			paging.setPageSize(5);
 			paging.setTotalCount(totalCount);
-
+			model.addAttribute("delete",delete);
+			model.addAttribute("modify",modify);
 			model.addAttribute("paging", paging);
 		}
 		return url;
@@ -214,20 +216,20 @@ public class SkillSharingController {
 		String url = "SkillSharing/SkillSharingDetail";
 
 		String like = "";
-		String modi = null;
+		String modify = null;
 		String message = null;
 		String delete = null;
 		String likee = null;
 		message = request.getParameter("message");
 		like = request.getParameter("like");
-		modi = request.getParameter("modi");
+		modify = request.getParameter("modify");
 		delete = request.getParameter("delete");
 		likee = request.getParameter("likee");
 		if (like != null) {
 			model.addAttribute("like", like);
 		}
-		if (modi != null) {
-			model.addAttribute("modi", modi);
+		if (modify != null) {
+			model.addAttribute("modify", modify);
 		}
 		if (delete != null) {
 			model.addAttribute("delete", delete);
@@ -280,21 +282,20 @@ public class SkillSharingController {
 	}
 
 	@RequestMapping(value = "/SkillSharingInsert", method = RequestMethod.POST)
-	public String insertskillSharingBoard(HttpSession session, SkillSharingBoardVo skillSharingBoardVo) {
+	public String insertskillSharingBoard(HttpSession session, SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
 		String url = "redirect:SkillSharingBoardList";
-
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
+		if(skillSharingBoardVo.getSsb_Tag()==""){
+			skillSharingBoardVo.setSsb_Tag("#");
+	      }
 		skillSharingBoardVo.setMem_Email(mem_Email);
 		skillSharingBoardVo.setMem_Name(memberVo.getMem_Name());
 
-		try {
-			skillSharingBoardService.insertSkillSharingBoard(skillSharingBoardVo);
+		
+		skillSharingBoardService.insertSkillSharingBoard(skillSharingBoardVo);
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 		return url;
 	}
@@ -323,7 +324,9 @@ public class SkillSharingController {
 	public String updateskillSharingBoard(SkillSharingBoardVo skillSharingBoardVo) throws SQLException {
 
 		 String url = "redirect:SkillSharingBoardList?modify=yes";
-		 
+		 if(skillSharingBoardVo.getSsb_Tag()==null || skillSharingBoardVo.getSsb_Tag()==""){
+			 skillSharingBoardVo.setSsb_Tag("#"); 
+	      }
 		 skillSharingBoardService.updateSkillSharingBoard(skillSharingBoardVo);
 	  
 	     return url;
@@ -394,20 +397,18 @@ public class SkillSharingController {
 
 	@RequestMapping(value = "SkillSharingReplyWrite", method = RequestMethod.POST)
 	public @ResponseBody List<SkillSharingBoardReplyVo> writeSkillSharingReply(
-			@RequestBody SkillSharingBoardReplyVo skillSharingBoardReplyVo, HttpSession session) {
+			@RequestBody SkillSharingBoardReplyVo skillSharingBoardReplyVo, HttpSession session) throws SQLException {
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
 		String mem_Name = memberVo.getMem_Name();
 		skillSharingBoardReplyVo.setSsb_Reply_Mem(mem_Email);
 		skillSharingBoardReplyVo.setSsb_Reply_Mem_Name(mem_Name);
 		List<SkillSharingBoardReplyVo> skillSharingBoardReplyList = new ArrayList<SkillSharingBoardReplyVo>();
-		try {
+		
 			skillSharingBoardReplyService.insertSkillSharingBoardReply(skillSharingBoardReplyVo);
 			skillSharingBoardReplyList = skillSharingBoardReplyService
 					.selectSkillSharingBoardReply(skillSharingBoardReplyVo.getSsb_Article_Num());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return skillSharingBoardReplyList;
 	}
 

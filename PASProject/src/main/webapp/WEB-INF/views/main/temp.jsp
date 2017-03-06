@@ -11,51 +11,41 @@
 
 </head>
 <body>
-<style>
-.typed-cursor{
-    opacity: 1;
-    -webkit-animation: blink 0.7s infinite;
-    -moz-animation: blink 0.7s infinite;
-    animation: blink 0.7s infinite;
-}
-@keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-webkit-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-@-moz-keyframes blink{
-    0% { opacity:1; }
-    50% { opacity:0; }
-    100% { opacity:1; }
-}
-</style>
-	<script src="<%=request.getContextPath() %>/resources/js/typed.js"></script>
-	<script>
-  $(function(){
-      $("#headTitle").typed({
-    	  
-        strings: ["your project with us. ^2000 ","and <b>Finish</b> your project with us. ^5000"],
-        contentType: 'html',
-        typeSpeed : 10,
-        backSpeed : 10,
-		loop : true,
-		loopCount : 50
-      });
-  });
+
+<script>
+$(function(){
+	$('.alink').click(function(e){
+	    $('#questionMarkId').hide();
+	    $('#questionMarkId').css({'top':e.pageY+20,'left':e.pageX+10, 'position':'absolute', 'border':'1px solid black', 'padding':'5px'});
+	    $('#questionMarkId').show();
+	  	
+	    $('body').mouseup(function(e){
+			/* e.preventDefault(); */
+	    	$('#questionMarkId').hide();
+	    })
+	   });
+	
+})
+
 </script>
 	<div class="container Message" id="content">
-	
+
 		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			연습 <small></small>
 		</h3>
-		<div id="a" style="display:inline">Begin&nbsp;</div><div id="headTitle" style="display:inline"></div>
-		
+
+		<div class="boxFAQ" id="questionMarkId" style="display: none;">
+  <span id="divTitle"></span>  
+  <a href="<%=request.getContextPath() %>/main/myProject" id="open">HOW ME!</a>
+</div>
+
+
+<br /><br /><br /><br />
+<a href="#" class="alink">Link 1</a>
+<a href="#" class="alink">Link 2</a>
+
+
 
 	</div>
 </body>

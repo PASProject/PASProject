@@ -44,7 +44,8 @@
 				<!-- <div class="clear"></div> -->
 				<div class="form-group text-right">
 					<div id="buttons" class="col-lg-10 col-lg-offset-2">
-						<button type="submit" class="btn btn-default">수정</button>
+						<input type="button" onclick="insertFrb()"
+								class="btn btn-default" value="수정" />
 						<button type="button" class="btn btn-default" onClick="go_list()">취소</button>
 					</div>
 				</div>
@@ -55,8 +56,22 @@
 		</div>
 	</div>
 <script>
+function insertFrb() {
+	var result = true;
+	if ($('#ssb_Title').val() == "") {
+		alert('제목을 작성해 주세요.')
+		result = false;
+	} else if ($('#ssb_Content').val() == "") {
+		alert('내용을 작성해 주세요.')
+		result = false;
+	}
+	if (result == true) {
+		document.formm.method = "post";
+		document.formm.submit();
+	}
+};
 		function go_list(){
-			location.href="SkillSharingList"
+			location.href="SkillSharingDetail?ssb_Article_Num=${skillSharingBoardVo.ssb_Article_Num}&message=1";
 		}
 </script>
 </body>
