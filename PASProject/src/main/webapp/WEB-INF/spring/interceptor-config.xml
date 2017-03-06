@@ -20,7 +20,7 @@
 	
 	<mvc:interceptor>
 		<mvc:mapping path="/**"/>
-		<mvc:exclude-mapping path="work/selectDocument"/>
+		<mvc:exclude-mapping path="/project/work/selectDocument"/>
 		<bean class="com.app.pas.commons.interceptor.WorkListInterceptor"/>
 	</mvc:interceptor>
 	
@@ -29,7 +29,6 @@
 	   <mvc:mapping path="/project/*"/>
 	   <mvc:mapping path="/main/myProject"/>
 	   <mvc:mapping path="/main/otherProject"/>
-
 	   <mvc:exclude-mapping path="/project/pmChat"/>
 	   <bean class="com.app.pas.commons.interceptor.LoginSessionInterceptor"/>
 	

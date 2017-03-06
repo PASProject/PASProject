@@ -26,4 +26,8 @@ public class BoardJoinService {
 		List<BoardJoinVo> list = boardJoinDao.selectBoardJoinList(bm_Num);
 		return list;
 	}
+	
+	public void updateBoardJoin(BoardJoinVo boardJoinVo) throws SQLException{
+		boardJoinDao.updateBoardJoin(boardJoinVo);
+	}
 }

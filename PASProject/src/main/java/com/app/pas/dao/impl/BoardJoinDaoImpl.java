@@ -28,4 +28,9 @@ public class BoardJoinDaoImpl implements BoardJoinDao{
 		return list;
 	}
 
+	@Override
+	public void updateBoardJoin(BoardJoinVo boardJoinVo) throws SQLException {
+		client.update("updateBoardJoin",boardJoinVo);
+	}
+
 }

@@ -116,7 +116,6 @@ public class WorkController {
 			WordSheetVo wordSheetVo = wordSheetService.selectWordSheetByDocNum(documentVo.getDoc_Num());
 			wordSheetVo.setWd_Content(((wordSheetVo.getWd_Content().trim()).replace("\n", " ")).replace("\"", "\'"));
 			model.addAttribute("wordSheetVo", wordSheetVo);
-			System.out.println(wordSheetVo.getWd_Content()+"겟겟~!");
 			url = "/work/viewWordSheet";
 		}
 		
