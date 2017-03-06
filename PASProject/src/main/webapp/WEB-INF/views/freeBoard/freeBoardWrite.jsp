@@ -40,7 +40,7 @@
 								<div class="col-lg-10">
 									<input type="text" class="form-control" rows="1" id="frb_Tag"
 										name="frb_Tag">
-								<span class="help-block text-right">새해 복 많이 받으세요</span>
+								<span class="help-block text-right">쉼표(,)를 이용하여 복수 등록</span>
 								</div>
 							</div>
 
