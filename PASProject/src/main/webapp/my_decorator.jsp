@@ -156,24 +156,27 @@ $(function(){
 <!--  -->
 <style>
 #resizingImg{
-max-width:100px;
 width:100%;
 }
 #resizing{
+    left: -1px;
+    padding: 0px;
+    text-decoration: none;
+
     position: fixed;
-    top: 300px;
-    left: 20px;
-    opacity:0.05;
+    top: 45%;
 }
 #resizing:hover{
-opacity:1;
+
 }
 a{
 color:black;
 }
 a:hover{
 text-decoration:none !important;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
+
 .modal-header{
 border-bottom: 1px solid rgba(0, 0, 0, 0.27) !important;
 }
@@ -211,7 +214,12 @@ word-break:break-all;
 	-o-transition: all 1s ease;
 	transition: all 1s ease;
 }
-
+#resizingImg{
+-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
 .col-md-12 {
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
@@ -282,6 +290,26 @@ body {
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #3c5574;
 	color: white;
+}
+.panel{
+    -webkit-box-shadow:none;
+    box-shadow: none;
+}
+.panel-body>table>tbody>tr>td{
+border:0px solid white !important;
+}
+.panel-body{
+border:0px solid white !important;
+}
+.panel-default{
+background-color:transparent !important;
+border: 0px solid white !important;
+}
+.panel-heading{
+background-color:transparent !important;
+}
+.panel-group{
+margin-bottom:0px !important;
 }
 .panel-group .panel{
 border-radius:0px;
@@ -389,7 +417,11 @@ $(function(){
 </head>
 <title>최종!</title>
 <body>
-	<a id="resizing" style="text-decoration: none;" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/sort.png"><span></span></a>
+
+	<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
+	<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
+	</a>
+
 	<header>
 
 
@@ -475,6 +507,12 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+					   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=350,height=450,top=400,left=1400')"><span class="glyphicon glyphicon-volume-up"></span></a>
+					   
+					   </li>
+					
 
 						<li><a data-toggle="modal"
 							style="font-size: 28px; margin-top: -4px; cursor: pointer"
@@ -740,10 +778,12 @@ $(function(){
 							
 							</script> 
 
-
+					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
+					<form name="frm" method="post">
+					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
+					</form>
 					<script>
 						$(document).ready(function() {
 							$('#closeModal').click(function() {
@@ -1339,13 +1379,23 @@ $(function(){
 					})
 </script>
 
-<script>
+<script>   
 function pushMessage(){
 	$('#square').fadeIn('slow').delay(3000).fadeOut('slow');
 	
 }
 	function logOut() {
 		location.href = "/pas/main/logOut";
+	}                  
+function exit(){
+	
+	var con_test = confirm("돌이킬 수 없게 됩니다. 정말로 탈퇴하시겠습니까?");
+	if(con_test==true){
+		frm.method = "post";
+		frm.action = "<%=request.getContextPath()%>/main/exit";
+		frm.submit();
 	}
+		
+}
 </script>
 </html>

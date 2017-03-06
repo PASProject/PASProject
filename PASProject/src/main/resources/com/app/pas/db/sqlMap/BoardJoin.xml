@@ -23,4 +23,5 @@
    		set bj_Write = #bj_Write#, bj_Read = #bj_Read#
    		where bm_Num = #bm_Num#
    </update>
+
 </sqlMap>

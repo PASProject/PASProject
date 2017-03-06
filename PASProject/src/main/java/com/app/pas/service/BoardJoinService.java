@@ -30,4 +30,5 @@ public class BoardJoinService {
 	public void updateBoardJoin(BoardJoinVo boardJoinVo) throws SQLException{
 		boardJoinDao.updateBoardJoin(boardJoinVo);
 	}
+
 }

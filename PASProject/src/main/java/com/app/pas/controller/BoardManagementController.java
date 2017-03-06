@@ -88,11 +88,12 @@ public class BoardManagementController {
 		boardManagementService.deleteBoardManagement(Integer.parseInt(bm_Num));
 		return url;
 	}
-	
+
 	@RequestMapping(value="updateBoardJoin", method = RequestMethod.POST)
 	public @ResponseBody boolean updateBoardJoin(@RequestBody BoardJoinVo boardJoinVo )throws SQLException{
 		boolean flag = true;
 		boardJoinService.updateBoardJoin(boardJoinVo);
 		return flag;
 	}
+
 }

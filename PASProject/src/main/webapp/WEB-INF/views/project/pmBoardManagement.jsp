@@ -269,6 +269,5 @@
 			location.href = "/pas/project/deleteBoard?bm_Num="+bm_Num;
 	}
 </script>     
-  
 </body>        
 </html>  
