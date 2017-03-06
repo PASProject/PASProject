@@ -9,14 +9,14 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class LoginSessionInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
-	public void postHandle(HttpServletRequest request,
-			HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler) throws Exception {
 		if (request.getSession().getAttribute("loginUser") == null) {
 			System.out.println("파파팟!");
 			response.sendRedirect("/pas/index");
-
+            return false;
 		}
+		    return true;
 	}
 
 }

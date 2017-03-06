@@ -391,7 +391,7 @@ public class MainContoller {
 	@RequestMapping(value = "/mdlOtherValue", method = RequestMethod.POST)
 	public @ResponseBody List<MemPositionViewVo> mdlOtherValue(
 			@RequestBody Map<String, Object> map) throws SQLException {
-		int proj_Num = (Integer) map.get("proj_Num");
+		int proj_Num = Integer.parseInt(map.get("proj_Num").toString());
 		List<MemPositionViewVo> list = projectService
 				.selectMemPositionViewListByProjNum(proj_Num);
 		return list;
