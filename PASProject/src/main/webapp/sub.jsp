@@ -176,7 +176,7 @@
 	<div class="panel panel-default" >
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse4" id = "boardTotalList"
 					style="text-decoration: none;"><img
 					src="<%=request.getContextPath()%>/resources/img/boards.png"><span>&nbsp;&nbsp;&nbsp;프로젝트
 						게시판</span></a>
@@ -185,12 +185,8 @@
 		<div id="collapse4" class="panel-collapse collapse">
 			<div class="panel-body">
 				<table class="table" style="margin-bottom: 0px;">
-					<tr>
-						<td><a
-							href="#">게시판 1</a>
-							<span class="label label-success">New</span></td>
-					</tr>
-					
+				<tbody  id="boardManagementListTable"> 
+				</tbody>
 				</table>
 			</div>
 		</div>
@@ -580,6 +576,23 @@
 	
 	 */
 
+	 $(function(){
+		 $('#boardTotalList').on('click',function(e){
+			 var dt = "";
+			 $.ajax({
+				 dataType:'json',
+				 type:'post',
+				 url:'/pas/project/boardManagementList',
+				 success:function(result){
+					 $.each(result,function(i){
+						 dt += "<tr><td><a href='/pas/project/pmBoardTotalList?bm_Num="+result[i].bm_Num+"'>"+result[i].bm_Title+"</a></td></tr>";
+					 });
+					 $('#boardManagementListTable').empty();
+					 $('#boardManagementListTable').append(dt);
+				 }
+			 })
+		 })
+	 })
 	function decrease() {
 		$('#content').removeClass('col-md-10').addClass('col-md-12');
 		$('#submenu').removeClass('col-md-2').addClass('col-md-0');
@@ -602,13 +615,6 @@
 		})
 		$('#resizingImgRight').hide();
 		$('#resizingImg').show();
-		
-		
-		
-		
-		
-		
-		
 		$('#resizing').one("click", decrease);
 
 	}

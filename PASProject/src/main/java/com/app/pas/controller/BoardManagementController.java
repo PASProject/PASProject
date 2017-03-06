@@ -1,8 +1,11 @@
 package com.app.pas.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.dto.BoardJoinVo;
 import com.app.pas.dto.BoardManagementVo;
+import com.app.pas.dto.BoardTotalVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.service.BoardJoinService;
 import com.app.pas.service.BoardManagementService;
+import com.app.pas.service.BoardTotalService;
 import com.app.pas.service.MemberService;
 
 
@@ -35,6 +40,8 @@ public class BoardManagementController {
 	BoardManagementService boardManagementService;
 	@Autowired
 	BoardJoinService boardJoinService;
+	@Autowired
+	BoardTotalService boardTotalService;
 	
 	@RequestMapping("pmBoardManagementList")
 	public String boardManagementList(HttpSession session,Model model) throws SQLException{
@@ -89,11 +96,38 @@ public class BoardManagementController {
 		return url;
 	}
 
+
 	@RequestMapping(value="updateBoardJoin", method = RequestMethod.POST)
 	public @ResponseBody boolean updateBoardJoin(@RequestBody BoardJoinVo boardJoinVo )throws SQLException{
 		boolean flag = true;
 		boardJoinService.updateBoardJoin(boardJoinVo);
 		return flag;
+	}
+	
+	@RequestMapping("pmBoardTotalList")
+	public String bmBoardList(BoardJoinVo boardJoinVo,HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model) throws SQLException, IOException{
+		String url = "project/pmBoardTotalList";
+		BoardJoinVo resultVo = new BoardJoinVo();
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		boardJoinVo.setBj_Mem_Email(mem_Email);
+		
+		resultVo = boardJoinService.selectBoardJoinByEmailBmNum(boardJoinVo);
+		
+		String refererUrl = request.getHeader("referer");
+		if(resultVo==null){
+			url ="redirect:"+refererUrl;
+			return url;
+		}else if(resultVo.getBj_Read().equals("n")){
+			url ="redirect:"+refererUrl;
+			return url;
+		}
+		
+		List<BoardTotalVo> boardTotalList = boardTotalService.selectBoardTotalList(resultVo.getBm_Num());
+		model.addAttribute("boardTotalList",boardTotalList);
+		BoardManagementVo boardManagementVo = boardManagementService.selectBoardByBmNum(resultVo.getBm_Num());
+		model.addAttribute("boardTotalName",boardManagementVo.getBm_Title());
+		return url;
 	}
 
 }

@@ -696,6 +696,9 @@ li {
 											</span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
 												style="font-size: 12px;"></span></a> 
+
+											
+
 											<a href="weeklyCheck_YN?wk_num=${WeeklyCheckVo.wk_Num }" type="button" class="btn btn-info" id="finish">완료</a>
 											</li>
 									</ul>

@@ -28,11 +28,18 @@ public class BoardJoinDaoImpl implements BoardJoinDao{
 		return list;
 	}
 
-
 	@Override
 	public void updateBoardJoin(BoardJoinVo boardJoinVo) throws SQLException {
 		client.update("updateBoardJoin",boardJoinVo);
 	}
+
+	@Override
+	public BoardJoinVo selectBoardJoinByEmailBmNum(BoardJoinVo boardJoinVo)
+			throws SQLException {
+		BoardJoinVo boardJoin = (BoardJoinVo) client.queryForObject("selectBoardJoinByEmailBmNum",boardJoinVo);
+		return boardJoin;
+	}
+
 
 
 }
