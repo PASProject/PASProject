@@ -417,9 +417,11 @@ $(function(){
 </head>
 <title>최종!</title>
 <body>
+
 	<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
 	<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
 	</a>
+
 	<header>
 
 
@@ -776,10 +778,12 @@ $(function(){
 							
 							</script> 
 
-
+					
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-					<button id="delete" type="button" class="btn btn-danger">탈퇴하기</button>
+					<form name="frm" method="post">
+					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
+					</form>
 					<script>
 						$(document).ready(function() {
 							$('#closeModal').click(function() {
@@ -1375,13 +1379,23 @@ $(function(){
 					})
 </script>
 
-<script>
+<script>   
 function pushMessage(){
 	$('#square').fadeIn('slow').delay(3000).fadeOut('slow');
 	
 }
 	function logOut() {
 		location.href = "/pas/main/logOut";
+	}                  
+function exit(){
+	
+	var con_test = confirm("돌이킬 수 없게 됩니다. 정말로 탈퇴하시겠습니까?");
+	if(con_test==true){
+		frm.method = "post";
+		frm.action = "<%=request.getContextPath()%>/main/exit";
+		frm.submit();
 	}
+		
+}
 </script>
 </html>
