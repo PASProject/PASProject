@@ -150,7 +150,8 @@
 
 
 
-	<div class="panel panel-default">
+
+	<div class="panel panel-default" >
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
@@ -172,6 +173,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 	<%-- <td><a style="text-decoration: none;"
 						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
