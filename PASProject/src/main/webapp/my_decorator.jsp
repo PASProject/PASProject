@@ -156,24 +156,27 @@ $(function(){
 <!--  -->
 <style>
 #resizingImg{
-max-width:100px;
 width:100%;
 }
 #resizing{
+    left: -1px;
+    padding: 0px;
+    text-decoration: none;
+
     position: fixed;
-    top: 300px;
-    left: 20px;
-    opacity:0.05;
+    top: 45%;
 }
 #resizing:hover{
-opacity:1;
+
 }
 a{
 color:black;
 }
 a:hover{
 text-decoration:none !important;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
+
 .modal-header{
 border-bottom: 1px solid rgba(0, 0, 0, 0.27) !important;
 }
@@ -211,7 +214,12 @@ word-break:break-all;
 	-o-transition: all 1s ease;
 	transition: all 1s ease;
 }
-
+#resizingImg{
+-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
 .col-md-12 {
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
@@ -282,6 +290,26 @@ body {
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	background-color: #3c5574;
 	color: white;
+}
+.panel{
+    -webkit-box-shadow:none;
+    box-shadow: none;
+}
+.panel-body>table>tbody>tr>td{
+border:0px solid white !important;
+}
+.panel-body{
+border:0px solid white !important;
+}
+.panel-default{
+background-color:transparent !important;
+border: 0px solid white !important;
+}
+.panel-heading{
+background-color:transparent !important;
+}
+.panel-group{
+margin-bottom:0px !important;
 }
 .panel-group .panel{
 border-radius:0px;
@@ -389,7 +417,9 @@ $(function(){
 </head>
 <title>최종!</title>
 <body>
-	<a id="resizing" style="text-decoration: none;" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/sort.png"><span></span></a>
+	<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
+	<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
+	</a>
 	<header>
 
 
