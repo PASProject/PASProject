@@ -600,7 +600,7 @@ li {
 			</div>
 		</div>
 
-		 <!-- 토요일 마감일감 모달 -->
+		<!-- 토요일 마감일감 모달 -->
 		<div class="modal fade" id="saturday__End" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -628,7 +628,7 @@ li {
 				</div>
 
 			</div>
-		</div> 
+		</div>
 
 		<!-- 일요일 마감일감 모달 -->
 		<div class="modal fade" id="sunday_End" role="dialog">
@@ -657,7 +657,7 @@ li {
 				</div>
 
 			</div>
-		</div> 
+		</div>
 
 
 		<!----------------------------------------------------------------------------------------요일일정 체크 -->
@@ -666,15 +666,16 @@ li {
 
 			<table class="table table-strip">
 
-				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo" varStatus="status">
-			
+				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo"
+					varStatus="status">
+
 					<tr style="background-color: white">
 						<th class="col-md-1"
 							style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
-							${ScheduleCalendarVo.dy} 
-							<input type="hidden" value=" ${ScheduleCalendarVo.dt}" id="${status.count}date">
+							${ScheduleCalendarVo.dy} <input type="hidden"
+							value=" ${ScheduleCalendarVo.dt}" id="${status.count}date">
 						</th>
-						
+
 						<th class="col-md-7"
 							style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
 							<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
@@ -682,76 +683,60 @@ li {
 								$(function(){
 									var yn = '${WeeklyCheckVo.wk_Yn}';
 									if(yn=='Y'){
-										$('#${ WeeklyCheckVo.wk_Content}').css({
+										$('#${ WeeklyCheckVo.wk_Num}').css({
 											'text-decoration':'line-through'
 										})
-
 										
-										$('#g1${ WeeklyCheckVo.wk_Content}').hide();
-										$('#g2${ WeeklyCheckVo.wk_Content}').hide();
-										$('#b${ WeeklyCheckVo.wk_Content}').hide();
-										
-										
+										$('#g1${ WeeklyCheckVo.wk_Num}').hide();
+										$('#g2${ WeeklyCheckVo.wk_Num}').hide();
+										$('#${WeeklyCheckVo.wk_Num}~#successBtn').hide();
 									}
 									
 								})
 								
 								
 								</script>
-								
+
 								<c:set var="dateF">
 									<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
 										pattern="yyyyMMdd" />
 								</c:set>
-								
+
 								<c:if test="${dateF ==ScheduleCalendarVo.dt}">
-					    
+
 									<ul>
-										<li>
-										<span id="${ WeeklyCheckVo.wk_Content}"> - ${ WeeklyCheckVo.wk_Content}</span>
-															
-										<a href="weeklyCheck_Delete?wk_Num=${WeeklyCheckVo.wk_Num}">
-											<span class="glyphicon glyphicon-remove" id="g1${ WeeklyCheckVo.wk_Content}"
+										<li><span id="${WeeklyCheckVo.wk_Num}"> - ${ WeeklyCheckVo.wk_Content}</span>
+
+											<a href="weeklyCheck_Delete?wk_Num=${WeeklyCheckVo.wk_Num}">
+												<span class="glyphicon glyphicon-remove"
+												id="g1${WeeklyCheckVo.wk_Num}"
 												style="font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;">
 											</span>
-										</a> <a href="#"> 
-										<span class="glyphicon glyphicon-pencil" id="g2${WeeklyCheckVo.wk_Content}"
-												style="font-size: 12px;"></span></a> 
-											
-									<input type="button" class="btn btn-info" id="successBtn" value="완료">
-									<input type="hidden" id="wk_Content" value="${ WeeklyCheckVo.wk_Content}"> 
-									<input type="hidden" id="wk_Num" value="${WeeklyCheckVo.wk_Num }">
-											
-											</li>
+										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
+												id="g2${WeeklyCheckVo.wk_Num}" style="font-size: 12px;"></span>
+										</a> <input type="button" class="btn btn-info" id="successBtn"
+											value="완료"> <input type="hidden" id="wk_Content"
+											value="${ WeeklyCheckVo.wk_Content}"> <input
+											type="hidden" id="wk_Num" value="${WeeklyCheckVo.wk_Num }">
+
+										</li>
 									</ul>
-									
+
 								</c:if>
 
 
-							</c:forEach> 
-							
-				
-							<input type="text" name="wk_Content" id="${status.count}content"
-							size="100" style="border: 0px;" onKeyDown="onKeyDown(${status.count});"
-							placeholder='이 곳을 클릭하여 일정을 적어주세요'>
-							
-							
-							<c:set var="dateF">
-									<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
-										pattern="yyyyMMdd" />
-								</c:set>
-								
-								
-<!-- 						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
-								
-							
-<%-- 								<c:forEach items="${weekCheck_Y_List}" var="WeeklyCheckVo" varStatus="status"> --%>
-<%-- 								<span id="${WeeklyCheckVo.wk_Content }"> - ${WeeklyCheckVo.wk_Content}</span><br> --%>
-<%-- 								</c:forEach>  --%>
-										
-<!-- 						</th> -->
-					
-							
+							</c:forEach> <input type="text" name="wk_Content" id="${status.count}content"
+							size="100" style="border: 0px;"
+							onKeyDown="onKeyDown(${status.count});"
+							placeholder='이 곳을 클릭하여 일정을 적어주세요'> <c:set var="dateF">
+								<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
+									pattern="yyyyMMdd" />
+							</c:set> <!-- 						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
+
+
+							<%-- 								<c:forEach items="${weekCheck_Y_List}" var="WeeklyCheckVo" varStatus="status"> --%>
+							<%-- 								<span id="${WeeklyCheckVo.wk_Content }"> - ${WeeklyCheckVo.wk_Content}</span><br> --%>
+							<%-- 								</c:forEach>  --%> <!-- 						</th> -->
 					</tr>
 				</c:forEach>
 
@@ -759,7 +744,7 @@ li {
 		</form>
 
 	</div>
-			
+
 	<script>        
 	function onKeyDown(countNum)
 	{
@@ -773,34 +758,68 @@ li {
 	}
 </script>
 
-<script>       
+	<script>       
 											$(function(){
 												$(document).on('click','#successBtn',function(){
+													// 완료 버튼을 눌렀을때 값을 갖고와서 ajax post방식으로 처리함.
+													var obj = $(this).siblings('input[type="hidden"]#wk_Content');
 													var wk_Content =$(this).siblings('input[type="hidden"]#wk_Content').val();
 													var wk_Num = $(this).siblings('input[type="hidden"]#wk_Num').val();
+													var thisObj = $(this);
 													var dataList = {'wk_Num':wk_Num};
 													$.ajax({  
 														contentType:'application/json',  
 														dataType:'json',
-														data:JSON.stringify(wk_Num),
+														data:JSON.stringify(dataList),
 														url:'weeklyCheck_YN',
-														type:'get',
+														type:'post',
 														success:function(result){
-															$(this).siblings('input[type="hidden"]#wk_Content').css({
-																'text-decoration':'line-through'
-															})
-															
-															/* $('#g1${ WeeklyCheckVo.wk_Content}').hide();
-															$('#g2${ WeeklyCheckVo.wk_Content}').hide();
-															$('#b${ WeeklyCheckVo.wk_Content}').hide();  */
+															// 업데이트에 성공하였다면 해당 content에 밑줄을 긋고 버튼을 숨긴다.
+															$('#'+wk_Num).css({'text-decoration':'line-through'});
+															$('#g1'+wk_Num).hide();
+															$('#g2'+wk_Num).hide();
+															thisObj.hide();  
 														}
 													}) 
 													
 												})
 												
+												$(document).on('click','.glyphicon.glyphicon-pencil',function(e){
+													// 수정 버튼을 눌렀을때 a태그의 이벤트를 막고 값을 가지고 input태그에 넣어준다.
+													e.preventDefault();
+													var id = $(this).attr('id');
+													var idCode = id.substring(2);
+													var wk_Content = $(this).parent().siblings('#wk_Content').val();
+													var btnObj = $(this).parent().siblings('#successBtn');
+													$('span#'+idCode).empty();
+													$('#g1'+idCode).hide();
+													$('#g2'+idCode).hide();
+													btnObj.hide();
+													
+													$('span#'+idCode).append('<input type="hidden" value="'+id+'"><input type="text" id="modiBtn" value="'+wk_Content+'">&nbsp;<input type="button" value="수정완료" class="btn btn-default" id = "wk_UpdateSuccess">');
+												})
+												
+												$(document).on('click','#wk_UpdateSuccess',function(){
+													var wk_Content = $(this).siblings('#modiBtn').val();
+													var id = $(this).siblings('input[type="hidden"]').val();
+													var wk_Num = id.substring(2); 
+													var dataList = {'wk_Num':wk_Num,'wk_Content':wk_Content};
+													$.ajax({
+														dataType:'json',
+														contentType:'application/json',
+														type:'post',
+														url:'wk_UpdateSuccess',
+														data : JSON.stringify(dataList),
+														success:function(result){
+														location.reload();
+														
+														}
+													})
+												})
+												
 											})
 											
-							</script> 
+							</script>
 </body>
 </html>
 

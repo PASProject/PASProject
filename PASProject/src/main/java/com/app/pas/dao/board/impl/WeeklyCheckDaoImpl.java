@@ -40,4 +40,10 @@ public class WeeklyCheckDaoImpl implements WeeklyCheckDao{
 		
 	}
 
+	@Override
+	public void wk_UpdateSuccess(WeeklyCheckVo weeklyCheckVo)
+			throws SQLException {
+		client.update("wk_UpdateSuccess",weeklyCheckVo);
+	}
+
 }
