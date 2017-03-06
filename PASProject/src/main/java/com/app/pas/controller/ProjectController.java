@@ -34,6 +34,7 @@ import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
+import com.app.pas.dto.ProjectLogVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.ScheduleCalendarCommand;
 import com.app.pas.dto.ScheduleCalendarVo;
@@ -48,6 +49,7 @@ import com.app.pas.service.InviteService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.PositionService;
 import com.app.pas.service.ProjectJoinService;
+import com.app.pas.service.ProjectLogService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.ScheduleCalendarService;
 import com.app.pas.service.board.AccountBoardService;
@@ -87,6 +89,9 @@ public class ProjectController {
 
 	@Autowired
 	GantChartService gantChartService;
+	
+	@Autowired
+	ProjectLogService projectLogService;
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,

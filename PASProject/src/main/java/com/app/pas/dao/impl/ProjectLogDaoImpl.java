@@ -19,4 +19,11 @@ public class ProjectLogDaoImpl implements ProjectLogDao {
 		
 	}
 
+	@Override
+	public ProjectLogVo selectLastProjectLogList(ProjectLogVo projectLogVo)
+			throws SQLException {
+		ProjectLogVo resultVo =(ProjectLogVo) client.queryForObject("selectLastProjectLogList",projectLogVo);
+		return resultVo;
+	}
+
 }
