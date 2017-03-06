@@ -218,7 +218,7 @@ public class QnaController {
 	// 디테일 
 	@RequestMapping("/QnADetail")
 	public String detailQna(@RequestParam String qb_Article_Num, Model model,
-			HttpSession session) throws NumberFormatException, SQLException {
+			HttpSession session,String pwd, String num) throws NumberFormatException, SQLException {
 		String url = "qna/QnADetail";
 		QnaBoardReplyVo qnaBoardReplyVo = null;
 
@@ -235,6 +235,7 @@ public class QnaController {
 
 			qnaBoardService.QnaBoardCount(Integer.parseInt(qb_Article_Num));
 		}
+		System.out.println("패스값  : "+ pwd);
 		
 		model.addAttribute("session_Email", session_Email);
 		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
@@ -245,7 +246,7 @@ public class QnaController {
 
 	@RequestMapping(value = "/insertQnABoard", method = RequestMethod.POST)
 	public String insertQna(HttpSession session, Model model,
-			QnaBoardVo qnaBoardVo) {
+			QnaBoardVo qnaBoardVo,String qb_Password) throws SQLException {
 		String url = "redirect:QnAList";
 
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -255,13 +256,11 @@ public class QnaController {
 	
 		String mem_Name = memberVo.getMem_Name();
 		qnaBoardVo.setMem_Name(mem_Name);
+		
+		qnaBoardVo.setQb_Password(qb_Password);
 	
-		try {
-			qnaBoardService.insertQnaBoard(qnaBoardVo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		qnaBoardService.insertQnaBoard(qnaBoardVo);
+	
 
 		return url;
 
