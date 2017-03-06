@@ -20,6 +20,10 @@ li {
 	table-layout: fixed;
 	display: block;
 }
+
+.weeklychk>tbody>tr>th{
+padding:10px !important;
+}
 </style>
 	<!-- 	<script>
 	moment.lang('ko', {
@@ -53,7 +57,8 @@ li {
 					<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
 						<th class="col-md-1 day">${ScheduleCalendarVo.dy}
 
-							${ScheduleCalendarVo.dt} <%-- 					<fmt:formatDate value="" pattern="yyyy-MM-dd"/> --%>
+							[${ScheduleCalendarVo.dt}] 
+							<%-- 					<fmt:formatDate value="" pattern="yyyy-MM-dd"/> --%>
 						</th>
 					</c:forEach>
 				</tr>
@@ -391,7 +396,7 @@ li {
 
 			</div>
 		</div>
-		<%-- 		<!-- 토요일 시작일감 모달 -->
+				<!-- 토요일 시작일감 모달 -->
 		<div class="modal fade" id="saturday_Start" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -450,7 +455,7 @@ li {
 				</div>
 
 			</div>
-		</div> --%>
+		</div> 
 
 		<!-- 월요일 마감일감 모달 --------------------------------------------------------------------------------------------->
 		<div class="modal fade" id="Monday_End" role="dialog">
@@ -664,20 +669,20 @@ li {
 
 		<form action="weeklyChecklist" name="dayInsert">
 
-			<table class="table table-strip">
+			<table class="table table-strip weeklychk" >
 
 				<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo"
 					varStatus="status">
 
 					<tr style="background-color: white">
 						<th class="col-md-1"
-							style="border: 1px solid #dddddd; text-align: center; padding: 30px;">
+							style="border: 1px solid #dddddd; text-align: center; ">
 							${ScheduleCalendarVo.dy} <input type="hidden"
 							value=" ${ScheduleCalendarVo.dt}" id="${status.count}date">
 						</th>
 
 						<th class="col-md-7"
-							style="border: 1px solid #dddddd; text-align: left; padding: 30px;">
+							style="border: 1px solid #dddddd; text-align: left; ">
 							<c:forEach items="${weekCheckList}" var="WeeklyCheckVo">
 								<script>
 								$(function(){
@@ -688,7 +693,7 @@ li {
 										})
 										
 										$('#g1${ WeeklyCheckVo.wk_Num}').hide();
-										$('#g2${ WeeklyCheckVo.wk_Num}').hide();
+										//$('#g2${ WeeklyCheckVo.wk_Num}').hide();
 										$('#${WeeklyCheckVo.wk_Num}~#successBtn').hide();
 									}
 									
@@ -714,10 +719,10 @@ li {
 											</span>
 										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
 												id="g2${WeeklyCheckVo.wk_Num}" style="font-size: 12px;"></span>
-										</a> <input type="button" class="btn btn-info" id="successBtn"
-											value="완료"> <input type="hidden" id="wk_Content"
-											value="${ WeeklyCheckVo.wk_Content}"> <input
-											type="hidden" id="wk_Num" value="${WeeklyCheckVo.wk_Num }">
+										</a> 
+										<input type="button" class="btn btn-info" id="successBtn" value="완료">
+										<input type="hidden" id="wk_Content" value="${ WeeklyCheckVo.wk_Content}">
+									    <input type="hidden" id="wk_Num" value="${WeeklyCheckVo.wk_Num }">
 
 										</li>
 									</ul>
@@ -725,19 +730,13 @@ li {
 								</c:if>
 
 
-							</c:forEach> <input type="text" name="wk_Content" id="${status.count}content"
-							size="100" style="border: 0px;"
-							onKeyDown="onKeyDown(${status.count});"
-							placeholder='이 곳을 클릭하여 일정을 적어주세요'> <c:set var="dateF">
+				</c:forEach> <input type="text" name="wk_Content" id="${status.count}content"
+				size="100" style="border: 0px;" onKeyDown="onKeyDown(${status.count});" placeholder='이 곳을 클릭하여 일정을 적어주세요'>
+							 <c:set var="dateF">
 								<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
 									pattern="yyyyMMdd" />
-							</c:set> <!-- 						<th class="col-md-2" style="border: 1px solid #dddddd; text-align: left; padding: 30px;"> -->
-
-
-							<%-- 								<c:forEach items="${weekCheck_Y_List}" var="WeeklyCheckVo" varStatus="status"> --%>
-							<%-- 								<span id="${WeeklyCheckVo.wk_Content }"> - ${WeeklyCheckVo.wk_Content}</span><br> --%>
-							<%-- 								</c:forEach>  --%> <!-- 						</th> -->
-					</tr>
+							</c:set>
+						</tr>
 				</c:forEach>
 
 			</table>
@@ -776,7 +775,7 @@ li {
 														success:function(result){
 															// 업데이트에 성공하였다면 해당 content에 밑줄을 긋고 버튼을 숨긴다.
 															$('#'+wk_Num).css({'text-decoration':'line-through'});
-															$('#g1'+wk_Num).hide();
+															//$('#g1'+wk_Num).hide();
 															$('#g2'+wk_Num).hide();
 															thisObj.hide();  
 														}
@@ -796,7 +795,8 @@ li {
 													$('#g2'+idCode).hide();
 													btnObj.hide();
 													
-													$('span#'+idCode).append('<input type="hidden" value="'+id+'"><input type="text" id="modiBtn" value="'+wk_Content+'">&nbsp;<input type="button" value="수정완료" class="btn btn-default" id = "wk_UpdateSuccess">');
+				$('span#'+idCode).append('<input type="hidden" value="'+id+'"><input type="text" id="modiBtn" value="'+
+	     		wk_Content+'">&nbsp;<input type="button" value="수정완료" class="btn btn-default" id = "wk_UpdateSuccess">');
 												})
 												
 												$(document).on('click','#wk_UpdateSuccess',function(){
@@ -823,6 +823,3 @@ li {
 </body>
 </html>
 
-<%--  					<c:forEach items="${weekCheckList}" var="WeeklyCheckVo"> --%>
-<%--  					${WeeklyCheckVo.tue}<span class="glyphicon glyphicon-remove" style="font-size:12px;margin-left:5px; margin-right:5px; color: red;"></span><br>  --%>
-<%--  					</c:forEach> --%>
