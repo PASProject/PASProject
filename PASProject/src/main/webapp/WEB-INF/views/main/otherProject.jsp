@@ -56,11 +56,13 @@ $(function(){
 			varStatus="status">
 			<div class="col-md-3" id="box"
 				style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
-				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h4>
+				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name } <a class="captain" href="#" onclick="goModal(${projectVo.proj_Num});" id="captain"><img
+								src="<%=request.getContextPath() %>/resources/upload/${projectVo.proj_Img}"
+								onerror="this.src='<%=request.getContextPath()%>/resources/upload/captain.png'" style="width:50px;" align="right"></a></h4>
 				<h5>${projectVo.proj_Team}</h5>
 				<div
 					style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #fff5f5; margin-bottom: 10px;">
-					<p>${projectVo.proj_Content}</p>
+					<p style="text-align:center;font-size:12pt;"><b>${projectVo.proj_Content}</b></p>
 				</div>
 
 				<hr style="margin-top: 10px; margin-bottom: 10px;">
@@ -206,12 +208,12 @@ $(function(){
 				
 				
 				 
-
-				<%-- 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
+<%-- 
+				 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
 					class="img-responsive" src="http://placehold.it/700x400"
 					data-toggle="modal" data-target="#${projectVo.proj_Num }"
 					data-keyboard="false" data-backdrop="static">
-				</a> --%>
+				</a>  --%>
 				<%-- <h3>
 					<a href="#">${projectVo.proj_Name }</a>
 				</h3>
@@ -244,7 +246,13 @@ $(function(){
 			$('#warning').show();
 		});
 	})
-	/* function goModal(proj_Num){
+	
+	$(document).ready(function() {
+
+ $('.captain').trigger('click');
+	});
+
+	 function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
 			url:'mdlOtherValue',
@@ -256,7 +264,7 @@ $(function(){
 				var tt="";
 				$.each(data,function(i){
 					if(data[i].position_Num==1){
-					tt += '<table><tr><td rowspan="2"><img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" ></td><td>팀장 : '+data[i].mem_Name+'</td></tr><tr><td> 이메일 : '+data[i].mem_Email+'</td></tr></table><div>'
+					tt += '<table><tr><td rowspan="2"><img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/'+data[i].mem_Img+'" onerror=this.src="/pas/resources/upload/no.png"></td><td><b>팀장 : '+data[i].mem_Name+'</td></tr><tr><td><b> 이메일 : '+data[i].mem_Email+'</b></td></tr></table><div>'
 					}
 				})
 				$('#'+proj_Num+'body').empty();
@@ -280,7 +288,9 @@ $(function(){
 				});
 			}
 		});
-	} */
+	} 
+	
+	
 	
  	function goApply(proj_Num){
 		var data = {'proj_Num':proj_Num};

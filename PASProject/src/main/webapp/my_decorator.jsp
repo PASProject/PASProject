@@ -505,6 +505,12 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+					   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 'resizable=no,width=350,height=450,top=400,left=1400')"><span class="glyphicon glyphicon-volume-up"></span></a>
+					   
+					   </li>
+					
 
 						<li><a data-toggle="modal"
 							style="font-size: 28px; margin-top: -4px; cursor: pointer"

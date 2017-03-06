@@ -95,7 +95,7 @@ $(function(){
 						<hr style="margin-top: 10px; margin-bottom: 10px;">
 						<div
 							style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #f6faff; margin-bottom: 10px;">
-							<p>${projectVo.proj_Content}</p>
+							<p style="text-align:center;font-size:12pt;"><b>${projectVo.proj_Content}</b></p>
 						</div>
 						<script>
 							$(function(){
