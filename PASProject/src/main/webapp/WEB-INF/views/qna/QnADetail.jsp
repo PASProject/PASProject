@@ -52,8 +52,14 @@
 							style="border-top: 0px solid blue;">
 						
 						<button class="btn btn-default text-right" type="button"onclick="go_qnalist()">목록</button>
+							<c:choose>
+								<c:when test='${qnaBoardVo.mem_Email eq session_Email }'>
+	
 						<button class="btn btn-default text-right" type="button" onClick="go_qnaupdate()">수정</button> 
 						<button class="btn btn-default text-right" type="button" onClick="go_delete()">삭제</button>
+						</c:when>
+							
+							</c:choose>
 						</td>	
 					</tr>
 					
@@ -74,25 +80,9 @@
 
 
 
-				
-				
-
 			</form>
 		</fieldset>
 		
-		<%-- 댓글작성
-		<form name="form" method="post" action="InsertQnAReply">
-		<input type="hidden" name="qb_Article_Num" value="${param.qb_Article_Num }">
-		
-				<textarea rows="2" cols="50" name="qb_Reply_Content">
-					</textarea>
-				<input type="submit" value="댓글등록" onClick="InsertQnAReply()">
-
-		</form> --%>
-
-
-
-
 			<script>
 				function go_qnalist() {
 					location.href = "QnAList"
@@ -115,23 +105,8 @@
 				}
 			</script>
 
-
-
-
-
 	</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
