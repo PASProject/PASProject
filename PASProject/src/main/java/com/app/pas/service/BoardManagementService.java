@@ -35,4 +35,9 @@ public class BoardManagementService {
 	public void deleteBoardManagement(int bm_Num) throws SQLException{
 		boardManagementDao.deleteBoardManagement(bm_Num);
 	}
+	
+	public BoardManagementVo selectBoardByBmNum(int bm_Num) throws SQLException{
+		BoardManagementVo boardManagementVo = boardManagementDao.selectBoardByBmNum(bm_Num);
+		return boardManagementVo;
+	}
 }

@@ -47,25 +47,49 @@
 
             <table class="table table-hover">
                <tr class="text-center">
-                  <th class="col-md-1" style="text-align: center">번호</th>
-                  <th class="col-md-6" style="text-align: center">제목</th>
-                  <th class="col-md-1" style="text-align: center">작성자</th>
-                  <th class="col-md-2" style="text-align: center">작성일</th>
-                  <th class="col-md-1" style="text-align: center">조회수</th>
-                  <th class="col-md-1" style="text-align: center">추천수</th>
+                  <th class="col-md-1" >번호</th>
+                  <th class="col-md-6">제목</th>
+                  <th class="col-md-1" >작성자</th>
+                  <th class="col-md-2">작성일</th>
+                  <th class="col-md-1">조회수</th>
+                  <th class="col-md-1">추천수</th>
                </tr>
                <c:forEach items="${freeBoardList }" var="freeBoardVo"
                   begin="${paging.beginNo}" end="${paging.endNo}">
-                  <tr id="boardContents">
-                     <td style="text-align: center;line-height: 60px;">${freeBoardVo.frb_Article_Num }</td>
                      
-                     <td><div>${freeBoardVo.frb_Tag}</div>
+                  <tr id="boardContents">
+                     <td>${freeBoardVo.frb_Article_Num }</td>
+                     
+                     <td><div><span id="tag${freeBoardVo.frb_Tag}">${freeBoardVo.frb_Tag}</span></div>
+                              <script>
+                     
+                     	$(function(){
+                    	/*  var a = $('.tag${freeBoardVo.frb_Tag}'); */
+                    	
+                    		var a = $('#tag${freeBoardVo.frb_Tag}').text(); 
+                   				
+                    	
+                    		var s_data = "2005-03-25";  // 잘라야 되는 값..
+
+                    		var array_data = s_data.split("-");  // split 함수사용..
+
+                    		var s_year = array_data[0];   // 잘라진 값 배열..
+                    		var s_month = array_data[1];
+                    		var s_day = array_data[2];                   	
+                    	
+                    	
+                    	
+                    	
+                    	
+                     		})
+                     
+                     </script>   
                      <h4><a href="<%=request.getContextPath()%>/freeBoard/freeBoardDetail?frb_Article_Num=${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Title}</a></h4></td>
-                     <td style="text-align: center; line-height: 60px;">${freeBoardVo.mem_Name}</td>
-                     <td style="text-align: center; line-height: 60px;"><fmt:formatDate
+                     <td >${freeBoardVo.mem_Name}</td>
+                     <td ><fmt:formatDate
                            value="${freeBoardVo.frb_Wt_Date}" pattern="yyyy-MM-dd" /></td>
-                     <td style="text-align: center; line-height: 60px;">${freeBoardVo.frb_Inq_Count }</td>
-                     <td style="text-align: center; line-height: 60px;">${freeBoardVo.frb_Like_Count }</td>
+                     <td>${freeBoardVo.frb_Inq_Count }</td>
+                     <td>${freeBoardVo.frb_Like_Count }</td>
                   </tr>
                </c:forEach>
             </TABLE>

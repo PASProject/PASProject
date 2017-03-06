@@ -34,5 +34,12 @@ public class BoardJoinDaoImpl implements BoardJoinDao{
 		client.update("updateBoardJoin",boardJoinVo);
 	}
 
+	@Override
+	public BoardJoinVo selectBoardJoinByEmailBmNum(BoardJoinVo boardJoinVo)
+			throws SQLException {
+		BoardJoinVo boardJoin = (BoardJoinVo) client.queryForObject("selectBoardJoinByEmailBmNum",boardJoinVo);
+		return boardJoin;
+	}
+
 
 }

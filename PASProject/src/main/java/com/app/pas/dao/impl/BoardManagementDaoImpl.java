@@ -38,7 +38,12 @@ public class BoardManagementDaoImpl implements BoardManagementDao {
 	@Override
 	public void deleteBoardManagement(int bm_Num) throws SQLException {
 		client.update("deleteBoardManagement",bm_Num);
-		
+	}
+
+	@Override
+	public BoardManagementVo selectBoardByBmNum(int bm_Num) throws SQLException {
+		BoardManagementVo boardManagementVo = (BoardManagementVo) client.queryForObject("selectBoardByBmNum",bm_Num);
+		return boardManagementVo;
 	}
 
 }

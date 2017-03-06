@@ -26,4 +26,7 @@
    <update id="deleteBoardManagement" parameterClass="int">
    		delete from board_management where bm_num = #bm_Num#
    </update>
+   <select id="selectBoardByBmNum" parameterClass="int" resultClass="BoardManagement">
+   		select * from board_Management where bm_Num = #bm_Num#
+   </select>
 </sqlMap>
