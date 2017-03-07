@@ -21,4 +21,5 @@ public class BoardTotalVo implements Serializable {
 	private String bt_Mem_Email;
 	private Timestamp bt_Wt_Date;
 	private int bm_Num;
+	private String bt_Mem_Name;
 }
