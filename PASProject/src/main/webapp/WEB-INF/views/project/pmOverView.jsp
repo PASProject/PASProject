@@ -9,7 +9,7 @@
 <title></title>
 </head>
 <body>
-<<<<<<< HEAD
+
 <style>
 .mtbox{
 margin-top:0px !important;
@@ -24,7 +24,7 @@ color:#989898 !important;
 color:#989898 !important;
 }
 </style>
-=======
+
 <script language="javascript">
 
 var i=0
@@ -54,8 +54,9 @@ function protectKey()
 }
 
 </script>
->>>>>>> refs/heads/hotfix03/07
+
 <div class="col-md-10" id="content">
+
 <%--css --%>
 <%-- <link href="<%=request.getContextPath() %>/resources/overview/css/bootstrap.css" rel="stylesheet"> --%>
     <!--external css-->

@@ -719,7 +719,7 @@ padding:10px !important;
 										</a> <a href="#"> <span class="glyphicon glyphicon-pencil"
 												id="g2${WeeklyCheckVo.wk_Num}" style="font-size: 12px;"></span>
 										</a> 
-										<input type="button" class="btn btn-info" id="successBtn" value="완료">
+										<input type="button" class="btn btn-success btn-xs" id="successBtn" value="완료">
 										<input type="hidden" id="wk_Content" value="${ WeeklyCheckVo.wk_Content}">
 									    <input type="hidden" id="wk_Num" value="${WeeklyCheckVo.wk_Num }">
 
@@ -730,7 +730,7 @@ padding:10px !important;
 
 
 				</c:forEach> <input type="text" name="wk_Content" id="${status.count}content"
-				size="100" style="border: 0px;" onKeyDown="onKeyDown(${status.count});" placeholder='이 곳을 클릭하여 일정을 적어주세요'>
+				size="100" style="background-color:transparent; border: 0px;outline: none;" onKeyDown="onKeyDown(${status.count});" placeholder='이 곳을 클릭하여 일정을 적어주세요'>
 							 <c:set var="dateF">
 								<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
 									pattern="yyyyMMdd" />
