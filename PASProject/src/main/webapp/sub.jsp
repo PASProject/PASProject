@@ -47,8 +47,10 @@
 
 	<%--프로젝트 이미지 수정해야함 --%>
 
-	<img class="img-thumbnail" id="proj_Img"
-		style="width: 180px; height: 130px; cursor: pointer; border: 1px solid #ddd; margin-bottom: 15px;"
+	<img id="proj_Img"
+		style="
+		-webkit-box-shadow :0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+		width: 180px; height: 130px; cursor: pointer; border: 1px solid #ddd; margin-bottom: 15px;"
 		src="<%=request.getContextPath()%>/resources/upload2/${sessionScope.joinProjectVo.proj_Img}"
 		data-toggle="modal" data-target="#imgUploadModal2"
 		data-keyboard="false" data-backdrop="static"
@@ -405,7 +407,7 @@
 
 
 </div>
-<hr style="border: 1px solid; border-color: #ddd; margin-bottom:5px; margin-top:5px;">
+<hr style="border-color: #ddd; margin-bottom:5px; margin-top:5px;">
 <div class="panel-group" id="accordion">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -442,7 +444,7 @@
 		</div>
 	</div>
 </div>
-<hr style="border: 1px solid; border-color: #ddd; margin-bottom:5px; margin-top:5px;">
+<hr style="border-color: #ddd; margin-bottom:5px; margin-top:5px;">
 <!-- 		</div> -->
 <div class="panel-group" id="accordion">
 	<div class="panel panel-default">

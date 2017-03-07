@@ -320,9 +320,21 @@ border-radius:0px;
 </style>
 
 <style>
+
+
+
+
+.input-group.pull-right{
+margin-right:10px;
+}
+#content > form:nth-child(3) > input:nth-child(1){
+margin-right:18px;
+}
 /* html{
 background-color:#f9f9f9;
 } */
+
+
 .table>tbody>tr>th{
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
 border-top: 1px solid #888888;
@@ -350,6 +362,7 @@ border-bottom : 1px solid #888888;
 }
 
 #content {
+	-webkit-box-shadow :0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 	border:1px solid #ddd;
 	background-color: white;
 	margin-top: 25px;

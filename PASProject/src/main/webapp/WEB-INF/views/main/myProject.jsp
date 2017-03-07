@@ -80,8 +80,10 @@ $(function(){
 </script>
 
 	<!-- Page Content -->
-	<div class="container" id="content"
-		style="padding-left: 14px; padding-right: 14px;">
+	<div class="container" id="content" 
+		style="padding-left: 14px; padding-right: 14px;
+		-webkit-box-shadow :none; border:0px solid black; background-color:transparent;
+		">
 
 		<!-- Page Header -->
 		<div class="row">
@@ -137,7 +139,7 @@ $(function(){
 					varStatus="status">
 
 					<div class="col-md-3" id="box"
-						style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important;">
+						style="margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; border: 1px solid #ccc !important; -webkit-box-shadow :0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);">
 						<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }
 
 							<!-- <small>&nbsp;&nbsp;&nbsp;17/02/11</small>	 -->

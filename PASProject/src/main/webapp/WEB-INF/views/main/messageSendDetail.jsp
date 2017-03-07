@@ -46,7 +46,7 @@
             <td >${messageVo.msg_Content }</td>
          </tr>
       </table>
-      <button type="button" class="btn btn-default">삭제</button>
+      <button type="button" class="btn btn-default" >삭제</button>
      
          <button type="button" class="btn btn-default pull-right" style="margin-right:5px;">답장</button>
          <button type="button" id="goList" class="btn btn-default pull-right">목록</button>
