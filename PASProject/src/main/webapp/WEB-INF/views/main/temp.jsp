@@ -11,7 +11,23 @@
 
 </head>
 
-<body style="margin:0px;padding:0px;overflow:hidden">
-   <iframe src="//slides.com/yeojunyeong/deck-2/embed?style=light" width="1280" height="1024" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<body >
+  <div class="col-md-10" id="content">
+	<div class="row">
+        <div class="col-md-6">
+    		<h2>Custom search field</h2>
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Buscar" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
 </body>
 </html>
