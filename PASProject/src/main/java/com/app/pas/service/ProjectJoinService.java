@@ -28,4 +28,8 @@ public class ProjectJoinService {
 	public void updatePosition(ProjectJoinVo projectJoinVo) throws SQLException{
 		projectjoinDao.updatePosition(projectJoinVo);
 	}
+	public int selectJoinCountMember(int proj_Num) throws SQLException {
+		int count = projectjoinDao.selectJoinCountMember(proj_Num);
+		return count;
+	}
 }

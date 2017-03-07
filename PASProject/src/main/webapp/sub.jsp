@@ -107,7 +107,7 @@
 
 
 
-
+     
 
 
 
@@ -120,7 +120,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a href="#"><img
+				<a href="<%=request.getContextPath()%>/project/overView?proj_Num=${joinProjectVo.proj_Num}" ><img
 					src="<%=request.getContextPath()%>/resources/img/dashboard.png"><span>&nbsp;&nbsp;&nbsp;대시보드</span></a>
 			</h4>
 		</div>

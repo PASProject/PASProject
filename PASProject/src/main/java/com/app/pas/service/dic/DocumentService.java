@@ -64,6 +64,11 @@ public class DocumentService {
 		return flag;
 	}
 	
+	public int selectCountDocumentByProjectNum(int proj_Num) throws SQLException {
+		int count = documentDao.selectCountDocumentByProjectNum(proj_Num);
+		return count;
+	}
+	
 	public DocumentVo selectDocumentByDocNum(int doc_Num) throws SQLException{
 		DocumentVo documentVo = documentDao.selectDocumentByDocNum(doc_Num);
 		return documentVo;

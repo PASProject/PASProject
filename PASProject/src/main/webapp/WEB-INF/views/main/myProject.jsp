@@ -368,7 +368,7 @@ $(function(){
 	function gogo(proj_Num){
 		
 		
-		location.href="../project/pmOverView?proj_Num="+proj_Num;
+		location.href="../project/overView?proj_Num="+proj_Num;
 		
 		
 	

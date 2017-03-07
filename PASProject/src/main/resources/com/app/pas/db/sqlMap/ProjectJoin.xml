@@ -18,6 +18,10 @@
    		select * from project_join where mem_email =#mem_Email# and proj_num = #proj_Num#
    </select>
    
+   <select id="selectJoinCountMember" resultClass="int">
+		select count(mem_Email) from project_join where proj_num=#proj_Num# and pjj_per_num = 1
+	</select>
+   
    <update id="insertProjectJoin" parameterClass="ProjectJoin">
       insert into Project_Join(MEM_EMAIL,PROJ_NUM,mem_name,mem_Img,pjj_Color) 
 	  VALUES(#mem_Email#,#proj_Num#,#mem_Name#,#mem_Img#,#pjj_Color#)

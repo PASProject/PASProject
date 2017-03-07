@@ -59,6 +59,7 @@ import com.app.pas.service.board.FreeBoardService;
 import com.app.pas.service.board.NoticeService;
 import com.app.pas.service.board.ProjectBoardReplyService;
 import com.app.pas.service.board.ProjectBoardService;
+import com.app.pas.service.dic.DocumentService;
 import com.app.pas.service.dic.GantChartService;
 
 @Controller
@@ -97,6 +98,9 @@ public class ProjectController {
 	
 	@Autowired
 	ProjectLogService projectLogService;
+	
+	@Autowired
+	DocumentService documentService; 
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
@@ -400,12 +404,12 @@ public class ProjectController {
 		return url;
 	}
 
-	@RequestMapping("/pmOverView")
+	@RequestMapping("/overView")
 	public String PmOverView(HttpSession session, Model model,HttpServletRequest request,
 			@RequestParam(value="page",defaultValue="1")String page,
 			@RequestParam String proj_Num,FreeBoardVo freeboardVo) throws NumberFormatException,
 			SQLException {
-		String url = "project/pmOverView";
+		String url = "project/overView";
 		int totalCount = 0 ;
 		if(page.equals(null)||page ==""){
 	         totalCount = freeBoardService.selectTotalCount();
@@ -418,24 +422,28 @@ public class ProjectController {
         paging.setPageSize(5);
         paging.setTotalCount(totalCount);
         model.addAttribute("paging", paging);
-        
-        
-        
+
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
-		
-		
-		
+	
 		session.setAttribute("joinProj", proj_Num);
 		request.setAttribute("proj_Num", proj_Num);
 		ProjectVo projectVo = projectService.selectProject(Integer
 				.parseInt(proj_Num));
-		
-		
-		
+
+		int joinMem = projectJoinService.selectJoinCountMember(Integer.parseInt(proj_Num)); 
+		int countDoc = documentService.selectCountDocumentByProjectNum(Integer.parseInt(proj_Num));
+		int countAccount = accountService.selectAccountCount(Integer.parseInt(proj_Num));
+		int countSchedule = scheduleCalendarService.selectScheduleCount(Integer.parseInt(proj_Num));
+		int countProjNotice = noticeService.selectNoticeCount(Integer.parseInt(proj_Num));
+		request.setAttribute("countAccount", countAccount);
+		request.setAttribute("joinMem", joinMem);
+		request.setAttribute("countDoc", countDoc);
+		request.setAttribute("countSchedule", countSchedule);
+		request.setAttribute("countProjNotice", countProjNotice);
 		freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
+		
 		  model.addAttribute("freeBoardList", freeBoardList);
-		
-		
+	
 		session.setAttribute("joinProjectVo", projectVo);
 		return url;
 	}

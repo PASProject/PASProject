@@ -13,4 +13,5 @@ public interface DocumentDao {
 	public int deleteDocumentByDocNum(int doc_Num) throws SQLException;
 	public DocumentVo selectDocumentByDocNum(int doc_Num) throws SQLException;
 	public int updateDocumentName(DocumentVo documentVo) throws SQLException;
+	public int selectCountDocumentByProjectNum(int proj_Num) throws SQLException;
 }

@@ -76,6 +76,12 @@ public List<ScheduleCalendarVo> weekly_date() throws SQLException {
 	return list;
 }
 
+@Override
+public int selectScheduleCount(int proj_Num) throws SQLException {
+	int count = (Integer) client.queryForObject("selectScheduleCount",proj_Num);
+	return count;
+}
+
 
 
 }
