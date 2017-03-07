@@ -35,7 +35,7 @@
 		<input type="hidden" name="joinProj" value="${sessionScope.joinProj }" />
 
 		
-		<button class="btn btn-default pull-right" id="receive">받은 쪽지함 가기</button>
+		<button class="btn btn-default pull-right" id="receive" style="margin-right:25px;">받은 쪽지함 가기</button>
 	
 		<script>
 		$(function(){
@@ -78,7 +78,7 @@
 						</c:forEach>
 			</table>
 
-			<button id="deleteMessage" class="btn btn-danger pull-right">삭제</button>
+			<button id="deleteMessage" class="btn btn-danger pull-right" style="margin-right:25px;">삭제</button>
 			
 
 	</div>

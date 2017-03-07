@@ -269,7 +269,7 @@ $(function(){
 			<hr style="color: rgb(216, 222, 226); margin-top: 5px;">
 		</div>
 
-		<div class="container" style="padding-top:0px; margin-top:0px;">
+		<div class="container" style="margin-top:0px;">
 
 			<div id="1" >
 				<%@ include file="CAPTCHA.jsp"%>
