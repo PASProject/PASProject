@@ -97,10 +97,25 @@ width:20% !important;
                 </thead>
                 <tbody>
                   <tr>
-                    <td>오늘 가입한 회원 수</td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td>오늘 가입한 회원</td>
+                    <td>
+                    <c:forEach items="${todayMemberList}" var="memberVo">
+                    <span id="todayMem"> 
+                    ${memberVo.mem_Name},&nbsp;
+                    </span>
+                    </c:forEach>
+                    <span id="asdf">                   
+                    </span>
+                    <script>
+                    $(function(){
+                    	var a = $('#todayMem').text();
+                    	var b = a.slice(0,-2);
+                    	alert(b);
+                    	
+                    	})
+                    </script>
+                    </td>
+                    <td>${joinCount}명 </td>
                   </tr>
                   <tr>
                     <td>오늘 생성된 프로젝트 수 </td>

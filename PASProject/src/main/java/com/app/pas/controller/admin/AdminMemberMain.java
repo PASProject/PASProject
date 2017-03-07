@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.app.pas.dao.AdminCalendarDao;
 import com.app.pas.dto.AdminCalendarCommand;
 import com.app.pas.dto.AdminCalendarVo;
 import com.app.pas.dto.MemberLogCommand;
+import com.app.pas.dto.MemberVo;
 import com.app.pas.service.AdminCalendarService;
 import com.app.pas.service.AdminService;
 import com.app.pas.service.MemberLogService;
@@ -45,6 +45,7 @@ public class AdminMemberMain {
 	@Autowired
 	AdminCalendarService adminCalendarService;
 	
+	
 	@RequestMapping("/adminMain")
 	public String MemberList(Model model,
 			@RequestParam(value = "page", defaultValue = "1") String page,
@@ -54,9 +55,18 @@ public class AdminMemberMain {
 		int total_Mem = memberService.selectMemberTotalCount();
 		int total_proj = projectService.selectProjectTotalCount();
 		int total_QnaN = qnaBoardService.selectNCount();
+		int joinCount = memberService.selectJoinToday();
+		MemberVo memberVo = new MemberVo();
+		
+		List<MemberVo> todayMemberList = new ArrayList<MemberVo>();
+		todayMemberList = memberService.selectJoinMemberToday();
+		
+		model.addAttribute("todayMemberList",todayMemberList);
 		model.addAttribute("total_QnaN",total_QnaN);
 		model.addAttribute("total_Mem",total_Mem);
 		model.addAttribute("total_proj",total_proj);
+		model.addAttribute("joinCount", joinCount);
+		
 		String url = "admin/adminMain";
 		return url;
 	}

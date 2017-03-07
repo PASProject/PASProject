@@ -174,5 +174,16 @@ public class MemberService {
 			MemberVo memberVo = memberDao.selectByMemEmail(mem_Email);
 			return memberVo;
 		}
+		
+		public int selectJoinToday() throws SQLException{
+			int joinCount = memberDao.selectJoinToday();
+			return joinCount;
+			
+		}
+		
+		public List<MemberVo> selectJoinMemberToday() throws SQLException{
+			List<MemberVo> list  = memberDao.selectJoinMemberToday();
+			return list;
+		}
 
 }

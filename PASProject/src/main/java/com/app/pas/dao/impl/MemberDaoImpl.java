@@ -174,6 +174,17 @@ public class MemberDaoImpl implements MemberDao {
 		MemberVo memberVo = (MemberVo) client.queryForObject("selectByMemEmail",mem_Email);
 		return memberVo;
 	}
+
+	@Override
+	public int selectJoinToday() throws SQLException {
+		int joinCount = (Integer) client.queryForObject("selectJoinToday");
+		return joinCount;
+	}
 	
+	@Override
+	public List<MemberVo> selectJoinMemberToday() throws SQLException {
+		List<MemberVo> list  = client.queryForList("selectJoinMemberToday");
+		return list;
+	}
 
 }
