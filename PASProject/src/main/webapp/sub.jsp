@@ -518,11 +518,6 @@
 					backgroundColor : $color
 				})
 			})
-			$('th').animate({
-				backgroundColor : $color,
-				
-			},'slow');
-
 			var b = $color.split("(")[1].split(")")[0];
 			b = b.split(",");
 
