@@ -48,8 +48,6 @@ public class ScheduleController {
 	@RequestMapping(value = "/weeklyChecklist")
 	public String weelyChecklist(ScheduleCalendarVo scheduleCalendarVo,
 			Model model, HttpSession session,
-			@RequestParam(defaultValue = "") String d,
-			@RequestParam(defaultValue = "") String wk_Content,
 			HttpServletRequest request,
 			WeeklyCheckVo weeklyCheckVo) throws SQLException, ParseException, UnsupportedEncodingException {
 		String url = "schedule/weeklyChecklist";
@@ -62,22 +60,6 @@ public class ScheduleController {
 		scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(wk_Proj_Num));
 		// 업데이트-----------------------------------------------------------------
 
-		if ((d.equals(""))) {
-		} else {
-			StringBuffer sb = new StringBuffer(d);
-			sb.insert(5, "-");
-			sb.insert(8, "-");
-			request.setCharacterEncoding("UTF-8");
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date to = transFormat.parse(sb.toString());
-			weeklyCheckVo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
-			weeklyCheckVo.setWk_Content(wk_Content);
-			weeklyCheckVo.setWk_Date(to);
-			weeklyCheckVo.setWk_Mem_Email(mem_Email);
-
-			weeklyCheckService.weeklyCheck_Update(weeklyCheckVo);
-		}
-		
 			weelyList_start = schdulCalendarService.selectWeeklylist_Start(scheduleCalendarVo);
 			model.addAttribute("weelyList_start", weelyList_start);
 
@@ -110,6 +92,34 @@ public class ScheduleController {
 			
 			/*System.out.println("y리스트 오긴오니? : "+ weekCheck_Y_List);*/
 			
+		return url;
+	}
+	
+	//등록-------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value="weeklyCheckInsert",method = RequestMethod.GET)
+	public String weeklyCheckInsert(HttpServletRequest request,@RequestParam(defaultValue = "") String d,
+			@RequestParam(defaultValue = "") String wk_Content,HttpSession session) throws SQLException, UnsupportedEncodingException, ParseException{
+		String url="redirect:weeklyChecklist";
+		WeeklyCheckVo weeklyCheckVo = new WeeklyCheckVo();
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		String mem_Email = memberVo.getMem_Email();
+		String wk_Proj_Num = (String) session.getAttribute("joinProj");
+		if ((d.equals(""))) {
+		} else {
+			StringBuffer sb = new StringBuffer(d);
+			sb.insert(5, "-");
+			sb.insert(8, "-");
+			request.setCharacterEncoding("UTF-8");
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date to = transFormat.parse(sb.toString());
+			weeklyCheckVo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
+			weeklyCheckVo.setWk_Content(wk_Content);
+			weeklyCheckVo.setWk_Date(to);
+			weeklyCheckVo.setWk_Mem_Email(mem_Email);
+
+			weeklyCheckService.weeklyCheck_Update(weeklyCheckVo);
+		}
 		return url;
 	}
 

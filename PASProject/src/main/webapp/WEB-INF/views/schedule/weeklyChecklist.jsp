@@ -691,9 +691,8 @@ padding:10px !important;
 										$('#${ WeeklyCheckVo.wk_Num}').css({
 											'text-decoration':'line-through'
 										})
-										
-										$('#g1${ WeeklyCheckVo.wk_Num}').hide();
-										//$('#g2${ WeeklyCheckVo.wk_Num}').hide();
+										// $('#g1${ WeeklyCheckVo.wk_Num}').hide();
+										$('#g2${ WeeklyCheckVo.wk_Num}').hide();
 										$('#${WeeklyCheckVo.wk_Num}~#successBtn').hide();
 									}
 									
@@ -752,7 +751,7 @@ padding:10px !important;
 	    	 wk_Content = $('#'+countNum+'content').val();
 	    	 var d = $('#'+countNum+'date').val();  
 	    	 
-	       location.href="weeklyChecklist?wk_Content="+wk_Content+"&d="+d;
+	       location.href="weeklyCheckInsert?wk_Content="+wk_Content+"&d="+d;
 	     }
 	}
 </script>
