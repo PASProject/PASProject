@@ -440,6 +440,7 @@ public class ProjectController {
 		request.setAttribute("countDoc", countDoc);
 		request.setAttribute("countSchedule", countSchedule);
 		request.setAttribute("countProjNotice", countProjNotice);
+		
 		freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
 		
 		  model.addAttribute("freeBoardList", freeBoardList);
