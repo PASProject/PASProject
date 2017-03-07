@@ -221,6 +221,11 @@ body.modal-open {
 } 
 </style>
 <style>
+#boardTitleImg{
+width:3%;
+margin-top:-5px;
+margin-right:10px;
+}
 #teamName{
 font-family : 'FEDERALESCORTHALFITAL';
 }
@@ -349,6 +354,8 @@ border-bottom : 1px solid #888888;
 	font-weight:bold;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	padding-top: 10px;
+    padding-left: 20px;
 }
 /* flatpickr 인덱스 위치 */
 div.flatpickr-calendar {
