@@ -31,5 +31,9 @@ public class WeeklyCheckService {
 	public void weeklyCheck_YN(WeeklyCheckVo weeklyCheckVo)throws SQLException{
 		weeklyCheckDao.weeklyCheck_YN(weeklyCheckVo);
 	}
+	
+	public void wk_UpdateSuccess(WeeklyCheckVo weeklyCheckVo) throws SQLException{
+		weeklyCheckDao.wk_UpdateSuccess(weeklyCheckVo);
+	}
 
 }

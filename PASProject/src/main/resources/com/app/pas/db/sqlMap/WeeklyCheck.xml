@@ -13,8 +13,8 @@
 	
 	<update id="weeklyCheck_Update" parameterClass="WeeklyCheck">
 		INSERT INTO
-		WEEKLY_CHECK(WK_NUM,WK_DATE,WK_CONTENT,WK_MEM_EMAIL,WK_YN,wk_proj_num)
-		VALUES(WEEKLY_CHECK_SEQ.NEXTVAL,#wk_Date#,#wk_Content#,#wk_Mem_Email#,#wk_Yn#,#wk_Proj_Num#)
+		WEEKLY_CHECK(WK_NUM,WK_DATE,WK_CONTENT,WK_MEM_EMAIL,wk_proj_num)
+		VALUES(WEEKLY_CHECK_SEQ.NEXTVAL,#wk_Date#,#wk_Content#,#wk_Mem_Email#,#wk_Proj_Num#)
 	</update>
 	
 	<delete id="weeklyCheck_Delete" parameterClass="WeeklyCheck">
@@ -27,6 +27,9 @@
 		WK_YN='Y'
 		WHERE
 		WK_NUM = #wk_Num#
+	</update>
+	<update id="wk_UpdateSuccess" parameterClass="WeeklyCheck">
+		update weekly_check set wk_content = #wk_Content# where wk_Num = #wk_Num#
 	</update>
 
 

@@ -15,8 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ScheduleCalendarVo;
@@ -95,6 +98,18 @@ public class ScheduleController {
 			vo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
 			weekCheckList = weeklyCheckService.weeklyCheck(vo);
 			model.addAttribute("weekCheckList",weekCheckList);
+			
+			//완료인것 리스트 뿌려주는거
+			List<WeeklyCheckVo> weekCheck_Y_List = new ArrayList<WeeklyCheckVo>();
+			WeeklyCheckVo select_Y_Vo = new WeeklyCheckVo();
+			
+			select_Y_Vo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
+			select_Y_Vo.setWk_Mem_Email(mem_Email);
+			/*weekCheck_Y_List = weeklyCheckService.weeklyCheck_Select_Y(select_Y_Vo);*/
+			/*model.addAttribute("weekCheck_Y_List", weekCheck_Y_List);*/
+			
+			/*System.out.println("y리스트 오긴오니? : "+ weekCheck_Y_List);*/
+			
 		return url;
 	}
 
@@ -103,85 +118,29 @@ public class ScheduleController {
 		public String weeklyCheck_Delete(String wk_Num,ScheduleCalendarVo scheduleCalendarVo,
 				Model model, HttpSession session, @RequestParam(defaultValue = "") String d,
 				@RequestParam(defaultValue = "") String wk_Content,WeeklyCheckVo weeklyCheckVo) throws SQLException, ParseException{
-			String url = "schedule/weeklyChecklist";
-			
-			MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
-			String mem_Email = memberVo.getMem_Email();
-			String wk_Proj_Num = (String) session.getAttribute("joinProj");
-			List<ScheduleCalendarVo> weelyList_start = new ArrayList<ScheduleCalendarVo>();
-			scheduleCalendarVo.setSc_Wk_Mem_Email(mem_Email);
-			scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(wk_Proj_Num));
-
-			
-				weelyList_start = schdulCalendarService.selectWeeklylist_Start(scheduleCalendarVo);
-				model.addAttribute("weelyList_start", weelyList_start);
-
-				// 마감
-				List<ScheduleCalendarVo> weelyList_end = new ArrayList<ScheduleCalendarVo>();
-				weelyList_end = schdulCalendarService.selectWeeklylist_End(scheduleCalendarVo);
-				model.addAttribute("weelyList_end", weelyList_end);
-
-				// 마감,시작 포함일정(모달)
-				List<ScheduleCalendarVo> weekly_dateList = new ArrayList<ScheduleCalendarVo>();
-				weekly_dateList = schdulCalendarService.weekly_date();
-				model.addAttribute("weekly_dateList", weekly_dateList);
-
+			String url = "redirect:weeklyChecklist";
 				weeklyCheckService.weeklyCheck_Delete(weeklyCheckVo);
-				// select
-				// ------------------------------------------------------------
-				List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
-				WeeklyCheckVo vo = new WeeklyCheckVo();
-				vo.setWk_Mem_Email(mem_Email);
-				vo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
-				weekCheckList = weeklyCheckService.weeklyCheck(vo);
-				model.addAttribute("weekCheckList",weekCheckList);
-			
 			return url; 
 		}
+		
 	//Y or N ------------------------------------------------------------------------------------
-		@RequestMapping(value = "/weeklyCheck_YN")
-		public String weeklyCheck_YN(String wk_Num,ScheduleCalendarVo scheduleCalendarVo,
-				Model model, HttpSession session, @RequestParam(defaultValue = "") String d,
-				@RequestParam(defaultValue = "") String wk_Content,WeeklyCheckVo weeklyCheckVo
-				,String wk_num) throws SQLException, ParseException{
-			String url = "schedule/weeklyChecklist";
+		@RequestMapping(value = "/weeklyCheck_YN", method = RequestMethod.POST)
+		public @ResponseBody boolean weeklyCheck_YN(HttpSession session,@RequestBody WeeklyCheckVo weeklyCheckVo) throws SQLException, ParseException{
 			
 			MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 			String mem_Email = memberVo.getMem_Email();
 			String wk_Proj_Num = (String) session.getAttribute("joinProj");
-			List<ScheduleCalendarVo> weelyList_start = new ArrayList<ScheduleCalendarVo>();
-			scheduleCalendarVo.setSc_Wk_Mem_Email(mem_Email);
-			scheduleCalendarVo.setSc_Proj_Num(Integer.parseInt(wk_Proj_Num));
-
-			
-				weelyList_start = schdulCalendarService.selectWeeklylist_Start(scheduleCalendarVo);
-				model.addAttribute("weelyList_start", weelyList_start);
-
-				// 마감
-				List<ScheduleCalendarVo> weelyList_end = new ArrayList<ScheduleCalendarVo>();
-				weelyList_end = schdulCalendarService.selectWeeklylist_End(scheduleCalendarVo);
-				model.addAttribute("weelyList_end", weelyList_end);
-
-				// 마감,시작 포함일정(모달)
-				List<ScheduleCalendarVo> weekly_dateList = new ArrayList<ScheduleCalendarVo>();
-				weekly_dateList = schdulCalendarService.weekly_date();
-				model.addAttribute("weekly_dateList", weekly_dateList);
-
-				//y or n 
-				System.out.println("번호번호  : " + wk_num);
-				weeklyCheckVo.setWk_Num(Integer.parseInt(wk_num));
+				weeklyCheckVo.setWk_Mem_Email(mem_Email);
+				weeklyCheckVo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
+				weeklyCheckVo.setWk_Yn("Y");
 				weeklyCheckService.weeklyCheck_YN(weeklyCheckVo);
-				
-				// select------------------------------------------------------------
-				List<WeeklyCheckVo> weekCheckList = new ArrayList<WeeklyCheckVo>();
-				WeeklyCheckVo vo = new WeeklyCheckVo();
-				vo.setWk_Mem_Email(mem_Email);
-				vo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));
-				weekCheckList = weeklyCheckService.weeklyCheck(vo);
-				model.addAttribute("weekCheckList",weekCheckList);
-			
-			return url; 
+				return true; 
 		}
 	
+		@RequestMapping(value="wk_UpdateSuccess", method = RequestMethod.POST)
+		public @ResponseBody boolean wk_UpdateSuccess(@RequestBody WeeklyCheckVo weeklyCheckVo )throws SQLException{
+			weeklyCheckService.wk_UpdateSuccess(weeklyCheckVo);
+			return true;
+		}
 	
 }

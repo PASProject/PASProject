@@ -216,7 +216,9 @@ public class QnaController {
 	}
 
 	// 디테일 
+
 	@RequestMapping(value = "/QnADetail")
+
 	public String detailQna(@RequestParam String qb_Article_Num, Model model,
 			HttpSession session,String qna_Pwd, String num) throws NumberFormatException, SQLException {
 		String url = "qna/QnADetail";
