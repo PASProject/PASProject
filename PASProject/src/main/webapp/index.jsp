@@ -13,7 +13,6 @@
 <title></title>
 </head>
 <body>
-
 	<script>
 location.href="<%=request.getContextPath()%>/index";
 	</script>

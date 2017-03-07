@@ -113,7 +113,7 @@ public class BoardManagementController {
 	
 	@RequestMapping(value = "pmBoardTotalList",method = RequestMethod.GET)
 	public String bmBoardList(BoardJoinVo boardJoinVo,HttpSession session,HttpServletRequest request,
-			Model model,@RequestParam(value="page",defaultValue="1")String page) throws SQLException, IOException{
+			Model model,@RequestParam(value="page",defaultValue="1")String page,PrintWriter writer) throws SQLException, IOException{
 		String url = "project/pmBoardTotalList";
 		BoardJoinVo resultVo = new BoardJoinVo();
 		int totalCount = 0 ;

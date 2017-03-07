@@ -14,7 +14,7 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			게시판 관리
 		</h3>
-		<div style="border: 1px solid #498eab; float: left; width:50%; min-height: 450px;">&nbsp;&nbsp;
+		<div style="border: 1px solid #498eab; float: left; width:50%; min-height: 530px;">&nbsp;&nbsp;
 			<h3 style="margin:10px">게시판 리스트</h3>
 			<div id="boardListZone">
 				<table class="table table-hover">
@@ -33,7 +33,7 @@
 			
 			</div>
 		</div>
-		<div style="border: 1px solid #498eab; float: left; width:50%; height: 450px">&nbsp;&nbsp;
+		<div style="border: 1px solid #498eab; float: left; width:50%; height: 530px">&nbsp;&nbsp;
 			<h3 style="margin:10px">게시판 생성하기</h3>
 			<br>  
 			&nbsp;&nbsp;게시판 타이틀 : <input type="text"id ="bm_Title" style="background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px;"><br><br>
@@ -55,6 +55,9 @@
 					<td><label class="checkbox-inline"><input type="checkbox" value="${member.mem_Email}" id="2">허용</label></td>
 				<tr>
 			</c:forEach>
+				<tr>
+					<td colspan="4" style="text-align: center"><label class="checkbox-inline"><input type="checkbox" id="itemAllCheck">모두체크</label></td>
+				</tr>
 			</tbody>
 			</table>
 			<input type="button" class="btn btn-default pull-right" value="생성하기"  id="createBoardBtn">
@@ -367,7 +370,17 @@
 		obj.last().siblings('td').last().append("<input type='button' class='btn btn-default' id='updateJoinMemberBtn' value='수정'>");
 		 
 	});
-	
+	$('#itemAllCheck').on('click',function(){  
+		if($(this).is(":checked")){
+				$(this).parents('tr').siblings().each(function(){
+					$(this).find('#1,#2').prop("checked",true);
+				})
+			}else{
+				$(this).parents('tr').siblings().each(function(){
+					$(this).find('#1,#2').prop("checked",false);
+				})
+			}
+		})
 	function delteBoard(bm_Num){   
 			location.href = "/pas/project/deleteBoard?bm_Num="+bm_Num;
 	}
