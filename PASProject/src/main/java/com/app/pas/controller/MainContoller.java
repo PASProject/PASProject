@@ -702,6 +702,8 @@ public class MainContoller {
 		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
 		messageList=messageService.selectSendMessageList(messageVo);
+		
+		
 
 		model.addAttribute("messageList",messageList);	
 		return url;
@@ -788,14 +790,19 @@ public class MainContoller {
 		return url;
 	}
 	
-	//쪽지 삭제하기
-	@RequestMapping(value="/messageDelete")
-	public String DeleteSendMessage(int msg_Article_Num, HttpSession session, Model model) throws SQLException{
-		String url = "redirect:" ;
-		
+	//보낸 쪽지 삭제하기
+	@RequestMapping(value="/messageSendDelete")
+	public @ResponseBody boolean DeleteSendMessage(int msg_Article_Num, HttpSession session, Model model) throws SQLException{
 		messageService.updateSendMessageDelYN(msg_Article_Num);
+		System.out.println("타는거 맞음?");
+		return true;
 		
-		return url;
+	}
+	@RequestMapping(value="/messageReceiveDelete")
+	public @ResponseBody boolean DeleteReceiveMessage(int msg_Article_Num, HttpSession session, Model model) throws SQLException{
+		messageService.updateReceiveMessageDelYN(msg_Article_Num);
+		System.out.println("타는거 맞음?");
+		return true;
 	}
 	@RequestMapping(value="selectMemberInfo", method = RequestMethod.POST)
 	public void selectMemberInfo(@RequestBody ProjectLogVo projectLogVo,HttpSession session)throws SQLException{

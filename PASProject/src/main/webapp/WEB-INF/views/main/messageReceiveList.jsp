@@ -51,10 +51,12 @@
 					<th  style="width:15%">보낸이</th>
 					<th  style="width:15%">등록일</th>
 					<th style="width:17%" >읽은 시간</th>
-					<th  style="width:5%"><input type="checkbox" /></th>
+					<th  style="width:5%"><input type="checkbox" id="checkAll" name="checkbox"/></th>
 				</tr>
+				
 				<c:forEach items="${messageList }" var="messageVo" >
-				<tr>
+			<%-- 	<c:if test="${messageVo.msg_sm_del_yn == 'n' }">	 --%> 
+				<tr id="parent_tr${messageVo.msg_Article_Num }">
 					<td></td>
 					<td>
 					

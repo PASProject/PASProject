@@ -55,38 +55,74 @@
 					<th  style="width:15%">받는이</th>
 					<th  style="width:15%">등록일</th>
 					<th style="width:17%" >읽은 시간</th>
-					<th  style="width:5%"><input type="checkbox" id="checkAll" /></th>
+					<th  style="width:5%"><input type="checkbox" id="checkAll" name="checkbox"/></th>
 				</tr>
-				<c:forEach items="${messageList }" var="messageVo" >
 				
-				<tr>
+				<c:forEach items="${messageList }" var="messageVo" >
+				<c:if test="${messageVo.msg_sm_del_yn == 'n' }">	 
+				<tr id="parent_tr${messageVo.msg_Article_Num }">
 					<td></td>
 					<td><a href="<%=request.getContextPath() %>/main/messageSendDetail?msg_Article_Num=${messageVo.msg_Article_Num }" >${messageVo.msg_Title }</a></td>
 					<td>${messageVo.msg_rm_Name }</td>
 					<td> <fmt:formatDate value="${messageVo.msg_Wt_Date }" pattern="yyyy-MM-dd"/></td>
 					
-				<td>
+					<td>
 					<fmt:parseDate value="${messageVo.msg_Rd_Date }" var="readDate" pattern="yyyy/MM/dd HH:mm:ss"/>
 					<fmt:formatDate value="${readDate }" pattern="yyyy-MM-dd HH:mm"/>
 					</td>
-					<td><input type="checkbox" id="check" /></td>
+					<td><input type="checkbox" class="check" name="checkbox" id="checkItem"/>
+						<input type="hidden" value="${messageVo.msg_Article_Num}" id="msg_Article_Num">
+					</td>
 				</tr>
-						
+						</c:if>
 						</c:forEach>
 			</table>
 
 			<button id="deleteMessage" class="btn btn-danger pull-right">삭제</button>
-			<script>
-			$(function(){
-				$('#checkAll').click(function(){
-					if($('#checkall').prop("checked")){
-						$('#check').prop
-					}
-				})
-			})
-			</script>
+			
 
 	</div>
-
+			<script>      
+			$(function(){
+				$("#checkAll").on('click',function(){
+					if($("#checkAll").is(":checked")){
+						$(document).find('input[id="checkItem"]').prop("checked",true);
+					}else{
+						$(document).find('input[id="checkItem"]').prop("checked",false);
+					}
+				})
+				$('#deleteMessage').on('click',function(){
+				 $('input:checkbox[name="checkbox"]').each(function() {
+					
+					 if(this.checked){
+						 $(this).parents('tr').hide();
+						 var msg_Article_Num = $(this).siblings('#msg_Article_Num').val();
+						 var checkboxValues = [];
+						 checkboxValues.push($(this).val());
+						 var allData = {"msg_Article_Num" : msg_Article_Num, "checkboxValues" : checkboxValues};
+						 
+						  $.ajax({
+							 type : 'post',
+							 url : 'messageSendDelete',
+							 dataType:'json',
+							 data :allData,
+							 success : function(result){
+								 
+							 },
+							 error : function(result){
+								 alert('실패');
+							 }
+							 
+						 })
+						  
+						/*  alert($(this).siblings('#msg_Article_Num').val()); */
+					 }
+				 })
+					
+				})
+				 
+						
+			})
+			</script>
 </body>
 </html>
