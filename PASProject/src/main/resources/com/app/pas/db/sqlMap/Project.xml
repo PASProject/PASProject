@@ -65,7 +65,6 @@
 		#proj_Num# order by POSITION_NUM asc
 	</select>
 
-
    <select id="selectLastInsertProject" parameterClass="str"
       resultClass="Project">
       SELECT * FROM (SELECT * FROM project WHERE mem_email=#mem_Email# ORDER BY

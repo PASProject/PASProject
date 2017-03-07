@@ -21,7 +21,7 @@
 
 
 	<excludes>
-
+		<pattern>*/pmOverView</pattern>
 		<pattern>*/adminLogin</pattern>
 		<pattern>*/tempNotice*</pattern>
 	    <pattern>*/pmChat*</pattern>

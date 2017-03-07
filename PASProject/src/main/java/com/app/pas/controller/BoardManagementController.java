@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -202,5 +203,18 @@ public class BoardManagementController {
 		String url = "redirect:pmBoardTotalList?bm_Num="+resultVo.getBm_Num();
 		boardTotalService.deleteBoardTotal(Integer.parseInt(bt_Num));
 		return url;
+	}
+	
+	@RequestMapping(value="selectBoardManagementMember",method = RequestMethod.POST)
+	public @ResponseBody List<MemberVo> selectBoardManagementMember(@RequestBody BoardJoinVo boardJoinVo, HttpSession session)throws SQLException{
+		System.out.println(boardJoinVo);
+		List<MemberVo> list = boardJoinService.selectBoardJoinNotInMemberList(boardJoinVo);
+		return list;
+	}
+	
+	@RequestMapping(value="boardJoinInsert", method = RequestMethod.POST)
+	public @ResponseBody boolean boardJoinInsert(@RequestBody BoardJoinVo boardJoinVo ) throws SQLException{
+		boardJoinService.insertBoardJoinDao(boardJoinVo);
+		return true;
 	}
 }

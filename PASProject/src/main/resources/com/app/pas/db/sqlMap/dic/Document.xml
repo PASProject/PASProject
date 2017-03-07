@@ -26,6 +26,10 @@
    		select * from document where doc_Num = #doc_Num#
    </select>
    
+   <select id = "selectCountDocumentByProjectNum" parameterClass="int" resultClass="int">
+   		select count(*) from document where proj_num = #proj_num#
+   </select>
+   
    <update id="updateDocumentName" parameterClass="Document">
    		update document set doc_File_Name = #doc_File_Name# where doc_Num = #doc_Num# 
    </update>

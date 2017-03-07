@@ -71,13 +71,14 @@
                   success:function(data){
                 	 if(data.position_Name=='PL'){
                 		 $('#positionSelect').attr('style','display:none');
-                		 $('#updateBtn').attr('style','display:none');
-                		 $('#deleteBtn').attr('style','display:none');
+                		 $('#TeamMemberUpdate').attr('style','display:none');
+                		 $('#TeamMemberDelete').attr('style','display:none');
+                		 $('#ProjectDelete').attr('style','display:inline');
                 	 }else{
                 		 $('#positionSelect').attr('style','display:inlline');
-                		 $('#updateBtn').attr('style','display:inline');
-                		 $('#deleteBtn').attr('style','display:inline');
-                		 
+                		 $('#TeamMemberUpdate').attr('style','display:inline');
+                		 $('#TeamMemberDelete').attr('style','display:inline');
+                		 $('#ProjectDelete').attr('style','display:none');
                 	 } 
                 	  
                      $('#mem_Img_Modal').attr('src','/pas/resources/upload/'+data.mem_Img);
@@ -117,6 +118,23 @@
               
             })
             
+         })
+         
+         $(function(){
+        	$('#ProjectDelete').click(function(){
+        		
+        		$.ajax({
+        			type:'POST',
+        			url:'ProjectDelete',
+        			success:function(data){
+        				location.href="<%=request.getContextPath()%>/main/myProject";
+        			}
+        			
+        		})
+        		
+        	})
+        	 
+        	 
          })
          
     </script>
@@ -198,8 +216,12 @@
  
             </c:when>
             <c:otherwise>
-                  직책:<input type="text" id="position_Name" readonly>
-            </c:otherwise>
+                  
+                   <div class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span> 
+			<input name="position_Name" id="position_Name" class="form-control" type="text" readonly>
+									</div><br>
+           </c:otherwise>
             </c:choose>
             </div>
             </div><br>
@@ -254,6 +276,8 @@
         <c:if test="${memPositionView.position_Name eq 'PL' }">
 	         <input type="button" id="TeamMemberUpdate" class="btn btn-default" data-dismiss="modal" id="TeamMemberUpdate" value="직책 수정">
 	         <input type="button" id="TeamMemberDelete" class="btn btn-danger" data-dismiss="modal" id="TeamMemberDelete" value="팀원 탈퇴">
+	         <input type="button" id="ProjectDelete" class="btn btn-danger" data-dismiss="modal" id="ProjectDelete" value="프로젝트 삭제">
+	         
         </c:if>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           

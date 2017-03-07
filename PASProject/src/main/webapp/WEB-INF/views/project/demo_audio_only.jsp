@@ -32,11 +32,29 @@
         <!--show-->
         <!-- Assumes global locations for socket.io.js and easyrtc.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/easyrtc.js"></script>
+        <script type="text/javascript" src="http://192.168.202.194:1313/easyrtc/easyrtc.js"></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/demo_audio_only.js"></script>
         <!--hide-->
         <!-- Styles used within the demo -->
         <style type="text/css">
+        @font-face {
+	font-family: 'FEDERALESCORTHALFITAL';
+	src: url(<%=request.getContextPath()%>/resources/fonts/FEDERALESCORTHALFITAL.TTF);
+		
+         } 
+         
+         #roomToAdd{
+         outline: none;
+    border-left: 0px solid blue;
+    border-top: 0px solid blue;
+    border-right: 0px solid blue;
+    border-bottom: 1px solid black;
+         
+         }
+         
+        #teamName{
+                font-family : 'FEDERALESCORTHALFITAL';
+            }
             #connectControls {
                 float:left;
                 width:300px;
@@ -67,26 +85,26 @@
         <!--show-->
     </head>
     <body>
-        <div id="container">
+        <div id="container" style="width:330px">
         <input type="hidden" id="username" value="${param.name }">
         
          
            
             <div id="main">
                 <!-- Main Content -->
-                <h1>Voice Room</h1>
+                <h1 id="teamName"><b>Voice Room</b></h1>
 
                 <!--show-->
                 <div id="demoContainer">
                     <div id="connectControls">
-                        <button class="btn btn-default" id="connectButton" onclick="connect()" >접속</button>
-                        <button class="btn btn-default" id="hangupButton" disabled="disabled" onclick="hangup()">해제</button>
-                        <div id="iam">아직 연결이 되지 않았습니다.</div>
+                        <button class="btn btn-default" id="connectButton" onclick="connect()" ><span class="glyphicon glyphicon-earphone"></span></button>
+                        <button class="btn btn-default" id="hangupButton" disabled="disabled" onclick="hangup()"><span class="glyphicon glyphicon-stop"></span></button>
+                        <div id="iam"><b>접속 중이 아닙니다.</b></div>
                         <br />
-                        <strong>접속된 유저:</strong>
+                        <strong>접속 중인 유저</strong>
                         <div id="otherClients"></div>
-                        <input type="text" id="roomToAdd" placeholder="방 이름을 입력해주세요.">
-                        <button id="connectButton" onclick="addRoom(null, null, true);" class="btn btn-default">Join</button>
+                        <input  type="text" id="roomToAdd" placeholder="방 이름을 입력해주세요.">
+                        <button id="connectButton" onclick="addRoom(null, null, true);" class="btn btn-default"><b>Join</b></button>
                     </div>
 
                     <!-- Note... this demo should be updated to remove video references -->

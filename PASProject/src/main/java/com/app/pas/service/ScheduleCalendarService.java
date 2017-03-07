@@ -69,4 +69,8 @@ public class ScheduleCalendarService {
 		return list;
 		
 	}
+	public int selectScheduleCount(int proj_Num) throws SQLException {
+		int count = scheduleCalendarDao.selectScheduleCount(proj_Num); 
+		return count;
+	}
 }

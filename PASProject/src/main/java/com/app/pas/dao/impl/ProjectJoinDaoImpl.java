@@ -59,5 +59,11 @@ public class ProjectJoinDaoImpl implements ProjectJoinDao {
 		client.update("updatePositionNum",projectJoinVo);
 		
 	}
+
+	@Override
+	public int selectJoinCountMember(int proj_Num) throws SQLException {
+		int count = (Integer) client.queryForObject("selectJoinCountMember",proj_Num);
+		return count;
+	}
 	
 }
