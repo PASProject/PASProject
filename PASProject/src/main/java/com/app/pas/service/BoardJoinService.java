@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.BoardJoinDao;
 import com.app.pas.dto.BoardJoinVo;
+import com.app.pas.dto.MemberVo;
 
 public class BoardJoinService {
 
@@ -37,6 +38,10 @@ public class BoardJoinService {
 		return boardJoin;
 	}
 
+	public List<MemberVo> selectBoardJoinNotInMemberList (BoardJoinVo boardJoinVo) throws SQLException{
+		List<MemberVo> list = boardJoinDao.selectBoardJoinNotInMemberList(boardJoinVo);
+		return list;
+	}
 
 
 }

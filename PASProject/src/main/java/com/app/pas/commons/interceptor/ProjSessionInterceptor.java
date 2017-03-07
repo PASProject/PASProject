@@ -31,7 +31,6 @@ public class ProjSessionInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect("/pas/index");
 			return false;
 		}
-		
 		return true;
 		
 	}

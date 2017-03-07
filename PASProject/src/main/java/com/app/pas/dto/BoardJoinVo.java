@@ -18,4 +18,5 @@ public class BoardJoinVo implements Serializable{
 	private String bj_Write;
 	private String bj_Read;
 	private String bj_Mem_Name;
+	private int bj_Proj_Num;
 }

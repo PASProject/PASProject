@@ -83,6 +83,8 @@
 </div>  
 <script>
 	$(function(){  
+		
+		
 		$.ajax({
 			dataType:'json',
 			type:'post',
@@ -205,15 +207,15 @@
 					 dt+="<tr><td colspan='6' style='text-align: center; font-weight: bold;'><a href='#' id='addItem'><span style='color: red'>추가하기</span</a></td></tr>"
 					$('#boardJoinList').append(dt);
 				}
-			});
+			});  
 		});
-		
+		  
 		$(document).on('click','#addItem',function(e){
 			e.preventDefault();
-			var num = $(this).parents('tr').siblings().length + 1;
-			var item = "<tr><td>"+num+"</td><td><input type='text' id='bj_Mem_Email' readonly='readonly'></td><td><input type='text' id='bj_Mem_Name' readonly='readonly' ></td>"
+			var num = $(this).parents('tr').siblings().length + 1; 
+			var item = "<tr><td>"+num+"</td><td> <div class='dropdown'><input type='text' data-toggle='dropdown' id='add_Bj_Mem_Email' readonly='readonly'><ul class='dropdown-menu' id='dropdownItem'></ul></div></td><td><input type='text' id='bj_Mem_Name' readonly='readonly' ></td>"
 			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='1' >허용</label></td>"
-			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='2' >허용</label></td><td><input type='button' value='확인' class='btn btn-default'><td></tr>";
+			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='2' >허용</label></td><td><input type='button' value='확인' id='insertMemberBtn' class='btn btn-default'><td></tr>";
 			$(this).parents('tr').before(item);
 		});
 		
@@ -291,7 +293,63 @@
 			parentObj.append("<input type='button' class='btn btn-default' id='updateJoinMemberBtn' value='수정'>");
 		});
 	})
+	 $(document).on('click','#add_Bj_Mem_Email',function(){
+		
+		var bm_Num = $('#bm_NumZone').val();
+		var bj_Proj_Num = '${joinProj}';
+		var dataList = {'bm_Num':bm_Num,'bj_Proj_Num':bj_Proj_Num};
+		var obj =  $(this).siblings('#dropdownItem');
+		var dt ="";
+		  $.ajax({
+			 dataType:'json',
+			 contentType:'application/json',
+			 url:'selectBoardManagementMember',
+			 data:JSON.stringify(dataList),
+			 type:'post',
+			 success:function(result){
+				 $.each(result,function(i){
+					 dt += "<li id='listName' class='"+result[i].mem_Email+"'>"+result[i].mem_Name+"</li>"
+				 })
+				 obj.empty();
+				 obj.append(dt); 
+			 }
+		 }) 
+		
+	});
 	
+	$(document).on('click','li#listName',function(){
+		var mem_Name = $(this).text();
+		var mem_Email = $(this).attr('class');
+		$(this).parent().siblings('#add_Bj_Mem_Email').val(mem_Email);
+		$(this).closest('tr').find('td').eq(2).find('#bj_Mem_Name').val(mem_Name);
+	})
+	   
+	$(document).on('click','#insertMemberBtn',function(){
+		var obj = $(this).parent().siblings('td');
+		var mem_Email = obj.eq(1).find('#add_Bj_Mem_Email').val();
+		var mem_Name = obj.eq(2).find('#bj_Mem_Name').val(); 
+		var bj_Write = "n";
+		var bj_Read ="n";
+		var bm_Num = $('#bm_NumZone').val();
+		if(obj.eq(3).find('input[type="checkbox"]').is(":checked")){
+			bj_Write ="y";
+		}
+		if(obj.eq(4).find('input[type="checkbox"]').is(":checked")){
+			bj_Read = "y";
+		}
+		var dataList = {'bm_Num':bm_Num,'bj_Mem_Email':mem_Email,'bj_Write':bj_Write,'bj_Read':bj_Read,'bj_Mem_Name':mem_Name};
+		$.ajax({
+			dataType:'json',
+			contentType:'application/json',
+			data:JSON.stringify(dataList), 
+			type:'post',
+			url:'boardJoinInsert',
+			success:function(result){
+				alert("ㅋㅋㅋ");
+				
+			}
+		});
+	})
 	function delteBoard(bm_Num){   
 			location.href = "/pas/project/deleteBoard?bm_Num="+bm_Num;
 	}
