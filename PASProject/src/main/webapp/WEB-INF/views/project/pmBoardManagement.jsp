@@ -215,7 +215,7 @@
 			var num = $(this).parents('tr').siblings().length + 1; 
 			var item = "<tr><td>"+num+"</td><td> <div class='dropdown'><input type='text' data-toggle='dropdown' id='add_Bj_Mem_Email' readonly='readonly'><ul class='dropdown-menu' id='dropdownItem'></ul></div></td><td><input type='text' id='bj_Mem_Name' readonly='readonly' ></td>"
 			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='1' >허용</label></td>"
-			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='2' >허용</label></td><td><input type='button' value='확인' id='insertMemberBtn' class='btn btn-default'><td></tr>";
+			+"<td><label class='checkbox-inline'><input type='checkbox' value='${member.mem_Email}' id='2' >허용</label></td><td><input type='button' value='확인' id='insertMemberBtn' class='btn btn-default'></td></tr>";
 			$(this).parents('tr').before(item);
 		});
 		
@@ -325,8 +325,14 @@
 	})
 	   
 	$(document).on('click','#insertMemberBtn',function(){
+	
 		var obj = $(this).parent().siblings('td');
+		var thisObj = $(this);
 		var mem_Email = obj.eq(1).find('#add_Bj_Mem_Email').val();
+		if(mem_Email ==""||mem_Email==null){
+			alert("인원을 선택해주세요");
+			return ;
+		}
 		var mem_Name = obj.eq(2).find('#bj_Mem_Name').val(); 
 		var bj_Write = "n";
 		var bj_Read ="n";
@@ -338,18 +344,30 @@
 			bj_Read = "y";
 		}
 		var dataList = {'bm_Num':bm_Num,'bj_Mem_Email':mem_Email,'bj_Write':bj_Write,'bj_Read':bj_Read,'bj_Mem_Name':mem_Name};
-		$.ajax({
-			dataType:'json',
-			contentType:'application/json',
-			data:JSON.stringify(dataList), 
-			type:'post',
-			url:'boardJoinInsert',
-			success:function(result){
-				alert("ㅋㅋㅋ");
-				
-			}
-		});
-	})
+		 $.ajax({
+				dataType:'json',
+				contentType:'application/json',
+				data:JSON.stringify(dataList), 
+				type:'post',
+				url:'boardJoinInsert',
+				success:function(result){
+					
+				}
+			});
+		 
+		obj.eq(1).empty();
+		obj.eq(2).empty();
+		obj.eq(3).find('label').remove();     
+		obj.eq(4).find('label').remove();
+		obj.eq(1).append(mem_Email);
+		obj.eq(2).append(mem_Name); 
+		obj.eq(3).append(bj_Write);
+		obj.eq(4).append(bj_Read);
+		thisObj.parent().empty();
+		obj.last().siblings('td').last().append("<input type='button' class='btn btn-default' id='updateJoinMemberBtn' value='수정'>");
+		 
+	});
+	
 	function delteBoard(bm_Num){   
 			location.href = "/pas/project/deleteBoard?bm_Num="+bm_Num;
 	}
