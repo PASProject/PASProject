@@ -303,7 +303,7 @@ public class ProjectController {
 	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 湲��벐湲� POST
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
-		String url = "redirect:/project/pmNoticeList";
+		String url = "redirect:/project/pm";
 		int proj_Num =  Integer.parseInt((String)session.getAttribute("joinProj"));
 
 		noticeVo.setProj_Num(proj_Num);
@@ -375,7 +375,7 @@ public class ProjectController {
 	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �닔�젙 POST
 	@RequestMapping(value = "/pmNoticeUpdate", method = RequestMethod.POST)
 	public String updateUpdate(NoticeVo noticeVo) {
-		String url = "redirect:/project/pmNoticeList";
+		String url = "redirect:/project/pm";
 
 		try {
 			noticeService.updateNotice(noticeVo);
@@ -393,7 +393,7 @@ public class ProjectController {
 		noticeVo.setNotice_Num(Integer.parseInt(notice_Num));
 		noticeVo.setProj_Num(Integer.parseInt((String)session.getAttribute("joinProj")));
 		
-		String url = "redirect:/project/pmNoticeList";
+		String url = "redirect:/project/pm";
 		try {
 			noticeService.deleteNotice(noticeVo);
 		} catch (SQLException e) {
@@ -410,19 +410,14 @@ public class ProjectController {
 			@RequestParam String proj_Num,FreeBoardVo freeboardVo) throws NumberFormatException,
 			SQLException {
 		String url = "project/overView";
-		int totalCount = 0 ;
-		if(page.equals(null)||page ==""){
-	         totalCount = freeBoardService.selectTotalCount();
-	         }
-	         if (page.equals(null) || page == "") {
-	            page = "" + 1;
-	         }
-		Paging paging = new Paging();
-        paging.setPageNo(Integer.parseInt(page));
-        paging.setPageSize(5);
-        paging.setTotalCount(totalCount);
-        model.addAttribute("paging", paging);
-
+		
+		
+		
+        
+        List<NoticeVo> list = null;
+        list = noticeService.getNoticeList(Integer.parseInt(proj_Num));
+        model.addAttribute("NoticeList", list);
+        
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
 	
 		session.setAttribute("joinProj", proj_Num);
@@ -446,7 +441,15 @@ public class ProjectController {
 		  model.addAttribute("freeBoardList", freeBoardList);
 	
 		session.setAttribute("joinProjectVo", projectVo);
+		
+	   Paging paging = new Paging();
+       paging.setPageNo(Integer.parseInt(page));
+       paging.setPageSize(10);
+       paging.setTotalCount(countProjNotice);
+       model.addAttribute("paging", paging);
+  
 		return url;
+		
 	}
 
 	@RequestMapping("/teamMemberList")

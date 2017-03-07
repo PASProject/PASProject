@@ -289,67 +289,28 @@ color:#989898 !important;
                   
                   <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
-						<h3>NOTIFICATIONS</h3>
-                                        
-                      <!-- First Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>2 Minutes Ago</muted><br/>
-                      		   <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Second Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>3 Hours Ago</muted><br/>
-                      		   <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Third Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>7 Hours Ago</muted><br/>
-                      		   <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fourth Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>11 Hours Ago</muted><br/>
-                      		   <a href="#">Mark Twain</a> commented your post.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fifth Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>18 Hours Ago</muted><br/>
-                      		   <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                      		</p>
-                      	</div>
-                      </div>
+						<h3>프로젝트 공지사항</h3>
+                        <div class="col-lg-3 ds" style="height:500px; width:228px; border:1px solid black;">
+                         <table class="table table-hover">
+ 
 
-                       <!-- USERS ONLINE SECTION -->
+
+<c:forEach var="NoticeList" items="${NoticeList }" begin="${paging.beginNo}" end="${paging.endNo}">
+<tr>
+<td>${NoticeList.notice_Num }</td>
+
+<td><b><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></b></td>
+
+</tr>
+
+</c:forEach>
+</table>
+                        </div>                
+                      
+
+                       USERS ONLINE SECTION
 						<h3>TEAM MEMBERS</h3>
-                      <!-- First Member -->
+                      First Member
                       <div class="desc">
                       	<div class="thumb">
                       		<img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
@@ -360,7 +321,7 @@ color:#989898 !important;
                       		</p>
                       	</div>
                       </div>
-                      <!-- Second Member -->
+                      Second Member
                       <div class="desc">
                       	<div class="thumb">
                       		<img class="img-circle" src="assets/img/ui-sherman.jpg" width="35px" height="35px" align="">
@@ -371,7 +332,7 @@ color:#989898 !important;
                       		</p>
                       	</div>
                       </div>
-                      <!-- Third Member -->
+                      Third Member
                       <div class="desc">
                       	<div class="thumb">
                       		<img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
@@ -382,7 +343,7 @@ color:#989898 !important;
                       		</p>
                       	</div>
                       </div>
-                      <!-- Fourth Member -->
+                      Fourth Member
                       <div class="desc">
                       	<div class="thumb">
                       		<img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
@@ -393,7 +354,7 @@ color:#989898 !important;
                       		</p>
                       	</div>
                       </div>
-                      <!-- Fifth Member -->
+                      Fifth Member
                       <div class="desc">
                       	<div class="thumb">
                       		<img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
@@ -403,7 +364,7 @@ color:#989898 !important;
                       		   <muted>Available</muted>
                       		</p>
                       	</div>
-                      </div>
+                      </div> 
 
                         <!-- CALENDAR-->
                         <div id="calendar" class="mb">

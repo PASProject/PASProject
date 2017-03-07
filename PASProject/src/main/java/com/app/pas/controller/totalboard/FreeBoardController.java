@@ -140,7 +140,7 @@ public class FreeBoardController {
          @RequestParam(defaultValue = "") String number, @RequestParam(defaultValue = "") String content,
          @RequestParam(defaultValue = "") String title_Content, @RequestParam(defaultValue = "") String tag,
          FreeBoardVo freeboardVo ) throws SQLException {
-      
+      System.out.println("*#%&*#(&%*(@#%&*(@#%&*(23: "+page);
       String url = "freeBoard/freeBoardList";
       String delete = request.getParameter("delete");
       String modify = request.getParameter("modify");
