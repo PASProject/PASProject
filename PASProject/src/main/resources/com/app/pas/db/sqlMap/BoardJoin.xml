@@ -28,5 +28,10 @@
 	<select id = "selectBoardJoinByEmailBmNum" parameterClass="BoardJoin" resultClass="BoardJoin">
 		select * from board_join where bm_num = #bm_Num# and bj_mem_email = #bj_Mem_Email#
 	</select>
+	
+	<select id = "selectBoardJoinNotInMemberList" parameterClass="BoardJoin" resultClass="Member">
+		select pj.mem_Email,pj.mem_name from project_join pj where proj_num = #bj_Proj_Num# and pjj_per_num =1 and mem_email
+		not in (select b.bj_mem_email from board_join b where bm_num = #bm_Num#)
+	</select>
 </sqlMap>
 

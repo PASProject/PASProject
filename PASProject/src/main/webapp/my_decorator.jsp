@@ -67,6 +67,13 @@
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>	
 
 
+<!-- alert -->
+    <link href="<%=request.getContextPath()%>/resources/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.modal.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/alert.js"></script>
+    
 <!-- JS -->
  
 <script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
@@ -317,7 +324,7 @@ border-radius:0px;
 background-color:#f9f9f9;
 } */
 .table>tbody>tr>th{
-background-color:#f3f3f3;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
 border-top: 1px solid #888888;
 }
 
@@ -498,6 +505,10 @@ $(function(){
 					</li>
 					 <%--   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
 						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+=======
+					   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Email}','_blank',
+>>>>>>> refs/heads/hotfix03/07
 						 'resizable=no,width=350,height=450,top=400,left=1400')"><span class="glyphicon glyphicon-volume-up"></span></a>
 					   
 					   </li> --%>

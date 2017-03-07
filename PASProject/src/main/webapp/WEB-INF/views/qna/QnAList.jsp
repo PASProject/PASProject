@@ -67,6 +67,7 @@
 			<input name="qna_Pwd" style="border-bottom: 1px solid black; outline: none; 
 			border-left: none; border-right: none; border-top: none; background-color: transparent;" type="password" id= "qna_pwd">
 			<input type ="hidden" id="num" value="${qnaBoardVo.qb_Article_Num}">
+			<input type ="hidden" id="pass" value="${qnaBoardVo.qb_Password}">
 								
 							
 								
@@ -95,11 +96,16 @@
 							function pwd(){
 								   var val = $('#qna_pwd').val();
 								   var val2 = $('#num').val();
-								    alert(val)
-								    alert(val2)
+								   var pass = $('#pass').val();
+								
+								    if (pass==val ){
+									    location.href = "/pas/qna/QnADetail?qb_Article_Num="+val2+"&qna_Pwd="+val;
+									}else{
+										alert("비밀번호가 맞지않습니다. 다시 입력해주세요")
+									}
+								   
 								    
 								
-								    location.href = "/pas/qna/QnADetail?qb_Article_Num="+val2+"&pwd="+val;
 	
 							}
 						</script>

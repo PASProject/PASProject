@@ -56,5 +56,8 @@
 	select * from weekly_checklist
 	</select>
 	
+	<select id="selectScheduleCount" parameterClass="int" resultClass="int">
+	select count(*) from schedule_calendar where sc_proj_num = #proj_Num#
+	</select>
 
 </sqlMap>

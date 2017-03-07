@@ -121,6 +121,17 @@
 	 select * from member where mem_Email = #mem_Email#
 	</select>
 	
+	<select id="selectJoinToday" resultClass="int">
+   	SELECT count(*)
+	FROM MEMBER
+	WHERE (MEM_JOIN_DATE BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE,'D') + 8)
+	</select>
+	
+	<select id="selectJoinMemberToday" resultClass="Member">
+   	SELECT * FROM MEMBER
+	WHERE (MEM_JOIN_DATE BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE,'D') + 8)
+	</select>
+	
 	
 	
 </sqlMap>

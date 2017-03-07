@@ -18,12 +18,22 @@ border: 1px solid black;
 }
 
 
-
 @font-face {
 	font-family: 'NanumGothic';
-	src: url(resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
+	src: url(/pas/resources/fonts/NANUMBARUNGOTHIC.TTF) format('truetype');
+}
+@font-face {
+	font-family: 'FEDERALESCORTHALFITAL';
+	src: url(/pas/resources/fonts/FEDERALESCORTHALFITAL.TTF);
+}
+#title{
+	font-family:'NanumGothic';
 }
 
+#titleLogo{
+	font-family : 'FEDERALESCORTHALFITAL';
+	color:#337ab7;
+}
 body {
 	font-family: NanumGothic;
 }
@@ -46,21 +56,26 @@ body {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 <body id="body">
-<div class="container2">
+<h3 id="titleLogo" style="font-family : 'FEDERALESCORTHALFITAL' !important; text-align: right; margin-right: 46px;">
+			BLUEMINE
+		</h3>
+<div class="container2" style="width:800px;margin:auto;">
 	<!-- 로고는 일단 지저분하니까 빼자
 	<h3 style="text-align: center;">
 		<img style="width: 80px" src="resources/img/logo.png">
 	</h3> -->
 	<!-- <h2 style="text-align: center">회원가입</h2> -->
 
-	<div class="container container-fluid">
+		<div class="title">
+			<h2 style="font-weight:bold;">회원 가입</h2>
+			<hr style="color: rgb(216, 222, 226); margin-top: 5px;">
+		</div>
+	<div class="container container-fluid" style="padding-bottom:0px;">
 
 
 		<form class="form-horizontal" action="main/join" method="post" name="reg_form" id="reg_form">
 				<!-- Form Name -->
-				<legend> 회원가입 </legend>
-
-				<!-- Email -->
+						<!-- Email -->
 				<div class="form-group">
 					<label class="col-md-4 control-label">이메일 주소</label>
 					<div class="col-md-6  inputGroupContainer">

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.BoardJoinDao;
 import com.app.pas.dto.BoardJoinVo;
+import com.app.pas.dto.MemberVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class BoardJoinDaoImpl implements BoardJoinDao{
@@ -38,6 +39,13 @@ public class BoardJoinDaoImpl implements BoardJoinDao{
 			throws SQLException {
 		BoardJoinVo boardJoin = (BoardJoinVo) client.queryForObject("selectBoardJoinByEmailBmNum",boardJoinVo);
 		return boardJoin;
+	}
+
+	@Override
+	public List<MemberVo> selectBoardJoinNotInMemberList(BoardJoinVo boardJoinVo)
+			throws SQLException {
+		List<MemberVo> list =client.queryForList("selectBoardJoinNotInMemberList",boardJoinVo);
+		return list;
 	}
 
 

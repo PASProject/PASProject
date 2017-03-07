@@ -144,6 +144,7 @@
 		</form>
 
 
+
 		<c:choose>
 			<c:when test='${!empty freeBoardVo.mem_Email }'>
 				<script>

@@ -216,14 +216,33 @@ public class QnaController {
 	}
 
 	// 디테일 
-	@RequestMapping("/QnADetail")
+
+	@RequestMapping(value = "/QnADetail")
+
 	public String detailQna(@RequestParam String qb_Article_Num, Model model,
-			HttpSession session,String pwd, String num) throws NumberFormatException, SQLException {
+			HttpSession session,String qna_Pwd, String num) throws NumberFormatException, SQLException {
 		String url = "qna/QnADetail";
 		QnaBoardReplyVo qnaBoardReplyVo = null;
 
 		QnaBoardVo qnaBoardVo = qnaBoardService.selectQnaBoard(Integer
 				.parseInt(qb_Article_Num));
+		System.out.println("컨트롤러 debug : "+ qnaBoardVo);
+		String Qb_PWD = qnaBoardVo.getQb_Password();
+		
+		
+		System.out.println("Qb_PWD : "+ Qb_PWD);
+		System.out.println("qna_Pwd : "+ qna_Pwd);
+		
+		
+		
+		if (Qb_PWD == qna_Pwd || Qb_PWD.equals(qna_Pwd)){
+			System.out.println("if문이 잘 작동하는ㄴ지 ##################");
+			}
+		model.addAttribute("Qb_PWD", Qb_PWD);	
+		model.addAttribute("qnaBoardVo", qnaBoardVo);
+		
+		
+		
 		qnaBoardReplyVo = qnaBoardReplyService.selectQnaReply(Integer
 				.parseInt(qb_Article_Num));
 		// 조횟수
@@ -235,11 +254,10 @@ public class QnaController {
 
 			qnaBoardService.QnaBoardCount(Integer.parseInt(qb_Article_Num));
 		}
-		System.out.println("패스값  : "+ pwd);
 		
 		model.addAttribute("session_Email", session_Email);
 		model.addAttribute("qnaBoardReplyVo", qnaBoardReplyVo);
-		model.addAttribute("qnaBoardVo", qnaBoardVo);
+	
 
 		return url;
 	}

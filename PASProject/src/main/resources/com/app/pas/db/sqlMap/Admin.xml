@@ -22,5 +22,5 @@
    <update id="deleteAdmin" parameterClass="str">
       delete from member where admin_email=#admin_Email#
    </update>
-   
+
 </sqlMap>
