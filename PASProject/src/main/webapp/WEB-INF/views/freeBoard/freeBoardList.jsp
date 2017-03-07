@@ -119,7 +119,6 @@
             <button id = "ReadFrbPost" class="btn btn-default" type="submit">내가 쓴 글보기</button>
        </form>
 
-
             <c:choose>
                <c:when test='${!empty freeBoardVo.mem_Email }'>
                   <script>
