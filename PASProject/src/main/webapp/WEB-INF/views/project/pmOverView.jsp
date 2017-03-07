@@ -62,7 +62,7 @@ color:#989898 !important;
 <div class="row">
                   <div class="col-lg-9 main-chart">
                  
-                  	<div class="row mtbox">
+                  	<div class="row mtbox"  style="height: 180px;">
                   		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                   			<div class="box1">
 					  			<img id="menuIcon" src="<%=request.getContextPath() %>/resources/overview/img/multiple-users-silhouette2.png">
