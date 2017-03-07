@@ -220,7 +220,7 @@ form.registration select {
 
 	<fieldset>
 
-		<div class="captcha_wrap">
+		<div class="captcha_wrap" style="height:100px;">
 			<div class="captcha">숫자를 순서대로 나열해 주세요.</div>
 			<ul id="sortable" style="padding-left:15px;">
 				<li class="captchaItem">1</li>

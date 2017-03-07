@@ -27,7 +27,7 @@
    </update>
    
    <update id="deleteApply" parameterClass="Apply">
-      delete from apply where apply_num=#apply_Num# and mem_Email=#mem_Email#
+      delete from apply where proj_Num=#proj_Num# and mem_Email=#mem_Email#
    </update>
    
    
