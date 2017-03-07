@@ -23,6 +23,7 @@
 				        <th>게시판 타이틀</th>
 				        <th>생성자</th>
 				        <th>생성날짜</th>
+				        <th>게시글수</th>
 				        <th>비고</th>
 				      </tr>
 				    </thead>
@@ -90,8 +91,16 @@
 				$('#boardList').empty();
 				var dt="";
 				$.each(result,function(i){
-					dt += "<tr id='listItem' class='"+result[i].bm_Num+"'><td>"+result[i].bm_Title+"</td><td>"+result[i].bm_Mem_Email+"</td>"
-			        +"<td>"+result[i].bm_Create_Date+"</td><td><a href='#' onclick='delteBoard("+result[i].bm_Num+")'><span class='glyphicon glyphicon-remove' style='font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;'>"
+					var date = new Date(result[i].bm_Create_Date)
+                    var year = date.getFullYear();
+                    var month = (1 + date.getMonth());
+                    month = month >= 10 ? month : '0'+ month;
+                    var day = date.getDate();
+                    day = day >= 10 ? day : '0' + day;
+                    var fullD = year + '.' + month + '.'+ day;
+                    
+					dt += "<tr id='listItem' class='"+result[i].bm_Num+"'><td>"+result[i].bm_Title+"</td><td>"+result[i].bm_Mem_Name+"</td>"
+			        +"<td>"+fullD+"</td><td>"+result[i].bm_TotalCount+"</td><td><a href='#' onclick='delteBoard("+result[i].bm_Num+")'><span class='glyphicon glyphicon-remove' style='font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;'>"
 			        +"</span></a></td></tr>";   
 				})
 				$('#boardList').append(dt); 
@@ -152,8 +161,16 @@
 							$('#boardList').empty();
 							var dt=""
 							$.each(result,function(i){
+								var date = new Date(result[i].bm_Create_Date)
+			                    var year = date.getFullYear();
+			                    var month = (1 + date.getMonth());
+			                    month = month >= 10 ? month : '0'+ month;
+			                    var day = date.getDate();
+			                    day = day >= 10 ? day : '0' + day;
+			                    var fullD = year + '.' + month + '.'+ day;
+			                    
 								dt += "<tr id='listItem' class='"+result[i].bm_Num+"'><td>"+result[i].bm_Title+"</td><td>"+result[i].bm_Mem_Email+"</td>"
-						        +"<td>"+result[i].bm_Create_Date+"</td><td><a href='#' onclick='delteBoard("+result[i].bm_Num+")'><span class='glyphicon glyphicon-remove' style='font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;'>"
+						        +"<td>"+fullD+"</td><td>"+result[i].bm_TotalCount+"</td><td><a href='#' onclick='delteBoard("+result[i].bm_Num+")'><span class='glyphicon glyphicon-remove' style='font-size: 12px; margin-left: 5px; margin-right: 5px; color: red;'>"
 						        +"</span></a></td></tr>";  
 							})
 							$('#boardList').append(dt);  

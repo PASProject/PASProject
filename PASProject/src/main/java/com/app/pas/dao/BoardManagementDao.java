@@ -11,4 +11,5 @@ public interface BoardManagementDao {
  public List<BoardManagementVo> selectBoardList(int bm_Proj_Num) throws SQLException;
  public void deleteBoardManagement(int bm_Num) throws SQLException;
  public BoardManagementVo selectBoardByBmNum(int bm_Num) throws SQLException;
+ public int selectBoardCount(int bm_Num) throws SQLException;
 }

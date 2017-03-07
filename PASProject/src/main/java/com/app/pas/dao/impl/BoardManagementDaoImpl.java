@@ -46,4 +46,10 @@ public class BoardManagementDaoImpl implements BoardManagementDao {
 		return boardManagementVo;
 	}
 
+	@Override
+	public int selectBoardCount(int bm_Num) throws SQLException {
+		int resultCount = (Integer) client.queryForObject("selectBoardCount",bm_Num);
+		return resultCount;
+	}
+
 }

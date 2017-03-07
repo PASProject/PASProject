@@ -23,4 +23,5 @@ public class BoardManagementVo implements Serializable{
 	private int bm_Proj_Num;
 	@DateTimeFormat(pattern="yyy-MM-dd")
 	private Timestamp bm_Create_Date;
+	private int bm_TotalCount;
 }
