@@ -23,6 +23,10 @@
    <select id="selectBoardList" parameterClass="int" resultClass="BoardManagement">
    		select * from board_management where bm_proj_num = #bm_proj_num# order by bm_num
    </select>
+   <select id="selectBoardCount" parameterClass="int" resultClass="int">
+   	select count(*) from board_total where bm_Num=#bm_Num#
+   </select>
+   
    <update id="deleteBoardManagement" parameterClass="int">
    		delete from board_management where bm_num = #bm_Num#
    </update>

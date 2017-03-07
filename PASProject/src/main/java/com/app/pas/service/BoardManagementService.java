@@ -40,4 +40,9 @@ public class BoardManagementService {
 		BoardManagementVo boardManagementVo = boardManagementDao.selectBoardByBmNum(bm_Num);
 		return boardManagementVo;
 	}
+	
+	public int selectBoardCount(int bm_Num)	throws SQLException{
+		int resultCount = boardManagementDao.selectBoardCount(bm_Num);
+		return resultCount;
+	}
 }

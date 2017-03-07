@@ -53,7 +53,7 @@
 				<a href = "<%=request.getContextPath()%>
 					/notice/totalNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
 						${noticeList.ttnotice_Title}</a></td>
-				<td>이경희</td>
+				<td>관리자</td>
 				<td>
 				
 				${noticeList.ttnotice_Date}</td>

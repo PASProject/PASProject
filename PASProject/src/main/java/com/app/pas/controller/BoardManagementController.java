@@ -82,6 +82,10 @@ public class BoardManagementController {
 	public @ResponseBody List<BoardManagementVo> boardManagementList(HttpSession session) throws SQLException{
 		int proj_Num = Integer.parseInt((String) session.getAttribute("joinProj"));
 		List<BoardManagementVo> list = boardManagementService.selectBoardList(proj_Num);
+		for(BoardManagementVo x : list){
+			int result = boardManagementService.selectBoardCount(x.getBm_Num());
+			x.setBm_TotalCount(result);
+		}
 		return list;
 	}
 	
