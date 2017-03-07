@@ -87,6 +87,9 @@ body {
 }
 </style>
 
+ 
+
+
 
 
 <!-- Bootstrap Core CSS -->
@@ -96,7 +99,7 @@ body {
 
 
 <!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <%--  --%>
 
 
@@ -105,7 +108,12 @@ body {
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-
+    <%--  <link href="<%=request.getContextPath()%>/resources/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />--%>
+	
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/alert.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.modal.js"></script>
 <style>
 #mloader{
   position: fixed;
@@ -160,7 +168,7 @@ body {
                         	$('#mloader').show();
 											} else if (result == 0) {
 												
-												alert("아이디가 틀렸습니다");
+											    warningBox("아이디가 틀렸습니다");
 												
 												
 											} else if (result == 2) {
@@ -253,8 +261,8 @@ body {
 				<%@ include file="CAPTCHA.jsp"%>
 				<%-- <jsp:include page="CAPTCHA.jsp" /> --%>
 				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>
-			</div>
-			<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+			</div><%-- <!-- 
+			 --><script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script> --%>
 			<div id="2"  >
 				<form>
 					<div class="form-group">

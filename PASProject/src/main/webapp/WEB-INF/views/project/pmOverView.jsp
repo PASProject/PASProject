@@ -25,6 +25,35 @@
 <script src="<%=request.getContextPath() %>/resources/admin/js/base.js"></script> 
 
 <body>
+<script language="javascript">
+
+var i=0
+window.document.onkeydown = protectKey;
+function down() {
+        window.footer_cart.scrollBy(0,31)
+        return;
+}
+function up() {
+        window.footer_cart.scrollBy(0,-31)
+        return;
+}
+function protectKey()
+{
+        //새로고침을 막는 스크립트.. F5 번키..
+        if(event.keyCode == 116)
+        {
+                event.keyCode = 0;
+                return false;
+        }
+        //CTRL + N 즉 새로 고침을 막는 스크립트....
+        else if ((event.keyCode == 78) && (event.ctrlKey == true))
+        {
+                event.keyCode = 0;
+                return false;
+        }
+}
+
+</script>
 <div class="col-md-10" id="content">
         <div class="row">
           <div class="col-md-6">

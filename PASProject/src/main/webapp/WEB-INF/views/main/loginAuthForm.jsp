@@ -35,16 +35,36 @@
 <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <title></title>
 </head>
+<style>
+@font-face {
+	font-family: 'FEDERALESCORTHALFITAL';
+	src: url(<%=request.getContextPath()%>/resources/fonts/FEDERALESCORTHALFITAL.TTF);
+		
+} 
+#teamName{
+font-family : 'FEDERALESCORTHALFITAL';
+text-align : center;
+font-size : 45pt;
+color : white;
+}
+#out{
+    width: 600px;
+    margin: auto;
+    margin-top: 300px;
+}
+</style>
 <body>
 <form>
+
+<div class="content">
 <div>
-<div id="out" style="background-color:#ddd; padding:20px;"><h3 style="text-align: center; margin-right: 46px;">
-			<img style="width: 80px"
-				src="<%=request.getContextPath()%>/resources/img/logo.png"><br><br>
-		이메일 인증이 완료되셨습니다.<br></h3>
-		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/main/loginForm'";>초기화면</button></div>
+<div id="out" style="background-color:#3c5574; padding:20px;"><h3 style="text-align: center; margin-right: 46px;">
+			<h3><p id="teamName">BLUEMINE</p></h3><br><br>
+		<p style="font-size:20pt; color:white; text-align:center"><b>이메일 인증이 완료되셨습니다.</b></p>
+		<center><button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/main/loginForm'";>초기화면</button></center></div>
   
 
+</div>
 </div>
 </form>
 

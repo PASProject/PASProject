@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script src="<%=request.getContextPath()%>/resources/js/jquery-1.3.2.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/resources/js/jquery-1.3.2.js"></script> --%>
 <script src="<%=request.getContextPath()%>/resources/js/ui.core.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/ui.sortable.js"></script>
 <script type="text/javascript">
