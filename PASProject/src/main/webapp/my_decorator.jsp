@@ -317,7 +317,7 @@ border-radius:0px;
 background-color:#f9f9f9;
 } */
 .table>tbody>tr>th{
-background-color:#f3f3f3;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
 border-top: 1px solid #888888;
 }
 

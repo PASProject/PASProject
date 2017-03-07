@@ -13,6 +13,11 @@
 <title></title>
 </head>    
 <body>
+<style>
+#big_stats .stat{
+width:20% !important;
+}
+</style>
 <div class="main">
   <div class="main-inner">
     <div class="container">
@@ -27,13 +32,16 @@
               <div class="widget big-stats-container">
                 <div class="widget-content">
                   <div id="big_stats" class="cf">
-                     
-                   <div class="stat"><h2>회원 수</h2><span class="value" style="margin-top:10px;">${total_Mem }</span> </div>
-                    <!-- .stat -->
-                    <div class="stat"><h2>프로젝트 수</h2><span class="value">${total_proj }</span> </div>
+                     <div class="stat"><h3>오늘 방문자</h3><span class="value">${total_proj }</span> </div>
+                   
+                   <div class="stat"><h3>회원 수</h3><span class="value" style="margin-top:10px;">${total_Mem }</span> </div>
                     <!-- .stat -->
                     
-                    <div class="stat"><h2>미답변 수</h2><span class="value">${total_QnaN }</span> </div>
+                    
+                    <div class="stat"><h3>프로젝트 수</h3><span class="value">${total_proj }</span> </div>
+                    <!-- .stat -->
+                    
+                    <div class="stat"><h3>미답변 수</h3><span class="value">${total_QnaN }</span> </div>
                     <!-- .stat -->
                    
                   </div>
@@ -89,29 +97,40 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td> Fresh Web Development Resources </td>
+                    <td>오늘 가입한 회원 수</td>
                     <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
+                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                   <tr>
-                    <td> Fresh Web Development Resources </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td>오늘 생성된 프로젝트 수 </td>
+                    <td></td>
+                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
+                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                   <tr>
-                    <td> Fresh Web Development Resources </td>
+                    <td>오늘 종료된 프로젝트 수 </td>
                     <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
+                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                   <tr>
-                    <td> Fresh Web Development Resources </td>
+                    <td>총 방문자 수</td>
                     <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
+                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                   <tr>
-                    <td> Fresh Web Development Resources </td>
+                    <td> 누적 탈퇴 수</td>
                     <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
+                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                  </tr>
+                  <tr>
+                    <td> 활동 지수</td>
+                    <td> http://www.egrappler.com/ </td>
+                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
+                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
                   </tr>
                 
                 </tbody>

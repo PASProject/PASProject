@@ -33,6 +33,10 @@
 #menuIcon{
 margin-bottom:10px;
 }
+#big_stats .stat .value {
+  
+    line-height: 1.3em;
+}
 </style>
 
 
@@ -49,10 +53,10 @@ margin-bottom:10px;
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">PAS 관리자 페이지 </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+          <li class="dropdown"><a href="#" style="font-size:19px;"class="dropdown-toggle" data-toggle="dropdown"><i
                             class="icon-user"></i> admin <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="<%request.getContextPath();%>/pas/index">Logout</a></li>
+              <li><a style="font-size:15px;"href="<%request.getContextPath();%>/pas/index">Logout</a></li>
             </ul>
           </li>
         </ul>
