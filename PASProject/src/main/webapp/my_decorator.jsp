@@ -182,7 +182,9 @@ font-family: 'NanumGothic';
 	height: 50px;
 }
 
-
+th{
+vertical-align:middle !important;
+}
 td{
 vertical-align:middle !important;
 word-break:break-all;
@@ -334,7 +336,10 @@ margin-right:18px;
 background-color:#f9f9f9;
 } */
 
-
+.table>thead>tr>th{
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
+border-top: 1px solid #888888;
+}
 .table>tbody>tr>th{
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
 border-top: 1px solid #888888;
@@ -363,7 +368,6 @@ border-bottom : 1px solid #888888;
 
 #content {
 	-webkit-box-shadow :0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-	border:1px solid #ddd;
 	background-color: white;
 	margin-top: 25px;
 	min-height: 776px;

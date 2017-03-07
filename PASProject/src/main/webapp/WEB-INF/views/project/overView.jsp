@@ -13,8 +13,8 @@
 </head>
 
 <body>
-<div class="col-md-10" id="content" style="margin-top:8px !important;">
+
 <jsp:include page="pmOverView.jsp"></jsp:include>
-</div>
+
 </body>
 </html>
