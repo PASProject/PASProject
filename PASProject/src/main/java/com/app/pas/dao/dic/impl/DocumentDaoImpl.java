@@ -44,5 +44,10 @@ public class DocumentDaoImpl implements DocumentDao{
 		int result = client.update("updateDocumentName",documentVo);
 		return result;
 	}
+	@Override
+	public int selectCountDocumentByProjectNum(int proj_Num) throws SQLException {
+		int count = (Integer) client.queryForObject("selectCountDocumentByProjectNum", proj_Num);
+		return count;
+	}
 
 }

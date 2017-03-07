@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script src="<%=request.getContextPath()%>/resources/js/jquery-1.3.2.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/resources/js/jquery-1.3.2.js"></script> --%>
 <script src="<%=request.getContextPath()%>/resources/js/ui.core.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/ui.sortable.js"></script>
 <script type="text/javascript">
@@ -220,7 +220,7 @@ form.registration select {
 
 	<fieldset>
 
-		<div class="captcha_wrap">
+		<div class="captcha_wrap" style="height:100px;">
 			<div class="captcha">숫자를 순서대로 나열해 주세요.</div>
 			<ul id="sortable" style="padding-left:15px;">
 				<li class="captchaItem">1</li>

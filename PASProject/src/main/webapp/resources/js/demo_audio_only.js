@@ -1,3 +1,5 @@
+
+
 //
 //Copyright (c) 2016, Skedans Systems, Inc.
 //All rights reserved.
@@ -135,11 +137,6 @@ function addRoom(roomName, parmString, userAdded) {
 
 
 
-
-
-
-
-
 function convertListToButtons(roomName, occupants, isPrimary) {
 	clearConnectList();
 	var otherClientDiv = document.getElementById('otherClients');
@@ -152,6 +149,7 @@ function convertListToButtons(roomName, occupants, isPrimary) {
 		}(easyrtcid);
 
 		var label = document.createElement('text');
+		var name = document.getElementById("username").value;
 		label.innerHTML = easyrtc.idToName(easyrtcid);
 		button.appendChild(label);
 		otherClientDiv.appendChild(button);

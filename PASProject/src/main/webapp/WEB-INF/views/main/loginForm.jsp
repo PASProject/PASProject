@@ -24,16 +24,20 @@ body {
 }
 
 .title {
+	
 	max-width: 350px;
 	margin: auto;
+	margin-top:-20px !important;
 }
 
 .container {
+	
 	max-width: 350px;
 	outline: 1px solid rgb(216, 222, 226);
 	background-color: white;
-	margin-top: 30px;
+	margin-top: 20px;
 	padding: 30px;
+	padding-bottom:20px !important;
 }
 
 .dividercontainer {
@@ -64,7 +68,7 @@ body {
 	width: 100%;
 	height: 1px;
 	background: #ddd;
-	margin: 30px auto;
+	margin: 20px auto;
 }
 
 .divider:after {
@@ -85,7 +89,13 @@ body {
 	margin-left: -15px;
 	text-align: center;
 }
+/* .modal-title{
+background-color:#f1550e !important;
+} */
 </style>
+
+ 
+
 
 
 
@@ -96,7 +106,7 @@ body {
 
 
 <!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <%--  --%>
 
 
@@ -105,7 +115,12 @@ body {
 <!-- Bootstrap Core JavaScript -->
 <script
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-
+     <link href="<%=request.getContextPath()%>/resources/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/alert.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.modal.js"></script>
 <style>
 #mloader{
   position: fixed;
@@ -135,6 +150,13 @@ body {
 
 <div id="mloader"><div class="masterkey_blink">LOADING...</div></div>
 
+<script>
+$(function(){
+	$('.modal-text').html('<img src="/pas/resources/img/fail.png"/>');
+	
+})
+	
+</script>
 
 
 	<script type="text/javascript">
@@ -159,15 +181,15 @@ body {
                         location.href="<%=request.getContextPath()%>/main/myProject"
                         	$('#mloader').show();
 											} else if (result == 0) {
-												
-												alert("아이디가 틀렸습니다");
+										
+											    warningBox("아이디가 틀렸습니다");
 												
 												
 											} else if (result == 2) {
-												alert("비밀번호 오류입니다");
+												warningBox("비밀번호 오류입니다");
 												
 											} else if (result == 3) {
-												alert("인증되지않은계정입니다");
+												warningBox("인증되지않은계정입니다");
 											}
 										}
 									});
@@ -188,10 +210,10 @@ body {
 					},
 					success : function(result) {
 						if (result == "1") {
-							alert("해당 이메일로 임시 비밀번호를 발송하였습니다.");
+							successBox("해당 이메일로 임시 비밀번호를 발송하였습니다.");
 
 						} else {
-							alert("존재하지않는 이메일입니다.");
+							warningBox("존재하지않는 이메일입니다.");
 						}
 					}
                  
@@ -217,9 +239,9 @@ body {
 					success : function(data) {
 						if (data.id != null) {
 							if(data.id==""){
-								alert("회원정보가 맞지않습니다.");
+								warningBox("회원정보가 맞지않습니다.");
 							}else{
-							alert("해당 아이디는 "+data.id+"입니다.");
+								successBox("해당 아이디는 "+data.id+"입니다.");
 							}
 						}
 					}
@@ -247,14 +269,14 @@ body {
 			<hr style="color: rgb(216, 222, 226); margin-top: 5px;">
 		</div>
 
-		<div class="container">
+		<div class="container" style="padding-top:0px; margin-top:0px;">
 
 			<div id="1" >
 				<%@ include file="CAPTCHA.jsp"%>
 				<%-- <jsp:include page="CAPTCHA.jsp" /> --%>
 				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>
-			</div>
-			<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+			</div><%-- <!-- 
+			 --><script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script> --%>
 			<div id="2"  >
 				<form>
 					<div class="form-group">

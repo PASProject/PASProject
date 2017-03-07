@@ -28,6 +28,17 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
 <style>
+@font-face {
+	font-family: 'FEDERALESCORTHALFITAL';
+	src: url(<%=request.getContextPath()%>/resources/fonts/FEDERALESCORTHALFITAL.TTF);
+		
+} 
+#teamName{
+font-family : 'FEDERALESCORTHALFITAL';
+text-align : center;
+font-size : 45pt;
+color : white;
+}
 #out{
     width: 600px;
     margin: auto;
@@ -37,14 +48,15 @@
 </head>
 <body>
 <form>
+<div class="content">
 <div>
-<div id="out" style="background-color:#ddd; padding:20px;"><h3 style="text-align: center; margin-right: 46px;">
-			<img style="width: 80px"
-				src="<%=request.getContextPath()%>/resources/img/logo.png"><br><br>
-		회원가입이 완료되셨습니다.<br>로그인 진행을 위해서 가입하신 이메일 인증을 확인해주세요.</h3>
-		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/index.jsp'";>초기화면</button></div>
+<div id="out" style="background-color:#3c5574; padding:20px;"><h3 style="text-align: center; margin-right: 46px;">
+			<h3><p id="teamName">BLUEMINE</p></h3><br><br>
+		<p style="font-size:20pt; color:white; text-align:center"><b>회원가입이 완료되셨습니다.<br>이메일 인증을 확인해주세요.</b></p>
+		<center><input type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/index.jsp'"; value="초기화면"/></center></div>
   
 
+</div>
 </div>
 </form>
 <script>
