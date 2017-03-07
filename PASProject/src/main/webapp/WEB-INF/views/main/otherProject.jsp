@@ -72,162 +72,15 @@ $(function(){
 				<div id="warning" style="display: none;">
 					<h4 style="color: red">...</h4>
 				</div>
-				
-				<c:if test="${empty inviteList and empty applyList}">
-				
 				<div id="${projectVo.proj_Num}btnZone">
 								<input class="btn btn-block btn-default" type="button"
 									onclick="javascript:goApply(${projectVo.proj_Num})"
 									id="applyBtn" style="margin-right:20px"
 									
 									value="참가 신청하기" />
-							</div>		
-				</c:if>
-				
-				
-				<c:if test="${!empty applyList and empty inviteList}">
-				
-				<c:forEach var="applyList" items="${applyList }">
-				<c:if test="${projectVo.proj_Num == applyList}">
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input style="color:red" class="btn btn-block btn-default" type="button"
-									 value="참가 신청 대기중" />
-							</div>		
-				
-				
-				</c:if>
-				</c:forEach>
-				
-				
-				
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input class="btn btn-block btn-default" type="button"
-									onclick="javascript:goApply(${projectVo.proj_Num})"
-									id="applyBtn" value="참가 신청하기" />
-				
-				
 							</div>
-							</c:if>
-							
-							
-							
-							
-							
-							
-							<c:if test="${!empty inviteList and empty applyList}">
-				
-				<c:forEach var="inviteList" items="${inviteList }">
-				<c:if test="${projectVo.proj_Num == inviteList}">
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input style="color:blue" class="btn btn-block btn-default" type="button"
-									 value="이미 초대 신청이 전달 된 프로젝트" />
-							</div>		
-				
-				
-				</c:if>
-				</c:forEach>
-				
-				
-				
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input class="btn btn-block btn-default" type="button"
-									onclick="javascript:goApply(${projectVo.proj_Num})"
-									id="applyBtn" value="참가 신청하기" />
-				
-				
-							</div>
-							</c:if>
-							
-							
-					<c:if test="${!empty inviteList and !empty applyList}">	
-					
-					<c:forEach var="applyList" items="${applyList }">
-				<c:if test="${projectVo.proj_Num == applyList}">
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input style="color:red" class="btn btn-block btn-default" type="button"
-									 value="참가 신청 대기중" />
-							</div>		
-				
-				
-				</c:if>
-				</c:forEach>
-				
-				
-				<c:forEach var="inviteList" items="${inviteList }">
-				<c:if test="${projectVo.proj_Num == inviteList}">
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input style="color:blue" class="btn btn-block btn-default" type="button"
-									 value="이미 초대 신청이 전달 된 프로젝트" />
-							</div>		
-				
-				
-				</c:if>
-				</c:forEach>
-				
-			
-				
-				
-				<div id="${projectVo.proj_Num}btnZone">
-								<input class="btn btn-block btn-default" type="button"
-									onclick="javascript:goApply(${projectVo.proj_Num})"
-									id="applyBtn" value="참가 신청하기" />
-				
-				
-							</div>
-					
-					
-				
-				
-					
-					
-					</c:if>	
-							
-							
-									
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-	
-				
-				
-				
-				
-				
-				 
-<%-- 
-				 				<a href="#" onclick="goModal(${projectVo.proj_Num});"> <img
-					class="img-responsive" src="http://placehold.it/700x400"
-					data-toggle="modal" data-target="#${projectVo.proj_Num }"
-					data-keyboard="false" data-backdrop="static">
-				</a>  --%>
-				<%-- <h3>
-					<a href="#">${projectVo.proj_Name }</a>
-				</h3>
-				<p>${projectVo.proj_Content}</p> --%>
-				<%-- <c:if test="${status.count%3==0}"> --%>
-				<br>
-
-			</div>
-
-		</c:forEach>
+				</div>
+	</c:forEach>		 
 		<!-- /.row -->
 
 		
@@ -288,14 +141,26 @@ $(function(){
 						$('#'+proj_Num+'btnZone #applyBtn').css('color','red');
 						$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
 						}
+					},complete:function(){
+						$.ajax({
+							url:'checkInvite',
+							contentType:'application/json',
+							dataType:'json',
+							type:'post',
+							data:JSON.stringify(data),
+							success:function(result){
+								if(result!=0){
+									$('#'+proj_Num+'btnZone #applyBtn').val('초대 승락 대기중');
+									$('#'+proj_Num+'btnZone #applyBtn').css('color','blue');
+									$('#'+proj_Num+'btnZone #applyBtn').removeAttr('onclick');
+								}
+							}
+						})
 					}
 				});
 			}
 		});
 	} 
-	
-	
-	
  	function goApply(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
@@ -312,7 +177,8 @@ $(function(){
 				alert(data.p_Mem_Email);
 				 send(JSON.stringify(pushData)); 
 			},error:function(data){
-				alert("에러");
+				alert("처리중입니다.");
+				location.reload();
 			}
 		});
 	}

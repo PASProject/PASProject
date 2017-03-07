@@ -73,4 +73,9 @@ public class InviteService {
 		int count = inviteDao.selectInviteCount(mem_Email);
 		return count;
 	}
+	
+	public int selectCountProjInviteView(InviteVo inviteVo) throws SQLException{
+		int resultCount = inviteDao.selectCountProjInviteView(inviteVo);
+		return resultCount;
+	}
 }

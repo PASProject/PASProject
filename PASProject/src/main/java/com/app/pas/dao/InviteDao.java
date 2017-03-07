@@ -16,4 +16,5 @@ public interface InviteDao {
 	public void updateInviteCommitCheck(InviteVo inviteVo) throws SQLException;
 	public InviteVo selectInvite(int invite_Num) throws SQLException;
 	public int selectInviteCount(String mem_Email) throws SQLException;
+	public int selectCountProjInviteView(InviteVo inviteVo) throws SQLException;
 }

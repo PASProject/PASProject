@@ -65,4 +65,10 @@ public class InviteDaoImpl implements InviteDao{
 		int count = (Integer) client.queryForObject("selectInviteCount",mem_Email);
 		return count;
 	}
+
+	@Override
+	public int selectCountProjInviteView(InviteVo inviteVo) throws SQLException {
+		int resultCount = (Integer) client.queryForObject("selectCountProjInviteView",inviteVo);
+		return resultCount;
+	}
 }

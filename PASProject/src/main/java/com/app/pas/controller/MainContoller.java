@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.app.pas.dto.ApplyVo;
+import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberVo;
@@ -359,12 +360,8 @@ public class MainContoller {
 		}
 		
 		list = projectService.selectOtherProjectListById(projectVo);
-		List<Integer> list2= projectService.selectInviteProjNumByMemEmail(memberVo.getMem_Email());
-		List<Integer> list3= applyService.selectApplyById(memberVo.getMem_Email());
-		System.out.println(list2.toString()+"인바이트"+list3.toString());
 		model.addAttribute("otherProjectList", list);
-		model.addAttribute("inviteList",list2);
-		model.addAttribute("applyList", list3);
+	
 		return url;
 		
 	}
@@ -443,6 +440,12 @@ public class MainContoller {
 		return countMemApply;
 	}
 
+	@RequestMapping(value="checkInvite",method = RequestMethod.POST)
+	public @ResponseBody int checkInvite(@RequestBody InviteVo inviteVo, HttpSession session) throws SQLException{
+		inviteVo.setMem_Email(((MemberVo) session.getAttribute("loginUser")).getMem_Email());
+		int countProjInvite  = inviteService.selectCountProjInviteView(inviteVo);
+		return countProjInvite;
+	}
 	@RequestMapping(value = "/apply", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> mdlInvite(
 			@RequestBody Map<String, Object> map, HttpSession session)

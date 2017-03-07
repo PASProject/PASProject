@@ -53,4 +53,8 @@
    		select count(*) from proj_invite_view where mem_email = #mem_Email# and invite_Commit_check ='0'
    </select>
    
+   <select id="selectCountProjInviteView" parameterClass="Invite" resultClass="int">
+		select count(*) from proj_invite_View where invite_commit_check =0 and mem_Email = #mem_Email# and proj_num = #proj_Num#
+	</select>
+	
 </sqlMap>
