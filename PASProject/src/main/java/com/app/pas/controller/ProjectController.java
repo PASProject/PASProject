@@ -35,7 +35,6 @@ import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
-import com.app.pas.dto.ProjectLogVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.ScheduleCalendarCommand;
 import com.app.pas.dto.ScheduleCalendarVo;
@@ -987,12 +986,32 @@ public class ProjectController {
 	
 	@RequestMapping(value="projOut", method = RequestMethod.POST)
 	public @ResponseBody int ProjectOut(HttpSession session, ProjectJoinVo projectJoinVo,  InviteVo inviteVo, ApplyVo applyVo) throws SQLException{
+		int result = -1;
+		ProjectJoinVo proj =projectJoinService.selectProjectJoin(projectJoinVo);
+		
+		System.out.println(proj.toString()+"피알오제!");
+		if(proj.getPosition_Num()==1){
+		
+			result=2;
+		}else{
 		
 		projectJoinService.deleteProjectJoin(projectJoinVo);
 		inviteService.deleteInvite(inviteVo);
 		applyService.deleteApply(applyVo);
 		
+		result=1;
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="ProjectDelete",method=RequestMethod.POST)
+	public @ResponseBody int ProjectDelete(HttpSession session) throws SQLException{
+		int proj_Num = Integer.parseInt(session.getAttribute("joinProj").toString());
+		projectService.deleteProject(proj_Num);
+		
 		return 1;
+		
+		
 	}
 	
 }

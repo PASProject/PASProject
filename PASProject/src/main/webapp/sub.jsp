@@ -333,7 +333,7 @@
 							<div class="modal-dialog">
 
 								<!-- Modal content-->
-								<div class="modal-content">
+								<div class="modal-content" style="text-align:center">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h4 class="modal-title">
@@ -342,11 +342,12 @@
 									</div>
 									<div class="modal-body">
 										<H2>
-											<b>정말로 프로젝트 탈퇴를 하시겠습니까?</b>
+											<b>프로젝트 <span style="color:red">탈퇴</span>를 진행하겠습니까?</b>
 										</H2>
-										<button type="button" class="btn btn-default" id="projOut">예</button>
+										
+										<center><button type="button" class="btn btn-danger" id="projOut">예</button>
 										<button type="button" class="btn btn-default"
-											data-dismiss="modal">아니오</button>
+											data-dismiss="modal">아니오</button></center>
 									</div>
 
 
@@ -379,8 +380,18 @@
 			url:'projOut',
 			data:{"proj_Num":proj_Num,"mem_Email":mem_Email},
 			dataType:'JSON',
-			 success:function(){
+			 success:function(data){
+				 if(data=="1"){
 				 location.href="<%=request.getContextPath()%>/main/myProject";
+				 }
+				 else{
+					 location.href="<%=request.getContextPath()%>/project/pmOverView?proj_Num=${joinProj}";
+					 warningBox("팀장이기때문에 불가!");
+				
+					 
+					 
+					 
+				 }
 														}
 													})
 

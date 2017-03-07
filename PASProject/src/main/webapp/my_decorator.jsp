@@ -67,6 +67,13 @@
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>	
 
 
+<!-- alert -->
+    <link href="<%=request.getContextPath()%>/resources/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+	<link href="<%=request.getContextPath()%>/resources/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.modal.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/alert.js"></script>
+    
 <!-- JS -->
  
 <script type="text/javascript"src="<%=request.getContextPath()%>/resources/js/socket.js"></script>
@@ -492,12 +499,17 @@ $(function(){
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
 					<li><a style="text-decoration: none;margin-top:-2px;"
 						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
 						 'resizable=no,width=350,height=450,top=400,left=1400')"><img style="width:85%"src="<%=request.getContextPath() %>/resources/img/phone-2-32.png"></a>
 					</li>
 					 <%--   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
 						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+=======
+					   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Email}','_blank',
+>>>>>>> refs/heads/hotfix03/07
 						 'resizable=no,width=350,height=450,top=400,left=1400')"><span class="glyphicon glyphicon-volume-up"></span></a>
 					   
 					   </li> --%>
