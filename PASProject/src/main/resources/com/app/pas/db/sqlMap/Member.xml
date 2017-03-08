@@ -132,6 +132,32 @@
 	WHERE (MEM_JOIN_DATE BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE,'D') + 8)
 	</select>
 	
+	<select id="selectProjCreated_Count" resultClass="int">
+	SELECT count(*) FROM PROJECT
+	WHERE (PROJ_CREATED_DAY BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE,'D') + 8)
+	</select>
 	
+	<select id="selectVisitorNum" resultClass="int">
+	select count(*)
+	from member_log
+	</select>
+	
+	<select id="selectExit_count" resultClass="int">
+	select count(QUIT_CHECK)
+	from MEMBER
+	WHERE QUIT_CHECK = 'n'
+	</select>
+	
+	<select id="selectExit_MemList" resultClass="Member">
+	select *
+	from MEMBER
+	WHERE QUIT_CHECK = 'n'
+	</select>
 	
 </sqlMap>
+
+
+
+
+
+

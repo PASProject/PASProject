@@ -10,6 +10,7 @@ import com.app.pas.dao.ProjectJoinDao;
 import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.MemApplyViewVo;
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 
@@ -115,4 +116,11 @@ public class ProjectService {
 		List<ProjectJoinVo> list = projectDao.selectMemberToProjNum(proj_Num);
 		return list;
 	}
+	
+	public List<ProjectVo>selectProjCreateToday()throws SQLException{
+		List<ProjectVo>projCreateList = projectDao.selectProjCreateToday();
+		return projCreateList;
+		}
+	
+	
 }

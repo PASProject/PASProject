@@ -115,31 +115,33 @@ width:20% !important;
                     	})
                     </script>
                     </td>
-                    <td>${joinCount}명 </td>
+                    <td>${joinCount} 명 </td>
                   </tr>
                   <tr>
-                    <td>오늘 생성된 프로젝트 수 </td>
-                    <td></td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td>오늘 생성된 프로젝트 </td>
+                    <td>
+                     <c:forEach items="${projCreateList}" var="ProjectVo">
+                    ${ProjectVo.proj_Name},&nbsp;
+                    </c:forEach>
+                  
+                    </td>
+                    <td>${projCount} 개</td>
                   </tr>
-                  <tr>
-                    <td>오늘 종료된 프로젝트 수 </td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-                  </tr>
+                
                   <tr>
                     <td>총 방문자 수</td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td> ${visitorNum} 번</td>
+                    <td></td>
+                    
                   </tr>
                   <tr>
-                    <td> 누적 탈퇴 수</td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td> 총 누적 탈퇴회원</td>
+                    <td> 
+                    <c:forEach items="${exit_MemList}" var="memberVo">
+                    ${memberVo.mem_Name},&nbsp;
+                    </c:forEach>
+                    </td>
+                    <td> ${exitCount} 명</td>
                   </tr>
                   <tr>
                     <td> 활동 지수</td>

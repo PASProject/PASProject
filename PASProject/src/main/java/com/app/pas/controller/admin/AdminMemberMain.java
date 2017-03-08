@@ -19,6 +19,7 @@ import com.app.pas.dto.AdminCalendarCommand;
 import com.app.pas.dto.AdminCalendarVo;
 import com.app.pas.dto.MemberLogCommand;
 import com.app.pas.dto.MemberVo;
+import com.app.pas.dto.ProjectVo;
 import com.app.pas.service.AdminCalendarService;
 import com.app.pas.service.AdminService;
 import com.app.pas.service.MemberLogService;
@@ -56,16 +57,28 @@ public class AdminMemberMain {
 		int total_proj = projectService.selectProjectTotalCount();
 		int total_QnaN = qnaBoardService.selectNCount();
 		int joinCount = memberService.selectJoinToday();
+		int projCount = memberService.selectProjCreated_Count();
+		int visitorNum = memberService.selectVisitorNum();
+		int exitCount = memberService.selectExit_count(); 
 		MemberVo memberVo = new MemberVo();
 		
 		List<MemberVo> todayMemberList = new ArrayList<MemberVo>();
-		todayMemberList = memberService.selectJoinMemberToday();
+		List<ProjectVo> projCreateList = new ArrayList<ProjectVo>();
+		List<MemberVo> exit_MemList = new ArrayList<MemberVo>();
+ 		todayMemberList = memberService.selectJoinMemberToday();
+		projCreateList = projectService.selectProjCreateToday();
+		exit_MemList = memberService.selectExit_MemList();
 		
 		model.addAttribute("todayMemberList",todayMemberList);
 		model.addAttribute("total_QnaN",total_QnaN);
 		model.addAttribute("total_Mem",total_Mem);
 		model.addAttribute("total_proj",total_proj);
 		model.addAttribute("joinCount", joinCount);
+		model.addAttribute("projCount",projCount);
+		model.addAttribute("projCreateList",projCreateList);
+		model.addAttribute("visitorNum",visitorNum);
+		model.addAttribute("exitCount",exitCount);
+		model.addAttribute("exit_MemList",exit_MemList);
 		
 		String url = "admin/adminMain";
 		return url;

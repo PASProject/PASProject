@@ -37,4 +37,9 @@ public interface MemberDao {
     public MemberVo selectByMemEmail(String mem_Email) throws SQLException;
     public int selectJoinToday ()throws SQLException;
     public List<MemberVo> selectJoinMemberToday()throws SQLException;
+    public int selectProjCreated_Count()throws SQLException;
+    public int selectVisitorNum()throws SQLException;
+    public int selectExit_count()throws SQLException;
+    public List<MemberVo> selectExit_MemList()throws SQLException;
+ 
 }
