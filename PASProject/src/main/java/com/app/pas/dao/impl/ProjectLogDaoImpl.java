@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.ProjectLogDao;
 import com.app.pas.dto.MemberLogCommand;
+import com.app.pas.dto.ProjLogCommand;
 import com.app.pas.dto.ProjectLogVo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -29,8 +30,8 @@ public class ProjectLogDaoImpl implements ProjectLogDao {
 	}
 
 	@Override
-	public List<MemberLogCommand> selectWeekLogCount(int proj_Num) throws SQLException {
-		List<MemberLogCommand> list = client.queryForList("selectWeekLogCount",proj_Num);
+	public List<ProjLogCommand> selectWeekLogCount(int proj_Num) throws SQLException {
+		List<ProjLogCommand> list = client.queryForList("selectWeekLogCount",proj_Num);
 		return list;
 	}
 

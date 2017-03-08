@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +34,7 @@ import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberLogCommand;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
+import com.app.pas.dto.ProjLogCommand;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.ScheduleCalendarCommand;
@@ -411,6 +411,7 @@ public class ProjectController {
 			@RequestParam(value="page",defaultValue="1")String page,
 			@RequestParam String proj_Num,FreeBoardVo freeboardVo) throws NumberFormatException,
 			SQLException {
+		
 		String url = "project/overView";
 		
         List<NoticeVo> list = null;
@@ -453,26 +454,30 @@ public class ProjectController {
        paging1.setPageNo(Integer.parseInt(page));
        paging1.setPageSize(10);
        paging1.setTotalCount(joinMem);
-       System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@"+joinMem);
        model.addAttribute("paging1", paging1);
   
 		return url;
 		
 	}
 	@RequestMapping("overViewChart")
-	public @ResponseBody Map<String,Object> overViewChart(HttpSession httpSession ) throws SQLException{
-		int joinProj = (Integer)httpSession.getAttribute("joinProj");
-		System.out.println("**********@@@@@@@@@@@@@@"+joinProj);
-		/*List<MemberLogCommand> list =projectLogService.selectWeekLogCount(Integer.parseInt(proj_Num));
+	public @ResponseBody Map<String,Object> overViewChart(
+			HttpSession httpSession ) throws SQLException{
+		String proj_Num =(String) httpSession.getAttribute("joinProj");  
+		System.out.println("**********@@@@@@@@@@@@@@"+proj_Num);
+		List<ProjLogCommand> list =projectLogService.selectWeekLogCount(Integer.parseInt(proj_Num));
 		List<String> dayList = new ArrayList<String>();
-		List<Integer> dayCount = new ArrayList<Integer>();*/
+		List<Integer> dayCount = new ArrayList<Integer>();
 		Map<String,Object> totalMap = new HashMap<String, Object>();
-		/*for(MemberLogCommand x : list){
+		for(ProjLogCommand x : list){
 			dayList.add(x.getLog_Date());
-			dayCount.add(x.getMem_Log_Count());
+			dayCount.add(x.getProject_Log_Count());
 		}
 		totalMap.put("dt", dayList);
-		totalMap.put("count", dayCount);*/
+		totalMap.put("count", dayCount);
+		
+		System.out.println("######list#######"+list);
+		System.out.println("######dayList#######"+dayList);
+		System.out.println("######dayCount#######"+dayCount);
 		return totalMap;
 	}
 
