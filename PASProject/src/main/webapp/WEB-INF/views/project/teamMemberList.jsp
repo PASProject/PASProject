@@ -9,10 +9,22 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
+#teamImg {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
 
 </style>
 </head>
 <body>
+<style>
+#content > form > table > tbody > tr > td{
+padding-left:10px;
+padding-right:10px;
+}
+
+</style>
 
 <script type="text/javascript">
 
@@ -144,24 +156,20 @@
          style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
          프로젝트 인원<small> ${memPositionView.proj_Name}</small>
       </h3>
-      <form>
-         <table class="table" >
-            <tr>
-               <td class="col-md-2 text-center" >직책</td>
-               
-               <td class="col-md-2 text-center">이름</td>
-               <td class="col-md-2 text-center">이메일</td>
-               <td class="col-md-4 text-center">마지막 접속 시간</td>
-         </tr>
-            <c:forEach var="pmMemberList" items="${pmMemberList }">
-               <tr class="text-center">
-               <td class="text-center"><b>${pmMemberList.position_Name }</b></td>
-               <td class="text-center"><b><input type="button" class="btn btn-default" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/></b> </td>
-               <td><b>${pmMemberList.mem_Email }</b></td>
-               <td><b>${pmMemberList.proj_Log_Time}</b></td>
-               </tr>
-            </c:forEach>
-         </table>
+      <form style="padding:30px;">
+         
+
+               <ul>
+                           <c:forEach var="pmMemberList" items="${pmMemberList }">
+               <li style="float:left; padding:30px;"><img src="<%=request.getContextPath()%>/resources/upload/${pmMemberList.mem_Img }" style="border-radius: 50%; width:230px; height:230px;" onerror="this.src='<%=request.getContextPath()%>/resources/upload/human.jpg'">
+               <br><br><center><b><input type="button" class="btn btn-default" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/></b><br>
+               <b>${pmMemberList.proj_Log_Time}</b>
+               </center>
+               </li>
+               </c:forEach>
+               </ul>
+            
+        
          
          
          
@@ -184,7 +192,7 @@
 				style="border: 0px; padding-bottom: 0px; margin-top: 0px; margin-left: 10px;">
 				<img class="img-thumbnail"
 					src="#" 
-					id="mem_Img_Modal" style="width: 200px; height: 200px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
+					id="mem_Img_Modal" style="width: 200px; height: 200px; border-radius: 50%;" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
 
 			</h2>
 			<div id="bubble" style="height: auto; padding-left: 30px;">
