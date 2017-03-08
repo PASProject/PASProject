@@ -194,21 +194,65 @@
 		
 	</script>
 
-
-	<div class="col-md-10" id="content">
+<script>
+			$(function(){
+				
+				function numberWithCommas(x) {
+				    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				}
+				var a = $('#sumImp').text();
+				var aa = numberWithCommas(a);
+				var b = $('#sumExp').text();
+				var bb = numberWithCommas(b);
+				var c = $('#sum').text();
+				var cc = numberWithCommas(c);
+				
+				$('#sumImp').text(aa);
+				$('#sumExp').text(bb);
+				$('#sum').text(cc);
+				
+			})
+			
+			</script>
+			
+	<div class="col-md-10" id="content" style="padding-left:30px;padding-right:30px;">
 		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			프로젝트 회계<small>총 수입: ${sumImp}원 / 총 지출:${sumExp}원 / 총 계산 :${Sum }원
-				</small>
+			프로젝트 회계
 		</h3>
+			<table class="table" style="width:600px;">
+			<caption>1. 총 수입/지출 테이블</caption>
+			<tr>
+			<td >총 수입</td>
+			
+			<td>총 지출</td>
 		
+			<td>총 잔액</td>
+			</tr>
+			<tr>
+			<td id="sumImp">${sumImp}원</td>
+			
+			<td id="sumExp">${sumExp}원</td>
+		
+			<td id="sum">${Sum }원</td>
+			</tr>
+			
+			</table>
+			
+				
+			<button type="button" class="btn btn-default pull-right" data-toggle="modal"
+				data-target="#myModal">등록하기</button>
 			<table class="table">
+			
+			<caption>2. 일자별 수입/지출 테이블
+			
+			</caption>
 				<tr>
-					<td class="col-md-2 text-center">날짜</td>
-					<td class="col-md-2 text-center">수입</td>
-					<td class="col-md-2 text-center">지출</td>
-					<td class="col-md-2 text-center">내용</td>
-					<td class="col-md-2 text-center">총합</td>
+					<th class="text-center">날짜</th>
+					<th class=" text-center">수입</th>
+					<th class="text-center">지출</th>
+					<th class=" text-center">내용</th>
+					<th class="text-center">총합</th>
 
 				</tr>
 				<c:forEach var="AccountBoardList" items="${AccountBoardList }">
@@ -224,7 +268,7 @@
 
 					</tr>
 				</c:forEach>
-				<tr>
+			<%-- 	<tr>
 					<td colspan="5" align="center"><c:if
 							test="${paging.finalPageNo>0}">
 							<c:set value="${paging.prevPageNo}" var="prevPageNo" />
@@ -241,7 +285,7 @@
 								<a href="noticeList?page=${finalPageNo}">[다음]</a>
 							</c:if>
 						</c:if></td>
-				</tr>
+				</tr> --%>
 			</table>
 			
 			<!-- Modal -->
@@ -336,13 +380,7 @@
 
 								</div>
 							</div>
-			
-			
-
-
-			<button type="button" class="btn btn-default" data-toggle="modal"
-				data-target="#myModal">등록</button>
-
+		
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
