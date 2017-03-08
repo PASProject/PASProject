@@ -27,7 +27,7 @@
         <script>  
            
         var a=  "${wordSheetVo.wd_Content}";
-        alert(a);
+        
             CKEDITOR.replace( 'editor1' );
             CKEDITOR.instances['editor1'].setData(a);   
             
