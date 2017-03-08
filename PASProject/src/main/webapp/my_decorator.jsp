@@ -1386,7 +1386,7 @@ $(function(){
 														type : 'post',
 														success : function(
 																proj_Num) {
-															location.href = "../project/pmOverView?proj_Num="
+															location.href = "../project/overView?proj_Num="
 																	+ proj_Num;
 														},
 														error : function() {

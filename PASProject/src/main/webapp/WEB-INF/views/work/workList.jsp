@@ -20,7 +20,7 @@
 		<table class="table table-hover" id="fileList" style="border-bottom: 1px solid #ddd; ">
 		<c:if test="${empty documentList}">
 			<tr>
-				<td>생성한 파일이 없습니다.    <input type="button" class="btn btn-default" id="goCreateDocumentBtn" value="생성하기"></td>
+				<td>생성한 파일이 없습니다.    </td>
 			</tr>
 		</c:if>
 		<c:forEach items="${documentList}" var = "documentVo">
@@ -79,10 +79,6 @@
 		
 	<script>
 		$(function(){
-			
-			$('#goCreateDocumentBtn').on('click',function(){
-				location.href = '/pas/project/work/createWorkForm';
-			});
 			
 			$(document).on('click','#downloadFile',function(e){
 				e.preventDefault();
