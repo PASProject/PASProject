@@ -432,11 +432,18 @@ public class ProjectController {
 		int countAccount = accountService.selectAccountCount(Integer.parseInt(proj_Num));
 		int countSchedule = scheduleCalendarService.selectScheduleCount(Integer.parseInt(proj_Num));
 		int countProjNotice = noticeService.selectNoticeCount(Integer.parseInt(proj_Num));
+		int totalAccountExp = accountService.sumAccountExp(Integer.parseInt(proj_Num));
+		int totalAccountImp = accountService.sumAccountImp(Integer.parseInt(proj_Num));
+		int totalAccount = totalAccountImp-totalAccountExp;
+		
+		request.setAttribute("totalAccountExp", totalAccountExp);
+		request.setAttribute("totalAccountImp", totalAccountImp);
 		request.setAttribute("countAccount", countAccount);
 		request.setAttribute("joinMem", joinMem);
 		request.setAttribute("countDoc", countDoc);
 		request.setAttribute("countSchedule", countSchedule);
 		request.setAttribute("countProjNotice", countProjNotice);
+		request.setAttribute("totalAccount", totalAccount);
 		
 		freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
 		
