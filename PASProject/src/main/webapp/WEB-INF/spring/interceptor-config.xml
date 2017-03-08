@@ -14,7 +14,7 @@
 		<bean class="com.app.pas.commons.interceptor.LoginInterceptor" p:memberLogService-ref="MemberLogService"/>
 	</mvc:interceptor>
 	<mvc:interceptor>
-		<mvc:mapping path="/project/pmOverView"/>
+		<mvc:mapping path="/project/overView"/>
 		<bean class="com.app.pas.commons.interceptor.ProjectInterceptor" p:projectLogService-ref="ProjectLogService"/>
 	</mvc:interceptor>
 	

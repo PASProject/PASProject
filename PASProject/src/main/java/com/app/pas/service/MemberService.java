@@ -185,5 +185,26 @@ public class MemberService {
 			List<MemberVo> list  = memberDao.selectJoinMemberToday();
 			return list;
 		}
+		
+		public int selectProjCreated_Count()throws SQLException{
+			int projCount = memberDao.selectProjCreated_Count();
+			return projCount;
+		
+		}
+		
+		public int selectVisitorNum()throws SQLException{
+			int visitorNum =  memberDao.selectVisitorNum();
+			return visitorNum;
+		}	
+		
+		public int selectExit_count()throws SQLException{
+			int exitCount = memberDao.selectExit_count();
+			return exitCount;
+		}
+		
+		public List<MemberVo> selectExit_MemList()throws SQLException{
+			List<MemberVo> exit_MemList= memberDao.selectExit_MemList();
+			return exit_MemList; 
+		}
 
 }

@@ -187,4 +187,29 @@ public class MemberDaoImpl implements MemberDao {
 		return list;
 	}
 
+	@Override
+	public int selectProjCreated_Count() throws SQLException {
+		int projCount = (Integer)client.queryForObject("selectProjCreated_Count");
+		return projCount;
+	}
+
+	@Override
+	public int selectVisitorNum() throws SQLException {
+		int visitorNum = (Integer)client.queryForObject("selectVisitorNum");
+		return visitorNum;
+	}
+
+	@Override
+	public int selectExit_count() throws SQLException {
+		int exitCount = (Integer)client.queryForObject("selectExit_count");
+		return exitCount;
+	}
+
+	@Override
+	public List<MemberVo> selectExit_MemList() throws SQLException {
+		List<MemberVo>exit_MemList = client.queryForList("selectExit_MemList");
+		return exit_MemList;
+	}
+	
+	
 }

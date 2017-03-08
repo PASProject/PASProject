@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.app.pas.dto.MemPositionViewVo;
+import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 
@@ -23,5 +24,6 @@ public interface ProjectDao {
 	public void updateProjectColor(ProjectVo projectVo) throws SQLException;
 	public List<Integer> selectInviteProjNumByMemEmail(String mem_Email) throws SQLException; 
 	public List<ProjectJoinVo> selectMemberToProjNum(int proj_Num)throws SQLException;
+	public List<ProjectVo>selectProjCreateToday()throws SQLException;
 
 }

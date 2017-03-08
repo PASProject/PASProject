@@ -92,4 +92,12 @@
    <select id="selectProjectTotalCount" resultClass="int">
    	 select count(*) from Project
    </select>
+   
+   	<select id="selectProjCreateToday" resultClass="Project">
+	SELECT * FROM PROJECT
+	WHERE (PROJ_CREATED_DAY BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE,'D') + 8)
+	</select>
+   
+   
+   
 </sqlMap>
