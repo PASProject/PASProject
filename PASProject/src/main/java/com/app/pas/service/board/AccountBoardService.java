@@ -43,6 +43,7 @@ public class AccountBoardService {
 	
     public int sumAccountImp(int proj_Num) throws SQLException{
     	int result=accountBoardDao.sumAccountImp(proj_Num);
+    	
     	return result;
     }
     

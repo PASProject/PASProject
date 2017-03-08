@@ -47,19 +47,17 @@
 
 	<delete id="deleteAccountBoard" parameterClass="AccountBoard">
 		DELETE FROM ACCOUNT_BOARD WHERE ACC_NUM=#acc_Num# and Proj_Num=#proj_Num#
-
-
 	</delete>
 	
 	<select id="sumAccountImp" parameterClass="int" resultClass="int">
-	  SELECT SUM(ACC_IMP) 
+	  SELECT nvl(SUM(ACC_IMP),0) 
 	  FROM ACCOUNT_BOARD 
 	  WHERE PROJ_NUM = #proj_Num#
 	
 	</select>
 	
 	<select id="sumAccountExp" parameterClass="int" resultClass="int">
-	  SELECT SUM(ACC_EXP) 
+	   SELECT nvl(SUM(ACC_EXP),0)
 	  FROM ACCOUNT_BOARD 
 	  WHERE PROJ_NUM = #proj_Num#
 	
