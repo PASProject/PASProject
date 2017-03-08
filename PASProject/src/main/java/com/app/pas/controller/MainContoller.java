@@ -530,8 +530,7 @@ public class MainContoller {
 
 		if (!multipartFile.isEmpty()) {
 			/* String upload = request.getSession().Http */
-			String upload = new HttpServletRequestWrapper(request)
-					.getRealPath("/resources/upload");
+			String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
 			System.out.println(upload);
 			File file = new File(upload, System.currentTimeMillis() + "$$"
 					+ multipartFile.getOriginalFilename());
@@ -540,17 +539,20 @@ public class MainContoller {
 
 			model.addAttribute("title", request.getParameter("title"));
 			model.addAttribute("uploadPath", file.getAbsolutePath());
-			// MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+			MemberVo member = (MemberVo) session.getAttribute("loginUser");
+			
 			memberVo.setMem_Img(file.getName());
+			
 			memberVo.setMem_Email(((MemberVo) (session
 					.getAttribute("loginUser"))).getMem_Email());
-			session.removeAttribute("loginUser");
-			session.setAttribute("loginUser", memberVo);
+			/*session.removeAttribute("loginUser");*/
+			
 			request.setAttribute("memberVo", memberVo);
 			try {
 				memberService.updateMemberImg(memberVo);
+				member.setMem_Img(memberVo.getMem_Img());
+				session.setAttribute("loginUser", member);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return "main/c8";

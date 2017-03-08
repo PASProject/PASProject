@@ -31,7 +31,6 @@ import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
-import com.app.pas.dto.MemberLogCommand;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjLogCommand;
@@ -793,9 +792,6 @@ public class ProjectController {
 
 			multipartFile.transferTo(file);
 
-			System.out.println(upload);
-			System.out.println(file);
-			System.out.println(multipartFile);
 			model.addAttribute("title", request.getParameter("title"));
 			model.addAttribute("uploadPath", file.getAbsolutePath());
 
@@ -803,8 +799,6 @@ public class ProjectController {
 					.getAttribute("joinProj"));
 			projectVo.setProj_Img(file.getName());
 			projectVo.setProj_Num(proj_Num);
-
-			session.removeAttribute("joinProj");
 			projectService.updateProjectImg(projectVo);
 			return "project/c9";
 		}
@@ -814,7 +808,7 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/color", method = RequestMethod.POST)
-	public @ResponseBody String Color(@RequestBody String color, Model model,
+	public @ResponseBody ProjectVo Color(@RequestBody String color, Model model,
 			HttpSession session) throws SQLException {
 
 		ProjectVo projectVo = new ProjectVo();
@@ -823,14 +817,13 @@ public class ProjectController {
 		System.out.println(realColor);
 		String proj = (String) session.getAttribute("joinProj");
 		projectVo.setProj_Num(Integer.parseInt(proj));
-
 		projectVo.setProj_Color(realColor);
 
 		projectService.updateProjectColor(projectVo);
-
 		projectVo = projectService.selectProject(Integer.parseInt(proj));
+		session.setAttribute("joinProjectVo", projectVo);
 
-		return projectVo.getProj_Color();
+		return projectVo;
 
 	}
 
@@ -1048,6 +1041,22 @@ public class ProjectController {
 		return 1;
 		
 		
+	}
+	
+	@RequestMapping(value="checkAuthority",method = RequestMethod.POST)
+	public @ResponseBody boolean checkAuthority(HttpSession session) throws SQLException{
+		boolean flag = false;
+		String proj_Num = (String) session.getAttribute("joinProj");
+		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
+		ProjectJoinVo projectJoinVo = new ProjectJoinVo();
+		projectJoinVo.setProj_Num(Integer.parseInt(proj_Num));
+		projectJoinVo.setMem_Email(memberVo.getMem_Email());
+		ProjectJoinVo result = projectJoinService.selectProjectJoin(projectJoinVo);
+		int positionNum = result.getPosition_Num();
+		if(positionNum==1){
+			flag = true;
+		}
+		return flag;
 	}
 	
 }

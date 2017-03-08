@@ -730,10 +730,7 @@ $(function(){
 				type : 'POST',
 				success : 
 					function(response) {
-					console.log('success');
-					console.log(response);
 					 alert('사진이 등록되었습니다.'); 
-					
 					location.reload();
 					$('#profileImg').attr('src','<%=request.getContextPath()%>/resources/upload/${param.memberVo.mem_Img}');
 
