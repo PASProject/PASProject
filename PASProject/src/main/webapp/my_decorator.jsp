@@ -193,6 +193,16 @@ div {
 word-break:break-all;
 }
 
+.area-chart-open{
+width:865px !important;
+-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+
+
 .col-md-0 {
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
@@ -688,7 +698,7 @@ $(function(){
 				<div class="modal-header"
 					style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">사진을 등록하렴</h3>
+					<h3 class="modal-title" style="color:black !important;">사진을 등록해 주세요</h3>
 				</div>
 				<div class="modal-body">
 					<%-- <jsp:include page="WEB-INF/views/main/c8.jsp" /> --%>
@@ -720,10 +730,7 @@ $(function(){
 				type : 'POST',
 				success : 
 					function(response) {
-					console.log('success');
-					console.log(response);
 					 alert('사진이 등록되었습니다.'); 
-					
 					location.reload();
 					$('#profileImg').attr('src','<%=request.getContextPath()%>/resources/upload/${param.memberVo.mem_Img}');
 

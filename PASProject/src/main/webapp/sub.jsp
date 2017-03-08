@@ -64,7 +64,7 @@
 				<div class="modal-header"
 					style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">사진을 등록하렴</h3>
+					<h3 class="modal-title" style="color:black;">사진을 등록해 주세요</h3>
 				</div>
 				<div class="modal-body">
 					<%@ include file="WEB-INF/views/project/c9.jsp"%>
@@ -324,7 +324,7 @@
 					</tr>
 					<tr>
 						<td><a style="text-decoration: none;"
-							href="<%=request.getContextPath()%>/project/pmBoardManagementList">게시판 관리</a></td>
+							href="#" id="boardManagementBtn">게시판 관리</a></td>
 					</tr>
 					
 					<tr>
@@ -491,47 +491,6 @@
 	$(function() {
 		$('.cc').click(function() {
 			var $color = $(this).css('background-color');
-
-			var a = location.href;
-			if (a.indexOf("otherProject") == -1) {
-				$('#myProjectList').animate({
-					backgroundColor : $color
-				}, 'slow');
-			}
-			$('#navbar').animate({
-				backgroundColor : $color
-			}, 'slow');
-			$('#navbar2').animate({
-				backgroundColor : $color
-			}, 'slow');
-			$('#myProjectList').animate({
-				backgroundColor : $color
-			}, 'slow');
-			$('#otherProjectList').animate({
-				backgroundColor : $color,
-				'filter' : 'brightness(125%)'
-			}, 'slow');
-			$('#navbar2').animate({
-				boderBottomColor : $color
-			}, 'slow');
-
-			$('#droptoggle').click(function() {
-				$(this).css({
-					backgroundColor : $color
-				})
-			})
-			$('#droptoggle').animate({
-				backgroundColor : $color
-			}, 'slow');
-
-			$('#alarmMenu').animate({
-				backgroundColor : $color
-			}, 'slow');
-			$('#alarmMenu').click(function() {
-				$(this).css({
-					backgroundColor : $color
-				})
-			})
 			var b = $color.split("(")[1].split(")")[0];
 			b = b.split(",");
 
@@ -540,17 +499,57 @@
 				return (x.length == 1) ? "0" + x : x;
 			})
 			hex = hex.join("");
-
+			var resultColor ="";
 			$.ajax({
 				url : '/pas/project/color',
 				type : 'post',
 				data : hex,
-				datatype : 'json',
+				dataType : 'json',
 				success : function(result) {
+					resultColor=result.proj_Color
+					var a = location.href;
+					if (a.indexOf("otherProject") == -1) {
+						$('#myProjectList').animate({
+							backgroundColor :resultColor
+						}, 'slow');
+					}
+					$('#navbar').animate({
+						backgroundColor :resultColor
+					}, 'slow');
+					$('#navbar2').animate({
+						backgroundColor : resultColor
+					}, 'slow');
+					$('#myProjectList').animate({
+						backgroundColor :resultColor
+					}, 'slow');
+					$('#otherProjectList').animate({
+						backgroundColor : resultColor,
+						'filter' : 'brightness(125%)'
+					}, 'slow');
+					$('#navbar2').animate({
+						boderBottomColor : resultColor
+					}, 'slow');
 
+					$('#droptoggle').click(function() {
+						$(this).css({
+							backgroundColor : resultColor
+						})
+					})
+					$('#droptoggle').animate({
+						backgroundColor : resultColor
+					}, 'slow');
+
+					$('#alarmMenu').animate({
+						backgroundColor :resultColor
+					}, 'slow');
+					$('#alarmMenu').click(function() {
+						$(this).css({
+							backgroundColor : resultColor
+						})
+					})
 				},
 				error : function(result) {
-					alert('실패');
+					alert('천천히 시도하세요.');
 				}
 			})
 
@@ -605,7 +604,23 @@
 					 $('#boardManagementListTable').append(dt);
 				 }
 			 })
-		 })
+		 });
+		 
+		 $('#boardManagementBtn').on('click',function(e){
+			 e.preventDefault();
+			 $.ajax({
+				 dataType:'json',
+				 type:'post',
+				 url:'/pas/project/checkAuthority',
+				 success:function(result){
+					 if(result){
+						 location.href="/pas/project/pmBoardManagementList"
+					 }else{
+						 alert("권한이 없습니다.");
+					 }
+				 }
+			 })
+		 });
 	 })
 	function decrease() {
 		$('#content').removeClass('col-md-10').addClass('col-md-12');
@@ -614,6 +629,8 @@
 		$('.panel-body').hide();
 		$('.panel-title').css('text-align', 'center');
 		$('#resizingImg').hide();
+		$('#area-chart').addClass('area-chart-open');
+		
 		$('#resizingImgRight').show();
 		$('#resizing').one("click", increase);
 
@@ -623,10 +640,16 @@
 		$('#content').removeClass('col-md-12').addClass('col-md-10');
 		$('#submenu').removeClass('col-md-0').addClass('col-md-2');
 		$('.panel-body').show();
+		
 		$('.panel-title>a>span').show();
 		$('.panel-title').css({
 			'text-align' : 'left'
 		})
+		
+		
+		$('#area-chart').removeClass('area-chart-open');
+		
+		
 		$('#resizingImgRight').hide();
 		$('#resizingImg').show();
 		$('#resizing').one("click", decrease);

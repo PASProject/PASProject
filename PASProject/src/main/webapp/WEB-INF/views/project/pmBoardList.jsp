@@ -110,17 +110,8 @@
 										colspan="3">${pbList.pb_Content}</td>
 
 								</tr>
-								<tr>
-									<td colspan="3"><div style="font-size:">
-											<span class="glyphicon glyphicon-thumbs-up">좋아요</span>
-											&nbsp;&nbsp;<span class="glyphicon glyphicon-comment">댓글달기</span>
-										</div></td>
-								<tr>
-								</tr>
 
 							</table>
-
-
 							<div style="clear: both"></div>
 
 						</div>
