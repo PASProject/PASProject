@@ -38,7 +38,7 @@
 					contentType : 'application/json; charset=UTF-8',
 					data : JSON.stringify(dataList),
 					success : function(result) {
-						alert("등록완료");
+						
 						location.href="AccountBoardList";
 					}
 				});
@@ -76,7 +76,7 @@
 					contentType : 'application/json; charset=UTF-8',
 					data : JSON.stringify(dataList),
 					success : function(result) {
-						alert("수정완료");
+						
 						location.href="AccountBoardList";
 					}
 				});
@@ -113,7 +113,7 @@
 					contentType : 'application/json; charset=UTF-8',
 					data : JSON.stringify(dataList),
 					success : function(result) {
-						alert("삭제완료");
+						
 						location.href="AccountBoardList";
 					}
 				});

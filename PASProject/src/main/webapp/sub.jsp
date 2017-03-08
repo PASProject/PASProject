@@ -387,8 +387,9 @@
 				 location.href="<%=request.getContextPath()%>/main/myProject";
 				 }
 				 else{
-					 location.href="<%=request.getContextPath()%>/project/pmOverView?proj_Num=${joinProj}";
-					 warningBox("팀장이기때문에 불가!");
+					 
+					 warningBox("PL은 프로젝트 탈퇴가 불가능합니다.");
+					
 				
 					 
 					 

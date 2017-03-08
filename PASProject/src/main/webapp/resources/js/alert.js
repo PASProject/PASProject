@@ -62,7 +62,9 @@ function warningBox(txt){
         type: 'warning',
         title: 'Warning',
         text: txt,
-        center: false
+        center: false,
+        autoclose: true
+        
     });
 }
  
