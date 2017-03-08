@@ -24,7 +24,8 @@
 		WHERE  ROWNUM =1 AND MEM_EMAIL = #mem_Email# AND PROJ_NUM =#proj_Num#	
 	</select>
 	
-	<select id="selectWeekLogCount" resultClass="MemberLogCommand" parameterClass ="int">
+	<select id="selectWeekLogCount" resultClass="ProjLogCommand" parameterClass ="int">
+	select * from 
 	(select count(*) as project_Log_Count , to_char(proj_Log_Time) as log_Date
 		from project_log where proj_num = #proj_Num#
 		group by to_char(proj_Log_Time)
