@@ -112,6 +112,15 @@ public class ProjectDaoImpl implements ProjectDao {
 		List<ProjectJoinVo> list = client.queryForList("selectMemberToProjNum",proj_Num);
 		return list;
 	}
+	
+	
+	@Override
+	public List<ProjectVo> selectProjCreateToday() throws SQLException {
+		List<ProjectVo> projCreateList = client.queryForList("selectProjCreateToday");
+		return projCreateList;
+	}
+
+
 
 
 
