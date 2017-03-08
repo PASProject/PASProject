@@ -10,7 +10,7 @@
 <title></title>
 </head>
 <body>
-404 에러입니다
+505에러입니다
 <input type="button" value ="메인으로 가기" onclick="go_index()">
 <script>
 	function go_index() {
@@ -18,6 +18,5 @@
 		
 		}
 </script>
-
 </body>
 </html>
