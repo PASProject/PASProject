@@ -190,6 +190,8 @@ $(function(){
 												
 											} else if (result == 3) {
 												warningBox("인증되지않은계정입니다");
+											}else if(result ==4){
+												warningBox("탈퇴처리된 계정입니다");
 											}
 										}
 									});

@@ -25,14 +25,6 @@
 			ProjectNotice<small>프로젝트 공지사항</small>
 		</h3>
  
- 
- 
- 
- 
- 
-
-
-
 
 
 <table class="table table-hover">

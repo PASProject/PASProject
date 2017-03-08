@@ -126,7 +126,7 @@
 		
 
 
-   $(document).ready(function(){
+/*    $(document).ready(function(){
 	 
 	   var Imp = parseInt(${sumImp});
 	   var Exp = parseInt(${sumExp});
@@ -134,7 +134,7 @@
 	   var total = Imp-Exp;
 	   
 	   
-   })
+   }) */
    
    function show(acc_Num){
 			
@@ -198,7 +198,7 @@
 	<div class="col-md-10" id="content">
 		<h3 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			프로젝트 회계<small>총 수입: ${sumImp}원 / 총 지출:${sumExp}원
+			프로젝트 회계<small>총 수입: ${sumImp}원 / 총 지출:${sumExp}원 / 총 계산 :${Sum }원
 				</small>
 		</h3>
 		
