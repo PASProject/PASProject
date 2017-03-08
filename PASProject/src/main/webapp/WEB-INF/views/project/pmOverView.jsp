@@ -11,6 +11,9 @@
 <body>
 
 <style>
+.modal-title{
+color:black;
+}
 .ds h3{
     color: #ffffff !important;
     font-size: 14px !important;
@@ -292,8 +295,8 @@ function protectKey()
                           <h3>VISITS</h3>
                       </div>
                      <!-- <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div> -->
-               			<div class="widget-content">
-              				<canvas id="area-chart" class="chart-holder" height="250px;" width="740px;"> </canvas>
+               			<div class="widget-content" >
+              				<canvas id="area-chart" class="chart-holder" height="250px;" width="740px" style="width:100%"> </canvas>
              		 		<!-- /area-chart --> 
             			</div>
 					</div><!-- /row -->	
@@ -308,7 +311,7 @@ function protectKey()
                   <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
 						<h3>프로젝트 공지사항</h3>
-                   <div class="col-lg-3 ds" style="padding-left: 0px; height:415px; width:228px;">
+                   <div class="col-lg-3 ds" style="padding-left: 0px; height:415px; width:100%">
                      <table class="table">
 					   <c:forEach var="NoticeList" items="${NoticeList }" begin="${paging.beginNo}" end="${paging.endNo}">
 						<tr>
@@ -320,7 +323,7 @@ function protectKey()
                    </div>                
                
 						
-				   <div class="col-lg-3 ds" style="padding-left: 0px; height:auto; width:228px;">
+				   <div class="col-lg-3 ds" style="padding-left: 0px; height:auto; width:100%;">
 					     <h3>참가 중인 맴버</h3>
                       <table class="table">
  

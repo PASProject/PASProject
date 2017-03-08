@@ -64,7 +64,7 @@
 				<div class="modal-header"
 					style="background: linear-gradient(#FEFEFD, #F9F9F9 3%, #E5E5E5);">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">사진을 등록하렴</h3>
+					<h3 class="modal-title" style="color:black;">사진을 등록해 주세요</h3>
 				</div>
 				<div class="modal-body">
 					<%@ include file="WEB-INF/views/project/c9.jsp"%>
@@ -614,6 +614,8 @@
 		$('.panel-body').hide();
 		$('.panel-title').css('text-align', 'center');
 		$('#resizingImg').hide();
+		$('#area-chart').addClass('area-chart-open');
+		
 		$('#resizingImgRight').show();
 		$('#resizing').one("click", increase);
 
@@ -623,10 +625,16 @@
 		$('#content').removeClass('col-md-12').addClass('col-md-10');
 		$('#submenu').removeClass('col-md-0').addClass('col-md-2');
 		$('.panel-body').show();
+		
 		$('.panel-title>a>span').show();
 		$('.panel-title').css({
 			'text-align' : 'left'
 		})
+		
+		
+		$('#area-chart').removeClass('area-chart-open');
+		
+		
 		$('#resizingImgRight').hide();
 		$('#resizingImg').show();
 		$('#resizing').one("click", decrease);
