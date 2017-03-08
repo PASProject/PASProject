@@ -124,6 +124,10 @@
 <%--tooltip 관련부분 --%>
 
 <style>
+#cke_1_contents{
+min-height:700px !important;
+
+}
 .member-info{
 border-radius:3px;
 border:1px solid #ddd;
@@ -154,9 +158,12 @@ width:100%;
 a{
 color:black;
 }
+#accordion > div > div.panel-heading > h4 > a:hover{
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
 a:hover{
 text-decoration:none !important;
-text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+
 }
 
 .modal-header{
@@ -380,7 +387,9 @@ border-bottom : 1px solid #888888;
 	-webkit-box-shadow :0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 	background-color: white;
 	margin-top: 25px;
-	min-height: 776px;
+	min-height:660px;
+	height:auto;
+	padding-bottom:20px;
 	margin-bottom: 5%;
 }
 
@@ -435,15 +444,15 @@ $(function(){
 <title>최종!</title>
 <body>
 
-		
-		
-	<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
-	<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
-	</a>
-
+	
 	<header>
 
-
+		<%-- <c:if test="${sessionScope.joinProj }">
+		<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
+		<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
+		</a>
+		</c:if> --%>
+	
 		<!-- Navigation -->
 		<div class="background-color" style="height: auto;">
 

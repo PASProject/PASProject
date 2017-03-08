@@ -18,11 +18,20 @@
 
 </head>
 <body>
-	<br>
-	<br>
-	<form action="myPostBoard" method="post">
-	<div class="container">
+<script>
+		$(function() {
+			var input = document.getElementsByName('joinProj');
+			var joinProj = input[0].value;
 
+			if (joinProj != '') {
+				$('.Message').removeClass('container')
+						.addClass('col-md-10');
+			}
+		})
+	</script>
+	
+	<form action="myPostBoard" method="post">
+	<div class="container Message" id="content">
 		<h3>${sessionMem_Name} 님의 게시글 목록</h3>
 
 		<br>

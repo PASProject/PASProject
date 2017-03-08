@@ -217,9 +217,12 @@
 			
 	<div class="col-md-10" id="content" style="padding-left:30px;padding-right:30px;">
 		<h3 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
+			style="    margin-left: -20px;PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><img
+					src="<%=request.getContextPath()%>/resources/img/piggy-bank.png">&nbsp;
 			프로젝트 회계
 		</h3>
+		
+		<jsp:include page="test.jsp"></jsp:include>
 			<table class="table" style="width:600px;">
 			<caption>1. 총 수입/지출 테이블</caption>
 			<tr>
@@ -242,6 +245,11 @@
 				
 			<button type="button" class="btn btn-default pull-right" data-toggle="modal"
 				data-target="#myModal">등록하기</button>
+				
+				
+				<fieldset>asdfafs
+				<div style="width:100px; height:100px; border-radius:50%; border:1px solid black">asdf</div>
+				</fieldset>
 			<table class="table">
 			
 			<caption>2. 일자별 수입/지출 테이블
@@ -251,7 +259,7 @@
 					<th class="text-center">날짜</th>
 					<th class=" text-center">수입</th>
 					<th class="text-center">지출</th>
-					<th class=" text-center">내용</th>
+					<th class="text-center">내용</th>
 					<th class="text-center">총합</th>
 
 				</tr>
@@ -259,8 +267,7 @@
 					<tr>
 						<td class="text-center">
 						<button type="button"  class="btn btn-default" onclick="show(${AccountBoardList.acc_Num})">
-                        <fmt:formatDate pattern="yyyy-MM-dd" 
-            value="${AccountBoardList.acc_Date}" /></button></td>
+                        <fmt:formatDate pattern="yyyy-MM-dd" value="${AccountBoardList.acc_Date}" /></button></td>
 						<td class="text-center"><b>${AccountBoardList.acc_Imp }</b></td>
 						<td class="text-center"><b>${AccountBoardList.acc_Exp }</b></td>
 						<td class="text-center"><b>${AccountBoardList.acc_Content }</b></td>

@@ -19,8 +19,9 @@
         
     </head>
     <body>
-    <div class="col-md-10" id="content">
-    <input type="button" value="생성하기" id="createWordSheetBtn" class = "btn btn-default">
+    <div class="col-md-10" id="content" style="padding-left:5px; padding-right:5px; padding-top:10px; padding-bottom:10px;">
+    <div style="text-align:right;">
+    <input style="margin-bottom:10px; "type="button" value="생성하기" id="createWordSheetBtn" class = "btn btn-default "></div>
         <textarea name="editor1"></textarea>
         <script>
             CKEDITOR.replace( 'editor1' );

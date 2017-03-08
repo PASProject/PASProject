@@ -42,7 +42,9 @@
 <!-- 		<div class="col-sm-3 col-md-3"> -->
 
 <div class="panel-group" id="accordion">
-
+<a id="resizing" href="#collapseEight"><img id="resizingImg" src="<%=request.getContextPath() %>/resources/img/left.png">
+		<img id="resizingImgRight" style="display:none;"src="<%=request.getContextPath() %>/resources/img/right.png">
+		</a>
 
 
 	<%--프로젝트 이미지 수정해야함 --%>
@@ -215,7 +217,7 @@
 					<tr>
 						<td><a
 							href="<%=request.getContextPath()%>/project/work/workList">파일리스트</a>
-							<span class="label label-success">New</span></td>
+							</td>
 					</tr>
 					<tr>
 						<td><a href="/pas/project/work/spreadSheetForm">스프레드시트 생성</a></td>
@@ -274,7 +276,7 @@
 			<h4 class="panel-title">
 				<a style="text-decoration: none;"
 					href="<%=request.getContextPath()%>/project/AccountBoardList"><img
-					src="<%=request.getContextPath()%>/resources/img/cash.png"><span>&nbsp;&nbsp;&nbsp;프로젝트
+					src="<%=request.getContextPath()%>/resources/img/piggy-bank.png"><span>&nbsp;&nbsp;&nbsp;프로젝트
 						회계</span></a>
 			</h4>
 		</div>
@@ -631,6 +633,12 @@
 		$('#resizingImg').hide();
 		$('#area-chart').addClass('area-chart-open');
 		
+		
+		$('#proj_Img').css({
+			'webkit-box-shadow': 'none'
+		})
+		
+		
 		$('#resizingImgRight').show();
 		$('#resizing').one("click", increase);
 
@@ -645,7 +653,9 @@
 		$('.panel-title').css({
 			'text-align' : 'left'
 		})
-		
+		$('#proj_Img').css({
+			'webkit-box-shadow' : '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)'
+		})
 		
 		$('#area-chart').removeClass('area-chart-open');
 		

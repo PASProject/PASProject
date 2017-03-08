@@ -17,17 +17,17 @@
 </head>
 <body>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/spreadSheetSocket.js"></script>
-<div class="col-md-10" id="content" style=" padding-left: 0px;
-    padding-right: 0px;
+<div class="col-md-10" id="content" style=" padding-left: 5px;
+    padding-right: 5px;
     background-color: white;
     border: 0px solid black;">
     <h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			SpreadSheet
 			<small>&nbsp;&nbsp;&nbsp;
-				<input type="button" value="저장하기" id="saveDataBtn" class="btn btn-default">
-				<input type="button" value="전체화면" id="fullScreenBtn" class=" btn btn-default">
-				<input type="button" value="돌아가기" id="goBackBtn" class="btn btn-default">
+				<input type="button" value="돌아가기" id="goBackBtn" class="btn btn-default pull-right">
+				<input style="margin-right:5px;" type="button" value="전체화면" id="fullScreenBtn" class=" btn btn-default pull-right">
+				<input style="margin-right:5px;" type="button" value="저장하기" id="saveDataBtn" class="btn btn-default pull-right">
 			</small>
 		</h2><br>
 		<div style="text-align: right" id="joinMemberZone"></div>
