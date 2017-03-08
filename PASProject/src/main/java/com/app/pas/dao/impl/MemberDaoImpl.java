@@ -210,6 +210,17 @@ public class MemberDaoImpl implements MemberDao {
 		List<MemberVo>exit_MemList = client.queryForList("selectExit_MemList");
 		return exit_MemList;
 	}
+
+	@Override
+	public int selectTodayVisitorCount() throws SQLException {
+		int todayVisitorCount = (Integer)client.queryForObject("selectTodayVisitorCount");
+		return todayVisitorCount;
+	}
 	
+	@Override
+	public int selectVisitThisWeek() throws SQLException {
+		int visitThisWeekCount = (Integer)client.queryForObject("selectVisitThisWeek");
+		return visitThisWeekCount;
+	}
 	
 }

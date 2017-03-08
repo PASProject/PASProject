@@ -32,7 +32,7 @@ width:20% !important;
               <div class="widget big-stats-container">
                 <div class="widget-content">
                   <div id="big_stats" class="cf">
-                     <div class="stat"><h3>오늘 방문자</h3><span class="value">${total_proj }</span> </div>
+                     <div class="stat"><h3>오늘 방문횟수</h3><span class="value"> ${todayVisitorCount}</span> </div>
                    
                    <div class="stat"><h3>회원 수</h3><span class="value" style="margin-top:10px;">${total_Mem }</span> </div>
                     <!-- .stat -->
@@ -144,10 +144,10 @@ width:20% !important;
                     <td> ${exitCount} 명</td>
                   </tr>
                   <tr>
-                    <td> 활동 지수</td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td> 이번주 방문자수</td>
+                    <td> ${visitThisWeekCount}명</td>
+                    <td> 지난주 방문자수 </td>
+                    <td> </td>
                   </tr>
                 
                 </tbody>

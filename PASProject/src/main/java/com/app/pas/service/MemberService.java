@@ -206,5 +206,16 @@ public class MemberService {
 			List<MemberVo> exit_MemList= memberDao.selectExit_MemList();
 			return exit_MemList; 
 		}
-
+		
+		public int selectTodayVisitorCount()throws SQLException{
+			int todayVisitorCount = memberDao.selectTodayVisitorCount();
+			return todayVisitorCount;
+		}
+		//오늘로부터 일주일 방문자수
+		public int selectVisitThisWeek()throws SQLException{
+		int	visitThisWeekCount = memberDao.selectVisitThisWeek();
+		return visitThisWeekCount;
+		}
+		
+			
 }

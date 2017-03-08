@@ -60,6 +60,8 @@ public class AdminMemberMain {
 		int projCount = memberService.selectProjCreated_Count();
 		int visitorNum = memberService.selectVisitorNum();
 		int exitCount = memberService.selectExit_count(); 
+		int todayVisitorCount = memberService.selectTodayVisitorCount();  //오늘 방문한 방문자수 
+		int visitThisWeekCount = memberService.selectVisitThisWeek(); //오늘로부터 일주일 방문자수 
 		MemberVo memberVo = new MemberVo();
 		
 		List<MemberVo> todayMemberList = new ArrayList<MemberVo>();
@@ -79,6 +81,8 @@ public class AdminMemberMain {
 		model.addAttribute("visitorNum",visitorNum);
 		model.addAttribute("exitCount",exitCount);
 		model.addAttribute("exit_MemList",exit_MemList);
+		model.addAttribute("todayVisitorCount",todayVisitorCount); //오늘 방문한 방문자수 
+		model.addAttribute("visitThisWeekCount",visitThisWeekCount);  //오늘로부터 일주일 방문자수 
 		
 		String url = "admin/adminMain";
 		return url;
