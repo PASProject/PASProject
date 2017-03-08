@@ -40,12 +40,45 @@ $(function(){
 					url:'selectMemberInfo',
 					data:JSON.stringify(dataList),
 					success:function(result){
+						var mem_Name = result.mem_Name;
+						
+						var date = new Date(result.mem_Recent_Project_Login)
+						var year = date.getFullYear();
+						var month = (1 + date.getMonth());
+						month = month >= 10 ? month : '0'+ month;
+						var day = date.getDate();
+						day = day >= 10 ? day : '0' + day;
+						var fullD = year + '/' + month + '/'+ day;
+						
+						
+						var data = "<a class='selftooltip' href='#' id='open'>"+mem_Name+"</a><br>"
+						+"<a class='selftooltip' href='#' id='open'>최근 접속일 : "+fullD+"</a>";
+						/* 
+						<table>
+						<tr>
+						<td>이름</td>
+						<td></td>
+						</tr>
+						<tr>
+						<td></td>
+						<td></td>
+						</tr>
+						</table>
+						 */
+						
+						
+						
+						$('#memberInfoZone').empty();
+						$('#memberInfoZone').append(data);
 						
 					}
-				})
-				
+						
+				});
 				$('.member-info').hide();
 				$('.member-info').css({
+					'box-shadow': '0 0 6px #666',
+					'border-radius' : '3px',
+					'background-color' : 'white',
 					'z-index':'9999',
 					'top' : e.pageY + 20,
 					'left' : e.pageX + 10,
@@ -64,11 +97,14 @@ $(function(){
 })
 	</script>
 
-		<div class="member-info" style="display: none;">
-			<a class="selftooltip"
+		<div class="member-info" style="display: none;" id="memberInfoZone">
+			<%-- <a class="selftooltip"
+				href="<%=request.getContextPath()%>/main/myProject" id="open">
+				</a><br>
+				<a class="selftooltip"
 				href="<%=request.getContextPath()%>/main/myProject" id="open">
 				ASDASDFASDFADFASDF
-				</a>
+				</a> --%>
 		</div>
 
 

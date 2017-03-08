@@ -817,9 +817,12 @@ public class MainContoller {
 		return true;
 	}
 	@RequestMapping(value="selectMemberInfo", method = RequestMethod.POST)
-	public void selectMemberInfo(@RequestBody ProjectLogVo projectLogVo,HttpSession session)throws SQLException{
+	public @ResponseBody Map<String,Object> selectMemberInfo(@RequestBody ProjectLogVo projectLogVo,HttpSession session)throws SQLException{
 		ProjectLogVo resultVo =projectLogService.selectLastProjectLogList(projectLogVo);
 		MemberVo memberVo = memberService.selectByMemEmail(projectLogVo.getMem_Email());
-	
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("mem_Name", memberVo.getMem_Name());
+		map.put("mem_Recent_Project_Login", resultVo.getProj_Log_Time());
+		return map;
 	}
 }
