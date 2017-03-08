@@ -560,8 +560,6 @@ $(function(){
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
 								<li><a href="<%=request.getContextPath()%>/main/messageReceiveList">쪽지함 보기</a></li>
-								<li><a href="#">내 업무</a></li>
-
 								<li><a
 									href="<%=request.getContextPath()%>/main/myPostBoard">내가
 										작성한 게시물</a></li>
@@ -798,9 +796,9 @@ $(function(){
 
 					
 					<button id="closeModal" type="button"
-						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
+						class="btn btn-default pull-right" style="margin-right:13px;" data-dismiss="modal">닫기</button>
 					<form name="exit" method="post">
-					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
+					<button id="delete" style="margin-left:14px;" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
 					</form>
 					<script>
 						$(document).ready(function() {

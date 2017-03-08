@@ -18,10 +18,6 @@
 	padding: 10px;
 }
 
-#projBtn {
-	margin-top: 15px;
-	margin-right: 15px;
-}
 </style>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
@@ -29,7 +25,11 @@
 
 
 <body>
-
+<style>
+i.glyphicon{
+margin-right:0px;
+}
+</style>
 	<!-- Page Header -->
 	<div class="row">
 		<div class="col-md-12">
@@ -39,12 +39,11 @@
 					src="<%=request.getContextPath() %>/resources/upload/${loginUser.mem_Img}"
 					id="profileImg" style="width: 80px; height: 80px" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
 <small><b>${loginUser.mem_Name }</b>님, 환영합니다.
-					<button class="btn btn-default btn-lg pull-right" id="projBtn">프로젝트
-						정보</button>
+					
 				</small>
 
 			</h2>
-			<div id="bubble" style="height: auto; padding-left: 30px;">
+			<div id="bubble" style="height: auto; padding-left: 30px; padding-top:30px;">
 				<div class="row">
 					<div id="1">
 						<form class="form-horizontal" id="update_form" >
@@ -89,7 +88,7 @@
 									비밀번호 <span id="null"
 									style="font-size: 12px; font-weight: normal; padding-left: 15px;">
 										올바른 비밀번호를 입력하세요 </span> <span id="newPwd" style="display: none;"
-									class="alert alert-success"> <strong>새 비밀번호를 작성해주세요.</strong>
+									class="alert alert-success"> <strong>새 비밀번호를 작성해주세요</strong>
 
 								</span> <span id="errPwd" style="display: none;"
 									class="alert alert-danger"> <strong>잘못된 비밀번호입니다.</strong>
@@ -179,7 +178,7 @@
 
 							</div>
 							<button class="btn btn-default pull-right" type="submit"
-						id="submit" style="margin-left: 5px;">정보 수정하기</button>
+						id="submit" style="margin-right:20px; margin-left: 5px;">정보 수정하기</button>
 						</form>
 						<script>
 	$(document)
@@ -269,18 +268,7 @@
 					</div>
 				</div>
 			</div>
-			<script>
-				$('#projBtn').on('click', function() {
-					if ($('#1').css('display') != 'none') {
-						$('#2').show().siblings('div').hide();
-						$('#projBtn').text('개인정보 보기');
-						$.ajax({})
-						} else if ($('#2').css('display') != 'none') {
-						$('#1').show().siblings('div').hide();
-						$('#projBtn').text('프로젝트 정보 보기');
-					}
-				});
-			</script>
+			
 		</div>
 
 	</div>
