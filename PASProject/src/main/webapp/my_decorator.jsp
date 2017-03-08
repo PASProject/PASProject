@@ -518,7 +518,7 @@ $(function(){
 					<ul class="nav navbar-nav navbar-right">
 
 					<li><a style="text-decoration: none;margin-top:-2px;"
-						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Email}','_blank',
 						 'resizable=no,width=350,height=450,top=400,left=1400')"><img style="width:85%"src="<%=request.getContextPath() %>/resources/img/phone-2-32.png"></a>
 					</li>
 					 <%--   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"
@@ -560,8 +560,6 @@ $(function(){
 									data-target="#myPageModal" data-keyboard="false"
 									data-backdrop="static">내 정보 수정</a></li>
 								<li><a href="<%=request.getContextPath()%>/main/messageReceiveList">쪽지함 보기</a></li>
-								<li><a href="#">내 업무</a></li>
-
 								<li><a
 									href="<%=request.getContextPath()%>/main/myPostBoard">내가
 										작성한 게시물</a></li>
@@ -795,9 +793,9 @@ $(function(){
 
 					
 					<button id="closeModal" type="button"
-						class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
+						class="btn btn-default pull-right" style="margin-right:13px;" data-dismiss="modal">닫기</button>
 					<form name="exit" method="post">
-					<button id="delete" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
+					<button id="delete" style="margin-left:14px;" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
 					</form>
 					<script>
 						$(document).ready(function() {

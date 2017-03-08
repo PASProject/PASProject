@@ -33,6 +33,7 @@ import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
+import com.app.pas.dto.ProjLogCommand;
 import com.app.pas.dto.ProjectJoinVo;
 import com.app.pas.dto.ProjectVo;
 import com.app.pas.dto.ScheduleCalendarCommand;
@@ -269,12 +270,13 @@ public class ProjectController {
 
 		List<NoticeVo> list = null;
 		MemPositionViewVo memPositionView = new MemPositionViewVo();
+		
 		HashMap map = new HashMap();
 		map.put("proj_Num", proj_Num);
 		map.put("mem_Email", memberVo.getMem_Email());
 
 		try {
-			list = noticeService.getNoticeList(Integer.parseInt(proj_Num));
+			list = noticeService.getNoticeList(Integer.parseInt(proj_Num));	
 			model.addAttribute("NoticeList", list);
 			memPositionView = noticeService.getNoticePosition(map);
 			session.setAttribute("memPositionView", memPositionView);
@@ -301,7 +303,7 @@ public class ProjectController {
 
 	}
 
-	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 湲��벐湲� POST
+	
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
 		String url = "redirect:/project/pm";
@@ -309,7 +311,6 @@ public class ProjectController {
 
 		noticeVo.setProj_Num(proj_Num);
 		
-
 		try {
 			noticeService.insertNotice(noticeVo);
 		} catch (SQLException e) {
@@ -331,7 +332,6 @@ public class ProjectController {
 
 	}
 
-	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �뵒�뀒�씪
 	@RequestMapping(value = "/pmNoticeDetail", method = RequestMethod.GET)
 	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
 			String notice_Num) {
@@ -373,7 +373,7 @@ public class ProjectController {
 
 	}
 
-	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �닔�젙 POST
+	
 	@RequestMapping(value = "/pmNoticeUpdate", method = RequestMethod.POST)
 	public String updateUpdate(NoticeVo noticeVo) {
 		String url = "redirect:/project/pm";
@@ -410,6 +410,7 @@ public class ProjectController {
 			@RequestParam(value="page",defaultValue="1")String page,
 			@RequestParam String proj_Num,FreeBoardVo freeboardVo) throws NumberFormatException,
 			SQLException {
+		
 		String url = "project/overView";
 		
         List<NoticeVo> list = null;
@@ -452,26 +453,30 @@ public class ProjectController {
        paging1.setPageNo(Integer.parseInt(page));
        paging1.setPageSize(10);
        paging1.setTotalCount(joinMem);
-       System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@"+joinMem);
        model.addAttribute("paging1", paging1);
   
 		return url;
 		
 	}
 	@RequestMapping("overViewChart")
-	public @ResponseBody Map<String,Object> overViewChart(HttpSession httpSession ) throws SQLException{
-		int joinProj = (Integer)httpSession.getAttribute("joinProj");
-		System.out.println("**********@@@@@@@@@@@@@@"+joinProj);
-		/*List<MemberLogCommand> list =projectLogService.selectWeekLogCount(Integer.parseInt(proj_Num));
+	public @ResponseBody Map<String,Object> overViewChart(
+			HttpSession httpSession ) throws SQLException{
+		String proj_Num =(String) httpSession.getAttribute("joinProj");  
+		System.out.println("**********@@@@@@@@@@@@@@"+proj_Num);
+		List<ProjLogCommand> list =projectLogService.selectWeekLogCount(Integer.parseInt(proj_Num));
 		List<String> dayList = new ArrayList<String>();
-		List<Integer> dayCount = new ArrayList<Integer>();*/
+		List<Integer> dayCount = new ArrayList<Integer>();
 		Map<String,Object> totalMap = new HashMap<String, Object>();
-		/*for(MemberLogCommand x : list){
+		for(ProjLogCommand x : list){
 			dayList.add(x.getLog_Date());
-			dayCount.add(x.getMem_Log_Count());
+			dayCount.add(x.getProject_Log_Count());
 		}
 		totalMap.put("dt", dayList);
-		totalMap.put("count", dayCount);*/
+		totalMap.put("count", dayCount);
+		
+		System.out.println("######list#######"+list);
+		System.out.println("######dayList#######"+dayList);
+		System.out.println("######dayCount#######"+dayCount);
 		return totalMap;
 	}
 
@@ -502,6 +507,9 @@ public class ProjectController {
 		if (list.isEmpty() != true) {
 			int Imp = accountService.sumAccountImp(proj_Num);
 			int Exp = accountService.sumAccountExp(proj_Num);
+			int Sum = Imp-Exp;
+			
+			model.addAttribute("Sum",Sum);
 			model.addAttribute("sumImp", Imp);
 			model.addAttribute("sumExp", Exp);
 		}
