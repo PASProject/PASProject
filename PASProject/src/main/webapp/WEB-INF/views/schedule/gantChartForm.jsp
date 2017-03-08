@@ -174,7 +174,7 @@ $(function(){
             	                    showWorkDays: false,
             	                    snap: false
             	          });
-        	        },2000);
+        	        },3000);
             	$('#modal-fullscreen').modal();
           });
           
