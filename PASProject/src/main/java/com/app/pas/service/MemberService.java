@@ -217,5 +217,11 @@ public class MemberService {
 		return visitThisWeekCount;
 		}
 		
+		//지지난주 
+		public int selectVisitLastWeek()throws SQLException{
+			int visitLastWeelCount = memberDao.selectVisitLastWeek();
+			return visitLastWeelCount;
+		}
+		
 			
 }
