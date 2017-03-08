@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.app.pas.dao.ProjectLogDao;
 import com.app.pas.dto.MemberLogCommand;
+import com.app.pas.dto.ProjLogCommand;
 import com.app.pas.dto.ProjectLogVo;
 
 public class ProjectLogService {
@@ -23,8 +24,8 @@ public class ProjectLogService {
 		ProjectLogVo resultVo = projectLogDao.selectLastProjectLogList(projectLogVo);
 		return resultVo;
 	}
-	public List<MemberLogCommand> selectWeekLogCount(int proj_Num) throws SQLException {
-		List<MemberLogCommand> list = projectLogDao.selectWeekLogCount(proj_Num);
+	public List<ProjLogCommand> selectWeekLogCount(int proj_Num) throws SQLException {
+		List<ProjLogCommand> list = projectLogDao.selectWeekLogCount(proj_Num);
 		return list;
 	}
 }

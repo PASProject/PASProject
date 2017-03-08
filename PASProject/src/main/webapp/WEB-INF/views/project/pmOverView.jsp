@@ -11,6 +11,20 @@
 <body>
 
 <style>
+.ds h3{
+    color: #ffffff !important;
+    font-size: 14px !important;
+    padding: 0 10px !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    margin: 0 !important;
+    background: rgba(68, 76, 87, 0.7) !important;
+    text-align: center !important;
+}
+#content > div > div.col-lg-9.main-chart > div.row.mtbox > div> div > h3{
+margin-top:10px;
+margin-bottom:0px;
+}
 .mtbox{
 margin-top:0px !important;
 }
@@ -83,7 +97,8 @@ function protectKey()
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.scrollTo.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.sparkline.js"></script>
-
+	<script src="<%=request.getContextPath() %>/resources/admin/js/chart.min.js" type="text/javascript"></script>
+	<script src="<%=request.getContextPath() %>/resources/admin/js/excanvas.min.js"></script> 
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
@@ -139,7 +154,7 @@ function protectKey()
                   	</div><!-- /row mt -->	
                   
                       
-                      <div class="row mt">
+                      <%-- <div class="row mt">
                       <!-- SERVER STATUS PANELS -->
                       	<div class="col-md-4 col-sm-4 mb">
                       		<div class="white-panel pn donut-chart">
@@ -155,7 +170,7 @@ function protectKey()
 								<script>
 									var doughnutData = [
 											{
-												value: 70,
+// 												value: 70,
 												color:"#68dff0"
 											},
 											{
@@ -210,8 +225,8 @@ function protectKey()
 
                     </div><!-- /row -->
                     
-                    				
-					<div class="row">
+                    				 --%>
+					<div class="row" style="margin-top:-20px;">
 						<!-- TWITTER PANEL -->
 						<div class="col-md-4 mb">
                       		<div class="darkblue-panel pn">
@@ -273,11 +288,14 @@ function protectKey()
 					
 					<div class="row mt">
                       <!--CUSTOM CHART START -->
-                      <div class="border-head">
+                      <div class="border-head" style="margin-top:-70px;">
                           <h3>VISITS</h3>
                       </div>
-                     <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
-               
+                     <!-- <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div> -->
+               			<div class="widget-content">
+              				<canvas id="area-chart" class="chart-holder" height="250px;" width="740px;"> </canvas>
+             		 		<!-- /area-chart --> 
+            			</div>
 					</div><!-- /row -->	
 					
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
@@ -302,7 +320,7 @@ function protectKey()
                    </div>                
                
 						
-				   <div class="col-lg-3 ds" style="padding-left: 0px; height:800px; width:228px;">
+				   <div class="col-lg-3 ds" style="padding-left: 0px; height:auto; width:228px;">
 					     <h3>참가 중인 맴버</h3>
                       <table class="table">
  
@@ -317,19 +335,7 @@ function protectKey()
 					  </table>
 				    </div>
 
-                        <!-- CALENDAR-->
-                        <div id="calendar" class="mb">
-                            <div class="panel green-panel no-margin">
-                                <div class="panel-body">
-                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
-                                        <div class="arrow"></div>
-                                        <h3 class="popover-title" style="disadding: none;"></h3>
-                                        <div id="date-popover-content" class="popover-content"></div>
-                                    </div>
-                                    <div id="my-calendar"></div>
-                                </div>
-                            </div>
-                        </div><!-- / calendar -->
+                        
                       
                   </div><!-- /col-lg-3 -->
               </div><! --/row --></div>
@@ -345,63 +351,97 @@ function protectKey()
 		}
 	})
 }); */
+$(document).ready(function() {  
+	$.ajax({  
+		dataType:'json',
+		url:'overViewChart', 
+		type:'post',
+		success:function(result){
+			var lineChartData = {
+			    labels: result.dt,
+			    datasets: [
+					{
+					    fillColor: "rgba(151,187,205,0.5)",
+					    strokeColor: "rgba(151,187,205,1)",
+					    pointColor: "rgba(151,187,205,1)",
+					    pointStrokeColor: "#fff",
+					    data: result.count
+					}
+				]
+			}
+			
+			var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
+		}
+	})
+	
 
-Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'World\'s largest cities per 2014'
-    },
-    subtitle: {
-        text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
-    },
-    xAxis: {
-        type: 'category',
-        labels: {
-            rotation: -45,
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
-        }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Population (millions)'
-        }
-    },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
-    },
-    series: [{
-        name: 'Population',
-        data: [
-            ['Shanghai', 23.7],
-            ['Lagos', 16.1],
-            ['Istanbul', 14.2],
-            ['Karachi', 14.0],
-            ['Mumbai', 12.5],
-            ['Moscow', 12.1]
-    ],
-        dataLabels: {
-            enabled: true,
-            rotation: -90,
-            color: '#FFFFFF',
-            align: 'right',
-            format: '{point.y:.1f}', // one decimal
-            y: 10, // 10 pixels down from the top
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
-        }
-    }]
-});
+	/* {
+	    fillColor: "rgba(220,220,220,0.5)",
+	    strokeColor: "rgba(220,220,220,1)",
+	    pointColor: "rgba(220,220,220,1)",
+	    pointStrokeColor: "#fff",
+	    data: [65, 59, 90, 81, 56, 55, 40]
+	}, */
+	
+	
+	
+	var barChartData = {
+	    labels: ["January", "February", "March", "April", "May", "June", "July"],
+	    datasets: [
+			{
+			    fillColor: "rgba(220,220,220,0.5)",
+			    strokeColor: "rgba(220,220,220,1)",
+			    data: [65, 59, 90, 81, 56, 55, 40]
+			},
+			{
+			    fillColor: "rgba(151,187,205,0.5)",
+			    strokeColor: "rgba(151,187,205,1)",
+			    data: [28, 48, 40, 19, 96, 27, 100]
+			}
+		]
+	
+	}    
+
+	
+	var calendar = $('#calendar').fullCalendar({
+	  header: {
+	    left: 'prev,next today',
+	    center: 'title',
+	    right: 'month,agendaWeek,agendaDay'
+	  },
+	  selectable: true,
+	  selectHelper: true,
+	  select: function(start, end, allDay) {
+	    var title = prompt('Insert your event title ');
+	    if (title) {
+	      calendar.fullCalendar('renderEvent',
+	        {
+	          title: title,
+	          start: start,
+	          end: end,
+	          allDay: allDay
+	        },
+	        true // make the event "stick"
+	      );
+	      var dataList ={'title':title,'start':start.setDate(start.getDate()+1),'end':end.setDate(end.getDate()+1),'allDay':allDay};
+	    	$.ajax({ 
+	    		contentType:'application/json',
+	    		type:'post',  
+	    		url:'adminInsertCal',
+	    		data:JSON.stringify(dataList)
+	    	}) 
+	    }
+	    calendar.fullCalendar('unselect');
+	  },
+	  editable: true,
+	  eventSources:[{
+		  url : "adminCalendarList",
+		  type:"post"
+	  }]  
+	  
+	});
+});  
+
 
 </script>
 </body>
