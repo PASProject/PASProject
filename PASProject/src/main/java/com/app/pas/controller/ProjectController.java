@@ -32,6 +32,7 @@ import com.app.pas.dto.ApplyVo;
 import com.app.pas.dto.InviteVo;
 import com.app.pas.dto.MemPositionViewVo;
 import com.app.pas.dto.MemberCommandVo;
+import com.app.pas.dto.MemberLogCommand;
 import com.app.pas.dto.MemberVo;
 import com.app.pas.dto.ProjInviteViewVo;
 import com.app.pas.dto.ProjectJoinVo;
@@ -48,6 +49,7 @@ import com.app.pas.dto.dic.GantChartCommand;
 import com.app.pas.dto.dic.GantChartVo;
 import com.app.pas.service.ApplyService;
 import com.app.pas.service.InviteService;
+import com.app.pas.service.MemberLogService;
 import com.app.pas.service.MemberService;
 import com.app.pas.service.PositionService;
 import com.app.pas.service.ProjectJoinService;
@@ -92,6 +94,8 @@ public class ProjectController {
 	ApplyService applyService;
 	@Autowired
 	FreeBoardService freeBoardService;
+	@Autowired
+	MemberLogService memberLogService;
 	
 	@Autowired
 	GantChartService gantChartService;
@@ -411,13 +415,12 @@ public class ProjectController {
 			SQLException {
 		String url = "project/overView";
 		
-		
-		
-        
         List<NoticeVo> list = null;
+        List<MemPositionViewVo> joinmember = null;
         list = noticeService.getNoticeList(Integer.parseInt(proj_Num));
         model.addAttribute("NoticeList", list);
-        
+        joinmember = projectService.selectMemPositionViewListByProjNum(Integer.parseInt(proj_Num));
+        model.addAttribute("joinmember", joinmember);
 		List<FreeBoardVo> freeBoardList = new ArrayList<FreeBoardVo>();
 	
 		session.setAttribute("joinProj", proj_Num);
@@ -438,7 +441,7 @@ public class ProjectController {
 		
 		freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
 		
-		  model.addAttribute("freeBoardList", freeBoardList);
+		model.addAttribute("freeBoardList", freeBoardList);
 	
 		session.setAttribute("joinProjectVo", projectVo);
 		
@@ -447,9 +450,32 @@ public class ProjectController {
        paging.setPageSize(10);
        paging.setTotalCount(countProjNotice);
        model.addAttribute("paging", paging);
+       
+       Paging paging1 = new Paging();
+       paging1.setPageNo(Integer.parseInt(page));
+       paging1.setPageSize(10);
+       paging1.setTotalCount(joinMem);
+       System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@"+joinMem);
+       model.addAttribute("paging1", paging1);
   
 		return url;
 		
+	}
+	@RequestMapping("overViewChart")
+	public @ResponseBody Map<String,Object> overViewChart(HttpSession httpSession ) throws SQLException{
+		int joinProj = (Integer)httpSession.getAttribute("joinProj");
+		System.out.println("**********@@@@@@@@@@@@@@"+joinProj);
+		/*List<MemberLogCommand> list =projectLogService.selectWeekLogCount(Integer.parseInt(proj_Num));
+		List<String> dayList = new ArrayList<String>();
+		List<Integer> dayCount = new ArrayList<Integer>();*/
+		Map<String,Object> totalMap = new HashMap<String, Object>();
+		/*for(MemberLogCommand x : list){
+			dayList.add(x.getLog_Date());
+			dayCount.add(x.getMem_Log_Count());
+		}
+		totalMap.put("dt", dayList);
+		totalMap.put("count", dayCount);*/
+		return totalMap;
 	}
 
 	@RequestMapping("/teamMemberList")
