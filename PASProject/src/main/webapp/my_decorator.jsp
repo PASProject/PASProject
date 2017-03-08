@@ -518,7 +518,7 @@ $(function(){
 					<ul class="nav navbar-nav navbar-right">
 
 					<li><a style="text-decoration: none;margin-top:-2px;"
-						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Name}','_blank',
+						 href="#" onClick="window.open('http://192.168.202.194:8181/pas/project/pmChat?name=${loginUser.mem_Email}','_blank',
 						 'resizable=no,width=350,height=450,top=400,left=1400')"><img style="width:85%"src="<%=request.getContextPath() %>/resources/img/phone-2-32.png"></a>
 					</li>
 					 <%--   <li><a style="text-decoration: none;font-size:28px;margin-top:-4px;"

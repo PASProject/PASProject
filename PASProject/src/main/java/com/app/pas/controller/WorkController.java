@@ -191,6 +191,7 @@ public class WorkController {
 		return url;
 	}
 	
+	//워드프로세스 생성
 	@RequestMapping(value="createWordSheet",method=RequestMethod.POST)
 	public @ResponseBody boolean createWordSheet(@RequestBody Map<String,Object> map,HttpSession session) throws SQLException{
 		
@@ -212,7 +213,7 @@ public class WorkController {
 		return flag;
 		
 	}
-	
+	//워드프로세스 폼 
 	@RequestMapping(value="spreadWordForm",method = RequestMethod.GET)
 	public String WordSheet(HttpSession session) throws SQLException{
 		String url = "/work/wordSheetForm";

@@ -267,12 +267,13 @@ public class ProjectController {
 
 		List<NoticeVo> list = null;
 		MemPositionViewVo memPositionView = new MemPositionViewVo();
+		
 		HashMap map = new HashMap();
 		map.put("proj_Num", proj_Num);
 		map.put("mem_Email", memberVo.getMem_Email());
 
 		try {
-			list = noticeService.getNoticeList(Integer.parseInt(proj_Num));
+			list = noticeService.getNoticeList(Integer.parseInt(proj_Num));	
 			model.addAttribute("NoticeList", list);
 			memPositionView = noticeService.getNoticePosition(map);
 			session.setAttribute("memPositionView", memPositionView);
@@ -299,7 +300,7 @@ public class ProjectController {
 
 	}
 
-	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 湲��벐湲� POST
+	
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
 		String url = "redirect:/project/pmNoticeList";
@@ -307,7 +308,6 @@ public class ProjectController {
 
 		noticeVo.setProj_Num(proj_Num);
 		
-
 		try {
 			noticeService.insertNotice(noticeVo);
 		} catch (SQLException e) {
@@ -329,7 +329,6 @@ public class ProjectController {
 
 	}
 
-	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �뵒�뀒�씪
 	@RequestMapping(value = "/pmNoticeDetail", method = RequestMethod.GET)
 	public String NoticeDetailForm(HttpServletRequest request, String proj_Num,
 			String notice_Num) {
@@ -371,7 +370,7 @@ public class ProjectController {
 
 	}
 
-	// �봽濡쒖젥�듃 Notice寃뚯떆�뙋 �닔�젙 POST
+	
 	@RequestMapping(value = "/pmNoticeUpdate", method = RequestMethod.POST)
 	public String updateUpdate(NoticeVo noticeVo) {
 		String url = "redirect:/project/pmNoticeList";
@@ -475,6 +474,9 @@ public class ProjectController {
 		if (list.isEmpty() != true) {
 			int Imp = accountService.sumAccountImp(proj_Num);
 			int Exp = accountService.sumAccountExp(proj_Num);
+			int Sum = Imp-Exp;
+			
+			model.addAttribute("Sum",Sum);
 			model.addAttribute("sumImp", Imp);
 			model.addAttribute("sumExp", Exp);
 		}

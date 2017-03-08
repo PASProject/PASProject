@@ -166,9 +166,16 @@ public class MainContoller {
 
 				// 이메일 인증
 				if (memberVo.getMem_Approve().equals("y")) {
-					result = 1;
-					// 로그인 정보 세션에 저장
-					session.setAttribute("loginUser", memberVo);
+					
+					if(memberVo.getQuit_Check().equals("n")){
+						result = 1;
+						session.setAttribute("loginUser", memberVo);
+					}else{
+						result=4;
+					}
+					
+					
+					
 				} else {
 					result = 3;
 
@@ -204,9 +211,9 @@ public class MainContoller {
 	public String joinMember(HttpSession session, MemberVo memberVo,
 			HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException,
 			MessagingException, SQLException, UnknownHostException {
-		String url = "redirect:/index";
-		request.setCharacterEncoding("utf-8");
+		String url = "/main/joinAuthForm";
 		
+		request.setCharacterEncoding("utf-8");
 		
 		InetAddress inet = InetAddress.getLocalHost();
 		String svrIP = inet.getHostAddress();
@@ -231,7 +238,7 @@ public class MainContoller {
 			messageHelper.setText(content, true);
 			mailSender.send(message);
 
-			url = "/main/joinAuthForm";
+			
 		
 		return url;
 	}
