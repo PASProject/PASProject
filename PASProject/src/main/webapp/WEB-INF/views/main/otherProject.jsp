@@ -105,10 +105,9 @@ $(function(){
 	})
 	
 	$(document).ready(function() {
-
+		
  $('.captain').trigger('click');
-	});
-
+									});
 	 function goModal(proj_Num){
 		var data = {'proj_Num':proj_Num};
 		$.ajax({
@@ -126,7 +125,6 @@ $(function(){
 				})
 				$('#'+proj_Num+'body').empty();
 				$('#'+proj_Num+'body').append(tt);
-				
 			},
 			complete:function(){
 				$.ajax({

@@ -28,8 +28,8 @@ $(function(){
 
 </script> -->
 
-<script>$(function(){
-		
+<script>
+$(function(){
 			$(document).on('click','.mp',function(e) {
 				var mem_Email = $(this).siblings('#mem').val();
 				var proj_Num = $(this).siblings('#proj').val();
@@ -42,7 +42,6 @@ $(function(){
 					data:JSON.stringify(dataList),
 					success:function(result){
 						var mem_Name = result.mem_Name;
-						
 						var date = new Date(result.mem_Recent_Project_Login)
 						var year = date.getFullYear();
 						var month = (1 + date.getMonth());
@@ -50,30 +49,11 @@ $(function(){
 						var day = date.getDate();
 						day = day >= 10 ? day : '0' + day;
 						var fullD = year + '/' + month + '/'+ day;
-						
-						
 						var data = "<a class='selftooltip' href='#' id='open'>"+mem_Name+"</a><br>"
 						+"<a class='selftooltip' href='#' id='open'>최근 접속일 : "+fullD+"</a>";
-						/* 
-						<table>
-						<tr>
-						<td>이름</td>
-						<td></td>
-						</tr>
-						<tr>
-						<td></td>
-						<td></td>
-						</tr>
-						</table>
-						 */
-						
-						
-						
 						$('#memberInfoZone').empty();
 						$('#memberInfoZone').append(data);
-						
 					}
-						
 				});
 				$('.member-info').hide();
 				$('.member-info').css({
