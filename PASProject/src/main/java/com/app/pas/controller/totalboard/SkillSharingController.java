@@ -175,10 +175,10 @@ public class SkillSharingController {
 				skillSharingBoardVo.setSsb_Title_Content(keyword);
 				System.out.println("타이틀+컨텐츠  : " + skillSharingBoardVo.getSsb_Title_Content());
 
-			} else if (keyField == ("tag") || keyField.equals("tag")) {
-
-				if (skillSharingBoardVo.getSsb_Tag() != null) {
-					skillSharingBoardVo.setSsb_Title_Content(keyword);
+			} else if(keyField ==("tag")|| keyField.equals("tag")){
+	             if(!(keyword.isEmpty()|| keyword == null))
+	                 skillSharingBoardVo.setSsb_Tag(keyword);
+	           
 				}
 				System.out.println("tag  : " + skillSharingBoardVo.getSsb_Tag());
 
@@ -197,7 +197,7 @@ public class SkillSharingController {
 			model.addAttribute("delete",delete);
 			model.addAttribute("modify",modify);
 			model.addAttribute("paging", paging);
-		}
+		
 		return url;
 	}
 
