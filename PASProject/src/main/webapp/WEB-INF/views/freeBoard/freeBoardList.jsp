@@ -77,29 +77,26 @@
 									id="tag${freeBoardVo.frb_Article_Num }">${freeBoardVo.frb_Tag}</span>
 							</div>
 							<div class="btnGen${freeBoardVo.frb_Article_Num }"></div> <script>
-								$(
-										function() {
-											var tags = $(
-													'#tag${freeBoardVo.frb_Article_Num }')
-													.text();
+								$(	function() {
+									
+									
+											var tags = $('#tag${freeBoardVo.frb_Article_Num }').text();
 											var a = tags.split(',');
 											for (i = 0; i < a.length; i++) {
 												var result = a[i];
-												$(
-														'.btnGen${freeBoardVo.frb_Article_Num }')
-														.append(
-																$(
-																		'<button/>',
-																		{
-																			class : "btn btn-info btn-xs",
-																			text : result
-																		}))
+												$('.btnGen${freeBoardVo.frb_Article_Num }').append($('<button/>',{class : "btn btn-info btn-xs", id:"asdfqwer",	text : result }))
+											
 											}
-
+												
 											$('.btn.btn-info.btn-xs').css({
 												'margin-right' : '5px',
 												'margin-bottom' : '2px'
 											})
+										})
+										$('#boardContents > td').on('click','#asdfqwer',function(){
+											var b = $(this).text();
+												
+												
 										})
 							</script> <!--  <script>
                      		
@@ -170,6 +167,12 @@
 									<li class="page-item" id="number"><a class="page-link"
 										href="frb_myPost?page=${i}">${i}</a></li>
 									<script>
+									$(function(){
+										var page = '${paging.pageNo}';
+										if(page==1){
+  											$(document).find('#number').eq(0).addClass('active')
+										}
+									})
 										$('li')
 												.each(
 														function() {
@@ -217,6 +220,12 @@
 									<li class="page-item" id="number"><a class="page-link"
 										href="freeBoardList?page=${i}">${i}</a></li>
 									<script>
+									$(function(){
+										var page = '${paging.pageNo}';
+										if(page==1){
+  											$(document).find('#number').eq(0).addClass('active')
+										}
+									})
 										$('li')
 												.each(
 														function() {
@@ -250,6 +259,7 @@
 
 
 	<script>
+	
 		function freeBoardList() {
 			location.href = "freeBoardList";
 		}
