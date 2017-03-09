@@ -53,8 +53,6 @@ public class SkillSharingController {
 		String mem_Email = memberVo.getMem_Email();
 		skillSharingBoardVo.setMem_Email(mem_Email);
 
-		System.out.println("기술공유 이메일 오니 ? : " + skillSharingBoardVo.getMem_Email());
-
 		if (keyField == "" || keyField.equals(null)) {
 			skillSharingBoardList = skillSharingBoardService.skill_myPostList(skillSharingBoardVo);
 			model.addAttribute("skillSharingBoardList", skillSharingBoardList);
