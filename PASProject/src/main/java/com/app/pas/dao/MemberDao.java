@@ -41,5 +41,8 @@ public interface MemberDao {
     public int selectVisitorNum()throws SQLException;
     public int selectExit_count()throws SQLException;
     public List<MemberVo> selectExit_MemList()throws SQLException;
+    public int selectTodayVisitorCount() throws SQLException;
+    public int selectVisitThisWeek()throws SQLException;
+    public int selectVisitLastWeek()throws SQLException;
  
 }
