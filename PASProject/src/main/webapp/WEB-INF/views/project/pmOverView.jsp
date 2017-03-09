@@ -98,8 +98,10 @@ function protectKey()
 <%--js --%>
     <script src="<%=request.getContextPath() %>/resources/overview/js/chart-master/Chart.js"></script>
 <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/overview/js/jquery-1.8.3.min.js"></script>
-  <%--   <script src="<%=request.getContextPath() %>/resources/overview/js/bootstrap.min.js"></script> --%>
+  <script src="<%=request.getContextPath() %>/resources/overview/js/jquery-1.8.3.min.js"></script> 
+ <script src="<%=request.getContextPath() %>/resources/overview/js/bootstrap.min.js"></script>
+ <!--   <script src="https://code.jquery.com/jquery-2.2.4.js"></script> -->
+   <script src="<%=request.getContextPath()%>/resources/kendo/kendo.all.min.js"></script>
     <script class="include" type="text/javascript" src="<%=request.getContextPath() %>/resources/overview/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.scrollTo.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -359,11 +361,15 @@ function protectKey()
 					   </c:forEach>
 					  </table>
 				    </div>
-
+				    
+<!--  				<div id="overViewCalendarZone" class="col-lg-3 ds" style="padding-left: 0px; height:auto; width:100%;">
+ -->					<div class="demo-section k-content col-lg-3 ds"  style="box-shadow:none;border-width:0px; padding-left: 0px; height:auto; width:100%;text-align: center;">
+             				<div id="overViewCalendar" style="width:100%"></div>
+       					 </div>
                         
                       
-                  </div><!-- /col-lg-3 -->
-              </div><! --/row --></div>
+                 <!--  </div> --><!-- /col-lg-3 -->
+              </div><!--/row --></div>
            
 <script>
 /* $(function(){
@@ -377,6 +383,7 @@ function protectKey()
 	})
 }); */
 $(document).ready(function() {  
+	$("#overViewCalendar").kendoCalendar();
 	$.ajax({  
 		dataType:'json',
 		url:'overViewChart', 
