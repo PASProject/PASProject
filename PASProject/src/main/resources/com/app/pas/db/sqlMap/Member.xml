@@ -154,6 +154,21 @@
 	WHERE QUIT_CHECK = 'n'
 	</select>
 	
+	<select id="selectTodayVisitorCount" resultClass="int">
+	SELECT count(*) FROM member_log
+	WHERE (MEM_LOG_TIME BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE,'D') + 8)
+	</select>
+	
+	<select id="selectVisitThisWeek" resultClass="int">
+	SELECT count(*) FROM MEMBER_LOG
+	WHERE (MEM_LOG_TIME BETWEEN TRUNC(SYSDATE,'D') -3 AND TRUNC(SYSDATE,'D')+4)
+	</select>
+	
+	<select id="selectVisitLastWeek" resultClass="int">
+	SELECT count(*) FROM MEMBER_LOG
+	WHERE (MEM_LOG_TIME BETWEEN TRUNC(SYSDATE,'D') -10 AND TRUNC(SYSDATE,'D')-4)
+	</select>
+	
 </sqlMap>
 
 
