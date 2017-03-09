@@ -247,9 +247,7 @@
 				data-target="#myModal">등록하기</button>
 				
 				
-				<fieldset>asdfafs
-				<div style="width:100px; height:100px; border-radius:50%; border:1px solid black">asdf</div>
-				</fieldset>
+				
 			<table class="table">
 			
 			<caption>2. 일자별 수입/지출 테이블
