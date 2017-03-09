@@ -247,6 +247,9 @@ body.modal-open {
 } 
 </style>
 <style>
+#box:hover{
+filter:brightness(50%);
+}
 #boardTitleImg{
 width:3%;
 margin-top:-5px;

@@ -126,8 +126,7 @@ background-color:transparent !important;
 
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
 			</li>
-			<li><a href="#contact" onclick=$("#menu-close").click();>Contact</a>
-			</li>
+			
 		</ul>
 	</nav>
 
@@ -158,13 +157,13 @@ background-color:transparent !important;
 	
 
 	<!-- Portfolio -->
-	<section id="portfolio" class="portfolio" style="overflow:hidden; height:100%">
+	<section id="portfolio" class="portfolio" style="background-color:white;overflow:hidden; height:100%">
 	 <iframe src="//slides.com/yeojunyeong/make-better-presentations/embed?style=light" width="100%" height="100%" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	<div style="    position: relative;
     width: 100%;
     height: 50px;
     top: -36px;
-    background-color: #f9f9f9;"></div>
+    background-color: white;"></div>
 		<!-- <div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-lg-offset-1 text-center">

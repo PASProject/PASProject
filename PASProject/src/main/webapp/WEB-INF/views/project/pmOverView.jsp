@@ -256,31 +256,44 @@ function protectKey()
 										];
 										var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
 								</script>
-								<p>총 일정 :${sumYN} 완료 : ${wkY} 미완료 : ${wkN}</p>
-								<footer>
-									<div class="pull-left">
-										<h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
-									</div>
-									<div class="pull-right">
-										<h5>60% Used</h5>
-									</div>
-								</footer>
+								<br>
+								<p style="color:white; margin-top:20px;">총 일정:${sumYN} | 완료:${wkY} | 미완료:${wkN}</p>
+								
                       		</div><! -- /darkblue panel -->
 						</div><!-- /col-md-4 -->
 						
 						
 						<div class="col-md-4 mb">
 							<!-- INSTAGRAM PANEL -->
-							<div class="instagram-panel pn " >
+							<div class="instagram-panel pn ">
 								
 								<p style="margin: 0px; !important; padding-top: 12px">
-									조회수 왕
+									이달의 우수 팀원
 								</p>
 								<br/>
 								<td rowspan="2" style="width:15%; border-right:1px solid #ddd"><img style="border-radius:50%; width:120px; height:120px; " src="/pas/resources/upload/${selectKing.mem_Img }" onerror="this.src=&quot;/pas/resources/upload/no.png&quot;">
 							</div>
 						</div><!-- /col-md-4 -->
-						
+											<script>
+								$(function(){
+									
+									function numberWithCommas(x) {
+									    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+									}
+									var a = $('#sumImp').text();
+									var aa = numberWithCommas(a);
+									var b = $('#sumExp').text();
+									var bb = numberWithCommas(b);
+									var c = $('#sum').text();
+									var cc = numberWithCommas(c);
+									
+									$('#sumImp').text(aa);
+									$('#sumExp').text(bb);
+									$('#sum').text(cc);
+									
+								})
+			
+			</script>
 						<div class="col-md-4 col-sm-4 mb">
 							<!-- REVENUE PANEL -->
 							<div class="darkblue-panel pn">
@@ -291,15 +304,15 @@ function protectKey()
 									<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
 								</div>
 								<p class="mt">
-								<table>
+								<table style="font-size:20px; text-align: left;color:white;margin: auto; margin-top:-35px;">
 								<tr>
-								<td>&nbsp;&nbsp;총 지출  : ${totalAccountImp }</td>
+								<td style="padding-left:1px;"><span class="glyphicon glyphicon-plus"></span></td><td id="sumImp" style="padding-bottom:10px; text-align:right">${totalAccountImp }</td>
 								</tr>
 								<tr>
-								<td>　&nbsp;&nbsp;&nbsp;&nbsp;총 수입 : -${totalAccountExp }</td>
+								<td><span class="glyphicon glyphicon-minus"></span></td><td id="sumExp" style="padding-bottom:10px; text-align:right">${totalAccountExp }</td>
 								</tr>
 								<tr>
-								<td>&nbsp;&nbsp;&nbsp;총 합:   ${totalAccount }</td>
+								<td style="padding-top:10px; border-top: 3px solid white;">￦ </td><td id="sum" style="padding-top:10px; border-top: 3px solid white;text-align:right"> ${totalAccount }</td>
 								</tr>
 								</table>						
 							</div>
@@ -309,7 +322,7 @@ function protectKey()
 					
 					<div class="row mt">
                       <!--CUSTOM CHART START -->
-                      <div class="border-head" style="margin-top:-70px;">
+                      <div class="border-head" style="margin-top:-50px;">
                           <h3>주간 방문자 추이</h3>
                       </div>
                      <!-- <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div> -->
