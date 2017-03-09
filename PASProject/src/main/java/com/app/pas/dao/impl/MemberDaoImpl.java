@@ -228,5 +228,11 @@ public class MemberDaoImpl implements MemberDao {
 		int visitLastWeelCount = (Integer)client.queryForObject("selectVisitLastWeek");
 		return visitLastWeelCount;
 	}
+
+	@Override
+	public MemberVo selectKing(int proj_Num) throws SQLException {
+		MemberVo memberVo = (MemberVo) client.queryForObject("selectKing", proj_Num);
+		return memberVo;
+	}
 	
 }

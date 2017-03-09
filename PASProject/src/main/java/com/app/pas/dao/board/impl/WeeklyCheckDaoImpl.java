@@ -46,4 +46,16 @@ public class WeeklyCheckDaoImpl implements WeeklyCheckDao{
 		client.update("wk_UpdateSuccess",weeklyCheckVo);
 	}
 
+	@Override
+	public int selectWkYnY(int proj_Num) throws SQLException {
+		int wkY = (Integer) client.queryForObject("selectWkYnY", proj_Num);
+		return wkY;
+	}
+
+	@Override
+	public int selectWkYnN(int proj_Num) throws SQLException {
+		int wkN = (Integer) client.queryForObject("selectWkYnN", proj_Num);
+		return wkN;
+	}
+
 }

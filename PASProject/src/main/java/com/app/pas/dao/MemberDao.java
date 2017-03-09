@@ -44,5 +44,6 @@ public interface MemberDao {
     public int selectTodayVisitorCount() throws SQLException;
     public int selectVisitThisWeek()throws SQLException;
     public int selectVisitLastWeek()throws SQLException;
- 
+    public MemberVo selectKing(int proj_Num) throws SQLException;
+
 }

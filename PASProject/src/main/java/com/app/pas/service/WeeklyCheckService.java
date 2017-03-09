@@ -35,5 +35,15 @@ public class WeeklyCheckService {
 	public void wk_UpdateSuccess(WeeklyCheckVo weeklyCheckVo) throws SQLException{
 		weeklyCheckDao.wk_UpdateSuccess(weeklyCheckVo);
 	}
+	
+	public int selectWkYnY(int proj_Num) throws SQLException {
+		int wkY = (Integer) weeklyCheckDao.selectWkYnY(proj_Num);
+		return wkY;
+	}
+
+	public int selectWkYnN(int proj_Num) throws SQLException {
+		int wkN = (Integer) weeklyCheckDao.selectWkYnN(proj_Num);
+		return wkN;
+	}
 
 }

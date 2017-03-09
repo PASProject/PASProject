@@ -222,6 +222,10 @@ public class MemberService {
 			int visitLastWeelCount = memberDao.selectVisitLastWeek();
 			return visitLastWeelCount;
 		}
+		public MemberVo selectKing(int proj_Num) throws SQLException {
+			MemberVo memberVo = memberDao.selectKing(proj_Num);
+			return memberVo;
+		}
 		
 			
 }
