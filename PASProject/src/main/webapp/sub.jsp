@@ -515,6 +515,7 @@
 							backgroundColor :resultColor
 						}, 'slow');
 					}
+					
 					$('#navbar').animate({
 						backgroundColor :resultColor
 					}, 'slow');

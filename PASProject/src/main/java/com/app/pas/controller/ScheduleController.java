@@ -101,6 +101,7 @@ public class ScheduleController {
 	public String weeklyCheckInsert(HttpServletRequest request,@RequestParam(defaultValue = "") String d,
 			@RequestParam(defaultValue = "") String wk_Content,HttpSession session) throws SQLException, UnsupportedEncodingException, ParseException{
 		String url="redirect:weeklyChecklist";
+		request.setCharacterEncoding("UTF-8");
 		WeeklyCheckVo weeklyCheckVo = new WeeklyCheckVo();
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();
@@ -110,7 +111,7 @@ public class ScheduleController {
 			StringBuffer sb = new StringBuffer(d);
 			sb.insert(5, "-");
 			sb.insert(8, "-");
-			request.setCharacterEncoding("UTF-8");
+			
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date to = transFormat.parse(sb.toString());
 			weeklyCheckVo.setWk_Proj_Num(Integer.parseInt(wk_Proj_Num));

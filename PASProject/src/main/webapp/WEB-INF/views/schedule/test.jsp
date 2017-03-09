@@ -27,7 +27,7 @@
                     <!--  Area Chart -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Area Chart Example
+                            회계 내역
                         </div>
                         <div class="panel-body2">
                             <div id="morris-area-chart"></div>
