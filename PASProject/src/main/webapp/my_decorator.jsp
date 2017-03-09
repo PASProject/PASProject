@@ -814,7 +814,7 @@ $(function(){
 					<button id="closeModal" type="button"
 						class="btn btn-default pull-right" style="margin-right:13px;" data-dismiss="modal">닫기</button>
 					<form name="exit" method="post">
-					<button id="delete" style="margin-left:14px;" type="button" class="btn btn-danger" onclick="exit()">탈퇴하기</button>
+					<button id="delete" style="margin-left:14px;" type="button" class="btn btn-danger" onclick="go_exit()">탈퇴하기</button>
 					</form>
 					<script>
 						$(document).ready(function() {
@@ -1419,8 +1419,8 @@ function pushMessage(){
 	function logOut() {
 		location.href = "/pas/main/logOut";
 	}                  
-function exit(){
-	
+function go_exit(){
+	alert('들어왔냐>?ㅇㅇ');
 	var con_test = confirm("돌이킬 수 없게 됩니다. 정말로 탈퇴하시겠습니까?");
 	if(con_test==true){
 		exit.method = "post";

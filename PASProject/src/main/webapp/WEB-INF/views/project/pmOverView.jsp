@@ -240,23 +240,23 @@ function protectKey()
 						<div class="col-md-4 mb">
                       		<div class="darkblue-panel pn">
                       			<div class="darkblue-header">
-						  			<h5>DROPBOX STATICS</h5>
+						  			<h5>주간일정 완료율</h5>
                       			</div>
 								<canvas id="serverstatus02" height="120" width="120"></canvas>
 								<script>
 									var doughnutData = [
 											{
-												value: 60,
+												value: ${wkY},
 												color:"#68dff0"
 											},
 											{
-												value : 40,
+												value : ${wkN},
 												color : "#444c57"
 											}
 										];
 										var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
 								</script>
-								<p>April 17, 2014</p>
+								<p>총 일정 :${sumYN} 완료 : ${wkY} 미완료 : ${wkN}</p>
 								<footer>
 									<div class="pull-left">
 										<h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
@@ -271,12 +271,13 @@ function protectKey()
 						
 						<div class="col-md-4 mb">
 							<!-- INSTAGRAM PANEL -->
-							<div class="instagram-panel pn">
-								<i class="fa fa-instagram fa-4x"></i>
-								<p>@THISISYOU<br/>
-									5 min. ago
+							<div class="instagram-panel pn " >
+								
+								<p style="margin: 0px; !important; padding-top: 12px">
+									조회수 왕
 								</p>
-								<p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+								<br/>
+								<td rowspan="2" style="width:15%; border-right:1px solid #ddd"><img style="border-radius:50%; width:120px; height:120px; " src="/pas/resources/upload/${selectKing.mem_Img }" onerror="this.src=&quot;/pas/resources/upload/no.png&quot;">
 							</div>
 						</div><!-- /col-md-4 -->
 						
@@ -292,13 +293,13 @@ function protectKey()
 								<p class="mt">
 								<table>
 								<tr>
-								<td>　총 지출  : ${totalAccountImp }</td>
+								<td>&nbsp;&nbsp;총 지출  : ${totalAccountImp }</td>
 								</tr>
 								<tr>
-								<td>총 수입 : -${totalAccountExp }</td>
+								<td>　&nbsp;&nbsp;&nbsp;&nbsp;총 수입 : -${totalAccountExp }</td>
 								</tr>
 								<tr>
-								<td>총 합:   ${totalAccount }</td>
+								<td>&nbsp;&nbsp;&nbsp;총 합:   ${totalAccount }</td>
 								</tr>
 								</table>						
 							</div>

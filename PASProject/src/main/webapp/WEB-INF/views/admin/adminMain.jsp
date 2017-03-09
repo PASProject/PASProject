@@ -22,7 +22,7 @@ text-align:center;
 }
 
 </style>
-<div class="main">
+<div class="main" style="border:0px solid black;">
   <div class="main-inner">
     <div class="container">
       <div class="row">
@@ -87,10 +87,25 @@ text-align:center;
           <!-- /widget -->
           <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-th-list"></i>
-              <h3>숫자로 이해하는 블루마인</h3>
+              <h3>통계로 이해하는 블루마인</h3>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
+             <script>
+                $(function(){
+                	var a1 = $('table > tbody > tr:nth-child(1)> td:nth-child(2) > span:last-child').text();
+                	var a2 = $('table > tbody > tr:nth-child(2)> td:nth-child(2) > span:last-child').text();
+                	var a4 = $('table > tbody > tr:nth-child(4)> td:nth-child(2) > span:last-child').text();
+                	var a1 = a1.slice(0,-2);
+                	var a2 = a2.slice(0,-2);
+                	var a4 = a4.slice(0,-2);
+                	
+                	$('table > tbody > tr:nth-child(1)> td:nth-child(2) > span:last-child').text(a1);
+                	$('table > tbody > tr:nth-child(2)> td:nth-child(2) > span:last-child').text(a2);
+                	$('table > tbody > tr:nth-child(4)> td:nth-child(2) > span:last-child').text(a4);
+             })
+                 
+                </script>
               <table class="table table-striped table-bordered">
                 <!-- <thead>
                   <tr>
@@ -99,31 +114,22 @@ text-align:center;
                     <th class="td-actions"> </th>
                   </tr>
                 </thead> -->
+               
                 <tbody>
                   <tr>
                     <td style="width:23%">오늘 가입한 회원</td>
                     <td style="width:55%">
-                    <c:forEach items="${todayMemberList}" var="memberVo">
-                    <span id="todayMem"> 
-                    ${memberVo.mem_Name},&nbsp;
-                    </span>
+                    <c:forEach items="${todayMemberList}" var="memberVo"><span>${memberVo.mem_Name},&nbsp;</span>
                     </c:forEach>
-                    <span id="asdf">                   
-                    </span>
-                    <script>
-                    $(function(){
-                    	var a = $('#todayMem').text();
-                    	var b = a.slice(0,-2);
-                    	})
-                    </script>
+                   
+                   
                     </td>
                     <td style="width:10%">${joinCount} 명 </td>
                   </tr>
                   <tr>
                     <td>오늘 생성된 프로젝트 </td>
                     <td>
-                     <c:forEach items="${projCreateList}" var="ProjectVo">
-                    ${ProjectVo.proj_Name},&nbsp;
+                     <c:forEach items="${projCreateList}" var="ProjectVo"><span> ${ProjectVo.proj_Name},&nbsp;</span>
                     </c:forEach>
                   
                     </td>
@@ -132,28 +138,28 @@ text-align:center;
                 
                   <tr>
                     <td>총 방문자 수</td>
+                    <td> <span></span></td>
                     <td> ${visitorNum} 번</td>
-                    <td></td>
                     
                   </tr>
                   <tr>
                     <td> 총 누적 탈퇴회원</td>
                     <td> 
-                    <c:forEach items="${exit_MemList}" var="memberVo">
-                    ${memberVo.mem_Name},&nbsp;
+                    <c:forEach items="${exit_MemList}" var="memberVo"><span>${memberVo.mem_Name},&nbsp;</span>
                     </c:forEach>
                     </td>
                     <td> ${exitCount} 명</td>
                   </tr>
                   <tr>
                     <td> 이번주 방문자수</td>
-                    <td> ${visitThisWeekCount} 명</td>
-                   <td></td>
+                    
+                    <td><span></span></td>
+                   <td> ${visitThisWeekCount} 명</td>
                   </tr>
           <tr>
            <td> 지난주 방문자수 </td>
+                    <td><span></span></td>
                     <td> ${visitLastWeelCount} 명</td>
-                    <td></td>
           
           </tr>
                 
@@ -229,7 +235,7 @@ text-align:center;
   /extra-inner 
 </div>
 /extra -->
-<div class="footer">
+<div class="footer navbar-fixed-bottom">
   <div class="footer-inner">
     <div class="container">
       <div class="row">
