@@ -17,5 +17,4 @@
 location.href="<%=request.getContextPath()%>/index";
 	</script>
 </body>
-
 </html>

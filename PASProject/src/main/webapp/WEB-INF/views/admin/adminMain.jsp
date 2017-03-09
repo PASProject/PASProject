@@ -17,6 +17,10 @@
 #big_stats .stat{
 width:20% !important;
 }
+body > div.main > div > div > div > div:nth-child(2) > div.widget.widget-table.action-table > div.widget-content > table > tbody > tr > td:nth-child(3){
+text-align:center;
+}
+
 </style>
 <div class="main">
   <div class="main-inner">
@@ -32,7 +36,7 @@ width:20% !important;
               <div class="widget big-stats-container">
                 <div class="widget-content">
                   <div id="big_stats" class="cf">
-                     <div class="stat"><h3>오늘 방문자</h3><span class="value">${total_proj }</span> </div>
+                     <div class="stat"><h3>오늘 방문횟수</h3><span class="value"> ${todayVisitorCount}</span> </div>
                    
                    <div class="stat"><h3>회원 수</h3><span class="value" style="margin-top:10px;">${total_Mem }</span> </div>
                     <!-- .stat -->
@@ -88,17 +92,17 @@ width:20% !important;
             <!-- /widget-header -->
             <div class="widget-content">
               <table class="table table-striped table-bordered">
-                <thead>
+                <!-- <thead>
                   <tr>
-                    <th> Free Resource </th>
+                    <th> </th>
                     <th> Download</th>
                     <th class="td-actions"> </th>
                   </tr>
-                </thead>
+                </thead> -->
                 <tbody>
                   <tr>
-                    <td>오늘 가입한 회원</td>
-                    <td>
+                    <td style="width:23%">오늘 가입한 회원</td>
+                    <td style="width:55%">
                     <c:forEach items="${todayMemberList}" var="memberVo">
                     <span id="todayMem"> 
                     ${memberVo.mem_Name},&nbsp;
@@ -113,7 +117,7 @@ width:20% !important;
                     	})
                     </script>
                     </td>
-                    <td>${joinCount} 명 </td>
+                    <td style="width:10%">${joinCount} 명 </td>
                   </tr>
                   <tr>
                     <td>오늘 생성된 프로젝트 </td>
@@ -142,11 +146,16 @@ width:20% !important;
                     <td> ${exitCount} 명</td>
                   </tr>
                   <tr>
-                    <td> 활동 지수</td>
-                    <td> http://www.egrappler.com/ </td>
-                    <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> 
-                    </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
+                    <td> 이번주 방문자수</td>
+                    <td> ${visitThisWeekCount} 명</td>
+                   <td></td>
                   </tr>
+          <tr>
+           <td> 지난주 방문자수 </td>
+                    <td> ${visitLastWeelCount} 명</td>
+                    <td></td>
+          
+          </tr>
                 
                 </tbody>
               </table>
@@ -165,7 +174,7 @@ width:20% !important;
   <!-- /main-inner --> 
 </div>
 <!-- /main -->
-<div class="extra">
+<!-- <div class="extra">
   <div class="extra-inner">
     <div class="container">
       <div class="row">
@@ -179,7 +188,7 @@ width:20% !important;
                             <li><a href="javascript:;">Free Resources and Scripts</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
+                    /span3
                     <div class="span3">
                         <h4>
                             Support</h4>
@@ -190,7 +199,7 @@ width:20% !important;
                             <li><a href="javascript:;">Feedback</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
+                    /span3
                     <div class="span3">
                         <h4>
                             Something Legal</h4>
@@ -200,7 +209,7 @@ width:20% !important;
                             <li><a href="javascript:;">Privacy Policy</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
+                    /span3
                     <div class="span3">
                         <h4>
                             Open Source jQuery Plugins</h4>
@@ -211,20 +220,20 @@ width:20% !important;
                             <li><a href="http://www.egrappler.com;">Flat UI PSD</a></li>
                         </ul>
                     </div>
-                    <!-- /span3 -->
+                    /span3
                 </div> 
-      <!-- /row --> 
+      /row 
     </div>
-    <!-- /container --> 
+    /container 
   </div>
-  <!-- /extra-inner --> 
+  /extra-inner 
 </div>
-<!-- /extra -->
+/extra -->
 <div class="footer">
   <div class="footer-inner">
     <div class="container">
       <div class="row">
-        <div class="span12"> &copy; 2013 <a href="http://www.egrappler.com/">Bootstrap Responsive Admin Template</a>. </div>
+        <div class="span12"> &copy; 2017 Blue Mine is So Good 010-5196-1122</div>
         <!-- /span12 --> 
       </div>
       <!-- /row --> 
