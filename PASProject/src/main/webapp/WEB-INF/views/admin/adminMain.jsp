@@ -110,8 +110,6 @@ width:20% !important;
                     $(function(){
                     	var a = $('#todayMem').text();
                     	var b = a.slice(0,-2);
-                    	alert(b);
-                    	
                     	})
                     </script>
                     </td>
