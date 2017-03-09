@@ -519,7 +519,7 @@ public class MainContoller {
 	}
 
 	
-	// 씨벌 왤케 안되냐 이건 아작스 씌벌
+	
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
 	public String uploadByMultipartHttpServletRequest(MemberVo memberVo,
