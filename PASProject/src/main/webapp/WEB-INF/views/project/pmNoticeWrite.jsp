@@ -14,8 +14,7 @@
 		
 
 			<h3 class="page-header"
-			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
-			프로젝트 공지사항 <small>글 쓰기</small>
+			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><img src="<%=request.getContextPath() %>/resources/img/megaphone.png"/>&nbsp;&nbsp;프로젝트 공지사항
 		</h3>
 		<div class="col-md-10">
 		
@@ -39,9 +38,9 @@
 					
 					
 					<div class="form-group">
-						<label for="textArea" class="col-lg-2 control-label">내용</label>
+						<label for="textArea" class="col-lg-2 control-label" >내용</label>
 						<div class="col-lg-10">
-							<textarea class="form-control" rows="18" id="notice_Content"
+							<textarea class="form-control" style="resize:none;" rows="18" id="notice_Content"
 								name="notice_Content"></textarea>
 						</div>
 					</div>

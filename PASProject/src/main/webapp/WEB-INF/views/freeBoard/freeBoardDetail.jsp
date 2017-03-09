@@ -66,9 +66,9 @@
    <input type="hidden" name="frb_Article_Num" id="frb_Article_Num"
                      value="${freeBoardVo.frb_Article_Num}">   
       <h2 class="page-header"
-         style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><span class="glyphicon glyphicon-globe"></span>FreeBoard</h2>
+         style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><span class="glyphicon glyphicon-globe"></span>커뮤니티</h2>
       <table class="table" style="border-top: 2px;">
-         <tr style="border-top: 2px solid #ddd">
+         <tr>
             <td class="col-md-8"><h4
                   style="margin-top: 5px; margin-bottom: 5px">
                   <b>${freeBoardVo.frb_Title}</b>

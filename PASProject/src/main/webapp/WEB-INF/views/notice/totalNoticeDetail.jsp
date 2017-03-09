@@ -24,7 +24,7 @@
 <%-- 				value="${totalNoticeVo.ttnotice_Num }"> --%>
 
 			<table class="table" style="border-top: 2px;">
-				<tr style="border-top: 2px solid #add">
+				<tr >
 					<td class="col-md-9">
 						<h3 style="margin-top: 10px; margin-bottom: 10px">
 							<b>${totalNoticeVo.ttnotice_Title}</b>

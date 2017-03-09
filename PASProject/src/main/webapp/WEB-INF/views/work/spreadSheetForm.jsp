@@ -16,11 +16,11 @@
 <title></title>
 </head>
 <body>
-<div class="col-md-10" id="content" style=" padding-left: 0px;
-    padding-right: 0px;
+<div class="col-md-10" id="content" style=" padding-left: 5px; padding-top:10px;
+    padding-right: 5px;
     background-color: white;
     border: 0px solid black;">
-<div><input type="button" value="생성하기" id="createSpreadSheetBtn" class = "btn btn-default">&nbsp;&nbsp;<input type="button" value="돌아가기" id ="goBackBtn" class="btn btn-default"></div><br>   
+<div><input type="button" value="생성하기" id="createSpreadSheetBtn" class = "btn btn-default pull-right"><input type="button" value="돌아가기" id ="goBackBtn" class="btn btn-default"></div><br>   
 <div id="spreadsheet" style="width:auto;"></div>
 </div>
 <script>

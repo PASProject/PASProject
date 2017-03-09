@@ -37,7 +37,7 @@
          </tr>
          <tr>
          	<td></td>
-            <td><a href="#">${messageVo.msg_rm_Name }</a>&nbsp;&nbsp;<span style="color:#888888;">
+            <td><a href="#">${messageVo.msg_rm_Name }</a><span class="pull-right" style="color:#888888;">
             <fmt:formatDate value="${messageVo.msg_Wt_Date }" pattern="yyyy-MM-dd HH:mm:ss"/>
             </span></td>
          </tr>
@@ -46,10 +46,10 @@
             <td >${messageVo.msg_Content }</td>
          </tr>
       </table>
-      <button type="button" class="btn btn-default" >삭제</button>
-     
+      <button type="button" class="btn btn-default" style="margin-left:20px;">삭제</button>
+      
+     	<button type="button" id="goList" class="btn btn-default pull-right" style="margin-right:20px;">목록</button>
          <button type="button" class="btn btn-default pull-right" style="margin-right:5px;">답장</button>
-         <button type="button" id="goList" class="btn btn-default pull-right">목록</button>
      
 
    </div>

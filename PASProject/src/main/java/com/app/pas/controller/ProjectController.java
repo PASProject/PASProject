@@ -306,7 +306,7 @@ public class ProjectController {
 	
 	@RequestMapping(value = "/pmNoticeWrite", method = RequestMethod.POST)
 	public String pmNoticeWrite(HttpSession session, NoticeVo noticeVo) {
-		String url = "redirect:/project/pm";
+		String url = "redirect:/project/pmNoticeList";
 		int proj_Num =  Integer.parseInt((String)session.getAttribute("joinProj"));
 
 		noticeVo.setProj_Num(proj_Num);

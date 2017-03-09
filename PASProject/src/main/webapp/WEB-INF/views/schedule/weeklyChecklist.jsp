@@ -11,9 +11,8 @@
 .tableContents {
 	text-overflow: ellipsis;
 }
-
-li {
-	word-break: break-all;
+#content > table > tbody > tr > td > ul > li{
+word-break: break-all;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;

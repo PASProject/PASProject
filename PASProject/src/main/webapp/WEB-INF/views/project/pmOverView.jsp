@@ -11,6 +11,10 @@
 <body>
 
 <style>
+
+html{
+overflow:hidden;
+}
 .modal-title{
 color:black;
 }
@@ -95,7 +99,7 @@ function protectKey()
     <script src="<%=request.getContextPath() %>/resources/overview/js/chart-master/Chart.js"></script>
 <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.js"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery-1.8.3.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/overview/js/bootstrap.min.js"></script>
+  <%--   <script src="<%=request.getContextPath() %>/resources/overview/js/bootstrap.min.js"></script> --%>
     <script class="include" type="text/javascript" src="<%=request.getContextPath() %>/resources/overview/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.scrollTo.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/overview/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -123,35 +127,35 @@ function protectKey()
 					  			<img id="menuIcon" src="<%=request.getContextPath() %>/resources/overview/img/multiple-users-silhouette2.png">
 					  			<h3>${joinMem }</h3>
                   			</div>
-					  			<p style="width:105%;">현재 ${joinMem }명의 인원이 프로젝트를 &nbsp;참가 중 입니다.</p>
+					  			<p style="width:105%;">현재 <b>${joinMem }</b>명의 인원이 프로젝트를 &nbsp;참가 중 입니다.</p>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<img id="menuIcon" src="<%=request.getContextPath() %>/resources/overview/img/file2.png">
 					  			<h3>${countDoc }</h3>
                   			</div>         
-					  			<p style="width:105%;">현재 ${countDoc }개의 파일이 작업 중 입니다.</p>
+					  			<p style="width:105%;">현재 <b>${countDoc }</b>개의 파일이 작업 중 입니다.</p>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<img id="menuIcon" src="<%=request.getContextPath() %>/resources/overview/img/money-bag.png">
 					  			<h3>${countAccount }</h3>
                   			</div>
-					  			<p>현재 ${countAccount }개의 회계정보가 있습니다.</p>
+					  			<p>현재 <b>${countAccount }</b>개의 회계정보가 있습니다.</p>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<img id="menuIcon" src="<%=request.getContextPath() %>/resources/overview/img/calendar.png">
 					  			<h3>${countSchedule }</h3>
                   			</div>
-					  			<p style="width:105%;">현재 ${countSchedule }개의 일정이 등록 되었습니다.</p>
+					  			<p style="width:105%;">현재 <b>${countSchedule }</b>개의 일정이 등록 되었습니다.</p>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">
 					  			<img id="menuIcon" src="<%=request.getContextPath() %>/resources/overview/img/megaphone.png">
 					  			<h3>${countProjNotice }</h3>
                   			</div>
-					  			<p>현재 ${countProjNotice }개의 프로젝트 공지사항이 등록 되었습니다.</p>
+					  			<p>현재 <b>${countProjNotice }</b>개의 프로젝트 공지사항이 등록 되었습니다.</p>
                   		</div>
                   	
                   	</div><!-- /row mt -->	
@@ -303,7 +307,7 @@ function protectKey()
 					<div class="row mt">
                       <!--CUSTOM CHART START -->
                       <div class="border-head" style="margin-top:-70px;">
-                          <h3>VISITS</h3>
+                          <h3>주간 방문자 추이</h3>
                       </div>
                      <!-- <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div> -->
                			<div class="widget-content" >
@@ -321,13 +325,14 @@ function protectKey()
                   
                   <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
-						<h3>프로젝트 공지사항</h3>
-                   <div class="col-lg-3 ds" style="padding-left: 0px; height:415px; width:100%">
+						
+                   <div class="col-lg-3 ds" style="padding-left: 0px;padding-top:0px; height:auto; width:100%">
+                   <h3>프로젝트 공지사항</h3>
                      <table class="table">
 					   <c:forEach var="NoticeList" items="${NoticeList }" begin="${paging.beginNo}" end="${paging.endNo}">
 						<tr>
 						<td style="width: 40px;">${NoticeList.notice_Num }</td>
-						<td><b><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></b></td>
+						<td><a href="<%=request.getContextPath() %>/project/pmNoticeDetail?proj_Num=${NoticeList.proj_Num}&notice_Num=${NoticeList.notice_Num}">${NoticeList.notice_Title }</a></td>
 						</tr>
 						</c:forEach>
 					 </table>
@@ -340,9 +345,15 @@ function protectKey()
  
 					   <c:forEach var="joinmember" items="${joinmember }" begin="${paging1.beginNo}" end="${paging1.endNo}">
 						<tr>
-						<td><img style="border-radius:50%; width:40px; height:40px; margin-right:5px;" src="/pas/resources/upload/${joinmember.mem_Img }" onerror="this.src=&quot;/pas/resources/upload/no.png&quot;">
+						<td rowspan="2" style="width:15%; border-right:1px solid #ddd"><img style="border-radius:50%; width:40px; height:40px; " src="/pas/resources/upload/${joinmember.mem_Img }" onerror="this.src=&quot;/pas/resources/upload/no.png&quot;">
+						</td>
+						<td>
+						${joinmember.mem_Name } (${joinmember.position_Name })
+						</td>
+						</tr>
+						<tr>
+						<td style="border-top:1px solid #ddd;">${joinmember.mem_Email }</td>
 						
-						${joinmember.mem_Name } (${joinmember.position_Name })<br>　　　　${joinmember.mem_Email }</td>
 						</tr>
 					
 					   </c:forEach>
