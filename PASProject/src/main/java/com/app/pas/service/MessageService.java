@@ -56,6 +56,7 @@ public class MessageService {
 	public void updateReceiveMessageReadTime(int msg_Article_Num) throws SQLException{
 		messageDao.updateReceiveMessageReadTime(msg_Article_Num);
 	}
+	
 	public MessageVo selectReceiveMessageDetail(int msg_Article_Num) throws SQLException{
 		MessageVo messageVo = null;
 		messageVo = messageDao.selectMessage(msg_Article_Num);
@@ -68,6 +69,7 @@ public class MessageService {
 		messageDao.selectMessage(msg_Article_Num);
 		return messageVo;
 	}
+	
 	public void updateSendMessageDelYN(int msg_Article_Num) throws SQLException{
 		messageDao.updateSendMessageDelYN(msg_Article_Num);
 	}
