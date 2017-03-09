@@ -214,6 +214,8 @@ public class FreeBoardController {
       model.addAttribute("paging", paging);
       model.addAttribute("delete", delete);
       model.addAttribute("modify", modify);
+      
+      System.out.println(paging.toString());
       return url;
    }
 
@@ -384,7 +386,8 @@ public class FreeBoardController {
       }
       return freeBoardReplyList;
    }
-   
+  
+  
    @RequestMapping(value="freeBoardReplyUpdate", method=RequestMethod.POST,produces="application/text;charset=utf8")
    public String updateFreeBoardReply(int frb_Reply_Num,String content, FreeBoardReplyVo freeBoardReplyVo, HttpSession session,HttpServletRequest request) throws SQLException{
 	   String url="redirect:freeBoardDetail";
