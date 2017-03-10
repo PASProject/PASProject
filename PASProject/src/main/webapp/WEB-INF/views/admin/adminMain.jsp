@@ -115,8 +115,7 @@ text-align:center;
                     	var a = $('#todayMem').text();
                     	var b = a.slice(0,-2);
                     	alert(b);
-                    	
-                    	})
+                    })
                     </script>
                     </td>
                     <td style="width:10%">${joinCount} 명 </td>

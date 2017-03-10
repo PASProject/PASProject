@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +36,7 @@
 	<form action="myPostBoard" method="post">
 	<div class="container Message" id="content">
 		<h3>${sessionMem_Name} 님의 게시글 목록</h3>
-
-		<br>
-		<br>
-	
+		<br> <br>
 		<table class="table">
 			<thead>
 				<tr>
@@ -45,11 +45,10 @@
 					<th>제목</th>
 					<th>작성일</th>
 					<th>조회수</th>
-					
-					<th> 비  고</th>
-					
+					<th> 비  고</th>	
 				</tr>
 			</thead>
+			
 			<tbody>
 		<c:forEach items="${myPostBoardList}" var="MyPostBoardVo">
 			<tr id="boardContents">
@@ -58,10 +57,9 @@
  						<c:when test='${MyPostBoardVo.yn eq "1" }'>QnA게시판</c:when>
 						<c:when test='${MyPostBoardVo.bd_check eq "free" }'>커뮤니티</c:when>
 						<c:when test='${MyPostBoardVo.bd_check eq "skill" }'>기술공유</c:when>
-					
 					</c:choose>
 				</td>
-				<!--qna?num=${MyPostBoardVo.num } -->
+				
 				<td>${MyPostBoardVo.num }</td>
 				<td>
 				<c:choose>  
@@ -80,7 +78,10 @@
 					
 				</c:choose>
 				</td>
-				<td>${MyPostBoardVo.dt }</td>
+				
+			
+
+				<td><fmt:formatDate value="${MyPostBoardVo.dt}" pattern="yyyy/MM/dd"/></td>
 				<td>${MyPostBoardVo.cnt}</td>
 				
 				<td>

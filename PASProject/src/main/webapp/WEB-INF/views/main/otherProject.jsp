@@ -43,9 +43,6 @@ $(function(){
 						</div>
 					</form>
 
-
-
-
 					<!-- <small>Secondary Text</small> -->
 
 				</h3>

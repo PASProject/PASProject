@@ -41,13 +41,17 @@
 					/admin/adminNoticeDetail?ttnotice_Num=${noticeList.ttnotice_Num}">
 						${noticeList.ttnotice_Title}</a></td>
 				<td style="text-align: center">관리자</td>
-				<td style="text-align: center">${noticeList.ttnotice_Date}</td>
+				<td style="text-align: center"> 
+				<fmt:formatDate value="${noticeList.ttnotice_Date}" pattern="yyyy/MM/dd" />
+				</td>
 				<td style="text-align: center"></td>
 
 			</tr>
 	</c:forEach>
 		</table>
-	<button class="btn btn-default text-right" type="button" onClick="tt_NoticeInsert()">글쓰기</button>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	  <button class="btn btn-default text-right" type="button" onClick="tt_NoticeInsert()">글쓰기</button>
 </form> 
 
 <div class="col-md-12 text-center">

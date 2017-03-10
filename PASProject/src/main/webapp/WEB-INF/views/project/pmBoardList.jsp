@@ -18,8 +18,6 @@
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX"><img
 					src="<%=request.getContextPath()%>/resources/img/news.png">&nbsp;&nbsp;뉴스 피드 <small>자유롭게 이야기하세요</small>
 		</h3>
-		<!-- <button type="submit" onclick="go_myProjectList()">내가쓴글 보기</button> -->
-
 
 		<div class="col-md-12" >
 			<div id="pbd"
@@ -52,18 +50,6 @@
 				</form>
 
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 			<div style="margin-top: 20px;">
