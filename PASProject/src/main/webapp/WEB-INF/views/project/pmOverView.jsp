@@ -293,13 +293,13 @@ function protectKey()
 								<p class="mt">
 								<table>
 								<tr>
-								<td>&nbsp;&nbsp;총 지출  : ${totalAccountImp }</td>
+								<td>&nbsp;&nbsp;&nbsp;　　　총 지출  : ${totalAccountImp }</td>
 								</tr>
 								<tr>
-								<td>　&nbsp;&nbsp;&nbsp;&nbsp;총 수입 : -${totalAccountExp }</td>
+								<td>　　&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 수입 : -${totalAccountExp }</td>
 								</tr>
 								<tr>
-								<td>&nbsp;&nbsp;&nbsp;총 합:   ${totalAccount }</td>
+								<td>　&nbsp;&nbsp;&nbsp;&nbsp;총 합:   ${totalAccount }</td>
 								</tr>
 								</table>						
 							</div>
