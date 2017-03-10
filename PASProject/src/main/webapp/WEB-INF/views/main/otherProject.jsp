@@ -55,12 +55,32 @@ $(function(){
 			<div class="col-md-3" id="box"
 				style="-webkit-box-shadow :0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 				margin-bottom: 30px; background-color: white; float: left; padding: 10px 20px !important; width: 350px; height: 370px; position: relative; margin-left: 15px; margin-right: 15px; border-radius: 4px; ">
+				<table style="width:100%;">
+				<tr>
+				<td colspan="2">
+				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name }</h4>
+				</td>
+				
+				</tr>
+				<tr>
+				<td>
+				<h5 style="margin-top:5px; margin-bottom:5px;">${projectVo.proj_Team}</h5>
+				</td>
+				<td>
+				<a class="captain" href="#" onclick="goModal(${projectVo.proj_Num});" id="captain"><img
+								src="<%=request.getContextPath() %>/resources/upload/${projectVo.proj_Img}"
+								onerror="this.src='<%=request.getContextPath()%>/resources/upload/captain.png'" style="width:50px;" align="right"></a>
+				</td>
+				</tr>
+				</table>
+			<%-- 	
 				<h4 style="font-weight: bold; margin-top: 10px;">${projectVo.proj_Name } <a class="captain" href="#" onclick="goModal(${projectVo.proj_Num});" id="captain"><img
 								src="<%=request.getContextPath() %>/resources/upload/${projectVo.proj_Img}"
-								onerror="this.src='<%=request.getContextPath()%>/resources/upload/captain.png'" style="width:50px;" align="right"></a></h4>
-				<h5>${projectVo.proj_Team}</h5>
+								onerror="this.src='<%=request.getContextPath()%>/resources/upload/captain.png'" style="width:50px;" align="right"></a></h4> --%>
+				
+				
 				<div
-					style="min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #fff5f5; margin-bottom: 10px;">
+					style="margin-top:5px; min-height: 150px; border: 1px solid #ccc; border-radius: 5px; padding: 5px 10px; background-color: #fff5f5; margin-bottom: 10px;">
 					<p style="text-align:center;font-size:12pt;"><b>${projectVo.proj_Content}</b></p>
 				</div>
 
@@ -72,8 +92,8 @@ $(function(){
 				<div id="${projectVo.proj_Num}btnZone">
 								<input class="btn btn-block btn-default" type="button"
 									onclick="javascript:goApply(${projectVo.proj_Num})"
-									id="applyBtn" style="margin-right:20px"
-									
+									id="applyBtn" style="margin-right:20px;
+									margin-top:20px;"
 									value="참가 신청하기" />
 							</div>
 				</div>
@@ -84,11 +104,7 @@ $(function(){
 		<footer>
 			<!-- Footer -->
 
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2014</p>
-				</div>
-			</div>
+			
 			<!-- /.row -->
 		</footer>
 

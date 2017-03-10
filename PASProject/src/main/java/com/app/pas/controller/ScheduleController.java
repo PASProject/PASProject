@@ -99,9 +99,9 @@ public class ScheduleController {
 	
 	@RequestMapping(value="weeklyCheckInsert",method = RequestMethod.GET)
 	public String weeklyCheckInsert(HttpServletRequest request,@RequestParam(defaultValue = "") String d,
-			@RequestParam(defaultValue = "") String wk_Content,HttpSession session) throws SQLException, UnsupportedEncodingException, ParseException{
+			@RequestParam(defaultValue = "") String wk_Content,HttpSession session,HttpServletRequest response) throws SQLException, UnsupportedEncodingException, ParseException{
 		String url="redirect:weeklyChecklist";
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		WeeklyCheckVo weeklyCheckVo = new WeeklyCheckVo();
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
 		String mem_Email = memberVo.getMem_Email();

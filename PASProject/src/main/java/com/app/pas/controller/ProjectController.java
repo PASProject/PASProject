@@ -363,7 +363,7 @@ public class ProjectController {
 	
 	@RequestMapping(value = "/pmNoticeUpdate", method = RequestMethod.POST)
 	public String updateUpdate(NoticeVo noticeVo) {
-		String url = "redirect:/project/pm";
+		String url = "redirect:/project/pmNoticeList";
 
 		try {
 			noticeService.updateNotice(noticeVo);
@@ -381,7 +381,7 @@ public class ProjectController {
 		noticeVo.setNotice_Num(Integer.parseInt(notice_Num));
 		noticeVo.setProj_Num(Integer.parseInt((String)session.getAttribute("joinProj")));
 		
-		String url = "redirect:/project/pm";
+		String url = "redirect:/project/pmNoticeList";
 		try {
 			noticeService.deleteNotice(noticeVo);
 		} catch (SQLException e) {
