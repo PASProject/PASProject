@@ -23,7 +23,9 @@
 padding-left:10px;
 padding-right:10px;
 }
-
+#content > form > ul > li:nth-child > img{
+width:200px !important;
+}
 </style>
 
 <script type="text/javascript">
@@ -161,7 +163,7 @@ padding-right:10px;
 
                <ul>
                            <c:forEach var="pmMemberList" items="${pmMemberList }">
-               <li style="float:left; padding:30px;"><img src="<%=request.getContextPath()%>/resources/upload/${pmMemberList.mem_Img }" style="border-radius: 50%; width:230px; height:230px;" onerror="this.src='<%=request.getContextPath()%>/resources/upload/human.jpg'">
+               <li style="float:left; padding:30px;"><img src="<%=request.getContextPath()%>/resources/upload/${pmMemberList.mem_Img }" style="border-radius: 50%; width:200px; height:200px;" onerror="this.src='<%=request.getContextPath()%>/resources/upload/human.jpg'">
                <br><br><center><b><input type="button" class="btn btn-default" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/></b><br>
                <b>${pmMemberList.proj_Log_Time}</b>
                </center>
@@ -189,7 +191,7 @@ padding-right:10px;
             <div class="row">
 		<div class="col-md-16">
 			<h2 class="page-header"
-				style="border: 0px; padding-bottom: 0px; margin-top: 0px; margin-left: 10px;">
+				style="border: 0px; padding-bottom: 0px; margin-top: 0px; text-align:center">
 				<img class="img-thumbnail"
 					src="#" 
 					id="mem_Img_Modal" style="width: 200px; height: 200px; border-radius: 50%;" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>
