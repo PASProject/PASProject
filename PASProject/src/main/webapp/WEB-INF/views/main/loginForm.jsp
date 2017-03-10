@@ -279,7 +279,7 @@ $(function(){
 				<%-- 	<c:import url="CAPTCHA.jsp"/> --%>
 			</div><%-- <!-- 
 			 --><script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script> --%>
-			<div id="2"  >
+			<div id="2"  style="display: none">
 				<form>
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="email"
