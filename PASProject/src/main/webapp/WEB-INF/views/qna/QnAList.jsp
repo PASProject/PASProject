@@ -155,6 +155,12 @@
 											<li class="page-item" id="number"><a class="page-link"
 												href="myPostList?page=${i}">${i}</a></li>
 											<script>
+											$(function(){
+												var page = '${paging.pageNo}';
+												if(page==1){
+		  											$(document).find('#number').eq(0).addClass('active')
+												}
+											})
 												$('li')
 														.each(
 																function() {
@@ -204,6 +210,12 @@
 								<li class="page-item" id="number"><a class="page-link"
 									href="QnAList?page=${i}">${i}</a></li>
 								<script>
+								$(function(){
+									var page = '${paging.pageNo}';
+									if(page==1){
+											$(document).find('#number').eq(0).addClass('active')
+									}
+								})
 									$('li')
 											.each(
 													function() {

@@ -54,6 +54,7 @@ import com.app.pas.service.ProjectJoinService;
 import com.app.pas.service.ProjectLogService;
 import com.app.pas.service.ProjectService;
 import com.app.pas.service.ScheduleCalendarService;
+import com.app.pas.service.WeeklyCheckService;
 import com.app.pas.service.board.AccountBoardService;
 import com.app.pas.service.board.FreeBoardService;
 import com.app.pas.service.board.NoticeService;
@@ -70,10 +71,8 @@ public class ProjectController {
 	NoticeService noticeService;
 	@Autowired
 	ProjectBoardService projectBoardService;
-
 	@Autowired
 	ProjectBoardReplyService projectBoardReplyService;
-
 	@Autowired
 	AccountBoardService accountService;
 	@Autowired
@@ -94,15 +93,15 @@ public class ProjectController {
 	FreeBoardService freeBoardService;
 	@Autowired
 	MemberLogService memberLogService;
-	
 	@Autowired
 	GantChartService gantChartService;
-	
 	@Autowired
 	ProjectLogService projectLogService;
-	
+	@Autowired
+	WeeklyCheckService weeklyCheckService;
 	@Autowired
 	DocumentService documentService; 
+	
 	// �봽濡쒖젥�듃 Board List ---------------------------------------------
 	@RequestMapping("/pmBoardList")
 	public String selectProjectBoardList(HttpSession session,
@@ -422,7 +421,11 @@ public class ProjectController {
 		int totalAccountExp = accountService.sumAccountExp(Integer.parseInt(proj_Num));
 		int totalAccountImp = accountService.sumAccountImp(Integer.parseInt(proj_Num));
 		int totalAccount = totalAccountImp-totalAccountExp;
+		MemberVo selectKing = memberService.selectKing(Integer.parseInt(proj_Num));
 		
+		int wkY = weeklyCheckService.selectWkYnY(Integer.parseInt(proj_Num));
+		int wkN = weeklyCheckService.selectWkYnN(Integer.parseInt(proj_Num));
+		int sumYN = wkY+wkN;
 		request.setAttribute("totalAccountExp", totalAccountExp);
 		request.setAttribute("totalAccountImp", totalAccountImp);
 		request.setAttribute("countAccount", countAccount);
@@ -431,7 +434,10 @@ public class ProjectController {
 		request.setAttribute("countSchedule", countSchedule);
 		request.setAttribute("countProjNotice", countProjNotice);
 		request.setAttribute("totalAccount", totalAccount);
-		
+		request.setAttribute("selectKing", selectKing);
+		request.setAttribute("wkY", wkY);
+		request.setAttribute("wkN", wkN);
+		request.setAttribute("sumYN", sumYN);
 		freeBoardList = freeBoardService.selectFreeBoardList(freeboardVo);
 		
 		model.addAttribute("freeBoardList", freeBoardList);

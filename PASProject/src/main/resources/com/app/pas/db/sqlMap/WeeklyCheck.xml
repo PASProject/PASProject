@@ -31,6 +31,13 @@
 	<update id="wk_UpdateSuccess" parameterClass="WeeklyCheck">
 		update weekly_check set wk_content = #wk_Content# where wk_Num = #wk_Num#
 	</update>
-
+	
+	<select id="selectWkYnY" resultClass="int" parameterClass="int">
+		select count(*) from weekly_check where wk_proj_num=#proj_Num# and wk_yn='Y'
+	</select>
+	
+	<select id="selectWkYnN" resultClass="int" parameterClass="int">
+		select count(*) from weekly_check where wk_proj_num=#proj_Num# and wk_yn='N'
+	</select>
 
 </sqlMap>

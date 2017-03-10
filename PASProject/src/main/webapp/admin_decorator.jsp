@@ -72,7 +72,7 @@ margin-bottom:10px;
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li><a href="adminMain"><i><img id="menuIcon" src="<%=request.getContextPath() %>/resources/admin/img/dashboard.png"></i><span>대쉬보드</span> </a> </li>
+        <li class="active"><a href="adminMain"><i><img id="menuIcon" src="<%=request.getContextPath() %>/resources/admin/img/dashboard.png"></i><span>대시보드</span> </a> </li>
         <li><a href="memberList"><i><img id="menuIcon" src="<%=request.getContextPath() %>/resources/admin/img/multiple-users-silhouette.png"></i><span>회원</span> </a> </li>
         <li><a href="projectList"><i><img id="menuIcon" src="<%=request.getContextPath() %>/resources/admin/img/file.png"></i><span>프로젝트</span> </a></li>
         <li><a href="AdminQnAList"><i><img id="menuIcon" src="<%=request.getContextPath() %>/resources/admin/img/question-mark.png"></i><span>Q&A</span> </a> </li>

@@ -516,7 +516,7 @@ public class MainContoller {
 	}
 
 	
-	// 씨벌 왤케 안되냐 이건 아작스 씌벌
+	
 
 	@RequestMapping(value = "/c8", method = RequestMethod.POST)
 	public String uploadByMultipartHttpServletRequest(MemberVo memberVo,
@@ -526,7 +526,6 @@ public class MainContoller {
 		MultipartFile multipartFile = request.getFile("f");
 
 		if (!multipartFile.isEmpty()) {
-			/* String upload = request.getSession().Http */
 			String upload = new HttpServletRequestWrapper(request).getRealPath("/resources/upload");
 			System.out.println(upload);
 			File file = new File(upload, System.currentTimeMillis() + "$$"
@@ -691,75 +690,33 @@ public class MainContoller {
 	@RequestMapping(value="/messageReceiveList", method=RequestMethod.GET)
 	public String MessageReceiveList( MessageVo messageVo, Model model, HttpSession session) throws SQLException{
 		String url = "main/messageReceiveList";
-		
 		MemberVo memberVo=(MemberVo) session.getAttribute("loginUser");
 		messageVo.setMsg_rm_Email(memberVo.getMem_Email());
-		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
 		messageList=messageService.selectReceiveMessageList(messageVo);
-		
 		model.addAttribute("messageList",messageList);	
 		return url;
-	
 	}
 	@RequestMapping(value="/messageSendList", method=RequestMethod.GET)
 	public String MessageSendList( MessageVo messageVo,Model model, HttpSession session) throws SQLException{
 		String url = "main/messageSendList";
-		
 		MemberVo memberVo=(MemberVo) session.getAttribute("loginUser");
 		messageVo.setMsg_sm_Email(memberVo.getMem_Email());
-		
 		List<MessageVo> messageList = new ArrayList<MessageVo>();
 		messageList=messageService.selectSendMessageList(messageVo);
-		
-		
-
 		model.addAttribute("messageList",messageList);	
 		return url;
-	
 	}
-	
 	//받은쪽지 디테일
 	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
 	public String MessageReceiveDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
 		String url = "main/messageReceiveDetail";
-	
 		MessageVo asdf = messageService.selectReceiveMessageDetail(msg_Article_Num);
-		
 		model.addAttribute("messageVo", asdf);
 		System.out.println("controller MessageVo"+asdf);
 		return url;
 		
 	}
-	/*//받은 쪽지 디테일
-	@RequestMapping(value="/messageReceiveDetail", method=RequestMethod.GET)
-	public String MessageReceiveDetail(int msg_Article_Num, Model model, HttpSession session) throws NumberFormatException, SQLException{
-		String url = "main/messageReceiveDetail";
-		MessageVo messageVo = new MessageVo();
-		
-		messageVo = messageService.selectMessage(msg_Article_Num);
-		System.out.println(messageVo);
-		messageService.updateReceiveMessageReadYN(msg_Article_Num);
-
-		
-		System.out.println(messageVo.getMsg_rm_Read_yn().toString());
-		
-		
-		if((messageVo.getMsg_rm_Read_yn().toString().equals("n"))){
-			messageService.updateReceiveMessageReadTime(msg_Article_Num);	
-		}else{
-			System.out.println("업데이트 안되고 있는거?");
-		}
-		messageVo=messageService.selectMessage(msg_Article_Num);
-		
-		
-		System.out.println("ReceiveDeatil"+messageVo);
-		model.addAttribute("messageVo", messageVo);
-		
-		
-		return url;
-		
-	}*/
 	
 	//보낸 쪽지 디테일
 	@RequestMapping(value="/messageSendDetail", method=RequestMethod.GET)
@@ -774,6 +731,7 @@ public class MainContoller {
 		return url;
 		
 	}
+	
 	@RequestMapping(value="/messageWrite", method=RequestMethod.GET)
 	public String MessageWrite(HttpSession session, Model model){
 		String url = "main/messageWrite";
@@ -793,7 +751,7 @@ public class MainContoller {
 		messageVo.setMsg_sm_Email(mem_sm_Email);
 		messageVo.setMsg_sm_Name(mem_sm_Name);
 		messageVo.setMsg_rm_Name(memberVo1.getMem_Name());
-		System.out.println("나는 거침?");
+
 		messageService.insertMessage(messageVo);
 		/*messageVo.setMsg_rm_Email(msg_rm_Email);*/
 		return url;
@@ -810,7 +768,7 @@ public class MainContoller {
 	@RequestMapping(value="/messageReceiveDelete")
 	public @ResponseBody boolean DeleteReceiveMessage(int msg_Article_Num, HttpSession session, Model model) throws SQLException{
 		messageService.updateReceiveMessageDelYN(msg_Article_Num);
-		System.out.println("타는거 맞음?");
+		
 		return true;
 	}
 	@RequestMapping(value="selectMemberInfo", method = RequestMethod.POST)
