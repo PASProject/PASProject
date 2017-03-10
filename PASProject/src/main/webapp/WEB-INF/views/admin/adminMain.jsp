@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -93,16 +93,16 @@ text-align:center;
             <div class="widget-content">
              <script>
                 $(function(){
-                	var a1 = $('table > tbody > tr:nth-child(1)> td:nth-child(2) > span:last-child').text();
-                	var a2 = $('table > tbody > tr:nth-child(2)> td:nth-child(2) > span:last-child').text();
-                	var a4 = $('table > tbody > tr:nth-child(4)> td:nth-child(2) > span:last-child').text();
-                	var a1 = a1.slice(0,-2);
-                	var a2 = a2.slice(0,-2);
-                	var a4 = a4.slice(0,-2);
-                	
-                	$('table > tbody > tr:nth-child(1)> td:nth-child(2) > span:last-child').text(a1);
-                	$('table > tbody > tr:nth-child(2)> td:nth-child(2) > span:last-child').text(a2);
-                	$('table > tbody > tr:nth-child(4)> td:nth-child(2) > span:last-child').text(a4);
+                   var a1 = $('table > tbody > tr:nth-child(1)> td:nth-child(2) > span:last-child').text();
+                   var a2 = $('table > tbody > tr:nth-child(2)> td:nth-child(2) > span:last-child').text();
+                   var a4 = $('table > tbody > tr:nth-child(4)> td:nth-child(2) > span:last-child').text();
+                   var a1 = a1.slice(0,-2);
+                   var a2 = a2.slice(0,-2);
+                   var a4 = a4.slice(0,-2);
+                   
+                   $('table > tbody > tr:nth-child(1)> td:nth-child(2) > span:last-child').text(a1);
+                   $('table > tbody > tr:nth-child(2)> td:nth-child(2) > span:last-child').text(a2);
+                   $('table > tbody > tr:nth-child(4)> td:nth-child(2) > span:last-child').text(a4);
              })
                  
                 </script>
@@ -121,20 +121,8 @@ text-align:center;
                     <td style="width:55%">
                     <c:forEach items="${todayMemberList}" var="memberVo"><span>${memberVo.mem_Name},&nbsp;</span>
                     </c:forEach>
-<<<<<<< HEAD
-                    <span id="asdf">                   
-                    </span>
-                    <script>
-                    $(function(){
-                    	var a = $('#todayMem').text();
-                    	var b = a.slice(0,-2);
-                    	alert(b);
-                    })
-                    </script>
-=======
                    
                    
->>>>>>> branch 'master' of https://github.com/PASProject/PASProject.git
                     </td>
                     <td style="width:10%">${joinCount} 명 </td>
                   </tr>
