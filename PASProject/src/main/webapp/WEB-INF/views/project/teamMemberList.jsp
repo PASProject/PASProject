@@ -23,7 +23,9 @@
 padding-left:10px;
 padding-right:10px;
 }
-
+#content > form > ul > li:nth-child > img{
+width:200px !important;
+}
 </style>
 
 <script type="text/javascript">
@@ -161,7 +163,7 @@ padding-right:10px;
 
                <ul>
                            <c:forEach var="pmMemberList" items="${pmMemberList }">
-               <li style="float:left; padding:30px;"><img src="<%=request.getContextPath()%>/resources/upload/${pmMemberList.mem_Img }" style="border-radius: 50%; width:230px; height:230px;" onerror="this.src='<%=request.getContextPath()%>/resources/upload/human.jpg'">
+               <li style="float:left; padding:30px;"><img src="<%=request.getContextPath()%>/resources/upload/${pmMemberList.mem_Img }" style="border-radius: 50%; width:200px; height:200px;" onerror="this.src='<%=request.getContextPath()%>/resources/upload/human.jpg'">
                <br><br><center><b><input type="button" class="btn btn-default" onclick="show('${pmMemberList.mem_Email }')" value="${pmMemberList.mem_Name } "/></b><br>
                <b>${pmMemberList.proj_Log_Time}</b>
                </center>
