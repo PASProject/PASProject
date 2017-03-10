@@ -17,18 +17,24 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
 </head>
 
 <body>
+<style>
+td{
+
+}
+</style>
+
+<div class="container">
 	<form>
-	<strong><font size="5" style="margin-left: 8%">회원 관리</font></strong>
-			<font style="margin-left:50%;">이메일 : <input type="text" name="mem_Email" style="width:15%;"/>&nbsp; 
+	<strong><font size="5" style="">회원 관리</font></strong>
+			<font style="">이메일 : <input type="text" name="mem_Email" style="width:15%;"/>&nbsp; 
 			<input type="button" onclick="searchEmail(this.form);" value="이메일검색" style="width:5%;"></font>
 	</form>
 
 
-	<table style="width: 83%; margin-left: 7%" class="table table-hover" style="text-align:center;">
+	<table style="" class="table table-hover" style="text-align:center;">
 		<tr>
 			<th style="text-align:center;vertical-align:middle !important;"><input type="button" value="제명" onclick="go_delete()" style="margin-top: 0px; margin-bottom: 0px;"></th>
 			<th style="text-align:center;vertical-align:middle !important;">회원이메일</th>
@@ -79,12 +85,12 @@
 			
 		</c:forEach>
 	</table>
-	<div class="col-md-12 text-center">
+	<%-- <div class="col-md-12 text-center">
 				<c:if test="${paging.finalPageNo>0 }">
 					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
 					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
 					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center" style="margin-left: 40%">
+						<ul class="pagination justify-content-center" style="">
 
 							<li class="page-item"><a class="page-link"
 								href="memberList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
@@ -94,14 +100,7 @@
 								varStatus="status">
 										<li class="page-item" id="number"><a
 											class="page-link" href="memberList?page=${i}">${i}</a></li>
-										<script>
-										$('li').each(function(){
-										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
-										    {
-										    $(this).addClass('active').siblings().removeClass('active');
-										    }
-										});
-										</script>
+									
 							</c:forEach>
 							<li class="page-item"><a class="page-link"
 								href="memberList?page=${finalPageNo}">끝 페이지</a></li>
@@ -109,7 +108,15 @@
 					</nav>
 				</c:if>
 			</div>
-			<br><br>
+			<br><br> --%>
+				<script>
+										$('li').each(function(){
+										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+										    {
+										    $(this).addClass('active').siblings().removeClass('active');
+										    }
+										});
+										</script>
 	<script>
 	
 	function check_go(value){
@@ -188,6 +195,7 @@
 	
 	
 	</script>
+	</div>
 </body>
 
 </html>

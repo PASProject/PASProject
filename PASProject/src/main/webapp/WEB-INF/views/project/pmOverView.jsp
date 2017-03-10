@@ -272,6 +272,10 @@ function protectKey()
                         </p>
                         <br/>
                         <td rowspan="2" style="width:15%; border-right:1px solid #ddd"><img style="border-radius:50%; width:120px; height:120px; " src="/pas/resources/upload/${selectKing.mem_Img }" onerror="this.src=&quot;/pas/resources/upload/no.png&quot;">
+                        </td>
+                        <br>
+                        <br>
+                        <span style="color:white;">${selectKing.mem_Name }</span>
                      </div>
                   </div><!-- /col-md-4 -->
                                  <script>

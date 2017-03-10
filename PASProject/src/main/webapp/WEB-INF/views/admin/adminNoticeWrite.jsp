@@ -23,15 +23,15 @@
 			<div class="clear"></div>
 			
 			<button type="submit" class="btn btn-default">등록</button>
-			<input type="reset" value ="초기화" class="cancel">
-			<input type= "button" value="목록" onClick = "go_ttNoticList()">
+			<input type="reset" value ="초기화" class="btn btn-default cancel">
+			<input type= "button" class=" btn btn-default" value="목록" onClick = "go_ttNoticList()">
 	
 			</fieldset>
 
 	</form>
 	<script>
 		function go_ttNoticList(){
-			location.href = "totalNoticeList";
+			location.href = "AdminTotalNoticeList";
 		}
 		
 	

@@ -50,7 +50,7 @@ margin-bottom:10px;
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">PAS 관리자 페이지 </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">BLUE MINE 관리자 페이지 </a>
       <div class="nav-collapse">
         <ul class="nav pull-right">
           <li class="dropdown"><a href="#" style="font-size:19px;"class="dropdown-toggle" data-toggle="dropdown"><i

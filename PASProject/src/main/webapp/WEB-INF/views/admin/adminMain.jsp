@@ -22,7 +22,7 @@ text-align:center;
 }
 
 </style>
-<div class="main" style="border:0px solid black;">
+<div class="main" style="padding-bottom:30px; border:0px solid black;">
   <div class="main-inner">
     <div class="container">
       <div class="row">
