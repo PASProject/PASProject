@@ -192,6 +192,7 @@ $(function() {
  			data : JSON.stringify(dataList),
  			contentType : "application/json",
  			success:function(result){
+ 				console.log(JSON.stringify(data2).length);
  				sendSpreadSheet(JSON.stringify(data2));
  			}    
          });

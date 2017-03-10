@@ -45,7 +45,7 @@ public class SpreadSheetHandler extends TextWebSocketHandler{
 		@Override
 		public boolean supportsPartialMessages() {
 			// TODO Auto-generated method stub
-			return super.supportsPartialMessages();
+			return false;
 		}
 		
 		
