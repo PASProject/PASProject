@@ -76,7 +76,6 @@ public class QnaController {
 			
 		}else{
 			
-			
 		 if (keyField == ("name") || keyField.equals("name")) {
 
 			 qnaBoardVo.setMem_Name(keyword);

@@ -54,7 +54,6 @@ public class AdminNoticeController {
 			if(keyField == ("title") || keyField.equals("title")) {
 				
 				totalNoticeVo.setTtnotice_Title(keyword);
-				System.out.println("-----------------title 키워드 : " + keyword);
 				
 			}else if (keyField == ("number") || keyField.equals("number")) {
 				if (!(keyword.isEmpty() || keyword == null))
@@ -68,7 +67,7 @@ public class AdminNoticeController {
 			}
 				noticeList = totalNoticeService.selectTotalNoticeList(totalNoticeVo);
 				model.addAttribute("noticeList", noticeList);
-				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%"+noticeList);
+			
 			totalCount = totalNoticeService.toTalNoticeSearchCount(totalNoticeVo);
 			
 			if (page.equals(null) || page == "") {

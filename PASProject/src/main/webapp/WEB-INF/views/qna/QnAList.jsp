@@ -113,8 +113,7 @@
 						
 						</td>
 						<td>${qnaBoardVo.mem_Name }</td>
-						<td><fmt:formatDate value="${qnaBoardVo.qb_Wt_Date}"
-								pattern="yyyy/MM/dd" /></td>
+						<td><fmt:formatDate value="${qnaBoardVo.qb_Wt_Date}" pattern="yyyy/MM/dd" /></td>
 						<td>${qnaBoardVo.qb_Inq_Count }</td>
 
 					</tr>

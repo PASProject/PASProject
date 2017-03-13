@@ -85,7 +85,6 @@ public class MyPostController {
 			myPostBoardList = mainService.MyPostBoard(myPostBoardVo);
 		
 			model.addAttribute("myPostBoardList", myPostBoardList);
-			System.out.println("리스트가 대체어떻길래;");
 		
 		return url;
 		}

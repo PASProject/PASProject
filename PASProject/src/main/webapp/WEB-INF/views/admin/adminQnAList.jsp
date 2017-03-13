@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<div class="col-md-10">
+	<div class="container">
 		
 	<form name="form" method="post" action="AdminQnAList">
 	<strong><font size="5" style="margin-left: 8%">Q&A관리</font></strong>
@@ -25,8 +25,8 @@
 		<input type ="text" size ="20" name="keyword" value="${keyword}" >
 		<input type ="submit" value="검색" >
 <br>	
-<br>	
-			<table style="width: 83%; margin-left: 7%; text-align:center;" class="table table-hover">
+	
+			<table style="text-align:center;" class="table table-hover">
 				<tr class="text-center">
 					<th style="text-align: center;vertical-align:middle !important;">답변여부</th>
 					<th style="text-align: center;vertical-align:middle !important;">번호</th>
@@ -59,22 +59,8 @@
 				</c:forEach>
 			</table>
 		</form>
-			<div class="col-md-12 text-center">
-				<c:if test="${paging.finalPageNo>0 }">
-					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center" style="margin-left: 40%">
-
-							<li class="page-item"><a class="page-link"
-								href="AdminQnAList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
-
-
-							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-								varStatus="status">
-										<li class="page-item" id="number"><a
-											class="page-link" href="AdminQnAList?page=${i}">${i}</a></li>
-										<script>
+			
+		<script>
 										$('li').each(function(){
 										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
 										    {
@@ -82,21 +68,11 @@
 										    }
 										});
 										</script>
-							</c:forEach>
-							<li class="page-item"><a class="page-link"
-								href="AdminQnAList?page=${finalPageNo}">끝 페이지</a></li>
-
-
-						</ul>
-					</nav>
-				</c:if>
-			</div>
-			<br><br>
-		</div>
 		<script>
 					function QnaWrite() {
 						location.href = "QnAWrite";
 					} 
 				</script>
+				</div>
 </body>
 </html>

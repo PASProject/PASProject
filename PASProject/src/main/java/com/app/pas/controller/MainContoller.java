@@ -326,7 +326,6 @@ public class MainContoller {
 			@RequestParam(defaultValue = "")String proj_Search,ProjectVo projectVo,
 			HttpServletResponse response)
 			throws SQLException {
-
 		
 		String url = "/main/otherProject";
 		List<ProjectVo> list = new ArrayList<ProjectVo>();
@@ -347,9 +346,7 @@ public class MainContoller {
 					|| session.getAttribute("joinProjectVo") != "null") {
 				session.removeAttribute("joinProjectVo");
 			}
-
-		}else{
-			
+		}else{		
 			if (session.getAttribute("proj_Num") != null) {
 				session.removeAttribute("proj_Num");
 			}

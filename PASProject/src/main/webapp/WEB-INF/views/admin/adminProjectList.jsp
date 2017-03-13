@@ -25,15 +25,15 @@ vertical-align:middle;
 }
 </style>
 <body>
-	 
+	 <div class="container">
 	<form>
-	<strong><font size="5" style="margin-left: 8%">프로젝트 관리</font></strong>
-			<font style="margin-left:47%;">프로젝트명 : <input type="text" name="proj_Name" style="width:15%;"/>&nbsp; 
+	<strong><font size="5">프로젝트 관리</font></strong>
+			<font >프로젝트명 : <input type="text" name="proj_Name" style="width:15%;"/>&nbsp; 
 			<input type="button" onclick="searchProj(this.form);" value="검색" ></font>
 	</form>
 
 
-	<table style="width: 83%; margin-left: 7%; text-align:center;" class="table table-hover">
+	<table style="text-align:center;" class="table table-hover">
 		<tr>
 			<th style="text-align:center; vertical-align:middle !important;"><input type="button" value="삭제" onclick="go_delete()"style="margin-top: 0px; margin-bottom: 0px;"></th>
 			<th style="text-align:center; vertical-align:middle !important;">프로젝트이름</th>
@@ -73,22 +73,9 @@ vertical-align:middle;
 			</tr>
 		</c:forEach>
 	</table>
-		<div class="col-md-12 text-center">
-				<c:if test="${paging.finalPageNo>0 }">
-					<c:set value="${paging.firstPageNo}" var="firstPageNo" />
-					<c:set value="${paging.finalPageNo}" var="finalPageNo" />
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center" style="margin-left: 40%">
-
-							<li class="page-item"><a class="page-link"
-								href="projectList?page=${firstPageNo}" tabindex="-1">첫 페이지</a></li>
-
-
-							<c:forEach begin="1" end="${paging.finalPageNo}" var="i"
-								varStatus="status">
-										<li class="page-item" id="number"><a
-											class="page-link" href="projectList?page=${i}">${i}</a></li>
-										<script>
+		
+		
+		<script>
 										$('li').each(function(){
 										    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
 										    {
@@ -96,14 +83,6 @@ vertical-align:middle;
 										    }
 										});
 										</script>
-							</c:forEach>
-							<li class="page-item"><a class="page-link"
-								href="projectList?page=${finalPageNo}">끝 페이지</a></li>
-						</ul>
-					</nav>
-				</c:if>
-		</div>
-		<br><br>
 	<script>
 	
 	function check_go(value){
@@ -199,6 +178,7 @@ vertical-align:middle;
 	
 	
 	</script>
+</div>
 </body>
 
 </html>

@@ -191,7 +191,7 @@ width:200px !important;
             <div class="row">
 		<div class="col-md-16">
 			<h2 class="page-header"
-				style="border: 0px; padding-bottom: 0px; margin-top: 0px; margin-left: 10px;">
+				style="border: 0px; padding-bottom: 0px; margin-top: 0px; text-align:center">
 				<img class="img-thumbnail"
 					src="#" 
 					id="mem_Img_Modal" style="width: 200px; height: 200px; border-radius: 50%;" onerror = "this.src='<%=request.getContextPath()%>/resources/upload/no.png'"/>

@@ -55,7 +55,6 @@ public class AdminQnaController {
 			
 		}else{
 			
-			
 		 if (keyField == ("name") || keyField.equals("name")) {
 
 			qnaBoarVo.setMem_Name(keyword);

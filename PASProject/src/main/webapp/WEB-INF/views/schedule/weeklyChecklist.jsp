@@ -24,27 +24,12 @@ word-break: break-all;
 padding:10px !important;
 }
 </style>
-	<!-- 	<script>
-	moment.lang('ko', {
-	    weekdays: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"], 
-	    weekdaysShort: ["일","월","화","수","목","금","토"],
-	});
-		$(function() {
-			var m = moment();
-			var month = m.format("MM");
-			var date = m.format("DD")
-			var day = m.format("ddd");
-			alert(day);
-			var a = $('.day').text();
-			alert(a);
-		})
-	</script> -->
+
 	<div class="col-md-10" id="content">
 
 		<h2 class="page-header"
 			style="PADDING-BOTTOM: 0PX; BORDER-BOTTOM: 0PX">
 			주간 일정 체크
-			<!-- <small>자유롭게 이야기하세요</small> -->
 		</h2>
 		<script>
 			
@@ -55,9 +40,7 @@ padding:10px !important;
 				<tr>
 					<c:forEach items="${weekly_dateList}" var="ScheduleCalendarVo">
 						<th class="col-md-1 day">${ScheduleCalendarVo.dy}
-
 							[${ScheduleCalendarVo.dt}] 
-							<%-- 					<fmt:formatDate value="" pattern="yyyy-MM-dd"/> --%>
 						</th>
 					</c:forEach>
 				</tr>
@@ -690,16 +673,12 @@ padding:10px !important;
 										$('#${ WeeklyCheckVo.wk_Num}').css({
 											'text-decoration':'line-through'
 										})
-										// $('#g1${ WeeklyCheckVo.wk_Num}').hide();
 										$('#g2${ WeeklyCheckVo.wk_Num}').hide();
 										$('#${WeeklyCheckVo.wk_Num}~#successBtn').hide();
-									}
-									
+									}									
 								})
-								
-								
+										
 								</script>
-
 								<c:set var="dateF">
 									<fmt:formatDate value="${WeeklyCheckVo.wk_Date}"
 										pattern="yyyyMMdd" />

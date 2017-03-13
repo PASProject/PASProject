@@ -114,8 +114,7 @@ public class ProjectController {
 
 		String getProj_Num = (String) session.getAttribute("joinProj");
 
-		pbList = projectBoardService.selectProjectBoardList(Integer
-				.parseInt(getProj_Num));
+		pbList = projectBoardService.selectProjectBoardList(Integer.parseInt(getProj_Num));
 
 		model.addAttribute("pbList", pbList);
 
@@ -127,7 +126,6 @@ public class ProjectController {
 	public String insertProjectBoard(Model model,
 			ProjectBoardVo projectBoardVo, HttpSession session)
 			throws SQLException {
-		// int proj_Num = (Integer) session.getAttribute("joinProj");
 
 		// �꽭�뀡�쓽 �젙蹂대�� 媛��졇���꽌 �꽔�쓬
 		MemberVo memberVo = (MemberVo) session.getAttribute("loginUser");
@@ -240,16 +238,6 @@ public class ProjectController {
 				.parseInt(pb_Reply_Num));
 		return url;
 	}
-
-	//
-	// @RequestMapping(value = "/pmBoardWrite", method = RequestMethod.GET)
-	// public String writeFreeBoard(HttpSession session, Model model) {
-	// String url = "project/pmBoardWrite";
-	// return url;
-	//
-	// }
-
-	// ------------------------------------------------------------------------------
 	// ------------------------------------------------------------------------------
 
 	@RequestMapping("/pmChat")
